@@ -109,6 +109,20 @@ function calculateReadTime(content: string): string {
   return `${minutes} min read`
 }
 
+// Define CSV record type
+interface BlogCSVRecord {
+  Name?: string
+  Slug?: string
+  'Main Content'?: string
+  'Meta Description'?: string
+  'Blog Image'?: string
+  'Published On'?: string
+  'Created On'?: string
+  Draft?: string
+  Archived?: string
+  [key: string]: string | undefined
+}
+
 // Main import function
 async function importBlogs(csvPath: string) {
   try {
@@ -123,7 +137,7 @@ async function importBlogs(csvPath: string) {
       columns: true,
       skip_empty_lines: true,
       trim: true,
-    })
+    }) as BlogCSVRecord[]
     
     console.log(`📊 Found ${records.length} blog posts to import\n`)
     
