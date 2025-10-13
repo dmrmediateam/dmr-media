@@ -5,9 +5,9 @@ import { schemaTypes } from './sanity/schemas'
 
 export default defineConfig({
   name: 'default',
-  title: 'Cheryl Towey Real Estate Website Blog',
+  title: 'DMR Media Blog',
 
-  projectId: 'cs56ipyy',
+  projectId: 'gvyjxd5j',
   dataset: 'production',
 
   plugins: [deskTool(), visionTool()],

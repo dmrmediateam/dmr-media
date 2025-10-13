@@ -8,33 +8,35 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Luxury Gold Palette
-        gold: {
-          DEFAULT: '#b89649',  // Main gold from realestatebycherylnj.com
-          light: '#d4af37',
-          dark: '#b8860b',
+        // Natural Accent Palette
+        accent: {
+          DEFAULT: '#2c2c2c',
+          light: '#4a4a4a',
+          dark: '#0a0a0a',
         },
-        // Off-Black & Off-White for luxury feel
-        'off-black': '#1a1a1a',
-        'off-white': '#faf9f7',
-        black: '#1a1a1a',
-        white: '#faf9f7',
-        // Gray Scale
+        // Off-Black & Off-White - Natural Tones
+        'off-black': '#0f0f0f',
+        'off-white': '#fafaf9',
+        black: '#0f0f0f',
+        white: '#fafaf9',
+        // Gray Scale - Natural Tones
         gray: {
-          light: '#f5f4f2',
-          DEFAULT: '#e8e6e3',
-          medium: '#e8e6e3',
-          dark: '#5a5a5a',
+          light: '#f5f5f4',
+          DEFAULT: '#e7e7e5',
+          medium: '#e7e7e5',
+          dark: '#525252',
+        },
+        // Hover state
+        hover: {
+          accent: '#737373',
         },
       },
       fontFamily: {
-        // Varela for body text
-        sans: ['Varela', 'system-ui', 'sans-serif'],
-        // Playfair Display for hero/elegant headings
-        serif: ['Playfair Display', 'serif'],
-        // Bodoni Moda for other headings
-        heading: ['Bodoni Moda', 'serif'],
-        body: ['Varela', 'sans-serif'],
+        // Instrument Serif for everything
+        sans: ['Instrument Serif', 'serif'],
+        serif: ['Instrument Serif', 'serif'],
+        heading: ['Instrument Serif', 'serif'],
+        body: ['Instrument Serif', 'serif'],
       },
       animation: {
         'fade-in-left': 'fadeInLeft 0.6s ease-out',

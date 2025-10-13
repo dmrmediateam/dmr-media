@@ -1,31 +1,24 @@
 import type { Metadata } from 'next'
-import { Bodoni_Moda, Varela } from 'next/font/google'
+import { Instrument_Serif } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ScrollAnimations from '@/components/ScrollAnimations'
 import ScrollProgressBar from '@/components/ScrollProgressBar'
 
-// Bodoni Moda for headings - Elegant luxury serif
-const bodoniModa = Bodoni_Moda({ 
+// Instrument Serif - Elegant, natural serif font
+const instrumentSerif = Instrument_Serif({ 
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-bodoni',
-  display: 'swap',
-})
-
-// Varela for body text - Clean, modern sans-serif
-const varela = Varela({ 
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-varela',
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  variable: '--font-instrument',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Cheryl Towey - Real Estate Professional',
-  description: 'Professional real estate services in New Jersey. Find your dream home with Cheryl Towey.',
-  keywords: 'real estate, New Jersey, homes for sale, property listings, Cheryl Towey',
+  title: 'DMR Media - Luxury Real Estate Marketing Agency',
+  description: 'Specialized Google marketing, SEO, and Google Ads for luxury real estate professionals. Elevate your brand and dominate the premium property market.',
+  keywords: 'real estate marketing, luxury real estate, Google Ads, SEO, real estate SEO, Google marketing, premium property marketing, DMR Media',
 }
 
 export default function RootLayout({
@@ -34,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${bodoniModa.variable} ${varela.variable}`}>
-      <body className={varela.className}>
+    <html lang="en" className={instrumentSerif.variable}>
+      <body className={instrumentSerif.className}>
         <ScrollProgressBar />
         <ScrollAnimations />
         <Navbar />

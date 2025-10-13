@@ -34,10 +34,10 @@ export async function sendContactFormEmail(data: ContactFormData) {
   const { name, email, phone, message } = data;
 
   const emailContent = {
-    to: process.env.CONTACT_FORM_EMAIL || 'arohm@dmrmedia.org',
+    to: process.env.CONTACT_FORM_EMAIL || 'team@dmrmedia.org',
     from: {
       email: process.env.SENDGRID_FROM_EMAIL || 'noreply@sendgrid.net',
-      name: process.env.SENDGRID_FROM_NAME || 'Cheryl Towey - Real Estate',
+      name: process.env.SENDGRID_FROM_NAME || 'DMR Media',
     },
     replyTo: email, // Allow direct reply to the sender
     subject: `New Contact Form Submission from ${name}`,
@@ -102,7 +102,7 @@ export async function sendContactFormEmail(data: ContactFormData) {
               </div>
             </div>
             <div class="footer">
-              <p>This email was sent from the contact form on realestatebycherylnj.com</p>
+              <p>This email was sent from the contact form on dmrmedia.org</p>
               <p style="color: #b89649; font-weight: 600;">Reply directly to this email to respond to ${name}</p>
             </div>
           </div>
@@ -156,10 +156,10 @@ export async function sendHomeValuationEmail(data: HomeValuationData) {
   const fullAddress = `${address}, ${city}, ${state} ${zipCode}`;
 
   const emailContent = {
-    to: process.env.VALUATION_FORM_EMAIL || 'arohm@dmrmedia.org',
+    to: process.env.VALUATION_FORM_EMAIL || 'team@dmrmedia.org',
     from: {
       email: process.env.SENDGRID_FROM_EMAIL || 'noreply@sendgrid.net',
-      name: process.env.SENDGRID_FROM_NAME || 'Cheryl Towey - Real Estate',
+      name: process.env.SENDGRID_FROM_NAME || 'DMR Media',
     },
     replyTo: email,
     subject: `New Home Valuation Request - ${address}`,
@@ -273,7 +273,7 @@ export async function sendHomeValuationEmail(data: HomeValuationData) {
               </div>
             </div>
             <div class="footer">
-              <p>This valuation request was submitted from the Sellers page on realestatebycherylnj.com</p>
+              <p>This valuation request was submitted from the Sellers page on dmrmedia.org</p>
               <p style="color: #b89649; font-weight: 600;">Reply directly to this email to respond to ${firstName} ${lastName}</p>
             </div>
           </div>

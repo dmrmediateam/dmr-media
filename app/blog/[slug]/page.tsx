@@ -42,19 +42,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const portableTextComponents = {
   block: {
     h2: ({ children }: any) => (
-      <h2 className="text-3xl font-light text-black mt-12 mb-4">{children}</h2>
+      <h2 className="text-3xl font-light text-off-black mt-12 mb-4">{children}</h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-2xl font-light text-black mt-8 mb-3">{children}</h3>
+      <h3 className="text-2xl font-light text-off-black mt-8 mb-3">{children}</h3>
     ),
     h4: ({ children }: any) => (
-      <h4 className="text-xl font-medium text-black mt-6 mb-2">{children}</h4>
+      <h4 className="text-xl font-normal text-off-black mt-6 mb-2">{children}</h4>
     ),
     normal: ({ children }: any) => (
       <p className="text-gray-dark text-lg leading-relaxed mb-6">{children}</p>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-4 border-gold pl-6 my-8 italic text-gray-dark">
+      <blockquote className="border-l-2 border-off-black pl-6 my-8 italic text-gray-dark">
         {children}
       </blockquote>
     ),
@@ -71,7 +71,7 @@ const portableTextComponents = {
     link: ({ children, value }: any) => (
       <a
         href={value.href}
-        className="text-gold hover:underline"
+        className="text-off-black hover:text-gray-dark underline"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -96,35 +96,35 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   });
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-off-white">
       {/* Hero Section */}
-      <div className="relative h-[60vh] min-h-[500px] bg-black">
+      <div className="relative h-[60vh] min-h-[500px] bg-off-black">
         <img
           src={post.mainImage.asset.url}
           alt={post.mainImage.alt}
           className="w-full h-full object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/80 flex items-end">
+        <div className="absolute inset-0 bg-gradient-to-b from-off-black/50 to-off-black/80 flex items-end">
           <div className="container-max pb-16">
             <div className="max-w-4xl">
               {/* Category Badge */}
-              <div className="inline-block bg-gold text-white px-4 py-2 text-xs uppercase tracking-wider mb-6">
+              <div className="inline-block bg-off-white text-off-black px-4 py-2 text-xs uppercase tracking-wider mb-6">
                 {post.category}
               </div>
 
               {/* Title */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light text-off-white mb-6 leading-tight">
                 {post.title}
               </h1>
 
               {/* Meta Information */}
-              <div className="flex flex-wrap items-center gap-4 text-white/90 text-sm">
+              <div className="flex flex-wrap items-center gap-4 text-off-white/90 text-sm">
                 <div className="flex items-center gap-2">
                   {post.author.image && (
                     <img
                       src={post.author.image}
                       alt={post.author.name}
-                      className="w-10 h-10 rounded-full border-2 border-gold"
+                      className="w-10 h-10 rounded-full border-2 border-off-white"
                     />
                   )}
                   <span>{post.author.name}</span>
@@ -140,10 +140,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       </div>
 
       {/* Article Content */}
-      <article className="section-padding">
+      <article className="section-padding bg-off-white">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Lead Paragraph */}
-          <div className="text-xl text-gray-dark leading-relaxed mb-12 pb-8 border-b border-gray">
+          <div className="text-xl text-gray-dark leading-relaxed mb-12 pb-8 border-b border-gray-200">
             {post.description}
           </div>
 
@@ -154,7 +154,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
           {/* Tags */}
           {post.tags && post.tags.length > 0 && (
-            <div className="mt-16 pt-8 border-t border-gray">
+            <div className="mt-16 pt-8 border-t border-gray-200">
               <h3 className="text-sm uppercase tracking-wider text-gray-dark mb-4">
                 Topics
               </h3>
@@ -162,7 +162,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                 {post.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="px-4 py-2 bg-gray-light text-black text-sm border border-gray rounded-sm"
+                    className="px-4 py-2 bg-off-white text-off-black text-sm border border-gray-200"
                   >
                     {tag}
                   </span>
@@ -172,25 +172,25 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           )}
 
           {/* Author Bio */}
-          <div className="mt-16 p-8 bg-gray-light border border-gray rounded-sm">
+          <div className="mt-16 p-8 bg-white border border-gray-200">
             <div className="flex items-start gap-6">
               {post.author.image && (
                 <img
                   src={post.author.image}
                   alt={post.author.name}
-                  className="w-24 h-24 rounded-full border-2 border-gold"
+                  className="w-24 h-24 rounded-full border-2 border-off-black"
                 />
               )}
               <div>
-                <h3 className="text-2xl font-light text-black mb-3">
+                <h3 className="text-2xl font-light text-off-black mb-3">
                   About {post.author.name}
                 </h3>
                 <p className="text-gray-dark leading-relaxed mb-4">
-                  Expert real estate agent specializing in Morris County and surrounding areas.
-                  Helping families find their dream homes with personalized service and local market expertise.
+                  Marketing experts specializing in luxury real estate SEO, Google Ads, and digital strategy.
+                  Helping premium agents dominate their markets with data-driven campaigns and proven results.
                 </p>
                 <Link href="/contact" className="btn-primary inline-block">
-                  Contact {post.author.name}
+                  Work With Us
                 </Link>
               </div>
             </div>
@@ -200,7 +200,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <div className="mt-16 text-center">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-black hover:text-gold transition-colors duration-200"
+              className="inline-flex items-center gap-2 text-off-black hover:text-gray-dark transition-colors duration-200"
             >
               <span>←</span>
               <span className="text-lg">Back to All Insights</span>
@@ -210,20 +210,20 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       </article>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gray-light border-t border-gray">
+      <section className="section-padding bg-white border-t border-gray-200">
         <div className="container-max text-center">
-          <h2 className="text-3xl sm:text-4xl font-light text-black mb-6">
-            Ready to Find Your Perfect Home?
+          <h2 className="text-3xl sm:text-4xl font-light text-off-black mb-6">
+            Ready to Elevate Your Real Estate Marketing?
           </h2>
           <p className="text-lg text-gray-dark max-w-2xl mx-auto mb-8">
-            Get expert guidance and exclusive access to listings in Morris County and beyond.
+            Let's build a custom marketing strategy that drives results. From SEO to Google Ads, we help luxury agents dominate their markets.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="btn-primary">
-              Schedule a Consultation
+              Start Your Campaign
             </Link>
-            <Link href="/listings" className="btn-outline">
-              Browse Listings
+            <Link href="/blog" className="btn-outline">
+              More Insights
             </Link>
           </div>
         </div>

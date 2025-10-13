@@ -27,11 +27,13 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'Market Report', value: 'Market Report' },
-          { title: 'Investment Guide', value: 'Investment Guide' },
-          { title: 'Buyer Tips', value: 'Buyer Tips' },
-          { title: 'Seller Tips', value: 'Seller Tips' },
-          { title: 'Market Analysis', value: 'Market Analysis' },
+          { title: 'SEO Strategy', value: 'SEO Strategy' },
+          { title: 'Google Ads', value: 'Google Ads' },
+          { title: 'Marketing Insights', value: 'Marketing Insights' },
+          { title: 'Real Estate Marketing', value: 'Real Estate Marketing' },
+          { title: 'Content Strategy', value: 'Content Strategy' },
+          { title: 'Digital Marketing', value: 'Digital Marketing' },
+          { title: 'Case Studies', value: 'Case Studies' },
         ],
       },
       validation: (Rule) => Rule.required(),

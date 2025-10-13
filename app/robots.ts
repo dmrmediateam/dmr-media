@@ -6,7 +6,7 @@ import { MetadataRoute } from 'next';
  */
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://realestatebycherylnj.com';
+  const baseUrl = 'https://dmrmedia.org';
   
   return {
     rules: [

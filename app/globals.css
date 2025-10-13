@@ -2,28 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Luxury Fonts - Playfair Display (Hero/Headings), Bodoni Moda & Varela (Body) */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Varela&display=swap');
+/* Luxury Fonts - Instrument Serif (Primary) */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Off-Black & Off-White */
-  --off-black: #1a1a1a;
-  --off-white: #faf9f7;
+  /* Off-Black & Off-White - Natural Color Palette */
+  --off-black: #0f0f0f;
+  --off-white: #fafaf9;
   
-  /* Luxury Gold */
-  --gold: #b89649;
-  --gold-light: #d4af37;
-  --gold-dark: #b8860b;
+  /* Accent Colors - Subtle & Natural */
+  --accent: #2c2c2c;
+  --accent-light: #4a4a4a;
+  --accent-dark: #0a0a0a;
   
-  /* Gray Shades */
-  --gray-light: #f5f4f2;
-  --gray-medium: #e8e6e3;
-  --gray-dark: #5a5a5a;
+  /* Gray Shades - Natural Tones */
+  --gray-light: #f5f5f4;
+  --gray-medium: #e7e7e5;
+  --gray-dark: #525252;
+  
+  /* For transitions/hover states */
+  --hover-accent: #737373;
 }
 
 @layer base {
   html {
-    font-family: 'Varela', system-ui, sans-serif;
+    font-family: 'Instrument Serif', serif;
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
   }
@@ -35,6 +38,7 @@
     color: var(--off-black);
     background-color: var(--off-white);
     overflow-x: hidden;
+    font-family: 'Instrument Serif', serif;
   }
   
   * {
@@ -48,9 +52,9 @@
     transition-duration: 300ms;
   }
 
-  /* Headings with Bodoni Moda */
+  /* Headings with Instrument Serif */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Bodoni Moda', serif;
+    font-family: 'Instrument Serif', serif;
     font-weight: 400;
     color: var(--off-black);
   }
@@ -71,9 +75,9 @@
     @apply text-xl sm:text-2xl;
   }
 
-  /* Body text with Varela */
+  /* Body text with Instrument Serif */
   p, span, div, a, button, input, textarea, label {
-    font-family: 'Varela', sans-serif;
+    font-family: 'Instrument Serif', serif;
   }
 }
 
@@ -158,21 +162,21 @@
 }
 
 @layer components {
-  /* Primary Button with gradient hover */
+  /* Primary Button - Natural & Minimal */
   .btn-primary {
-    background: linear-gradient(135deg, var(--gold-light), var(--gold-light));
+    background: var(--off-black);
     color: var(--off-white);
-    font-weight: 700;
+    font-weight: 400;
     padding: 1rem 2.5rem;
-    border-radius: 2px;
+    border-radius: 0;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     font-size: 0.875rem;
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-block;
     cursor: pointer;
     border: none;
-    font-family: 'Varela', sans-serif;
+    font-family: 'Instrument Serif', serif;
     position: relative;
     overflow: hidden;
   }
@@ -184,36 +188,36 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+    background: var(--accent);
     opacity: 0;
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: -1;
   }
   
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(184, 150, 73, 0.4);
+    box-shadow: 0 4px 12px rgba(15, 15, 15, 0.3);
   }
   
   .btn-primary:hover::before {
     opacity: 1;
   }
   
-  /* Outline Button with gradient hover */
+  /* Outline Button - Natural & Minimal */
   .btn-outline {
-    border: 2px solid var(--gold-light);
-    color: var(--gold-dark);
+    border: 1px solid var(--off-black);
+    color: var(--off-black);
     background-color: transparent;
-    font-weight: 700;
+    font-weight: 400;
     padding: 1rem 2.5rem;
-    border-radius: 2px;
+    border-radius: 0;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     font-size: 0.875rem;
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-block;
     cursor: pointer;
-    font-family: 'Varela', sans-serif;
+    font-family: 'Instrument Serif', serif;
     position: relative;
     overflow: hidden;
   }
@@ -225,17 +229,17 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+    background: var(--off-black);
     opacity: 0;
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: -1;
   }
   
   .btn-outline:hover {
     color: var(--off-white);
-    border-color: var(--gold-dark);
+    border-color: var(--off-black);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(184, 150, 73, 0.3);
+    box-shadow: 0 4px 12px rgba(15, 15, 15, 0.2);
   }
   
   .btn-outline:hover::before {
@@ -269,7 +273,7 @@
     @apply max-w-7xl mx-auto;
   }
 
-  /* Heading with Gold Line */
+  /* Heading with Accent Line */
   .heading-line {
     position: relative;
     display: inline-block;
@@ -282,11 +286,11 @@
     bottom: 0;
     left: 0;
     width: 64px;
-    height: 2px;
-    background-color: var(--gold-light);
+    height: 1px;
+    background-color: var(--off-black);
   }
   
-  /* Centered Heading Underline - Luxury Style */
+  /* Centered Heading Underline - Minimal Style */
   .heading-underline {
     position: relative;
     display: inline-block;
@@ -299,12 +303,12 @@
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
-    height: 2px;
+    height: 1px;
     background: linear-gradient(90deg, 
       transparent, 
-      var(--gold-light) 20%, 
-      var(--gold-dark) 50%, 
-      var(--gold-light) 80%, 
+      var(--accent-light) 20%, 
+      var(--off-black) 50%, 
+      var(--accent-light) 80%, 
       transparent
     );
   }
@@ -321,30 +325,30 @@
     bottom: -12px;
     left: 0;
     width: 80px;
-    height: 2px;
+    height: 1px;
     background: linear-gradient(90deg, 
-      var(--gold-dark), 
-      var(--gold-light), 
+      var(--off-black), 
+      var(--accent-light), 
       transparent
     );
   }
   
-  /* Text Gold Color */
-  .text-gold {
-    color: var(--gold-light);
+  /* Text Accent Color */
+  .text-accent {
+    color: var(--accent);
   }
 
-  .text-gold-dark {
-    color: var(--gold-dark);
+  .text-accent-light {
+    color: var(--accent-light);
   }
 
-  /* Background Gold */
-  .bg-gold {
-    background-color: var(--gold-light);
+  /* Background Accent */
+  .bg-accent {
+    background-color: var(--accent);
   }
 
-  .bg-gold-dark {
-    background-color: var(--gold-dark);
+  .bg-accent-dark {
+    background-color: var(--accent-dark);
   }
 
   /* Off-White Background */
@@ -378,18 +382,18 @@
   /* Input Focus Styles */
   input:focus,
   textarea:focus {
-    outline: 2px solid var(--gold-light);
+    outline: 1px solid var(--off-black);
     outline-offset: 2px;
   }
 
   /* Selection Color */
   ::selection {
-    background-color: var(--gold-light);
+    background-color: var(--off-black);
     color: var(--off-white);
   }
 
   ::-moz-selection {
-    background-color: var(--gold-light);
+    background-color: var(--off-black);
     color: var(--off-white);
   }
 }
@@ -423,9 +427,9 @@
     opacity: 0.8;
   }
 
-  /* Text Gradient Gold */
-  .text-gradient-gold {
-    background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+  /* Text Gradient Accent */
+  .text-gradient-accent {
+    background: linear-gradient(135deg, var(--accent-light), var(--off-black));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -483,7 +487,7 @@
 @media (hover: hover) {
   .btn-primary:hover,
   .btn-outline:hover,
-  a.text-gold:hover {
+  a.text-accent:hover {
     cursor: pointer;
   }
 }
@@ -502,11 +506,11 @@
   animation: fadeIn 0.3s ease-out;
 }
 
-/* Enhanced gold glow utility class */
-.gold-glow {
-  box-shadow: 0 0 20px rgba(184, 150, 73, 0.4);
+/* Enhanced subtle shadow utility class */
+.subtle-shadow {
+  box-shadow: 0 0 20px rgba(15, 15, 15, 0.1);
 }
 
-.gold-glow-strong {
-  box-shadow: 0 0 30px rgba(184, 150, 73, 0.6);
+.subtle-shadow-strong {
+  box-shadow: 0 0 30px rgba(15, 15, 15, 0.15);
 }
