@@ -9,8 +9,7 @@
     "lint": "next lint",
     "sanity": "sanity dev",
     "sanity:build": "sanity build",
-    "sanity:deploy": "sanity deploy",
-    "import-blogs": "tsx scripts/import-blogs.ts"
+    "sanity:deploy": "sanity deploy"
   },
   "dependencies": {
     "@portabletext/react": "^4.0.3",
