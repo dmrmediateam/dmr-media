@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero';
 import ContactForm from '@/components/ContactForm';
 import CANSFramework from '@/components/CANSFramework';
+import CaseStudies from '@/components/CaseStudies';
 import { getAllBlogPosts } from '@/data/blogPosts';
 import Link from 'next/link';
 
@@ -59,6 +60,9 @@ export default async function Home() {
 
       {/* CANS Framework Section */}
       <CANSFramework />
+
+      {/* Case Studies Section */}
+      <CaseStudies />
 
       {/* Services Section */}
       <section className="section-padding bg-white">
@@ -261,7 +265,7 @@ export default async function Home() {
             </h2>
             <div className="w-24 h-px bg-off-white mx-auto mb-6"></div>
             <p className="text-gray-300 max-w-2xl mx-auto">
-              Hear from luxury real estate professionals who have transformed their business with DMR Media
+              Hear from luxury real estate professionals who have transformed their business with DMR <span className="italic">Media</span>
             </p>
           </div>
 
@@ -278,7 +282,7 @@ export default async function Home() {
                 </div>
               </div>
               <blockquote className="text-gray-300 leading-relaxed mb-6">
-                "DMR Media transformed our digital presence. Our monthly GCI increased by 300% within the first quarter. Their Google Ads strategies are unmatched."
+                "DMR <span className="italic">Media</span> transformed our digital presence. Our monthly GCI increased by 300% within the first quarter. Their Google Ads strategies are unmatched."
               </blockquote>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-off-white/10 rounded-full flex items-center justify-center mr-4">
@@ -303,7 +307,7 @@ export default async function Home() {
                 </div>
               </div>
               <blockquote className="text-gray-300 leading-relaxed mb-6">
-                "The SEO results speak for themselves. We're now ranking #1 for all our target luxury keywords. DMR Media delivers exceptional value."
+                "The SEO results speak for themselves. We're now ranking #1 for all our target luxury keywords. DMR <span className="italic">Media</span> delivers exceptional value."
               </blockquote>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-off-white/10 rounded-full flex items-center justify-center mr-4">
@@ -328,7 +332,7 @@ export default async function Home() {
                 </div>
               </div>
               <blockquote className="text-gray-300 leading-relaxed mb-6">
-                "Professional, results-driven, and incredibly knowledgeable. DMR Media helped us dominate our local luxury market. Highly recommended."
+                "Professional, results-driven, and incredibly knowledgeable. DMR <span className="italic">Media</span> helped us dominate our local luxury market. Highly recommended."
               </blockquote>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-off-white/10 rounded-full flex items-center justify-center mr-4">
@@ -351,7 +355,7 @@ export default async function Home() {
             Ready to Transform Your Business?
           </h2>
           <p className="text-lg text-gray-dark max-w-2xl mx-auto mb-8">
-            Join 100+ luxury real estate professionals who trust DMR Media to deliver exceptional marketing results and drive sustainable growth.
+            Join 100+ luxury real estate professionals who trust DMR <span className="italic">Media</span> to deliver exceptional marketing results and drive sustainable growth.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="btn-primary">

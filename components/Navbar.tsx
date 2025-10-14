@@ -1,19 +1,40 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      setScrollProgress(scrollPercent);
+    };
+
+    window.addEventListener('scroll', updateScrollProgress);
+    return () => window.removeEventListener('scroll', updateScrollProgress);
+  }, []);
 
   return (
     <nav className="bg-off-white sticky top-0 z-50 border-b border-gray-200">
+      {/* Scroll Progress Bar */}
+      <div className="absolute top-0 left-0 w-full h-0.5 bg-gray-200">
+        <div 
+          className="h-full bg-off-black transition-all duration-150 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+      
       <div className="container-max">
         <div className="flex justify-between items-center py-4 md:py-6">
           {/* Logo */}
           <Link href="/" className="flex items-center py-2 md:py-0 z-10">
             <span className="text-2xl md:text-3xl font-serif text-off-black tracking-wide">
-              DMR Media
+              DMR <span className="italic">Media</span>
             </span>
           </Link>
 

@@ -20,7 +20,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
                 <Link href="/" className="inline-block mb-6">
                   <span className="text-2xl font-serif text-off-white tracking-wide">
-                    DMR Media
+                    DMR <span className="italic">Media</span>
                   </span>
                 </Link>
                 <p className="text-gray-400 text-sm leading-relaxed mb-6">
@@ -110,7 +110,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 py-8">
           <div className="text-xs text-gray-400 leading-relaxed text-center">
             <p>
-              © {currentYear} DMR Media. All services and strategies are customized for luxury real estate marketing.
+              © {currentYear} DMR <span className="italic">Media</span>. All services and strategies are customized for luxury real estate marketing.
               Results may vary based on market conditions and campaign execution.
             </p>
           </div>
@@ -120,7 +120,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 py-8">
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
                 <div className="text-gray-400 text-xs">
-                  © {currentYear} DMR Media. All rights reserved.
+                  © {currentYear} DMR <span className="italic">Media</span>. All rights reserved.
                 </div>
           </div>
         </div>

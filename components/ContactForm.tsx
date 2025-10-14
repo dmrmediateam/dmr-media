@@ -162,7 +162,7 @@ const ContactForm = () => {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="text-3xl sm:text-4xl font-serif font-light mb-4"
               >
-                Contact <span className="text-off-white">DMR Media</span>
+                Contact <span className="text-off-white">DMR <span className="italic">Media</span></span>
               </motion.h3>
               
               <motion.div 

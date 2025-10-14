@@ -19,7 +19,7 @@ const Hero = () => {
         style={{ y: imageY }}
       >
         <iframe
-          className="absolute inset-0 w-full h-full object-cover scale-[1.1]"
+          className="absolute inset-0 w-full h-full"
           src="https://www.youtube.com/embed/qDKYXovls4k?autoplay=1&mute=1&loop=1&playlist=qDKYXovls4k&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&fs=0&cc_load_policy=0&playsinline=1&enablejsapi=1"
           title="Luxury Home Fly Through"
           frameBorder="0"
@@ -27,13 +27,12 @@ const Hero = () => {
           allowFullScreen={false}
           style={{
             pointerEvents: 'none',
-            minWidth: '100vw',
-            minHeight: '100vh',
-            width: '100vw',
-            height: '56.25vw', // 16:9 aspect ratio
+            width: '177.78vh', // 16:9 aspect ratio scaled to fill height
+            height: '100vh',
             left: '50%',
             top: '50%',
             transform: 'translate(-50%, -50%)',
+            objectFit: 'cover',
           }}
         />
       </motion.div>
@@ -51,7 +50,7 @@ const Hero = () => {
             transition={{ duration: 1, ease: 'easeOut' }}
             className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-serif font-light tracking-[-0.03em] text-off-white relative pb-4"
           >
-            DMR Media
+            DMR <span className="italic">Media</span>
             <motion.span
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
