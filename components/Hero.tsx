@@ -13,15 +13,28 @@ const Hero = () => {
 
   return (
     <section ref={sectionRef} className="relative h-screen flex items-center overflow-hidden">
-      {/* Image Background with Parallax */}
+      {/* YouTube Video Background with Parallax */}
       <motion.div 
         className="absolute inset-0 overflow-hidden"
         style={{ y: imageY }}
       >
-        <img
-          className="absolute inset-0 w-full h-full object-cover object-center scale-[1.1]"
-          src="/images/luxury-estate-hero.jpg"
-          alt="Luxury Estate Mountain View"
+        <iframe
+          className="absolute inset-0 w-full h-full object-cover scale-[1.1]"
+          src="https://www.youtube.com/embed/qDKYXovls4k?autoplay=1&mute=1&loop=1&playlist=qDKYXovls4k&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&fs=0&cc_load_policy=0&playsinline=1&enablejsapi=1"
+          title="Luxury Home Fly Through"
+          frameBorder="0"
+          allow="autoplay; encrypted-media"
+          allowFullScreen={false}
+          style={{
+            pointerEvents: 'none',
+            minWidth: '100vw',
+            minHeight: '100vh',
+            width: '100vw',
+            height: '56.25vw', // 16:9 aspect ratio
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
         />
       </motion.div>
       
