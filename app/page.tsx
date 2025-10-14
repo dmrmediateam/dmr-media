@@ -56,6 +56,161 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* CANS Framework Section */}
+      <section className="section-padding bg-white">
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif font-light text-off-black mb-4">
+              The CANS Framework
+            </h2>
+            <div className="w-24 h-px bg-off-black mx-auto mb-6"></div>
+            <p className="text-gray-dark max-w-3xl mx-auto text-lg">
+              Our proprietary lead generation system that leverages Google's ecosystem to deliver predictable, scalable results for luxury real estate professionals.
+            </p>
+          </div>
+
+          {/* Framework Flow */}
+          <div className="max-w-6xl mx-auto">
+            {/* Catch Phase */}
+            <div className="mb-12">
+              <div className="flex items-center mb-8">
+                <div className="w-16 h-16 bg-off-black text-off-white flex items-center justify-center rounded-full mr-6">
+                  <span className="text-2xl font-serif font-light">C</span>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-serif font-light text-off-black mb-2">Catch</h3>
+                  <p className="text-gray-dark">Initial lead generation through Google systems</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ml-22">
+                {/* Google Business Profile */}
+                <div className="p-6 bg-gray-50 border border-gray-200 hover:border-off-black transition-all duration-400">
+                  <h4 className="text-xl font-serif font-light text-off-black mb-3">Google Business Profile</h4>
+                  <ul className="text-sm text-gray-dark space-y-2">
+                    <li>• Short-term Play</li>
+                    <li>• Seller Leads</li>
+                    <li>• Hard to Scale</li>
+                  </ul>
+                </div>
+
+                {/* SEO */}
+                <div className="p-6 bg-gray-50 border border-gray-200 hover:border-off-black transition-all duration-400">
+                  <h4 className="text-xl font-serif font-light text-off-black mb-3">Search Engine Optimization</h4>
+                  <ul className="text-sm text-gray-dark space-y-2">
+                    <li>• Long-term Play</li>
+                    <li>• Mainly Buyer Leads</li>
+                    <li>• Compounds</li>
+                  </ul>
+                </div>
+
+                {/* Google Search Ads */}
+                <div className="p-6 bg-gray-50 border border-gray-200 hover:border-off-black transition-all duration-400">
+                  <h4 className="text-xl font-serif font-light text-off-black mb-3">Google Search Ads</h4>
+                  <ul className="text-sm text-gray-dark space-y-2">
+                    <li>• Short-term Play</li>
+                    <li>• Mixed Leads</li>
+                    <li>• Scales but Expensive</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Arrow Down */}
+            <div className="flex justify-center mb-8">
+              <div className="w-px h-12 bg-gray-300"></div>
+            </div>
+
+            {/* Amplify Phase */}
+            <div className="mb-12">
+              <div className="flex items-center mb-8">
+                <div className="w-16 h-16 bg-gray-dark text-off-white flex items-center justify-center rounded-full mr-6">
+                  <span className="text-2xl font-serif font-light">A</span>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-serif font-light text-off-black mb-2">Amplify</h3>
+                  <p className="text-gray-dark">Scale and warm leads through targeted campaigns</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ml-22">
+                {/* Google P-Max Ads */}
+                <div className="p-6 bg-gray-900 border border-gray-700 hover:border-off-black transition-all duration-400">
+                  <h4 className="text-xl font-serif font-light text-off-white mb-3">Google P-Max Ads (Cold)</h4>
+                  <ul className="text-sm text-gray-300 space-y-2">
+                    <li>• Short-term Play</li>
+                    <li>• High Volume</li>
+                    <li>• Cold Leads</li>
+                    <li>• Expensive</li>
+                  </ul>
+                </div>
+
+                {/* Email Newsletter */}
+                <div className="p-6 bg-gray-900 border border-gray-700 hover:border-off-black transition-all duration-400">
+                  <h4 className="text-xl font-serif font-light text-off-white mb-3">Email Newsletter (Warm)</h4>
+                  <ul className="text-sm text-gray-300 space-y-2">
+                    <li>• Long-term Play</li>
+                    <li>• Low Volume</li>
+                    <li>• Warm Leads</li>
+                    <li>• Cheap</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Arrow Down */}
+            <div className="flex justify-center mb-8">
+              <div className="w-px h-12 bg-gray-300"></div>
+            </div>
+
+            {/* Nurture & Service Phase */}
+            <div>
+              <div className="flex items-center mb-8">
+                <div className="w-16 h-16 bg-off-black text-off-white flex items-center justify-center rounded-full mr-6">
+                  <span className="text-2xl font-serif font-light">N</span>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-serif font-light text-off-black mb-2">Nurture & Service</h3>
+                  <p className="text-gray-dark">Convert and manage leads through systematic follow-up</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ml-22">
+                {/* SMS & Email Automations */}
+                <div className="p-6 bg-gray-50 border border-gray-200 hover:border-off-black transition-all duration-400">
+                  <h4 className="text-xl font-serif font-light text-off-black mb-3">SMS & Email Automations</h4>
+                  <ul className="text-sm text-gray-dark space-y-2">
+                    <li>• High Volume</li>
+                    <li>• Colder Leads</li>
+                    <li>• Scales</li>
+                  </ul>
+                </div>
+
+                {/* Manual Calls */}
+                <div className="p-6 bg-gray-50 border border-gray-200 hover:border-off-black transition-all duration-400">
+                  <h4 className="text-xl font-serif font-light text-off-black mb-3">Manual Calls</h4>
+                  <ul className="text-sm text-gray-dark space-y-2">
+                    <li>• Low Volume</li>
+                    <li>• Warmest Leads</li>
+                    <li>• Hard to Scale</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-16">
+            <p className="text-lg text-gray-dark mb-6">
+              Ready to implement the CANS Framework for your real estate business?
+            </p>
+            <Link href="/contact" className="btn-primary">
+              Get Your CANS Strategy
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
       <section className="section-padding bg-white">
         <div className="container-max">
