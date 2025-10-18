@@ -73,8 +73,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { location: string } }) {
-  const location = locationData[params.location];
+export async function generateMetadata({ params }: { params: Promise<{ location: string }> }) {
+  const { location: locationSlug } = await params;
+  const location = locationData[locationSlug];
   
   if (!location) {
     return {
@@ -88,8 +89,9 @@ export async function generateMetadata({ params }: { params: { location: string 
   };
 }
 
-export default function LocationSEOPage({ params }: { params: { location: string } }) {
-  const location = locationData[params.location];
+export default async function LocationSEOPage({ params }: { params: Promise<{ location: string }> }) {
+  const { location: locationSlug } = await params;
+  const location = locationData[locationSlug];
 
   if (!location) {
     notFound();

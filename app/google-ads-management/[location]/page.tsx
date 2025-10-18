@@ -64,8 +64,9 @@ export async function generateStaticParams() {
   return Object.keys(locationData).map((location) => ({ location }));
 }
 
-export async function generateMetadata({ params }: { params: { location: string } }) {
-  const location = locationData[params.location];
+export async function generateMetadata({ params }: { params: Promise<{ location: string }> }) {
+  const { location: locationSlug } = await params;
+  const location = locationData[locationSlug];
   if (!location) return { title: 'Location Not Found' };
 
   return {
@@ -74,8 +75,9 @@ export async function generateMetadata({ params }: { params: { location: string 
   };
 }
 
-export default function LocationGoogleAdsPage({ params }: { params: { location: string } }) {
-  const location = locationData[params.location];
+export default async function LocationGoogleAdsPage({ params }: { params: Promise<{ location: string }> }) {
+  const { location: locationSlug } = await params;
+  const location = locationData[locationSlug];
   if (!location) notFound();
 
   return (
