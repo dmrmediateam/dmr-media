@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     icon: '/icon.png',
     apple: '/icon.png',
   },
-  metadataBase: new URL('https://dmrmedia.com'),
+  metadataBase: new URL('https://dmrmedia.org'),
 }
 
 export default function RootLayout({

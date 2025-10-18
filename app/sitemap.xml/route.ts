@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   // Define your site's base URL
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org';
   
   // Define all your main pages
   const routes = [

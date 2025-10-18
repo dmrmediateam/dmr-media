@@ -4,7 +4,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://dmrmedia.com/sitemap.xml
+Sitemap: https://dmrmedia.org/sitemap.xml
 
 # Disallow admin and API routes
 Disallow: /api/
