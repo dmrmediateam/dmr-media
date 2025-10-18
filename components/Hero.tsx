@@ -2,43 +2,62 @@
 
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 const Hero = () => {
   const sectionRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollY } = useScroll();
   
   // Parallax effect - image moves slower than content
   const imageY = useTransform(scrollY, [0, 500], [0, 150]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      // Force video to load and play
+      video.load();
+      const playPromise = video.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log('Video autoplay failed:', error);
+          // Try again after a short delay
+          setTimeout(() => {
+            video.play().catch(e => console.log('Second play attempt failed:', e));
+          }, 500);
+        });
+      }
+    }
+  }, []);
+
   return (
     <section ref={sectionRef} className="relative h-screen flex items-center overflow-hidden">
-      {/* YouTube Video Background with Parallax */}
+      {/* Video Background with Parallax */}
       <motion.div 
         className="absolute inset-0 overflow-hidden"
         style={{ y: imageY }}
       >
-        <iframe
-          className="absolute inset-0 w-full h-full"
-          src="https://www.youtube.com/embed/qDKYXovls4k?autoplay=1&mute=1&loop=1&playlist=qDKYXovls4k&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&fs=0&cc_load_policy=0&playsinline=1&enablejsapi=1"
-          title="Luxury Home Fly Through"
-          frameBorder="0"
-          allow="autoplay; encrypted-media"
-          allowFullScreen={false}
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
           style={{
             pointerEvents: 'none',
-            width: '177.78vh', // 16:9 aspect ratio scaled to fill height
-            height: '100vh',
-            left: '50%',
-            top: '50%',
-            transform: 'translate(-50%, -50%)',
-            objectFit: 'cover',
           }}
-        />
+        >
+          <source src="/videos/aerial-view-of-a-gloomy-castle-1080p-2025-08-28-16-17-39-utc.mov" type="video/mp4" />
+          <source src="/videos/aerial-view-of-a-gloomy-castle-1080p-2025-08-28-16-17-39-utc.mov" type="video/quicktime" />
+          Your browser does not support the video tag.
+        </video>
       </motion.div>
       
       {/* Black Gradient Overlay from Left */}
-      <div className="absolute inset-0 bg-gradient-to-r from-off-black via-off-black/85 via-30% to-off-black/50"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-off-black/70 via-off-black/50 via-40% via-off-black/30 via-60% to-transparent"></div>
 
       {/* Content - Left Aligned */}
       <div className="relative z-10 text-left text-off-white px-6 sm:px-12 lg:px-20 max-w-7xl">

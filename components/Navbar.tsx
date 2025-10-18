@@ -134,6 +134,38 @@ const Navbar = () => {
                   <span className="absolute bottom-0 left-0 w-0 h-px bg-off-black transition-all duration-400 group-hover:w-full"></span>
                 </Link>
 
+                <div className="space-y-3 pl-4 border-l-2 border-gray-200">
+                  <h3 className="text-xs uppercase tracking-widest text-gray-dark font-semibold">Services</h3>
+                  <Link
+                    href="/seo-optimization"
+                    className="block text-lg font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    SEO Optimization
+                  </Link>
+                  <Link
+                    href="/google-ads-management"
+                    className="block text-lg font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Google Ads Management
+                  </Link>
+                  <Link
+                    href="/property-marketing"
+                    className="block text-lg font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Property Marketing
+                  </Link>
+                  <Link
+                    href="/analytics-reporting"
+                    className="block text-lg font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Analytics & Reporting
+                  </Link>
+                </div>
+
                 <Link
                   href="/blog"
                   className="text-2xl md:text-3xl font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"

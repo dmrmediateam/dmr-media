@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   title: 'DMR Media - Luxury Real Estate Marketing Agency',
   description: 'Specialized Google marketing, SEO, and Google Ads for luxury real estate professionals. Elevate your brand and dominate the premium property market.',
   keywords: 'real estate marketing, luxury real estate, Google Ads, SEO, real estate SEO, Google marketing, premium property marketing, DMR Media',
+  icons: {
+    icon: '/icon.png',
+    apple: '/icon.png',
+  },
+  metadataBase: new URL('https://dmrmedia.com'),
 }
 
 export default function RootLayout({

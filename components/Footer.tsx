@@ -62,12 +62,28 @@ const Footer = () => {
           {/* Services */}
           <div>
             <h4 className="text-sm font-semibold text-off-white uppercase tracking-wider mb-6">Services</h4>
-            <div className="space-y-4 text-sm text-gray-400">
-                  <div>SEO Optimization</div>
-                  <div>Google Ads Management</div>
-                  <div>Real Estate Marketing</div>
-                  <div>Content Strategy</div>
-            </div>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/seo-optimization" className="text-gray-400 hover:text-off-white transition-colors text-sm">
+                  SEO Optimization
+                </Link>
+              </li>
+              <li>
+                <Link href="/google-ads-management" className="text-gray-400 hover:text-off-white transition-colors text-sm">
+                  Google Ads Management
+                </Link>
+              </li>
+              <li>
+                <Link href="/property-marketing" className="text-gray-400 hover:text-off-white transition-colors text-sm">
+                  Property Marketing
+                </Link>
+              </li>
+              <li>
+                <Link href="/analytics-reporting" className="text-gray-400 hover:text-off-white transition-colors text-sm">
+                  Analytics & Reporting
+                </Link>
+              </li>
+            </ul>
             <div className="mt-6">
               <h5 className="text-xs font-semibold text-off-white uppercase tracking-wider mb-4">Connect</h5>
               <div className="flex space-x-3">

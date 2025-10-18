@@ -39,7 +39,7 @@ export default function CaseStudies() {
   ];
 
   return (
-    <section className="section-padding bg-off-white">
+    <section className="section-padding bg-white">
       <div className="container-max">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-serif font-light text-off-black mb-4">
@@ -47,69 +47,78 @@ export default function CaseStudies() {
           </h2>
           <div className="w-24 h-px bg-off-black mx-auto mb-6"></div>
           <p className="text-gray-dark max-w-2xl mx-auto">
-            Real results from luxury real estate professionals who transformed their business with DMR <span className="italic">Media</span>
+            Real results from luxury real estate professionals who transformed their business
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {caseStudies.slice(0, 2).map((study) => (
-            <Link
-              key={study.id}
-              href={`/case-study/${study.id}`}
-              className="group bg-white border border-gray-200 overflow-hidden hover:border-off-black transition-all duration-400"
-            >
-              {/* Image */}
-              <div className="relative h-64 bg-gray-light overflow-hidden">
+        {/* Brick/Staggered Layout */}
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {caseStudies.slice(0, 2).map((study, index) => (
+              <Link
+                key={study.id}
+                href={`/case-study/${study.id}`}
+                className="relative h-[500px] overflow-hidden group cursor-pointer"
+              >
+                {/* Background Image */}
                 <Image
                   src={study.image}
                   alt={`${study.client} case study results`}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-400"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute top-4 left-4 bg-off-black text-off-white px-3 py-1 text-xs uppercase tracking-wider">
-                  Case Study
-                </div>
-                <div className="absolute bottom-4 right-4 bg-off-white/90 text-off-black px-3 py-1 text-sm font-medium">
-                  {study.result}
-                </div>
-              </div>
+                {/* Black Overlay */}
+                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-all duration-500"></div>
+                
+                {/* Content */}
+                <div className="relative h-full flex flex-col justify-between p-10">
+                  {/* Top Section */}
+                  <div>
+                    <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs uppercase tracking-wider mb-4">
+                      Case Study
+                    </div>
+                    
+                    {/* Stars */}
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(study.rating)].map((_, i) => (
+                        <svg key={i} className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
 
-              {/* Content */}
-              <div className="p-8">
-                <div className="flex items-center mb-4">
-                  <div className="flex text-yellow-400">
-                    {[...Array(study.rating)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  {/* Bottom Section */}
+                  <div>
+                    {/* Result Badge */}
+                    <div className="inline-block px-5 py-2 bg-gold/90 text-off-black font-bold text-lg mb-6 group-hover:scale-105 transition-transform duration-500">
+                      {study.result}
+                    </div>
+
+                    <h3 className="text-3xl font-serif font-light text-white mb-3 group-hover:text-gold transition-colors duration-500">
+                      {study.title}
+                    </h3>
+
+                    <div className="text-white/90 mb-4">
+                      <div className="font-semibold text-lg">{study.client}</div>
+                      <div className="text-sm">{study.company}</div>
+                    </div>
+
+                    <p className="text-white/80 leading-relaxed mb-6">
+                      {study.description}
+                    </p>
+
+                    <div className="flex items-center text-white group-hover:text-gold transition-colors duration-500">
+                      <span className="text-sm font-medium mr-2">Read Full Case Study</span>
+                      <svg className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
-                    ))}
+                    </div>
                   </div>
                 </div>
-
-                <h3 className="text-2xl font-serif font-light text-off-black mb-3 group-hover:text-gray-dark transition-colors duration-400">
-                  {study.title}
-                </h3>
-
-                <div className="text-gray-dark mb-4">
-                  <div className="font-medium text-off-black">{study.client}</div>
-                  <div className="text-sm">{study.company}</div>
-                </div>
-
-                <p className="text-gray-dark leading-relaxed mb-6">
-                  {study.description}
-                </p>
-
-                <blockquote className="text-gray-dark italic mb-6 border-l-4 border-off-black pl-4">
-                  "{study.testimonial}"
-                </blockquote>
-
-                <div className="flex items-center text-off-black group-hover:text-gray-dark transition-colors duration-400">
-                  <span className="text-sm font-medium mr-2">Read Full Case Study</span>
-                  <span>→</span>
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* View All Case Studies CTA */}

@@ -1,16 +1,12 @@
-# robots.txt for Cheryl Towey Real Estate
+# robots.txt for DMR Media
 
 User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: http://localhost:3000/sitemap.xml
+Sitemap: https://dmrmedia.com/sitemap.xml
 
-# When you deploy, update to your production domain:
-# Sitemap: https://yourdomain.com/sitemap.xml
-
-# Optional: Disallow certain paths (examples)
-# Disallow: /api/
-# Disallow: /admin/
-# Disallow: /_next/
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /_next/
 
