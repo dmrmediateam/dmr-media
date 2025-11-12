@@ -5,107 +5,83 @@ import { useState, useEffect } from 'react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const updateScrollProgress = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      setScrollProgress(scrollPercent);
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 12);
     };
 
-    window.addEventListener('scroll', updateScrollProgress);
-    return () => window.removeEventListener('scroll', updateScrollProgress);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <nav className="bg-off-white sticky top-0 z-50 border-b border-gray-200">
-      {/* Scroll Progress Bar */}
-      <div className="absolute top-0 left-0 w-full h-0.5 bg-gray-200">
-        <div 
-          className="h-full bg-off-black transition-all duration-150 ease-out"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
-      
-      <div className="container-max">
-        <div className="flex justify-between items-center py-4 md:py-6">
-          {/* Logo */}
-          <Link href="/" className="flex items-center py-2 md:py-0 z-10">
-            <span className="text-2xl md:text-3xl font-serif text-off-black tracking-wide">
-              DMR <span className="italic">Media</span>
-            </span>
-          </Link>
+    <nav className="relative z-50">
+      <div
+        className={`fixed inset-x-0 top-0 transition-all duration-300 ${
+          isScrolled ? 'backdrop-blur-xl bg-white/80 border-b border-[rgba(15,15,15,0.08)] shadow-[0_8px_32px_rgba(15,15,15,0.08)]' : 'backdrop-blur-lg bg-white/60 border-b border-transparent'
+        }`}
+      >
+        <div className="container-max">
+          <div className="flex justify-between items-center py-3 md:py-4">
+            {/* Logo */}
+            <Link
+              href="/"
+              className="flex items-center z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-trust)] focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-full px-2 py-1"
+            >
+              <span className="text-xl md:text-2xl font-serif text-[var(--color-off-black)] tracking-tight">
+                DMR <span className="italic">Media</span>
+              </span>
+            </Link>
 
-          {/* Right Side - Desktop Nav + Menu Button */}
-          <div className="flex items-center gap-8">
-            {/* Desktop Navigation - Only visible on lg+ screens */}
-            <div className="hidden lg:flex items-center gap-8">
-              <Link
-                href="/blog"
-                className="text-off-black hover:text-gray-dark font-serif text-sm transition-colors duration-200 relative group tracking-wide"
-                style={{ fontWeight: 400 }}
-              >
-                Blog
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-off-black transition-all duration-300 group-hover:w-full"></span>
-              </Link>
+            <div className="flex items-center gap-2">
               <Link
                 href="/contact"
-                className="text-off-black hover:text-gray-dark font-serif text-sm transition-colors duration-200 relative group tracking-wide"
-                style={{ fontWeight: 400 }}
+                className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.24em] rounded-full px-4 py-2 border border-[var(--color-ink-200)] bg-white/70 hover:bg-white text-[var(--color-off-black)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-trust)] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
               >
+                <span className="inline-block w-2 h-2 rounded-full bg-[var(--color-trust)]" />
                 Contact
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-off-black transition-all duration-300 group-hover:w-full"></span>
               </Link>
-              <Link
-                href="/calendar"
-                className="text-off-black hover:text-gray-dark font-serif text-sm transition-colors duration-200 relative group tracking-wide"
-                style={{ fontWeight: 400 }}
-              >
-                Schedule
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-off-black transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-            </div>
 
-            {/* Menu button - Right aligned on all screens */}
-            <button
-              type="button"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-off-black hover:text-gray-dark hover:bg-gray-light z-50 relative transition-colors duration-200"
-              aria-label="Toggle menu"
-              aria-expanded={isMenuOpen}
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+              <button
+                type="button"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-ink-200)] text-[var(--color-off-black)] bg-white/80 hover:bg-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-trust)] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                aria-label="Toggle menu"
+                aria-expanded={isMenuOpen}
               >
-                {isMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  {isMenuOpen ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 7h16M4 12h16M4 17h16"
+                    />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Full Screen Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-[rgba(15,15,15,0.35)] backdrop-blur-sm z-40 transition-opacity duration-300 ${
           isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setIsMenuOpen(false)}
@@ -113,99 +89,85 @@ const Navbar = () => {
 
       {/* Full Screen Menu - Slides from Right */}
       <div
-        className={`fixed top-0 right-0 h-full w-full md:w-3/4 lg:w-2/3 bg-off-white z-40 shadow-2xl transition-transform duration-500 ease-out ${
+        className={`fixed top-0 right-0 h-full w-full md:w-3/4 lg:w-2/3 bg-white/95 backdrop-blur-xl z-40 shadow-[0_32px_80px_rgba(15,15,15,0.16)] transition-transform duration-500 ease-out ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="h-full overflow-y-auto">
-          <div className="container-max h-full py-16 px-8 lg:px-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 h-full">
+          <div className="container-max h-full py-16 lg:px-20 relative">
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen(false)}
+              className="absolute top-4 right-0 inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] hover:border-[var(--color-trust)] hover:text-[var(--color-trust)] transition-colors duration-200"
+              aria-label="Close menu"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 h-full">
               
               {/* Left Side - Navigation */}
-              <div className="flex flex-col justify-center space-y-6">
-                <h2 className="text-xs uppercase tracking-widest text-gray-dark mb-2 font-semibold">Navigation</h2>
+              <div className="flex flex-col justify-center space-y-8">
+                <h2 className="text-xs uppercase tracking-[0.4em] text-[var(--color-ink-400)] font-semibold">
+                  Navigation
+                </h2>
                 
                 <Link
                   href="/"
-                  className="text-2xl md:text-3xl font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
+                  className="text-3xl font-serif font-light text-[var(--color-off-black)] hover:text-[var(--color-trust)] transition-colors duration-300 tracking-tight"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Home
-                  <span className="absolute bottom-0 left-0 w-0 h-px bg-off-black transition-all duration-400 group-hover:w-full"></span>
                 </Link>
-
-                <div className="space-y-3 pl-4 border-l-2 border-gray-200">
-                  <h3 className="text-xs uppercase tracking-widest text-gray-dark font-semibold">Services</h3>
-                  <Link
-                    href="/seo-optimization"
-                    className="block text-lg font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    SEO Optimization
-                  </Link>
-                  <Link
-                    href="/google-ads-management"
-                    className="block text-lg font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Google Ads Management
-                  </Link>
-                  <Link
-                    href="/property-marketing"
-                    className="block text-lg font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Property Marketing
-                  </Link>
-                  <Link
-                    href="/analytics-reporting"
-                    className="block text-lg font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Analytics & Reporting
-                  </Link>
-                </div>
 
                 <Link
                   href="/blog"
-                  className="text-2xl md:text-3xl font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
+                  className="text-3xl font-serif font-light text-[var(--color-off-black)] hover:text-[var(--color-trust)] transition-colors duration-300 tracking-tight"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Blog
-                  <span className="absolute bottom-0 left-0 w-0 h-px bg-off-black transition-all duration-400 group-hover:w-full"></span>
+                </Link>
+
+                <Link
+                  href="/services"
+                  className="text-3xl font-serif font-light text-[var(--color-off-black)] hover:text-[var(--color-trust)] transition-colors duration-300 tracking-tight"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Services
                 </Link>
 
                 <Link
                   href="/contact"
-                  className="text-2xl md:text-3xl font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
+                  className="text-3xl font-serif font-light text-[var(--color-off-black)] hover:text-[var(--color-trust)] transition-colors duration-300 tracking-tight"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Contact
-                  <span className="absolute bottom-0 left-0 w-0 h-px bg-off-black transition-all duration-400 group-hover:w-full"></span>
                 </Link>
 
                 <Link
                   href="/calendar"
-                  className="text-2xl md:text-3xl font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
+                  className="text-3xl font-serif font-light text-[var(--color-off-black)] hover:text-[var(--color-trust)] transition-colors duration-300 tracking-tight"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Schedule
-                  <span className="absolute bottom-0 left-0 w-0 h-px bg-off-black transition-all duration-400 group-hover:w-full"></span>
                 </Link>
               </div>
 
               {/* Right Side - Contact Information */}
-              <div className="flex flex-col justify-center space-y-10 lg:border-l lg:border-gray-300 lg:pl-16">
+              <div className="flex flex-col justify-center space-y-10 lg:border-l lg:border-[var(--color-ink-200)] lg:pl-16">
                 <div>
-                  <h2 className="text-xs uppercase tracking-widest text-gray-dark mb-6 font-semibold">Get In Touch</h2>
+                  <h2 className="text-xs uppercase tracking-[0.4em] text-[var(--color-ink-400)] mb-6 font-semibold">
+                    Get In Touch
+                  </h2>
                   
                   <div className="space-y-6">
                     {/* Email */}
                     <div>
-                      <div className="text-xs uppercase tracking-widest text-gray-dark mb-2">Email</div>
+                      <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">Email</div>
                       <a 
                         href="mailto:team@dmrmedia.org" 
-                        className="text-base md:text-lg font-serif font-light text-off-black hover:text-gray-dark transition-colors duration-300 break-all"
+                        className="text-lg font-serif font-light text-[var(--color-off-black)] hover:text-[var(--color-trust)] transition-colors duration-300 break-all"
                       >
                         team@dmrmedia.org
                       </a>
@@ -213,8 +175,8 @@ const Navbar = () => {
 
                     {/* Services */}
                     <div>
-                      <div className="text-xs uppercase tracking-widest text-gray-dark mb-2">Specialization</div>
-                      <p className="text-base md:text-lg font-serif font-light text-off-black">
+                      <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">Specialization</div>
+                      <p className="text-lg font-serif font-light text-[var(--color-off-black)] leading-relaxed">
                         Google Marketing<br />
                         SEO & Google Ads
                       </p>
@@ -224,7 +186,7 @@ const Navbar = () => {
                     <div className="pt-3">
                       <Link
                         href="/contact"
-                        className="inline-block btn-primary text-xs"
+                        className="inline-flex items-center gap-3 rounded-full px-6 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Start Your Campaign
@@ -234,14 +196,14 @@ const Navbar = () => {
                 </div>
 
                 {/* Social Links */}
-                <div className="pt-6 border-t border-gray-300">
-                  <div className="text-xs uppercase tracking-widest text-gray-dark mb-3">Connect</div>
+                <div className="pt-6 border-t border-[var(--color-ink-200)]">
+                  <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-4">Connect</div>
                   <div className="flex space-x-4">
                     <a 
                       href="https://www.linkedin.com/company/90571937/" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-off-black hover:text-gray-dark transition-colors duration-300"
+                      className="w-9 h-9 rounded-full border border-[var(--color-ink-200)] text-[var(--color-off-black)] hover:text-[var(--color-trust)] hover:border-[var(--color-trust)] flex items-center justify-center transition-colors duration-300"
                       aria-label="Connect with DMR Media on LinkedIn"
                     >
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -252,7 +214,7 @@ const Navbar = () => {
                       href="https://www.instagram.com/andrewrohmtcm/" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-off-black hover:text-gray-dark transition-colors duration-300"
+                      className="w-9 h-9 rounded-full border border-[var(--color-ink-200)] text-[var(--color-off-black)] hover:text-[var(--color-trust)] hover:border-[var(--color-trust)] flex items-center justify-center transition-colors duration-300"
                       aria-label="Follow DMR Media on Instagram"
                     >
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -263,7 +225,7 @@ const Navbar = () => {
                       href="https://www.youtube.com/@AndrewRohmcm" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-off-black hover:text-gray-dark transition-colors duration-300"
+                      className="w-9 h-9 rounded-full border border-[var(--color-ink-200)] text-[var(--color-off-black)] hover:text-[var(--color-trust)] hover:border-[var(--color-trust)] flex items-center justify-center transition-colors duration-300"
                       aria-label="Subscribe to DMR Media on YouTube"
                     >
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

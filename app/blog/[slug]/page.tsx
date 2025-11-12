@@ -1,28 +1,27 @@
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { PortableText } from '@portabletext/react';
-import { getBlogPostBySlug, getAllBlogPosts } from '@/data/blogPosts';
-import type { Metadata } from 'next';
+import { notFound } from 'next/navigation'
+import Link from 'next/link'
+import Image from 'next/image'
+import { PortableText } from '@portabletext/react'
+import { getBlogPostBySlug, getAllBlogPosts } from '@/data/blogPosts'
+import type { Metadata } from 'next'
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export const revalidate = 60
 
-// Generate static params for all blog posts
 export async function generateStaticParams() {
-  const posts = await getAllBlogPosts();
+  const posts = await getAllBlogPosts()
   return posts.map((post) => ({
     slug: post.slug.current,
-  }));
+  }))
 }
 
-// Generate metadata for SEO
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getBlogPostBySlug(slug);
-  
+  const { slug } = await params
+  const post = await getBlogPostBySlug(slug)
+
   if (!post) {
     return {
       title: 'Blog Post Not Found',
-    };
+    }
   }
 
   return {
@@ -35,43 +34,49 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: 'article',
       publishedTime: post.publishedAt,
     },
-  };
+  }
 }
 
-// Portable Text components for styling
 const portableTextComponents = {
   block: {
     h2: ({ children }: any) => (
-      <h2 className="text-3xl font-light text-off-black mt-12 mb-4">{children}</h2>
+      <h2 className="text-3xl font-serif font-light text-[var(--color-off-black)] mt-12 mb-4 tracking-tight">
+        {children}
+      </h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-2xl font-light text-off-black mt-8 mb-3">{children}</h3>
-    ),
-    h4: ({ children }: any) => (
-      <h4 className="text-xl font-normal text-off-black mt-6 mb-2">{children}</h4>
+      <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mt-8 mb-3 tracking-tight">
+        {children}
+      </h3>
     ),
     normal: ({ children }: any) => (
-      <p className="text-gray-dark text-lg leading-relaxed mb-6">{children}</p>
+      <p className="text-[var(--color-ink-400)] text-base sm:text-lg leading-relaxed mb-6">
+        {children}
+      </p>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-2 border-off-black pl-6 my-8 italic text-gray-dark">
+      <blockquote className="border-l-2 border-[var(--color-trust)] pl-6 my-10 italic text-[var(--color-ink-400)]">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="list-disc list-inside mb-6 text-gray-dark space-y-2">{children}</ul>
+      <ul className="list-disc list-inside mb-6 text-[var(--color-ink-400)] space-y-2">
+        {children}
+      </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="list-decimal list-inside mb-6 text-gray-dark space-y-2">{children}</ol>
+      <ol className="list-decimal list-inside mb-6 text-[var(--color-ink-400)] space-y-2">
+        {children}
+      </ol>
     ),
   },
   marks: {
     link: ({ children, value }: any) => (
       <a
         href={value.href}
-        className="text-off-black hover:text-gray-dark underline"
+        className="text-[var(--color-trust)] hover:opacity-80 underline decoration-[var(--color-trust)]/40"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -79,156 +84,163 @@ const portableTextComponents = {
       </a>
     ),
   },
-};
+}
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const post = await getBlogPostBySlug(slug);
+  const { slug } = await params
+  const post = await getBlogPostBySlug(slug)
 
   if (!post) {
-    notFound();
+    notFound()
   }
 
   const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-  });
+  })
 
   return (
-    <div className="min-h-screen bg-off-white">
-      {/* Hero Section */}
-      <div className="relative h-[60vh] min-h-[500px] bg-off-black">
-        <img
-          src={post.mainImage.asset.url}
-          alt={post.mainImage.alt}
-          className="w-full h-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-off-black/50 to-off-black/80 flex items-end">
-          <div className="container-max pb-16">
-            <div className="max-w-4xl">
-              {/* Category Badge */}
-              <div className="inline-block bg-off-white text-off-black px-4 py-2 text-xs uppercase tracking-wider mb-6">
+    <div className="min-h-screen bg-[var(--surface-base)]">
+      <section className="relative min-h-[70vh] lg:min-h-[80vh] flex items-center overflow-hidden bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
+        <div className="pointer-events-none absolute inset-0 flex justify-end pr-4 sm:pr-10 lg:pr-20 pb-12 sm:pb-16">
+          <div className="relative w-[260px] sm:w-[340px] lg:w-[500px] aspect-[4/5] rounded-[48px] overflow-hidden bg-white/40 backdrop-blur-[2px] border border-[var(--color-ink-200)] opacity-70">
+            <Image
+              src={post.mainImage.asset.url}
+              alt={post.mainImage.alt}
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        <div className="relative z-10 w-full pt-24 pb-24">
+          <div className="container-max">
+            <div className="max-w-3xl space-y-6">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-[var(--color-off-black)]">
                 {post.category}
-              </div>
-
-              {/* Title */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light text-off-white mb-6 leading-tight">
+              </span>
+              <h1 className="text-[42px] sm:text-[54px] lg:text-[64px] font-serif font-light text-[var(--color-off-black)] leading-[1.05] tracking-tight">
                 {post.title}
+                <span className="text-[var(--color-trust)] text-[1.05em] align-baseline">.</span>
               </h1>
-
-              {/* Meta Information */}
-              <div className="flex flex-wrap items-center gap-4 text-off-white/90 text-sm">
-                <div className="flex items-center gap-2">
+              <p className="text-base sm:text-lg text-[var(--color-ink-400)] leading-relaxed max-w-2xl">
+                {post.description}
+              </p>
+              <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--color-ink-400)]">
+                <div className="flex items-center gap-3">
                   {post.author.image && (
-                    <img
+                    <Image
                       src={post.author.image}
                       alt={post.author.name}
-                      className="w-10 h-10 rounded-full border-2 border-off-white"
+                      width={40}
+                      height={40}
+                      className="h-10 w-10 rounded-full border border-[var(--color-ink-200)] object-cover"
                     />
                   )}
                   <span>{post.author.name}</span>
                 </div>
-                <span>•</span>
+                <span className="text-[var(--color-ink-200)]">•</span>
                 <span>{formattedDate}</span>
-                <span>•</span>
+                <span className="text-[var(--color-ink-200)]">•</span>
                 <span>{post.readTime}</span>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Article Content */}
-      <article className="section-padding bg-off-white">
-        <div className="container mx-auto px-4 max-w-4xl">
-          {/* Lead Paragraph */}
-          <div className="text-xl text-gray-dark leading-relaxed mb-12 pb-8 border-b border-gray-200">
-            {post.description}
-          </div>
-
-          {/* Main Content - Portable Text */}
-          <div className="prose prose-lg max-w-none">
+      <article className="py-24">
+        <div className="container-max">
+          <div className="max-w-4xl mx-auto space-y-16">
             <PortableText value={post.body} components={portableTextComponents} />
-          </div>
 
-          {/* Tags */}
-          {post.tags && post.tags.length > 0 && (
-            <div className="mt-16 pt-8 border-t border-gray-200">
-              <h3 className="text-sm uppercase tracking-wider text-gray-dark mb-4">
-                Topics
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {post.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="px-4 py-2 bg-off-white text-off-black text-sm border border-gray-200"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Author Bio */}
-          <div className="mt-16 p-8 bg-white border border-gray-200">
-            <div className="flex items-start gap-6">
-              {post.author.image && (
-                <img
-                  src={post.author.image}
-                  alt={post.author.name}
-                  className="w-24 h-24 rounded-full border-2 border-off-black"
-                />
-              )}
-              <div>
-                <h3 className="text-2xl font-light text-off-black mb-3">
-                  About {post.author.name}
+            {post.tags && post.tags.length > 0 && (
+              <div className="border-t border-[var(--color-ink-200)] pt-8">
+                <h3 className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-4">
+                  Topics
                 </h3>
-                <p className="text-gray-dark leading-relaxed mb-4">
-                  Marketing experts specializing in luxury real estate SEO, Google Ads, and digital strategy.
-                  Helping premium agents dominate their markets with data-driven campaigns and proven results.
-                </p>
-                <Link href="/contact" className="btn-primary inline-block">
-                  Work With Us
-                </Link>
+                <div className="flex flex-wrap gap-3">
+                  {post.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-[var(--color-ink-200)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-10">
+              <div className="flex flex-col sm:flex-row items-start gap-6">
+                {post.author.image && (
+                  <Image
+                    src={post.author.image}
+                    alt={post.author.name}
+                    width={96}
+                    height={96}
+                    className="h-24 w-24 rounded-full border border-[var(--color-ink-200)] object-cover"
+                  />
+                )}
+                <div>
+                  <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-3">
+                    About {post.author.name}
+                  </h3>
+                  <p className="text-sm text-[var(--color-ink-400)] leading-relaxed mb-4">
+                    Marketing experts specializing in luxury real estate SEO, Google Ads, and digital strategy. Helping premium agents dominate their markets with data-driven campaigns and proven results.
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-3 rounded-full px-6 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
+                  >
+                    Work With Us
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Back to Blog */}
-          <div className="mt-16 text-center">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-off-black hover:text-gray-dark transition-colors duration-200"
-            >
-              <span>←</span>
-              <span className="text-lg">Back to All Insights</span>
-            </Link>
+            <div className="flex justify-center">
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.24em] text-[var(--color-trust)] hover:text-[var(--color-off-black)] transition-colors duration-300"
+              >
+                <span>←</span>
+                <span>Back to all insights</span>
+              </Link>
+            </div>
           </div>
         </div>
       </article>
 
-      {/* CTA Section */}
-      <section className="section-padding bg-white border-t border-gray-200">
-        <div className="container-max text-center">
-          <h2 className="text-3xl sm:text-4xl font-light text-off-black mb-6">
-            Ready to Elevate Your Real Estate Marketing?
-          </h2>
-          <p className="text-lg text-gray-dark max-w-2xl mx-auto mb-8">
-            Let's build a custom marketing strategy that drives results. From SEO to Google Ads, we help luxury agents dominate their markets.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="btn-primary">
-              Start Your Campaign
-            </Link>
-            <Link href="/blog" className="btn-outline">
-              More Insights
-            </Link>
+      <section className="py-24 bg-white">
+        <div className="container-max">
+          <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm px-10 py-16 md:px-16 md:py-20 text-center">
+            <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-6">
+              Ready to elevate your real estate marketing?
+            </h2>
+            <p className="text-sm sm:text-base text-[var(--color-ink-400)] max-w-2xl mx-auto mb-8 leading-relaxed">
+              Let’s tailor a growth plan around your portfolio—SEO, paid media, and analytics working together.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-3 rounded-full px-6 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
+              >
+                Start a Project
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-3 rounded-full px-6 py-3 border border-[var(--color-ink-200)] text-[var(--color-off-black)] uppercase tracking-[0.3em] text-[11px] hover:border-[var(--color-trust)] hover:text-[var(--color-trust)] transition-colors duration-300"
+              >
+                Explore Services
+              </Link>
+            </div>
           </div>
         </div>
       </section>
     </div>
-  );
+  )
 }
-

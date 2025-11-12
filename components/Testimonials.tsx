@@ -36,8 +36,8 @@ const testimonials = [
   {
     id: 4,
     name: 'Andy Peterson',
-    company: null,
-    location: null,
+    company: 'Keller Williams Luxury',
+    location: 'Nashville, TN',
     text: 'Andrew worked with me personally to completely change my presence online - with a perfect mix of personal and professional. He was always on time, asking the right questions and got it done fast.',
     shortText: 'Completely changed my online presence with a perfect mix of personal and professional.',
     bgImage: '/images/StockHomes/studio-apartment-interior-with-wooden-furniture-2025-02-09-23-29-43-utc.jpg',
@@ -46,8 +46,8 @@ const testimonials = [
   {
     id: 5,
     name: 'Tony Jordan',
-    company: null,
-    location: null,
+    company: 'The Jordan Group',
+    location: 'Scottsdale, AZ',
     text: 'I\'ve been working with Andrew for years! Simply put, he\'s an SEO genius!',
     shortText: 'Been working with Andrew for years. Simply put, he\'s an SEO genius!',
     bgImage: '/images/StockHomes/a-backyard-with-a-swimming-pool-hot-tub-and-pati-2025-02-10-06-23-51-utc.jpg',
@@ -59,30 +59,32 @@ const Testimonials = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-off-white to-white overflow-hidden">
-      <div className="container mx-auto px-6">
+    <section className="py-24 bg-white">
+      <div className="container mx-auto px-6 max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-light text-off-black mb-4">
+          <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+            Voices
+          </span>
+          <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] mb-4">
             Client <span className="italic">Success Stories</span>
           </h2>
-          <div className="w-24 h-px bg-off-black mx-auto mb-6"></div>
-          <p className="text-gray-dark max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
             Real results from real estate professionals who transformed their digital presence
           </p>
         </div>
 
-        {/* Desktop Horizontal Accordion / Mobile Vertical Cards */}
-        <div className="hidden lg:flex gap-4 h-[600px] max-w-7xl mx-auto">
+        {/* Desktop Horizontal Accordion */}
+        <div className="hidden lg:flex gap-4 h-[520px]">
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.id}
-              className={`relative overflow-hidden cursor-pointer transition-all duration-700 ease-in-out group ${
+              className={`relative overflow-hidden cursor-pointer transition-all duration-700 ease-in-out rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm ${
                 hoveredIndex === index
-                  ? 'flex-[3]'
+                  ? 'flex-[2.6]'
                   : hoveredIndex === null
-                  ? 'flex-1'
-                  : 'flex-[0.5]'
+                  ? 'flex-[1.2]'
+                  : 'flex-[0.4]'
               }`}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -92,18 +94,18 @@ const Testimonials = () => {
                 <img
                   src={testimonial.bgImage}
                   alt={`${testimonial.name} testimonial background`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700"
                 />
                 {/* Overlay Gradient */}
                 <div className={`absolute inset-0 transition-all duration-700 ${
                   hoveredIndex === index
-                    ? 'bg-gradient-to-t from-off-black via-off-black/80 to-off-black/40'
-                    : 'bg-gradient-to-t from-off-black/90 via-off-black/70 to-off-black/50'
+                    ? 'bg-gradient-to-t from-white via-white/85 to-white/40'
+                    : 'bg-white/85'
                 }`}></div>
               </div>
 
               {/* Content */}
-              <div className="relative h-full flex flex-col justify-end p-8">
+              <div className="relative h-full flex flex-col justify-end p-10">
                 {/* Default Content - Hidden when another panel is hovered */}
                 <div className={`transition-all duration-500 ${
                   hoveredIndex !== null && hoveredIndex !== index
@@ -115,7 +117,7 @@ const Testimonials = () => {
                     {[...Array(5)].map((_, i) => (
                       <svg
                         key={i}
-                        className="w-4 h-4 text-white"
+                        className="w-4 h-4 text-[var(--color-trust)]"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -125,15 +127,15 @@ const Testimonials = () => {
                   </div>
 
                   {/* Name */}
-                  <h3 className={`font-serif text-off-white mb-2 transition-all duration-500 ${
-                    hoveredIndex === index ? 'text-3xl' : 'text-xl'
+                  <h3 className={`font-serif text-[var(--color-off-black)] mb-2 transition-all duration-500 ${
+                    hoveredIndex === index ? 'text-3xl' : 'text-2xl'
                   }`}>
                     {testimonial.name}
                   </h3>
 
                   {/* Company & Location */}
                   {testimonial.company && (
-                    <p className={`text-gold font-semibold transition-all duration-500 ${
+                    <p className={`text-[var(--color-trust)] font-semibold transition-all duration-500 ${
                       hoveredIndex === index ? 'text-base mb-2 opacity-100' : 'text-sm mb-1 opacity-80'
                     }`}>
                       {testimonial.company}
@@ -141,7 +143,7 @@ const Testimonials = () => {
                   )}
                   
                   {testimonial.location && (
-                    <p className={`text-gray-300 mb-6 transition-all duration-500 ${
+                    <p className={`text-[var(--color-ink-400)] mb-6 transition-all duration-500 ${
                       hoveredIndex === index ? 'text-sm opacity-100' : 'text-xs opacity-70'
                     }`}>
                       {testimonial.location}
@@ -154,8 +156,8 @@ const Testimonials = () => {
                       ? 'max-h-96 opacity-100'
                       : 'max-h-0 opacity-0'
                   }`}>
-                    <div className="mb-4 h-px bg-gradient-to-r from-gold via-gold/50 to-transparent"></div>
-                    <blockquote className="text-off-white leading-relaxed text-base font-serif italic mb-4">
+                    <div className="mb-4 h-px bg-gradient-to-r from-[var(--color-trust)] via-[var(--color-trust)]/40 to-transparent"></div>
+                    <blockquote className="text-[var(--color-off-black)] leading-relaxed text-base font-serif italic mb-4">
                       "{testimonial.text}"
                     </blockquote>
                   </div>
@@ -166,7 +168,7 @@ const Testimonials = () => {
                       ? 'max-h-32 opacity-100'
                       : 'max-h-0 opacity-0'
                   }`}>
-                    <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
+                    <p className="text-[var(--color-ink-400)] text-sm leading-relaxed line-clamp-3">
                       "{testimonial.shortText}"
                     </p>
                   </div>
@@ -176,7 +178,7 @@ const Testimonials = () => {
                 {hoveredIndex !== null && hoveredIndex !== index && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="transform -rotate-90 whitespace-nowrap">
-                      <span className="text-off-white text-2xl font-serif tracking-wider">
+                      <span className="text-[var(--color-ink-400)] text-2xl font-serif tracking-wider">
                         {testimonial.name}
                       </span>
                     </div>
@@ -187,12 +189,12 @@ const Testimonials = () => {
           ))}
         </div>
 
-        {/* Mobile Vertical Cards */}
-        <div className="lg:hidden space-y-6 max-w-4xl mx-auto">
+        {/* Mobile Vertical Scroll */}
+        <div className="lg:hidden space-y-6">
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.id}
-              className="relative overflow-hidden rounded-lg shadow-lg group"
+              className="relative overflow-hidden rounded-3xl border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm"
             >
               {/* Background Image */}
               <div className="absolute inset-0">
@@ -202,7 +204,7 @@ const Testimonials = () => {
                   className="w-full h-full object-cover"
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-off-black via-off-black/80 to-off-black/40"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/85 to-white/40"></div>
               </div>
 
               {/* Content */}
@@ -212,7 +214,7 @@ const Testimonials = () => {
                   {[...Array(5)].map((_, i) => (
                     <svg
                       key={i}
-                      className="w-4 h-4 text-white"
+                      className="w-4 h-4 text-[var(--color-trust)]"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -222,26 +224,26 @@ const Testimonials = () => {
                 </div>
 
                 {/* Name */}
-                <h3 className="font-serif text-2xl text-off-white mb-2">
+                <h3 className="font-serif text-2xl text-[var(--color-off-black)] mb-2">
                   {testimonial.name}
                 </h3>
 
                 {/* Company & Location */}
                 {testimonial.company && (
-                  <p className="text-gold font-semibold text-base mb-1">
+                  <p className="text-[var(--color-trust)] font-semibold text-base mb-1">
                     {testimonial.company}
                   </p>
                 )}
                 
                 {testimonial.location && (
-                  <p className="text-gray-300 text-sm mb-4">
+                  <p className="text-[var(--color-ink-400)] text-sm mb-4">
                     {testimonial.location}
                   </p>
                 )}
 
                 {/* Testimonial Text */}
-                <div className="mb-4 h-px bg-gradient-to-r from-gold via-gold/50 to-transparent"></div>
-                <blockquote className="text-off-white leading-relaxed text-base font-serif italic mb-4">
+                <div className="mb-4 h-px bg-gradient-to-r from-[var(--color-trust)] via-[var(--color-trust)]/40 to-transparent"></div>
+                <blockquote className="text-[var(--color-off-black)] leading-relaxed text-base font-serif italic mb-4">
                   "{testimonial.text}"
                 </blockquote>
               </div>
@@ -250,8 +252,8 @@ const Testimonials = () => {
         </div>
 
         {/* Mobile Notice */}
-        <div className="mt-8 text-center text-sm text-gray-dark lg:hidden">
-          Scroll to read all testimonials
+        <div className="mt-8 text-center text-sm text-[var(--color-ink-400)] lg:hidden">
+          Swipe to explore every story
         </div>
       </div>
     </section>
