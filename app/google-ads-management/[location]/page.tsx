@@ -7,18 +7,16 @@ import ServiceHero from '@/components/service/ServiceHero'
 import ServiceStats from '@/components/service/ServiceStats'
 import ServiceCTA from '@/components/service/ServiceCTA'
 
-const locationData: Record<
-  string,
-  {
-    name: string
-    state: string
-    stateAbbr: string
-    population: string
-    medianHomePrice: string
-    avgCostPerClick: string
-    competitionLevel: string
-  }
-> = {
+const locationData: Record<string, {
+  name: string
+  state: string
+  stateAbbr: string
+  population: string
+  medianHomePrice: string
+  avgCostPerClick: string
+  competitionLevel: string
+  marketType: string
+}> = {
   'new-york-ny': {
     name: 'New York',
     state: 'New York',
@@ -27,6 +25,7 @@ const locationData: Record<
     medianHomePrice: '$680K',
     avgCostPerClick: '$4.50',
     competitionLevel: 'Very High',
+    marketType: 'Ultra-competitive metropolitan market',
   },
   'los-angeles-ca': {
     name: 'Los Angeles',
@@ -36,6 +35,7 @@ const locationData: Record<
     medianHomePrice: '$890K',
     avgCostPerClick: '$5.20',
     competitionLevel: 'Very High',
+    marketType: 'Coastal luxury market',
   },
   'chicago-il': {
     name: 'Chicago',
@@ -45,6 +45,7 @@ const locationData: Record<
     medianHomePrice: '$310K',
     avgCostPerClick: '$3.10',
     competitionLevel: 'High',
+    marketType: 'Urban professional market',
   },
   'houston-tx': {
     name: 'Houston',
@@ -54,6 +55,7 @@ const locationData: Record<
     medianHomePrice: '$280K',
     avgCostPerClick: '$2.80',
     competitionLevel: 'Medium',
+    marketType: 'High-growth business market',
   },
   'phoenix-az': {
     name: 'Phoenix',
@@ -63,6 +65,7 @@ const locationData: Record<
     medianHomePrice: '$430K',
     avgCostPerClick: '$3.40',
     competitionLevel: 'Medium-High',
+    marketType: 'Fast-growing sun belt market',
   },
 }
 
