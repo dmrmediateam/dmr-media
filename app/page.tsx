@@ -2,208 +2,79 @@ import Hero from '@/components/Hero';
 import ContactForm from '@/components/ContactForm';
 import CaseStudies from '@/components/CaseStudies';
 import Testimonials from '@/components/Testimonials';
+import ServicesShowcase from '@/components/ServicesShowcase';
 import { getAllBlogPosts } from '@/data/blogPosts';
 import Link from 'next/link';
 
 export default async function Home() {
   const blogPosts = await getAllBlogPosts();
-  const featuredPosts = blogPosts.slice(0, 3); // Show latest 3 posts
+  const featuredPosts = blogPosts.slice(0, 3);
+  const stats = [
+    { value: '$11K', label: 'Average Client GCI', description: 'Monthly revenue lift across luxury campaigns.' },
+    { value: '100+', label: 'Partners Nationwide', description: 'Agents, teams, and developers we support.' },
+    { value: '4.9★', label: 'Client Satisfaction', description: 'Referrals, retention, and verified reviews.' },
+  ];
 
   return (
-    <div className="min-h-screen bg-off-white">
-      {/* Hero Section */}
+    <div className="min-h-screen bg-[var(--surface-base)]">
       <Hero />
 
-      {/* Statistics Section */}
-      <section className="section-padding bg-off-black text-off-white">
+      <section className="py-24">
         <div className="container-max">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-off-white mb-4">
-              Proven Results
-            </h2>
-            <div className="w-24 h-px bg-off-white mx-auto mb-6"></div>
-            <p className="text-gray-300 max-w-2xl mx-auto">
-              Trusted by luxury real estate professionals nationwide
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16">
+            <div>
+              <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+                Proof in the numbers
+              </span>
+              <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
+                Growth that feels effortless--and looks intentional.
+              </h2>
+            </div>
+            <p className="text-[var(--color-ink-400)] max-w-xl text-base leading-relaxed">
+              Every engagement brings measurable lift in lead quality, market share, and brand perception. We operate like an embedded team, not a vendor.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Average Client GCI */}
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-serif font-light text-off-white mb-4">
-                $11K
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-[20px] border border-[var(--color-ink-200)] bg-white/70 backdrop-blur-sm p-10 flex flex-col gap-3 hover:border-[var(--color-trust)] transition-colors duration-300"
+              >
+                <span className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)]">{stat.value}</span>
+                <span className="text-sm uppercase tracking-[0.3em] text-[var(--color-ink-400)]">
+                  {stat.label}
+                </span>
+                <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+                  {stat.description}
+                </p>
               </div>
-              <div className="text-lg text-gray-300 mb-2">Average Client GCI</div>
-              <div className="text-sm text-gray-400">Monthly Revenue Growth</div>
-            </div>
-
-            {/* Total Clients */}
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-serif font-light text-off-white mb-4">
-                100+
-              </div>
-              <div className="text-lg text-gray-300 mb-2">Total Clients</div>
-              <div className="text-sm text-gray-400">Luxury Real Estate Professionals</div>
-            </div>
-
-            {/* Average Rating */}
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-serif font-light text-off-white mb-4">
-                4.9★
-              </div>
-              <div className="text-lg text-gray-300 mb-2">Average Rating</div>
-              <div className="text-sm text-gray-400">Client Satisfaction</div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Case Studies Section */}
       <CaseStudies />
 
-      {/* Services Section */}
-      <section className="section-padding bg-white">
+      <ServicesShowcase />
+
+      <section className="py-24 bg-[var(--surface-base)]">
         <div className="container-max">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-off-black mb-4">
-              Our Services
-            </h2>
-            <div className="w-24 h-px bg-off-black mx-auto mb-6"></div>
-            <p className="text-gray-dark max-w-2xl mx-auto">
-              Specialized marketing solutions for luxury real estate professionals
-            </p>
-          </div>
-
-          {/* Brick/Staggered Layout */}
-          <div className="max-w-7xl mx-auto">
-            {/* Row 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              {/* SEO Optimization - Large (spans 2 columns) */}
-              <Link href="/seo-optimization" className="md:col-span-2 relative h-[400px] overflow-hidden group cursor-pointer">
-                {/* Background Image */}
-                <img
-                  src="/images/StockHomes/modern-luxury-house-at-dusk-2025-02-10-06-40-31-utc.jpg"
-                  alt="SEO Optimization"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* Black Overlay */}
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-all duration-500"></div>
-                
-                {/* Content */}
-                <div className="relative h-full flex flex-col justify-end p-10">
-                  <div className="w-14 h-14 bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500">
-                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-3xl font-serif font-light mb-4 text-white">
-                    SEO Optimization
-                  </h3>
-                  <p className="text-white/90 leading-relaxed text-lg">
-                    Dominate local search results and attract high-value clients with strategic SEO campaigns tailored for luxury real estate.
-                  </p>
-                </div>
-              </Link>
-
-              {/* Property Marketing - Small */}
-              <Link href="/property-marketing" className="relative h-[400px] overflow-hidden group cursor-pointer">
-                {/* Background Image */}
-                <img
-                  src="/images/StockHomes/studio-apartment-interior-with-wooden-furniture-2025-02-09-23-29-43-utc.jpg"
-                  alt="Property Marketing"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* Black Overlay */}
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-all duration-500"></div>
-                
-                {/* Content */}
-                <div className="relative h-full flex flex-col justify-end p-8">
-                  <div className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-serif font-light mb-3 text-white">
-                    Property Marketing
-                  </h3>
-                  <p className="text-white/90 leading-relaxed">
-                    Showcase premium listings with sophisticated campaigns.
-                  </p>
-                </div>
-              </Link>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16">
+            <div>
+              <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+                Latest insights
+              </span>
+              <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
+                Strategy, timing, and positioning for the luxury market.
+              </h2>
             </div>
-
-            {/* Row 2 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Analytics & Reporting - Small */}
-              <Link href="/analytics-reporting" className="relative h-[400px] overflow-hidden group cursor-pointer">
-                {/* Background Image */}
-                <img
-                  src="/images/StockHomes/a-backyard-with-a-swimming-pool-hot-tub-and-pati-2025-02-10-06-23-51-utc.jpg"
-                  alt="Analytics & Reporting"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* Black Overlay */}
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-all duration-500"></div>
-                
-                {/* Content */}
-                <div className="relative h-full flex flex-col justify-end p-8">
-                  <div className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-serif font-light mb-3 text-white">
-                    Analytics & Reporting
-                  </h3>
-                  <p className="text-white/90 leading-relaxed">
-                    Data-driven insights and transparent performance tracking.
-                  </p>
-                </div>
-              </Link>
-
-              {/* Google Ads Management - Large (spans 2 columns) */}
-              <Link href="/google-ads-management" className="md:col-span-2 relative h-[400px] overflow-hidden group cursor-pointer">
-                {/* Background Image */}
-                <img
-                  src="/images/StockHomes/spacious-living-room-with-staircase-in-residence-2025-10-10-15-17-44-utc (1).jpg"
-                  alt="Google Ads Management"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* Black Overlay */}
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-all duration-500"></div>
-                
-                {/* Content */}
-                <div className="relative h-full flex flex-col justify-end p-10">
-                  <div className="w-14 h-14 bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500">
-                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                  </div>
-                  <h3 className="text-3xl font-serif font-light mb-4 text-white">
-                    Google Ads Management
-                  </h3>
-                  <p className="text-white/90 leading-relaxed text-lg">
-                    Maximize ROI with precision-targeted Google Ads campaigns designed to reach affluent homebuyers and sellers.
-                  </p>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Section */}
-      <section className="section-padding bg-off-white">
-        <div className="container-max">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-off-black mb-4">
-              Latest Insights
-            </h2>
-            <div className="w-24 h-px bg-off-black mx-auto mb-6"></div>
-            <p className="text-gray-dark max-w-2xl mx-auto">
-              Expert strategies and proven tactics for luxury real estate marketing
-            </p>
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-3 rounded-full px-6 py-3 border border-[var(--color-ink-200)] text-[var(--color-off-black)] uppercase tracking-[0.3em] text-[11px] hover:border-[var(--color-trust)] hover:text-[var(--color-trust)] transition-colors duration-300 self-start md:self-auto"
+            >
+              View all insights
+            </Link>
           </div>
 
           {featuredPosts.length > 0 ? (
@@ -219,41 +90,38 @@ export default async function Home() {
                   <Link
                     key={post._id}
                     href={`/blog/${post.slug.current}`}
-                    className="group bg-white border border-gray-200 overflow-hidden hover:border-off-black transition-all duration-400"
+                    className="group bg-white border border-[var(--color-ink-200)] overflow-hidden rounded-[20px] hover:border-[var(--color-trust)] transition-all duration-300"
                   >
-                    {/* Image */}
                     <div className="relative h-64 bg-gray-light overflow-hidden">
                       <img
                         src={post.mainImage.asset.url}
                         alt={post.mainImage.alt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      {/* 40% Black Overlay */}
-                      <div className="absolute inset-0 bg-black/40"></div>
-                      <div className="absolute top-4 left-4 bg-off-black text-off-white px-3 py-1 text-xs uppercase tracking-wider z-10">
+                      <div className="absolute inset-0 bg-black/25 mix-blend-multiply" />
+                      <div className="absolute top-4 left-4 bg-white/80 text-[var(--color-off-black)] px-3 py-1 text-[11px] uppercase tracking-[0.3em] z-10 rounded-full">
                         {post.category}
                       </div>
                     </div>
 
-                    {/* Content */}
                     <div className="p-6">
-                      <div className="text-sm text-gray-dark mb-3 flex items-center gap-2">
+                      <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-4 flex items-center gap-2">
                         <span>{formattedDate}</span>
                         <span>•</span>
                         <span>{post.readTime}</span>
                       </div>
 
-                      <h3 className="text-xl font-normal text-off-black mb-3 group-hover:text-gray-dark transition-colors duration-400 leading-tight">
+                      <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-3 leading-snug group-hover:text-[var(--color-trust)] transition-colors duration-300">
                         {post.title}
                       </h3>
 
-                      <p className="text-gray-dark text-sm leading-relaxed mb-4">
+                      <p className="text-[var(--color-ink-400)] text-sm leading-relaxed mb-6">
                         {post.description}
                       </p>
 
-                      <div className="flex items-center text-off-black group-hover:text-gray-dark transition-colors duration-400">
-                        <span className="text-sm font-normal mr-2">Read Article</span>
-                        <span>→</span>
+                      <div className="flex items-center gap-2 text-[13px] uppercase tracking-[0.24em] text-[var(--color-off-black)] group-hover:text-[var(--color-trust)] transition-colors duration-300">
+                        Read article
+                        <span className="inline-block w-5 h-px bg-current group-hover:w-8 transition-all duration-300" />
                       </div>
                     </div>
                   </Link>
@@ -261,49 +129,50 @@ export default async function Home() {
               })}
             </div>
           ) : (
-            <div className="bg-white border border-gray-200 p-12 text-center">
-              <p className="text-gray-dark text-lg">
+            <div className="bg-white border border-[var(--color-ink-200)] p-12 text-center rounded-[20px]">
+              <p className="text-[var(--color-ink-400)] text-lg">
                 Marketing insights and strategies coming soon
               </p>
             </div>
           )}
-
-          {/* View All Blog Posts CTA */}
-          <div className="text-center mt-12">
-            <Link
-              href="/blog"
-              className="btn-outline inline-block"
-            >
-              View All Insights
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <Testimonials />
 
-      {/* CTA Section */}
-      <section className="section-padding bg-white">
-        <div className="container-max text-center">
-          <h2 className="text-4xl md:text-5xl font-serif font-light text-off-black mb-6">
-            Ready to Transform Your Business?
-          </h2>
-          <p className="text-lg text-gray-dark max-w-2xl mx-auto mb-8">
-            Join 100+ luxury real estate professionals who trust DMR <span className="italic">Media</span> to deliver exceptional marketing results and drive sustainable growth.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="btn-primary">
-              Start Your Campaign
-            </Link>
-            <Link href="/blog" className="btn-outline">
-              View Our Insights
-            </Link>
+      <section className="py-24 bg-[var(--surface-base)]">
+        <div className="container-max">
+          <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/85 backdrop-blur-sm px-10 py-16 md:px-14 md:py-18 flex flex-col md:flex-row md:items-center md:justify-between gap-10">
+            <div className="max-w-xl">
+              <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)] mb-4 block">
+                Connect
+              </span>
+              <h2 className="text-[36px] sm:text-[44px] font-serif font-light text-[var(--color-off-black)] leading-[1.05] tracking-tight">
+                Tell us where you want the market to move.
+              </h2>
+              <p className="mt-5 text-sm sm:text-base text-[var(--color-ink-400)] leading-relaxed">
+                We’ll design a calm, measurable marketing system around your portfolio—no noise, just the next milestone mapped out.
+              </p>
+            </div>
+            <div className="flex flex-col md:items-end gap-3 min-w-[220px]">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-3 rounded-full px-6 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300 justify-center"
+              >
+                <span className="inline-block w-2 h-2 rounded-full bg-[var(--color-trust)]" />
+                Start a Project
+              </Link>
+              <Link
+                href="/calendar"
+                className="inline-flex items-center gap-3 rounded-full px-6 py-3 border border-[var(--color-ink-200)] text-[var(--color-off-black)] uppercase tracking-[0.3em] text-[11px] hover:border-[var(--color-trust)] hover:text-[var(--color-trust)] transition-colors duration-300 justify-center"
+              >
+                Request a Call
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
       <ContactForm />
     </div>
   );

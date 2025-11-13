@@ -1,12 +1,16 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import ContactForm from '@/components/ContactForm';
-import Testimonials from '@/components/Testimonials';
+import ContactForm from '@/components/ContactForm'
+import Testimonials from '@/components/Testimonials'
+import ServiceHero from '@/components/service/ServiceHero'
+import ServiceStats from '@/components/service/ServiceStats'
+import ServiceProcess from '@/components/service/ServiceProcess'
+import ServiceCities from '@/components/service/ServiceCities'
+import ServiceCTA from '@/components/service/ServiceCTA'
 
 export const metadata = {
   title: 'Property Marketing for Real Estate | DMR Media',
-  description: 'Showcase premium listings with sophisticated digital marketing campaigns that attract qualified buyers and maximize property exposure.',
-};
+  description:
+    'Showcase premium listings with sophisticated digital marketing campaigns that attract qualified buyers and maximize property exposure.',
+}
 
 export default function PropertyMarketingPage() {
   const topCities = [
@@ -15,167 +19,87 @@ export default function PropertyMarketingPage() {
     { name: 'Chicago', state: 'IL', slug: 'chicago-il', image: '/images/Cities/vibrant-sunny-view-of-chicago-downtown-skyline-und-2025-06-19-18-23-11-utc.jpg' },
     { name: 'Houston', state: 'TX', slug: 'houston-tx', image: '/images/Cities/storms-over-downtown-houston-2024-10-17-13-05-58-utc.jpg' },
     { name: 'Phoenix', state: 'AZ', slug: 'phoenix-az', image: '/images/Cities/phoenix-arizona-state-capitol-2025-03-13-12-59-21-utc.jpg' },
-    { name: 'All Other Cities', state: 'USA', slug: '#contact', image: '/images/StockHomes/modern-luxury-house-at-dusk-2025-02-10-06-40-31-utc.jpg' },
-  ];
+    {
+      name: 'All Other Cities',
+      state: 'USA',
+      slug: '#contact',
+      image: '/images/StockHomes/modern-luxury-house-at-dusk-2025-02-10-06-40-31-utc.jpg',
+      subtitle: 'Let’s discuss your market →',
+    },
+  ]
 
   return (
-    <div className="min-h-screen bg-off-white">
-      {/* Hero */}
-      <section className="relative h-[70vh] flex items-center overflow-hidden">
-        <Image
-          src="/images/StockHomes/studio-apartment-interior-with-wooden-furniture-2025-02-09-23-29-43-utc.jpg"
-          alt="Property Marketing"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/70"></div>
-        
-        <div className="relative z-10 container-max text-white">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-light mb-6 text-white">
-              Premium Property <span className="italic">Marketing</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-              Showcase luxury listings with sophisticated digital campaigns that attract qualified buyers and maximize property exposure.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="#contact" className="btn-primary">Get Started</Link>
-              <Link href="#how-it-works" className="btn-outline border-white text-white hover:bg-white hover:text-off-black">
-                How It Works
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-[var(--surface-base)]">
+      <ServiceHero
+        eyebrow="Property Marketing"
+        title="Cinematic launch plans for exceptional listings."
+        description="We create polished visual campaigns, distribute them across premium channels, and keep buyers engaged until the closing table."
+        image="/images/StockHomes/studio-apartment-interior-with-wooden-furniture-2025-02-09-23-29-43-utc.jpg"
+        actions={[
+          { label: 'Launch a Listing', href: '#contact' },
+          { label: 'See the Process', href: '#how-it-works', variant: 'secondary' },
+        ]}
+      />
 
-      {/* Stats */}
-      <section className="section-padding bg-off-black text-off-white">
-        <div className="container-max">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-serif font-light mb-4">40%</div>
-              <div className="text-lg text-gray-300 mb-2">Faster Sales</div>
-              <div className="text-sm text-gray-400">Than Market Average</div>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-serif font-light mb-4">250K+</div>
-              <div className="text-lg text-gray-300 mb-2">Avg Impressions</div>
-              <div className="text-sm text-gray-400">Per Listing</div>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-serif font-light mb-4">95%</div>
-              <div className="text-lg text-gray-300 mb-2">Client Satisfaction</div>
-              <div className="text-sm text-gray-400">5-Star Rating</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ServiceStats
+        heading="Campaign outcomes our partners rely on."
+        stats={[
+          { value: '40%', label: 'Faster sales', description: 'Average reduction in days on market for featured listings.' },
+          { value: '250K+', label: 'Listing impressions', description: 'High-intent views across search, social, and email.' },
+          { value: '95%', label: 'Client satisfaction', description: 'Consistent 5-star ratings from teams and developers.' },
+        ]}
+      />
 
-      {/* How It Works */}
-      <section id="how-it-works" className="section-padding bg-white">
-        <div className="container-max">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-off-black mb-4">
-              Our Marketing <span className="italic">Process</span>
-            </h2>
-            <div className="w-24 h-px bg-off-black mx-auto mb-6"></div>
-          </div>
+      <ServiceProcess
+        id="how-it-works"
+        heading="How we market luxury properties end-to-end."
+        description="A detail-first workflow that turns launch days into momentum."
+        steps={[
+          {
+            title: 'Production & Storyboarding',
+            description:
+              'We organize cinematic photo, video, and copy assets that highlight the story, finishes, and lifestyle behind every property.',
+          },
+          {
+            title: 'Channel Distribution',
+            description:
+              'MLS, social, email, programmatic, and partner placements—controlled messaging everywhere qualified buyers spend time.',
+          },
+          {
+            title: 'Targeted Promotion',
+            description:
+              'Paid social, Google Ads, retargeting, and custom audiences ensure your listing reaches the right buyers quickly.',
+          },
+          {
+            title: 'Analytics & Reporting',
+            description:
+              'Real-time dashboards and weekly updates keep your team informed, nimble, and ready for every showing.',
+          },
+        ]}
+      />
 
-          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                step: '01',
-                title: 'Professional Photography',
-                description: 'High-quality photos and videos that showcase your property\'s best features and create emotional connections with potential buyers.',
-              },
-              {
-                step: '02',
-                title: 'Multi-Channel Distribution',
-                description: 'Strategic distribution across MLS, social media, email campaigns, and premium real estate platforms for maximum exposure.',
-              },
-              {
-                step: '03',
-                title: 'Targeted Advertising',
-                description: 'Precision-targeted ads on Facebook, Instagram, and Google to reach qualified buyers actively searching in your price range.',
-              },
-              {
-                step: '04',
-                title: 'Performance Analytics',
-                description: 'Detailed tracking of views, engagement, and leads to continuously optimize your property\'s marketing performance.',
-              }
-            ].map((item, index) => (
-              <div key={index} className="bg-off-white p-8 border-l-4 border-gold hover:shadow-xl transition-all duration-500">
-                <div className="text-6xl font-serif font-light text-gold/20 mb-4">{item.step}</div>
-                <h3 className="text-2xl font-serif font-light text-off-black mb-3">{item.title}</h3>
-                <p className="text-gray-dark leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
       <Testimonials />
 
-      {/* Cities */}
-      <section className="section-padding bg-white">
-        <div className="container-max">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-off-black mb-4">
-              Cities We <span className="italic">Serve</span>
-            </h2>
-            <div className="w-24 h-px bg-off-black mx-auto mb-6"></div>
-          </div>
+      <ServiceCities
+        heading="Launch programs running in these cities."
+        description="High-performance listing campaigns tailored to the nuances of each luxury market."
+        cities={topCities.map((city) => ({
+          ...city,
+          slug: city.slug.startsWith('#') ? city.slug : `/property-marketing/${city.slug}`,
+        }))}
+      />
 
-          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {topCities.map((city) => (
-              <Link
-                key={city.slug}
-                href={city.slug.startsWith('#') ? city.slug : `/property-marketing/${city.slug}`}
-                className="group relative h-48 overflow-hidden border border-gray-200 hover:border-gold transition-all duration-500"
-              >
-                <Image
-                  src={city.image}
-                  alt={city.name}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-all duration-500"></div>
-                <div className="relative h-full flex flex-col justify-end p-6">
-                  <h3 className="text-2xl font-serif font-light text-white group-hover:text-gold transition-colors duration-500">
-                    {city.name}{city.state !== 'USA' ? `, ${city.state}` : ''}
-                  </h3>
-                  <p className="text-white text-sm mt-2">
-                    {city.slug.startsWith('#') ? 'Contact us for your city →' : 'View local property marketing →'}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServiceCTA
+        heading="Ready to elevate your next listing launch?"
+        description="Let’s map out the visuals, distribution plan, and metrics before the home ever hits the market."
+        primaryAction={{ label: 'Book a Strategy Call', href: '#contact' }}
+        secondaryAction={{ label: 'View All Services', href: '/services' }}
+      />
 
-      {/* CTA */}
-      <section className="section-padding bg-off-black text-off-white">
-        <div className="container-max text-center">
-          <h2 className="text-4xl md:text-5xl font-serif font-light mb-6">
-            Ready to Market Your Listings?
-          </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-            Let us create stunning marketing campaigns that sell your properties faster and for top dollar.
-          </p>
-          <Link href="#contact" className="btn-primary inline-block">
-            Get Started Today
-          </Link>
-        </div>
-      </section>
-
-      {/* Contact */}
       <div id="contact">
         <ContactForm />
       </div>
     </div>
-  );
+  )
 }
 
