@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ScrollAnimations from '@/components/ScrollAnimations'
 import ScrollProgressBar from '@/components/ScrollProgressBar'
+import { AuthProvider } from './providers/SessionProvider'
 
 // Instrument Serif - Elegant, natural serif font
 const instrumentSerif = Instrument_Serif({ 
@@ -34,13 +35,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={instrumentSerif.variable}>
       <body className={instrumentSerif.className}>
-        <ScrollProgressBar />
-        <ScrollAnimations />
-        <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <AuthProvider>
+          <ScrollProgressBar />
+          <ScrollAnimations />
+          <Navbar />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   )

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import AuthButton from './AuthButton';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,6 +67,9 @@ const Navbar = () => {
                 Schedule
                 <span className="absolute bottom-0 left-0 w-0 h-px bg-off-black transition-all duration-300 group-hover:w-full"></span>
               </Link>
+              
+              {/* Auth Button - Desktop */}
+              <AuthButton />
             </div>
 
             {/* Menu button - Right aligned on all screens */}
