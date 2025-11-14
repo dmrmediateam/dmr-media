@@ -75,7 +75,7 @@ export default function CalendarPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {/* Step 1 */}
             <div className="text-center">
-              <div className="w-16 h-16 bg-off-black text-off-white flex items-center justify-center mx-auto mb-6 font-serif text-xl">
+              <div className="w-16 h-16 bg-off-black text-white flex items-center justify-center mx-auto mb-6 font-serif text-xl">
                 1
               </div>
               <h3 className="text-xl font-serif font-light text-off-black mb-4">
@@ -88,7 +88,7 @@ export default function CalendarPage() {
 
             {/* Step 2 */}
             <div className="text-center">
-              <div className="w-16 h-16 bg-off-black text-off-white flex items-center justify-center mx-auto mb-6 font-serif text-xl">
+              <div className="w-16 h-16 bg-off-black text-white flex items-center justify-center mx-auto mb-6 font-serif text-xl">
                 2
               </div>
               <h3 className="text-xl font-serif font-light text-off-black mb-4">
@@ -101,7 +101,7 @@ export default function CalendarPage() {
 
             {/* Step 3 */}
             <div className="text-center">
-              <div className="w-16 h-16 bg-off-black text-off-white flex items-center justify-center mx-auto mb-6 font-serif text-xl">
+              <div className="w-16 h-16 bg-off-black text-white flex items-center justify-center mx-auto mb-6 font-serif text-xl">
                 3
               </div>
               <h3 className="text-xl font-serif font-light text-off-black mb-4">
@@ -116,7 +116,7 @@ export default function CalendarPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 bg-off-black text-off-white">
+      <footer className="py-8 bg-off-black text-white">
         <div className="container-max text-center">
           <div className="text-sm text-gray-400">
             <p>© {new Date().getFullYear()} DMR Media. All rights reserved.</p>

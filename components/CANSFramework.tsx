@@ -87,7 +87,7 @@ function StrategyCard({ title, items, variant = 'light' }: StrategyCard) {
       ? 'bg-gray-50 border-gray-200 hover:border-off-black'
       : 'bg-gray-900 border-gray-700 hover:border-off-black';
   
-  const titleStyles = variant === 'light' ? 'text-off-black' : 'text-off-white';
+  const titleStyles = variant === 'light' ? 'text-off-black' : 'text-white';
   const itemStyles = variant === 'light' ? 'text-gray-dark' : 'text-gray-300';
 
   return (
@@ -116,9 +116,7 @@ function PhaseArrow() {
 // Phase Icon
 function PhaseIcon({ letter, bgColor }: { letter: string; bgColor: string }) {
   return (
-    <div
-      className={`w-16 h-16 ${bgColor} text-off-white flex items-center justify-center rounded-full flex-shrink-0`}
-    >
+    <div className={`w-16 h-16 ${bgColor} text-white flex items-center justify-center rounded-full flex-shrink-0`}>
       <span className="text-2xl font-serif font-light">{letter}</span>
     </div>
   );

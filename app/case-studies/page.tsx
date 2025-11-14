@@ -1,163 +1,170 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/image'
+import Link from 'next/link'
+
+const caseStudies = [
+  {
+    id: 'jade-legendary-real-estate',
+    title: 'Jade Legendary Real Estate',
+    eyebrow: 'Lead Engine Rebuild',
+    result: '3x Leads in 90 Days',
+    image: '/images/JadeCRM.png',
+    description:
+      "Tripled inbound pipeline for a boutique broker by rebuilding her search footprint and automations around the way luxury buyers actually shop.",
+    tags: ['Content Architecture', 'Local SEO', 'Automation'],
+  },
+  {
+    id: 'michael-seo-transformation',
+    title: 'Michael SEO Cliff Notes',
+    eyebrow: 'Modern IDX Relaunch',
+    result: '21x Search Impressions',
+    image: '/images/MichealTraffic.png',
+    description:
+      'Turned a templated IDX site into a modern journal-driven experience that pulls in intent-rich keywords and nurtures them automatically.',
+    tags: ['WordPress Rebuild', 'Thought Leadership', 'YouTube'],
+  },
+  {
+    id: 'rick-visions-first-realty',
+    title: 'Rick Visions First Realty',
+    eyebrow: 'Keyword Reset',
+    result: '2–3 Leads Every Day',
+    image: '/images/RickAfter.png',
+    description:
+      'Rerouted a misaligned SEO program so it stopped ranking for discount shoppers and started capturing relocation-ready listings.',
+    tags: ['SERP Intelligence', 'GMB Optimization', 'Lead Handling'],
+  },
+]
+
+const trustSignals = [
+  { label: 'Average lift in organic leads', value: '214%' },
+  { label: 'Launch timeline for full rebuilds', value: '6–9 weeks' },
+  { label: 'Markets activated in 2024', value: '18' },
+]
 
 export default function CaseStudiesPage() {
-  const caseStudies = [
-    {
-      id: 'jade-legendary-real-estate',
-      title: "Jade's Success Story",
-      client: "Jade Goodhue",
-      company: "Legendary Real Estate Services",
-      result: "3x Lead Generation",
-      description: "From frustrated content creator to lead generation powerhouse - how we transformed Jade's digital marketing strategy and tripled her inbound leads in one quarter.",
-      image: "/images/JadeCRM.png",
-      testimonial: "He works with us like a partner, rather than a vendor dealing with just another number.",
-      rating: 5,
-      category: "SEO & Content Strategy"
-    },
-    {
-      id: 'michael-seo-transformation',
-      title: "Michael's SEO Transformation",
-      client: "Michael",
-      company: "Real Estate Professional",
-      result: "21x Impressions",
-      description: "From abandoned SEO to 21x impressions growth - how we transformed Michael's website into a lead generation machine in just 7.5 weeks.",
-      image: "/images/MichealTraffic.png",
-      testimonial: "Despite being camera-shy, Michael gave us a video testimonial!",
-      rating: 5,
-      category: "Website Development & SEO"
-    },
-    {
-      id: 'rick-visions-first-realty',
-      title: "Rick's SEO Transformation",
-      client: "Rick",
-      company: "Visions First Realty",
-      result: "2-3 Leads/Day",
-      description: "From wrong keywords to qualified leads - how we fixed Rick's SEO strategy and transformed his website into a lead generation machine.",
-      image: "/images/RickAfter.png",
-      testimonial: "Exceptional SEO services with strategic approach",
-      rating: 5,
-      category: "SEO Strategy & Lead Generation"
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-off-white">
-      {/* Hero Section */}
-      <section className="section-padding bg-off-black text-off-white">
-        <div className="container-max">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-serif font-light text-off-white mb-6">
-              Success Stories
+    <div className="min-h-screen bg-[var(--surface-base)]">
+      <section className="relative overflow-hidden bg-gradient-to-br from-white via-white/90 to-[var(--surface-base)]">
+        <div className="container-max pt-24 pb-28">
+          <div className="max-w-3xl space-y-6">
+            <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-400)]">
+              case studies
+            </span>
+            <h1 className="text-[42px] sm:text-[58px] font-serif font-light text-[var(--color-off-black)] leading-[1.05]">
+              Luxury real estate growth stories<span className="text-[var(--color-trust)] text-[1.15em]">.</span>
             </h1>
-            <div className="w-24 h-px bg-off-white mx-auto mb-6"></div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Real results from luxury real estate professionals who transformed their business with DMR <span className="italic">Media</span>
+            <p className="text-base sm:text-lg text-[var(--color-ink-400)] max-w-2xl leading-relaxed">
+              Every engagement is a bespoke sprint. The structure is consistent—research, rebuild, relentless iteration—but
+              the look, feel, and commercial outcome are tailored to the brokerage, the market, and the listings they deserve.
             </p>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {trustSignals.map((signal) => (
+              <div
+                key={signal.label}
+                className="rounded-[32px] border border-white/60 bg-white/70 backdrop-blur-xl px-6 py-8 shadow-[0_20px_45px_rgba(15,15,15,0.08)]"
+              >
+                <div className="text-[30px] font-serif font-light text-[var(--color-off-black)]">{signal.value}</div>
+                <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mt-4">{signal.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute bottom-[-220px] right-[-60px] w-[420px] sm:w-[520px] aspect-square rounded-full overflow-hidden bg-white/30 border border-white/50 backdrop-blur-2xl opacity-70">
+            <Image src="/images/Untitled design (45).png" alt="" fill className="object-cover" priority />
           </div>
         </div>
       </section>
 
-      {/* Case Studies Grid */}
-      <section className="section-padding bg-white">
-        <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <section className="py-20">
+        <div className="container-max space-y-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {caseStudies.map((study) => (
               <Link
                 key={study.id}
                 href={`/case-study/${study.id}`}
-                className="group bg-white border border-gray-200 overflow-hidden hover:border-off-black transition-all duration-400"
+                className="group relative overflow-hidden rounded-[40px] border border-[var(--color-ink-200)] bg-white/80 p-10 backdrop-blur-xl shadow-[0_35px_60px_rgba(15,15,15,0.08)] transition-all duration-500 hover:-translate-y-1"
               >
-                {/* Image */}
-                <div className="relative h-64 bg-gray-light overflow-hidden">
-                  <Image
-                    src={study.image}
-                    alt={`${study.client} case study results`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-400"
-                  />
-                  <div className="absolute top-4 left-4 bg-off-black text-off-white px-3 py-1 text-xs uppercase tracking-wider">
-                    {study.category}
-                  </div>
-                  <div className="absolute bottom-4 right-4 bg-off-white/90 text-off-black px-3 py-1 text-sm font-medium">
-                    {study.result}
-                  </div>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-4 rounded-[32px] bg-gradient-to-br from-white/40 via-white/10 to-transparent" />
                 </div>
 
-                {/* Content */}
-                <div className="p-8">
-                  <div className="flex items-center mb-4">
-                    <div className="flex text-yellow-400">
-                      {[...Array(study.rating)].map((_, i) => (
-                        <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
-                    </div>
+                <div className="relative flex flex-col gap-6">
+                  <div className="flex items-center justify-between gap-6">
+                    <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-400)]">{study.eyebrow}</span>
+                    <span className="inline-flex rounded-full border border-[var(--color-trust)] px-3 py-1 text-[12px] text-[var(--color-trust)]">
+                      {study.result}
+                    </span>
                   </div>
 
-                  <h3 className="text-2xl font-serif font-light text-off-black mb-3 group-hover:text-gray-dark transition-colors duration-400">
-                    {study.title}
-                  </h3>
+                  <h3 className="text-[30px] font-serif font-light text-[var(--color-off-black)] leading-[1.1]">{study.title}</h3>
 
-                  <div className="text-gray-dark mb-4">
-                    <div className="font-medium text-off-black">{study.client}</div>
-                    <div className="text-sm">{study.company}</div>
+                  <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">{study.description}</p>
+
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    {study.tags.map((tag) => (
+                      <span key={tag} className="rounded-full border border-[var(--color-ink-200)] px-4 py-2 text-xs uppercase tracking-[0.25em] text-[var(--color-ink-400)]">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
 
-                  <p className="text-gray-dark leading-relaxed mb-6">
-                    {study.description}
-                  </p>
+                  <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-[32px] border border-[var(--color-ink-200)] bg-white/70">
+                    <Image src={study.image} alt={study.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  </div>
 
-                  <blockquote className="text-gray-dark italic mb-6 border-l-4 border-off-black pl-4">
-                    "{study.testimonial}"
-                  </blockquote>
-
-                  <div className="flex items-center text-off-black group-hover:text-gray-dark transition-colors duration-400">
-                    <span className="text-sm font-medium mr-2">Read Full Case Study</span>
-                    <span>→</span>
+                  <div className="flex items-center justify-between pt-4 text-[var(--color-off-black)]">
+                    <span className="text-sm font-medium">Read the story</span>
+                    <span className="text-2xl">→</span>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
 
-          {/* Coming Soon */}
-          <div className="mt-16 text-center">
-            <div className="bg-off-white p-12 border border-gray-200">
-              <h3 className="text-2xl font-serif font-light text-off-black mb-4">
-                More Success Stories Coming Soon
-              </h3>
-              <p className="text-gray-dark mb-6">
-                We're working on documenting more client success stories. Check back soon for additional case studies.
-              </p>
-              <Link href="/contact" className="btn-outline">
-                Start Your Success Story
+          <div className="rounded-[40px] border border-[var(--color-ink-200)] bg-white/80 px-8 py-12 text-center backdrop-blur-xl">
+            <p className="text-xs uppercase tracking-[0.35em] text-[var(--color-ink-400)]">coming soon</p>
+            <h3 className="mt-4 text-[32px] font-serif font-light text-[var(--color-off-black)]">More luxury market wins</h3>
+            <p className="mt-4 text-sm text-[var(--color-ink-400)] max-w-2xl mx-auto">
+              We are documenting additional transformations across New York, Miami, Scottsdale, Seattle, and London. If you would like yours to be next, we can start the diagnostic this week.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full bg-[var(--color-off-black)] px-8 py-3 text-white text-xs uppercase tracking-[0.3em]"
+              >
+                Start your audit
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--color-ink-200)] px-8 py-3 text-xs uppercase tracking-[0.3em] text-[var(--color-off-black)]"
+              >
+                Explore our sprints
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section-padding bg-off-black text-off-white">
-        <div className="container-max text-center">
-          <h2 className="text-4xl md:text-5xl font-serif font-light text-off-white mb-6">
-            Ready to Be Our Next Success Story?
-          </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-            Join the luxury real estate professionals who have transformed their digital marketing with DMR <span className="italic">Media</span>.
+      <section className="py-20 bg-[var(--color-off-black)] text-white">
+        <div className="container-max text-center space-y-6">
+          <span className="uppercase tracking-[0.35em] text-[11px] text-white/60">partnership</span>
+          <h2 className="text-[36px] sm:text-[48px] font-serif font-light leading-tight text-white">Ready to be the next signal-bending story<span className="text-[var(--color-trust)]">?</span></h2>
+          <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto">
+            When the assets feel bespoke, the copy reads like a feature story, and the numbers stay on-brand—your market notices. Let’s architect that outcome together.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="btn-primary">
-              Start Your Campaign
+          <div className="flex flex-wrap justify-center gap-4 pt-4">
+            <Link href="/contact" className="inline-flex items-center justify-center rounded-full bg-white px-10 py-3 text-xs uppercase tracking-[0.35em] text-[var(--color-off-black)]">
+              Book a working session
             </Link>
-            <Link href="/" className="btn-outline">
-              Back to Home
+            <Link href="/" className="inline-flex items-center justify-center rounded-full border border-white/40 px-10 py-3 text-xs uppercase tracking-[0.35em] text-white">
+              Return home
             </Link>
           </div>
         </div>
       </section>
     </div>
-  );
+  )
 }

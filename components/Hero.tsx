@@ -27,7 +27,7 @@ const Hero = () => {
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className="text-[48px] sm:text-[60px] md:text-[72px] font-serif font-light tracking-tight text-[var(--color-off-black)] leading-[1.05]"
             >
-              Refined marketing systems for the luxury market
+              Refined marketing systems for luxury real estate
               <span className="text-[var(--color-trust)] text-[1.1em] align-baseline">.</span>
             </motion.h1>
           </div>
