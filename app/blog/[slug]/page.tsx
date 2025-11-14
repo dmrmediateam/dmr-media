@@ -40,34 +40,34 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const portableTextComponents = {
   block: {
     h2: ({ children }: any) => (
-      <h2 className="text-3xl font-serif font-light text-[var(--color-off-black)] mt-12 mb-4 tracking-tight">
+      <h2 className="text-[28px] sm:text-[32px] font-serif font-light text-[var(--color-off-black)] mt-10 mb-3 tracking-tight">
         {children}
       </h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mt-8 mb-3 tracking-tight">
+      <h3 className="text-[22px] sm:text-[24px] font-serif font-light text-[var(--color-off-black)] mt-7 mb-2 tracking-tight">
         {children}
       </h3>
     ),
     normal: ({ children }: any) => (
-      <p className="text-[var(--color-ink-400)] text-base sm:text-lg leading-relaxed mb-6">
+      <p className="text-[var(--color-ink-400)] text-base sm:text-[17px] leading-[1.6] mb-4">
         {children}
       </p>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-2 border-[var(--color-trust)] pl-6 my-10 italic text-[var(--color-ink-400)]">
+      <blockquote className="border-l-2 border-[var(--color-trust)] pl-5 my-8 italic text-[var(--color-ink-400)]">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="list-disc list-inside mb-6 text-[var(--color-ink-400)] space-y-2">
+      <ul className="list-disc list-inside mb-4 text-[var(--color-ink-400)] space-y-1.5">
         {children}
       </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="list-decimal list-inside mb-6 text-[var(--color-ink-400)] space-y-2">
+      <ol className="list-decimal list-inside mb-4 text-[var(--color-ink-400)] space-y-1.5">
         {children}
       </ol>
     ),
@@ -102,9 +102,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
   return (
     <div className="min-h-screen bg-[var(--surface-base)]">
-      <section className="relative min-h-[70vh] lg:min-h-[80vh] flex items-center overflow-hidden bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
-        <div className="pointer-events-none absolute inset-0 flex justify-end pr-4 sm:pr-10 lg:pr-20 pb-12 sm:pb-16">
-          <div className="relative w-[260px] sm:w-[340px] lg:w-[500px] aspect-[4/5] rounded-[48px] overflow-hidden bg-white/40 backdrop-blur-[2px] border border-[var(--color-ink-200)] opacity-70">
+      <section className="relative min-h-[60vh] lg:min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
+        <div className="pointer-events-none absolute inset-0 flex justify-end pr-4 sm:pr-10 lg:pr-20 pb-10 sm:pb-14">
+          <div className="relative w-[240px] sm:w-[320px] lg:w-[460px] aspect-[4/5] rounded-[40px] overflow-hidden bg-white/40 backdrop-blur-[2px] border border-[var(--color-ink-200)] opacity-70">
             <Image
               src={post.mainImage.asset.url}
               alt={post.mainImage.alt}
@@ -115,20 +115,20 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           </div>
         </div>
 
-        <div className="relative z-10 w-full pt-24 pb-24">
+        <div className="relative z-10 w-full pt-12 pb-14">
           <div className="container-max">
-            <div className="max-w-3xl space-y-6">
+            <div className="max-w-3xl space-y-4">
               <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-[var(--color-off-black)]">
                 {post.category}
               </span>
-              <h1 className="text-[42px] sm:text-[54px] lg:text-[64px] font-serif font-light text-[var(--color-off-black)] leading-[1.05] tracking-tight">
+              <h1 className="text-[40px] sm:text-[52px] lg:text-[60px] font-serif font-light text-[var(--color-off-black)] leading-[1.04] tracking-tight">
                 {post.title}
                 <span className="text-[var(--color-trust)] text-[1.05em] align-baseline">.</span>
               </h1>
-              <p className="text-base sm:text-lg text-[var(--color-ink-400)] leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-[17px] text-[var(--color-ink-400)] leading-[1.55] max-w-2xl">
                 {post.description}
               </p>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--color-ink-400)]">
+              <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--color-ink-400)]">
                 <div className="flex items-center gap-3">
                   {post.author.image && (
                     <Image
@@ -151,13 +151,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
       </section>
 
-      <article className="py-24">
+      <article className="py-20">
         <div className="container-max">
-          <div className="max-w-4xl mx-auto space-y-16">
+          <div className="max-w-4xl mx-auto space-y-12">
             <PortableText value={post.body} components={portableTextComponents} />
 
             {post.tags && post.tags.length > 0 && (
-              <div className="border-t border-[var(--color-ink-200)] pt-8">
+              <div className="border-t border-[var(--color-ink-200)] pt-6">
                 <h3 className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-4">
                   Topics
                 </h3>
@@ -174,8 +174,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               </div>
             )}
 
-            <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-10">
-              <div className="flex flex-col sm:flex-row items-start gap-6">
+            <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/85 backdrop-blur-sm p-8">
+              <div className="flex flex-col sm:flex-row items-start gap-5">
                 {post.author.image && (
                   <Image
                     src={post.author.image}
@@ -202,7 +202,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               </div>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-2">
               <Link
                 href="/blog"
                 className="inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.24em] text-[var(--color-trust)] hover:text-[var(--color-off-black)] transition-colors duration-300"
@@ -215,16 +215,16 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
       </article>
 
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <div className="container-max">
-          <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm px-10 py-16 md:px-16 md:py-20 text-center">
+          <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/85 backdrop-blur-sm px-8 py-14 md:px-14 md:py-18 text-center">
             <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-6">
               Ready to elevate your real estate marketing?
             </h2>
-            <p className="text-sm sm:text-base text-[var(--color-ink-400)] max-w-2xl mx-auto mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base text-[var(--color-ink-400)] max-w-2xl mx-auto mb-6 leading-[1.55]">
               Let’s tailor a growth plan around your portfolio—SEO, paid media, and analytics working together.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-3 rounded-full px-6 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
