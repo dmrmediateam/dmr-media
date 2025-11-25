@@ -46,14 +46,17 @@ export default function CalendarPage() {
       {/* Calendar Widget Section */}
       <section className="py-16 bg-off-white">
         <div className="container-max">
-          <div className="max-w-4xl mx-auto">
-            {/* iClosed Calendar Widget */}
-            <div className="bg-white border border-gray-200 shadow-lg">
-              <div className="iclosed-widget" 
-                   data-url="https://app.iclosed.io/e/arohm/meeting-andrew" 
-                   title="Website Audit" 
-                   style={{width: '100%', height: '620px'}}>
-              </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white border border-gray-200 shadow-lg rounded-lg overflow-hidden">
+              <iframe
+                src="https://app.aura-app.ai/dmr-media/website-audit/embed"
+                title="Website Audit - Booking"
+                width="100%"
+                height="800"
+                frameBorder="0"
+                className="w-full"
+                style={{ minHeight: '800px' }}
+              />
             </div>
           </div>
         </div>
@@ -124,23 +127,6 @@ export default function CalendarPage() {
           </div>
         </div>
       </footer>
-
-      {/* iClosed Widget Script */}
-      <script 
-        type="text/javascript" 
-        src="https://app.iclosed.io/assets/widget.js" 
-        async
-        dangerouslySetInnerHTML={{
-          __html: `
-            // Initialize the widget when the script loads
-            if (typeof window !== 'undefined') {
-              window.addEventListener('load', function() {
-                // The widget script will automatically initialize the calendar
-              });
-            }
-          `
-        }}
-      />
     </div>
   );
 }
