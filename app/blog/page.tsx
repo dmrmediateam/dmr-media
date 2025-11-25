@@ -8,6 +8,8 @@ const heroImage = '/images/StockHomes/modern-luxury-house-at-dusk-2025-02-10-06-
 
 export default async function BlogPage() {
   const posts = await getAllBlogPosts()
+  // Filter out posts without valid slugs
+  const validPosts = posts.filter((post) => post.slug?.current)
 
   return (
     <div className="min-h-screen bg-[var(--surface-base)]">
@@ -49,9 +51,9 @@ export default async function BlogPage() {
 
       <section id="latest" className="py-16">
         <div className="container-max">
-          {posts.length > 0 ? (
+          {validPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {posts.map((post) => {
+              {validPosts.map((post) => {
                 const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
@@ -61,7 +63,7 @@ export default async function BlogPage() {
                 return (
                   <Link
                     key={post._id}
-                    href={`/blog/${post.slug.current}`}
+                    href={`/blog/${post.slug?.current || ''}`}
                     className="group rounded-[22px] border border-[var(--color-ink-200)] overflow-hidden bg-white/85 backdrop-blur-sm hover:border-[var(--color-trust)] transition-colors duration-300"
                   >
                     <div className="relative h-56 overflow-hidden">

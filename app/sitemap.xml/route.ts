@@ -85,7 +85,9 @@ export async function GET() {
 
   try {
     const posts = await getAllBlogPosts();
-    posts.forEach((post) => {
+    // Filter out posts without valid slugs
+    const validPosts = posts.filter((post) => post.slug?.current);
+    validPosts.forEach((post) => {
       urls.push({
         loc: `${baseUrl}/blog/${post.slug.current}`,
         priority: 0.6,
