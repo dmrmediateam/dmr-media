@@ -1,0 +1,759 @@
+/* Elfsight AI Chatbot - DMR Media Minimalist Styling */
+
+/* Remove focus outline from dialog element (fixes click border issue) */
+[role="dialog"],
+[role="dialog"]:focus,
+[role="dialog"]:focus-visible,
+[role="dialog"]:focus-within,
+[role="dialog"]:active,
+[role="dialog"]:focus-visible:active {
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[role="dialog"] *,
+[role="dialog"] *:focus,
+[role="dialog"] *:focus-visible,
+[role="dialog"] *:active {
+  outline: none !important;
+  outline-width: 0 !important;
+}
+
+/* Prevent dialog from receiving focus outline on click */
+.floating-panel__Container-sc-4a52276a-0[role="dialog"],
+.floating-panel__Container-sc-cc5cce48-0[role="dialog"] {
+  outline: none !important;
+  outline-width: 0 !important;
+}
+
+/* Main Window Container */
+.es-window-container {
+  border-radius: 24px !important;
+  border: 1px solid rgba(231, 231, 229, 0.9) !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(8px) !important;
+  box-shadow: 0 24px 64px rgba(15, 15, 15, 0.08) !important;
+  font-family: 'Instrument Serif', serif !important;
+  overflow: hidden !important;
+  outline: none !important;
+}
+
+.es-window-container:focus,
+.es-window-container:focus-visible,
+.es-window-container:focus-within,
+.es-window-container:active {
+  outline: none !important;
+  border: 1px solid rgba(231, 231, 229, 0.9) !important;
+  box-shadow: 0 24px 64px rgba(15, 15, 15, 0.08) !important;
+}
+
+/* Window Header */
+.es-window-header {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(231, 231, 229, 0.9) !important;
+  padding: 16px 20px !important;
+  border-radius: 24px 24px 0 0 !important;
+}
+
+/* Header Title */
+.window-header__Title-sc-4c3ad21a-3,
+.es-window-header .typography__Container-sc-66f865ad-0 {
+  font-family: 'Instrument Serif', serif !important;
+  font-weight: 400 !important;
+  color: #0f0f0f !important;
+  font-size: 18px !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Header Caption */
+.window-header__Caption-sc-4c3ad21a-4 {
+  color: rgba(82, 82, 82, 0.68) !important;
+  font-size: 13px !important;
+}
+
+/* Header Buttons (Expand/Close) */
+.es-circle-button-button {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(231, 231, 229, 0.9) !important;
+  border-radius: 50% !important;
+  color: #0f0f0f !important;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.es-circle-button-button:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  border-color: #3c88c0 !important;
+  color: #3c88c0 !important;
+}
+
+/* Avatar Container */
+.es-avatar-container {
+  border-radius: 50% !important;
+}
+
+.es-avatar-background {
+  border: 1px solid rgba(231, 231, 229, 0.9) !important;
+  border-radius: 50% !important;
+}
+
+/* Window Body */
+.es-window-body {
+  background: rgba(250, 250, 249, 0.95) !important;
+}
+
+/* Message Container */
+.es-message-container {
+  font-family: 'Instrument Serif', serif !important;
+}
+
+/* Assistant Message Background */
+.es-message-assistant .es-message-background {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(231, 231, 229, 0.9) !important;
+  border-radius: 20px !important;
+  padding: 16px 20px !important;
+  box-shadow: 0 2px 8px rgba(15, 15, 15, 0.04) !important;
+}
+
+/* User Message Background - Dark/Black background */
+.es-message-user .es-message-background,
+.dialog-message__Container-sc-ad7a2242-2:not(.es-message-assistant) .es-message-background {
+  background: #0f0f0f !important;
+  border: 1px solid rgba(231, 231, 229, 0.2) !important;
+  border-radius: 20px !important;
+  padding: 16px 20px !important;
+}
+
+/* Message Content */
+.es-message-content-container {
+  color: #0f0f0f !important;
+  font-family: 'Instrument Serif', serif !important;
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+}
+
+.es-message-content-container p {
+  color: #0f0f0f !important;
+  font-family: 'Instrument Serif', serif !important;
+  margin: 0 0 8px 0 !important;
+}
+
+.es-message-content-container p:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* User Message Content - White text on black background */
+.es-message-user .es-message-content-container,
+.es-message-container:not(.es-message-assistant) .es-message-content-container,
+.dialog-message__Container-sc-ad7a2242-2:not(.es-message-assistant) .es-message-content-container,
+.es-message-background[style*="background"] .es-message-content-container,
+.es-message-background[style*="rgb(0"] .es-message-content-container,
+.es-message-background[style*="rgb(15"] .es-message-content-container,
+.es-message-background[style*="black"] .es-message-content-container,
+.dialog-message__Container-sc-ad7a2242-2:not([data-role="assistant"]) .es-message-content-container,
+.dialog-message__Container-sc-ad7a2242-2:not(.es-message-assistant) .dialog-message-content__Container-sc-535ea8de-2 {
+  color: #fafaf9 !important;
+}
+
+.es-message-user .es-message-content-container p,
+.es-message-container:not(.es-message-assistant) .es-message-content-container p,
+.dialog-message__Container-sc-ad7a2242-2:not(.es-message-assistant) .es-message-content-container p,
+.es-message-background[style*="background"] .es-message-content-container p,
+.es-message-background[style*="rgb(0"] .es-message-content-container p,
+.es-message-background[style*="rgb(15"] .es-message-content-container p,
+.es-message-background[style*="black"] .es-message-content-container p,
+.dialog-message__Container-sc-ad7a2242-2:not([data-role="assistant"]) .es-message-content-container p,
+.dialog-message__Container-sc-ad7a2242-2:not(.es-message-assistant) .dialog-message-content__Container-sc-535ea8de-2 p {
+  color: #fafaf9 !important;
+}
+
+/* User Message Meta (Time) - Lighter color for readability */
+.es-message-user .es-message-content-meta,
+.es-message-container:not(.es-message-assistant) .es-message-content-meta,
+.dialog-message__Container-sc-ad7a2242-2:not(.es-message-assistant) .es-message-content-meta,
+.dialog-message__Container-sc-ad7a2242-2:not(.es-message-assistant) .dialog-message-content__Meta-sc-535ea8de-0 {
+  color: rgba(250, 250, 249, 0.7) !important;
+}
+
+/* Direct targeting for user messages based on HTML structure */
+.dialog-message__Container-sc-ad7a2242-2:not([data-role="assistant"]) .typography__Container-sc-66f865ad-0,
+.dialog-message__Container-sc-ad7a2242-2:not(.es-message-assistant) .typography__Container-sc-66f865ad-0,
+.dialog-message__Container-sc-ad7a2242-2:not([data-role="assistant"]) .dialog-message-content__Container-sc-535ea8de-2,
+.dialog-message__Container-sc-ad7a2242-2:not(.es-message-assistant) .dialog-message-content__Container-sc-535ea8de-2 {
+  color: #fafaf9 !important;
+}
+
+/* Target any message content container inside a dark background */
+.es-message-background[style*="rgb(15, 15, 15)"] .es-message-content-container,
+.es-message-background[style*="rgb(0, 0, 0)"] .es-message-content-container,
+.es-message-background[style*="#0f0f0f"] .es-message-content-container,
+.es-message-background[style*="#000000"] .es-message-content-container,
+.es-message-background[style*="black"] .es-message-content-container {
+  color: #fafaf9 !important;
+}
+
+.es-message-background[style*="rgb(15, 15, 15)"] .es-message-content-container p,
+.es-message-background[style*="rgb(0, 0, 0)"] .es-message-content-container p,
+.es-message-background[style*="#0f0f0f"] .es-message-content-container p,
+.es-message-background[style*="#000000"] .es-message-content-container p,
+.es-message-background[style*="black"] .es-message-content-container p {
+  color: #fafaf9 !important;
+}
+
+/* Message Meta (Time) */
+.es-message-content-meta {
+  color: rgba(82, 82, 82, 0.68) !important;
+  font-size: 12px !important;
+  margin-top: 8px !important;
+}
+
+/* Message Tail Icon */
+.es-message-tail {
+  fill: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Quick Reply Buttons */
+.es-quick-reply-button {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(231, 231, 229, 0.9) !important;
+  border-radius: 20px !important;
+  color: #0f0f0f !important;
+  font-family: 'Instrument Serif', serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  padding: 10px 16px !important;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  letter-spacing: 0.01em !important;
+}
+
+.es-quick-reply-button:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  border-color: #3c88c0 !important;
+  color: #3c88c0 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Footer Container */
+.es-window-footer {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-top: 1px solid rgba(231, 231, 229, 0.9) !important;
+  padding: 16px 20px !important;
+  border-radius: 0 0 24px 24px !important;
+}
+
+/* Footer Field Container */
+.footer__FieldContainer-sc-bbd9e71e-2 {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Input Field Container */
+.es-interaction-field-container {
+  background: transparent !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  gap: 12px !important;
+  padding: 0 !important;
+}
+
+/* Interaction Field Scrollable Content */
+.interaction-field__ScrollableContent-sc-f09f23be-2 {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+/* Text Measure Component */
+.TextMeasure__TextMeasureComponent-sc-a887ff43-0 {
+  display: none !important;
+}
+
+/* Text Control Base Container */
+.TextControlBase__TextControlBaseContainer-sc-af3166d3-0,
+.es-interaction-field-text-control {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(231, 231, 229, 0.9) !important;
+  border-radius: 20px !important;
+  padding: 12px 16px !important;
+  font-family: 'Instrument Serif', serif !important;
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+  color: #0f0f0f !important;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  width: 100% !important;
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Text Control Base Inner */
+.TextControlBase__TextControlBaseInner-sc-af3166d3-1 {
+  width: 100% !important;
+  position: relative !important;
+}
+
+/* Text Control Base Input Wrapper */
+.TextControlBase__TextControlBaseInputWrapper-sc-af3166d3-3 {
+  width: 100% !important;
+  position: relative !important;
+}
+
+/* Text Control Base Placeholder */
+.TextControlBase__TextControlBasePlaceholder-sc-af3166d3-8 {
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: rgba(82, 82, 82, 0.4) !important;
+  font-family: 'Instrument Serif', serif !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  pointer-events: none !important;
+  transition: opacity 200ms ease !important;
+}
+
+/* Textarea */
+.TextControlBase__TextControlBaseTextarea-sc-af3166d3-5,
+.es-interaction-field-text-control textarea {
+  width: 100% !important;
+  color: #0f0f0f !important;
+  font-family: 'Instrument Serif', serif !important;
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+  font-weight: 400 !important;
+  background: transparent !important;
+  border: none !important;
+  resize: none !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0 !important;
+  outline-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: 22px !important;
+  max-height: 120px !important;
+  overflow-y: auto !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-focus-ring-color: transparent !important;
+}
+
+/* Remove blue outline from textarea on focus - Aggressive removal */
+.TextControlBase__TextControlBaseTextarea-sc-af3166d3-5:focus,
+.TextControlBase__TextControlBaseTextarea-sc-af3166d3-5:focus-visible,
+.TextControlBase__TextControlBaseTextarea-sc-af3166d3-5:focus-within,
+.TextControlBase__TextControlBaseTextarea-sc-af3166d3-5:active,
+.es-interaction-field-text-control textarea:focus,
+.es-interaction-field-text-control textarea:focus-visible,
+.es-interaction-field-text-control textarea:focus-within,
+.es-interaction-field-text-control textarea:active,
+#interactionInput:focus,
+#interactionInput:focus-visible,
+#interactionInput:focus-within,
+#interactionInput:active,
+textarea:focus,
+textarea:focus-visible,
+textarea:focus-within,
+textarea:active {
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0 !important;
+  outline-style: none !important;
+  outline-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-focus-ring-color: transparent !important;
+}
+
+/* Remove outline from wrapper elements */
+.TextControlBase__TextControlBaseInputWrapper-sc-af3166d3-3:focus,
+.TextControlBase__TextControlBaseInputWrapper-sc-af3166d3-3:focus-within,
+.TextControlBase__TextControlBaseInner-sc-af3166d3-1:focus,
+.TextControlBase__TextControlBaseInner-sc-af3166d3-1:focus-within {
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0 !important;
+}
+
+.TextControlBase__TextControlBaseTextarea-sc-af3166d3-5::placeholder,
+.es-interaction-field-text-control textarea::placeholder {
+  color: rgba(82, 82, 82, 0.4) !important;
+  font-family: 'Instrument Serif', serif !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}
+
+/* Hide placeholder when textarea has content */
+.TextControlBase__TextControlBaseInputWrapper-sc-af3166d3-3:has(textarea:not(:placeholder-shown)) .TextControlBase__TextControlBasePlaceholder-sc-af3166d3-8 {
+  opacity: 0 !important;
+}
+
+/* Focus States */
+.es-interaction-field-text-control:focus,
+.es-interaction-field-text-control:focus-within,
+.TextControlBase__TextControlBaseContainer-sc-af3166d3-0:focus,
+.TextControlBase__TextControlBaseContainer-sc-af3166d3-0:focus-within {
+ 
+  background: rgba(255, 255, 255, 1) !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0 !important;
+  box-shadow: 0 0 0 3px rgba(60, 136, 192, 0.1) !important;
+}
+
+/* Remove all browser default focus outlines */
+.es-interaction-field-text-control *:focus,
+.es-interaction-field-text-control *:focus-visible,
+.TextControlBase__TextControlBaseContainer-sc-af3166d3-0 *:focus,
+.TextControlBase__TextControlBaseContainer-sc-af3166d3-0 *:focus-visible {
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0 !important;
+}
+
+.gpDOLA {
+    padding: 0px !important;
+}
+
+/* Interaction Field Actions */
+.interaction-field__Actions-sc-f09f23be-1 {
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Send Button */
+.interaction-field__SubmitButton-sc-f09f23be-3,
+.es-interaction-field-submit-button,
+.icon-button__Button-sc-250c15da-0 {
+  background: #0f0f0f !important;
+  border: none !important;
+  border-radius: 50% !important;
+  color: #fafaf9 !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.interaction-field__SubmitButton-sc-f09f23be-3:hover,
+.es-interaction-field-submit-button:hover,
+.icon-button__Button-sc-250c15da-0:hover {
+  background: #3c88c0 !important;
+  transform: scale(1.05) !important;
+}
+
+.interaction-field__SubmitButton-sc-f09f23be-3:active,
+.es-interaction-field-submit-button:active,
+.icon-button__Button-sc-250c15da-0:active {
+  transform: scale(0.95) !important;
+}
+
+/* Icon Container */
+.Icon__IconContainer-sc-1013a803-0 {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.Icon__IconContainer-sc-1013a803-0 svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: currentColor !important;
+}
+
+/* Send Button Icon Color */
+.es-interaction-field-submit-button svg path,
+.interaction-field__SubmitButton-sc-f09f23be-3 svg path {
+  fill: #fafaf9 !important;
+}
+
+.es-interaction-field-submit-button:hover svg path,
+.interaction-field__SubmitButton-sc-f09f23be-3:hover svg path {
+  fill: #fafaf9 !important;
+}
+
+/* Scrollable Container */
+.es-window-body .scrollable-container__ScrollableContainer-sc-ff9b770a-0 {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(231, 231, 229, 0.9) transparent !important;
+}
+
+.es-window-body .scrollable-container__ScrollableContainer-sc-ff9b770a-0::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.es-window-body .scrollable-container__ScrollableContainer-sc-ff9b770a-0::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.es-window-body .scrollable-container__ScrollableContainer-sc-ff9b770a-0::-webkit-scrollbar-thumb {
+  background: rgba(231, 231, 229, 0.9) !important;
+  border-radius: 10px !important;
+}
+
+.es-window-body .scrollable-container__ScrollableContainer-sc-ff9b770a-0::-webkit-scrollbar-thumb:hover {
+  background: rgba(82, 82, 82, 0.4) !important;
+}
+
+/* Floating Panel Container (when minimized/expanded) */
+.floating-panel__Container-sc-4a52276a-0,
+.floating-panel__Container-sc-cc5cce48-0 {
+  border-radius: 24px !important;
+  border: 1px solid rgba(231, 231, 229, 0.9) !important;
+  box-shadow: 0 24px 64px rgba(15, 15, 15, 0.08) !important;
+  outline: none !important;
+}
+
+.floating-panel__Container-sc-4a52276a-0:focus,
+.floating-panel__Container-sc-4a52276a-0:focus-visible,
+.floating-panel__Container-sc-4a52276a-0:focus-within,
+.floating-panel__Container-sc-cc5cce48-0:focus,
+.floating-panel__Container-sc-cc5cce48-0:focus-visible,
+.floating-panel__Container-sc-cc5cce48-0:focus-within {
+  outline: none !important;
+  border: 1px solid rgba(231, 231, 229, 0.9) !important;
+  box-shadow: 0 24px 64px rgba(15, 15, 15, 0.08) !important;
+}
+
+/* Typography Overrides */
+.typography__Container-sc-66f865ad-0 {
+  font-family: 'Instrument Serif', serif !important;
+  color: #0f0f0f !important;
+}
+
+/* Remove any default Elfsight animations that conflict */
+.es-window-container * {
+  transition-property: color, background-color, border-color, transform, opacity !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 300ms !important;
+}
+
+/* Remove focus outlines from all Elfsight containers - Comprehensive fix */
+.es-window-container,
+.floating-panel__Container-sc-4a52276a-0,
+.floating-panel__Container-sc-cc5cce48-0,
+[role="dialog"],
+.floating-panel__Container-sc-4a52276a-0 *,
+.floating-panel__Container-sc-cc5cce48-0 *,
+[role="dialog"] * {
+  outline: none !important;
+}
+
+.es-window-container:focus,
+.es-window-container:focus-visible,
+.es-window-container:focus-within,
+.es-window-container:active,
+.floating-panel__Container-sc-4a52276a-0:focus,
+.floating-panel__Container-sc-4a52276a-0:focus-visible,
+.floating-panel__Container-sc-4a52276a-0:focus-within,
+.floating-panel__Container-sc-4a52276a-0:active,
+.floating-panel__Container-sc-cc5cce48-0:focus,
+.floating-panel__Container-sc-cc5cce48-0:focus-visible,
+.floating-panel__Container-sc-cc5cce48-0:focus-within,
+.floating-panel__Container-sc-cc5cce48-0:active,
+[role="dialog"]:focus,
+[role="dialog"]:focus-visible,
+[role="dialog"]:focus-within,
+[role="dialog"]:active {
+  outline: none !important;
+  border: 1px solid rgba(231, 231, 229, 0.9) !important;
+  box-shadow: 0 24px 64px rgba(15, 15, 15, 0.08) !important;
+}
+
+/* Prevent any browser default focus styles */
+.es-window-container *:focus,
+.es-window-container *:focus-visible,
+.es-window-container *:active {
+  outline: none !important;
+}
+
+/* Ensure proper spacing */
+.es-message-group-assistant {
+  margin-bottom: 16px !important;
+}
+
+/* Link styling within messages */
+.es-message-content-container a {
+  color: #3c88c0 !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba(60, 136, 192, 0.4) !important;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.es-message-content-container a:hover {
+  color: #0f0f0f !important;
+  text-decoration-color: #3c88c0 !important;
+}
+
+/* Final catch-all: Remove blue outline from all text inputs and textareas */
+.es-window-container textarea:focus,
+.es-window-container textarea:focus-visible,
+.es-window-container input:focus,
+.es-window-container input:focus-visible,
+.es-window-container textarea:active,
+.es-window-container input:active {
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0 !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Remove webkit focus ring */
+.es-window-container textarea::-webkit-focus-ring,
+.es-window-container input::-webkit-focus-ring {
+  outline: none !important;
+}
+
+/* Custom Chatbot Trigger Button Styling - Minimalist with border */
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 button,
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 [role="button"],
+[data-elfsight-app-lazy] button,
+[data-elfsight-app-lazy] [role="button"] {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(231, 231, 229, 0.9) !important;
+  border-radius: 50% !important;
+  width: 56px !important;
+  height: 56px !important;
+  min-width: 56px !important;
+  min-height: 56px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 8px rgba(15, 15, 15, 0.06) !important;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+  outline: none !important;
+  position: relative !important;
+}
+
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 button:hover,
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 [role="button"]:hover,
+[data-elfsight-app-lazy] button:hover,
+[data-elfsight-app-lazy] [role="button"]:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  border-color: #3c88c0 !important;
+  box-shadow: 0 4px 12px rgba(15, 15, 15, 0.08) !important;
+}
+
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 button:active,
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 [role="button"]:active,
+[data-elfsight-app-lazy] button:active,
+[data-elfsight-app-lazy] [role="button"]:active {
+  transform: scale(0.98) !important;
+}
+
+/* Hide default Elfsight icon and replace with custom SVG */
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 svg[data-src*="dialog-filled"],
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 svg.injected-svg,
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 button > div > svg,
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 button > div > div > svg,
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 [role="button"] > div > svg,
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 [role="button"] > div > div > svg,
+[data-elfsight-app-lazy] svg[data-src*="dialog-filled"],
+[data-elfsight-app-lazy] svg.injected-svg,
+[data-elfsight-app-lazy] button > div > svg,
+[data-elfsight-app-lazy] button > div > div > svg,
+[data-elfsight-app-lazy] [role="button"] > div > svg,
+[data-elfsight-app-lazy] [role="button"] > div > div > svg {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+
+/* Custom SVG Icon - Minimalist Chat Bubble (matches website style) */
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 button::before,
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 [role="button"]::before,
+[data-elfsight-app-lazy] button::before,
+[data-elfsight-app-lazy] [role="button"]::before {
+  content: '' !important;
+  width: 24px !important;
+  height: 24px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M4 3C2.89543 3 2 3.89543 2 5V15C2 16.1046 2.89543 17 4 17H8.5C8.77614 17 9 17.2239 9 17.5V20.2071L12.2929 17.5C12.4739 17.319 12.7239 17.2239 12.9761 17.2239H20C21.1046 17.2239 22 16.3285 22 15.2239V5.22388C22 4.11931 21.1046 3.22388 20 3.22388H4V3Z' fill='none' stroke='%230f0f0f' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  display: block !important;
+  position: absolute !important;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Icon color changes to trust blue on hover */
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 button:hover::before,
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 [role="button"]:hover::before,
+[data-elfsight-app-lazy] button:hover::before,
+[data-elfsight-app-lazy] [role="button"]:hover::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M4 3C2.89543 3 2 3.89543 2 5V15C2 16.1046 2.89543 17 4 17H8.5C8.77614 17 9 17.2239 9 17.5V20.2071L12.2929 17.5C12.4739 17.319 12.7239 17.2239 12.9761 17.2239H20C21.1046 17.2239 22 16.3285 22 15.2239V5.22388C22 4.11931 21.1046 3.22388 20 3.22388H4V3Z' fill='none' stroke='%233c88c0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+/* Alternative: If button already has SVG, style it to match custom icon */
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 button svg:not([data-src]):not(.injected-svg),
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 [role="button"] svg:not([data-src]):not(.injected-svg),
+[data-elfsight-app-lazy] button svg:not([data-src]):not(.injected-svg),
+[data-elfsight-app-lazy] [role="button"] svg:not([data-src]):not(.injected-svg) {
+  width: 24px !important;
+  height: 24px !important;
+  fill: none !important;
+  stroke: #0f0f0f !important;
+  stroke-width: 1.5 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 button:hover svg:not([data-src]):not(.injected-svg),
+.elfsight-app-90e5dbc1-4850-470a-b384-914842649785 [role="button"]:hover svg:not([data-src]):not(.injected-svg),
+[data-elfsight-app-lazy] button:hover svg:not([data-src]):not(.injected-svg),
+[data-elfsight-app-lazy] [role="button"]:hover svg:not([data-src]):not(.injected-svg) {
+  stroke: #3c88c0 !important;
+}
+
+/* Final catch-all: Make text white in any message with dark background */
+.dialog-message__Background-sc-ad7a2242-1[style*="rgb(15, 15, 15)"] .dialog-message-content__Container-sc-535ea8de-2,
+.dialog-message__Background-sc-ad7a2242-1[style*="rgb(0, 0, 0)"] .dialog-message-content__Container-sc-535ea8de-2,
+.dialog-message__Background-sc-ad7a2242-1[style*="#0f0f0f"] .dialog-message-content__Container-sc-535ea8de-2,
+.dialog-message__Background-sc-ad7a2242-1[style*="#000000"] .dialog-message-content__Container-sc-535ea8de-2,
+.dialog-message__Background-sc-ad7a2242-1[style*="black"] .dialog-message-content__Container-sc-535ea8de-2,
+.dialog-message__Background-sc-ad7a2242-1[style*="rgb(15, 15, 15)"] .typography__Container-sc-66f865ad-0,
+.dialog-message__Background-sc-ad7a2242-1[style*="rgb(0, 0, 0)"] .typography__Container-sc-66f865ad-0,
+.dialog-message__Background-sc-ad7a2242-1[style*="#0f0f0f"] .typography__Container-sc-66f865ad-0,
+.dialog-message__Background-sc-ad7a2242-1[style*="#000000"] .typography__Container-sc-66f865ad-0,
+.dialog-message__Background-sc-ad7a2242-1[style*="black"] .typography__Container-sc-66f865ad-0 {
+  color: #fafaf9 !important;
+}
+
+.dialog-message__Background-sc-ad7a2242-1[style*="rgb(15, 15, 15)"] .dialog-message-content__Container-sc-535ea8de-2 p,
+.dialog-message__Background-sc-ad7a2242-1[style*="rgb(0, 0, 0)"] .dialog-message-content__Container-sc-535ea8de-2 p,
+.dialog-message__Background-sc-ad7a2242-1[style*="#0f0f0f"] .dialog-message-content__Container-sc-535ea8de-2 p,
+.dialog-message__Background-sc-ad7a2242-1[style*="#000000"] .dialog-message-content__Container-sc-535ea8de-2 p,
+.dialog-message__Background-sc-ad7a2242-1[style*="black"] .dialog-message-content__Container-sc-535ea8de-2 p {
+  color: #fafaf9 !important;
+}
+

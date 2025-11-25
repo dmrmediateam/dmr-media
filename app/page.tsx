@@ -8,7 +8,9 @@ import Link from 'next/link';
 
 export default async function Home() {
   const blogPosts = await getAllBlogPosts();
-  const featuredPosts = blogPosts.slice(0, 3);
+  // Filter out posts without valid slugs
+  const validPosts = blogPosts.filter((post) => post.slug?.current);
+  const featuredPosts = validPosts.slice(0, 3);
   const stats = [
     { value: '$11K', label: 'Average Client GCI', description: 'Monthly revenue lift across luxury campaigns.' },
     { value: '100+', label: 'Partners Nationwide', description: 'Agents, teams, and developers we support.' },
@@ -89,7 +91,7 @@ export default async function Home() {
                 return (
                   <Link
                     key={post._id}
-                    href={`/blog/${post.slug.current}`}
+                    href={`/blog/${post.slug?.current || ''}`}
                     className="group bg-white border border-[var(--color-ink-200)] overflow-hidden rounded-[20px] hover:border-[var(--color-trust)] transition-all duration-300"
                   >
                     <div className="relative h-64 bg-gray-light overflow-hidden">

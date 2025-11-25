@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Instrument_Serif } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -41,6 +42,9 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        {/* Elfsight AI Chatbot | DMR Media Bot */}
+        <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
+        <div className="elfsight-app-90e5dbc1-4850-470a-b384-914842649785" data-elfsight-app-lazy></div>
       </body>
     </html>
   )
