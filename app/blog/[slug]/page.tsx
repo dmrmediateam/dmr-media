@@ -9,7 +9,9 @@ export const revalidate = 60
 
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts()
-  return posts.map((post) => ({
+  // Filter out posts without valid slugs
+  const validPosts = posts.filter((post) => post.slug?.current)
+  return validPosts.map((post) => ({
     slug: post.slug.current,
   }))
 }
