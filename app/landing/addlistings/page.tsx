@@ -520,14 +520,21 @@ export default function AddListingsLandingPage() {
         <div className="container-max">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-6 tracking-tight">
-              Get Instant Access for Just $5
+              Register for Just $5
             </h2>
+            <div className="mb-6">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 mb-4">
+                <span className="text-base uppercase tracking-[0.3em] text-[var(--color-trust)] font-semibold">
+                  📅 Event Date: December 17th
+                </span>
+              </div>
+            </div>
             <div className="inline-flex items-baseline gap-3 mb-4">
               <span className="text-6xl sm:text-7xl font-serif font-light text-[var(--color-off-black)]">$5</span>
               <span className="text-2xl text-[var(--color-ink-400)] line-through opacity-50">$997</span>
             </div>
             <p className="text-lg text-[var(--color-ink-400)] mb-8 max-w-2xl mx-auto">
-              One-time payment. Lifetime access. No monthly fees, no subscriptions.
+              Register now for the training event on December 17th. One-time payment. Full access to the complete system.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
@@ -547,7 +554,7 @@ export default function AddListingsLandingPage() {
               onClick={scrollToForm}
               className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
             >
-              Get Instant Access - $5
+              Register Now - $5
             </button>
           </div>
         </div>
@@ -561,10 +568,15 @@ export default function AddListingsLandingPage() {
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 mb-6">
                 <span className="text-[11px] uppercase tracking-[0.35em] text-[var(--color-trust)] font-semibold">
-                  🔑 Get Instant Access
+                  🔑 Register Now
                 </span>
               </div>
               <div className="mb-6">
+                <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-off-black)]/5 px-4 py-2 mb-4">
+                  <span className="text-base uppercase tracking-[0.3em] text-[var(--color-off-black)] font-semibold">
+                    📅 December 17th, 2024
+                  </span>
+                </div>
                 <div className="inline-flex items-baseline gap-2 mb-4">
                   <span className="text-5xl sm:text-6xl font-serif font-light text-[var(--color-off-black)]">$5</span>
                   <span className="text-xl text-[var(--color-ink-400)] line-through opacity-50">$997</span>
@@ -574,11 +586,11 @@ export default function AddListingsLandingPage() {
                 </p>
               </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-[var(--color-off-black)] mb-6 tracking-tight">
-                Get Instant Access
+                Reserve Your Spot
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h2>
               <p className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-relaxed max-w-2xl mx-auto mb-8">
-                Get the complete training system for just $5. Start adding 1–2 listings every month using only Google Business Profile & ChatGPT.
+                Register now for the training event on December 17th. Get the complete system for just $5 and start adding 1–2 listings every month using only Google Business Profile & ChatGPT.
               </p>
             </div>
 
@@ -656,7 +668,7 @@ export default function AddListingsLandingPage() {
                     disabled={isSubmitting}
                     className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                   >
-                    {isSubmitting ? 'Processing...' : '🔑 Get Instant Access - $5'}
+                    {isSubmitting ? 'Processing...' : '🔑 Register Now - $5'}
                   </button>
                 </form>
               )}
@@ -675,8 +687,8 @@ export default function AddListingsLandingPage() {
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
-                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Instant Access</div>
-                    <div className="text-sm text-[var(--color-ink-400)] mt-1">Watch training immediately</div>
+                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Event Access</div>
+                    <div className="text-sm text-[var(--color-ink-400)] mt-1">December 17th training</div>
                   </div>
                   <div className="flex flex-col items-center">
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
