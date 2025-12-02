@@ -128,7 +128,7 @@ export default function AddListingsLandingPage() {
                 How to Add 1–2 Listings Every Month Using ONLY Google Business Profile & LSAs
                 <span className="text-[var(--color-trust)] text-[1.05em] align-baseline">.</span>
               </h1>
-              <p className="text-base sm:text-lg text-[var(--color-ink-400)] leading-[1.55] max-w-2xl mx-auto">
+              <p className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-[1.6] max-w-2xl mx-auto">
                 No website needed. Discover the proven system that's helping real estate agents dominate their local markets.
               </p>
             </div>
@@ -151,7 +151,7 @@ export default function AddListingsLandingPage() {
             <div className="text-center">
               <button
                 onClick={scrollToForm}
-                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
+                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
                 Register Now
               </button>
@@ -189,10 +189,10 @@ export default function AddListingsLandingPage() {
                       <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-1">
                         {topic.title}
                       </h3>
-                      <p className="text-sm uppercase tracking-[0.3em] text-[var(--color-trust)] mb-3">
+                      <p className="text-base uppercase tracking-[0.3em] text-[var(--color-trust)] mb-3">
                         {topic.subtitle}
                       </p>
-                      <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+                      <p className="text-base text-[var(--color-ink-400)] leading-relaxed">
                         {topic.description}
                       </p>
                     </div>
@@ -204,7 +204,7 @@ export default function AddListingsLandingPage() {
             <div className="text-center mt-12">
               <button
                 onClick={scrollToForm}
-                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
+                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
                 Reserve Your Spot
               </button>
@@ -221,7 +221,7 @@ export default function AddListingsLandingPage() {
               <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
                 Is This Training For You?
               </h2>
-              <p className="text-base text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
                 If you say yes to any of these, I've got you.
               </p>
             </div>
@@ -244,7 +244,7 @@ export default function AddListingsLandingPage() {
                     <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
                       You're struggling to get consistent listings
                     </h3>
-                    <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+                    <p className="text-base text-[var(--color-ink-400)] leading-relaxed">
                       You're not getting enough seller leads, or the leads you're getting aren't qualified. You need a system that brings in 1–2 listings every month without relying on referrals or cold calling.
                     </p>
                   </div>
@@ -268,7 +268,7 @@ export default function AddListingsLandingPage() {
                     <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
                       You don't have a website or want to avoid expensive ads
                     </h3>
-                    <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+                    <p className="text-base text-[var(--color-ink-400)] leading-relaxed">
                       You want to generate listings using free and low-cost tools like Google Business Profile and Local Service Ads—no website required, no massive ad budgets.
                     </p>
                   </div>
@@ -292,7 +292,7 @@ export default function AddListingsLandingPage() {
                     <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
                       You're overwhelmed by marketing advice
                     </h3>
-                    <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+                    <p className="text-base text-[var(--color-ink-400)] leading-relaxed">
                       There's too much conflicting information out there. You need a proven, step-by-step system that actually works for real estate agents—not generic marketing advice.
                     </p>
                   </div>
@@ -316,7 +316,7 @@ export default function AddListingsLandingPage() {
                     <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
                       You want to dominate your local market
                     </h3>
-                    <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+                    <p className="text-base text-[var(--color-ink-400)] leading-relaxed">
                       You're ready to become the go-to agent in your area. You want to show up first when sellers search for real estate services, and you're willing to implement a proven system.
                     </p>
                   </div>
@@ -327,7 +327,7 @@ export default function AddListingsLandingPage() {
             <div className="text-center mt-12">
               <button
                 onClick={scrollToForm}
-                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
+                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
                 If This Sounds Like You, Register Now
               </button>
@@ -348,7 +348,7 @@ export default function AddListingsLandingPage() {
                 Jade · Legendary Real Estate
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h2>
-              <p className="text-base text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
                 From frustrated content creator to lead generation powerhouse—how we transformed Jade's digital strategy and tripled her inbound leads.
               </p>
             </div>
@@ -357,18 +357,18 @@ export default function AddListingsLandingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
               <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                 <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">3x</div>
-                <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Qualified Leads</p>
-                <p className="mt-4 text-sm text-[var(--color-ink-400)]">Inbound pipeline inside 90 days</p>
+                <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Qualified Leads</p>
+                <p className="mt-4 text-base text-[var(--color-ink-400)]">Inbound pipeline inside 90 days</p>
               </div>
               <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                 <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">42</div>
-                <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Content Assets</p>
-                <p className="mt-4 text-sm text-[var(--color-ink-400)]">Blogs, landing pages, nurture flows</p>
+                <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Content Assets</p>
+                <p className="mt-4 text-base text-[var(--color-ink-400)]">Blogs, landing pages, nurture flows</p>
               </div>
               <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                 <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">12 hrs</div>
-                <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Automation</p>
-                <p className="mt-4 text-sm text-[var(--color-ink-400)]">From lead to curated follow-up</p>
+                <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Automation</p>
+                <p className="mt-4 text-base text-[var(--color-ink-400)]">From lead to curated follow-up</p>
               </div>
             </div>
 
@@ -394,7 +394,7 @@ export default function AddListingsLandingPage() {
                 <blockquote className="text-lg font-serif font-light text-[var(--color-off-black)] leading-relaxed italic">
                   "He's articulate, responsive, and provides amazing weekly updates. He works with us like a partner, rather than a vendor. If you have the opportunity to work with him, just DO IT. You'll be grateful you did!"
                 </blockquote>
-                <div className="mt-4 text-sm text-[var(--color-ink-400)]">
+                <div className="mt-4 text-base text-[var(--color-ink-400)]">
                   <p className="uppercase tracking-[0.3em]">Jade Goodhue</p>
                   <p className="uppercase tracking-[0.3em] mt-1">Legendary Real Estate</p>
                 </div>
@@ -404,7 +404,7 @@ export default function AddListingsLandingPage() {
             <div className="text-center">
               <button
                 onClick={scrollToForm}
-                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
+                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
                 Get Similar Results
               </button>
@@ -426,18 +426,18 @@ export default function AddListingsLandingPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
                 <div className="text-4xl font-serif font-light text-[var(--color-trust)] mb-2">1–2</div>
-                <div className="text-sm uppercase tracking-[0.3em] text-[var(--color-ink-400)]">Listings Per Month</div>
-                <div className="text-xs text-[var(--color-ink-400)] mt-2">Using only GBP & LSAs</div>
+                <div className="text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)]">Listings Per Month</div>
+                <div className="text-sm text-[var(--color-ink-400)] mt-2">Using only GBP & LSAs</div>
               </div>
               <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
                 <div className="text-4xl font-serif font-light text-[var(--color-trust)] mb-2">$11K</div>
-                <div className="text-sm uppercase tracking-[0.3em] text-[var(--color-ink-400)]">Avg Monthly GCI</div>
-                <div className="text-xs text-[var(--color-ink-400)] mt-2">From our marketing systems</div>
+                <div className="text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)]">Avg Monthly GCI</div>
+                <div className="text-sm text-[var(--color-ink-400)] mt-2">From our marketing systems</div>
               </div>
               <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
                 <div className="text-4xl font-serif font-light text-[var(--color-trust)] mb-2">500+</div>
-                <div className="text-sm uppercase tracking-[0.3em] text-[var(--color-ink-400)]">Success Stories</div>
-                <div className="text-xs text-[var(--color-ink-400)] mt-2">And counting nationwide</div>
+                <div className="text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)]">Success Stories</div>
+                <div className="text-sm text-[var(--color-ink-400)] mt-2">And counting nationwide</div>
               </div>
             </div>
           </div>
@@ -461,10 +461,10 @@ export default function AddListingsLandingPage() {
                   </div>
                   <div>
                     <div className="font-serif font-light text-[var(--color-off-black)]">Rick Grueble</div>
-                    <div className="text-xs text-[var(--color-ink-400)]">Visions First Realty</div>
+                    <div className="text-sm text-[var(--color-ink-400)]">Visions First Realty</div>
                   </div>
                 </div>
-                <p className="text-sm text-[var(--color-ink-400)] leading-relaxed italic">
+                <p className="text-base text-[var(--color-ink-400)] leading-relaxed italic">
                   "DMR Media delivered top rankings for real estate search terms, a higher volume of qualified leads, and transparent reporting the entire way. I now get 2–3 qualified leads per day."
                 </p>
               </div>
@@ -475,10 +475,10 @@ export default function AddListingsLandingPage() {
                   </div>
                   <div>
                     <div className="font-serif font-light text-[var(--color-off-black)]">Jade Goodhue</div>
-                    <div className="text-xs text-[var(--color-ink-400)]">Legendary Real Estate</div>
+                    <div className="text-sm text-[var(--color-ink-400)]">Legendary Real Estate</div>
                   </div>
                 </div>
-                <p className="text-sm text-[var(--color-ink-400)] leading-relaxed italic">
+                <p className="text-base text-[var(--color-ink-400)] leading-relaxed italic">
                   "He works with us like a partner, rather than a vendor. If you have the opportunity to work with him, just DO IT. You'll be grateful you did!"
                 </p>
               </div>
@@ -489,10 +489,10 @@ export default function AddListingsLandingPage() {
                   </div>
                   <div>
                     <div className="font-serif font-light text-[var(--color-off-black)]">Justin Armbruster</div>
-                    <div className="text-xs text-[var(--color-ink-400)]">The Armbruster Team</div>
+                    <div className="text-sm text-[var(--color-ink-400)]">The Armbruster Team</div>
                   </div>
                 </div>
-                <p className="text-sm text-[var(--color-ink-400)] leading-relaxed italic">
+                <p className="text-base text-[var(--color-ink-400)] leading-relaxed italic">
                   "Andrew & his team are great communicators and definitely know their stuff. True professionals!"
                 </p>
               </div>
@@ -503,10 +503,10 @@ export default function AddListingsLandingPage() {
                   </div>
                   <div>
                     <div className="font-serif font-light text-[var(--color-off-black)]">Andy Peterson</div>
-                    <div className="text-xs text-[var(--color-ink-400)]">Keller Williams Luxury</div>
+                    <div className="text-sm text-[var(--color-ink-400)]">Keller Williams Luxury</div>
                   </div>
                 </div>
-                <p className="text-sm text-[var(--color-ink-400)] leading-relaxed italic">
+                <p className="text-base text-[var(--color-ink-400)] leading-relaxed italic">
                   "Andrew worked with me personally to completely change my presence online - with a perfect mix of personal and professional."
                 </p>
               </div>
@@ -553,14 +553,14 @@ export default function AddListingsLandingPage() {
                   <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-2">
                     Thank You!
                   </h3>
-                  <p className="text-sm text-[var(--color-ink-400)]">
+                  <p className="text-base text-[var(--color-ink-400)]">
                     We'll send you the training details shortly.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                    <label htmlFor="name" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
                       Name
                     </label>
                     <input
@@ -575,7 +575,7 @@ export default function AddListingsLandingPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                    <label htmlFor="email" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
                       Email
                     </label>
                     <input
@@ -590,7 +590,7 @@ export default function AddListingsLandingPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                    <label htmlFor="phone" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
                       Phone
                     </label>
                     <input
@@ -621,22 +621,22 @@ export default function AddListingsLandingPage() {
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
-                    <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)]">100% Free</div>
-                    <div className="text-xs text-[var(--color-ink-400)] mt-1">No credit card required</div>
+                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">100% Free</div>
+                    <div className="text-sm text-[var(--color-ink-400)] mt-1">No credit card required</div>
                   </div>
                   <div className="flex flex-col items-center">
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
-                    <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Instant Access</div>
-                    <div className="text-xs text-[var(--color-ink-400)] mt-1">Watch training immediately</div>
+                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Instant Access</div>
+                    <div className="text-sm text-[var(--color-ink-400)] mt-1">Watch training immediately</div>
                   </div>
                   <div className="flex flex-col items-center">
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 0v8m0 0v-1m0 1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Proven System</div>
-                    <div className="text-xs text-[var(--color-ink-400)] mt-1">Used by 100+ agents</div>
+                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Proven System</div>
+                    <div className="text-sm text-[var(--color-ink-400)] mt-1">Used by 100+ agents</div>
                   </div>
                 </div>
               </div>
@@ -660,7 +660,7 @@ export default function AddListingsLandingPage() {
                   Michael · SEO Transformation
                   <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
                 </h2>
-                <p className="text-base text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+                <p className="text-lg text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
                   From a silent IDX template to a site that behaves like a modern magazine. We rebuilt his presence, piped data into every decision, and let the numbers roll on camera—even though he's camera shy.
                 </p>
               </div>
@@ -668,18 +668,18 @@ export default function AddListingsLandingPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                   <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">21x</div>
-                  <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Search Impressions</p>
-                  <p className="mt-4 text-sm text-[var(--color-ink-400)]">7.5 weeks after relaunch</p>
+                  <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Search Impressions</p>
+                  <p className="mt-4 text-base text-[var(--color-ink-400)]">7.5 weeks after relaunch</p>
                 </div>
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                   <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">+312%</div>
-                  <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Organic Sessions</p>
-                  <p className="mt-4 text-sm text-[var(--color-ink-400)]">Year-over-year swing vs. template site</p>
+                  <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Organic Sessions</p>
+                  <p className="mt-4 text-base text-[var(--color-ink-400)]">Year-over-year swing vs. template site</p>
                 </div>
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                   <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">6 weeks</div>
-                  <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Build Timeline</p>
-                  <p className="mt-4 text-sm text-[var(--color-ink-400)]">From discovery to launch-ready WordPress</p>
+                  <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Build Timeline</p>
+                  <p className="mt-4 text-base text-[var(--color-ink-400)]">From discovery to launch-ready WordPress</p>
                 </div>
               </div>
 
@@ -719,7 +719,7 @@ export default function AddListingsLandingPage() {
                   Rick · Visions First Realty
                   <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
                 </h2>
-                <p className="text-base text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+                <p className="text-lg text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
                   Traffic wasn't the issue—positioning was. We reoriented every keyword, every page, every follow-up so the right buyers found him first and felt compelled to reach out.
                 </p>
               </div>
@@ -727,18 +727,18 @@ export default function AddListingsLandingPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                   <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">2–3 /day</div>
-                  <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Qualified Leads</p>
-                  <p className="mt-4 text-sm text-[var(--color-ink-400)]">Organic only, no ads</p>
+                  <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Qualified Leads</p>
+                  <p className="mt-4 text-base text-[var(--color-ink-400)]">Organic only, no ads</p>
                 </div>
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                   <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">118</div>
-                  <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Keywords</p>
-                  <p className="mt-4 text-sm text-[var(--color-ink-400)]">Rewritten within 60 days</p>
+                  <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Keywords</p>
+                  <p className="mt-4 text-base text-[var(--color-ink-400)]">Rewritten within 60 days</p>
                 </div>
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                   <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">8 weeks</div>
-                  <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Time to Clarity</p>
-                  <p className="mt-4 text-sm text-[var(--color-ink-400)]">From audit to predictable calls</p>
+                  <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Time to Clarity</p>
+                  <p className="mt-4 text-base text-[var(--color-ink-400)]">From audit to predictable calls</p>
                 </div>
               </div>
 
@@ -760,7 +760,7 @@ export default function AddListingsLandingPage() {
                   <blockquote className="text-lg font-serif font-light text-[var(--color-off-black)] leading-relaxed italic">
                     "DMR Media delivered top rankings for real estate search terms, a higher volume of qualified leads, and transparent reporting the entire way."
                   </blockquote>
-                  <div className="mt-4 text-sm text-[var(--color-ink-400)]">
+                  <div className="mt-4 text-base text-[var(--color-ink-400)]">
                     <p className="uppercase tracking-[0.3em]">Rick Grueble</p>
                     <p className="uppercase tracking-[0.3em] mt-1">Visions First Realty</p>
                   </div>
@@ -781,7 +781,7 @@ export default function AddListingsLandingPage() {
             <div className="text-center">
               <button
                 onClick={scrollToForm}
-                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
+                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
                 Join These Success Stories
               </button>
