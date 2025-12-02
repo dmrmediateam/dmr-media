@@ -115,8 +115,32 @@ export default function AddListingsLandingPage() {
         />
       </div>
 
+      {/* Social Proof Stats Banner */}
+      <section className="bg-[var(--color-off-black)] text-white py-4">
+        <div className="container-max">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div>
+              <div className="text-2xl md:text-3xl font-serif font-light">100+</div>
+              <div className="text-xs uppercase tracking-[0.3em] text-white/70 mt-1">Agents Trained</div>
+            </div>
+            <div>
+              <div className="text-2xl md:text-3xl font-serif font-light">500K+</div>
+              <div className="text-xs uppercase tracking-[0.3em] text-white/70 mt-1">Leads Generated</div>
+            </div>
+            <div>
+              <div className="text-2xl md:text-3xl font-serif font-light">$11M+</div>
+              <div className="text-xs uppercase tracking-[0.3em] text-white/70 mt-1">Client GCI</div>
+            </div>
+            <div>
+              <div className="text-2xl md:text-3xl font-serif font-light">#1</div>
+              <div className="text-xs uppercase tracking-[0.3em] text-white/70 mt-1">Luxury Real Estate SEO</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Hero Section - Full Viewport Height */}
-      <section className="relative min-h-screen flex flex-col justify-between py-12 sm:py-16 lg:py-20">
+      <section className="relative min-h-screen flex flex-col justify-between py-6 sm:py-8 lg:py-12">
         <div className="container-max flex-1 flex flex-col justify-center">
           <div className="max-w-4xl mx-auto w-full">
             {/* Title */}
@@ -293,19 +317,132 @@ export default function AddListingsLandingPage() {
       {/* Testimonials Section */}
       <Testimonials />
 
-      {/* Registration Form */}
-      <section id="registration-form" ref={formRef} className="py-20 bg-white">
+      {/* Social Proof Section - Before Form */}
+      <section className="py-16 bg-white">
         <div className="container-max">
-          <div className="max-w-2xl mx-auto">
-            <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/85 backdrop-blur-sm px-10 py-16 md:px-16 md:py-20">
-              <div className="text-center mb-10">
-                <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
-                  Reserve Your Spot
-                </h2>
-                <p className="text-sm sm:text-base text-[var(--color-ink-400)] leading-relaxed">
-                  Register now to access the full training and start adding 1–2 listings every month.
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-8 tracking-tight">
+              Join 100+ Real Estate Agents Getting More Listings
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
+                <div className="text-4xl font-serif font-light text-[var(--color-trust)] mb-2">1–2</div>
+                <div className="text-sm uppercase tracking-[0.3em] text-[var(--color-ink-400)]">Listings Per Month</div>
+                <div className="text-xs text-[var(--color-ink-400)] mt-2">Using only GBP & LSAs</div>
+              </div>
+              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
+                <div className="text-4xl font-serif font-light text-[var(--color-trust)] mb-2">$11K</div>
+                <div className="text-sm uppercase tracking-[0.3em] text-[var(--color-ink-400)]">Avg Monthly GCI</div>
+                <div className="text-xs text-[var(--color-ink-400)] mt-2">From our marketing systems</div>
+              </div>
+              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
+                <div className="text-4xl font-serif font-light text-[var(--color-trust)] mb-2">500+</div>
+                <div className="text-sm uppercase tracking-[0.3em] text-[var(--color-ink-400)]">Success Stories</div>
+                <div className="text-xs text-[var(--color-ink-400)] mt-2">And counting nationwide</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Testimonials - Before Form */}
+      <section className="py-12 bg-[var(--surface-base)]">
+        <div className="container-max">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl sm:text-3xl font-serif font-light text-[var(--color-off-black)] mb-4">
+                Real Results from Real Agents
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6 backdrop-blur-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center">
+                    <span className="text-[var(--color-trust)] font-serif text-lg">RG</span>
+                  </div>
+                  <div>
+                    <div className="font-serif font-light text-[var(--color-off-black)]">Rick Grueble</div>
+                    <div className="text-xs text-[var(--color-ink-400)]">Visions First Realty</div>
+                  </div>
+                </div>
+                <p className="text-sm text-[var(--color-ink-400)] leading-relaxed italic">
+                  "DMR Media delivered top rankings for real estate search terms, a higher volume of qualified leads, and transparent reporting the entire way. I now get 2–3 qualified leads per day."
                 </p>
               </div>
+              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6 backdrop-blur-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center">
+                    <span className="text-[var(--color-trust)] font-serif text-lg">JG</span>
+                  </div>
+                  <div>
+                    <div className="font-serif font-light text-[var(--color-off-black)]">Jade Goodhue</div>
+                    <div className="text-xs text-[var(--color-ink-400)]">Legendary Real Estate</div>
+                  </div>
+                </div>
+                <p className="text-sm text-[var(--color-ink-400)] leading-relaxed italic">
+                  "He works with us like a partner, rather than a vendor. If you have the opportunity to work with him, just DO IT. You'll be grateful you did!"
+                </p>
+              </div>
+              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6 backdrop-blur-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center">
+                    <span className="text-[var(--color-trust)] font-serif text-lg">JA</span>
+                  </div>
+                  <div>
+                    <div className="font-serif font-light text-[var(--color-off-black)]">Justin Armbruster</div>
+                    <div className="text-xs text-[var(--color-ink-400)]">The Armbruster Team</div>
+                  </div>
+                </div>
+                <p className="text-sm text-[var(--color-ink-400)] leading-relaxed italic">
+                  "Andrew & his team are great communicators and definitely know their stuff. True professionals!"
+                </p>
+              </div>
+              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6 backdrop-blur-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center">
+                    <span className="text-[var(--color-trust)] font-serif text-lg">AP</span>
+                  </div>
+                  <div>
+                    <div className="font-serif font-light text-[var(--color-off-black)]">Andy Peterson</div>
+                    <div className="text-xs text-[var(--color-ink-400)]">Keller Williams Luxury</div>
+                  </div>
+                </div>
+                <p className="text-sm text-[var(--color-ink-400)] leading-relaxed italic">
+                  "Andrew worked with me personally to completely change my presence online - with a perfect mix of personal and professional."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Registration Form - Prominent */}
+      <section id="registration-form" ref={formRef} className="py-20 bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
+        <div className="container-max">
+          <div className="max-w-3xl mx-auto">
+            {/* Large Prominent Header */}
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 mb-6">
+                <span className="text-[11px] uppercase tracking-[0.35em] text-[var(--color-trust)] font-semibold">
+                  🔑 Unlock Free Training
+                </span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-[var(--color-off-black)] mb-6 tracking-tight">
+                Reserve Your Spot
+                <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
+              </h2>
+              <p className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-relaxed max-w-2xl mx-auto mb-8">
+                Register now to access the full training and start adding 1–2 listings every month using only Google Business Profile & Local Service Ads.
+              </p>
+            </div>
+
+            {/* Large Form Card */}
+            <div className="rounded-[32px] border-2 border-[var(--color-trust)] bg-white shadow-[0_24px_64px_rgba(15,15,15,0.12)] px-8 py-12 md:px-12 md:py-16 relative overflow-hidden">
+              {/* Decorative Background Elements */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-trust)]/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-[var(--color-trust)]/5 rounded-full blur-3xl -ml-24 -mb-24"></div>
+              
+              <div className="relative z-10">
 
               {submitSuccess ? (
                 <div className="text-center py-8">
@@ -371,12 +508,40 @@ export default function AddListingsLandingPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                   >
-                    {isSubmitting ? 'Submitting...' : 'Register Now'}
+                    {isSubmitting ? 'Submitting...' : '🔑 Register Now - Free Training'}
                   </button>
                 </form>
               )}
+              
+              {/* Trust Badges */}
+              <div className="mt-8 pt-8 border-t border-[var(--color-ink-200)]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                  <div className="flex flex-col items-center">
+                    <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)]">100% Free</div>
+                    <div className="text-xs text-[var(--color-ink-400)] mt-1">No credit card required</div>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Instant Access</div>
+                    <div className="text-xs text-[var(--color-ink-400)] mt-1">Watch training immediately</div>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 0v8m0 0v-1m0 1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Proven System</div>
+                    <div className="text-xs text-[var(--color-ink-400)] mt-1">Used by 100+ agents</div>
+                  </div>
+                </div>
+              </div>
+              </div>
             </div>
           </div>
         </div>
