@@ -70,31 +70,32 @@ Add the same environment variables in your Vercel dashboard:
 
 The `.gitignore` file already excludes it, so you're protected. But always verify before pushing sensitive credentials.
 
-## Stripe Setup (for Payment Processing)
+## Zapier Webhook Setup (for Landing Page Registrations)
 
-1. Create a Stripe account at https://stripe.com
-2. Get your API keys from the Stripe Dashboard:
-   - Go to Developers → API keys
-   - Copy your **Publishable key** (starts with `pk_test_` or `pk_live_`)
-   - Copy your **Secret key** (starts with `sk_test_` or `sk_live_`)
-3. Add both keys to your `.env.local` file
+The landing page registration form automatically sends data to your Zapier webhook.
 
-**For Testing:**
-- Use test keys (start with `pk_test_` and `sk_test_`)
-- Test card: `4242 4242 4242 4242`
-- Any future expiry date, any CVC
+**Default Webhook URL:**
+- Already configured: `https://hooks.zapier.com/hooks/catch/21968997/ukf1so2/`
 
-**For Production:**
-- Switch to live keys (start with `pk_live_` and `sk_live_`)
-- Add them to Vercel environment variables
+**To use a different webhook:**
+1. Get your Zapier webhook URL from your Zap
+2. Add it to `.env.local` as `ZAPIER_LANDING_WEBHOOK_URL`
+3. If not set, it defaults to the URL above
+
+**What gets sent to Zapier:**
+- Name
+- Email
+- Phone
+- Source: "add-listings-landing"
+- Event Date: "December 17th, 2025"
+- Timestamp
 
 ## What Each Variable Does
 
 - **NEXT_PUBLIC_SANITY_PROJECT_ID**: Your Sanity project identifier (public, safe to expose)
 - **NEXT_PUBLIC_SANITY_DATASET**: Which dataset to use (production/staging)
 - **SANITY_API_TOKEN**: Authentication token for write operations (keep secret)
-- **NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY**: Stripe publishable key (public, safe to expose)
-- **STRIPE_SECRET_KEY**: Stripe secret key (keep secret - never expose to frontend)
+- **ZAPIER_LANDING_WEBHOOK_URL**: Zapier webhook URL for landing page registrations (optional)
 
-Only the `SANITY_API_TOKEN` and `STRIPE_SECRET_KEY` are sensitive. The `NEXT_PUBLIC_*` variables are exposed to the browser and are safe to be public.
+Only the `SANITY_API_TOKEN` is sensitive. The `NEXT_PUBLIC_*` variables are exposed to the browser and are safe to be public. The Zapier webhook URL is public but should be kept secure.
 
