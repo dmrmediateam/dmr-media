@@ -3,12 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import Testimonials from '@/components/Testimonials';
-
-// Initialize Stripe
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
 
 export default function AddListingsLandingPage() {
   const [formData, setFormData] = useState({
@@ -57,173 +52,33 @@ export default function AddListingsLandingPage() {
   const videoId = 'xO8zNVewNOA';
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&rel=0&modestbranding=1`;
 
-  // Payment form component (needs to be inside Elements provider)
-  const PaymentForm = () => {
-    const stripe = useStripe();
-    const elements = useElements();
-    const [paymentError, setPaymentError] = useState<string | null>(null);
-
-    const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
-      setIsSubmitting(true);
-      setPaymentError(null);
-
-      if (!stripe || !elements) {
-        setPaymentError('Stripe not loaded. Please refresh the page.');
-        setIsSubmitting(false);
-        return;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          source: 'add-listings-landing',
+          message: 'Registration from Add Listings Landing Page - Free Training',
+        }),
+      });
+      
+      if (response.ok) {
+        setSubmitSuccess(true);
+        setFormData({ name: '', phone: '', email: '' });
+      } else {
+        throw new Error('Registration failed');
       }
-
-      try {
-        // Step 1: Create payment intent
-        const intentResponse = await fetch('/api/create-payment-intent', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-        });
-
-        if (!intentResponse.ok) {
-          const errorData = await intentResponse.json();
-          throw new Error(errorData.error || 'Failed to create payment');
-        }
-
-        const { clientSecret, paymentIntentId } = await intentResponse.json();
-
-        // Step 2: Get card element
-        const cardElement = elements.getElement(CardElement);
-        if (!cardElement) {
-          throw new Error('Card element not found');
-        }
-
-        // Step 3: Confirm payment
-        const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-          payment_method: {
-            card: cardElement,
-            billing_details: {
-              name: formData.name,
-              email: formData.email,
-              phone: formData.phone,
-            },
-          },
-        });
-
-        if (confirmError) {
-          setPaymentError(confirmError.message || 'Payment failed');
-          setIsSubmitting(false);
-          return;
-        }
-
-        if (paymentIntent?.status === 'succeeded') {
-          // Step 4: Confirm payment on backend
-          const confirmResponse = await fetch('/api/confirm-payment', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ paymentIntentId }),
-          });
-
-          if (confirmResponse.ok) {
-            setSubmitSuccess(true);
-            setFormData({ name: '', phone: '', email: '' });
-            // Clear card element
-            cardElement.clear();
-          } else {
-            throw new Error('Failed to confirm payment');
-          }
-        }
-      } catch (error: any) {
-        console.error('Payment error:', error);
-        setPaymentError(error.message || 'Something went wrong. Please try again.');
-      } finally {
-        setIsSubmitting(false);
-      }
-    };
-
-    return (
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label htmlFor="name" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            required
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
-            placeholder="Your full name"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            required
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
-            placeholder="your@email.com"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="phone" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
-            Phone
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            required
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
-            placeholder="(555) 123-4567"
-          />
-        </div>
-
-        <div>
-          <label className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
-            Card Details
-          </label>
-          <div className="px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 focus-within:border-[var(--color-trust)] transition-colors duration-300">
-            <CardElement
-              options={{
-                style: {
-                  base: {
-                    fontSize: '16px',
-                    color: '#0f0f0f',
-                    fontFamily: 'var(--font-serif), serif',
-                    '::placeholder': {
-                      color: '#a8a29e',
-                    },
-                  },
-                  invalid: {
-                    color: '#ef4444',
-                  },
-                },
-              }}
-            />
-          </div>
-          {paymentError && (
-            <p className="mt-2 text-sm text-red-600">{paymentError}</p>
-          )}
-        </div>
-
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          type="submit"
-          disabled={isSubmitting || !stripe}
-          className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
-        >
-          {isSubmitting ? 'Processing Payment...' : '🔑 Register Now - $5'}
-        </motion.button>
-      </form>
-    );
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const scrollToForm = () => {
@@ -280,7 +135,7 @@ export default function AddListingsLandingPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)] mb-4 block"
               >
-                Training Program
+                Free Training
               </motion.span>
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
@@ -833,7 +688,7 @@ export default function AddListingsLandingPage() {
                 className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 mb-6"
               >
                 <span className="text-[11px] uppercase tracking-[0.35em] text-[var(--color-trust)] font-semibold">
-                  🔑 Register Now
+                  🔑 Register Now - Free
                 </span>
               </motion.div>
               <div className="mb-6">
@@ -842,20 +697,13 @@ export default function AddListingsLandingPage() {
                     📅 December 17th, 2025
                   </span>
                 </div>
-                <div className="inline-flex items-baseline gap-2 mb-4">
-                  <span className="text-5xl sm:text-6xl font-serif font-light text-[var(--color-off-black)]">$5</span>
-                  <span className="text-xl text-[var(--color-ink-400)] line-through opacity-50">$47</span>
-                </div>
-                <p className="text-base text-[var(--color-trust)] uppercase tracking-[0.3em] mb-2">
-                  One-Time Payment
-                </p>
               </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-[var(--color-off-black)] mb-6 tracking-tight">
                 Reserve Your Spot
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h2>
               <p className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-relaxed max-w-2xl mx-auto mb-8">
-                Register now for the training event on December 17th, 2025. Get the complete system for just $5 and start adding 1–2 listings every month using only Google Business Profile & ChatGPT.
+                Register now for the free training event on December 17th, 2025. Get the complete system and start adding 1–2 listings every month using only Google Business Profile & ChatGPT.
               </p>
             </motion.div>
 
@@ -878,13 +726,66 @@ export default function AddListingsLandingPage() {
                     Thank You!
                   </h3>
                   <p className="text-base text-[var(--color-ink-400)]">
-                    Your payment was successful! We'll send you the training access details shortly.
+                    Registration successful! We'll send you the training access details shortly.
                   </p>
                 </div>
               ) : (
-                <Elements stripe={stripePromise}>
-                  <PaymentForm />
-                </Elements>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <label htmlFor="name" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
+                      placeholder="Your full name"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="phone" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                      Phone
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
+                      placeholder="(555) 123-4567"
+                    />
+                  </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                  >
+                    {isSubmitting ? 'Registering...' : '🔑 Register Now - Free'}
+                  </motion.button>
+                </form>
               )}
               
               {/* Trust Badges */}
@@ -894,8 +795,8 @@ export default function AddListingsLandingPage() {
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
-                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Just $5</div>
-                    <div className="text-sm text-[var(--color-ink-400)] mt-1">One-time payment</div>
+                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">100% Free</div>
+                    <div className="text-sm text-[var(--color-ink-400)] mt-1">No credit card required</div>
                   </div>
                   <div className="flex flex-col items-center">
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
