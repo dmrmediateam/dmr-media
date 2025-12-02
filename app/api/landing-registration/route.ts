@@ -7,13 +7,58 @@ import { NextResponse } from 'next/server';
  */
 export async function POST(request: Request) {
   try {
+    // Get client IP for rate limiting
+    const forwarded = request.headers.get('x-forwarded-for');
+    const ip = forwarded ? forwarded.split(',')[0] : request.headers.get('x-real-ip') || 'unknown';
+
     // Parse request body
     const body = await request.json();
+
+    // BOT PROTECTION: Honeypot field check
+    // If the hidden "website" field is filled, it's likely a bot
+    if (body.website && body.website.trim() !== '') {
+      console.warn('Bot detected via honeypot field:', { ip, email: body.email });
+      // Return success to bot but don't process
+      return NextResponse.json(
+        { success: true, message: 'Registration successful!' },
+        { status: 200 }
+      );
+    }
 
     // Validate required fields
     if (!body.name || !body.email || !body.phone) {
       return NextResponse.json(
         { error: 'Missing required fields: name, email, and phone are required' },
+        { status: 400 }
+      );
+    }
+
+    // BOT PROTECTION: Check for suspicious patterns
+    const suspiciousPatterns = [
+      /test@test/i,
+      /example@example/i,
+      /admin@/i,
+      /noreply@/i,
+      /^[a-z]+\d+@/i, // Pattern like user123@
+    ];
+
+    if (suspiciousPatterns.some(pattern => pattern.test(body.email))) {
+      console.warn('Suspicious email pattern detected:', { ip, email: body.email });
+      // Still allow but log it
+    }
+
+    // BOT PROTECTION: Check for suspiciously fast submissions
+    // (This would require storing timestamps, but we'll add basic validation)
+    if (body.name.length < 2 || body.name.length > 100) {
+      return NextResponse.json(
+        { error: 'Invalid name format' },
+        { status: 400 }
+      );
+    }
+
+    if (body.phone.length < 10 || body.phone.length > 20) {
+      return NextResponse.json(
+        { error: 'Invalid phone format' },
         { status: 400 }
       );
     }

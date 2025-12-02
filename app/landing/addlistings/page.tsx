@@ -10,6 +10,7 @@ export default function AddListingsLandingPage() {
     name: '',
     phone: '',
     email: '',
+    website: '', // Honeypot field - hidden from users
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -61,14 +62,17 @@ export default function AddListingsLandingPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...formData,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          website: formData.website, // Honeypot field
           source: 'add-listings-landing',
         }),
       });
       
       if (response.ok) {
         setSubmitSuccess(true);
-        setFormData({ name: '', phone: '', email: '' });
+        setFormData({ name: '', phone: '', email: '', website: '' });
       } else {
         const errorData = await response.json();
         throw new Error(errorData.error || 'Registration failed');
@@ -773,6 +777,20 @@ export default function AddListingsLandingPage() {
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
                       placeholder="(555) 123-4567"
+                    />
+                  </div>
+
+                  {/* Honeypot field - hidden from users, bots will fill this */}
+                  <div className="absolute opacity-0 pointer-events-none h-0 w-0 overflow-hidden">
+                    <label htmlFor="website">Website (leave blank)</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.website}
+                      onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                     />
                   </div>
 
