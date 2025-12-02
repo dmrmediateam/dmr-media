@@ -37,16 +37,22 @@ export async function POST(request: Request) {
       timestamp: new Date().toISOString(),
     };
 
-    // Send to Zapier webhook
+    // Send to Zapier webhook (only name, email, phone)
     const zapierWebhookUrl = process.env.ZAPIER_LANDING_WEBHOOK_URL || 'https://hooks.zapier.com/hooks/catch/21968997/ukf1so2/';
     
     try {
+      const zapierPayload = {
+        name: sanitizedData.name,
+        email: sanitizedData.email,
+        phone: sanitizedData.phone,
+      };
+      
       const zapierResponse = await fetch(zapierWebhookUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(sanitizedData),
+        body: JSON.stringify(zapierPayload),
       });
 
       if (!zapierResponse.ok) {
