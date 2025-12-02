@@ -3,7 +3,12 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import Testimonials from '@/components/Testimonials';
+
+// Initialize Stripe
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
 
 export default function AddListingsLandingPage() {
   const [formData, setFormData] = useState({
@@ -52,30 +57,173 @@ export default function AddListingsLandingPage() {
   const videoId = 'xO8zNVewNOA';
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&rel=0&modestbranding=1`;
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          source: 'add-listings-landing',
-          message: 'Registration from Add Listings Landing Page',
-        }),
-      });
-      
-      if (response.ok) {
-        setSubmitSuccess(true);
-        setFormData({ name: '', phone: '', email: '' });
+  // Payment form component (needs to be inside Elements provider)
+  const PaymentForm = () => {
+    const stripe = useStripe();
+    const elements = useElements();
+    const [paymentError, setPaymentError] = useState<string | null>(null);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsSubmitting(true);
+      setPaymentError(null);
+
+      if (!stripe || !elements) {
+        setPaymentError('Stripe not loaded. Please refresh the page.');
+        setIsSubmitting(false);
+        return;
       }
-    } catch (error) {
-      console.error('Form submission error:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
+
+      try {
+        // Step 1: Create payment intent
+        const intentResponse = await fetch('/api/create-payment-intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        if (!intentResponse.ok) {
+          const errorData = await intentResponse.json();
+          throw new Error(errorData.error || 'Failed to create payment');
+        }
+
+        const { clientSecret, paymentIntentId } = await intentResponse.json();
+
+        // Step 2: Get card element
+        const cardElement = elements.getElement(CardElement);
+        if (!cardElement) {
+          throw new Error('Card element not found');
+        }
+
+        // Step 3: Confirm payment
+        const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              name: formData.name,
+              email: formData.email,
+              phone: formData.phone,
+            },
+          },
+        });
+
+        if (confirmError) {
+          setPaymentError(confirmError.message || 'Payment failed');
+          setIsSubmitting(false);
+          return;
+        }
+
+        if (paymentIntent?.status === 'succeeded') {
+          // Step 4: Confirm payment on backend
+          const confirmResponse = await fetch('/api/confirm-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ paymentIntentId }),
+          });
+
+          if (confirmResponse.ok) {
+            setSubmitSuccess(true);
+            setFormData({ name: '', phone: '', email: '' });
+            // Clear card element
+            cardElement.clear();
+          } else {
+            throw new Error('Failed to confirm payment');
+          }
+        }
+      } catch (error: any) {
+        console.error('Payment error:', error);
+        setPaymentError(error.message || 'Something went wrong. Please try again.');
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
+
+    return (
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label htmlFor="name" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            required
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
+            placeholder="Your full name"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            required
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
+            placeholder="your@email.com"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="phone" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+            Phone
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            required
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
+            placeholder="(555) 123-4567"
+          />
+        </div>
+
+        <div>
+          <label className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+            Card Details
+          </label>
+          <div className="px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 focus-within:border-[var(--color-trust)] transition-colors duration-300">
+            <CardElement
+              options={{
+                style: {
+                  base: {
+                    fontSize: '16px',
+                    color: '#0f0f0f',
+                    fontFamily: 'var(--font-serif), serif',
+                    '::placeholder': {
+                      color: '#a8a29e',
+                    },
+                  },
+                  invalid: {
+                    color: '#ef4444',
+                  },
+                },
+              }}
+            />
+          </div>
+          {paymentError && (
+            <p className="mt-2 text-sm text-red-600">{paymentError}</p>
+          )}
+        </div>
+
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          type="submit"
+          disabled={isSubmitting || !stripe}
+          className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+        >
+          {isSubmitting ? 'Processing Payment...' : '🔑 Register Now - $5'}
+        </motion.button>
+      </form>
+    );
   };
 
   const scrollToForm = () => {
@@ -734,62 +882,9 @@ export default function AddListingsLandingPage() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
-                      placeholder="Your full name"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
-                      Phone
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      required
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
-                      placeholder="(555) 123-4567"
-                    />
-                  </div>
-
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
-                  >
-                    {isSubmitting ? 'Processing...' : '🔑 Register Now - $5'}
-                  </motion.button>
-                </form>
+                <Elements stripe={stripePromise}>
+                  <PaymentForm />
+                </Elements>
               )}
               
               {/* Trust Badges */}
