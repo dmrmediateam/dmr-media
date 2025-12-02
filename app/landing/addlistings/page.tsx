@@ -966,12 +966,12 @@ export default function AddListingsLandingPage() {
 
       {/* Success Modal Popup */}
       {submitSuccess && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 md:p-8">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 md:p-8 overflow-y-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="relative w-full max-w-5xl bg-white rounded-[32px] shadow-2xl overflow-hidden border-2 border-[var(--color-ink-200)]"
+            className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-[32px] shadow-2xl overflow-hidden border-2 border-[var(--color-ink-200)] my-auto"
           >
             {/* Close Button */}
             <button
@@ -984,25 +984,25 @@ export default function AddListingsLandingPage() {
               </svg>
             </button>
 
-            <div className="p-8 md:p-12 lg:p-16">
+            <div className="p-6 md:p-8 lg:p-10 max-h-[90vh] overflow-y-auto">
               {/* Header */}
-              <div className="text-center mb-10">
-                <div className="w-20 h-20 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <svg className="w-10 h-10 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="text-center mb-6 md:mb-8">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg">
+                  <svg className="w-8 h-8 md:w-10 md:h-10 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-[var(--color-off-black)] mb-6 tracking-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] mb-4 md:mb-6 tracking-tight">
                   You're Registered!
                   <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
                 </h2>
-                <p className="text-xl sm:text-2xl text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+                <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
                   Watch this quick video, then check your email and accept the invite.
                 </p>
               </div>
 
               {/* Video */}
-              <div className="relative w-full rounded-[24px] overflow-hidden border-2 border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm shadow-xl mb-10" style={{ paddingBottom: '56.25%' }}>
+              <div className="relative w-full rounded-[24px] overflow-hidden border-2 border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm shadow-xl mb-6 md:mb-8" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   src={embedUrl}
                   title="Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chatgpt"
@@ -1014,28 +1014,28 @@ export default function AddListingsLandingPage() {
               </div>
 
               {/* Reminder Message */}
-              <div className="bg-[var(--color-trust)]/10 rounded-[24px] p-8 md:p-10 border-2 border-[var(--color-trust)]/30 shadow-lg">
-                <div className="flex items-start gap-6">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-[var(--color-trust)]/20 flex items-center justify-center shadow-md">
-                    <svg className="w-7 h-7 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-[var(--color-trust)]/10 rounded-[24px] p-6 md:p-8 border-2 border-[var(--color-trust)]/30 shadow-lg">
+                <div className="flex items-start gap-4 md:gap-6">
+                  <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-[var(--color-trust)]/20 flex items-center justify-center shadow-md">
+                    <svg className="w-6 h-6 md:w-7 md:h-7 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl sm:text-3xl font-serif font-light text-[var(--color-off-black)] mb-4">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mb-3 md:mb-4">
                       Next Steps
                     </h3>
-                    <ul className="space-y-3 text-lg sm:text-xl text-[var(--color-ink-400)]">
-                      <li className="flex items-start gap-3">
-                        <span className="text-[var(--color-trust)] text-xl font-bold mt-0.5">✓</span>
+                    <ul className="space-y-2 md:space-y-3 text-base sm:text-lg md:text-xl text-[var(--color-ink-400)]">
+                      <li className="flex items-start gap-2 md:gap-3">
+                        <span className="text-[var(--color-trust)] text-lg md:text-xl font-bold mt-0.5">✓</span>
                         <span>Check your email inbox (and spam folder)</span>
                       </li>
-                      <li className="flex items-start gap-3">
-                        <span className="text-[var(--color-trust)] text-xl font-bold mt-0.5">✓</span>
+                      <li className="flex items-start gap-2 md:gap-3">
+                        <span className="text-[var(--color-trust)] text-lg md:text-xl font-bold mt-0.5">✓</span>
                         <span>Look for the training invite email</span>
                       </li>
-                      <li className="flex items-start gap-3">
-                        <span className="text-[var(--color-trust)] text-xl font-bold mt-0.5">✓</span>
+                      <li className="flex items-start gap-2 md:gap-3">
+                        <span className="text-[var(--color-trust)] text-lg md:text-xl font-bold mt-0.5">✓</span>
                         <span><strong className="text-[var(--color-off-black)]">Click "Accept" on the invite</strong> to get access</span>
                       </li>
                     </ul>
@@ -1044,7 +1044,7 @@ export default function AddListingsLandingPage() {
               </div>
 
               {/* Close Button */}
-              <div className="mt-10 text-center">
+              <div className="mt-6 md:mt-8 text-center">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
