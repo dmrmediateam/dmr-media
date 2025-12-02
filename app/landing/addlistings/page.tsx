@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Testimonials from '@/components/Testimonials';
 
@@ -14,6 +13,8 @@ export default function AddListingsLandingPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const formRef = useRef<HTMLDivElement>(null);
 
   // Hide header and footer for this landing page
   useEffect(() => {
@@ -27,6 +28,27 @@ export default function AddListingsLandingPage() {
     };
   }, []);
 
+  // Scroll progress indicator
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!formRef.current) return;
+      const formTop = formRef.current.offsetTop;
+      const windowHeight = window.innerHeight;
+      const scrollY = window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Calculate progress from top of page to form
+      const totalDistance = formTop;
+      const scrolled = scrollY;
+      const progress = Math.min((scrolled / totalDistance) * 100, 100);
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial calculation
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const videoId = 'xO8zNVewNOA';
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&rel=0&modestbranding=1`;
 
@@ -34,7 +56,6 @@ export default function AddListingsLandingPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // TODO: Replace with actual form submission endpoint
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -58,8 +79,7 @@ export default function AddListingsLandingPage() {
   };
 
   const scrollToForm = () => {
-    const form = document.getElementById('registration-form');
-    form?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const topics = [
@@ -85,42 +105,20 @@ export default function AddListingsLandingPage() {
     },
   ];
 
-  const caseStudies = [
-    {
-      id: 'jade-legendary-real-estate',
-      title: "Jade's Success Story",
-      client: 'Jade Goodhue',
-      company: 'Legendary Real Estate Services',
-      result: '3x Lead Generation',
-      description: 'From frustrated content creator to lead generation powerhouse—how we transformed Jade\'s digital strategy and tripled her inbound leads in one quarter.',
-      image: '/images/JadeCRM.png',
-    },
-    {
-      id: 'michael-seo-transformation',
-      title: "Michael's SEO Transformation",
-      client: 'Michael',
-      company: 'Real Estate Professional',
-      result: '21x Impressions',
-      description: 'From abandoned SEO to 21x impressions growth—how we turned Michael\'s website into a lead machine in just 7.5 weeks.',
-      image: '/images/MichealTraffic.png',
-    },
-    {
-      id: 'rick-visions-first-realty',
-      title: "Rick's SEO Transformation",
-      client: 'Rick Grueble',
-      company: 'Visions First Realty',
-      result: '2-3 Leads / Day',
-      description: 'From misaligned keywords to daily qualified leads—how we fixed Rick\'s SEO strategy and unlocked consistent deal flow.',
-      image: '/images/RickAfter.png',
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-[var(--surface-base)]">
-      {/* Hero Section with VSL */}
-      <section className="relative py-12 sm:py-16 lg:py-20">
-        <div className="container-max">
-          <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-[var(--surface-base)] relative">
+      {/* Scroll Progress Indicator */}
+      <div className="fixed top-0 left-0 right-0 h-1 bg-[var(--color-ink-200)] z-50">
+        <div
+          className="h-full bg-[var(--color-trust)] transition-all duration-150 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
+      {/* Hero Section - Full Viewport Height */}
+      <section className="relative min-h-screen flex flex-col justify-between py-12 sm:py-16 lg:py-20">
+        <div className="container-max flex-1 flex flex-col justify-center">
+          <div className="max-w-4xl mx-auto w-full">
             {/* Title */}
             <div className="text-center mb-8 sm:mb-12">
               <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)] mb-4 block">
@@ -130,19 +128,13 @@ export default function AddListingsLandingPage() {
                 How to Add 1–2 Listings Every Month Using ONLY Google Business Profile & LSAs
                 <span className="text-[var(--color-trust)] text-[1.05em] align-baseline">.</span>
               </h1>
-              <p className="text-base sm:text-lg text-[var(--color-ink-400)] leading-[1.55] max-w-2xl mx-auto mb-8">
+              <p className="text-base sm:text-lg text-[var(--color-ink-400)] leading-[1.55] max-w-2xl mx-auto">
                 No website needed. Discover the proven system that's helping real estate agents dominate their local markets.
               </p>
-              <button
-                onClick={scrollToForm}
-                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
-              >
-                Register Now
-              </button>
             </div>
 
-            {/* Video Container */}
-            <div className="relative w-full rounded-[24px] overflow-hidden border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm shadow-[0_24px_64px_rgba(15,15,15,0.08)] mb-12">
+            {/* Video Container - Smaller */}
+            <div className="relative w-full max-w-2xl mx-auto rounded-[24px] overflow-hidden border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm shadow-[0_24px_64px_rgba(15,15,15,0.08)] mb-8">
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   src={embedUrl}
@@ -153,6 +145,16 @@ export default function AddListingsLandingPage() {
                   style={{ border: 'none' }}
                 />
               </div>
+            </div>
+
+            {/* Button at Bottom */}
+            <div className="text-center">
+              <button
+                onClick={scrollToForm}
+                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
+              >
+                Register Now
+              </button>
             </div>
           </div>
         </div>
@@ -264,10 +266,10 @@ export default function AddListingsLandingPage() {
                   alt="Jade's testimonial review"
                   width={480}
                   height={320}
-                  className="w-full rounded-[24px]"
+                  className="w-full rounded-[24px] mb-6"
                 />
-                <blockquote className="mt-6 text-lg font-serif font-light text-[var(--color-off-black)] leading-relaxed italic">
-                  "He's articulate, responsive, and tells us exactly why things are ranking—or not—every week. It feels like an in-house team that communicates like luxury service should."
+                <blockquote className="text-lg font-serif font-light text-[var(--color-off-black)] leading-relaxed italic">
+                  "He's articulate, responsive, and provides amazing weekly updates. He works with us like a partner, rather than a vendor. If you have the opportunity to work with him, just DO IT. You'll be grateful you did!"
                 </blockquote>
                 <div className="mt-4 text-sm text-[var(--color-ink-400)]">
                   <p className="uppercase tracking-[0.3em]">Jade Goodhue</p>
@@ -288,8 +290,11 @@ export default function AddListingsLandingPage() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <Testimonials />
+
       {/* Registration Form */}
-      <section id="registration-form" className="py-20 bg-white">
+      <section id="registration-form" ref={formRef} className="py-20 bg-white">
         <div className="container-max">
           <div className="max-w-2xl mx-auto">
             <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/85 backdrop-blur-sm px-10 py-16 md:px-16 md:py-20">
@@ -377,65 +382,139 @@ export default function AddListingsLandingPage() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <Testimonials />
-
-      {/* Other Case Studies */}
+      {/* Other Case Studies - Full Content */}
       <section className="py-20 bg-[var(--surface-base)]">
         <div className="container-max">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
-                More Success Stories
-              </span>
-              <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight mb-4">
-                Real Results from Real Agents
-              </h2>
-            </div>
+          <div className="max-w-6xl mx-auto space-y-20">
+            {/* Michael's Case Study */}
+            <div>
+              <div className="text-center mb-12">
+                <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+                  Case Study
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
+                  Michael · SEO Transformation
+                  <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
+                </h2>
+                <p className="text-base text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+                  From a silent IDX template to a site that behaves like a modern magazine. We rebuilt his presence, piped data into every decision, and let the numbers roll on camera—even though he's camera shy.
+                </p>
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {caseStudies.map((study) => (
-                <div
-                  key={study.id}
-                  className="group rounded-[24px] border border-[var(--color-ink-200)] bg-white/85 backdrop-blur-sm overflow-hidden hover:border-[var(--color-trust)] transition-colors duration-300 flex flex-col"
-                >
-                  <div className="relative aspect-[3/2] overflow-hidden">
-                    <Image
-                      src={study.image}
-                      alt={`${study.client} case study results`}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-white/20" />
-                    <div className="absolute top-5 left-5 inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-[var(--color-off-black)]">
-                      Case Study
-                    </div>
-                  </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
+                  <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">21x</div>
+                  <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Search Impressions</p>
+                  <p className="mt-4 text-sm text-[var(--color-ink-400)]">7.5 weeks after relaunch</p>
+                </div>
+                <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
+                  <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">+312%</div>
+                  <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Organic Sessions</p>
+                  <p className="mt-4 text-sm text-[var(--color-ink-400)]">Year-over-year swing vs. template site</p>
+                </div>
+                <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
+                  <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">6 weeks</div>
+                  <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Build Timeline</p>
+                  <p className="mt-4 text-sm text-[var(--color-ink-400)]">From discovery to launch-ready WordPress</p>
+                </div>
+              </div>
 
-                  <div className="p-8 flex-1 flex flex-col gap-4">
-                    <div className="flex items-center gap-2 text-[13px] uppercase tracking-[0.24em] text-[var(--color-trust)]">
-                      {study.result}
-                      <span className="inline-block h-px w-8 bg-[var(--color-trust)] group-hover:w-12 transition-all duration-300" />
-                    </div>
-
-                    <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] group-hover:text-[var(--color-trust)] transition-colors duration-300 leading-snug">
-                      {study.title}
-                    </h3>
-
-                    <div className="text-sm text-[var(--color-ink-400)]">
-                      <span className="font-semibold text-[var(--color-off-black)]">{study.client}</span>
-                      {study.company && <span className="block">{study.company}</span>}
-                    </div>
-
-                    <p className="text-sm text-[var(--color-ink-400)] leading-relaxed flex-1">
-                      {study.description}
-                    </p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-6 backdrop-blur-xl">
+                  <Image
+                    src="/images/MichealTraffic.png"
+                    alt="Michael's traffic analytics"
+                    width={720}
+                    height={520}
+                    className="w-full rounded-[24px]"
+                  />
+                </div>
+                <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-8 backdrop-blur-xl">
+                  <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-4">The Results</h3>
+                  <p className="text-base text-[var(--color-ink-400)] leading-relaxed mb-6">
+                    21x more visibility and leads that stay on-brand. Every dashboard, every call, every follow-up is now scripted to feel premium. His team knows what to publish each week and what data proves it's working.
+                  </p>
+                  <blockquote className="text-lg font-serif font-light text-[var(--color-off-black)] leading-relaxed italic">
+                    "Despite being camera shy, I recorded a testimonial because the lead flow spoke for itself. The weekly updates made it impossible to ignore the progress."
+                  </blockquote>
+                  <div className="mt-4 text-sm text-[var(--color-ink-400)]">
+                    <p className="uppercase tracking-[0.3em]">Michael</p>
+                    <p className="uppercase tracking-[0.3em] mt-1">Real Estate Professional</p>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
 
-            <div className="text-center mt-12">
+            {/* Rick's Case Study */}
+            <div>
+              <div className="text-center mb-12">
+                <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+                  Case Study
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
+                  Rick · Visions First Realty
+                  <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
+                </h2>
+                <p className="text-base text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+                  Traffic wasn't the issue—positioning was. We reoriented every keyword, every page, every follow-up so the right buyers found him first and felt compelled to reach out.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
+                  <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">2–3 /day</div>
+                  <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Qualified Leads</p>
+                  <p className="mt-4 text-sm text-[var(--color-ink-400)]">Organic only, no ads</p>
+                </div>
+                <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
+                  <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">118</div>
+                  <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Keywords</p>
+                  <p className="mt-4 text-sm text-[var(--color-ink-400)]">Rewritten within 60 days</p>
+                </div>
+                <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
+                  <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">8 weeks</div>
+                  <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Time to Clarity</p>
+                  <p className="mt-4 text-sm text-[var(--color-ink-400)]">From audit to predictable calls</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-6 backdrop-blur-xl">
+                  <Image
+                    src="/images/RickAfter.png"
+                    alt="Rick's keyword rankings"
+                    width={720}
+                    height={520}
+                    className="w-full rounded-[24px]"
+                  />
+                </div>
+                <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-8 backdrop-blur-xl">
+                  <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-4">Daily Deal Flow</h3>
+                  <p className="text-base text-[var(--color-ink-400)] leading-relaxed mb-6">
+                    Rick now fields two to three qualified inquiries every day. The team knows which keywords, reviews, and pieces of content triggered each call.
+                  </p>
+                  <blockquote className="text-lg font-serif font-light text-[var(--color-off-black)] leading-relaxed italic">
+                    "DMR Media delivered top rankings for real estate search terms, a higher volume of qualified leads, and transparent reporting the entire way."
+                  </blockquote>
+                  <div className="mt-4 text-sm text-[var(--color-ink-400)]">
+                    <p className="uppercase tracking-[0.3em]">Rick Grueble</p>
+                    <p className="uppercase tracking-[0.3em] mt-1">Visions First Realty</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-6 backdrop-blur-xl">
+                <Image
+                  src="/images/RickReview.jpeg"
+                  alt="Rick's review"
+                  width={480}
+                  height={320}
+                  className="w-full max-w-xl mx-auto rounded-[24px]"
+                />
+              </div>
+            </div>
+
+            <div className="text-center">
               <button
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
@@ -449,3 +528,4 @@ export default function AddListingsLandingPage() {
     </div>
   );
 }
+
