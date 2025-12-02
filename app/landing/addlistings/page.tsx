@@ -515,51 +515,6 @@ export default function AddListingsLandingPage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-16 bg-white">
-        <div className="container-max">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-6 tracking-tight">
-              Register for Just $5
-            </h2>
-            <div className="mb-6">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 mb-4">
-                <span className="text-base uppercase tracking-[0.3em] text-[var(--color-trust)] font-semibold">
-                  📅 Event Date: December 17th
-                </span>
-              </div>
-            </div>
-            <div className="inline-flex items-baseline gap-3 mb-4">
-              <span className="text-6xl sm:text-7xl font-serif font-light text-[var(--color-off-black)]">$5</span>
-              <span className="text-2xl text-[var(--color-ink-400)] line-through opacity-50">$997</span>
-            </div>
-            <p className="text-lg text-[var(--color-ink-400)] mb-8 max-w-2xl mx-auto">
-              Register now for the training event on December 17th. One-time payment. Full access to the complete system.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
-                <div className="text-2xl font-serif font-light text-[var(--color-trust)] mb-2">✓</div>
-                <div className="text-base text-[var(--color-ink-400)]">Complete Training System</div>
-              </div>
-              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
-                <div className="text-2xl font-serif font-light text-[var(--color-trust)] mb-2">✓</div>
-                <div className="text-base text-[var(--color-ink-400)]">Lifetime Access</div>
-              </div>
-              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
-                <div className="text-2xl font-serif font-light text-[var(--color-trust)] mb-2">✓</div>
-                <div className="text-base text-[var(--color-ink-400)]">No Monthly Fees</div>
-              </div>
-            </div>
-            <button
-              onClick={scrollToForm}
-              className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
-            >
-              Register Now - $5
-            </button>
-          </div>
-        </div>
-      </section>
-
       {/* Registration Form - Prominent */}
       <section id="registration-form" ref={formRef} className="py-20 bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
         <div className="container-max">
@@ -579,7 +534,7 @@ export default function AddListingsLandingPage() {
                 </div>
                 <div className="inline-flex items-baseline gap-2 mb-4">
                   <span className="text-5xl sm:text-6xl font-serif font-light text-[var(--color-off-black)]">$5</span>
-                  <span className="text-xl text-[var(--color-ink-400)] line-through opacity-50">$997</span>
+                  <span className="text-xl text-[var(--color-ink-400)] line-through opacity-50">$47</span>
                 </div>
                 <p className="text-base text-[var(--color-trust)] uppercase tracking-[0.3em] mb-2">
                   One-Time Payment
