@@ -126,14 +126,20 @@ export default function AddListingsLandingPage() {
       <section className="relative min-h-screen flex flex-col justify-between py-6 sm:py-8 lg:py-12">
         <div className="container-max flex-1 flex flex-col justify-center">
           <div className="max-w-4xl mx-auto w-full">
-            {/* Date & Time Banner - Top of Page */}
+            {/* Title */}
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-8 sm:mb-10"
+              className="text-center mb-8 sm:mb-12"
             >
-              <div className="inline-flex items-center gap-3 rounded-full bg-[var(--color-trust)]/10 px-6 py-3 border border-[var(--color-trust)]/20">
+              {/* Date & Time Banner */}
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="inline-flex items-center gap-3 rounded-full bg-[var(--color-trust)]/10 px-6 py-3 border border-[var(--color-trust)]/20 mb-6"
+              >
                 <svg className="w-5 h-5 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
@@ -148,23 +154,6 @@ export default function AddListingsLandingPage() {
                     <span>9am PST</span>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-
-            {/* Title */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-8 sm:mb-12"
-            >
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)] mb-4 block"
-              >
-                Free Training
               </motion.span>
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
@@ -723,7 +712,7 @@ export default function AddListingsLandingPage() {
               <div className="mb-6">
                 <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-off-black)]/5 px-4 py-2 mb-4">
                   <span className="text-base uppercase tracking-[0.3em] text-[var(--color-off-black)] font-semibold">
-                    📅 December 17th, 2025
+                    📅 December 17th, 2025 • 12pm EST / 9am PST
                   </span>
                 </div>
               </div>
