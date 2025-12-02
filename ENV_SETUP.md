@@ -22,9 +22,9 @@ NEXT_PUBLIC_SANITY_PROJECT_ID=cs56ipyy
 NEXT_PUBLIC_SANITY_DATASET=production
 SANITY_API_TOKEN=your_api_token_here
 
-# Stripe Payment Processing
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
-STRIPE_SECRET_KEY=sk_test_...
+# Zapier Webhook (Optional - for landing page registrations)
+# If not set, defaults to: https://hooks.zapier.com/hooks/catch/21968997/ukf1so2/
+ZAPIER_LANDING_WEBHOOK_URL=https://hooks.zapier.com/hooks/catch/21968997/ukf1so2/
 ```
 
 ### 3. Get your API Token

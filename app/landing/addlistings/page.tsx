@@ -57,13 +57,12 @@ export default function AddListingsLandingPage() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/landing-registration', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
           source: 'add-listings-landing',
-          message: 'Registration from Add Listings Landing Page - Free Training',
         }),
       });
       
@@ -71,11 +70,12 @@ export default function AddListingsLandingPage() {
         setSubmitSuccess(true);
         setFormData({ name: '', phone: '', email: '' });
       } else {
-        throw new Error('Registration failed');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Registration failed');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Form submission error:', error);
-      alert('Something went wrong. Please try again.');
+      alert(error.message || 'Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
