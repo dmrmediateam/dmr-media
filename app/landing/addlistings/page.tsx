@@ -115,30 +115,6 @@ export default function AddListingsLandingPage() {
         />
       </div>
 
-      {/* Social Proof Stats Banner */}
-      <section className="bg-[var(--color-off-black)] text-white py-4">
-        <div className="container-max">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div>
-              <div className="text-2xl md:text-3xl font-serif font-light">100+</div>
-              <div className="text-xs uppercase tracking-[0.3em] text-white/70 mt-1">Agents Trained</div>
-            </div>
-            <div>
-              <div className="text-2xl md:text-3xl font-serif font-light">500K+</div>
-              <div className="text-xs uppercase tracking-[0.3em] text-white/70 mt-1">Leads Generated</div>
-            </div>
-            <div>
-              <div className="text-2xl md:text-3xl font-serif font-light">$11M+</div>
-              <div className="text-xs uppercase tracking-[0.3em] text-white/70 mt-1">Client GCI</div>
-            </div>
-            <div>
-              <div className="text-2xl md:text-3xl font-serif font-light">#1</div>
-              <div className="text-xs uppercase tracking-[0.3em] text-white/70 mt-1">Luxury Real Estate SEO</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Hero Section - Full Viewport Height */}
       <section className="relative min-h-screen flex flex-col justify-between py-6 sm:py-8 lg:py-12">
         <div className="container-max flex-1 flex flex-col justify-center">
@@ -231,6 +207,129 @@ export default function AddListingsLandingPage() {
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
               >
                 Reserve Your Spot
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who is this for */}
+      <section className="py-20 bg-[var(--surface-base)]">
+        <div className="container-max">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
+                Is This Training For You?
+              </h2>
+              <p className="text-base text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+                If you say yes to any of these, I've got you.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6 }}
+                className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-8 hover:border-[var(--color-trust)] transition-colors duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mt-1">
+                    <svg className="w-5 h-5 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
+                      You're struggling to get consistent listings
+                    </h3>
+                    <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+                      You're not getting enough seller leads, or the leads you're getting aren't qualified. You need a system that brings in 1–2 listings every month without relying on referrals or cold calling.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-8 hover:border-[var(--color-trust)] transition-colors duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mt-1">
+                    <svg className="w-5 h-5 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
+                      You don't have a website or want to avoid expensive ads
+                    </h3>
+                    <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+                      You want to generate listings using free and low-cost tools like Google Business Profile and Local Service Ads—no website required, no massive ad budgets.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-8 hover:border-[var(--color-trust)] transition-colors duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mt-1">
+                    <svg className="w-5 h-5 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
+                      You're overwhelmed by marketing advice
+                    </h3>
+                    <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+                      There's too much conflicting information out there. You need a proven, step-by-step system that actually works for real estate agents—not generic marketing advice.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-8 hover:border-[var(--color-trust)] transition-colors duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mt-1">
+                    <svg className="w-5 h-5 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
+                      You want to dominate your local market
+                    </h3>
+                    <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+                      You're ready to become the go-to agent in your area. You want to show up first when sellers search for real estate services, and you're willing to implement a proven system.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            <div className="text-center mt-12">
+              <button
+                onClick={scrollToForm}
+                className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
+              >
+                If This Sounds Like You, Register Now
               </button>
             </div>
           </div>
