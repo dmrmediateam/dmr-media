@@ -122,7 +122,7 @@ export default function AddListingsLandingPage() {
             {/* Title */}
             <div className="text-center mb-8 sm:mb-12">
               <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)] mb-4 block">
-                Free Training
+                Training Program
               </span>
               <h1 className="text-[32px] sm:text-[42px] lg:text-[52px] font-serif font-light text-[var(--color-off-black)] leading-[1.05] tracking-tight mb-6">
                 Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chatgpt
@@ -269,7 +269,7 @@ export default function AddListingsLandingPage() {
                       You don't have a website or want to avoid expensive ads
                     </h3>
                     <p className="text-base text-[var(--color-ink-400)] leading-relaxed">
-                      You want to generate listings using free and low-cost tools like Google Business Profile and Local Service Ads—no website required, no massive ad budgets.
+                      You want to generate listings using low-cost tools like Google Business Profile and ChatGPT—no website required, no massive ad budgets.
                     </p>
                   </div>
                 </div>
@@ -515,6 +515,44 @@ export default function AddListingsLandingPage() {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section className="py-16 bg-white">
+        <div className="container-max">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-6 tracking-tight">
+              Get Instant Access for Just $5
+            </h2>
+            <div className="inline-flex items-baseline gap-3 mb-4">
+              <span className="text-6xl sm:text-7xl font-serif font-light text-[var(--color-off-black)]">$5</span>
+              <span className="text-2xl text-[var(--color-ink-400)] line-through opacity-50">$997</span>
+            </div>
+            <p className="text-lg text-[var(--color-ink-400)] mb-8 max-w-2xl mx-auto">
+              One-time payment. Lifetime access. No monthly fees, no subscriptions.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
+                <div className="text-2xl font-serif font-light text-[var(--color-trust)] mb-2">✓</div>
+                <div className="text-base text-[var(--color-ink-400)]">Complete Training System</div>
+              </div>
+              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
+                <div className="text-2xl font-serif font-light text-[var(--color-trust)] mb-2">✓</div>
+                <div className="text-base text-[var(--color-ink-400)]">Lifetime Access</div>
+              </div>
+              <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
+                <div className="text-2xl font-serif font-light text-[var(--color-trust)] mb-2">✓</div>
+                <div className="text-base text-[var(--color-ink-400)]">No Monthly Fees</div>
+              </div>
+            </div>
+            <button
+              onClick={scrollToForm}
+              className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
+            >
+              Get Instant Access - $5
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Registration Form - Prominent */}
       <section id="registration-form" ref={formRef} className="py-20 bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
         <div className="container-max">
@@ -523,15 +561,24 @@ export default function AddListingsLandingPage() {
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 mb-6">
                 <span className="text-[11px] uppercase tracking-[0.35em] text-[var(--color-trust)] font-semibold">
-                  🔑 Unlock Free Training
+                  🔑 Get Instant Access
                 </span>
               </div>
+              <div className="mb-6">
+                <div className="inline-flex items-baseline gap-2 mb-4">
+                  <span className="text-5xl sm:text-6xl font-serif font-light text-[var(--color-off-black)]">$5</span>
+                  <span className="text-xl text-[var(--color-ink-400)] line-through opacity-50">$997</span>
+                </div>
+                <p className="text-base text-[var(--color-trust)] uppercase tracking-[0.3em] mb-2">
+                  One-Time Payment
+                </p>
+              </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-light text-[var(--color-off-black)] mb-6 tracking-tight">
-                Reserve Your Spot
+                Get Instant Access
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h2>
               <p className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-relaxed max-w-2xl mx-auto mb-8">
-                Register now to access the full training and start adding 1–2 listings every month using only Google Business Profile & Local Service Ads.
+                Get the complete training system for just $5. Start adding 1–2 listings every month using only Google Business Profile & ChatGPT.
               </p>
             </div>
 
@@ -554,7 +601,7 @@ export default function AddListingsLandingPage() {
                     Thank You!
                   </h3>
                   <p className="text-base text-[var(--color-ink-400)]">
-                    We'll send you the training details shortly.
+                    Your payment was successful! We'll send you the training access details shortly.
                   </p>
                 </div>
               ) : (
@@ -609,7 +656,7 @@ export default function AddListingsLandingPage() {
                     disabled={isSubmitting}
                     className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                   >
-                    {isSubmitting ? 'Submitting...' : '🔑 Register Now - Free Training'}
+                    {isSubmitting ? 'Processing...' : '🔑 Get Instant Access - $5'}
                   </button>
                 </form>
               )}
@@ -621,8 +668,8 @@ export default function AddListingsLandingPage() {
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
-                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">100% Free</div>
-                    <div className="text-sm text-[var(--color-ink-400)] mt-1">No credit card required</div>
+                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Just $5</div>
+                    <div className="text-sm text-[var(--color-ink-400)] mt-1">One-time payment</div>
                   </div>
                   <div className="flex flex-col items-center">
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
