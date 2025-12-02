@@ -726,7 +726,7 @@ export default function AddListingsLandingPage() {
                     Thank You!
                   </h3>
                   <p className="text-base text-[var(--color-ink-400)]">
-                    Registration successful! We'll send you the training access details shortly.
+                    Registration successful! Check your email for next steps.
                   </p>
                 </div>
               ) : (
@@ -963,6 +963,99 @@ export default function AddListingsLandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Success Modal Popup */}
+      {submitSuccess && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            className="relative w-full max-w-4xl bg-white rounded-[32px] shadow-2xl overflow-hidden"
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setSubmitSuccess(false)}
+              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-[var(--color-ink-200)]/50 hover:bg-[var(--color-ink-200)] flex items-center justify-center transition-colors duration-300"
+              aria-label="Close modal"
+            >
+              <svg className="w-6 h-6 text-[var(--color-off-black)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="p-8 md:p-12">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <div className="w-16 h-16 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
+                  You're Registered!
+                  <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
+                </h2>
+                <p className="text-lg text-[var(--color-ink-400)] max-w-2xl mx-auto">
+                  Watch this quick video, then check your email and accept the invite.
+                </p>
+              </div>
+
+              {/* Video */}
+              <div className="relative w-full rounded-[24px] overflow-hidden border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm shadow-lg mb-8" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  src={embedUrl}
+                  title="Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chatgpt"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full"
+                  style={{ border: 'none' }}
+                />
+              </div>
+
+              {/* Reminder Message */}
+              <div className="bg-[var(--color-trust)]/5 rounded-[24px] p-6 md:p-8 border border-[var(--color-trust)]/20">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-2">
+                      Next Steps
+                    </h3>
+                    <ul className="space-y-2 text-base text-[var(--color-ink-400)]">
+                      <li className="flex items-start gap-2">
+                        <span className="text-[var(--color-trust)] mt-1">✓</span>
+                        <span>Check your email inbox (and spam folder)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-[var(--color-trust)] mt-1">✓</span>
+                        <span>Look for the training invite email</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-[var(--color-trust)] mt-1">✓</span>
+                        <span><strong>Click "Accept" on the invite</strong> to get access</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Close Button */}
+              <div className="mt-8 text-center">
+                <button
+                  onClick={() => setSubmitSuccess(false)}
+                  className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
+                >
+                  Got It, Thanks!
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }
