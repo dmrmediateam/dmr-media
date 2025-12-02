@@ -80,7 +80,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         success: true,
-        message: 'Registration successful! We'll send you the training access details shortly.',
+        message: "Registration successful! We'll send you the training access details shortly.",
       },
       { status: 200 }
     );
