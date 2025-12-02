@@ -34,10 +34,10 @@ export async function POST(request: Request) {
         name: name.trim(),
         email: email.trim().toLowerCase(),
         phone: phone.trim(),
-        event_date: '2024-12-17',
+        event_date: '2025-12-17',
         source: 'add-listings-landing',
       },
-      description: 'Training Program - Add 1-2 Listings Per Month (December 17th, 2024)',
+      description: 'Training Program - Add 1-2 Listings Per Month (December 17th, 2025)',
     });
 
     return NextResponse.json({

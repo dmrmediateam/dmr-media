@@ -839,7 +839,7 @@ export default function AddListingsLandingPage() {
               <div className="mb-6">
                 <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-off-black)]/5 px-4 py-2 mb-4">
                   <span className="text-base uppercase tracking-[0.3em] text-[var(--color-off-black)] font-semibold">
-                    📅 December 17th, 2024
+                    📅 December 17th, 2025
                   </span>
                 </div>
                 <div className="inline-flex items-baseline gap-2 mb-4">
@@ -855,7 +855,7 @@ export default function AddListingsLandingPage() {
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h2>
               <p className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-relaxed max-w-2xl mx-auto mb-8">
-                Register now for the training event on December 17th. Get the complete system for just $5 and start adding 1–2 listings every month using only Google Business Profile & ChatGPT.
+                Register now for the training event on December 17th, 2025. Get the complete system for just $5 and start adding 1–2 listings every month using only Google Business Profile & ChatGPT.
               </p>
             </motion.div>
 
@@ -902,7 +902,7 @@ export default function AddListingsLandingPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                     <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Event Access</div>
-                    <div className="text-sm text-[var(--color-ink-400)] mt-1">December 17th training</div>
+                    <div className="text-sm text-[var(--color-ink-400)] mt-1">December 17th, 2025</div>
                   </div>
                   <div className="flex flex-col items-center">
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

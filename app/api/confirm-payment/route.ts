@@ -36,7 +36,7 @@ export async function POST(request: Request) {
         name: name || 'Customer',
         email: email || '',
         phone: phone || '',
-        message: `Training registration confirmed! Payment Intent ID: ${paymentIntentId}\n\nEvent Date: December 17th, 2024\n\nTraining access details will be sent separately.`,
+        message: `Training registration confirmed! Payment Intent ID: ${paymentIntentId}\n\nEvent Date: December 17th, 2025\n\nTraining access details will be sent separately.`,
       });
     } catch (emailError) {
       console.error('Email sending failed:', emailError);
