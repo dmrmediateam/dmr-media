@@ -126,6 +126,31 @@ export default function AddListingsLandingPage() {
       <section className="relative min-h-screen flex flex-col justify-between py-6 sm:py-8 lg:py-12">
         <div className="container-max flex-1 flex flex-col justify-center">
           <div className="max-w-4xl mx-auto w-full">
+            {/* Date & Time Banner - Top of Page */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-8 sm:mb-10"
+            >
+              <div className="inline-flex items-center gap-3 rounded-full bg-[var(--color-trust)]/10 px-6 py-3 border border-[var(--color-trust)]/20">
+                <svg className="w-5 h-5 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                  <span className="text-base sm:text-lg font-serif font-light text-[var(--color-off-black)]">
+                    December 17th, 2025
+                  </span>
+                  <span className="hidden sm:inline text-[var(--color-ink-400)]">•</span>
+                  <div className="flex items-center gap-3 text-sm sm:text-base text-[var(--color-ink-400)]">
+                    <span>12pm EST</span>
+                    <span className="text-[var(--color-ink-300)]">/</span>
+                    <span>9am PST</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
             {/* Title */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
