@@ -125,11 +125,11 @@ export default function AddListingsLandingPage() {
                 Free Training
               </span>
               <h1 className="text-[32px] sm:text-[42px] lg:text-[52px] font-serif font-light text-[var(--color-off-black)] leading-[1.05] tracking-tight mb-6">
-                How to Add 1–2 Listings Every Month Using ONLY Google Business Profile & LSAs
+                Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chatgpt
                 <span className="text-[var(--color-trust)] text-[1.05em] align-baseline">.</span>
               </h1>
               <p className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-[1.6] max-w-2xl mx-auto">
-                No website needed. Discover the proven system that's helping real estate agents dominate their local markets.
+                No $1k/m ad budget, Website or Tech Knowledge Needed
               </p>
             </div>
 
@@ -138,7 +138,7 @@ export default function AddListingsLandingPage() {
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   src={embedUrl}
-                  title="How to Add 1–2 Listings Every Month Using ONLY Google Business Profile & LSAs"
+                  title="Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chatgpt"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   className="absolute top-0 left-0 w-full h-full"
