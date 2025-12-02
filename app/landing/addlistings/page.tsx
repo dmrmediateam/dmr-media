@@ -236,34 +236,61 @@ export default function AddListingsLandingPage() {
               ></motion.div>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {topics.map((topic, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-100px' }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-8 hover:border-[var(--color-trust)] transition-colors duration-300"
-                >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center">
-                      <span className="text-[var(--color-trust)] text-xl font-serif">{index + 1}</span>
+            <div className="space-y-8 md:space-y-12">
+              {topics.map((topic, index) => {
+                const isEven = index % 2 === 1;
+                const isLarge = index === 0 || index === 3;
+                
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: isEven ? 50 : -50, y: 30 }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    viewport={{ once: true, margin: '-100px' }}
+                    transition={{ duration: 0.7, delay: index * 0.15, ease: 'easeOut' }}
+                    className={`flex flex-col md:flex-row gap-6 md:gap-8 ${
+                      isEven ? 'md:flex-row-reverse' : ''
+                    }`}
+                  >
+                    {/* Number Badge */}
+                    <div className={`flex-shrink-0 ${isEven ? 'md:order-2' : ''}`}>
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[var(--color-trust)]/20 to-[var(--color-trust)]/5 flex items-center justify-center border-2 border-[var(--color-trust)]/30 shadow-lg">
+                        <span className="text-[var(--color-trust)] text-3xl md:text-4xl font-serif font-light">{index + 1}</span>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-1">
-                        {topic.title}
-                      </h3>
-                      <p className="text-base uppercase tracking-[0.3em] text-[var(--color-trust)] mb-3">
-                        {topic.subtitle}
-                      </p>
-                      <p className="text-base text-[var(--color-ink-400)] leading-relaxed">
-                        {topic.description}
-                      </p>
+
+                    {/* Content Card */}
+                    <div className={`flex-1 ${isLarge ? 'md:max-w-2xl' : 'md:max-w-xl'} ${
+                      isEven ? 'md:ml-auto' : 'md:mr-auto'
+                    }`}>
+                      <div className="rounded-[32px] border-2 border-[var(--color-ink-200)] bg-gradient-to-br from-white to-white/95 backdrop-blur-sm p-8 md:p-10 hover:border-[var(--color-trust)] hover:shadow-xl transition-all duration-500 relative overflow-hidden group">
+                        {/* Decorative gradient overlay on hover */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-trust)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div className="relative z-10">
+                          <div className="mb-4">
+                            <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-trust)]/10 text-[var(--color-trust)] text-xs uppercase tracking-[0.3em] font-semibold mb-3">
+                              {topic.subtitle}
+                            </span>
+                          </div>
+                          
+                          <h3 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
+                            {topic.title}
+                            <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
+                          </h3>
+                          
+                          <p className="text-lg md:text-xl text-[var(--color-ink-400)] leading-relaxed">
+                            {topic.description}
+                          </p>
+                        </div>
+
+                        {/* Decorative corner accent */}
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-trust)]/5 rounded-full blur-3xl -mr-16 -mt-16 opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </div>
 
             <div className="text-center mt-12">
@@ -1090,6 +1117,7 @@ export default function AddListingsLandingPage() {
           </motion.div>
         </div>
       )}
+
     </div>
   );
 }
