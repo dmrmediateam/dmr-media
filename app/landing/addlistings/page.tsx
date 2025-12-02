@@ -120,21 +120,46 @@ export default function AddListingsLandingPage() {
         <div className="container-max flex-1 flex flex-col justify-center">
           <div className="max-w-4xl mx-auto w-full">
             {/* Title */}
-            <div className="text-center mb-8 sm:mb-12">
-              <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)] mb-4 block">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-8 sm:mb-12"
+            >
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)] mb-4 block"
+              >
                 Training Program
-              </span>
-              <h1 className="text-[32px] sm:text-[42px] lg:text-[52px] font-serif font-light text-[var(--color-off-black)] leading-[1.05] tracking-tight mb-6">
+              </motion.span>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="text-[32px] sm:text-[42px] lg:text-[52px] font-serif font-light text-[var(--color-off-black)] leading-[1.05] tracking-tight mb-6"
+              >
                 Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chatgpt
                 <span className="text-[var(--color-trust)] text-[1.05em] align-baseline">.</span>
-              </h1>
-              <p className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-[1.6] max-w-2xl mx-auto">
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+                className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-[1.6] max-w-2xl mx-auto"
+              >
                 No $1k/m ad budget, Website or Tech Knowledge Needed
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
 
             {/* Video Container - Smaller */}
-            <div className="relative w-full max-w-2xl mx-auto rounded-[24px] overflow-hidden border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm shadow-[0_24px_64px_rgba(15,15,15,0.08)] mb-8">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="relative w-full max-w-2xl mx-auto rounded-[24px] overflow-hidden border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm shadow-[0_24px_64px_rgba(15,15,15,0.08)] mb-8"
+            >
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   src={embedUrl}
@@ -145,17 +170,24 @@ export default function AddListingsLandingPage() {
                   style={{ border: 'none' }}
                 />
               </div>
-            </div>
+            </motion.div>
 
             {/* Button at Bottom */}
-            <div className="text-center">
-              <button
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-center"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
                 Register Now
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -164,12 +196,24 @@ export default function AddListingsLandingPage() {
       <section className="py-16 bg-white">
         <div className="container-max">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
               <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
                 What We'll Cover
               </h2>
-              <div className="w-24 h-px bg-[var(--color-ink-200)] mx-auto mb-6"></div>
-            </div>
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: 96 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="h-px bg-[var(--color-ink-200)] mx-auto mb-6"
+              ></motion.div>
+            </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {topics.map((topic, index) => (
@@ -340,7 +384,13 @@ export default function AddListingsLandingPage() {
       <section className="py-20 bg-[var(--surface-base)]">
         <div className="container-max">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.7 }}
+              className="text-center mb-12"
+            >
               <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
                 Case Study
               </span>
@@ -351,30 +401,116 @@ export default function AddListingsLandingPage() {
               <p className="text-lg text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
                 From frustrated content creator to lead generation powerhouse—how we transformed Jade's digital strategy and tripled her inbound leads.
               </p>
-            </div>
+            </motion.div>
 
             {/* Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
-              <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6 }}
+                className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center"
+              >
                 <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">3x</div>
                 <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Qualified Leads</p>
                 <p className="mt-4 text-base text-[var(--color-ink-400)]">Inbound pipeline inside 90 days</p>
-              </div>
-              <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center"
+              >
                 <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">42</div>
                 <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Content Assets</p>
                 <p className="mt-4 text-base text-[var(--color-ink-400)]">Blogs, landing pages, nurture flows</p>
-              </div>
-              <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center"
+              >
                 <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">12 hrs</div>
                 <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Automation</p>
                 <p className="mt-4 text-base text-[var(--color-ink-400)]">From lead to curated follow-up</p>
-              </div>
+              </motion.div>
             </div>
+
+            {/* Before & After Comparison */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.8 }}
+              className="mb-16"
+            >
+              <div className="text-center mb-8">
+                <h3 className="text-2xl sm:text-3xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
+                  The Transformation
+                </h3>
+                <p className="text-base text-[var(--color-ink-400)]">
+                  See the dramatic improvement in search visibility
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                  className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-6 backdrop-blur-xl"
+                >
+                  <div className="mb-4">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-red-100 px-4 py-2 text-sm uppercase tracking-[0.3em] text-red-700">
+                      Before
+                    </span>
+                    <p className="text-base text-[var(--color-ink-400)] mt-2">18th Dec 2024</p>
+                  </div>
+                  <Image
+                    src="/images/before.png"
+                    alt="Legendary Real Estate - Before results"
+                    width={800}
+                    height={600}
+                    className="w-full rounded-[24px] border border-[var(--color-ink-200)]"
+                  />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.7, delay: 0.4 }}
+                  className="rounded-[32px] border-2 border-[var(--color-trust)] bg-white/80 p-6 backdrop-blur-xl shadow-lg"
+                >
+                  <div className="mb-4">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 text-sm uppercase tracking-[0.3em] text-[var(--color-trust)]">
+                      After
+                    </span>
+                    <p className="text-base text-[var(--color-ink-400)] mt-2">23rd Apr 2025</p>
+                  </div>
+                  <Image
+                    src="/images/after.png"
+                    alt="Legendary Real Estate - After results"
+                    width={800}
+                    height={600}
+                    className="w-full rounded-[24px] border border-[var(--color-trust)]"
+                  />
+                </motion.div>
+              </div>
+            </motion.div>
 
             {/* Screenshots */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-              <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-6 backdrop-blur-xl">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.7 }}
+                className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-6 backdrop-blur-xl"
+              >
                 <Image
                   src="/images/JadeCRM.png"
                   alt="Jade's CRM showing lead growth"
@@ -382,8 +518,14 @@ export default function AddListingsLandingPage() {
                   height={520}
                   className="w-full rounded-[24px]"
                 />
-              </div>
-              <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-6 backdrop-blur-xl">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-6 backdrop-blur-xl"
+              >
                 <Image
                   src="/images/JadeReview.jpeg"
                   alt="Jade's testimonial review"
@@ -398,17 +540,25 @@ export default function AddListingsLandingPage() {
                   <p className="uppercase tracking-[0.3em]">Jade Goodhue</p>
                   <p className="uppercase tracking-[0.3em] mt-1">Legendary Real Estate</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            <div className="text-center">
-              <button
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
                 Get Similar Results
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -520,12 +670,24 @@ export default function AddListingsLandingPage() {
         <div className="container-max">
           <div className="max-w-3xl mx-auto">
             {/* Large Prominent Header */}
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.7 }}
+              className="text-center mb-12"
+            >
+              <motion.div
+                initial={{ scale: 0.9 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 mb-6"
+              >
                 <span className="text-[11px] uppercase tracking-[0.35em] text-[var(--color-trust)] font-semibold">
                   🔑 Register Now
                 </span>
-              </div>
+              </motion.div>
               <div className="mb-6">
                 <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-off-black)]/5 px-4 py-2 mb-4">
                   <span className="text-base uppercase tracking-[0.3em] text-[var(--color-off-black)] font-semibold">
@@ -547,7 +709,7 @@ export default function AddListingsLandingPage() {
               <p className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-relaxed max-w-2xl mx-auto mb-8">
                 Register now for the training event on December 17th. Get the complete system for just $5 and start adding 1–2 listings every month using only Google Business Profile & ChatGPT.
               </p>
-            </div>
+            </motion.div>
 
             {/* Large Form Card */}
             <div className="rounded-[32px] border-2 border-[var(--color-trust)] bg-white shadow-[0_24px_64px_rgba(15,15,15,0.12)] px-8 py-12 md:px-12 md:py-16 relative overflow-hidden">
@@ -618,13 +780,15 @@ export default function AddListingsLandingPage() {
                     />
                   </div>
 
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                    className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                   >
                     {isSubmitting ? 'Processing...' : '🔑 Register Now - $5'}
-                  </button>
+                  </motion.button>
                 </form>
               )}
               
