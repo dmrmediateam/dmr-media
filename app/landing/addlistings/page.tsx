@@ -17,15 +17,18 @@ export default function AddListingsLandingPage() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const formRef = useRef<HTMLDivElement>(null);
 
-  // Hide header and footer for this landing page
+  // Hide header, footer, and AI chatbot for this landing page
   useEffect(() => {
     const nav = document.querySelector('nav');
     const footer = document.querySelector('footer');
+    const chatbot = document.querySelector('.elfsight-app-90e5dbc1-4850-470a-b384-914842649785');
     if (nav) nav.style.display = 'none';
     if (footer) footer.style.display = 'none';
+    if (chatbot) chatbot.style.display = 'none';
     return () => {
       if (nav) nav.style.display = '';
       if (footer) footer.style.display = '';
+      if (chatbot) chatbot.style.display = '';
     };
   }, []);
 
@@ -50,7 +53,7 @@ export default function AddListingsLandingPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const videoId = 'xO8zNVewNOA';
+  const videoId = '5ou7CS-A97o';
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&rel=0&modestbranding=1`;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -161,7 +164,7 @@ export default function AddListingsLandingPage() {
                 transition={{ duration: 0.7, delay: 0.3 }}
                 className="text-[32px] sm:text-[42px] lg:text-[52px] font-serif font-light text-[var(--color-off-black)] leading-[1.05] tracking-tight mb-6"
               >
-                Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chatgpt
+                Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chat GPT
                 <span className="text-[var(--color-trust)] text-[1.05em] align-baseline">.</span>
               </motion.h1>
               <motion.p
@@ -184,7 +187,7 @@ export default function AddListingsLandingPage() {
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   src={embedUrl}
-                  title="Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chatgpt"
+                  title="Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chat GPT"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   className="absolute top-0 left-0 w-full h-full"
@@ -361,7 +364,7 @@ export default function AddListingsLandingPage() {
                       You don't have a website or want to avoid expensive ads
                     </h3>
                     <p className="text-base text-[var(--color-ink-400)] leading-relaxed">
-                      You want to generate listings using low-cost tools like Google Business Profile and ChatGPT—no website required, no massive ad budgets.
+                      You want to generate listings using low-cost tools like Google Business Profile and Chat GPT—no website required, no massive ad budgets.
                     </p>
                   </div>
                 </div>
@@ -733,13 +736,13 @@ export default function AddListingsLandingPage() {
                 className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 mb-6"
               >
                 <span className="text-[11px] uppercase tracking-[0.35em] text-[var(--color-trust)] font-semibold">
-                  🔑 Register Now - Free
+                  Register Now - Free
                 </span>
               </motion.div>
               <div className="mb-6">
                 <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-off-black)]/5 px-4 py-2 mb-4">
                   <span className="text-base uppercase tracking-[0.3em] text-[var(--color-off-black)] font-semibold">
-                    📅 December 17th, 2025 • 12pm EST / 9am PST
+                    December 17th, 2025 • 12pm EST / 9am PST
                   </span>
                 </div>
               </div>
@@ -748,7 +751,7 @@ export default function AddListingsLandingPage() {
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h2>
               <p className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-relaxed max-w-2xl mx-auto mb-8">
-                Register now for the free training event on December 17th, 2025. Get the complete system and start adding 1–2 listings every month using only Google Business Profile & ChatGPT.
+                Register now for the free training event on December 17th, 2025. Get the complete system and start adding 1–2 listings every month using only Google Business Profile & Chat GPT.
               </p>
             </motion.div>
 
@@ -842,7 +845,7 @@ export default function AddListingsLandingPage() {
                     disabled={isSubmitting}
                     className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                   >
-                    {isSubmitting ? 'Registering...' : '🔑 Register Now - Free'}
+                    {isSubmitting ? 'Registering...' : 'Register Now - Free'}
                   </motion.button>
                 </form>
               )}
@@ -1064,7 +1067,7 @@ export default function AddListingsLandingPage() {
               <div className="relative w-full rounded-[24px] overflow-hidden border-2 border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm shadow-xl mb-6 md:mb-8" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   src={embedUrl}
-                  title="Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chatgpt"
+                  title="Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chat GPT"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   className="absolute top-0 left-0 w-full h-full"
