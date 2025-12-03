@@ -19,9 +19,9 @@ export default function AddListingsLandingPage() {
 
   // Hide header, footer, and AI chatbot for this landing page
   useEffect(() => {
-    const nav = document.querySelector('nav');
-    const footer = document.querySelector('footer');
-    const chatbot = document.querySelector('.elfsight-app-90e5dbc1-4850-470a-b384-914842649785');
+    const nav = document.querySelector('nav') as HTMLElement | null;
+    const footer = document.querySelector('footer') as HTMLElement | null;
+    const chatbot = document.querySelector('.elfsight-app-90e5dbc1-4850-470a-b384-914842649785') as HTMLElement | null;
     if (nav) nav.style.display = 'none';
     if (footer) footer.style.display = 'none';
     if (chatbot) chatbot.style.display = 'none';
