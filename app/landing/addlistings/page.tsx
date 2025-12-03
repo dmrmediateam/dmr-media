@@ -55,6 +55,10 @@ export default function AddListingsLandingPage() {
 
   const videoId = '5ou7CS-A97o';
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&rel=0&modestbranding=1`;
+  
+  // Separate video for success modal
+  const successVideoId = 'f4Bg8wzkvjM';
+  const successEmbedUrl = `https://www.youtube.com/embed/${successVideoId}?autoplay=1&mute=1&loop=1&playlist=${successVideoId}&rel=0&modestbranding=1`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -1066,8 +1070,8 @@ export default function AddListingsLandingPage() {
               {/* Video */}
               <div className="relative w-full rounded-[24px] overflow-hidden border-2 border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm shadow-xl mb-6 md:mb-8" style={{ paddingBottom: '56.25%' }}>
                 <iframe
-                  src={embedUrl}
-                  title="Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chat GPT"
+                  src={successEmbedUrl}
+                  title="Thank You - Next Steps"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   className="absolute top-0 left-0 w-full h-full"
