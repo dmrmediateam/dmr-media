@@ -824,6 +824,15 @@ export default function AddListingsLandingPage() {
                     />
                   </div>
 
+                  {/* Marketing Consent */}
+                  <p className="text-xs sm:text-sm text-[var(--color-ink-400)] leading-relaxed text-center">
+                    By registering for this webinar, you agree to receive marketing communications from DMR Media, including but not limited to phone calls, text messages (SMS), and emails. You may opt out at any time. See our{' '}
+                    <a href="/privacy-policy" className="text-[var(--color-trust)] hover:underline" target="_blank" rel="noopener noreferrer">
+                      Privacy Policy
+                    </a>
+                    {' '}for more information.
+                  </p>
+
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}

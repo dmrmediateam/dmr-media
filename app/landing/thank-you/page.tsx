@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import Script from 'next/script';
 
 export default function ThankYouPage() {
   const router = useRouter();
@@ -105,47 +104,11 @@ export default function ThankYouPage() {
             </div>
           </motion.div>
 
-          {/* Exclusive 1:1 Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mb-4 md:mb-6"
-          >
-            <div className="bg-gradient-to-br from-[var(--color-trust)]/5 to-[var(--color-trust)]/10 rounded-[24px] p-5 md:p-6 lg:p-8 border-2 border-[var(--color-trust)]/30 shadow-xl">
-              <div className="text-center mb-4 md:mb-5">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] mb-2 md:mb-3">
-                  Get Personalized Advice
-                  <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
-                </h2>
-                <p className="text-base sm:text-lg md:text-xl text-[var(--color-ink-400)] max-w-3xl mx-auto leading-relaxed">
-                  Book an exclusive 1:1 session with our team before or after the webinar to get personalized advice tailored to your specific situation.
-                </p>
-              </div>
-              
-              {/* iClosed Calendar Widget */}
-              <div className="bg-white rounded-[20px] p-3 md:p-4 border-2 border-[var(--color-ink-200)] shadow-lg">
-                <div 
-                  className="iclosed-widget" 
-                  data-url="https://app.iclosed.io/e/arohm/exclusive-webinar-1-1" 
-                  title="[Exclusive] Webinar 1:1" 
-                  style={{ width: '100%', height: '500px' }}
-                />
-              </div>
-            </div>
-            
-            {/* iClosed Widget Script */}
-            <Script
-              src="https://app.iclosed.io/assets/widget.js"
-              strategy="lazyOnload"
-            />
-          </motion.div>
-
           {/* Additional Info Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             className="text-center"
           >
             <div className="rounded-[24px] border-2 border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-5 md:p-6 shadow-lg mb-4 md:mb-5">
