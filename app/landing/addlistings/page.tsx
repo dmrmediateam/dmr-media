@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Testimonials from '@/components/Testimonials';
 import getStripe from '@/lib/stripe';
 
-export default function AddListingsLandingPage() {
+function AddListingsLandingContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
@@ -1177,3 +1177,21 @@ export default function AddListingsLandingPage() {
   );
 }
 
+export default function AddListingsLandingPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[var(--surface-base)] flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mx-auto mb-4 animate-pulse">
+            <svg className="w-6 h-6 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+          </div>
+          <p className="text-lg text-[var(--color-ink-400)]">Loading...</p>
+        </div>
+      </div>
+    }>
+      <AddListingsLandingContent />
+    </Suspense>
+  );
+}
