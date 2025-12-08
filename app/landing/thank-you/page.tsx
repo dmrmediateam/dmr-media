@@ -1,11 +1,14 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function ThankYouPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const [isVerifying, setIsVerifying] = useState(true);
+  const [verificationError, setVerificationError] = useState<string | null>(null);
 
   // Hide header, footer, and AI chatbot for this squeeze page
   useEffect(() => {
@@ -21,6 +24,42 @@ export default function ThankYouPage() {
       if (chatbot) chatbot.style.display = '';
     };
   }, []);
+
+  // Verify payment and send to Zapier
+  useEffect(() => {
+    const sessionId = searchParams.get('session_id');
+    
+    if (!sessionId) {
+      setVerificationError('No session ID found. Please contact support if you completed payment.');
+      setIsVerifying(false);
+      return;
+    }
+
+    // Verify payment and send registration to Zapier
+    const verifyPayment = async () => {
+      try {
+        const response = await fetch('/api/verify-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.paid) {
+          setVerificationError(data.error || 'Payment verification failed. Please contact support.');
+        }
+        // If successful, data is sent to Zapier automatically
+      } catch (error: any) {
+        console.error('Payment verification error:', error);
+        setVerificationError('Error verifying payment. Your registration may still be processed. Please contact support if you have concerns.');
+      } finally {
+        setIsVerifying(false);
+      }
+    };
+
+    verifyPayment();
+  }, [searchParams]);
 
   // Video for thank you page
   const successVideoId = 'f4Bg8wzkvjM';
@@ -47,7 +86,13 @@ export default function ThankYouPage() {
               <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-400)] max-w-3xl mx-auto leading-relaxed">
-              Watch this quick video, then check your email and accept the invite.
+              {isVerifying ? (
+                'Verifying your payment...'
+              ) : verificationError ? (
+                <span className="text-red-600">{verificationError}</span>
+              ) : (
+                'Watch this quick video, then check your email and accept the invite.'
+              )}
             </p>
           </motion.div>
 

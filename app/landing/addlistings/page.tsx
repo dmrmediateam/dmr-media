@@ -3,11 +3,13 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Testimonials from '@/components/Testimonials';
+import getStripe from '@/lib/stripe';
 
 export default function AddListingsLandingPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -15,8 +17,22 @@ export default function AddListingsLandingPage() {
     website: '', // Honeypot field - hidden from users
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [checkoutSessionId, setCheckoutSessionId] = useState<string | null>(null);
+  const [checkoutClientSecret, setCheckoutClientSecret] = useState<string | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const formRef = useRef<HTMLDivElement>(null);
+  const checkoutRef = useRef<HTMLDivElement>(null);
+  const checkoutInstanceRef = useRef<any>(null);
+
+  // Check if user canceled checkout
+  useEffect(() => {
+    if (searchParams.get('canceled') === 'true') {
+      alert('Payment was canceled. You can try again when you\'re ready.');
+      // Remove the canceled parameter from URL
+      router.replace('/landing/addlistings', undefined);
+    }
+  }, [searchParams, router]);
 
   // Hide header, footer, and AI chatbot for this landing page
   useEffect(() => {
@@ -62,33 +78,148 @@ export default function AddListingsLandingPage() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/landing-registration', {
+      // Create a Checkout Session
+      const response = await fetch('/api/checkout_sessions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          website: formData.website, // Honeypot field
-          source: 'add-listings-landing',
         }),
       });
-      
-      if (response.ok) {
-        setFormData({ name: '', phone: '', email: '', website: '' });
-        // Redirect to thank you page
-        router.push('/landing/thank-you');
-      } else {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Registration failed');
+
+      const checkoutSession = await response.json();
+
+      if ((checkoutSession as any).statusCode === 500) {
+        console.error((checkoutSession as any).message);
+        throw new Error((checkoutSession as any).message || 'Failed to create checkout session');
       }
+
+      if (!response.ok) {
+        throw new Error(checkoutSession.error || 'Failed to create checkout session');
+      }
+
+      // Store session info and show checkout modal
+      setCheckoutSessionId(checkoutSession.id);
+      setCheckoutClientSecret(checkoutSession.clientSecret);
+      setIsSubmitting(false);
+      
+      // Show checkout modal - useEffect will handle loading
+      setShowCheckout(true);
     } catch (error: any) {
       console.error('Form submission error:', error);
       alert(error.message || 'Something went wrong. Please try again.');
-    } finally {
       setIsSubmitting(false);
     }
   };
+
+  const loadEmbeddedCheckout = async (clientSecret: string) => {
+    let stripe: any = null;
+    try {
+      // Unmount any existing checkout first
+      if (checkoutInstanceRef.current) {
+        try {
+          checkoutInstanceRef.current.unmount();
+        } catch (unmountError) {
+          console.warn('Error unmounting previous checkout:', unmountError);
+        }
+        checkoutInstanceRef.current = null;
+      }
+
+      stripe = await getStripe();
+      if (!stripe) {
+        throw new Error('Stripe is not configured. Please add NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY to your environment variables.');
+      }
+
+      // Check if initEmbeddedCheckout method exists
+      if (!(stripe as any).initEmbeddedCheckout) {
+        throw new Error('Stripe embedded checkout is not available. Please ensure you are using the latest version of @stripe/stripe-js.');
+      }
+
+      // Wait for the container to be available
+      if (!checkoutRef.current) {
+        throw new Error('Checkout container not found');
+      }
+
+      // Mount the embedded checkout
+      const checkout = await (stripe as any).initEmbeddedCheckout({
+        clientSecret,
+      });
+
+      // Store checkout instance for cleanup
+      checkoutInstanceRef.current = checkout;
+
+      // Note: Embedded checkout handles completion via return_url redirect
+      // The return_url is set in the API route, so we don't need event listeners here
+      // After payment, Stripe will redirect to /landing/thank-you?session_id={SESSION_ID}
+
+      checkout.mount(checkoutRef.current);
+    } catch (error: any) {
+      console.error('Error loading embedded checkout:', error);
+      console.error('Error details:', {
+        message: error.message,
+        stack: error.stack,
+        clientSecret: clientSecret ? 'Present' : 'Missing',
+        stripeLoaded: !!stripe,
+      });
+      alert(`Failed to load payment form: ${error.message || 'Unknown error'}. Please check the console for details.`);
+      setShowCheckout(false);
+    }
+  };
+
+  // Load checkout when modal opens and clientSecret is available
+  useEffect(() => {
+    if (showCheckout && checkoutClientSecret && checkoutRef.current) {
+      // Small delay to ensure DOM is ready
+      const timer = setTimeout(() => {
+        loadEmbeddedCheckout(checkoutClientSecret);
+      }, 100);
+
+      return () => {
+        clearTimeout(timer);
+        // Cleanup: unmount checkout when component unmounts or dependencies change
+        if (checkoutInstanceRef.current) {
+          try {
+            checkoutInstanceRef.current.unmount();
+          } catch (error) {
+            console.warn('Error unmounting checkout in cleanup:', error);
+          }
+          checkoutInstanceRef.current = null;
+        }
+      };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showCheckout, checkoutClientSecret]);
+
+  const handleCloseCheckout = () => {
+    // Unmount checkout if it exists
+    if (checkoutInstanceRef.current) {
+      try {
+        checkoutInstanceRef.current.unmount();
+      } catch (error) {
+        console.error('Error unmounting checkout:', error);
+      }
+      checkoutInstanceRef.current = null;
+    }
+    
+    setShowCheckout(false);
+    setCheckoutSessionId(null);
+    setCheckoutClientSecret(null);
+  };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (checkoutInstanceRef.current) {
+        try {
+          checkoutInstanceRef.current.unmount();
+        } catch (error) {
+          console.error('Error unmounting checkout on cleanup:', error);
+        }
+      }
+    };
+  }, []);
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -738,7 +869,7 @@ export default function AddListingsLandingPage() {
                 className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 mb-6"
               >
                 <span className="text-[11px] uppercase tracking-[0.35em] text-[var(--color-trust)] font-semibold">
-                  Register Now - Free
+                  Register Now - $10
                 </span>
               </motion.div>
               <div className="mb-6">
@@ -753,7 +884,7 @@ export default function AddListingsLandingPage() {
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h2>
               <p className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-relaxed max-w-2xl mx-auto mb-8">
-                Register now for the free training event on December 17th, 2025. Get the complete system and start adding 1–2 listings every month using only Google Business Profile & Chat GPT.
+                Register now for the training event on December 17th, 2025. Get the complete system and start adding 1–2 listings every month using only Google Business Profile & Chat GPT.
               </p>
             </motion.div>
 
@@ -840,7 +971,7 @@ export default function AddListingsLandingPage() {
                     disabled={isSubmitting}
                     className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                   >
-                    {isSubmitting ? 'Registering...' : 'Register Now - Free'}
+                    {isSubmitting ? 'Processing...' : 'Register Now - $10'}
                   </motion.button>
                 </form>
               
@@ -851,8 +982,8 @@ export default function AddListingsLandingPage() {
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
-                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">100% Free</div>
-                    <div className="text-sm text-[var(--color-ink-400)] mt-1">No credit card required</div>
+                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Secure Payment</div>
+                    <div className="text-sm text-[var(--color-ink-400)] mt-1">Powered by Stripe</div>
                   </div>
                   <div className="flex flex-col items-center">
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1019,6 +1150,28 @@ export default function AddListingsLandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Stripe Checkout Modal Overlay - Full Screen */}
+      {showCheckout && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[9999] bg-white overflow-hidden flex flex-col"
+        >
+          {/* Modal Header */}
+          <div className="flex items-center justify-center p-4 md:p-6" style={{ backgroundColor: '#ffffff', borderBottomWidth: 0 }}>
+            <h3 className="text-xl md:text-2xl font-serif font-light text-[var(--color-off-black)]">
+              Complete Your Registration
+            </h3>
+          </div>
+          
+          {/* Stripe Checkout Container - Full Screen */}
+          <div className="flex-1 overflow-y-auto w-full h-full">
+            <div id="checkout" ref={checkoutRef} className="w-full h-full min-h-full"></div>
+          </div>
+        </motion.div>
+      )}
 
     </div>
   );
