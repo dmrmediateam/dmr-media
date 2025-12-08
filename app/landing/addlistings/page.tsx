@@ -342,7 +342,7 @@ function AddListingsLandingContent() {
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
-                Register Now
+                Register Now - $10
               </motion.button>
             </motion.div>
           </div>
@@ -434,7 +434,7 @@ function AddListingsLandingContent() {
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
-                Reserve Your Spot
+                Reserve Your Spot - $10
               </button>
             </div>
           </div>
@@ -557,7 +557,7 @@ function AddListingsLandingContent() {
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
-                If This Sounds Like You, Register Now
+                If This Sounds Like You, Register Now - $10
               </button>
             </div>
           </div>
@@ -740,7 +740,7 @@ function AddListingsLandingContent() {
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
-                Get Similar Results
+                Get Similar Results - $10
               </motion.button>
             </motion.div>
           </div>
@@ -1144,7 +1144,7 @@ function AddListingsLandingContent() {
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
-                Join These Success Stories
+                Join These Success Stories - $10
               </button>
             </div>
           </div>
