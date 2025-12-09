@@ -21,6 +21,20 @@ export async function POST(request: Request) {
       );
     }
 
+    // Handle free registration (skip Stripe verification)
+    if (sessionId === 'free_registration') {
+      // For free registrations, data was already sent to Zapier in checkout_sessions
+      // Just return success
+      return NextResponse.json(
+        {
+          success: true,
+          paid: false,
+          isFree: true,
+        },
+        { status: 200 }
+      );
+    }
+
     // Retrieve the checkout session from Stripe
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 

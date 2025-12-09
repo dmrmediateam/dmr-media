@@ -100,6 +100,31 @@ function AddListingsLandingContent() {
         throw new Error(checkoutSession.error || 'Failed to create checkout session');
       }
 
+      // If free registration, skip Stripe and submit directly to registration API
+      if ((checkoutSession as any).isFree) {
+        // Submit to registration API
+        const regResponse = await fetch('/api/landing-registration', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            website: formData.website, // Include honeypot field
+          }),
+        });
+
+        const regResult = await regResponse.json();
+
+        if (!regResponse.ok) {
+          throw new Error(regResult.error || 'Registration failed');
+        }
+
+        // Redirect to thank-you page
+        router.push('/landing/thank-you?session_id=free_registration');
+        return;
+      }
+
       // Store session info and show checkout modal
       setCheckoutSessionId(checkoutSession.id);
       setCheckoutClientSecret(checkoutSession.clientSecret);
@@ -342,7 +367,7 @@ function AddListingsLandingContent() {
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
-                Register Now - $10
+                Register Now
               </motion.button>
             </motion.div>
           </div>
@@ -434,7 +459,7 @@ function AddListingsLandingContent() {
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
-                Reserve Your Spot - $10
+                Reserve Your Spot
               </button>
             </div>
           </div>
@@ -557,7 +582,7 @@ function AddListingsLandingContent() {
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
-                If This Sounds Like You, Register Now - $10
+                If This Sounds Like You, Register Now
               </button>
             </div>
           </div>
@@ -740,7 +765,7 @@ function AddListingsLandingContent() {
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
-                Get Similar Results - $10
+                Get Similar Results
               </motion.button>
             </motion.div>
           </div>
@@ -869,7 +894,7 @@ function AddListingsLandingContent() {
                 className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 mb-6"
               >
                 <span className="text-[11px] uppercase tracking-[0.35em] text-[var(--color-trust)] font-semibold">
-                  Register Now - $10
+                  Register Now
                 </span>
               </motion.div>
               <div className="mb-6">
@@ -971,7 +996,7 @@ function AddListingsLandingContent() {
                     disabled={isSubmitting}
                     className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                   >
-                    {isSubmitting ? 'Processing...' : 'Register Now - $10'}
+                    {isSubmitting ? 'Processing...' : 'Register Now'}
                   </motion.button>
                 </form>
               
@@ -1144,7 +1169,7 @@ function AddListingsLandingContent() {
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
               >
-                Join These Success Stories - $10
+                Join These Success Stories
               </button>
             </div>
           </div>

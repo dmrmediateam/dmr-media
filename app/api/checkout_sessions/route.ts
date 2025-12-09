@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 const CURRENCY = 'usd';
-const AMOUNT = 1000; // $10.00 in cents
+const AMOUNT = 0; // Free - $0.00
 
 /**
  * Format amount for Stripe (convert to cents)
@@ -51,6 +51,16 @@ export async function POST(request: Request) {
         { error: 'Invalid email format' },
         { status: 400 }
       );
+    }
+
+    // For free ($0) registrations, skip Stripe and return a mock session
+    // The frontend will handle this by going directly to thank-you page
+    if (AMOUNT === 0) {
+      return NextResponse.json({ 
+        id: 'free_registration',
+        clientSecret: null,
+        isFree: true
+      }, { status: 200 });
     }
 
     // Get the origin for return URL (embedded checkout)

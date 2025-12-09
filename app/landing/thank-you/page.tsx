@@ -35,6 +35,12 @@ function ThankYouContent() {
       return;
     }
 
+    // For free registrations, skip verification
+    if (sessionId === 'free_registration') {
+      setIsVerifying(false);
+      return;
+    }
+
     // Verify payment and send registration to Zapier
     const verifyPayment = async () => {
       try {
@@ -46,7 +52,7 @@ function ThankYouContent() {
 
         const data = await response.json();
 
-        if (!response.ok || !data.paid) {
+        if (!response.ok || (!data.paid && !data.isFree)) {
           setVerificationError(data.error || 'Payment verification failed. Please contact support.');
         }
         // If successful, data is sent to Zapier automatically
