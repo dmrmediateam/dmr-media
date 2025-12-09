@@ -29,8 +29,8 @@ function ThankYouContent() {
   useEffect(() => {
     const sessionId = searchParams.get('session_id');
     
+    // If no session ID, treat as successful free registration (webinar is free)
     if (!sessionId) {
-      setVerificationError('No session ID found. Please contact support if you completed payment.');
       setIsVerifying(false);
       return;
     }
