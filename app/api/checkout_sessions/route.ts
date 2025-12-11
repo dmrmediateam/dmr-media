@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 const CURRENCY = 'usd';
-const AMOUNT = 0; // Free - $0.00
+const DEFAULT_AMOUNT = 0; // Default to free - $0.00
 
 /**
  * Format amount for Stripe (convert to cents)
@@ -34,7 +34,10 @@ function formatAmountForStripe(amount: number, currency: string): number {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, phone } = body;
+    const { name, email, phone, amount, source } = body;
+    
+    // Use provided amount or default to 0 (free)
+    const AMOUNT = amount !== undefined ? amount : DEFAULT_AMOUNT;
 
     // Validate required fields
     if (!name || !email || !phone) {
@@ -77,9 +80,11 @@ export async function POST(request: Request) {
             currency: CURRENCY,
             product_data: {
               name: 'Webinar Registration - Add 1-2 Listings Per Month',
-              description: 'Free training event on December 17th, 2025. Complete system to add 1-2 listings every month using Google Business Profile & Chat GPT.',
+              description: AMOUNT > 0 
+                ? 'Training event on December 17th, 2025. Complete system to add 1-2 listings every month using Google Business Profile & Chat GPT.'
+                : 'Free training event on December 17th, 2025. Complete system to add 1-2 listings every month using Google Business Profile & Chat GPT.',
             },
-            unit_amount: AMOUNT,
+            unit_amount: formatAmountForStripe(AMOUNT, CURRENCY),
           },
           quantity: 1,
         },
@@ -90,7 +95,7 @@ export async function POST(request: Request) {
         name,
         email,
         phone,
-        source: 'add-listings-landing',
+        source: source || 'add-listings-landing',
         eventDate: 'December 17th, 2025',
       },
       return_url: `${origin}/landing/thank-you?session_id={CHECKOUT_SESSION_ID}`,
