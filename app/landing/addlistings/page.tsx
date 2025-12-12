@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Testimonials from '@/components/Testimonials';
+import ReviewsAggregate from '@/components/ReviewsAggregate';
 import getStripe from '@/lib/stripe';
 
 function AddListingsLandingContent() {
@@ -1175,6 +1176,9 @@ function AddListingsLandingContent() {
           </div>
         </div>
       </section>
+
+      {/* Reviews Aggregate Section */}
+      <ReviewsAggregate />
 
       {/* Stripe Checkout Modal Overlay - Full Screen */}
       {showCheckout && (
