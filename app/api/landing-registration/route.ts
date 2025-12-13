@@ -83,9 +83,13 @@ export async function POST(request: Request) {
     };
 
     // Send to Zapier webhook (only name, email, phone)
-    const zapierWebhookUrl = process.env.ZAPIER_LANDING_WEBHOOK_URL || 'https://hooks.zapier.com/hooks/catch/21968997/ukf1so2/';
+    const zapierWebhookUrl = process.env.ZAPIER_LANDING_WEBHOOK_URL;
     
-    try {
+    if (!zapierWebhookUrl) {
+      console.error('ZAPIER_LANDING_WEBHOOK_URL is not configured');
+      // Continue without failing the request
+    } else {
+      try {
       const zapierPayload = {
         name: sanitizedData.name,
         email: sanitizedData.email,
@@ -100,13 +104,14 @@ export async function POST(request: Request) {
         body: JSON.stringify(zapierPayload),
       });
 
-      if (!zapierResponse.ok) {
-        console.error('Zapier webhook failed:', zapierResponse.statusText);
-        // Don't fail the request if Zapier fails - log it but continue
+        if (!zapierResponse.ok) {
+          console.error('Zapier webhook failed:', zapierResponse.statusText);
+          // Don't fail the request if Zapier fails - log it but continue
+        }
+      } catch (zapierError) {
+        console.error('Zapier webhook error (non-blocking):', zapierError);
+        // Don't fail the request if Zapier fails
       }
-    } catch (zapierError) {
-      console.error('Zapier webhook error (non-blocking):', zapierError);
-      // Don't fail the request if Zapier fails
     }
 
     // Also send email notification (optional - using existing contact API)
