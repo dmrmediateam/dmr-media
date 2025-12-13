@@ -121,8 +121,9 @@ function AddListingsLandingContent() {
           throw new Error(regResult.error || 'Registration failed');
         }
 
-        // Redirect to thank-you page
-        router.push('/landing/thank-you?session_id=free_registration');
+        // Redirect to thank-you page with email
+        const emailParam = encodeURIComponent(formData.email);
+        router.push(`/landing/thank-you?session_id=free_registration&email=${emailParam}`);
         return;
       }
 
