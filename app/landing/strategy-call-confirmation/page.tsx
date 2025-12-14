@@ -63,7 +63,7 @@ export default function StrategyCallConfirmationPage() {
               <div className="relative w-full rounded-[16px] shadow-2xl overflow-hidden" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"
-                  src="https://www.youtube.com/embed/f4Bg8wzkvjM?rel=0&modestbranding=1&autoplay=0"
+                  src="https://www.youtube.com/embed/B0rKdgn2mX8?rel=0&modestbranding=1&autoplay=0"
                   title="How to Accept Calendar Invite"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -322,3 +322,4 @@ export default function StrategyCallConfirmationPage() {
     </div>
   );
 }
+
