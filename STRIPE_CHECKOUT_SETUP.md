@@ -99,3 +99,6 @@ This ensures payments are verified server-side even if the user closes the brows
 - [Vercel Stripe Guide](https://vercel.com/kb/guide/getting-started-with-nextjs-typescript-stripe)
 - [Stripe Testing](https://stripe.com/docs/testing)
 
+
+
+

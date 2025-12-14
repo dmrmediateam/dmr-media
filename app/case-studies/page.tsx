@@ -3,6 +3,16 @@ import Link from 'next/link'
 
 const caseStudies = [
   {
+    id: 'eagan-luxury-real-estate',
+    title: 'Eagan Luxury Real Estate',
+    eyebrow: 'Website Consolidation',
+    result: '#1 Website in Area',
+    image: '/images/screencapture-eagan-luxury-vercel-app-2025-12-14-09_39_39.png',
+    description:
+      'Consolidated multiple fragmented websites into a single, powerful brand presence—built in 2 weeks with 100% SEO preservation through strategic 301 redirects.',
+    tags: ['Website Build', 'SEO Preservation', '301 Redirects'],
+  },
+  {
     id: 'jade-legendary-real-estate',
     title: 'Jade Legendary Real Estate',
     eyebrow: 'Lead Engine Rebuild',

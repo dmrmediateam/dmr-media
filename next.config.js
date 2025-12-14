@@ -24,7 +24,7 @@ const nextConfig = {
     return [
       {
         source: '/studio',
-        destination: 'https://realestatebycherlnj.sanity.studio/',
+        destination: 'https://www.sanity.io/@o0TLPxe4z/studio/gc5ifcysyqpinpbd50onl6r8/default/',
         permanent: true,
       },
       {
