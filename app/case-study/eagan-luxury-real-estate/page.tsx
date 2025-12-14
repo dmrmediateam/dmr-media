@@ -159,7 +159,7 @@ const caseStudyData: CaseStudyData = {
   cta: {
     title: 'Need to consolidate your digital presence?',
     description:
-      'We can help you unify multiple websites into a single, powerful brand presence while preserving all your SEO value. Let's build something that works.',
+      'We can help you unify multiple websites into a single, powerful brand presence while preserving all your SEO value. Let\'s build something that works.',
     primaryButton: {
       text: 'Start your project',
       href: '/contact',
@@ -174,3 +174,4 @@ const caseStudyData: CaseStudyData = {
 export default function EaganLuxuryCaseStudy() {
   return <CaseStudyTemplate data={caseStudyData} />
 }
+

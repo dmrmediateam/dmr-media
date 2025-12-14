@@ -193,11 +193,61 @@ function QualificationResultContent() {
 
   // Qualified Page
   if (status === 'qualified') {
+    const email = searchParams.get('email');
+    const name = searchParams.get('name');
+
+    // Build widget URL with parameters if provided
+    let widgetUrl = 'https://app.iclosed.io/e/arohm/strategy-session-950-value';
+    if (email && name) {
+      const params = new URLSearchParams({
+        email: email,
+        name: name,
+        status: 'qualified',
+      });
+      widgetUrl = `${widgetUrl}?${params.toString()}`;
+    }
+
     return (
       <>
         <Script
           src="https://app.iclosed.io/assets/widget.js"
           strategy="afterInteractive"
+          onLoad={() => {
+            // Try to communicate with the iframe via postMessage if email/name are provided
+            if (email && name) {
+              // Wait for iframe to load, then try to send data
+              const tryPostMessage = () => {
+                const widget = document.querySelector('.iclosed-widget iframe') as HTMLIFrameElement;
+                if (widget && widget.contentWindow) {
+                  try {
+                    // Try sending data to the iframe (if iClosed supports it)
+                    widget.contentWindow.postMessage({
+                      type: 'fillForm',
+                      email: decodeURIComponent(email),
+                      name: decodeURIComponent(name),
+                    }, 'https://app.iclosed.io');
+                    
+                    // Also try alternative message formats
+                    widget.contentWindow.postMessage({
+                      action: 'autofill',
+                      data: {
+                        email: decodeURIComponent(email),
+                        name: decodeURIComponent(name),
+                      }
+                    }, 'https://app.iclosed.io');
+                  } catch (e) {
+                    // Cross-origin restrictions - this is expected
+                    console.log('PostMessage attempted (may be blocked by CORS)');
+                  }
+                }
+              };
+
+              // Try multiple times as the iframe loads
+              setTimeout(tryPostMessage, 1000);
+              setTimeout(tryPostMessage, 2000);
+              setTimeout(tryPostMessage, 3000);
+            }
+          }}
         />
         <div className="min-h-screen bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
           <div className="container-max py-12 md:py-16 lg:py-20">
@@ -235,7 +285,7 @@ function QualificationResultContent() {
                 <div className="relative z-10">
                   <div 
                     className="iclosed-widget" 
-                    data-url="https://app.iclosed.io/e/arohm/strategy-session-950-value" 
+                    data-url={widgetUrl}
                     title="Strategy Session ($950 Value)" 
                     style={{ width: '100%', height: '620px' }}
                   ></div>

@@ -16,10 +16,25 @@ interface CondosMapProps {
   condos: Condo[]
 }
 
+// Type declarations for Google Maps
+declare global {
+  interface Window {
+    google: {
+      maps: {
+        Map: new (element: HTMLElement, options?: any) => any
+        Marker: new (options?: any) => any
+        InfoWindow: new (options?: any) => any
+        LatLngBounds: new () => any
+        Point: new (x: number, y: number) => any
+      }
+    }
+  }
+}
+
 export default function CondosMap({ condos }: CondosMapProps) {
   const mapRef = useRef<HTMLDivElement>(null)
-  const mapInstanceRef = useRef<google.maps.Map | null>(null)
-  const markersRef = useRef<google.maps.Marker[]>([])
+  const mapInstanceRef = useRef<any>(null)
+  const markersRef = useRef<any[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
