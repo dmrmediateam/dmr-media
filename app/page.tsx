@@ -12,9 +12,10 @@ export default async function Home() {
   const validPosts = blogPosts.filter((post) => post.slug?.current);
   const featuredPosts = validPosts.slice(0, 3);
   const stats = [
-    { value: '$11K', label: 'Average Client GCI', description: 'Monthly revenue lift across luxury campaigns.' },
-    { value: '100+', label: 'Partners Nationwide', description: 'Agents, teams, and developers we support.' },
-    { value: '4.9★', label: 'Client Satisfaction', description: 'Referrals, retention, and verified reviews.' },
+    { value: '$17,166K', label: 'Average Client Adds in GCI' },
+    { value: '110+', label: 'Partners Nationwide' },
+    { value: '5/5', label: 'Client Satisfaction' },
+    { value: '833.4%', label: 'Return on Invest' },
   ];
 
   return (
@@ -23,33 +24,25 @@ export default async function Home() {
 
       <section className="py-24">
         <div className="container-max">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16">
-            <div>
-              <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
-                Proof in the numbers
-              </span>
-              <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
-                Growth that feels effortless--and looks intentional.
-              </h2>
-            </div>
-            <p className="text-[var(--color-ink-400)] max-w-xl text-base leading-relaxed">
-              Every engagement brings measurable lift in lead quality, market share, and brand perception. We operate like an embedded team, not a vendor.
+          <div className="max-w-3xl mb-20">
+            <p className="text-sm text-[var(--color-ink-400)] mb-6 leading-relaxed">
+              DMR Media by the Numbers
             </p>
+            <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
+              We drive real <em>ROI</em> for our <em>partners</em>.
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {stats.map((stat) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="rounded-[20px] border border-[var(--color-ink-200)] bg-white/70 backdrop-blur-sm p-10 flex flex-col gap-3 hover:border-[var(--color-trust)] transition-colors duration-300"
+                className="relative flex flex-col gap-2"
               >
-                <span className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)]">{stat.value}</span>
-                <span className="text-sm uppercase tracking-[0.3em] text-[var(--color-ink-400)]">
+                <span className="text-5xl md:text-6xl font-serif font-light text-[var(--color-off-black)]">{stat.value}</span>
+                <span className="text-xs uppercase tracking-[0.4em] text-[var(--color-ink-400)] mt-2">
                   {stat.label}
                 </span>
-                <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
-                  {stat.description}
-                </p>
               </div>
             ))}
           </div>
