@@ -30,6 +30,7 @@ export interface CaseStudyTestimonial {
     src: string
     title: string
   }
+  link?: string
 }
 
 export interface CaseStudyData {
@@ -216,6 +217,19 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                     <div className="flex flex-col items-center gap-1 text-[var(--color-ink-400)]">
                       <p className="text-sm uppercase tracking-[0.3em]">{data.testimonial.author}</p>
                       <p className="text-xs uppercase tracking-[0.3em]">{data.testimonial.role}</p>
+                      {data.testimonial.link && (
+                        <Link
+                          href={data.testimonial.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-4 text-xs uppercase tracking-[0.3em] text-[var(--color-trust)] hover:text-[var(--color-off-black)] transition-colors duration-300 flex items-center gap-2"
+                        >
+                          Read full review
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      )}
                     </div>
                   </div>
                 ) : (
@@ -237,6 +251,19 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                     <div className="flex flex-col items-center gap-1 text-[var(--color-ink-400)]">
                       <p className="text-sm uppercase tracking-[0.3em]">{data.testimonial.author}</p>
                       <p className="text-xs uppercase tracking-[0.3em]">{data.testimonial.role}</p>
+                      {data.testimonial.link && (
+                        <Link
+                          href={data.testimonial.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-4 text-xs uppercase tracking-[0.3em] text-[var(--color-trust)] hover:text-[var(--color-off-black)] transition-colors duration-300 flex items-center gap-2"
+                        >
+                          Read full review
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      )}
                     </div>
                   </div>
                 )}
@@ -273,6 +300,10 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
     </div>
   )
 }
+
+
+
+
 
 
 
