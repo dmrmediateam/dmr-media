@@ -28,7 +28,7 @@ export default async function Home() {
             <p className="text-sm text-[var(--color-ink-400)] mb-6 leading-relaxed">
               DMR Media by the Numbers
             </p>
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
+              <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
               We drive real <em>ROI</em> for our <em>partners</em>.
             </h2>
           </div>

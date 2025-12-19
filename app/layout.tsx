@@ -35,25 +35,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={instrumentSerif.variable}>
       <body className={instrumentSerif.className}>
-        {/* Google tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17780739958"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-tag"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-17780739958');
-            `,
-          }}
-        />
-        {/* End Google tag */}
-        
         {/* Meta Pixel Code */}
         <Script
           id="meta-pixel"
