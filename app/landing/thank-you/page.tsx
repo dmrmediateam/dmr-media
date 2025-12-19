@@ -11,12 +11,18 @@ function ThankYouContent() {
   const [isVerifying, setIsVerifying] = useState(true);
   const [verificationError, setVerificationError] = useState<string | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [userName, setUserName] = useState<string | null>(null);
+  const [userPhone, setUserPhone] = useState<string | null>(null);
   const [showThankYou, setShowThankYou] = useState(true);
   const [formData, setFormData] = useState({
-    closingsPerMonth: '',
-    currentMarketing: '',
+    closingsLast12Months: '',
     tools: [] as string[],
+    websiteUrl: '',
     leadResponseTime: '',
+    isFullTime: '',
+    activeMarket: '',
+    listingSituation: '',
+    isDecisionMaker: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -35,57 +41,24 @@ function ThankYouContent() {
     };
   }, []);
 
-  // Get email from URL params or verify payment
+  // Get email, name, and phone from URL params (no payment verification needed)
   useEffect(() => {
-    const sessionId = searchParams.get('session_id');
     const emailParam = searchParams.get('email');
+    const nameParam = searchParams.get('name');
+    const phoneParam = searchParams.get('phone');
     
-    // If email is in URL params, use it
+    // Get data from URL params
     if (emailParam) {
       setUserEmail(emailParam);
-      setIsVerifying(false);
-      return;
+    }
+    if (nameParam) {
+      setUserName(nameParam);
+    }
+    if (phoneParam) {
+      setUserPhone(phoneParam);
     }
     
-    // If no session ID, treat as successful free registration (webinar is free)
-    if (!sessionId) {
-      setIsVerifying(false);
-      return;
-    }
-
-    // For free registrations, skip verification
-    if (sessionId === 'free_registration') {
-      setIsVerifying(false);
-      return;
-    }
-
-    // Verify payment and send registration to Zapier
-    const verifyPayment = async () => {
-      try {
-        const response = await fetch('/api/verify-payment', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ sessionId }),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok || (!data.paid && !data.isFree)) {
-          setVerificationError(data.error || 'Payment verification failed. Please contact support.');
-        } else if (data.customer?.email) {
-          // Store email from payment verification
-          setUserEmail(data.customer.email);
-        }
-        // If successful, data is sent to Zapier automatically
-      } catch (error: any) {
-        console.error('Payment verification error:', error);
-        setVerificationError('Error verifying payment. Your registration may still be processed. Please contact support if you have concerns.');
-      } finally {
-        setIsVerifying(false);
-      }
-    };
-
-    verifyPayment();
+    setIsVerifying(false);
   }, [searchParams]);
 
   // Show thank you message for 2 seconds, then fade to form
@@ -109,6 +82,13 @@ function ThankYouContent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate website URL if Website is checked
+    if (formData.tools.includes('Website') && !formData.websiteUrl.trim()) {
+      alert('Please provide your website URL.');
+      return;
+    }
+    
     setIsSubmitting(true);
     
     try {
@@ -129,26 +109,68 @@ function ThankYouContent() {
       }
 
       // Determine qualification status and redirect
+      // Auto-disqualify: Not full-time
+      if (formData.isFullTime === 'no') {
+        const params = new URLSearchParams();
+        params.set('status', 'disqualified');
+        if (userEmail) params.set('email', userEmail);
+        if (userName) params.set('name', userName);
+        router.push(`/landing/qualification-result?${params.toString()}`);
+        return;
+      }
+
+      // Auto-disqualify: Just exploring options
+      if (formData.listingSituation === 'exploring-options') {
+        const params = new URLSearchParams();
+        params.set('status', 'disqualified');
+        if (userEmail) params.set('email', userEmail);
+        if (userName) params.set('name', userName);
+        router.push(`/landing/qualification-result?${params.toString()}`);
+        return;
+      }
+
+      // Auto-disqualify: Not primary decision-maker
+      if (formData.isDecisionMaker === 'no') {
+        const params = new URLSearchParams();
+        params.set('status', 'disqualified');
+        if (userEmail) params.set('email', userEmail);
+        if (userName) params.set('name', userName);
+        router.push(`/landing/qualification-result?${params.toString()}`);
+        return;
+      }
+
       // DQ if response time is longer than 1 hour
       if (formData.leadResponseTime === 'within-day' || formData.leadResponseTime === '1-2-days' || formData.leadResponseTime === '3+days') {
         // Disqualified - response time too long
-        router.push('/landing/qualification-result?status=disqualified');
+        const params = new URLSearchParams();
+        params.set('status', 'disqualified');
+        if (userEmail) params.set('email', userEmail);
+        if (userName) params.set('name', userName);
+        router.push(`/landing/qualification-result?${params.toString()}`);
+        return;
+      }
+      
+      // Auto-disqualify: Less than 18 closings in last 12 months
+      const closingsCount = parseInt(formData.closingsLast12Months, 10);
+      if (isNaN(closingsCount) || closingsCount < 18) {
+        const params = new URLSearchParams();
+        params.set('status', 'disqualified');
+        if (userEmail) params.set('email', userEmail);
+        if (userName) params.set('name', userName);
+        router.push(`/landing/qualification-result?${params.toString()}`);
         return;
       }
       
       const hasWebsite = formData.tools.includes('Website');
       const hasAds = formData.tools.includes('Ads Account');
       
-      if (formData.closingsPerMonth === '0') {
-        // Disqualified - 0 closings
-        router.push('/landing/qualification-result?status=disqualified');
-      } else if (formData.closingsPerMonth === '1-2' && (!hasWebsite || !hasAds)) {
-        // Maybe - 1-2 closings but missing website or ads
-        router.push('/landing/qualification-result?status=maybe');
-      } else {
-        // Qualified
-        router.push('/landing/qualification-result?status=qualified');
-      }
+      // Qualified - redirect to qualification-result with user data
+      const params = new URLSearchParams();
+      params.set('status', 'qualified');
+      if (userEmail) params.set('email', userEmail);
+      if (userName) params.set('name', userName);
+      if (userPhone) params.set('phone', userPhone);
+      router.push(`/landing/qualification-result?${params.toString()}`);
     } catch (error: any) {
       console.error('Form submission error:', error);
       alert(error.message || 'Something went wrong. Please try again.');
@@ -213,7 +235,7 @@ function ThankYouContent() {
                   <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
                 </h2>
                 <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-400)] max-w-3xl mx-auto leading-relaxed">
-                  We only accept agents who already have deal flow and want to add <em>2–3 closings</em> per month using a <em>predictable system</em>. If selected, you'll receive a custom roadmap (a <em>$950 value</em>) built specifically for your market.
+                  We only accept agents who already have deal flow and want to add <em>2–3 closings</em> per month using a <em>predictable system</em>. If selected, you'll receive a custom roadmap (a <em>$3,500 value</em>) built specifically for your market.
                 </p>
               </div>
 
@@ -223,64 +245,125 @@ function ThankYouContent() {
               <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-trust)]/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-[var(--color-trust)]/5 rounded-full blur-3xl -ml-24 -mb-24"></div>
               
-              <div className="relative z-10">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* How many closings per month */}
-                  <div>
-                    <label htmlFor="closingsPerMonth" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
-                      How many closings are you doing each month?
+              {/* 2 Minutes Fillout Time Bubble */}
+              <div className="absolute top-4 left-4 z-20">
+                <div className="bg-[var(--color-trust)]/10 backdrop-blur-sm border border-[var(--color-trust)]/20 rounded-full px-4 py-2 flex items-center gap-2 shadow-sm">
+                  <svg className="w-4 h-4 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-sm font-medium text-[var(--color-off-black)]">2 minutes fillout-time</span>
+                </div>
+              </div>
+              
+              <div className="relative z-10 pt-12 md:pt-16">
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  {/* Market Commitment - Full-time agent */}
+                  <div className="space-y-3">
+                    <label htmlFor="isFullTime" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                      Are you a full-time real estate agent?
                     </label>
                     <select
-                      id="closingsPerMonth"
+                      id="isFullTime"
                       required
-                      value={formData.closingsPerMonth}
-                      onChange={(e) => setFormData({ ...formData, closingsPerMonth: e.target.value })}
-                      className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
+                      value={formData.isFullTime}
+                      onChange={(e) => setFormData({ ...formData, isFullTime: e.target.value })}
+                      className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
                     >
                       <option value="">Select an option</option>
-                      <option value="0">0 closings</option>
-                      <option value="1-2">1-2 closings</option>
-                      <option value="3-5">3-5 closings</option>
-                      <option value="6-10">6-10 closings</option>
-                      <option value="11-15">11-15 closings</option>
-                      <option value="16+">16+ closings</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
                     </select>
                   </div>
 
-                  {/* What are you currently doing for marketing */}
-                  <div>
-                    <label htmlFor="currentMarketing" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
-                      What are you currently doing for marketing?
+                  {/* Active market */}
+                  <div className="space-y-3">
+                    <label htmlFor="activeMarket" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                      What market do you actively serve right now?
                     </label>
-                    <textarea
-                      id="currentMarketing"
+                    <input
+                      type="text"
+                      id="activeMarket"
                       required
-                      value={formData.currentMarketing}
-                      onChange={(e) => setFormData({ ...formData, currentMarketing: e.target.value })}
-                      rows={4}
-                      className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300 resize-none"
-                      placeholder="Describe your current marketing efforts..."
+                      value={formData.activeMarket}
+                      onChange={(e) => setFormData({ ...formData, activeMarket: e.target.value })}
+                      className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
+                      placeholder="e.g., St. Petersburg, FL"
+                    />
+                  </div>
+
+                  {/* Listing situation */}
+                  <div className="space-y-3">
+                    <label htmlFor="listingSituation" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                      Which best describes your current listing situation?
+                    </label>
+                    <select
+                      id="listingSituation"
+                      required
+                      value={formData.listingSituation}
+                      onChange={(e) => setFormData({ ...formData, listingSituation: e.target.value })}
+                      className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
+                    >
+                      <option value="">Select an option</option>
+                      <option value="rely-referrals">I rely heavily on referrals and want more control</option>
+                      <option value="buyer-leads-struggle">I get buyer leads but struggle converting to listings</option>
+                      <option value="inconsistent-want-predictability">I take listings inconsistently and want predictability</option>
+                      <option value="exploring-options">I'm just exploring options</option>
+                    </select>
+                  </div>
+
+                  {/* Decision maker */}
+                  <div className="space-y-3">
+                    <label htmlFor="isDecisionMaker" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                      Are you the primary decision-maker for your business?
+                    </label>
+                    <select
+                      id="isDecisionMaker"
+                      required
+                      value={formData.isDecisionMaker}
+                      onChange={(e) => setFormData({ ...formData, isDecisionMaker: e.target.value })}
+                      className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
+                    >
+                      <option value="">Select an option</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                  </div>
+
+                  {/* How many closings in last 12 months */}
+                  <div className="space-y-3">
+                    <label htmlFor="closingsLast12Months" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                      How many closings have you done in the last 12 months?
+                    </label>
+                    <input
+                      type="number"
+                      id="closingsLast12Months"
+                      required
+                      min="0"
+                      value={formData.closingsLast12Months}
+                      onChange={(e) => setFormData({ ...formData, closingsLast12Months: e.target.value })}
+                      className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
+                      placeholder="Enter number of closings"
                     />
                   </div>
 
                   {/* Which tools do you have */}
-                  <div>
-                    <label className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-3">
+                  <div className="space-y-3">
+                    <label className="block text-lg font-medium text-[var(--color-off-black)] mb-4">
                       Which of the following tools do you have?
                     </label>
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       {['CRM', 'Website', 'Ads Account'].map((tool) => (
                         <label
                           key={tool}
-                          className="flex items-center gap-3 cursor-pointer group"
+                          className="flex items-center gap-4 cursor-pointer group p-4 rounded-[16px] border-2 border-transparent hover:border-[var(--color-trust)]/30 hover:bg-[var(--color-trust)]/5 transition-all duration-300"
                         >
                           <input
                             type="checkbox"
                             checked={formData.tools.includes(tool)}
                             onChange={() => handleToolChange(tool)}
-                            className="w-5 h-5 rounded border-[var(--color-ink-200)] text-[var(--color-trust)] focus:ring-[var(--color-trust)] focus:ring-2"
+                            className="w-6 h-6 rounded border-2 border-[var(--color-ink-200)] text-[var(--color-trust)] focus:ring-[var(--color-trust)] focus:ring-2 cursor-pointer"
                           />
-                          <span className="text-base text-[var(--color-off-black)] font-serif group-hover:text-[var(--color-trust)] transition-colors duration-300">
+                          <span className="text-lg text-[var(--color-off-black)] font-serif group-hover:text-[var(--color-trust)] transition-colors duration-300">
                             {tool}
                           </span>
                         </label>
@@ -288,9 +371,27 @@ function ThankYouContent() {
                     </div>
                   </div>
 
+                  {/* Website URL - Only show if Website is checked */}
+                  {formData.tools.includes('Website') && (
+                    <div className="space-y-3">
+                      <label htmlFor="websiteUrl" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                        Website URL
+                      </label>
+                      <input
+                        type="url"
+                        id="websiteUrl"
+                        required
+                        value={formData.websiteUrl}
+                        onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
+                        className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
+                        placeholder="https://yourwebsite.com"
+                      />
+                    </div>
+                  )}
+
                   {/* Lead response time */}
-                  <div>
-                    <label htmlFor="leadResponseTime" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                  <div className="space-y-3">
+                    <label htmlFor="leadResponseTime" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
                       What is your typical time to respond to a lead?
                     </label>
                     <select
@@ -298,7 +399,7 @@ function ThankYouContent() {
                       required
                       value={formData.leadResponseTime}
                       onChange={(e) => setFormData({ ...formData, leadResponseTime: e.target.value })}
-                      className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
+                      className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
                     >
                       <option value="">Select an option</option>
                       <option value="immediately">Immediately (within minutes)</option>

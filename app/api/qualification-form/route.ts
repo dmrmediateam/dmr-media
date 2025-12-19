@@ -11,9 +11,17 @@ export async function POST(request: Request) {
     const body = await request.json();
 
     // Validate required fields
-    if (!body.closingsPerMonth || !body.currentMarketing || !body.leadResponseTime) {
+    if (!body.closingsLast12Months || !body.isFullTime || !body.activeMarket || !body.listingSituation || !body.isDecisionMaker || !body.leadResponseTime) {
       return NextResponse.json(
         { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
+    // Validate website URL if Website tool is selected
+    if (Array.isArray(body.tools) && body.tools.includes('Website') && !body.websiteUrl) {
+      return NextResponse.json(
+        { error: 'Website URL is required when Website is selected' },
         { status: 400 }
       );
     }
@@ -21,10 +29,14 @@ export async function POST(request: Request) {
     // Sanitize inputs
     const sanitizedData = {
       email: body.email?.trim() || '',
-      closingsPerMonth: body.closingsPerMonth.trim(),
-      currentMarketing: body.currentMarketing.trim().substring(0, 2000),
+      closingsLast12Months: body.closingsLast12Months.trim(),
       tools: Array.isArray(body.tools) ? body.tools : [],
+      websiteUrl: body.websiteUrl?.trim() || '',
       leadResponseTime: body.leadResponseTime.trim(),
+      isFullTime: body.isFullTime.trim(),
+      activeMarket: body.activeMarket.trim().substring(0, 200),
+      listingSituation: body.listingSituation.trim(),
+      isDecisionMaker: body.isDecisionMaker.trim(),
       timestamp: new Date().toISOString(),
     };
 

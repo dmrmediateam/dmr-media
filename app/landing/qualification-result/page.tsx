@@ -3,7 +3,8 @@
 import { useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
-import Script from 'next/script';
+import Testimonials from '@/components/Testimonials';
+import ReviewsAggregate from '@/components/ReviewsAggregate';
 
 function QualificationResultContent() {
   const searchParams = useSearchParams();
@@ -195,106 +196,133 @@ function QualificationResultContent() {
   if (status === 'qualified') {
     const email = searchParams.get('email');
     const name = searchParams.get('name');
+    const phone = searchParams.get('phone');
 
-    // Build widget URL with parameters if provided
-    let widgetUrl = 'https://app.iclosed.io/e/arohm/strategy-session-950-value';
-    if (email && name) {
-      const params = new URLSearchParams({
-        email: email,
-        name: name,
-        status: 'qualified',
-      });
-      widgetUrl = `${widgetUrl}?${params.toString()}`;
-    }
+    // Format US phone number to E.164 format (+1XXXXXXXXXX)
+    const formatUSPhone = (phoneNumber: string | null): string | null => {
+      if (!phoneNumber) return null;
+      
+      // Remove all non-digit characters
+      const digitsOnly = phoneNumber.replace(/\D/g, '');
+      
+      // If already starts with 1 and has 11 digits, add +
+      if (digitsOnly.length === 11 && digitsOnly.startsWith('1')) {
+        return `+${digitsOnly}`;
+      }
+      
+      // If has 10 digits, assume US and add +1
+      if (digitsOnly.length === 10) {
+        return `+1${digitsOnly}`;
+      }
+      
+      // If already in E.164 format, return as-is
+      if (phoneNumber.startsWith('+1')) {
+        return phoneNumber;
+      }
+      
+      // Otherwise, try to format it
+      return phoneNumber;
+    };
+
+    // Build Aura embed URL with pre-populated fields
+    const buildAuraUrl = () => {
+      // Use embed URL with query parameters for pre-population
+      let url = 'https://app.aura-app.ai/dmr-media/exclusive-webinar-11/embed?theme=light';
+      if (name) url += `&name=${encodeURIComponent(name)}`;
+      if (email) url += `&email=${encodeURIComponent(email)}`;
+      const formattedPhone = formatUSPhone(phone);
+      if (formattedPhone) url += `&phone=${encodeURIComponent(formattedPhone)}`;
+      return url;
+    };
 
     return (
-      <>
-        <Script
-          src="https://app.iclosed.io/assets/widget.js"
-          strategy="afterInteractive"
-          onLoad={() => {
-            // Try to communicate with the iframe via postMessage if email/name are provided
-            if (email && name) {
-              // Wait for iframe to load, then try to send data
-              const tryPostMessage = () => {
-                const widget = document.querySelector('.iclosed-widget iframe') as HTMLIFrameElement;
-                if (widget && widget.contentWindow) {
-                  try {
-                    // Try sending data to the iframe (if iClosed supports it)
-                    widget.contentWindow.postMessage({
-                      type: 'fillForm',
-                      email: decodeURIComponent(email),
-                      name: decodeURIComponent(name),
-                    }, 'https://app.iclosed.io');
-                    
-                    // Also try alternative message formats
-                    widget.contentWindow.postMessage({
-                      action: 'autofill',
-                      data: {
-                        email: decodeURIComponent(email),
-                        name: decodeURIComponent(name),
+      <div className="min-h-screen bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
+        <div className="container-max py-12 md:py-16 lg:py-20">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-8 md:mb-12"
+            >
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <svg className="w-10 h-10 md:w-12 md:h-12 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
+                Congratulations! You're Qualified
+                <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
+              </h1>
+              <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed mb-8">
+                You've been selected for a complimentary 1:1 Strategy Session. Book your session below to receive your custom roadmap (a <em>$3,500 value</em>) built specifically for your market.
+              </p>
+            </motion.div>
+
+            {/* Aura Booking Embed */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-16"
+            >
+              <div className="max-w-6xl mx-auto">
+                <div 
+                  style={{ 
+                    width: '100%', 
+                    minHeight: '600px',
+                    height: 'auto',
+                    overflow: 'hidden', 
+                    borderRadius: '10px',
+                    border: '1px solid rgba(0,0,0,0.1)'
+                  }}
+                >
+                  <iframe
+                    key={`aura-embed-${email}-${name}`}
+                    src={buildAuraUrl()}
+                    title="Strategy Call [Webinar Exclusive] - Booking"
+                    style={{ 
+                      width: '100%', 
+                      minHeight: '600px',
+                      height: '100%',
+                      border: 0,
+                      display: 'block'
+                    }}
+                    allowFullScreen
+                    loading="eager"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    onLoad={() => {
+                      // Force resize after load
+                      if (window.parent) {
+                        window.parent.postMessage({ type: 'iframe-resize' }, '*');
                       }
-                    }, 'https://app.iclosed.io');
-                  } catch (e) {
-                    // Cross-origin restrictions - this is expected
-                    console.log('PostMessage attempted (may be blocked by CORS)');
-                  }
-                }
-              };
-
-              // Try multiple times as the iframe loads
-              setTimeout(tryPostMessage, 1000);
-              setTimeout(tryPostMessage, 2000);
-              setTimeout(tryPostMessage, 3000);
-            }
-          }}
-        />
-        <div className="min-h-screen bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
-          <div className="container-max py-12 md:py-16 lg:py-20">
-            <div className="max-w-4xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-center mb-8 md:mb-12"
-              >
-                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <svg className="w-10 h-10 md:w-12 md:h-12 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
+                    }}
+                  />
                 </div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
-                  Congratulations! You're Qualified
-                  <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
-                </h1>
-                <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed mb-8">
-                  You've been selected for a complimentary 1:1 Strategy Session. Book your session below to receive your custom roadmap (a <em>$950 value</em>) built specifically for your market.
-                </p>
-              </motion.div>
+              </div>
+            </motion.div>
 
-              {/* iClosed Widget */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="rounded-[32px] border-2 border-[var(--color-trust)] bg-white shadow-[0_24px_64px_rgba(15,15,15,0.12)] p-6 md:p-8 relative overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-trust)]/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-[var(--color-trust)]/5 rounded-full blur-3xl -ml-24 -mb-24"></div>
-                
-                <div className="relative z-10">
-                  <div 
-                    className="iclosed-widget" 
-                    data-url={widgetUrl}
-                    title="Strategy Session ($950 Value)" 
-                    style={{ width: '100%', height: '620px' }}
-                  ></div>
-                </div>
-              </motion.div>
-            </div>
+            {/* Testimonials Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mb-16"
+            >
+              <Testimonials />
+            </motion.div>
+
+            {/* Reviews Aggregate Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <ReviewsAggregate />
+            </motion.div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 

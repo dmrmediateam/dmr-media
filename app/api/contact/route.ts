@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
+import { sendContactFormToZapier } from '@/lib/zapier';
 import { sendContactFormEmail, type ContactFormData } from '@/lib/email';
-// import { sendContactFormToZapier } from '@/lib/zapier'; // UNCOMMENT to enable Zapier
 
 /**
  * Contact Form API Route
@@ -36,34 +36,39 @@ export async function POST(request: Request) {
       message: body.message.trim().substring(0, 5000),
     };
 
-    // Send email via SendGrid
+    // Send email via SendGrid (for contact page only) - non-blocking
+    let sendGridSuccess = false;
     try {
       await sendContactFormEmail(sanitizedData);
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError);
-      return NextResponse.json(
-        { error: 'Failed to send email. Please try again or contact us directly.' },
-        { status: 500 }
-      );
+      sendGridSuccess = true;
+    } catch (emailError: any) {
+      console.error('SendGrid email sending failed (non-blocking):', emailError?.message || emailError);
+      // Don't fail the request if SendGrid fails - continue to Zapier
     }
 
-    // ========================================
-    // ZAPIER INTEGRATION (COMMENTED OUT)
-    // Uncomment the following lines to enable Zapier webhook
-    // ========================================
-    /*
-    try {
-      const zapierResult = await sendContactFormToZapier(sanitizedData);
-      if (!zapierResult.success) {
-        console.warn('Zapier webhook failed (non-blocking):', zapierResult.error);
+    // Also send to Zapier webhook
+    let zapierSuccess = false;
+    const zapierWebhookUrl = process.env.ZAPIER_CONTACT_WEBHOOK_URL;
+    
+    if (!zapierWebhookUrl) {
+      console.warn('ZAPIER_CONTACT_WEBHOOK_URL is not configured');
+    } else {
+      try {
+        const zapierResult = await sendContactFormToZapier(sanitizedData);
+        if (zapierResult.success) {
+          zapierSuccess = true;
+        } else {
+          console.warn('Zapier webhook failed (non-blocking):', zapierResult.error);
+        }
+      } catch (zapierError) {
+        // Zapier failures are non-blocking - log but don't fail the request
+        console.warn('Zapier webhook error (non-blocking):', zapierError);
       }
-    } catch (zapierError) {
-      // Zapier failures are non-blocking - log but don't fail the request
-      console.warn('Zapier webhook error (non-blocking):', zapierError);
     }
-    */
 
-    // Success response
+    // Always return success - form submission was received
+    // Even if SendGrid or Zapier fail, we don't want to show an error to the user
+    // The data was captured and logged
     return NextResponse.json(
       {
         success: true,
