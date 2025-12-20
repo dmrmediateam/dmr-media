@@ -236,36 +236,36 @@ function QualificationResultContent() {
     };
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
-        <div className="container-max py-12 md:py-16 lg:py-20">
+        <div className="min-h-screen bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
+          <div className="container-max py-12 md:py-16 lg:py-20">
           <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-8 md:mb-12"
-            >
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <svg className="w-10 h-10 md:w-12 md:h-12 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
-                Congratulations! You're Qualified
-                <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
-              </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-center mb-8 md:mb-12"
+              >
+                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <svg className="w-10 h-10 md:w-12 md:h-12 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
+                  Congratulations! You're Qualified
+                  <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
+                </h1>
+                <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed mb-8">
                 You've been selected for a complimentary 1:1 Strategy Session. Book your session below to receive your custom roadmap (a <em>$3,500 value</em>) built specifically for your market.
-              </p>
-            </motion.div>
+                </p>
+              </motion.div>
 
             {/* Aura Booking Embed */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-16"
-            >
+              >
               <div className="max-w-6xl mx-auto">
                 <div 
                   style={{ 
@@ -319,10 +319,10 @@ function QualificationResultContent() {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <ReviewsAggregate />
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
-      </div>
     );
   }
 

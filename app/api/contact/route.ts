@@ -53,17 +53,17 @@ export async function POST(request: Request) {
     if (!zapierWebhookUrl) {
       console.warn('ZAPIER_CONTACT_WEBHOOK_URL is not configured');
     } else {
-      try {
-        const zapierResult = await sendContactFormToZapier(sanitizedData);
+    try {
+      const zapierResult = await sendContactFormToZapier(sanitizedData);
         if (zapierResult.success) {
           zapierSuccess = true;
         } else {
-          console.warn('Zapier webhook failed (non-blocking):', zapierResult.error);
-        }
-      } catch (zapierError) {
-        // Zapier failures are non-blocking - log but don't fail the request
-        console.warn('Zapier webhook error (non-blocking):', zapierError);
+        console.warn('Zapier webhook failed (non-blocking):', zapierResult.error);
       }
+    } catch (zapierError) {
+      // Zapier failures are non-blocking - log but don't fail the request
+      console.warn('Zapier webhook error (non-blocking):', zapierError);
+    }
     }
 
     // Always return success - form submission was received

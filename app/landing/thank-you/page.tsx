@@ -58,7 +58,7 @@ function ThankYouContent() {
       setUserPhone(phoneParam);
     }
     
-    setIsVerifying(false);
+        setIsVerifying(false);
   }, [searchParams]);
 
   // Show thank you message for 2 seconds, then fade to form
