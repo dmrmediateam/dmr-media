@@ -66,13 +66,13 @@ export default function CaseStudiesPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-white via-white/90 to-[var(--surface-base)]">
         <div className="container-max pt-24 pb-28">
           <div className="max-w-3xl space-y-6">
-            <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-400)]">
+            <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-300)]">
               case studies
             </span>
             <h1 className="text-[42px] sm:text-[58px] font-serif font-light text-[var(--color-off-black)] leading-[1.05]">
               Luxury real estate growth stories<span className="text-[var(--color-trust)] text-[1.15em]">.</span>
             </h1>
-            <p className="text-base sm:text-lg text-[var(--color-ink-400)] max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-lg text-[var(--color-ink-300)] max-w-2xl leading-relaxed">
               Every engagement is a bespoke sprint. The structure is consistent—research, rebuild, relentless iteration—but
               the look, feel, and commercial outcome are tailored to the brokerage, the market, and the listings they deserve.
             </p>
@@ -85,7 +85,7 @@ export default function CaseStudiesPage() {
                 className="rounded-[32px] border border-white/60 bg-white/70 backdrop-blur-xl px-6 py-8 shadow-[0_20px_45px_rgba(15,15,15,0.08)]"
               >
                 <div className="text-[30px] font-serif font-light text-[var(--color-off-black)]">{signal.value}</div>
-                <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mt-4">{signal.label}</p>
+                <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mt-4">{signal.label}</p>
               </div>
             ))}
           </div>
@@ -113,7 +113,7 @@ export default function CaseStudiesPage() {
 
                 <div className="relative flex flex-col gap-6">
                   <div className="flex items-center justify-between gap-6">
-                    <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-400)]">{study.eyebrow}</span>
+                    <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-300)]">{study.eyebrow}</span>
                     <span className="inline-flex rounded-full border border-[var(--color-trust)] px-3 py-1 text-[12px] text-[var(--color-trust)]">
                       {study.result}
                     </span>
@@ -121,11 +121,11 @@ export default function CaseStudiesPage() {
 
                   <h3 className="text-[30px] font-serif font-light text-[var(--color-off-black)] leading-[1.1]">{study.title}</h3>
 
-                  <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">{study.description}</p>
+                  <p className="text-sm text-[var(--color-ink-300)] leading-relaxed">{study.description}</p>
 
                   <div className="flex flex-wrap gap-3 pt-2">
                     {study.tags.map((tag) => (
-                      <span key={tag} className="rounded-full border border-[var(--color-ink-200)] px-4 py-2 text-xs uppercase tracking-[0.25em] text-[var(--color-ink-400)]">
+                      <span key={tag} className="rounded-full border border-[var(--color-ink-200)] px-4 py-2 text-xs uppercase tracking-[0.25em] text-[var(--color-ink-300)]">
                         {tag}
                       </span>
                     ))}
@@ -145,9 +145,9 @@ export default function CaseStudiesPage() {
           </div>
 
           <div className="rounded-[40px] border border-[var(--color-ink-200)] bg-white/80 px-8 py-12 text-center backdrop-blur-xl">
-            <p className="text-xs uppercase tracking-[0.35em] text-[var(--color-ink-400)]">coming soon</p>
+            <p className="text-xs uppercase tracking-[0.35em] text-[var(--color-ink-300)]">coming soon</p>
             <h3 className="mt-4 text-[32px] font-serif font-light text-[var(--color-off-black)]">More luxury market wins</h3>
-            <p className="mt-4 text-sm text-[var(--color-ink-400)] max-w-2xl mx-auto">
+            <p className="mt-4 text-sm text-[var(--color-ink-300)] max-w-2xl mx-auto">
               We are documenting additional transformations across New York, Miami, Scottsdale, Seattle, and London. If you would like yours to be next, we can start the diagnostic this week.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">

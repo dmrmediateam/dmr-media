@@ -285,8 +285,8 @@ function AddListingsLandingPaidContent() {
                   <span className="text-base sm:text-lg font-serif font-light text-[var(--color-off-black)]">
                     December 17th, 2025
                   </span>
-                  <span className="hidden sm:inline text-[var(--color-ink-400)]">•</span>
-                  <div className="flex items-center gap-3 text-sm sm:text-base text-[var(--color-ink-400)]">
+                  <span className="hidden sm:inline text-[var(--color-ink-300)]">•</span>
+                  <div className="flex items-center gap-3 text-sm sm:text-base text-[var(--color-ink-300)]">
                     <span>12pm EST</span>
                     <span className="text-[var(--color-ink-300)]">/</span>
                     <span>9am PST</span>
@@ -306,7 +306,7 @@ function AddListingsLandingPaidContent() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
-                className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-[1.6] max-w-2xl mx-auto"
+                className="text-lg sm:text-xl text-[var(--color-ink-300)] leading-[1.6] max-w-2xl mx-auto"
               >
                 No $1k/m ad budget, Website or Tech Knowledge Needed
               </motion.p>
@@ -417,7 +417,7 @@ function AddListingsLandingPaidContent() {
                             <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
                           </h3>
                           
-                          <p className="text-base md:text-lg text-[var(--color-ink-400)] leading-relaxed">
+                          <p className="text-base md:text-lg text-[var(--color-ink-300)] leading-relaxed">
                             {topic.description}
                           </p>
                         </div>
@@ -451,7 +451,7 @@ function AddListingsLandingPaidContent() {
               <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
                 Is This Training For You?
               </h2>
-              <p className="text-lg text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed">
                 If you say yes to any of these, I've got you.
               </p>
             </div>
@@ -474,7 +474,7 @@ function AddListingsLandingPaidContent() {
                     <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
                       You're struggling to get consistent listings
                     </h3>
-                    <p className="text-base text-[var(--color-ink-400)] leading-relaxed">
+                    <p className="text-base text-[var(--color-ink-300)] leading-relaxed">
                       You're not getting enough seller leads, or the leads you're getting aren't qualified. You need a system that brings in 1–2 listings every month without relying on referrals or cold calling.
                     </p>
                   </div>
@@ -498,7 +498,7 @@ function AddListingsLandingPaidContent() {
                     <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
                       You don't have a website or want to avoid expensive ads
                     </h3>
-                    <p className="text-base text-[var(--color-ink-400)] leading-relaxed">
+                    <p className="text-base text-[var(--color-ink-300)] leading-relaxed">
                       You want to generate listings using low-cost tools like Google Business Profile and Chat GPT—no website required, no massive ad budgets.
                     </p>
                   </div>
@@ -522,7 +522,7 @@ function AddListingsLandingPaidContent() {
                     <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
                       You're overwhelmed by marketing advice
                     </h3>
-                    <p className="text-base text-[var(--color-ink-400)] leading-relaxed">
+                    <p className="text-base text-[var(--color-ink-300)] leading-relaxed">
                       There's too much conflicting information out there. You need a proven, step-by-step system that actually works for real estate agents—not generic marketing advice.
                     </p>
                   </div>
@@ -546,7 +546,7 @@ function AddListingsLandingPaidContent() {
                     <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
                       You want to dominate your local market
                     </h3>
-                    <p className="text-base text-[var(--color-ink-400)] leading-relaxed">
+                    <p className="text-base text-[var(--color-ink-300)] leading-relaxed">
                       You're ready to become the go-to agent in your area. You want to show up first when sellers search for real estate services, and you're willing to implement a proven system.
                     </p>
                   </div>
@@ -577,14 +577,14 @@ function AddListingsLandingPaidContent() {
               transition={{ duration: 0.7 }}
               className="text-center mb-12"
             >
-              <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+              <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-300)] mb-4 block">
                 Case Study
               </span>
               <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
                 Jade · Legendary Real Estate
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h2>
-              <p className="text-lg text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed">
                 From frustrated content creator to lead generation powerhouse—how we transformed Jade's digital strategy and tripled her inbound leads.
               </p>
             </motion.div>
@@ -599,8 +599,8 @@ function AddListingsLandingPaidContent() {
                 className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center"
               >
                 <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">3x</div>
-                <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Qualified Leads</p>
-                <p className="mt-4 text-base text-[var(--color-ink-400)]">Inbound pipeline inside 90 days</p>
+                <p className="mt-2 text-base text-[var(--color-ink-300)] uppercase tracking-[0.3em]">Qualified Leads</p>
+                <p className="mt-4 text-base text-[var(--color-ink-300)]">Inbound pipeline inside 90 days</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -610,8 +610,8 @@ function AddListingsLandingPaidContent() {
                 className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center"
               >
                 <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">42</div>
-                <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Content Assets</p>
-                <p className="mt-4 text-base text-[var(--color-ink-400)]">Blogs, landing pages, nurture flows</p>
+                <p className="mt-2 text-base text-[var(--color-ink-300)] uppercase tracking-[0.3em]">Content Assets</p>
+                <p className="mt-4 text-base text-[var(--color-ink-300)]">Blogs, landing pages, nurture flows</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -621,8 +621,8 @@ function AddListingsLandingPaidContent() {
                 className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center"
               >
                 <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">12 hrs</div>
-                <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Automation</p>
-                <p className="mt-4 text-base text-[var(--color-ink-400)]">From lead to curated follow-up</p>
+                <p className="mt-2 text-base text-[var(--color-ink-300)] uppercase tracking-[0.3em]">Automation</p>
+                <p className="mt-4 text-base text-[var(--color-ink-300)]">From lead to curated follow-up</p>
               </motion.div>
             </div>
 
@@ -638,7 +638,7 @@ function AddListingsLandingPaidContent() {
                 <h3 className="text-2xl sm:text-3xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
                   The Transformation
                 </h3>
-                <p className="text-base text-[var(--color-ink-400)]">
+                <p className="text-base text-[var(--color-ink-300)]">
                   See the dramatic improvement in search visibility
                 </p>
               </div>
@@ -654,7 +654,7 @@ function AddListingsLandingPaidContent() {
                     <span className="inline-flex items-center gap-2 rounded-full bg-red-100 px-4 py-2 text-sm uppercase tracking-[0.3em] text-red-700">
                       Before
                     </span>
-                    <p className="text-base text-[var(--color-ink-400)] mt-2">18th Dec 2024</p>
+                    <p className="text-base text-[var(--color-ink-300)] mt-2">18th Dec 2024</p>
                   </div>
                   <Image
                     src="/images/before.png"
@@ -675,7 +675,7 @@ function AddListingsLandingPaidContent() {
                     <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-trust)]/10 px-4 py-2 text-sm uppercase tracking-[0.3em] text-[var(--color-trust)]">
                       After
                     </span>
-                    <p className="text-base text-[var(--color-ink-400)] mt-2">23rd Apr 2025</p>
+                    <p className="text-base text-[var(--color-ink-300)] mt-2">23rd Apr 2025</p>
                   </div>
                   <Image
                     src="/images/after.png"
@@ -722,7 +722,7 @@ function AddListingsLandingPaidContent() {
                 <blockquote className="text-lg font-serif font-light text-[var(--color-off-black)] leading-relaxed italic">
                   "He's articulate, responsive, and provides amazing weekly updates. He works with us like a partner, rather than a vendor. If you have the opportunity to work with him, just DO IT. You'll be grateful you did!"
                 </blockquote>
-                <div className="mt-4 text-base text-[var(--color-ink-400)]">
+                <div className="mt-4 text-base text-[var(--color-ink-300)]">
                   <p className="uppercase tracking-[0.3em]">Jade Goodhue</p>
                   <p className="uppercase tracking-[0.3em] mt-1">Legendary Real Estate</p>
                 </div>
@@ -762,18 +762,18 @@ function AddListingsLandingPaidContent() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
                 <div className="text-4xl font-serif font-light text-[var(--color-trust)] mb-2">1–2</div>
-                <div className="text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)]">Listings Per Month</div>
-                <div className="text-sm text-[var(--color-ink-400)] mt-2">Using only GBP & LSAs</div>
+                <div className="text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)]">Listings Per Month</div>
+                <div className="text-sm text-[var(--color-ink-300)] mt-2">Using only GBP & LSAs</div>
               </div>
               <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
                 <div className="text-4xl font-serif font-light text-[var(--color-trust)] mb-2">$11K</div>
-                <div className="text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)]">Avg Monthly GCI</div>
-                <div className="text-sm text-[var(--color-ink-400)] mt-2">From our marketing systems</div>
+                <div className="text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)]">Avg Monthly GCI</div>
+                <div className="text-sm text-[var(--color-ink-300)] mt-2">From our marketing systems</div>
               </div>
               <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 p-6">
                 <div className="text-4xl font-serif font-light text-[var(--color-trust)] mb-2">500+</div>
-                <div className="text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)]">Success Stories</div>
-                <div className="text-sm text-[var(--color-ink-400)] mt-2">And counting nationwide</div>
+                <div className="text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)]">Success Stories</div>
+                <div className="text-sm text-[var(--color-ink-300)] mt-2">And counting nationwide</div>
               </div>
             </div>
           </div>
@@ -797,10 +797,10 @@ function AddListingsLandingPaidContent() {
                   </div>
                   <div>
                     <div className="font-serif font-light text-[var(--color-off-black)]">Rick Grueble</div>
-                    <div className="text-sm text-[var(--color-ink-400)]">Visions First Realty</div>
+                    <div className="text-sm text-[var(--color-ink-300)]">Visions First Realty</div>
                   </div>
                 </div>
-                <p className="text-base text-[var(--color-ink-400)] leading-relaxed italic">
+                <p className="text-base text-[var(--color-ink-300)] leading-relaxed italic">
                   "DMR Media delivered top rankings for real estate search terms, a higher volume of qualified leads, and transparent reporting the entire way. I now get 2–3 qualified leads per day."
                 </p>
               </div>
@@ -811,10 +811,10 @@ function AddListingsLandingPaidContent() {
                   </div>
                   <div>
                     <div className="font-serif font-light text-[var(--color-off-black)]">Jade Goodhue</div>
-                    <div className="text-sm text-[var(--color-ink-400)]">Legendary Real Estate</div>
+                    <div className="text-sm text-[var(--color-ink-300)]">Legendary Real Estate</div>
                   </div>
                 </div>
-                <p className="text-base text-[var(--color-ink-400)] leading-relaxed italic">
+                <p className="text-base text-[var(--color-ink-300)] leading-relaxed italic">
                   "He works with us like a partner, rather than a vendor. If you have the opportunity to work with him, just DO IT. You'll be grateful you did!"
                 </p>
               </div>
@@ -825,10 +825,10 @@ function AddListingsLandingPaidContent() {
                   </div>
                   <div>
                     <div className="font-serif font-light text-[var(--color-off-black)]">Justin Armbruster</div>
-                    <div className="text-sm text-[var(--color-ink-400)]">The Armbruster Team</div>
+                    <div className="text-sm text-[var(--color-ink-300)]">The Armbruster Team</div>
                   </div>
                 </div>
-                <p className="text-base text-[var(--color-ink-400)] leading-relaxed italic">
+                <p className="text-base text-[var(--color-ink-300)] leading-relaxed italic">
                   "Andrew & his team are great communicators and definitely know their stuff. True professionals!"
                 </p>
               </div>
@@ -839,10 +839,10 @@ function AddListingsLandingPaidContent() {
                   </div>
                   <div>
                     <div className="font-serif font-light text-[var(--color-off-black)]">Andy Peterson</div>
-                    <div className="text-sm text-[var(--color-ink-400)]">Keller Williams Luxury</div>
+                    <div className="text-sm text-[var(--color-ink-300)]">Keller Williams Luxury</div>
                   </div>
                 </div>
-                <p className="text-base text-[var(--color-ink-400)] leading-relaxed italic">
+                <p className="text-base text-[var(--color-ink-300)] leading-relaxed italic">
                   "Andrew worked with me personally to completely change my presence online - with a perfect mix of personal and professional."
                 </p>
               </div>
@@ -885,7 +885,7 @@ function AddListingsLandingPaidContent() {
                 Reserve Your Spot - $27
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h2>
-              <p className="text-lg sm:text-xl text-[var(--color-ink-400)] leading-relaxed max-w-2xl mx-auto mb-8">
+              <p className="text-lg sm:text-xl text-[var(--color-ink-300)] leading-relaxed max-w-2xl mx-auto mb-8">
                 Register now for the training event on December 17th, 2025. Get the complete system and start adding 1–2 listings every month using only Google Business Profile & Chat GPT.
               </p>
             </motion.div>
@@ -899,7 +899,7 @@ function AddListingsLandingPaidContent() {
               <div className="relative z-10">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                    <label htmlFor="name" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                       Name
                     </label>
                     <input
@@ -914,7 +914,7 @@ function AddListingsLandingPaidContent() {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                    <label htmlFor="email" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                       Email
                     </label>
                     <input
@@ -929,7 +929,7 @@ function AddListingsLandingPaidContent() {
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                    <label htmlFor="phone" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                       Phone
                     </label>
                     <input
@@ -958,7 +958,7 @@ function AddListingsLandingPaidContent() {
                   </div>
 
                   {/* Marketing Consent */}
-                  <p className="text-xs sm:text-sm text-[var(--color-ink-400)] leading-relaxed text-center">
+                  <p className="text-xs sm:text-sm text-[var(--color-ink-300)] leading-relaxed text-center">
                     By registering for this webinar, you agree to receive marketing communications from DMR Media, including but not limited to phone calls, text messages (SMS), and emails. You may opt out at any time. See our{' '}
                     <a href="/privacy-policy" className="text-[var(--color-trust)] hover:underline" target="_blank" rel="noopener noreferrer">
                       Privacy Policy
@@ -984,22 +984,22 @@ function AddListingsLandingPaidContent() {
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
-                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Secure Payment</div>
-                    <div className="text-sm text-[var(--color-ink-400)] mt-1">Powered by Stripe</div>
+                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-300)]">Secure Payment</div>
+                    <div className="text-sm text-[var(--color-ink-300)] mt-1">Powered by Stripe</div>
                   </div>
                   <div className="flex flex-col items-center">
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
-                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Event Access</div>
-                    <div className="text-sm text-[var(--color-ink-400)] mt-1">December 17th, 2025</div>
+                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-300)]">Event Access</div>
+                    <div className="text-sm text-[var(--color-ink-300)] mt-1">December 17th, 2025</div>
                   </div>
                   <div className="flex flex-col items-center">
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 0v8m0 0v-1m0 1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Proven System</div>
-                    <div className="text-sm text-[var(--color-ink-400)] mt-1">Used by 100+ agents</div>
+                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-300)]">Proven System</div>
+                    <div className="text-sm text-[var(--color-ink-300)] mt-1">Used by 100+ agents</div>
                   </div>
                 </div>
               </div>
@@ -1016,14 +1016,14 @@ function AddListingsLandingPaidContent() {
             {/* Michael's Case Study */}
             <div>
               <div className="text-center mb-12">
-                <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+                <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-300)] mb-4 block">
                   Case Study
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
                   Michael · SEO Transformation
                   <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
                 </h2>
-                <p className="text-lg text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+                <p className="text-lg text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed">
                   From a silent IDX template to a site that behaves like a modern magazine. We rebuilt his presence, piped data into every decision, and let the numbers roll on camera—even though he's camera shy.
                 </p>
               </div>
@@ -1031,18 +1031,18 @@ function AddListingsLandingPaidContent() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                   <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">21x</div>
-                  <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Search Impressions</p>
-                  <p className="mt-4 text-base text-[var(--color-ink-400)]">7.5 weeks after relaunch</p>
+                  <p className="mt-2 text-base text-[var(--color-ink-300)] uppercase tracking-[0.3em]">Search Impressions</p>
+                  <p className="mt-4 text-base text-[var(--color-ink-300)]">7.5 weeks after relaunch</p>
                 </div>
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                   <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">+312%</div>
-                  <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Organic Sessions</p>
-                  <p className="mt-4 text-base text-[var(--color-ink-400)]">Year-over-year swing vs. template site</p>
+                  <p className="mt-2 text-base text-[var(--color-ink-300)] uppercase tracking-[0.3em]">Organic Sessions</p>
+                  <p className="mt-4 text-base text-[var(--color-ink-300)]">Year-over-year swing vs. template site</p>
                 </div>
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                   <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">6 weeks</div>
-                  <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Build Timeline</p>
-                  <p className="mt-4 text-base text-[var(--color-ink-400)]">From discovery to launch-ready WordPress</p>
+                  <p className="mt-2 text-base text-[var(--color-ink-300)] uppercase tracking-[0.3em]">Build Timeline</p>
+                  <p className="mt-4 text-base text-[var(--color-ink-300)]">From discovery to launch-ready WordPress</p>
                 </div>
               </div>
 
@@ -1058,13 +1058,13 @@ function AddListingsLandingPaidContent() {
                 </div>
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-8 backdrop-blur-xl">
                   <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-4">The Results</h3>
-                  <p className="text-base text-[var(--color-ink-400)] leading-relaxed mb-6">
+                  <p className="text-base text-[var(--color-ink-300)] leading-relaxed mb-6">
                     21x more visibility and leads that stay on-brand. Every dashboard, every call, every follow-up is now scripted to feel premium. His team knows what to publish each week and what data proves it's working.
                   </p>
                   <blockquote className="text-lg font-serif font-light text-[var(--color-off-black)] leading-relaxed italic">
                     "Despite being camera shy, I recorded a testimonial because the lead flow spoke for itself. The weekly updates made it impossible to ignore the progress."
                   </blockquote>
-                  <div className="mt-4 text-sm text-[var(--color-ink-400)]">
+                  <div className="mt-4 text-sm text-[var(--color-ink-300)]">
                     <p className="uppercase tracking-[0.3em]">Michael</p>
                     <p className="uppercase tracking-[0.3em] mt-1">Real Estate Professional</p>
                   </div>
@@ -1075,14 +1075,14 @@ function AddListingsLandingPaidContent() {
             {/* Rick's Case Study */}
             <div>
               <div className="text-center mb-12">
-                <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+                <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-300)] mb-4 block">
                   Case Study
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
                   Rick · Visions First Realty
                   <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
                 </h2>
-                <p className="text-lg text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+                <p className="text-lg text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed">
                   Traffic wasn't the issue—positioning was. We reoriented every keyword, every page, every follow-up so the right buyers found him first and felt compelled to reach out.
                 </p>
               </div>
@@ -1090,18 +1090,18 @@ function AddListingsLandingPaidContent() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                   <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">2–3 /day</div>
-                  <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Qualified Leads</p>
-                  <p className="mt-4 text-base text-[var(--color-ink-400)]">Organic only, no ads</p>
+                  <p className="mt-2 text-base text-[var(--color-ink-300)] uppercase tracking-[0.3em]">Qualified Leads</p>
+                  <p className="mt-4 text-base text-[var(--color-ink-300)]">Organic only, no ads</p>
                 </div>
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                   <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">118</div>
-                  <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Keywords</p>
-                  <p className="mt-4 text-base text-[var(--color-ink-400)]">Rewritten within 60 days</p>
+                  <p className="mt-2 text-base text-[var(--color-ink-300)] uppercase tracking-[0.3em]">Keywords</p>
+                  <p className="mt-4 text-base text-[var(--color-ink-300)]">Rewritten within 60 days</p>
                 </div>
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl text-center">
                   <div className="text-[36px] font-serif font-light text-[var(--color-off-black)]">8 weeks</div>
-                  <p className="mt-2 text-base text-[var(--color-ink-400)] uppercase tracking-[0.3em]">Time to Clarity</p>
-                  <p className="mt-4 text-base text-[var(--color-ink-400)]">From audit to predictable calls</p>
+                  <p className="mt-2 text-base text-[var(--color-ink-300)] uppercase tracking-[0.3em]">Time to Clarity</p>
+                  <p className="mt-4 text-base text-[var(--color-ink-300)]">From audit to predictable calls</p>
                 </div>
               </div>
 
@@ -1117,13 +1117,13 @@ function AddListingsLandingPaidContent() {
                 </div>
                 <div className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-8 backdrop-blur-xl">
                   <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-4">Daily Deal Flow</h3>
-                  <p className="text-base text-[var(--color-ink-400)] leading-relaxed mb-6">
+                  <p className="text-base text-[var(--color-ink-300)] leading-relaxed mb-6">
                     Rick now fields two to three qualified inquiries every day. The team knows which keywords, reviews, and pieces of content triggered each call.
                   </p>
                   <blockquote className="text-lg font-serif font-light text-[var(--color-off-black)] leading-relaxed italic">
                     "DMR Media delivered top rankings for real estate search terms, a higher volume of qualified leads, and transparent reporting the entire way."
                   </blockquote>
-                  <div className="mt-4 text-base text-[var(--color-ink-400)]">
+                  <div className="mt-4 text-base text-[var(--color-ink-300)]">
                     <p className="uppercase tracking-[0.3em]">Rick Grueble</p>
                     <p className="uppercase tracking-[0.3em] mt-1">Visions First Realty</p>
                   </div>
@@ -1189,7 +1189,7 @@ export default function AddListingsLandingPaidPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
           </div>
-          <p className="text-lg text-[var(--color-ink-400)]">Loading...</p>
+          <p className="text-lg text-[var(--color-ink-300)]">Loading...</p>
         </div>
       </div>
     }>

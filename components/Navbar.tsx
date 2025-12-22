@@ -31,7 +31,7 @@ const Navbar = () => {
               className="flex items-center z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-trust)] focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-full px-2 py-1"
             >
               <span className="text-xl md:text-2xl font-serif text-[var(--color-off-black)] tracking-tight">
-                DMR <span className="italic">Media</span>
+                DMR <span className="italic font-serif">Media</span>
               </span>
             </Link>
 
@@ -99,16 +99,16 @@ const Navbar = () => {
             <div className="absolute top-0 right-0 w-full">
               <div className="container-max">
                 <div className="flex justify-end items-center py-3 md:py-4">
-                  <button
-                    type="button"
-                    onClick={() => setIsMenuOpen(false)}
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen(false)}
                     className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] hover:border-[var(--color-trust)] hover:text-[var(--color-trust)] transition-colors duration-200"
-                    aria-label="Close menu"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+              aria-label="Close menu"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
                 </div>
               </div>
             </div>
@@ -116,7 +116,7 @@ const Navbar = () => {
               
               {/* Left Side - Navigation */}
               <div className="flex flex-col justify-center space-y-8">
-                <h2 className="text-xs uppercase tracking-[0.4em] text-[var(--color-ink-400)] font-semibold">
+                <h2 className="text-xs uppercase tracking-[0.4em] text-[var(--color-ink-300)] font-semibold">
                   Navigation
                 </h2>
                 
@@ -164,14 +164,14 @@ const Navbar = () => {
               {/* Right Side - Contact Information */}
               <div className="flex flex-col justify-center space-y-10 lg:border-l lg:border-[var(--color-ink-200)] lg:pl-16">
                 <div>
-                  <h2 className="text-xs uppercase tracking-[0.4em] text-[var(--color-ink-400)] mb-6 font-semibold">
+                  <h2 className="text-xs uppercase tracking-[0.4em] text-[var(--color-ink-300)] mb-6 font-semibold">
                     Get In Touch
                   </h2>
                   
                   <div className="space-y-6">
                     {/* Email */}
                     <div>
-                      <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">Email</div>
+                      <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">Email</div>
                       <a 
                         href="mailto:team@dmrmedia.org" 
                         className="text-lg font-serif font-light text-[var(--color-off-black)] hover:text-[var(--color-trust)] transition-colors duration-300 break-all"
@@ -182,7 +182,7 @@ const Navbar = () => {
 
                     {/* Services */}
                     <div>
-                      <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">Specialization</div>
+                      <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">Specialization</div>
                       <p className="text-lg font-serif font-light text-[var(--color-off-black)] leading-relaxed">
                         Google Marketing<br />
                         SEO & Google Ads
@@ -204,7 +204,7 @@ const Navbar = () => {
 
                 {/* Social Links */}
                 <div className="pt-6 border-t border-[var(--color-ink-200)]">
-                  <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-4">Connect</div>
+                  <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-4">Connect</div>
                   <div className="flex space-x-4">
                     <a 
                       href="https://www.linkedin.com/company/90571937/" 

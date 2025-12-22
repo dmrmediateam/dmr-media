@@ -21,7 +21,7 @@ export default function ServiceCities({ heading, description, cities }: ServiceC
       <div className="container-max">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16">
           <div>
-            <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+            <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-300)] mb-4 block">
               Cities
             </span>
             <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
@@ -29,7 +29,7 @@ export default function ServiceCities({ heading, description, cities }: ServiceC
             </h2>
           </div>
           {description && (
-            <p className="text-[var(--color-ink-400)] max-w-xl text-base leading-relaxed">
+            <p className="text-[var(--color-ink-300)] max-w-xl text-base leading-relaxed">
               {description}
             </p>
           )}

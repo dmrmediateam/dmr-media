@@ -7,7 +7,7 @@ const AboutStats = () => {
           <h2 className="scroll-animate text-3xl sm:text-4xl font-serif font-light text-black mb-4 heading-underline pb-4">
             About Cheryl Towey Services
           </h2>
-          <p className="scroll-animate text-base text-gray-dark leading-relaxed mt-8">
+          <p className="scroll-animate text-base text-[var(--color-ink-300)] leading-relaxed mt-8">
             Dedicated real estate professional with a passion for helping families find their perfect home in New Jersey's most desirable communities.
           </p>
         </div>

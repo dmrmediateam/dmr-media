@@ -10,7 +10,7 @@ export default function ContactPage() {
             Get In Touch
           </h1>
           <div className="w-24 h-px bg-off-black mx-auto mb-6"></div>
-          <p className="text-gray-dark max-w-2xl mx-auto">
+          <p className="text-[var(--color-ink-300)] max-w-2xl mx-auto">
             Ready to elevate your real estate marketing? Let's discuss how we can help you dominate the luxury market.
           </p>
         </div>

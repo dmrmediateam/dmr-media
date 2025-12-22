@@ -15,7 +15,7 @@ export default function FairHousingPage() {
               Commitment to Fair Housing
             </h1>
             <div className="w-24 h-px bg-off-black mb-8"></div>
-            <p className="text-sm text-[var(--color-ink-400)] mb-12">
+            <p className="text-sm text-[var(--color-ink-300)] mb-12">
               Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             </p>
 

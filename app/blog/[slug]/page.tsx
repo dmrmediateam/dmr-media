@@ -52,24 +52,24 @@ const portableTextComponents = {
       </h3>
     ),
     normal: ({ children }: any) => (
-      <p className="text-[var(--color-ink-400)] text-base sm:text-[17px] leading-[1.6] mb-4">
+      <p className="text-[var(--color-ink-300)] text-base sm:text-[17px] leading-[1.6] mb-4">
         {children}
       </p>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-2 border-[var(--color-trust)] pl-5 my-8 italic text-[var(--color-ink-400)]">
+      <blockquote className="border-l-2 border-[var(--color-trust)] pl-5 my-8 italic text-[var(--color-ink-300)]">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="list-disc list-inside mb-4 text-[var(--color-ink-400)] space-y-1.5">
+      <ul className="list-disc list-inside mb-4 text-[var(--color-ink-300)] space-y-1.5">
         {children}
       </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="list-decimal list-inside mb-4 text-[var(--color-ink-400)] space-y-1.5">
+      <ol className="list-decimal list-inside mb-4 text-[var(--color-ink-300)] space-y-1.5">
         {children}
       </ol>
     ),
@@ -127,10 +127,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                 {post.title}
                 <span className="text-[var(--color-trust)] text-[1.05em] align-baseline">.</span>
               </h1>
-              <p className="text-base sm:text-[17px] text-[var(--color-ink-400)] leading-[1.55] max-w-2xl">
+              <p className="text-base sm:text-[17px] text-[var(--color-ink-300)] leading-[1.55] max-w-2xl">
                 {post.description}
               </p>
-              <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--color-ink-400)]">
+              <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--color-ink-300)]">
                 <div className="flex items-center gap-3">
                   {post.author.image && (
                     <Image
@@ -160,14 +160,14 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
             {post.tags && post.tags.length > 0 && (
               <div className="border-t border-[var(--color-ink-200)] pt-6">
-                <h3 className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-4">
+                <h3 className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-4">
                   Topics
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-[var(--color-ink-200)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)]"
+                      className="rounded-full border border-[var(--color-ink-200)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)]"
                     >
                       {tag}
                     </span>
@@ -191,7 +191,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                   <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-3">
                     About {post.author.name}
                   </h3>
-                  <p className="text-sm text-[var(--color-ink-400)] leading-relaxed mb-4">
+                  <p className="text-sm text-[var(--color-ink-300)] leading-relaxed mb-4">
                     Marketing experts specializing in luxury real estate SEO, Google Ads, and digital strategy. Helping premium agents dominate their markets with data-driven campaigns and proven results.
                   </p>
                   <Link
@@ -223,7 +223,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-6">
               Ready to elevate your real estate marketing?
             </h2>
-            <p className="text-sm sm:text-base text-[var(--color-ink-400)] max-w-2xl mx-auto mb-6 leading-[1.55]">
+            <p className="text-sm sm:text-base text-[var(--color-ink-300)] max-w-2xl mx-auto mb-6 leading-[1.55]">
               Let’s tailor a growth plan around your portfolio—SEO, paid media, and analytics working together.
             </p>
             <div className="flex flex-wrap justify-center gap-3">

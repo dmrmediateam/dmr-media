@@ -116,14 +116,14 @@ export default async function LocationGoogleAdsPage({ params }: { params: Promis
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12">
             <div className="space-y-6">
-              <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)]">Why it works</span>
+              <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-300)]">Why it works</span>
               <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight">
                 Why Google Ads is essential in {location.name}.
               </h2>
-              <p className="text-sm sm:text-base text-[var(--color-ink-400)] leading-relaxed">
+              <p className="text-sm sm:text-base text-[var(--color-ink-300)] leading-relaxed">
                 With {location.population} residents and a median home value of {location.medianHomePrice}, the {location.marketType?.toLowerCase() ?? 'local'} market rewards brands that show up first—at the exact moment buyers start searching.
               </p>
-              <ul className="space-y-3 text-sm text-[var(--color-ink-400)] leading-relaxed">
+              <ul className="space-y-3 text-sm text-[var(--color-ink-300)] leading-relaxed">
                 <li>• Precision keyword targeting for luxury listings, relocation queries, and investment searches.</li>
                 <li>• Geo-fenced campaigns that keep spend focused on {location.name}'s highest-value neighborhoods.</li>
                 <li>• Retargeting flows that nurture buyers until they book a showing or request a consultation.</li>
@@ -131,10 +131,10 @@ export default async function LocationGoogleAdsPage({ params }: { params: Promis
             </div>
             <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-10 space-y-6">
               <h3 className="text-xl font-serif font-light text-[var(--color-off-black)]">Creative and landing experiences</h3>
-              <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed">
                 We adapt ad copy, creatives, and landing experiences to the tone and expectations of {location.name}'s buyers—from concise Manhattan co-op campaigns to lifestyle-focused Scottsdale estates.
               </p>
-              <div className="grid grid-cols-2 gap-4 text-xs uppercase tracking-[0.25em] text-[var(--color-ink-400)]">
+              <div className="grid grid-cols-2 gap-4 text-xs uppercase tracking-[0.25em] text-[var(--color-ink-300)]">
                 <span className="rounded-full border border-[var(--color-ink-200)] bg-white/70 px-4 py-2 text-center">Search + Maps</span>
                 <span className="rounded-full border border-[var(--color-ink-200)] bg-white/70 px-4 py-2 text-center">Display Remarketing</span>
                 <span className="rounded-full border border-[var(--color-ink-200)] bg-white/70 px-4 py-2 text-center">Landing Pages</span>
@@ -149,12 +149,12 @@ export default async function LocationGoogleAdsPage({ params }: { params: Promis
         <div className="container-max grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-8">
             <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">Neighborhood focus</h3>
-            <p className="text-sm text-[var(--color-ink-400)] leading-relaxed mb-6">
+            <p className="text-sm text-[var(--color-ink-300)] leading-relaxed mb-6">
               We segment campaigns by neighborhood and price band so budgets follow intent—not broad zip codes.
             </p>
             <div className="flex flex-wrap gap-3">
               {['Luxury buyers', 'Relocation', 'Investors', 'Developments', 'New construction'].map((item) => (
-                <span key={item} className="rounded-full border border-[var(--color-ink-200)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.25em] text-[var(--color-ink-400)]">
+                <span key={item} className="rounded-full border border-[var(--color-ink-200)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.25em] text-[var(--color-ink-300)]">
                   {item}
                 </span>
               ))}
@@ -162,10 +162,10 @@ export default async function LocationGoogleAdsPage({ params }: { params: Promis
           </div>
           <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-8">
             <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">Reporting you can act on</h3>
-            <p className="text-sm text-[var(--color-ink-400)] leading-relaxed mb-6">
+            <p className="text-sm text-[var(--color-ink-300)] leading-relaxed mb-6">
               Weekly reports show spend, CPL, and lead quality by campaign so you know exactly how ads are supporting your pipeline.
             </p>
-            <ul className="space-y-3 text-sm text-[var(--color-ink-400)] leading-relaxed">
+            <ul className="space-y-3 text-sm text-[var(--color-ink-300)] leading-relaxed">
               <li>• Keyword groups tied to buyer personas and price bands.</li>
               <li>• Lead highlights from the past week with disposition notes.</li>
               <li>• Budget and bid recommendations to amplify what’s working.</li>
@@ -182,7 +182,7 @@ export default async function LocationGoogleAdsPage({ params }: { params: Promis
             <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-4">
               Recent campaign performance in {location.name}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-[var(--color-ink-400)] leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-[var(--color-ink-300)] leading-relaxed">
               <div>
                 <span className="block text-3xl font-serif font-light text-[var(--color-off-black)]">38</span>
                 <p className="mt-2">Average qualified leads generated per month across flagship campaigns.</p>

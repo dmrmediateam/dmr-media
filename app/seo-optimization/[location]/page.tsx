@@ -129,16 +129,16 @@ export default async function LocationSEOPage({ params }: { params: Promise<{ lo
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="space-y-6">
-              <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)]">Key Advantages</span>
+              <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-300)]">Key Advantages</span>
               <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight">
                 Why strategic SEO matters in {location.name}.
               </h2>
-              <p className="text-sm sm:text-base text-[var(--color-ink-400)] leading-relaxed">
+              <p className="text-sm sm:text-base text-[var(--color-ink-300)] leading-relaxed">
                 {location.name}'s {location.marketType.toLowerCase()} demands visibility across every neighborhood search. Our programs deliver the authority your listings and brand need to stay ahead of competing brokers.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {location.keyFeatures.map((feature) => (
-                  <div key={feature} className="rounded-[20px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-6 text-sm text-[var(--color-ink-400)] leading-relaxed">
+                  <div key={feature} className="rounded-[20px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-6 text-sm text-[var(--color-ink-300)] leading-relaxed">
                     {feature}
                   </div>
                 ))}
@@ -148,12 +148,12 @@ export default async function LocationSEOPage({ params }: { params: Promise<{ lo
               <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)]">
                 Neighborhood focus
               </h3>
-              <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed">
                 We optimize individual listing and community pages for the neighborhoods where your buyers are already searching.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {location.topNeighborhoods.map((neighborhood) => (
-                  <div key={neighborhood} className="rounded-full border border-[var(--color-ink-200)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.25em] text-[var(--color-ink-400)]">
+                  <div key={neighborhood} className="rounded-full border border-[var(--color-ink-200)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.25em] text-[var(--color-ink-300)]">
                     {neighborhood}
                   </div>
                 ))}
@@ -167,7 +167,7 @@ export default async function LocationSEOPage({ params }: { params: Promise<{ lo
         <div className="container-max">
           <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-10">
             <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-4">Local results you can expect</h3>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-[var(--color-ink-400)] leading-relaxed">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-[var(--color-ink-300)] leading-relaxed">
               <li>Ranking gains for high-value keywords like “{location.name.toLowerCase()} luxury homes” and neighborhood-specific searches.</li>
               <li>Optimized Google Business Profiles that dominate the map pack across {location.name}'s prime areas.</li>
               <li>Localized content strategy that answers relocation, investment, and lifestyle queries from affluent buyers.</li>
@@ -206,7 +206,7 @@ export default async function LocationSEOPage({ params }: { params: Promise<{ lo
               <h4 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
                 Local deliverables
               </h4>
-              <ul className="space-y-3 text-sm text-[var(--color-ink-400)] leading-relaxed">
+              <ul className="space-y-3 text-sm text-[var(--color-ink-300)] leading-relaxed">
                 <li>• Neighborhood landing pages designed for discovery and lead capture.</li>
                 <li>• Google Business Profile optimization with review generation guidance.</li>
                 <li>• Monthly content calendar covering market reports, relocation guides, and listing spotlights.</li>

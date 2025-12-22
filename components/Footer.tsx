@@ -12,14 +12,14 @@ const Footer = () => {
           <div className="max-w-xl">
             <Link href="/" className="inline-flex items-center gap-3">
               <span className="text-2xl md:text-3xl font-serif text-[var(--color-off-black)] tracking-tight">
-                DMR <span className="italic">Media</span>
+                DMR <span className="italic font-serif">Media</span>
               </span>
             </Link>
-            <p className="mt-6 text-sm leading-relaxed text-[var(--color-ink-400)]">
+            <p className="mt-6 text-sm leading-relaxed text-[var(--color-ink-300)]">
               Luxury real estate marketing, engineered with restraint and precision. We merge search, media, and analytics into one seamless growth surface.
             </p>
-            <div className="mt-6 text-sm text-[var(--color-ink-400)] space-y-1">
-              <div className="uppercase tracking-[0.3em] text-[11px] text-[var(--color-ink-400)]">Contact</div>
+            <div className="mt-6 text-sm text-[var(--color-ink-300)] space-y-1">
+              <div className="uppercase tracking-[0.3em] text-[11px] text-[var(--color-ink-300)]">Contact</div>
               <a href="mailto:team@dmrmedia.org" className="block hover:text-[var(--color-trust)] transition-colors">
                 team@dmrmedia.org
               </a>
@@ -27,9 +27,9 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-10 text-sm text-[var(--color-ink-400)]">
+          <div className="grid grid-cols-2 gap-10 text-sm text-[var(--color-ink-300)]">
             <div>
-              <h4 className="uppercase tracking-[0.3em] text-[11px] text-[var(--color-ink-400)] mb-4">
+              <h4 className="uppercase tracking-[0.3em] text-[11px] text-[var(--color-ink-300)] mb-4">
                 Navigate
               </h4>
               <ul className="space-y-3">
@@ -57,7 +57,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <h4 className="uppercase tracking-[0.3em] text-[11px] text-[var(--color-ink-400)] mb-4">
+              <h4 className="uppercase tracking-[0.3em] text-[11px] text-[var(--color-ink-300)] mb-4">
                 Services
               </h4>
               <ul className="space-y-3">
@@ -86,10 +86,10 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-[var(--color-ink-200)] py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-xs text-[var(--color-ink-400)]">
+        <div className="border-t border-[var(--color-ink-200)] py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-xs text-[var(--color-ink-300)]">
           <div className="flex flex-col gap-4">
-            <div>
-              © {currentYear} DMR <span className="italic">Media</span>. All rights reserved.
+          <div>
+            © {currentYear} DMR <span className="italic font-serif">Media</span>. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-4">
               <Link href="/privacy-policy" className="hover:text-[var(--color-trust)] transition-colors">
@@ -118,7 +118,7 @@ const Footer = () => {
                   className="h-6 w-auto"
                 />
               </a>
-              <p className="text-[10px] text-[var(--color-ink-400)]">
+              <p className="text-[10px] text-[var(--color-ink-300)]">
                 Top ranked real estate marketing agency in wisconsin*
               </p>
             </div>

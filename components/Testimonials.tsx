@@ -63,13 +63,13 @@ const Testimonials = () => {
       <div className="container mx-auto px-6 max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+          <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-300)] mb-4 block">
             Voices
           </span>
           <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] mb-4">
             Client <span className="italic">Success Stories</span>
           </h2>
-          <p className="text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed">
             Real results from real estate professionals who transformed their digital presence
           </p>
         </div>
@@ -143,7 +143,7 @@ const Testimonials = () => {
                   )}
                   
                   {testimonial.location && (
-                    <p className={`text-[var(--color-ink-400)] mb-6 transition-all duration-500 ${
+                    <p className={`text-[var(--color-ink-300)] mb-6 transition-all duration-500 ${
                       hoveredIndex === index ? 'text-sm opacity-100' : 'text-xs opacity-70'
                     }`}>
                       {testimonial.location}
@@ -168,7 +168,7 @@ const Testimonials = () => {
                       ? 'max-h-32 opacity-100'
                       : 'max-h-0 opacity-0'
                   }`}>
-                    <p className="text-[var(--color-ink-400)] text-sm leading-relaxed line-clamp-3">
+                    <p className="text-[var(--color-ink-300)] text-sm leading-relaxed line-clamp-3">
                       "{testimonial.shortText}"
                     </p>
                   </div>
@@ -178,7 +178,7 @@ const Testimonials = () => {
                 {hoveredIndex !== null && hoveredIndex !== index && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="transform -rotate-90 whitespace-nowrap">
-                      <span className="text-[var(--color-ink-400)] text-2xl font-serif tracking-wider">
+                      <span className="text-[var(--color-ink-300)] text-2xl font-serif tracking-wider">
                         {testimonial.name}
                       </span>
                     </div>
@@ -236,7 +236,7 @@ const Testimonials = () => {
                 )}
                 
                 {testimonial.location && (
-                  <p className="text-[var(--color-ink-400)] text-sm mb-4">
+                  <p className="text-[var(--color-ink-300)] text-sm mb-4">
                     {testimonial.location}
                   </p>
                 )}
@@ -252,7 +252,7 @@ const Testimonials = () => {
         </div>
 
         {/* Mobile Notice */}
-        <div className="mt-8 text-center text-sm text-[var(--color-ink-400)] lg:hidden">
+        <div className="mt-8 text-center text-sm text-[var(--color-ink-300)] lg:hidden">
           Swipe to explore every story
         </div>
       </div>

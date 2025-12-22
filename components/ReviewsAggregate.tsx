@@ -174,7 +174,7 @@ const ReviewsAggregate = () => {
             transition={{ duration: 0.7 }}
             className="text-center mb-12"
           >
-            <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+            <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-300)] mb-4 block">
               Trusted by Real Estate Professionals
             </span>
             <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
@@ -202,7 +202,7 @@ const ReviewsAggregate = () => {
                     ))}
                   </div>
                 </div>
-                <p className="text-base text-[var(--color-ink-400)]">
+                <p className="text-base text-[var(--color-ink-300)]">
                   Based on Google & Trustpilot
                 </p>
               </div>
@@ -250,7 +250,7 @@ const ReviewsAggregate = () => {
                 <div className="font-serif font-light text-[var(--color-off-black)] text-lg">
                   Video Testimonial
                 </div>
-                <div className="text-xs text-[var(--color-ink-400)] mt-1">
+                <div className="text-xs text-[var(--color-ink-300)] mt-1">
                   Client Success Story
                 </div>
               </div>
@@ -279,7 +279,7 @@ const ReviewsAggregate = () => {
                 </div>
 
                 {/* Review Text */}
-                <blockquote className="text-base text-[var(--color-ink-400)] leading-relaxed mb-6 flex-grow italic">
+                <blockquote className="text-base text-[var(--color-ink-300)] leading-relaxed mb-6 flex-grow italic">
                   "{review.text}"
                 </blockquote>
 
@@ -294,11 +294,11 @@ const ReviewsAggregate = () => {
                     </div>
                   )}
                   <div className="flex items-center gap-2 mt-1">
-                    <div className="text-xs text-[var(--color-ink-400)]">
+                    <div className="text-xs text-[var(--color-ink-300)]">
                       {review.date}
                     </div>
                     {review.source && (
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)] bg-[var(--color-ink-200)] px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-300)] bg-[var(--color-ink-200)] px-2 py-0.5 rounded-full">
                         {review.source}
                       </span>
                     )}

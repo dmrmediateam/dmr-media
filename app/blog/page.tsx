@@ -23,11 +23,11 @@ export default async function BlogPage() {
         <div className="relative z-10 w-full pt-12 pb-14">
           <div className="container-max">
             <div className="max-w-3xl space-y-4">
-              <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)]">Insights</span>
+              <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-300)]">Insights</span>
               <h1 className="text-[40px] sm:text-[52px] lg:text-[60px] font-serif font-light text-[var(--color-off-black)] leading-[1.05] tracking-tight">
                 Field notes for market makers.
               </h1>
-              <p className="text-sm sm:text-base text-[var(--color-ink-400)] leading-[1.55] max-w-xl">
+              <p className="text-sm sm:text-base text-[var(--color-ink-300)] leading-[1.55] max-w-xl">
                 What we’re seeing across luxury real estate—SEO intel, campaign architecture, and conversion systems engineered for discerning buyers.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
@@ -77,7 +77,7 @@ export default async function BlogPage() {
                       </span>
                     </div>
                     <div className="p-5 flex flex-col gap-3">
-                      <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] flex items-center gap-2">
+                      <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] flex items-center gap-2">
                         <span>{formattedDate}</span>
                         <span>•</span>
                         <span>{post.readTime}</span>
@@ -85,7 +85,7 @@ export default async function BlogPage() {
                       <h2 className="text-[22px] font-serif font-light text-[var(--color-off-black)] leading-tight group-hover:text-[var(--color-trust)] transition-colors duration-300">
                         {post.title}
                       </h2>
-                      <p className="text-sm text-[var(--color-ink-400)] leading-[1.5]">
+                      <p className="text-sm text-[var(--color-ink-300)] leading-[1.5]">
                         {post.description}
                       </p>
                       <span className="inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.24em] text-[var(--color-trust)]">
@@ -99,7 +99,7 @@ export default async function BlogPage() {
             </div>
           ) : (
             <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-12 text-center">
-              <p className="text-sm text-[var(--color-ink-400)]">Marketing insights and strategies coming soon.</p>
+              <p className="text-sm text-[var(--color-ink-300)]">Marketing insights and strategies coming soon.</p>
             </div>
           )}
         </div>

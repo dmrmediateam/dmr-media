@@ -88,7 +88,7 @@ function StrategyCard({ title, items, variant = 'light' }: StrategyCard) {
       : 'bg-gray-900 border-gray-700 hover:border-off-black';
   
   const titleStyles = variant === 'light' ? 'text-off-black' : 'text-white';
-  const itemStyles = variant === 'light' ? 'text-gray-dark' : 'text-gray-300';
+  const itemStyles = variant === 'light' ? 'text-[var(--color-ink-300)]' : 'text-gray-300';
 
   return (
     <div className={`p-6 border transition-all duration-400 ${cardStyles}`}>
@@ -134,7 +134,7 @@ function Phase({ phase, isLast = false }: { phase: Phase; isLast?: boolean }) {
             <h3 className="text-3xl font-serif font-light text-off-black mb-2">
               {phase.title}
             </h3>
-            <p className="text-gray-dark">{phase.description}</p>
+            <p className="text-[var(--color-ink-300)]">{phase.description}</p>
           </div>
         </div>
 
@@ -167,7 +167,7 @@ export default function CANSFramework() {
             The CANS Framework
           </h2>
           <div className="w-24 h-px bg-off-black mx-auto mb-6"></div>
-          <p className="text-gray-dark max-w-3xl mx-auto text-lg">
+          <p className="text-[var(--color-ink-300)] max-w-3xl mx-auto text-lg">
             Our proprietary lead generation system that leverages Google's ecosystem to
             deliver predictable, scalable results for luxury real estate professionals.
           </p>
@@ -186,7 +186,7 @@ export default function CANSFramework() {
 
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <p className="text-lg text-gray-dark mb-6">
+          <p className="text-lg text-[var(--color-ink-300)] mb-6">
             Ready to implement the CANS Framework for your real estate business?
           </p>
           <Link href="/contact" className="btn-primary">

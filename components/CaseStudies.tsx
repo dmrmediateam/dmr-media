@@ -7,7 +7,7 @@ export default function CaseStudies() {
       id: 'willow-brook-realty',
       title: "Willow Brook Realty",
       client: 'Willow Brook',
-      company: 'Realty',
+      company: 'Vermont',
       result: '46 Leads / 3 Weeks',
       description:
         'From zero visibility to 46 leads in 3 weeks. Built a complete inbound foundation with local SEO, Google Business Profile optimization, and targeted ads across Vermont and New Hampshire.',
@@ -17,7 +17,7 @@ export default function CaseStudies() {
       id: 'eagan-luxury-real-estate',
       title: "Eagan Luxury Real Estate",
       client: 'Eagan Luxury',
-      company: 'Real Estate',
+      company: 'St. Petersburg, FL',
       result: 'Ongoing',
       description:
         'Consolidated multiple fragmented websites into a single, powerful brand presence—launched December 17th with 0 measurable ranking loss and 10% keyword increase.',
@@ -26,8 +26,8 @@ export default function CaseStudies() {
     {
       id: 'rick-visions-first-realty',
       title: "Rick's SEO Transformation",
-      client: 'Rick',
-      company: 'Visions First Realty',
+      client: 'Visions First Realty',
+      company: 'Ashland, WI',
       result: '2-3 Leads / Day',
       description:
         "From misaligned keywords to daily qualified leads -- how we fixed Rick's SEO strategy and unlocked consistent deal flow.",
@@ -40,7 +40,7 @@ export default function CaseStudies() {
       <div className="container-max">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16">
           <div>
-            <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+            <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-300)] mb-4 block">
               Results
             </span>
             <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">

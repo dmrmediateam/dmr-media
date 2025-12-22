@@ -11,13 +11,13 @@ export default function PrivacyPolicyPage() {
       <section className="section-padding bg-white border-b border-gray-200">
         <div className="container-max">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-serif font-light text-off-black mb-4">
-              Privacy Policy
-            </h1>
+          <h1 className="text-4xl md:text-5xl font-serif font-light text-off-black mb-4">
+            Privacy Policy
+          </h1>
             <div className="w-24 h-px bg-off-black mb-8"></div>
-            <p className="text-sm text-[var(--color-ink-400)] mb-12">
-              Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-            </p>
+            <p className="text-sm text-[var(--color-ink-300)] mb-12">
+            Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </p>
 
             <div className="prose prose-lg max-w-none space-y-8 text-[var(--color-ink-300)]">
               <section>
@@ -114,8 +114,8 @@ export default function PrivacyPolicyPage() {
                 </p>
                 <p className="mt-3">
                   <strong>Email:</strong> team@dmrmedia.org<br />
-                  <strong>Phone:</strong> +1 (920) 940-4049
-                </p>
+                    <strong>Phone:</strong> +1 (920) 940-4049
+                  </p>
               </section>
             </div>
           </div>

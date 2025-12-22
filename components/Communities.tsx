@@ -54,7 +54,7 @@ const Communities = () => {
           <h2 className="text-3xl sm:text-4xl font-serif font-light text-black mb-4 heading-underline pb-4">
             Our Locations
           </h2>
-          <p className="text-base text-gray-dark max-w-3xl mx-auto mt-8">
+          <p className="text-base text-[var(--color-ink-300)] max-w-3xl mx-auto mt-8">
             Discover exceptional properties in New Jersey's most prestigious communities
           </p>
         </motion.div>
@@ -81,7 +81,7 @@ const Communities = () => {
                     <h4 className="text-lg font-serif font-light text-black mb-3 group-hover:text-gold transition-colors duration-700">
                       {area.name}
                     </h4>
-                    <p className="text-gray-dark text-xs leading-relaxed">
+                    <p className="text-[var(--color-ink-300)] text-xs leading-relaxed">
                       {area.description}
                     </p>
                     <div className="mt-4 text-gold text-sm flex items-center group-hover:translate-x-2 transition-transform duration-700">

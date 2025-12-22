@@ -47,7 +47,7 @@ export default function StrategyCallConfirmationPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
-                className="text-sm md:text-base text-[var(--color-ink-400)] max-w-xl mx-auto"
+                className="text-sm md:text-base text-[var(--color-ink-300)] max-w-xl mx-auto"
               >
                 Watch this quick video to learn how to accept your calendar invite
               </motion.p>
@@ -90,7 +90,7 @@ export default function StrategyCallConfirmationPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
               <div className="flex-1">
-                <p className="text-sm md:text-base text-[var(--color-ink-400)] leading-tight">
+                <p className="text-sm md:text-base text-[var(--color-ink-300)] leading-tight">
                   <span className="font-semibold text-[var(--color-off-black)]">Important:</span> Due to a high volume of calls, we will cancel your meeting if you do not accept the calendar invite or reply to this email within 48 hours.
                 </p>
               </div>
@@ -110,13 +110,13 @@ export default function StrategyCallConfirmationPage() {
               transition={{ duration: 0.7 }}
               className="text-center mb-16"
             >
-              <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+              <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-300)] mb-4 block">
                 What to Expect
               </span>
               <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4">
                 What We'll Cover
               </h2>
-              <p className="text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed">
+              <p className="text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed">
                 Here's a quick overview of what we'll cover so you know exactly what to expect (and can get the most out of our time together):
               </p>
             </motion.div>
@@ -138,7 +138,7 @@ export default function StrategyCallConfirmationPage() {
                     <h3 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mb-4">
                       Get to Know Your Goals
                     </h3>
-                    <p className="text-[var(--color-ink-400)] leading-relaxed text-base md:text-lg">
+                    <p className="text-[var(--color-ink-300)] leading-relaxed text-base md:text-lg">
                       Let's be honest, giving you advice that works in New York or Cali doesn't always work in every state. We'll start by understanding your exact market, niche, and short-term goals so the recommendations fit you, not some cookie-cutter template.
                     </p>
                   </div>
@@ -161,12 +161,12 @@ export default function StrategyCallConfirmationPage() {
                     <h3 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mb-4">
                       Website & SEO Breakdown
                     </h3>
-                    <p className="text-[var(--color-ink-400)] leading-relaxed mb-4 text-base md:text-lg">
+                    <p className="text-[var(--color-ink-300)] leading-relaxed mb-4 text-base md:text-lg">
                       We'll analyze your website & google business listing using advanced SEO tools like SEMrush to identify what's working and what's holding you back.
                     </p>
                     <div className="bg-[var(--color-off-white)] p-5 rounded-[16px] border-l-4 border-[var(--color-off-black)]">
                       <p className="text-[var(--color-off-black)] font-medium mb-3">You'll see:</p>
-                      <ul className="list-disc list-inside space-y-2 text-[var(--color-ink-400)]">
+                      <ul className="list-disc list-inside space-y-2 text-[var(--color-ink-300)]">
                         <li>Why your site is ranking where it is</li>
                         <li>The specific fixes to boost traffic and conversions</li>
                         <li>Actionable next steps like backlink strategy, blog clusters, and on-page optimizations</li>
@@ -192,7 +192,7 @@ export default function StrategyCallConfirmationPage() {
                     <h3 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mb-4">
                       Action Plan for Predictable Listings
                     </h3>
-                    <p className="text-[var(--color-ink-400)] leading-relaxed text-base md:text-lg">
+                    <p className="text-[var(--color-ink-300)] leading-relaxed text-base md:text-lg">
                       We'll wrap up with a simple 4 month strategy to attract 2-3 more high-quality listings in your market without relying on paid leads or cold outreach.
                     </p>
                   </div>
@@ -217,7 +217,7 @@ export default function StrategyCallConfirmationPage() {
               <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mb-6">
                 To Get the Most from the Call, Think About:
               </h2>
-              <ul className="space-y-4 text-[var(--color-ink-400)] mb-6">
+              <ul className="space-y-4 text-[var(--color-ink-300)] mb-6">
                 <li className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-[var(--color-trust)] flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -237,7 +237,7 @@ export default function StrategyCallConfirmationPage() {
                   <span className="text-base md:text-lg">Whether your market is <strong className="text-[var(--color-off-black)]">buyer-heavy, seller-heavy, or balanced</strong></span>
                 </li>
               </ul>
-              <p className="mt-6 text-[var(--color-ink-400)] italic text-base md:text-lg">
+              <p className="mt-6 text-[var(--color-ink-300)] italic text-base md:text-lg">
                 No prep is required but having this in mind helps us hit the ground running.
               </p>
             </motion.div>
@@ -255,11 +255,11 @@ export default function StrategyCallConfirmationPage() {
             transition={{ duration: 0.7 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <p className="text-lg md:text-xl text-[var(--color-ink-400)] leading-relaxed mb-8">
+            <p className="text-lg md:text-xl text-[var(--color-ink-300)] leading-relaxed mb-8">
               Looking forward to diving in—this call is designed to give you real insights and a plan you can actually use (even if we never work together).
             </p>
             <div className="bg-white p-6 md:p-8 rounded-[24px] border border-[var(--color-ink-200)] inline-block">
-              <p className="text-[var(--color-ink-400)] text-base md:text-lg">
+              <p className="text-[var(--color-ink-300)] text-base md:text-lg">
                 <strong className="text-[var(--color-off-black)]">P.S.</strong> If you'd like us to send over the full recording and a personalized video breakdown after the call, just reply "vid" to your confirmation email.
               </p>
             </div>

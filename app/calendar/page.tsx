@@ -107,7 +107,7 @@ export default function CalendarPage() {
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] mb-6 md:mb-8 tracking-tight">
                 Apply for a 1:1 Strategy Session (Limited to Serious Agents)
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
-              </h1>
+          </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-300)] max-w-3xl mx-auto leading-relaxed">
                 We only accept agents who already have deal flow and want to add <em>2–3 closings</em> per month using a <em>predictable system</em>. If selected, you'll receive a custom roadmap (a <em>$3,500 value</em>) built specifically for your market.
               </p>
@@ -124,10 +124,10 @@ export default function CalendarPage() {
                 <div className="bg-[var(--color-trust)]/10 backdrop-blur-sm border border-[var(--color-trust)]/20 rounded-full px-4 py-2 flex items-center gap-2 shadow-sm">
                   <svg className="w-4 h-4 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+              </svg>
                   <span className="text-sm font-medium text-[var(--color-off-black)]">2 minutes fillout-time</span>
-                </div>
-              </div>
+            </div>
+          </div>
               
               <div className="relative z-10 pt-12 md:pt-16">
                 <form onSubmit={handleSubmit} className="space-y-8">
@@ -147,7 +147,7 @@ export default function CalendarPage() {
                       <option value="yes">Yes</option>
                       <option value="no">No</option>
                     </select>
-                  </div>
+        </div>
 
                   {/* Active market */}
                   <div className="space-y-3">
@@ -162,8 +162,8 @@ export default function CalendarPage() {
                       onChange={(e) => setFormData({ ...formData, activeMarket: e.target.value })}
                       className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
                       placeholder="e.g., St. Petersburg, FL"
-                    />
-                  </div>
+              />
+            </div>
 
                   {/* Listing situation */}
                   <div className="space-y-3">
@@ -183,7 +183,7 @@ export default function CalendarPage() {
                       <option value="inconsistent-want-predictability">I take listings inconsistently and want predictability</option>
                       <option value="exploring-options">I'm just exploring options</option>
                     </select>
-                  </div>
+          </div>
 
                   {/* Decision maker */}
                   <div className="space-y-3">
@@ -201,7 +201,7 @@ export default function CalendarPage() {
                       <option value="yes">Yes</option>
                       <option value="no">No</option>
                     </select>
-                  </div>
+        </div>
 
                   {/* How many closings in last 12 months */}
                   <div className="space-y-3">
@@ -218,7 +218,7 @@ export default function CalendarPage() {
                       className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
                       placeholder="Enter number of closings"
                     />
-                  </div>
+          </div>
 
                   {/* Which tools do you have */}
                   <div className="space-y-3">
@@ -242,8 +242,8 @@ export default function CalendarPage() {
                           </span>
                         </label>
                       ))}
-                    </div>
-                  </div>
+              </div>
+            </div>
 
                   {/* Website URL - Only show if Website is checked */}
                   {formData.tools.includes('Website') && (
@@ -260,7 +260,7 @@ export default function CalendarPage() {
                         className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
                         placeholder="https://yourwebsite.com"
                       />
-                    </div>
+              </div>
                   )}
 
                   {/* Lead response time */}
@@ -282,7 +282,7 @@ export default function CalendarPage() {
                       <option value="1-2-days">1-2 days</option>
                       <option value="3+days">3+ days</option>
                     </select>
-                  </div>
+            </div>
 
                   <motion.button
                     whileHover={{ scale: 1.02 }}
@@ -297,8 +297,8 @@ export default function CalendarPage() {
               </div>
             </div>
           </motion.div>
+          </div>
         </div>
-      </div>
     </div>
   );
 }

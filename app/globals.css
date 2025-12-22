@@ -4,24 +4,26 @@
 
 @import './styles/foundation.css';
 
-/* Luxury Fonts - Instrument Serif (Primary) */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Luxury Fonts - Instrument Serif (Primary) & Montserrat Thin */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@100&display=swap');
 
 @layer base {
   html {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
   }
   
   body {
-    @apply bg-[--off-white] text-[--off-black];
+    @apply bg-[--off-white];
     margin: 0;
     padding: 0;
-    color: var(--off-black);
+    color: var(--color-ink-300);
     background-color: var(--off-white);
     overflow-x: hidden;
-    font-family: 'Instrument Serif', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
   }
   
   * {
@@ -58,9 +60,23 @@
     @apply text-xl sm:text-2xl;
   }
 
-  /* Body text with Instrument Serif */
-  p, span, div, a, button, input, textarea, label {
+  /* Body text with Montserrat Thin 100 - darker gray for readability */
+  p, span, div, button, input, textarea, label, li, td, th {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    color: var(--color-ink-300);
+  }
+  
+  /* Links keep Instrument Serif */
+  a {
     font-family: 'Instrument Serif', serif;
+    color: var(--color-ink-300);
+  }
+  
+  /* Ensure headings stay black and use Instrument Serif */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-off-black) !important;
+    font-family: 'Instrument Serif', serif !important;
   }
 }
 

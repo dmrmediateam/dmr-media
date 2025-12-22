@@ -30,7 +30,7 @@ function QualificationResultContent() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-lg text-[var(--color-ink-400)]">Invalid qualification result.</p>
+          <p className="text-lg text-[var(--color-ink-300)]">Invalid qualification result.</p>
         </div>
       </div>
     );
@@ -57,7 +57,7 @@ function QualificationResultContent() {
                 Thank You for Your Interest
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed mb-8">
+              <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed mb-8">
                 I don't think it's a good fit at this time.
               </p>
             </motion.div>
@@ -92,7 +92,7 @@ function QualificationResultContent() {
                   <h3 className="text-xl font-semibold text-[var(--color-off-black)] mb-2">
                     Watch Our Training Video
                   </h3>
-                  <p className="text-[var(--color-ink-400)] leading-relaxed mb-4">
+                  <p className="text-[var(--color-ink-300)] leading-relaxed mb-4">
                     Learn proven strategies and frameworks to help you build your foundation and scale your real estate business.
                   </p>
                   <span className="text-[var(--color-trust)] font-medium text-sm inline-flex items-center gap-1">
@@ -119,7 +119,7 @@ function QualificationResultContent() {
                   <h3 className="text-xl font-semibold text-[var(--color-off-black)] mb-2">
                     Google Ads for Realtors Guide
                   </h3>
-                  <p className="text-[var(--color-ink-400)] leading-relaxed mb-4">
+                  <p className="text-[var(--color-ink-300)] leading-relaxed mb-4">
                     Discover proven 2025 strategies and frameworks to generate quality leads, boost visibility, and outpace the competition.
                   </p>
                   <span className="text-[var(--color-trust)] font-medium text-sm inline-flex items-center gap-1">
@@ -174,7 +174,7 @@ function QualificationResultContent() {
                 We'll Be In Touch
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed mb-8">
+              <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed mb-8">
                 Thank you for your application. We're reviewing your information and will reach out if we think there's a good fit. In the meantime, make sure to check your email for the webinar details.
               </p>
               <motion.button
@@ -254,7 +254,7 @@ function QualificationResultContent() {
                   Congratulations! You're Qualified
                   <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
                 </h1>
-                <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-400)] max-w-2xl mx-auto leading-relaxed mb-8">
+                <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed mb-8">
                 You've been selected for a complimentary 1:1 Strategy Session. Book your session below to receive your custom roadmap (a <em>$3,500 value</em>) built specifically for your market.
                 </p>
               </motion.div>
@@ -339,7 +339,7 @@ export default function QualificationResultPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <p className="text-lg text-[var(--color-ink-400)]">Loading...</p>
+          <p className="text-lg text-[var(--color-ink-300)]">Loading...</p>
         </div>
       </div>
     }>

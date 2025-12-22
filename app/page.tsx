@@ -14,7 +14,7 @@ export default async function Home() {
   const stats = [
     { value: '$17,166K', label: 'Average Client Adds in GCI' },
     { value: '110+', label: 'Partners Nationwide' },
-    { value: '5/5', label: 'Client Satisfaction' },
+    { value: '5/5', label: 'Client Satisfaction on Google & Trustpilot' },
     { value: '833.4%', label: 'Return on Invest' },
   ];
 
@@ -24,23 +24,25 @@ export default async function Home() {
 
       <section className="py-24">
         <div className="container-max">
-          <div className="max-w-3xl mb-20">
-            <p className="text-sm text-[var(--color-ink-400)] mb-6 leading-relaxed">
+          <div className="max-w-3xl mb-16">
+            <p className="text-xs uppercase tracking-[0.4em] text-[var(--color-ink-300)] mb-4">
               DMR Media by the Numbers
             </p>
-              <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-tight">
               We drive real <em>ROI</em> for our <em>partners</em>.
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="relative flex flex-col gap-2"
+                className="flex flex-col"
               >
-                <span className="text-5xl md:text-6xl font-serif font-light text-[var(--color-off-black)]">{stat.value}</span>
-                <span className="text-xs uppercase tracking-[0.4em] text-[var(--color-ink-400)] mt-2">
+                <span className="text-5xl md:text-6xl lg:text-7xl font-serif font-light text-[var(--color-off-black)] leading-none mb-3">
+                  {stat.value}
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.1em] text-[var(--color-ink-300)] leading-tight">
                   {stat.label}
                 </span>
               </div>
@@ -57,7 +59,7 @@ export default async function Home() {
         <div className="container-max">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16">
             <div>
-              <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
+              <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-300)] mb-4 block">
                 Latest insights
               </span>
               <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
@@ -100,7 +102,7 @@ export default async function Home() {
                     </div>
 
                     <div className="p-6">
-                      <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-4 flex items-center gap-2">
+                      <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-4 flex items-center gap-2">
                         <span>{formattedDate}</span>
                         <span>•</span>
                         <span>{post.readTime}</span>
@@ -110,7 +112,7 @@ export default async function Home() {
                         {post.title}
                       </h3>
 
-                      <p className="text-[var(--color-ink-400)] text-sm leading-relaxed mb-6">
+                      <p className="text-[var(--color-ink-300)] text-sm leading-relaxed mb-6">
                         {post.description}
                       </p>
 
@@ -125,7 +127,7 @@ export default async function Home() {
             </div>
           ) : (
             <div className="bg-white border border-[var(--color-ink-200)] p-12 text-center rounded-[20px]">
-              <p className="text-[var(--color-ink-400)] text-lg">
+              <p className="text-[var(--color-ink-300)] text-lg">
                 Marketing insights and strategies coming soon
               </p>
             </div>
@@ -139,13 +141,13 @@ export default async function Home() {
         <div className="container-max">
           <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/85 backdrop-blur-sm px-10 py-16 md:px-14 md:py-18 flex flex-col md:flex-row md:items-center md:justify-between gap-10">
             <div className="max-w-xl">
-              <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)] mb-4 block">
+              <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-300)] mb-4 block">
                 Connect
               </span>
               <h2 className="text-[36px] sm:text-[44px] font-serif font-light text-[var(--color-off-black)] leading-[1.05] tracking-tight">
                 Tell us where you want the market to move.
               </h2>
-              <p className="mt-5 text-sm sm:text-base text-[var(--color-ink-400)] leading-relaxed">
+              <p className="mt-5 text-sm sm:text-base text-[var(--color-ink-300)] leading-relaxed">
                 We’ll design a calm, measurable marketing system around your portfolio—no noise, just the next milestone mapped out.
               </p>
             </div>

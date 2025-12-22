@@ -6,7 +6,7 @@ const SearchProperties = () => {
           <h2 className="scroll-animate text-3xl sm:text-4xl font-serif font-light text-black mb-4 heading-underline pb-4">
             Search Properties
           </h2>
-          <p className="scroll-animate text-base text-gray-dark max-w-2xl mx-auto mt-8">
+          <p className="scroll-animate text-base text-[var(--color-ink-300)] max-w-2xl mx-auto mt-8">
             Find your dream home with our advanced search tools.
           </p>
         </div>
@@ -18,7 +18,7 @@ const SearchProperties = () => {
             alt="No listings yet" 
             className="w-48 opacity-60 mx-auto mb-4"
           />
-          <p className="text-gray-dark text-lg">
+          <p className="text-[var(--color-ink-300)] text-lg">
             Advanced property search integration coming soon
           </p>
         </div>

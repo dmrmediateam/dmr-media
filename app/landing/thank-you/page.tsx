@@ -214,7 +214,7 @@ function ThankYouContent() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-lg sm:text-xl text-[var(--color-ink-400)] max-w-2xl mx-auto"
+                className="text-lg sm:text-xl text-[var(--color-ink-300)] max-w-2xl mx-auto"
               >
                 Check your email for the webinar details.
               </motion.p>
@@ -234,7 +234,7 @@ function ThankYouContent() {
                   Apply for a 1:1 Strategy Session (Limited to Serious Agents)
                   <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
                 </h2>
-                <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-400)] max-w-3xl mx-auto leading-relaxed">
+                <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-300)] max-w-3xl mx-auto leading-relaxed">
                   We only accept agents who already have deal flow and want to add <em>2–3 closings</em> per month using a <em>predictable system</em>. If selected, you'll receive a custom roadmap (a <em>$3,500 value</em>) built specifically for your market.
                 </p>
               </div>
@@ -446,7 +446,7 @@ export default function ThankYouPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <p className="text-lg text-[var(--color-ink-400)]">Loading...</p>
+          <p className="text-lg text-[var(--color-ink-300)]">Loading...</p>
         </div>
       </div>
     }>

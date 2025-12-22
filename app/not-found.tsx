@@ -11,7 +11,7 @@ export default function NotFound() {
               Oh No<span className="text-[var(--color-trust)]">!</span> 404
               <span className="text-[var(--color-trust)]">!</span>
             </h1>
-            <p className="text-base sm:text-lg text-[var(--color-ink-400)] leading-[1.55] max-w-2xl">
+            <p className="text-base sm:text-lg text-[var(--color-ink-300)] leading-[1.55] max-w-2xl">
               That route isn’t live—either it moved or never shipped. Head back to the main flow or jump into our latest market intelligence while we keep refining every surface.
             </p>
             <div className="flex flex-wrap gap-4 pt-6">
@@ -39,7 +39,7 @@ export default function NotFound() {
               <h2 className="text-2xl sm:text-3xl font-serif font-light text-[var(--color-off-black)]">
                 Looking for something specific?
               </h2>
-              <p className="text-sm sm:text-base text-[var(--color-ink-400)] leading-[1.55] max-w-2xl">
+              <p className="text-sm sm:text-base text-[var(--color-ink-300)] leading-[1.55] max-w-2xl">
                 Our team can point you to the right playbook—SEO, paid media, analytics, or full-funnel acquisition systems tailored for luxury real estate operators.
               </p>
               <div className="flex flex-wrap gap-4 pt-2">

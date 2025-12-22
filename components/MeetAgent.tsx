@@ -27,7 +27,7 @@ const MeetAgent = () => {
           <h2 className="text-3xl sm:text-4xl font-serif font-light text-black mb-4 heading-underline pb-4">
             Meet Cheryl Towey Services
           </h2>
-          <p className="text-base text-gray-dark mt-8">
+          <p className="text-base text-[var(--color-ink-300)] mt-8">
             Your trusted real estate professional in New Jersey
           </p>
         </motion.div>
@@ -82,7 +82,7 @@ const MeetAgent = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={textInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
-              className="text-gray-dark leading-relaxed space-y-4 mb-8 text-sm"
+              className="text-[var(--color-ink-300)] leading-relaxed space-y-4 mb-8 text-sm"
             >
               <p>
                 Cheryl Towey Services is a dedicated real estate professional serving New Jersey's most desirable communities. With over 15 years of experience in the real estate industry, Cheryl specializes in residential properties throughout Hackettstown, Andover, Byram, Blairstown, Chester, and Washington.

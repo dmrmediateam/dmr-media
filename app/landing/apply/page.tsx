@@ -131,7 +131,7 @@ function ApplyContent() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-lg sm:text-xl text-[var(--color-ink-400)] max-w-2xl mx-auto"
+                className="text-lg sm:text-xl text-[var(--color-ink-300)] max-w-2xl mx-auto"
               >
                 Complete the form below to apply for your strategy call.
               </motion.p>
@@ -151,7 +151,7 @@ function ApplyContent() {
                   Apply for a 1:1 Strategy Session (Limited to Serious Agents)
                   <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
                 </h2>
-                <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-400)] max-w-3xl mx-auto leading-relaxed">
+                <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-300)] max-w-3xl mx-auto leading-relaxed">
                   We only accept agents who already have deal flow and want to add <em>2–3 closings</em> per month using a <em>predictable system</em>. If selected, you'll receive a custom roadmap (a <em>$950 value</em>) built specifically for your market.
                 </p>
               </div>
@@ -166,7 +166,7 @@ function ApplyContent() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Email Field */}
                   <div>
-                    <label htmlFor="email" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                    <label htmlFor="email" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                       Email Address
                     </label>
                     <input
@@ -182,7 +182,7 @@ function ApplyContent() {
 
                   {/* How many closings per month */}
                   <div>
-                    <label htmlFor="closingsPerMonth" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                    <label htmlFor="closingsPerMonth" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                       How many closings are you doing each month?
                     </label>
                     <select
@@ -204,7 +204,7 @@ function ApplyContent() {
 
                   {/* What are you currently doing for marketing */}
                   <div>
-                    <label htmlFor="currentMarketing" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                    <label htmlFor="currentMarketing" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                       What are you currently doing for marketing?
                     </label>
                     <textarea
@@ -220,7 +220,7 @@ function ApplyContent() {
 
                   {/* Which tools do you have */}
                   <div>
-                    <label className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-3">
+                    <label className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-3">
                       Which of the following tools do you have?
                     </label>
                     <div className="space-y-3">
@@ -245,7 +245,7 @@ function ApplyContent() {
 
                   {/* Lead response time */}
                   <div>
-                    <label htmlFor="leadResponseTime" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                    <label htmlFor="leadResponseTime" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                       What is your typical time to respond to a lead?
                     </label>
                     <select
@@ -300,7 +300,7 @@ export default function ApplyPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <p className="text-lg text-[var(--color-ink-400)]">Loading...</p>
+          <p className="text-lg text-[var(--color-ink-300)]">Loading...</p>
         </div>
       </div>
     }>

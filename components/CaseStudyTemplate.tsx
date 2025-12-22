@@ -68,12 +68,12 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
       <section className="relative overflow-hidden bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
         <div className="container-max py-24">
           <div className="max-w-3xl space-y-6">
-            <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-400)]">case study</span>
+            <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-300)]">case study</span>
             <h1 className="text-[42px] sm:text-[56px] font-serif font-light leading-[1.08]">
               {data.title}
               <span className="text-[var(--color-trust)] text-[1.1em]">.</span>
             </h1>
-            <p className="text-base sm:text-lg text-[var(--color-ink-400)] leading-relaxed">
+            <p className="text-base sm:text-lg text-[var(--color-ink-300)] leading-relaxed">
               {data.subtitle}
             </p>
           </div>
@@ -97,8 +97,8 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                 className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl shadow-[0_25px_45px_rgba(15,15,15,0.08)]"
               >
                 <div className="text-[36px] font-serif font-light">{stat.value}</div>
-                <p className="mt-2 text-sm text-[var(--color-ink-400)] uppercase tracking-[0.3em]">{stat.label}</p>
-                <p className="mt-4 text-sm text-[var(--color-ink-400)]">{stat.detail}</p>
+                <p className="mt-2 text-sm text-[var(--color-ink-300)] uppercase tracking-[0.3em]">{stat.label}</p>
+                <p className="mt-4 text-sm text-[var(--color-ink-300)]">{stat.detail}</p>
               </div>
             ))}
           </div>
@@ -114,7 +114,7 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                 {section.title && (
                   <div className="space-y-4">
                     {section.subtitle && (
-                      <p className="text-xs uppercase tracking-[0.35em] text-[var(--color-ink-400)]">{section.subtitle}</p>
+                      <p className="text-xs uppercase tracking-[0.35em] text-[var(--color-ink-300)]">{section.subtitle}</p>
                     )}
                     <h2 className="text-[28px] sm:text-[36px] lg:text-[40px] font-serif font-light leading-tight text-[var(--color-off-black)]">
                       {section.title}
@@ -151,7 +151,7 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                         />
                       </div>
                     )}
-                    <div className="space-y-6 text-[var(--color-ink-400)] text-base sm:text-[17px] leading-[1.6]">
+                    <div className="space-y-6 text-[var(--color-ink-300)] text-base sm:text-[17px] leading-[1.6]">
                       {section.content}
                     </div>
                     {section.imagePosition === 'right' && (
@@ -167,7 +167,7 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                     )}
                   </div>
                 ) : (
-                  <div className="space-y-6 text-[var(--color-ink-400)] text-base sm:text-[17px] leading-[1.6]">
+                  <div className="space-y-6 text-[var(--color-ink-300)] text-base sm:text-[17px] leading-[1.6]">
                     {section.content}
                   </div>
                 )}
@@ -214,7 +214,7 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                     <blockquote className="text-[22px] font-serif font-light text-[var(--color-off-black)] leading-relaxed text-center">
                       {data.testimonial.quote}
                     </blockquote>
-                    <div className="flex flex-col items-center gap-1 text-[var(--color-ink-400)]">
+                    <div className="flex flex-col items-center gap-1 text-[var(--color-ink-300)]">
                       <p className="text-sm uppercase tracking-[0.3em]">{data.testimonial.author}</p>
                       <p className="text-xs uppercase tracking-[0.3em]">{data.testimonial.role}</p>
                       {data.testimonial.link && (
@@ -248,7 +248,7 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                     <blockquote className="text-[22px] font-serif font-light text-[var(--color-off-black)] leading-relaxed">
                       {data.testimonial.quote}
                     </blockquote>
-                    <div className="flex flex-col items-center gap-1 text-[var(--color-ink-400)]">
+                    <div className="flex flex-col items-center gap-1 text-[var(--color-ink-300)]">
                       <p className="text-sm uppercase tracking-[0.3em]">{data.testimonial.author}</p>
                       <p className="text-xs uppercase tracking-[0.3em]">{data.testimonial.role}</p>
                       {data.testimonial.link && (

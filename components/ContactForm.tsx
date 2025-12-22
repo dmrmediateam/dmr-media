@@ -88,7 +88,7 @@ const ContactForm = () => {
               <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-2">
                 Thank you.
               </h3>
-              <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed">
                 We received your message and will reply within one business day.
               </p>
             </motion.div>
@@ -107,13 +107,13 @@ const ContactForm = () => {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)] mb-4 block">
+          <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-300)] mb-4 block">
             Let's Work Together
           </span>
           <h2 className="text-[38px] sm:text-[46px] font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight">
             Tell us what you’re building. We’ll make the market notice.
           </h2>
-          <p className="mt-5 text-sm sm:text-base text-[var(--color-ink-400)] max-w-xl leading-relaxed">
+          <p className="mt-5 text-sm sm:text-base text-[var(--color-ink-300)] max-w-xl leading-relaxed">
             Share a few details about your goals and we’ll design a calm, measurable plan around them.
           </p>
         </motion.div>
@@ -129,7 +129,7 @@ const ContactForm = () => {
               <h3 className="text-xl font-serif font-light text-[var(--color-off-black)]">
                 Contact
               </h3>
-              <div className="mt-4 space-y-2 text-sm text-[var(--color-ink-400)]">
+              <div className="mt-4 space-y-2 text-sm text-[var(--color-ink-300)]">
                 <a href="mailto:team@dmrmedia.org" className="block hover:text-[var(--color-trust)] transition-colors">
                   team@dmrmedia.org
                 </a>
@@ -140,10 +140,10 @@ const ContactForm = () => {
             </div>
 
             <div className="pt-4 border-t border-[var(--color-ink-200)]">
-              <h4 className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-3">
+              <h4 className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-3">
                 Specialization
               </h4>
-              <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed">
                 Google Ads, SEO, and analytics frameworks for luxury real estate teams and developers.
               </p>
             </div>
@@ -180,7 +180,7 @@ const ContactForm = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <label htmlFor="name" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                <label htmlFor="name" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Name *
                 </label>
                 <input
@@ -199,7 +199,7 @@ const ContactForm = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.35, duration: 0.6 }}
               >
-                <label htmlFor="email" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                <label htmlFor="email" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Email *
                 </label>
                 <input
@@ -218,7 +218,7 @@ const ContactForm = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
-                <label htmlFor="phone" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                <label htmlFor="phone" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Phone
                 </label>
                 <input
@@ -236,7 +236,7 @@ const ContactForm = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.45, duration: 0.6 }}
               >
-                <label htmlFor="message" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                <label htmlFor="message" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Your Message *
                 </label>
                 <textarea
