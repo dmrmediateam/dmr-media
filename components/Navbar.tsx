@@ -95,16 +95,23 @@ const Navbar = () => {
       >
         <div className="h-full overflow-y-auto">
           <div className="container-max h-full py-16 lg:px-20 relative">
-            <button
-              type="button"
-              onClick={() => setIsMenuOpen(false)}
-              className="absolute top-4 right-0 inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] hover:border-[var(--color-trust)] hover:text-[var(--color-trust)] transition-colors duration-200"
-              aria-label="Close menu"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            {/* Close button positioned to align with hamburger icon */}
+            <div className="absolute top-0 right-0 w-full">
+              <div className="container-max">
+                <div className="flex justify-end items-center py-3 md:py-4">
+                  <button
+                    type="button"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] hover:border-[var(--color-trust)] hover:text-[var(--color-trust)] transition-colors duration-200"
+                    aria-label="Close menu"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 h-full">
               
               {/* Left Side - Navigation */}

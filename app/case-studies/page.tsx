@@ -3,6 +3,16 @@ import Link from 'next/link'
 
 const caseStudies = [
   {
+    id: 'willow-brook-realty',
+    title: 'Willow Brook Realty',
+    eyebrow: 'Inbound Foundation',
+    result: '46 Leads / 3 Weeks',
+    image: '/images/WillowBrookTraffic.png',
+    description:
+      'From zero visibility to 46 leads in 3 weeks. Built a complete inbound foundation with local SEO, Google Business Profile optimization, and targeted ads across Vermont and New Hampshire.',
+    tags: ['Local SEO', 'Google Business Profile', 'Google Ads', 'CRM Automation'],
+  },
+  {
     id: 'eagan-luxury-real-estate',
     title: 'Eagan Luxury Real Estate',
     eyebrow: 'Website Consolidation',

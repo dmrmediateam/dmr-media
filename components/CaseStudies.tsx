@@ -4,6 +4,16 @@ import Image from 'next/image';
 export default function CaseStudies() {
   const caseStudies = [
     {
+      id: 'willow-brook-realty',
+      title: "Willow Brook Realty",
+      client: 'Willow Brook',
+      company: 'Realty',
+      result: '46 Leads / 3 Weeks',
+      description:
+        'From zero visibility to 46 leads in 3 weeks. Built a complete inbound foundation with local SEO, Google Business Profile optimization, and targeted ads across Vermont and New Hampshire.',
+      image: '/images/WillowBrookTraffic.png',
+    },
+    {
       id: 'eagan-luxury-real-estate',
       title: "Eagan Luxury Real Estate",
       client: 'Eagan Luxury',
@@ -12,16 +22,6 @@ export default function CaseStudies() {
       description:
         'Consolidated multiple fragmented websites into a single, powerful brand presence—launched December 17th with 0 measurable ranking loss and 10% keyword increase.',
       image: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
-    },
-    {
-      id: 'michael-seo-transformation',
-      title: "Michael's SEO Transformation",
-      client: 'Michael',
-      company: 'Real Estate Professional',
-      result: '21x Impressions',
-      description:
-        "From abandoned SEO to 21x impressions growth -- how we turned Michael's website into a lead machine in just 7.5 weeks.",
-      image: '/images/MichealTraffic.png',
     },
     {
       id: 'rick-visions-first-realty',

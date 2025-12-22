@@ -87,8 +87,41 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-[var(--color-ink-200)] py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-xs text-[var(--color-ink-400)]">
-          <div>
-            © {currentYear} DMR <span className="italic">Media</span>. All rights reserved.
+          <div className="flex flex-col gap-4">
+            <div>
+              © {currentYear} DMR <span className="italic">Media</span>. All rights reserved.
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <Link href="/privacy-policy" className="hover:text-[var(--color-trust)] transition-colors">
+                Privacy Policy
+              </Link>
+              <span className="text-[var(--color-ink-200)]">|</span>
+              <Link href="/terms-of-service" className="hover:text-[var(--color-trust)] transition-colors">
+                Terms of Service
+              </Link>
+              <span className="text-[var(--color-ink-200)]">|</span>
+              <Link href="/fair-housing" className="hover:text-[var(--color-trust)] transition-colors">
+                Commitment to Fair Housing
+              </Link>
+            </div>
+            <div className="flex flex-col gap-2">
+              <a
+                href="https://agencies.semrush.com/dmr-media/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="DMR Media - SEMrush Agency Partner"
+                className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
+              >
+                <img
+                  src="/images/logo.BwihUn5s.svg"
+                  alt="SEMrush Agency Partner"
+                  className="h-6 w-auto"
+                />
+              </a>
+              <p className="text-[10px] text-[var(--color-ink-400)]">
+                Top ranked real estate marketing agency in wisconsin*
+              </p>
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <span className="uppercase tracking-[0.3em] text-[11px]">Connect</span>

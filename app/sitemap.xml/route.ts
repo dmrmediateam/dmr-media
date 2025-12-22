@@ -36,6 +36,7 @@ export async function GET() {
   ];
 
   const caseStudies = [
+    'case-study/willow-brook-realty',
     'case-study/eagan-luxury-real-estate',
     'case-study/jade-legendary-real-estate',
     'case-study/michael-seo-transformation',
