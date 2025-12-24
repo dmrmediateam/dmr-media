@@ -28,6 +28,10 @@ export interface BlogPost {
     metaTitle: string;
     metaDescription: string;
   };
+  schemaMarkup?: {
+    dateModified?: string;
+    articleSection?: string;
+  };
 }
 
 // Sample blog post - This will be replaced by Sanity API calls
@@ -284,7 +288,8 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     readTime,
     body,
     tags,
-    seo
+    seo,
+    schemaMarkup
   }`
   
   try {
@@ -317,7 +322,8 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
     },
     readTime,
     tags,
-    seo
+    seo,
+    schemaMarkup
   }`
   
   try {

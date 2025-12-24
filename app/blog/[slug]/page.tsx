@@ -102,8 +102,50 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     day: 'numeric',
   })
 
+  // Build schema markup for Article
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org'
+  const postUrl = `${baseUrl}/blog/${post.slug.current}`
+  const dateModified = post.schemaMarkup?.dateModified || post.publishedAt
+  const articleSection = post.schemaMarkup?.articleSection || post.category
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    image: post.mainImage.asset.url,
+    datePublished: post.publishedAt,
+    dateModified: dateModified,
+    author: {
+      '@type': 'Person',
+      name: post.author.name,
+      ...(post.author.image && { image: post.author.image }),
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'DMR Media',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/images/logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': postUrl,
+    },
+    articleSection: articleSection,
+    ...(post.tags && post.tags.length > 0 && {
+      keywords: post.tags.join(', '),
+    }),
+  }
+
   return (
-    <div className="min-h-screen bg-[var(--surface-base)]">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <div className="min-h-screen bg-[var(--surface-base)]">
       <section className="relative min-h-[60vh] lg:min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
         <div className="pointer-events-none absolute inset-0 flex justify-end pr-4 sm:pr-10 lg:pr-20 pb-10 sm:pb-14">
           <div className="relative w-[240px] sm:w-[320px] lg:w-[460px] aspect-[4/5] rounded-[40px] overflow-hidden bg-white/40 backdrop-blur-[2px] border border-[var(--color-ink-200)] opacity-70">
@@ -244,5 +286,6 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
       </section>
     </div>
+    </>
   )
 }
