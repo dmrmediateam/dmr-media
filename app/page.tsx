@@ -28,21 +28,21 @@ export default async function Home() {
             <p className="text-xs uppercase tracking-[0.4em] text-[var(--color-ink-300)] mb-4">
               DMR Media by the Numbers
             </p>
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-tight">
+            <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
               We drive real <em>ROI</em> for our <em>partners</em>.
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
                 className="flex flex-col"
               >
-                <span className="text-5xl md:text-6xl lg:text-7xl font-serif font-light text-[var(--color-off-black)] leading-none mb-3">
+                <span className="text-5xl md:text-6xl font-serif font-light text-[var(--color-off-black)] leading-none mb-2">
                   {stat.value}
                 </span>
-                <span className="text-[10px] uppercase tracking-[0.1em] text-[var(--color-ink-300)] leading-tight">
+                <span className="text-xs uppercase tracking-[0.1em] text-[var(--color-ink-300)]">
                   {stat.label}
                 </span>
               </div>
