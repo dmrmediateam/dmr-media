@@ -148,11 +148,11 @@ function ApplyContent() {
             >
               <div className="text-center mb-12 md:mb-16">
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] mb-6 md:mb-8 tracking-tight">
-                  Apply for a 1:1 Strategy Session (Limited to Serious Agents)
+                  Apply for a 1:1 Strategy Session
                   <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
                 </h2>
                 <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-300)] max-w-3xl mx-auto leading-relaxed">
-                  We only accept agents who already have deal flow and want to add <em>2–3 closings</em> per month using a <em>predictable system</em>. If selected, you'll receive a custom roadmap (a <em>$950 value</em>) built specifically for your market.
+                  We only bring on <em>5 new clients</em> per month. We only accept agents who already have deal flow and want to add <em>2–3 closings</em> per month using a <em>predictable system</em>. If selected, you'll receive a custom roadmap (a <em>$950 value</em>) built specifically for your market.
                 </p>
               </div>
 
