@@ -310,7 +310,7 @@ function AddListingsLandingContent() {
                 </svg>
                 <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
                   <span className="text-base sm:text-lg font-serif font-light text-[var(--color-off-black)]">
-                    December 17th, 2025
+                    January 14th, 2025
                   </span>
                   <span className="hidden sm:inline text-[var(--color-ink-300)]">•</span>
                   <div className="flex items-center gap-3 text-sm sm:text-base text-[var(--color-ink-300)]">
@@ -335,7 +335,7 @@ function AddListingsLandingContent() {
                 transition={{ duration: 0.7, delay: 0.4 }}
                 className="text-lg sm:text-xl text-[var(--color-ink-300)] leading-[1.6] max-w-2xl mx-auto"
               >
-                No $1k/m ad budget, Website or Tech Knowledge Needed
+                No Website or Tech Knowledge Needed
               </motion.p>
             </motion.div>
 
@@ -904,7 +904,7 @@ function AddListingsLandingContent() {
               <div className="mb-6">
                 <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-off-black)]/5 px-4 py-2 mb-4">
                   <span className="text-base uppercase tracking-[0.3em] text-[var(--color-off-black)] font-semibold">
-                    December 17th, 2025 • 12pm EST / 9am PST
+                    January 14th, 2025 • 12pm EST / 9am PST
                   </span>
                 </div>
               </div>
@@ -913,7 +913,7 @@ function AddListingsLandingContent() {
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h2>
               <p className="text-lg sm:text-xl text-[var(--color-ink-300)] leading-relaxed max-w-2xl mx-auto mb-8">
-                Register now for the training event on December 17th, 2025. Get the complete system and start adding 1–2 listings every month using only Google Business Profile & Chat GPT.
+                Register now for the training event on January 14th, 2025. Get the complete system and start adding 1–2 listings every month using only Google Business Profile & Chat GPT.
               </p>
             </motion.div>
 
@@ -1009,17 +1009,17 @@ function AddListingsLandingContent() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                   <div className="flex flex-col items-center">
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                     </svg>
-                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-300)]">Secure Payment</div>
-                    <div className="text-sm text-[var(--color-ink-300)] mt-1">Powered by Stripe</div>
+                    <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-300)]">Live Training</div>
+                    <div className="text-sm text-[var(--color-ink-300)] mt-1">Interactive Webinar</div>
                   </div>
                   <div className="flex flex-col items-center">
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                     <div className="text-sm uppercase tracking-[0.2em] text-[var(--color-ink-300)]">Event Access</div>
-                    <div className="text-sm text-[var(--color-ink-300)] mt-1">December 17th, 2025</div>
+                    <div className="text-sm text-[var(--color-ink-300)] mt-1">January 14th, 2025</div>
                   </div>
                   <div className="flex flex-col items-center">
                     <svg className="w-8 h-8 text-[var(--color-trust)] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

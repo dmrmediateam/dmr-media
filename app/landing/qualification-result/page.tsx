@@ -255,7 +255,7 @@ function QualificationResultContent() {
                   <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
                 </h1>
                 <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed mb-8">
-                You've been selected for a complimentary 1:1 Strategy Session. Book your session below to receive your custom roadmap (a <em>$3,500 value</em>) built specifically for your market.
+                You've been selected for the Private Implementation Session. After the small group session, if you'd like to explore this one-on-one, you can book a 1:1 Strategy Session below to receive your custom roadmap (a <em>$3,500 value</em>) built specifically for your market.
                 </p>
               </motion.div>
 
