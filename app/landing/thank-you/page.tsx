@@ -121,16 +121,6 @@ function ThankYouContent() {
         return;
       }
 
-      // Auto-disqualify: Just exploring options
-      if (formData.listingSituation === 'exploring-options') {
-        const params = new URLSearchParams();
-        params.set('status', 'disqualified');
-        if (userEmail) params.set('email', userEmail);
-        if (userName) params.set('name', userName);
-        router.push(`/landing/qualification-result?${params.toString()}`);
-        return;
-      }
-
       // Auto-disqualify: Not primary decision-maker
       if (formData.isDecisionMaker === 'no') {
         const params = new URLSearchParams();
@@ -141,8 +131,8 @@ function ThankYouContent() {
         return;
       }
 
-      // DQ if response time is longer than 1 hour
-      if (formData.leadResponseTime === 'within-day' || formData.leadResponseTime === '1-2-days' || formData.leadResponseTime === '3+days') {
+      // DQ if response time is more than 24 hours (1-2-days or 3+days)
+      if (formData.leadResponseTime === '1-2-days' || formData.leadResponseTime === '3+days') {
         const params = new URLSearchParams();
         params.set('status', 'disqualified');
         if (userEmail) params.set('email', userEmail);
