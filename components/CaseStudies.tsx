@@ -117,7 +117,7 @@ export default function CaseStudies() {
               {/* Left: Image */}
               <div className="relative aspect-[4/3] lg:aspect-auto lg:h-auto overflow-hidden">
                 <Image
-                  src="/images/Screenshot 2025-12-29 at 1.44.27 PM.png"
+                  src="/images/jade-google-business-profile.png"
                   alt="Jade Goodhue - Legendary Real Estate Services"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
