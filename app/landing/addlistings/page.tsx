@@ -71,7 +71,7 @@ function AddListingsLandingContent() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const videoId = '5ou7CS-A97o';
+  const videoId = 'UGy2ppmSeYc';
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&rel=0&modestbranding=1`;
 
   const handleSubmit = async (e: React.FormEvent) => {
