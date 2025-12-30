@@ -686,9 +686,10 @@ function AddListingsLandingContent() {
                   <Image
                     src="/images/before.png"
                     alt="Legendary Real Estate - Before results"
-                    width={800}
-                    height={600}
+                    width={962}
+                    height={962}
                     className="w-full rounded-[24px] border border-[var(--color-ink-200)]"
+                    unoptimized
                   />
                 </motion.div>
                 <motion.div
@@ -707,9 +708,10 @@ function AddListingsLandingContent() {
                   <Image
                     src="/images/after.png"
                     alt="Legendary Real Estate - After results"
-                    width={800}
-                    height={600}
+                    width={814}
+                    height={820}
                     className="w-full rounded-[24px] border border-[var(--color-trust)]"
+                    unoptimized
                   />
                 </motion.div>
               </div>
