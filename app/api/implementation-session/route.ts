@@ -18,14 +18,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Validate website URL if Website tool is selected
-    if (Array.isArray(body.tools) && body.tools.includes('Website') && !body.websiteUrl) {
-      return NextResponse.json(
-        { error: 'Website URL is required when Website is selected' },
-        { status: 400 }
-      );
-    }
-
     // Sanitize inputs
     const sanitizedData = {
       email: body.email?.trim() || '',

@@ -85,12 +85,6 @@ function ThankYouContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate website URL if Website is checked
-    if (formData.tools.includes('Website') && !formData.websiteUrl.trim()) {
-      alert('Please provide your website URL.');
-      return;
-    }
-    
     setIsSubmitting(true);
     
     try {
@@ -110,55 +104,37 @@ function ThankYouContent() {
         throw new Error(result.error || 'Form submission failed');
       }
 
-      // Determine qualification status and redirect
-      // Auto-disqualify: Not full-time
-      if (formData.isFullTime === 'no') {
-        const params = new URLSearchParams();
-        params.set('status', 'disqualified');
-        if (userEmail) params.set('email', userEmail);
-        if (userName) params.set('name', userName);
-        router.push(`/landing/qualification-result?${params.toString()}`);
-        return;
-      }
-
-      // Auto-disqualify: Not primary decision-maker
-      if (formData.isDecisionMaker === 'no') {
-        const params = new URLSearchParams();
-        params.set('status', 'disqualified');
-        if (userEmail) params.set('email', userEmail);
-        if (userName) params.set('name', userName);
-        router.push(`/landing/qualification-result?${params.toString()}`);
-        return;
-      }
-
-      // DQ if response time is more than 24 hours (1-2-days or 3+days)
-      if (formData.leadResponseTime === '1-2-days' || formData.leadResponseTime === '3+days') {
-        const params = new URLSearchParams();
-        params.set('status', 'disqualified');
-        if (userEmail) params.set('email', userEmail);
-        if (userName) params.set('name', userName);
-        router.push(`/landing/qualification-result?${params.toString()}`);
-        return;
-      }
+      // Determine qualification status based ONLY on the 4 criteria:
+      // 1. 18+ listings
+      // 2. Full-time
+      // 3. Decision Maker
+      // 4. Replies within 24 hours, 1 hour or immediately
       
-      // Auto-disqualify: Less than 18 listings in last 12 months
       const listingsCount = parseInt(formData.listingsLast12Months, 10);
-      if (isNaN(listingsCount) || listingsCount < 18) {
+      const has18PlusListings = !isNaN(listingsCount) && listingsCount >= 18;
+      const isFullTime = formData.isFullTime === 'yes';
+      const isDecisionMaker = formData.isDecisionMaker === 'yes';
+      const hasGoodResponseTime = formData.leadResponseTime === 'immediately' || 
+                                   formData.leadResponseTime === 'within-hour' || 
+                                   formData.leadResponseTime === 'within-day';
+      
+      // Only qualify if ALL 4 criteria are met
+      if (has18PlusListings && isFullTime && isDecisionMaker && hasGoodResponseTime) {
+        // Qualified - redirect to qualification-result with user data
+        const params = new URLSearchParams();
+        params.set('status', 'qualified');
+        if (userEmail) params.set('email', userEmail);
+        if (userName) params.set('name', userName);
+        if (userPhone) params.set('phone', userPhone);
+        router.push(`/landing/qualification-result?${params.toString()}`);
+      } else {
+        // Disqualified - doesn't meet all criteria
         const params = new URLSearchParams();
         params.set('status', 'disqualified');
         if (userEmail) params.set('email', userEmail);
         if (userName) params.set('name', userName);
         router.push(`/landing/qualification-result?${params.toString()}`);
-        return;
       }
-      
-      // Qualified - redirect to qualification-result with user data
-      const params = new URLSearchParams();
-      params.set('status', 'qualified');
-      if (userEmail) params.set('email', userEmail);
-      if (userName) params.set('name', userName);
-      if (userPhone) params.set('phone', userPhone);
-      router.push(`/landing/qualification-result?${params.toString()}`);
     } catch (error: any) {
       console.error('Form submission error:', error);
       alert(error.message || 'Something went wrong. Please try again.');
@@ -544,7 +520,7 @@ function ThankYouContent() {
                             Which of the following tools do you have?
                           </label>
                           <div className="space-y-4">
-                            {['CRM', 'Website', 'Ads Account'].map((tool) => (
+                            {['CRM', 'Ads Account'].map((tool) => (
                               <label
                                 key={tool}
                                 className="flex items-center gap-4 cursor-pointer group p-4 rounded-[16px] border-2 border-transparent hover:border-[var(--color-trust)]/30 hover:bg-[var(--color-trust)]/5 transition-all duration-300"
@@ -562,24 +538,6 @@ function ThankYouContent() {
                             ))}
                           </div>
                         </div>
-
-                        {/* Website URL - Only show if Website is checked */}
-                        {formData.tools.includes('Website') && (
-                          <div className="space-y-3">
-                            <label htmlFor="websiteUrl" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
-                              Website URL
-                            </label>
-                            <input
-                              type="url"
-                              id="websiteUrl"
-                              required
-                              value={formData.websiteUrl}
-                              onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
-                              className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
-                              placeholder="https://yourwebsite.com"
-                            />
-                          </div>
-                        )}
 
                         {/* Lead response time */}
                         <div className="space-y-3">
