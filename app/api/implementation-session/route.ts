@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     const body = await request.json();
 
     // Validate required fields
-    if (!body.closingsLast12Months || !body.isFullTime || !body.activeMarket || !body.listingSituation || !body.isDecisionMaker || !body.leadResponseTime) {
+    if (!body.listingsLast12Months || !body.isFullTime || !body.activeMarket || !body.listingSituation || !body.isDecisionMaker || !body.leadResponseTime) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     // Sanitize inputs
     const sanitizedData = {
       email: body.email?.trim() || '',
-      closingsLast12Months: body.closingsLast12Months.trim(),
+      listingsLast12Months: body.listingsLast12Months.trim(),
       tools: Array.isArray(body.tools) ? body.tools : [],
       websiteUrl: body.websiteUrl?.trim() || '',
       leadResponseTime: body.leadResponseTime.trim(),

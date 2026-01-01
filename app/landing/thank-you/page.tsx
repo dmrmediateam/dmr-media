@@ -17,7 +17,7 @@ function ThankYouContent() {
   const [userPhone, setUserPhone] = useState<string | null>(null);
   const [showThankYou, setShowThankYou] = useState(true);
   const [formData, setFormData] = useState({
-    closingsLast12Months: '',
+    listingsLast12Months: '',
     tools: [] as string[],
     websiteUrl: '',
     leadResponseTime: '',
@@ -141,9 +141,9 @@ function ThankYouContent() {
         return;
       }
       
-      // Auto-disqualify: Less than 18 closings in last 12 months
-      const closingsCount = parseInt(formData.closingsLast12Months, 10);
-      if (isNaN(closingsCount) || closingsCount < 18) {
+      // Auto-disqualify: Less than 18 listings in last 12 months
+      const listingsCount = parseInt(formData.listingsLast12Months, 10);
+      if (isNaN(listingsCount) || listingsCount < 18) {
         const params = new URLSearchParams();
         params.set('status', 'disqualified');
         if (userEmail) params.set('email', userEmail);
@@ -521,20 +521,20 @@ function ThankYouContent() {
                           </select>
                         </div>
 
-                        {/* How many closings in last 12 months */}
+                        {/* How many listings in last 12 months */}
                         <div className="space-y-3">
-                          <label htmlFor="closingsLast12Months" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
-                            How many closings have you done in the last 12 months?
+                          <label htmlFor="listingsLast12Months" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                            How many listings have you done in the last 12 months?
                           </label>
                           <input
                             type="number"
-                            id="closingsLast12Months"
+                            id="listingsLast12Months"
                             required
                             min="0"
-                            value={formData.closingsLast12Months}
-                            onChange={(e) => setFormData({ ...formData, closingsLast12Months: e.target.value })}
+                            value={formData.listingsLast12Months}
+                            onChange={(e) => setFormData({ ...formData, listingsLast12Months: e.target.value })}
                             className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
-                            placeholder="Enter number of closings"
+                            placeholder="Enter number of listings"
                           />
                         </div>
 
