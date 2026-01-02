@@ -41,8 +41,17 @@ export async function POST(request: Request) {
     } else {
       try {
       const zapierPayload = {
-        ...sanitizedData,
+        email: sanitizedData.email,
+        listingsyear: sanitizedData.listingsLast12Months,
+        tools: sanitizedData.tools,
+        websiteUrl: sanitizedData.websiteUrl,
+        leadResponseTime: sanitizedData.leadResponseTime,
+        isFullTime: sanitizedData.isFullTime,
+        activeMarket: sanitizedData.activeMarket,
+        listingSituation: sanitizedData.listingSituation,
+        isDecisionMaker: sanitizedData.isDecisionMaker,
         source: 'implementation-session-form',
+        timestamp: sanitizedData.timestamp,
       };
       
       const zapierResponse = await fetch(zapierWebhookUrl, {
