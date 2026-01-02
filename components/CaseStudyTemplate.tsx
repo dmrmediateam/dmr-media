@@ -43,6 +43,7 @@ export interface CaseStudyData {
   stats?: CaseStudyStat[]
   sections: CaseStudySection[]
   testimonial?: CaseStudyTestimonial
+  secondaryTestimonial?: CaseStudyTestimonial
   cta: {
     title: string
     description: string
@@ -192,11 +193,12 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
       </article>
 
       {/* Testimonial Section */}
-      {data.testimonial && (
+      {(data.testimonial || data.secondaryTestimonial) && (
         <section className="py-20">
           <div className="container-max">
-            <div className="max-w-4xl mx-auto">
-              <div className="rounded-[48px] border border-[var(--color-ink-200)] bg-white/80 p-10 backdrop-blur-xl">
+            <div className="max-w-4xl mx-auto space-y-12">
+              {data.testimonial && (
+                <div className="rounded-[48px] border border-[var(--color-ink-200)] bg-white/80 p-10 backdrop-blur-xl">
                 {data.testimonial.video ? (
                   <div className="space-y-8">
                     <h4 className="text-[24px] font-serif font-light text-[var(--color-off-black)] mb-6">
@@ -267,7 +269,82 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                     </div>
                   </div>
                 )}
-              </div>
+                </div>
+              )}
+              {data.secondaryTestimonial && (
+                <div className="rounded-[48px] border border-[var(--color-ink-200)] bg-white/80 p-10 backdrop-blur-xl">
+                  {data.secondaryTestimonial.video ? (
+                    <div className="space-y-8">
+                      <h4 className="text-[24px] font-serif font-light text-[var(--color-off-black)] mb-6">
+                        {data.secondaryTestimonial.video.title}
+                      </h4>
+                      <div className="relative w-full h-0 pb-[56.25%] overflow-hidden rounded-[32px] border border-[var(--color-ink-200)]">
+                        <iframe
+                          className="absolute inset-0 h-full w-full"
+                          src={data.secondaryTestimonial.video.src}
+                          title={data.secondaryTestimonial.video.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        />
+                      </div>
+                      <blockquote className="text-[22px] font-serif font-light text-[var(--color-off-black)] leading-relaxed text-center">
+                        {data.secondaryTestimonial.quote}
+                      </blockquote>
+                      <div className="flex flex-col items-center gap-1 text-[var(--color-ink-300)]">
+                        <p className="text-sm uppercase tracking-[0.3em]">{data.secondaryTestimonial.author}</p>
+                        <p className="text-xs uppercase tracking-[0.3em]">{data.secondaryTestimonial.role}</p>
+                        {data.secondaryTestimonial.link && (
+                          <Link
+                            href={data.secondaryTestimonial.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 text-xs uppercase tracking-[0.3em] text-[var(--color-trust)] hover:text-[var(--color-off-black)] transition-colors duration-300 flex items-center gap-2"
+                          >
+                            Read full review
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center space-y-8">
+                      {data.secondaryTestimonial.image && (
+                        <div className="flex justify-center">
+                          <Image
+                            src={data.secondaryTestimonial.image}
+                            alt={`${data.secondaryTestimonial.author} testimonial`}
+                            width={480}
+                            height={320}
+                            className="w-full max-w-xl rounded-[32px] border border-[var(--color-ink-200)]"
+                          />
+                        </div>
+                      )}
+                      <blockquote className="text-[22px] font-serif font-light text-[var(--color-off-black)] leading-relaxed">
+                        {data.secondaryTestimonial.quote}
+                      </blockquote>
+                      <div className="flex flex-col items-center gap-1 text-[var(--color-ink-300)]">
+                        <p className="text-sm uppercase tracking-[0.3em]">{data.secondaryTestimonial.author}</p>
+                        <p className="text-xs uppercase tracking-[0.3em]">{data.secondaryTestimonial.role}</p>
+                        {data.secondaryTestimonial.link && (
+                          <Link
+                            href={data.secondaryTestimonial.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 text-xs uppercase tracking-[0.3em] text-[var(--color-trust)] hover:text-[var(--color-off-black)] transition-colors duration-300 flex items-center gap-2"
+                          >
+                            Read full review
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </section>

@@ -52,6 +52,16 @@ const caseStudies = [
       'Rerouted a misaligned SEO program so it stopped ranking for discount shoppers and started capturing relocation-ready listings.',
     tags: ['SERP Intelligence', 'GMB Optimization', 'Lead Handling'],
   },
+  {
+    id: 'marquis-farwell-group',
+    title: 'Marquis + Farwell Group',
+    eyebrow: 'Organic Visibility',
+    result: '19x Daily Clicks',
+    image: '/images/MarquisFarwellGoogleSearchConsole.png',
+    description:
+      'Transformed organic visibility in Sonoma County, growing from 2 clicks per day to 38 clicks per day while generating qualified buyer leads directly from search—all without relying on portals or paid leads.',
+    tags: ['Local SEO', 'Google Business Profile', 'Organic Growth'],
+  },
 ]
 
 const trustSignals = [

@@ -24,14 +24,14 @@ export default function CaseStudies() {
       image: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
     },
     {
-      id: 'rick-visions-first-realty',
-      title: "Rick's SEO Transformation",
-      client: 'Visions First Realty',
-      company: 'Ashland, WI',
-      result: '2-3 Leads / Day',
+      id: 'marquis-farwell-group',
+      title: 'Marquis + Farwell Group',
+      client: 'Marquis & Farwell Group',
+      company: 'Healdsburg, CA',
+      result: '19x Daily Clicks',
       description:
-        "From misaligned keywords to daily qualified leads -- how we fixed Rick's SEO strategy and unlocked consistent deal flow.",
-      image: '/images/RickAfter.png',
+        'Transformed organic visibility in Sonoma County, growing from 2 clicks per day to 38 clicks per day while generating qualified buyer leads directly from search.',
+      image: '/images/MarquisFarwellGoogleSearchConsole.png',
     },
   ];
 
