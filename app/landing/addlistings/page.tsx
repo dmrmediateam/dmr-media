@@ -258,22 +258,22 @@ function AddListingsLandingContent() {
     {
       title: 'Google Business Profile',
       subtitle: 'Organic Leads',
-      description: 'The exact optimization strategies that get you found by motivated sellers in your market—without spending a dime on ads.',
+      description: 'Sellers are asking ChatGPT who to hire. Google is deciding who shows up first. If it\'s not you, it\'s someone else. I\'ll show you how to rank in Google and AI search—the exact optimization strategies that get you found by motivated sellers without spending a dime on ads.',
     },
     {
       title: 'Local Service Ads',
       subtitle: 'Paid Leads',
-      description: 'How to dominate Google\'s Local Service Ads without breaking the bank or needing a website.',
+      description: 'Referrals slow down. Zillow gets expensive. Facebook leads waste time. But Google\'s Local Service Ads are quietly producing sellers. I\'ll show you how to dominate them without breaking the bank or needing a website.',
     },
     {
       title: 'Long-term Nurture Systems',
       subtitle: 'Automated Follow-up',
-      description: 'Build relationships with prospects over time using automated sequences that feel personal, not robotic.',
+      description: 'Buyers and sellers are already searching for an agent they trust. If you don\'t show up, you don\'t exist. I\'ll show you how to build relationships with prospects over time using automated sequences that feel personal, not robotic.',
     },
     {
       title: 'Our Exact Follow Up Systems',
       subtitle: 'Conversion Playbook',
-      description: 'The step-by-step process that converts local searches into listing appointments and closed deals.',
+      description: 'No fluff. No theory. No motivation talk. Just the step-by-step process that converts local searches into listing appointments and closed deals. The same system that took Legendary Real Estate from 8 leads to 50+ in 30 days.',
     },
   ];
 
@@ -326,7 +326,7 @@ function AddListingsLandingContent() {
                 transition={{ duration: 0.7, delay: 0.3 }}
                 className="text-[32px] sm:text-[42px] lg:text-[52px] font-serif font-light text-[var(--color-off-black)] leading-[1.05] tracking-tight mb-6"
               >
-                Add 1-2 Listings Per Month in 2 Hours Using Your Google Business Profile & Chat GPT
+                Add 12-24 Additional Listings in 2026 Using This AI & Google System
                 <span className="text-[var(--color-trust)] text-[1.05em] align-baseline">.</span>
               </motion.h1>
               <motion.p
@@ -335,7 +335,7 @@ function AddListingsLandingContent() {
                 transition={{ duration: 0.7, delay: 0.4 }}
                 className="text-lg sm:text-xl text-[var(--color-ink-300)] leading-[1.6] max-w-2xl mx-auto"
               >
-                No Website or Tech Knowledge Needed
+                Most agents waste January. This makes sure you don't. On January 14th, I'll show you the exact system that took agents from 8 leads to 50+ in 30 days—using only Google and ChatGPT.
               </motion.p>
             </motion.div>
 
@@ -390,8 +390,11 @@ function AddListingsLandingContent() {
               className="text-center mb-8 md:mb-10"
             >
               <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight">
-                What We'll Cover
+                What You'll Get
               </h2>
+              <p className="text-base text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed">
+                No fluff. No theory. No motivation talk. Just what we used to take agents from 8 leads to 50+ in 30 days.
+              </p>
               <motion.div
                 initial={{ width: 0 }}
                 whileInView={{ width: 96 }}
@@ -479,7 +482,7 @@ function AddListingsLandingContent() {
                 Is This Training For You?
               </h2>
               <p className="text-lg text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed">
-                If you say yes to any of these, I've got you.
+                In 2026, listings won't come from hope. They'll come from visibility. If you say yes to any of these, I've got you.
               </p>
             </div>
 
@@ -502,7 +505,7 @@ function AddListingsLandingContent() {
                       You're struggling to get consistent listings
                     </h3>
                     <p className="text-base text-[var(--color-ink-300)] leading-relaxed">
-                      You're not getting enough seller leads, or the leads you're getting aren't qualified. You need a system that brings in 1–2 listings every month without relying on referrals or cold calling.
+                      You're not getting enough seller leads, or the leads you're getting aren't qualified. You need a system that brings in 1–2 listings every month without relying on referrals or cold calling. This is how smart agents start the year.
                     </p>
                   </div>
                 </div>
@@ -526,7 +529,7 @@ function AddListingsLandingContent() {
                       You don't have a website or want to avoid expensive ads
                     </h3>
                     <p className="text-base text-[var(--color-ink-300)] leading-relaxed">
-                      You want to generate listings using low-cost tools like Google Business Profile and Chat GPT—no website required, no massive ad budgets.
+                      Referrals slow down. Zillow gets expensive. Facebook leads waste time. But Google and ChatGPT are quietly producing sellers. You want to generate listings using low-cost tools—no website required, no massive ad budgets.
                     </p>
                   </div>
                 </div>
@@ -550,7 +553,7 @@ function AddListingsLandingContent() {
                       You're overwhelmed by marketing advice
                     </h3>
                     <p className="text-base text-[var(--color-ink-300)] leading-relaxed">
-                      There's too much conflicting information out there. You need a proven, step-by-step system that actually works for real estate agents—not generic marketing advice.
+                      There's too much conflicting information out there. No hacks. No ad tricks. No recycled strategies. You need a proven, step-by-step system that actually works for real estate agents—not generic marketing advice.
                     </p>
                   </div>
                 </div>
@@ -574,7 +577,7 @@ function AddListingsLandingContent() {
                       You want to dominate your local market
                     </h3>
                     <p className="text-base text-[var(--color-ink-300)] leading-relaxed">
-                      You're ready to become the go-to agent in your area. You want to show up first when sellers search for real estate services, and you're willing to implement a proven system.
+                      Buyers and sellers are using Google and now ChatGPT to decide who to call. If you're not visible, you're invisible. You're ready to become the go-to agent in your area and show up first when sellers search for real estate services.
                     </p>
                   </div>
                 </div>
@@ -915,7 +918,7 @@ function AddListingsLandingContent() {
                 <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
               </h2>
               <p className="text-lg sm:text-xl text-[var(--color-ink-300)] leading-relaxed max-w-2xl mx-auto mb-8">
-                Register now for the training event on January 14th, 2025. Get the complete system and start adding 1–2 listings every month using only Google Business Profile & Chat GPT.
+                January decides who wins 2026 in real estate. Most agents start the year busy. Very few start it positioned. Register now and get the exact system that took agents from 8 leads to 50+ in 30 days. This isn't coming soon—it's already happening.
               </p>
             </motion.div>
 
