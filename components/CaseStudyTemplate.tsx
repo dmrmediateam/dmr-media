@@ -198,7 +198,7 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
           <div className="container-max">
             <div className="max-w-4xl mx-auto space-y-12">
               {data.testimonial && (
-                <div className="rounded-[48px] border border-[var(--color-ink-200)] bg-white/80 p-10 backdrop-blur-xl">
+              <div className="rounded-[48px] border border-[var(--color-ink-200)] bg-white/80 p-10 backdrop-blur-xl">
                 {data.testimonial.video ? (
                   <div className="space-y-8">
                     <h4 className="text-[24px] font-serif font-light text-[var(--color-off-black)] mb-6">
@@ -269,7 +269,7 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                     </div>
                   </div>
                 )}
-                </div>
+              </div>
               )}
               {data.secondaryTestimonial && (
                 <div className="rounded-[48px] border border-[var(--color-ink-200)] bg-white/80 p-10 backdrop-blur-xl">
