@@ -11,6 +11,7 @@ const caseStudyData: CaseStudyData = {
   stats: [
     { label: 'Inbound leads', value: '46', detail: 'In 3 weeks (from 11)' },
     { label: 'Website traffic', value: '+920%', detail: 'Growth in first phase' },
+    { label: 'New clients', value: '2', detail: '1 listing + 1 buyer client' },
     { label: 'Budget', value: '$5,000/mo', detail: 'Monthly investment' },
     { label: 'Status', value: 'Ongoing', detail: '4 months active' },
   ],
@@ -105,7 +106,10 @@ const caseStudyData: CaseStudyData = {
             Within three weeks, inbound leads increased from 11 to 46—a dramatic shift driven by a sharp rise in Google visibility and search demand capture. Website traffic grew by 920% in the first phase of the campaign, proving that the inbound foundation was working.
           </p>
           <p>
-            Willow Brook Realty went from having no predictable inbound system to a measurable, repeatable lead engine that continues to scale month over month. The team now has a consistent flow of qualified leads that doesn't depend on referrals or manual outreach.
+            More importantly, those leads converted. In those same three weeks, Willow Brook Realty signed 2 new clients—1 listing client and 1 buyer client—real business outcomes from a system that didn't exist before. This wasn't just traffic or leads; it was actual clients ready to work with the team.
+          </p>
+          <p>
+            Willow Brook Realty went from having no predictable inbound system to a measurable, repeatable lead engine that continues to scale month over month. The team now has a consistent flow of qualified leads that doesn't depend on referrals or manual outreach, and those leads are converting into new clients.
           </p>
           <p>
             The system works across multiple channels. Google Business Profile optimization drives map pack visibility, local SEO captures organic search traffic, and targeted Google Ads fill gaps and accelerate results. CRM automations ensure every lead is followed up with speed and consistency.
