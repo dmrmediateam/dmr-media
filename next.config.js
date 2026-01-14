@@ -28,6 +28,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/oplogin',
+        destination: 'https://eagan-luxury.sanity.studio',
+        permanent: true,
+      },
+      {
         source: '/market-reports',
         destination: '/blog',
         permanent: true,
