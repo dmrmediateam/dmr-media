@@ -41,6 +41,12 @@ export default {
       description: 'Brief description of what this video covers',
     },
     {
+      name: 'transcript',
+      title: 'Transcript',
+      type: 'text',
+      description: 'Optional transcript from the Loom video for AI analysis',
+    },
+    {
       name: 'date',
       title: 'Date',
       type: 'date',

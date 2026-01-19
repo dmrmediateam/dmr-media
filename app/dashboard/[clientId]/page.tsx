@@ -4,6 +4,7 @@ import { getClientServices } from '@/lib/clientMetrics'
 import DashboardLayout from '@/components/dashboard/DashboardLayout'
 import ROIDisplay from '@/components/dashboard/ROIDisplay'
 import StatsBoxes from '@/components/dashboard/StatsBoxes'
+import TrendAnalysis from '@/components/dashboard/TrendAnalysis'
 import ServiceTracking from '@/components/dashboard/ServiceTracking'
 import LoomVideoCarousel from '@/components/dashboard/LoomVideoCarousel'
 import AskQuestion from '@/components/dashboard/AskQuestion'
@@ -54,6 +55,9 @@ export default async function ClientDashboard({
             </div>
           </div>
         </section>
+
+        {/* Trend Analysis Section */}
+        <TrendAnalysis clientId={clientId} />
 
         {/* Service Tracking Sections */}
         <ServiceTracking clientId={clientId} services={services} />
