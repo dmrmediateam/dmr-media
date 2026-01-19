@@ -1,7 +1,12 @@
+import 'server-only'
 import { NextResponse } from 'next/server'
 import { createClient } from '@sanity/client'
 import crypto from 'crypto'
 import { sendPasswordResetEmail } from '@/lib/email'
+
+if (!process.env.SANITY_API_TOKEN) {
+  throw new Error('SANITY_API_TOKEN environment variable is not set')
+}
 
 const sanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'gvyjxd5j',
@@ -37,7 +42,7 @@ export async function POST(request: Request) {
     const resetTokenExpiry = new Date()
     resetTokenExpiry.setHours(resetTokenExpiry.getHours() + 1) // 1 hour expiry
 
-    // Try to update reset token (optional - won't fail if no write permissions)
+    // Update reset token
     try {
       await sanityClient
         .patch(client._id)
@@ -47,11 +52,17 @@ export async function POST(request: Request) {
         })
         .commit()
     } catch (error: any) {
-      // If no write permissions, we can't store reset tokens
-      // This means password reset won't work without proper token
-      console.error('Could not save reset token (insufficient permissions):', error.message)
+      console.error('Error saving reset token:', error)
+      // Log the full error for debugging
+      if (error.message) {
+        console.error('Error message:', error.message)
+      }
+      if (error.statusCode) {
+        console.error('Status code:', error.statusCode)
+      }
+      // Return a more helpful error message
       return NextResponse.json(
-        { error: 'Password reset unavailable. Please contact support.' },
+        { error: 'Failed to generate reset token. Please try again or contact support.' },
         { status: 500 }
       )
     }

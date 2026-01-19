@@ -1,6 +1,11 @@
+import 'server-only'
 import { NextResponse } from 'next/server'
 import { createClient } from '@sanity/client'
 import bcrypt from 'bcryptjs'
+
+if (!process.env.SANITY_API_TOKEN) {
+  throw new Error('SANITY_API_TOKEN environment variable is not set')
+}
 
 const sanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'gvyjxd5j',
@@ -47,7 +52,7 @@ export async function POST(request: Request) {
 
     const passwordHash = await bcrypt.hash(newPassword, 10)
 
-    // Try to update password (requires write permissions)
+    // Update password
     try {
       await sanityClient
         .patch(client._id)
@@ -58,9 +63,16 @@ export async function POST(request: Request) {
         })
         .commit()
     } catch (error: any) {
-      console.error('Could not reset password (insufficient permissions):', error.message)
+      console.error('Error resetting password:', error)
+      // Log the full error for debugging
+      if (error.message) {
+        console.error('Error message:', error.message)
+      }
+      if (error.statusCode) {
+        console.error('Status code:', error.statusCode)
+      }
       return NextResponse.json(
-        { error: 'Password reset failed. Please contact support.' },
+        { error: 'Failed to reset password. Please try again or contact support.' },
         { status: 500 }
       )
     }
