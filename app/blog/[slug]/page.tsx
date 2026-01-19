@@ -24,24 +24,35 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const post = await getBlogPostBySlug(slug)
+  
+  try {
+    const post = await getBlogPostBySlug(slug)
 
-  if (!post) {
+    if (!post) {
+      return {
+        title: 'Blog Post Not Found',
+      }
+    }
+
+    return {
+      title: post.seo?.metaTitle || post.title,
+      description: post.seo?.metaDescription || post.description,
+      openGraph: {
+        title: post.seo?.metaTitle || post.title,
+        description: post.seo?.metaDescription || post.description,
+        images: [post.mainImage.asset.url],
+        type: 'article',
+        publishedTime: post.publishedAt,
+      },
+    }
+  } catch (error: any) {
+    console.error('Error generating metadata for blog post:', {
+      slug,
+      error: error?.message || error,
+    })
     return {
       title: 'Blog Post Not Found',
     }
-  }
-
-  return {
-    title: post.seo?.metaTitle || post.title,
-    description: post.seo?.metaDescription || post.description,
-    openGraph: {
-      title: post.seo?.metaTitle || post.title,
-      description: post.seo?.metaDescription || post.description,
-      images: [post.mainImage.asset.url],
-      type: 'article',
-      publishedTime: post.publishedAt,
-    },
   }
 }
 
@@ -96,13 +107,16 @@ const portableTextComponents = {
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const post = await getBlogPostBySlug(slug)
+  
+  try {
+    const post = await getBlogPostBySlug(slug)
 
-  if (!post) {
-    notFound()
-  }
+    if (!post) {
+      console.warn(`Blog post not found for slug: ${slug}`)
+      notFound()
+    }
 
-  const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
+    const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -293,5 +307,14 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       </section>
     </div>
     </>
-  )
+    )
+  } catch (error: any) {
+    console.error('Error rendering blog post:', {
+      slug,
+      error: error?.message || error,
+      projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+      dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    })
+    notFound()
+  }
 }
