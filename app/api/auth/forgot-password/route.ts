@@ -71,10 +71,16 @@ export async function POST(request: Request) {
     }
 
     // Get base URL - try multiple sources for deployment compatibility
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 
-                    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 
-                    process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` :
-                    'https://www.dmrmedia.org'
+    let baseUrl = process.env.NEXT_PUBLIC_SITE_URL
+    if (!baseUrl && process.env.VERCEL_URL) {
+      baseUrl = `https://${process.env.VERCEL_URL}`
+    }
+    if (!baseUrl && process.env.NEXT_PUBLIC_VERCEL_URL) {
+      baseUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    }
+    if (!baseUrl) {
+      baseUrl = 'https://www.dmrmedia.org'
+    }
     
     const resetUrl = `${baseUrl}/dashboard/reset-password?token=${resetToken}&email=${encodeURIComponent(email)}`
     
