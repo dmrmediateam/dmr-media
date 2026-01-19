@@ -68,7 +68,7 @@ export default function TrendAnalysis({ clientId }: { clientId: string }) {
       <div>
         <h2 className="text-3xl font-serif text-[var(--color-off-black)] mb-2">Month-to-Month Trend Analysis</h2>
         <p className="text-sm text-[var(--color-ink-300)]">
-          AI-powered insights based on your performance metrics
+          AI-powered insights based on your performance metrics (BETA)
         </p>
       </div>
       
