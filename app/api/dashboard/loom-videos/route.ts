@@ -1,6 +1,11 @@
+import 'server-only'
 import { NextResponse } from 'next/server'
 import { getAuthenticatedClient } from '@/lib/auth'
 import { createClient } from '@sanity/client'
+
+if (!process.env.SANITY_API_TOKEN) {
+  throw new Error('SANITY_API_TOKEN environment variable is not set')
+}
 
 const sanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'gvyjxd5j',
@@ -49,8 +54,15 @@ export async function GET(request: Request) {
     return NextResponse.json({ videos: videos || [] })
   } catch (error: any) {
     console.error('Loom videos API error:', error)
+    // Log the full error for debugging
+    if (error.message) {
+      console.error('Error message:', error.message)
+    }
+    if (error.statusCode) {
+      console.error('Status code:', error.statusCode)
+    }
     return NextResponse.json(
-      { error: 'Failed to fetch videos' },
+      { error: 'Failed to fetch videos. Please try again or contact support.' },
       { status: 500 }
     )
   }

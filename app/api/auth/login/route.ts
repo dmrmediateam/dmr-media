@@ -1,8 +1,17 @@
+import 'server-only'
 import { NextResponse } from 'next/server'
 import { createClient } from '@sanity/client'
 import bcrypt from 'bcryptjs'
 import { SignJWT } from 'jose'
 import { cookies } from 'next/headers'
+
+if (!process.env.SANITY_API_TOKEN) {
+  throw new Error('SANITY_API_TOKEN environment variable is not set')
+}
+
+if (!process.env.JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is not set')
+}
 
 const sanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'gvyjxd5j',
@@ -93,8 +102,15 @@ export async function POST(request: Request) {
     return response
   } catch (error: any) {
     console.error('Login error:', error)
+    // Log the full error for debugging
+    if (error.message) {
+      console.error('Error message:', error.message)
+    }
+    if (error.statusCode) {
+      console.error('Status code:', error.statusCode)
+    }
     return NextResponse.json(
-      { error: 'Authentication failed' },
+      { error: 'Authentication failed. Please try again or contact support.' },
       { status: 500 }
     )
   }
