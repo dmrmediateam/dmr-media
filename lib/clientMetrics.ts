@@ -1,3 +1,4 @@
+import 'server-only'
 import { createClient } from '@sanity/client'
 
 const sanityClient = createClient({
@@ -21,8 +22,10 @@ export interface ClientMetrics {
   adSpend: number
   avgHomePrice: number
   gbpRankTracking?: string
-  estCloses: number
-  estROI: number
+  // Hidden fields for calculations (not displayed, only used for calculations)
+  commission: number
+  packagePrice: number
+  avgCloseRate: number
 }
 
 export interface ClientServices {
@@ -120,6 +123,8 @@ export async function getClientMetrics(clientId: string): Promise<any[]> {
       adSpend,
       avgHomePrice,
       gbpRankTracking,
+      estCloses,
+      estROI,
       commission,
       packagePrice,
       avgCloseRate
@@ -131,7 +136,7 @@ export async function getClientMetrics(clientId: string): Promise<any[]> {
     return []
   }
 
-  // Return raw data - components will calculate estCloses and estROI manually
+  // Return data with manually entered calculated fields from Sanity
   return allMetrics.map((metric: any) => ({
     _id: metric._id,
     date: metric.date,
@@ -145,7 +150,10 @@ export async function getClientMetrics(clientId: string): Promise<any[]> {
     adSpend: Number(metric.adSpend) || 0,
     avgHomePrice: Number(metric.avgHomePrice) || 0,
     gbpRankTracking: metric.gbpRankTracking,
-    // Include hidden fields for manual calculation
+    // Manually entered calculated fields from Sanity
+    estCloses: Number(metric.estCloses) || 0,
+    estROI: Number(metric.estROI) || 0,
+    // Include hidden fields (for reference, not used for calculation)
     commission: Number(metric.commission) || 0,
     packagePrice: Number(metric.packagePrice) || 0,
     avgCloseRate: Number(metric.avgCloseRate) || 0,

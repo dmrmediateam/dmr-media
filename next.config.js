@@ -3,6 +3,16 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com', 'via.placeholder.com', 'cdn.sanity.io'],
   },
+  webpack: (config, { isServer }) => {
+    // Externalize @sanity/client for server-side to avoid webpack bundling issues
+    if (isServer) {
+      config.externals = config.externals || []
+      config.externals.push({
+        '@sanity/client': 'commonjs @sanity/client',
+      })
+    }
+    return config
+  },
   async headers() {
     return [
       {

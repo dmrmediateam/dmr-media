@@ -13,24 +13,8 @@ export default function ROIDisplay({ clientId }: { clientId: string }) {
         const data = await res.json()
         if (data.metrics && data.metrics.length > 0) {
           const latest = data.metrics[0]
-          // Calculate ROI manually: (Est. Closes × Commission) / (Package Price + Ad Spend) × 100
-          const totalLeads = latest.totalLeads || (latest.paidLeads + latest.organicLeads)
-          const avgCloseRate = latest.avgCloseRate || 0
-          const commission = latest.commission || 0
-          const packagePrice = latest.packagePrice || 0
-          const adSpend = latest.adSpend || 0
-          
-          // Est. Closes = Avg Close Rate × Total Leads
-          const estCloses = avgCloseRate > 0 && totalLeads > 0
-            ? (avgCloseRate / 100) * totalLeads
-            : 0
-          
-          // Est. ROI = (Est. Closes × Commission) / (Package Price + Ad Spend) × 100
-          const totalCost = packagePrice + adSpend
-          const estROI = totalCost > 0 && commission > 0 && estCloses > 0
-            ? ((estCloses * commission) / totalCost) * 100
-            : 0
-          
+          // Use manually entered ROI from Sanity
+          const estROI = Number(latest.estROI) || 0
           setCurrentROI(estROI)
         }
       } catch (error) {
@@ -67,6 +51,9 @@ export default function ROIDisplay({ clientId }: { clientId: string }) {
       <div className={`text-6xl font-serif font-normal ${getROIColor()}`}>
         {currentROI.toFixed(1)}%
       </div>
+      <p className="text-xs text-[var(--color-ink-400)] mt-4 font-sans">
+        These metrics are based on the most recent Month
+      </p>
     </div>
   )
 }

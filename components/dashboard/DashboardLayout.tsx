@@ -81,9 +81,22 @@ const navigation = [
   { name: 'Ask a Question', anchor: '#ask-question', icon: QuestionIcon },
 ]
 
+const MenuIcon = () => (
+  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+)
+
+const CloseIcon = () => (
+  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+  </svg>
+)
+
 export default function DashboardLayout({ children, clientName, clientId, studioUrl }: DashboardLayoutProps) {
   const router = useRouter()
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' })
@@ -92,6 +105,7 @@ export default function DashboardLayout({ children, clientName, clientId, studio
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, anchor: string) => {
     e.preventDefault()
+    setMobileMenuOpen(false) // Close mobile menu when navigating
     const element = document.querySelector(anchor)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -99,9 +113,68 @@ export default function DashboardLayout({ children, clientName, clientId, studio
   }
 
   return (
-    <div className="min-h-screen bg-[var(--surface-base)] flex">
-      {/* Sidebar */}
-      <aside className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-white border-r border-[var(--color-ink-200)] transition-all duration-300 flex flex-col sticky top-0 h-screen overflow-y-auto`}>
+    <div className="min-h-screen bg-[var(--surface-base)] flex flex-col lg:flex-row">
+      {/* Mobile Menu Button */}
+      <div className="lg:hidden bg-white border-b border-[var(--color-ink-200)] sticky top-0 z-50">
+        <div className="flex items-center justify-between p-4">
+          <div>
+            <h2 className="font-serif text-lg text-[var(--color-off-black)]">
+              {clientName}
+            </h2>
+            <p className="text-xs text-[var(--color-ink-400)] font-serif">
+              Powered by: DMR Media
+            </p>
+          </div>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded hover:bg-[var(--color-ink-200)] transition-colors"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+          </button>
+        </div>
+        
+        {/* Mobile Menu Dropdown */}
+        {mobileMenuOpen && (
+          <div className="border-t border-[var(--color-ink-200)] bg-white max-h-[calc(100vh-80px)] overflow-y-auto">
+            <nav className="p-4 space-y-2">
+              {navigation.map((item) => {
+                const Icon = item.icon
+                return (
+                  <a
+                    key={item.name}
+                    href={item.anchor}
+                    onClick={(e) => handleAnchorClick(e, item.anchor)}
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm font-serif text-[var(--color-ink-300)] hover:bg-[var(--color-ink-200)] hover:text-[var(--color-off-black)]"
+                  >
+                    <Icon />
+                    <span>{item.name}</span>
+                  </a>
+                )
+              })}
+              <a
+                href={studioUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm font-serif text-[var(--color-ink-300)] hover:bg-[var(--color-ink-200)] hover:text-[var(--color-off-black)]"
+              >
+                <WebsiteIcon />
+                <span>Website Sign In</span>
+              </a>
+              <button
+                onClick={handleLogout}
+                className="w-full flex items-center gap-3 px-4 py-3 text-[var(--color-ink-300)] hover:bg-[var(--color-ink-200)] rounded-lg transition-colors text-sm font-serif"
+              >
+                <LogoutIcon />
+                <span>Logout</span>
+              </button>
+            </nav>
+          </div>
+        )}
+      </div>
+
+      {/* Desktop Sidebar */}
+      <aside className={`hidden lg:flex ${sidebarOpen ? 'w-64' : 'w-20'} bg-white border-r border-[var(--color-ink-200)] transition-all duration-300 flex-col sticky top-0 h-screen overflow-y-auto`}>
         <div className="p-6 border-b border-[var(--color-ink-200)]">
           <div className="flex items-center justify-between mb-2">
             <h2 className={`font-serif text-[var(--color-off-black)] transition-opacity ${sidebarOpen ? 'opacity-100' : 'opacity-0 w-0 overflow-hidden'}`}>
@@ -169,8 +242,8 @@ export default function DashboardLayout({ children, clientName, clientId, studio
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto">
-        <div className="p-8">
+      <main className="flex-1 overflow-auto w-full">
+        <div className="p-4 lg:p-8">
           {children}
         </div>
       </main>

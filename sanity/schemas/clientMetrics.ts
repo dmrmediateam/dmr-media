@@ -35,8 +35,7 @@ export default {
       name: 'totalLeads',
       title: 'Total Leads',
       type: 'number',
-      description: 'Total leads (calculated: Paid + Organic)',
-      readOnly: true,
+      description: 'Total leads (manually entered)',
       initialValue: 0,
     },
     {
@@ -111,21 +110,19 @@ export default {
       hidden: true,
       initialValue: 0,
     },
-    // Calculated fields (read-only)
+    // Calculated fields (manually entered)
     {
       name: 'estCloses',
       title: 'Estimated Closes',
       type: 'number',
-      description: 'Calculated: Avg Close Rate × Total Leads',
-      readOnly: true,
+      description: 'Estimated closes (manually entered)',
       initialValue: 0,
     },
     {
       name: 'estROI',
       title: 'Estimated ROI',
       type: 'number',
-      description: 'Calculated: (Est. Closes × Commission) / (Package Price + Ad Spend)',
-      readOnly: true,
+      description: 'Estimated ROI percentage (manually entered)',
       initialValue: 0,
     },
   ],

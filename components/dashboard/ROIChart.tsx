@@ -30,28 +30,13 @@ export default function ROIChart({ clientId }: { clientId: string }) {
         const result = await res.json()
         if (result.metrics) {
           const sorted = [...result.metrics].reverse().map((m: any) => {
-            // Calculate ROI manually for each metric
-            const totalLeads = m.totalLeads || (m.paidLeads + m.organicLeads)
-            const avgCloseRate = m.avgCloseRate || 0
-            const commission = m.commission || 0
-            const packagePrice = m.packagePrice || 0
-            const adSpend = m.adSpend || 0
-            
-            // Est. Closes = Avg Close Rate × Total Leads
-            const estCloses = avgCloseRate > 0 && totalLeads > 0
-              ? (avgCloseRate / 100) * totalLeads
-              : 0
-            
-            // Est. ROI = (Est. Closes × Commission) / (Package Price + Ad Spend) × 100
-            const totalCost = packagePrice + adSpend
-            const estROI = totalCost > 0 && commission > 0 && estCloses > 0
-              ? ((estCloses * commission) / totalCost) * 100
-              : 0
+            // Use manually entered ROI from Sanity
+            const estROI = Number(m.estROI) || 0
             
             return {
               ...m,
               date: new Date(m.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-              estROI: Math.round(estROI * 100) / 100,
+              estROI: estROI, // Manually entered in Sanity
             }
           })
           setData(sorted)

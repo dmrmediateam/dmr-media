@@ -20,19 +20,16 @@ export default function StatsBoxes({ clientId }: { clientId: string }) {
         const result = await res.json()
         if (result.metrics && result.metrics.length > 0) {
           const latest = result.metrics[0]
-          const totalLeads = latest.totalLeads || (latest.paidLeads + latest.organicLeads)
-          const avgCloseRate = latest.avgCloseRate || 0
-          
-          // Calculate Est. Closes manually: Avg Close Rate × Total Leads
-          const estCloses = avgCloseRate > 0 && totalLeads > 0
-            ? (avgCloseRate / 100) * totalLeads
-            : 0
+          // Use manually entered values from Sanity
+          const paidLeads = Number(latest.paidLeads) || 0
+          const organicLeads = Number(latest.organicLeads) || 0
+          const totalLeads = Number(latest.totalLeads) || (paidLeads + organicLeads)
           
           setStats({
             totalLeads: totalLeads,
-            websiteTraffic: latest.websiteTraffic || 0,
-            backlinks: latest.backlinks || 0,
-            estCloses: estCloses,
+            websiteTraffic: Number(latest.websiteTraffic) || 0,
+            backlinks: Number(latest.backlinks) || 0,
+            estCloses: Number(latest.estCloses) || 0, // Manually entered in Sanity
           })
         }
       } catch (error) {
@@ -68,9 +65,9 @@ export default function StatsBoxes({ clientId }: { clientId: string }) {
 
   const boxes = [
     { title: 'Total Leads', value: formatNumber(stats.totalLeads) },
+    { title: 'Est. Closes', value: stats.estCloses.toFixed(1) },
     { title: 'Website Traffic', value: formatNumber(stats.websiteTraffic) },
     { title: 'Backlinks', value: formatNumber(stats.backlinks) },
-    { title: 'Est. Closes', value: stats.estCloses.toFixed(1) },
   ]
 
   return (

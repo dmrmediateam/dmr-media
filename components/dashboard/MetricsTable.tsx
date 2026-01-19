@@ -15,6 +15,8 @@ interface Metrics {
   adSpend: number
   avgHomePrice: number
   gbpRankTracking?: string
+  estCloses: number // Manually entered in Sanity
+  estROI: number // Manually entered in Sanity
   commission: number
   packagePrice: number
   avgCloseRate: number
@@ -52,58 +54,13 @@ export default function MetricsTable({ clientId, section = 'all' }: MetricsTable
     fetchMetrics()
   }, [clientId])
 
-  // Calculate estCloses and estROI manually based on section
-  const calculateEstCloses = (metric: Metrics, sectionType: MetricsSection = currentSection): number => {
-    let relevantLeads: number
-    
-    // Use section-specific leads for calculation
-    switch (sectionType) {
-      case 'google-ads':
-        // For Google Ads, use only paid leads
-        relevantLeads = metric.paidLeads || 0
-        break
-      case 'seo-aio':
-        // For SEO/AIO, use only organic leads
-        relevantLeads = metric.organicLeads || 0
-        break
-      case 'sales':
-      case 'all':
-      default:
-        // For Sales and all/default, use total leads
-        relevantLeads = metric.totalLeads || (metric.paidLeads + metric.organicLeads)
-        break
-    }
-    
-    const avgCloseRate = metric.avgCloseRate || 0
-    if (avgCloseRate > 0 && relevantLeads > 0) {
-      return Math.round(((avgCloseRate / 100) * relevantLeads) * 100) / 100
-    }
-    return 0
+  // Use manually entered values from Sanity (no calculation needed)
+  const getEstCloses = (metric: Metrics): number => {
+    return Number(metric.estCloses) || 0
   }
 
-  const calculateEstROI = (metric: Metrics, sectionType: MetricsSection = currentSection): number => {
-    const estCloses = calculateEstCloses(metric, sectionType)
-    const commission = metric.commission || 0
-    
-    let totalCost: number
-    
-    // For Google Ads section, ROI should be calculated based on ad spend only
-    // For SEO/AIO section, use package price only (no ad spend for organic)
-    // For Sales and all sections, use package price + ad spend
-    if (sectionType === 'google-ads') {
-      totalCost = metric.adSpend || 0
-    } else if (sectionType === 'seo-aio') {
-      totalCost = metric.packagePrice || 0
-    } else {
-      const packagePrice = metric.packagePrice || 0
-      const adSpend = metric.adSpend || 0
-      totalCost = packagePrice + adSpend
-    }
-    
-    if (totalCost > 0 && commission > 0 && estCloses > 0) {
-      return Math.round(((estCloses * commission) / totalCost) * 100 * 100) / 100
-    }
-    return 0
+  const getEstROI = (metric: Metrics): number => {
+    return Number(metric.estROI) || 0
   }
 
   // Define which columns to show based on section
@@ -254,8 +211,8 @@ export default function MetricsTable({ clientId, section = 'all' }: MetricsTable
           <tbody className="bg-white divide-y divide-[var(--color-ink-200)]">
             {metrics.map((metric, index) => {
               const previousMetric = metrics[index + 1]
-              const estCloses = calculateEstCloses(metric, currentSection)
-              const estROI = calculateEstROI(metric, currentSection)
+              const estCloses = getEstCloses(metric)
+              const estROI = getEstROI(metric)
               return (
                 <tr key={metric._id} className="hover:bg-[var(--surface-base)]">
                   {visibleColumns.includes('date') && (
