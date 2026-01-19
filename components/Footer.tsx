@@ -53,6 +53,11 @@ const Footer = () => {
                     Schedule
                   </Link>
                 </li>
+                <li>
+                  <Link href="/dashboard/sign-in" className="hover:text-[var(--color-trust)] transition-colors">
+                    Client Sign In
+                  </Link>
+                </li>
               </ul>
             </div>
 

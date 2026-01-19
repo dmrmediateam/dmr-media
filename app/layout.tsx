@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import { Instrument_Serif } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import ConditionalLayout from '@/components/ConditionalLayout'
 import ScrollAnimations from '@/components/ScrollAnimations'
 import ScrollProgressBar from '@/components/ScrollProgressBar'
 
@@ -66,11 +65,9 @@ export default function RootLayout({
         {/* End Meta Pixel Code */}
         <ScrollProgressBar />
         <ScrollAnimations />
-        <Navbar />
-        <main className="min-h-screen">
+        <ConditionalLayout>
           {children}
-        </main>
-        <Footer />
+        </ConditionalLayout>
         {/* Elfsight AI Chatbot | DMR Media Bot */}
         <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
         <div className="elfsight-app-90e5dbc1-4850-470a-b384-914842649785" data-elfsight-app-lazy></div>
