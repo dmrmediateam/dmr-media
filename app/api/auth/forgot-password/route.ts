@@ -60,6 +60,9 @@ export async function POST(request: Request) {
       if (error.statusCode) {
         console.error('Status code:', error.statusCode)
       }
+      if (error.response) {
+        console.error('Error response:', JSON.stringify(error.response, null, 2))
+      }
       // Return a more helpful error message
       return NextResponse.json(
         { error: 'Failed to generate reset token. Please try again or contact support.' },
@@ -67,14 +70,33 @@ export async function POST(request: Request) {
       )
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.dmrmedia.org'
+    // Get base URL - try multiple sources for deployment compatibility
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 
+                    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 
+                    process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` :
+                    'https://www.dmrmedia.org'
+    
     const resetUrl = `${baseUrl}/dashboard/reset-password?token=${resetToken}&email=${encodeURIComponent(email)}`
     
-    await sendPasswordResetEmail({
-      to: email,
-      name: client.name,
-      resetUrl,
-    })
+    // Send email with better error handling
+    try {
+      await sendPasswordResetEmail({
+        to: email,
+        name: client.name,
+        resetUrl,
+      })
+    } catch (emailError: any) {
+      console.error('Error sending password reset email:', emailError)
+      if (emailError.message) {
+        console.error('Email error message:', emailError.message)
+      }
+      if (emailError.response?.body) {
+        console.error('SendGrid response:', JSON.stringify(emailError.response.body, null, 2))
+      }
+      // Don't fail the request if email fails - token is already saved
+      // Log it but return success to user (security best practice)
+      console.warn('Password reset token saved but email failed to send')
+    }
 
     return NextResponse.json({ 
       success: true,
@@ -82,8 +104,15 @@ export async function POST(request: Request) {
     })
   } catch (error: any) {
     console.error('Password reset error:', error)
+    // Log the full error for debugging
+    if (error.message) {
+      console.error('Error message:', error.message)
+    }
+    if (error.stack) {
+      console.error('Error stack:', error.stack)
+    }
     return NextResponse.json(
-      { error: 'Failed to process reset request' },
+      { error: 'Failed to process reset request. Please try again or contact support.' },
       { status: 500 }
     )
   }

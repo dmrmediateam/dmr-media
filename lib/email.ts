@@ -1,7 +1,12 @@
 import sgMail from '@sendgrid/mail';
 
-// Initialize SendGrid
-sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
+// Initialize SendGrid with validation
+if (!process.env.SENDGRID_API_KEY) {
+  console.error('SENDGRID_API_KEY environment variable is not set')
+  throw new Error('SENDGRID_API_KEY is required for sending emails')
+}
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export interface ContactFormData {
   name: string;
@@ -456,8 +461,16 @@ DMR Media
     await sgMail.send(emailContent)
     return { success: true }
   } catch (error: any) {
-    console.error('SendGrid Error:', error.response?.body || error)
-    throw new Error('Failed to send email')
+    console.error('SendGrid Error:', error)
+    if (error.response) {
+      console.error('SendGrid Response Status:', error.response.statusCode)
+      console.error('SendGrid Response Body:', JSON.stringify(error.response.body, null, 2))
+    }
+    if (error.message) {
+      console.error('SendGrid Error Message:', error.message)
+    }
+    // Re-throw with more context
+    throw new Error(`Failed to send email: ${error.message || 'Unknown error'}`)
   }
 }
 
