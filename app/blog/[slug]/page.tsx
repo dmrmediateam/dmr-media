@@ -17,7 +17,7 @@ export async function generateStaticParams() {
       slug: post.slug.current,
     }))
   } catch (error) {
-    console.error('Error generating static params for blog:', error)
+    console.error('Error generating static params for blog posts:', error)
     return []
   }
 }
