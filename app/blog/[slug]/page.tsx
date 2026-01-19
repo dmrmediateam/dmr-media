@@ -5,15 +5,21 @@ import { PortableText } from '@portabletext/react'
 import { getBlogPostBySlug, getAllBlogPosts } from '@/data/blogPosts'
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
 export const revalidate = 60
 
 export async function generateStaticParams() {
-  const posts = await getAllBlogPosts()
-  // Filter out posts without valid slugs
-  const validPosts = posts.filter((post) => post.slug?.current)
-  return validPosts.map((post) => ({
-    slug: post.slug.current,
-  }))
+  try {
+    const posts = await getAllBlogPosts()
+    // Filter out posts without valid slugs
+    const validPosts = posts.filter((post) => post.slug?.current)
+    return validPosts.map((post) => ({
+      slug: post.slug.current,
+    }))
+  } catch (error) {
+    console.error('Error generating static params for blog:', error)
+    return []
+  }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
