@@ -94,46 +94,30 @@ export default function CalendarPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
-      <div className="container-max py-12 md:py-16 lg:py-20">
-        <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-white">
+      <div className="container-max py-24 md:py-32">
+        <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-12 md:mb-16"
+            className="mb-16 md:mb-24"
           >
-            <div className="text-center mb-12 md:mb-16">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] mb-6 md:mb-8 tracking-tight">
+            <div className="text-center mb-16 md:mb-24">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] mb-8 tracking-tight">
                 Apply for a 1:1 Strategy Session
-                <span className="text-[var(--color-trust)] text-[1.05em]">.</span>
-          </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-[var(--color-ink-300)] max-w-3xl mx-auto leading-relaxed">
+              </h1>
+              <p className="text-base md:text-lg text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed font-serif">
                 We only bring on <em>5 new clients</em> per month. We only accept agents who already have deal flow and want to add <em>2–3 closings</em> per month using a <em>predictable system</em>. If selected, you'll receive a custom roadmap (a <em>$3,500 value</em>) built specifically for your market.
               </p>
             </div>
 
             {/* Qualification Form */}
-            <div className="rounded-[32px] border-2 border-[var(--color-trust)] bg-white shadow-[0_24px_64px_rgba(15,15,15,0.12)] px-6 py-8 md:px-12 md:py-12 relative overflow-hidden">
-              {/* Decorative Background Elements */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-trust)]/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-[var(--color-trust)]/5 rounded-full blur-3xl -ml-24 -mb-24"></div>
-              
-              {/* 2 Minutes Fillout Time Bubble */}
-              <div className="absolute top-4 left-4 z-20">
-                <div className="bg-[var(--color-trust)]/10 backdrop-blur-sm border border-[var(--color-trust)]/20 rounded-full px-4 py-2 flex items-center gap-2 shadow-sm">
-                  <svg className="w-4 h-4 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-                  <span className="text-sm font-medium text-[var(--color-off-black)]">2 minutes fillout-time</span>
-            </div>
-          </div>
-              
-              <div className="relative z-10 pt-12 md:pt-16">
-                <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="border-b border-[var(--color-ink-200)] pb-16">
+              <form onSubmit={handleSubmit} className="space-y-12">
                   {/* Market Commitment - Full-time agent */}
-                  <div className="space-y-3">
-                    <label htmlFor="isFullTime" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                  <div className="space-y-4">
+                    <label htmlFor="isFullTime" className="block text-sm font-serif text-[var(--color-off-black)] uppercase tracking-[0.2em]">
                       Are you a full-time real estate agent?
                     </label>
                     <select
@@ -141,7 +125,7 @@ export default function CalendarPage() {
                       required
                       value={formData.isFullTime}
                       onChange={(e) => setFormData({ ...formData, isFullTime: e.target.value })}
-                      className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
+                      className="w-full px-0 py-3 text-base border-b border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300"
                     >
                       <option value="">Select an option</option>
                       <option value="yes">Yes</option>
@@ -150,8 +134,8 @@ export default function CalendarPage() {
         </div>
 
                   {/* Active market */}
-                  <div className="space-y-3">
-                    <label htmlFor="activeMarket" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                  <div className="space-y-4">
+                    <label htmlFor="activeMarket" className="block text-sm font-serif text-[var(--color-off-black)] uppercase tracking-[0.2em]">
                       What market do you actively serve right now?
                     </label>
                     <input
@@ -160,14 +144,14 @@ export default function CalendarPage() {
                       required
                       value={formData.activeMarket}
                       onChange={(e) => setFormData({ ...formData, activeMarket: e.target.value })}
-                      className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
+                      className="w-full px-0 py-3 text-base border-b border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300 placeholder:text-[var(--color-ink-300)]"
                       placeholder="e.g., St. Petersburg, FL"
               />
             </div>
 
                   {/* Listing situation */}
-                  <div className="space-y-3">
-                    <label htmlFor="listingSituation" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                  <div className="space-y-4">
+                    <label htmlFor="listingSituation" className="block text-sm font-serif text-[var(--color-off-black)] uppercase tracking-[0.2em]">
                       Which best describes your current listing situation?
                     </label>
                     <select
@@ -175,7 +159,7 @@ export default function CalendarPage() {
                       required
                       value={formData.listingSituation}
                       onChange={(e) => setFormData({ ...formData, listingSituation: e.target.value })}
-                      className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
+                      className="w-full px-0 py-3 text-base border-b border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300"
                     >
                       <option value="">Select an option</option>
                       <option value="rely-referrals">I rely heavily on referrals and want more control</option>
@@ -186,8 +170,8 @@ export default function CalendarPage() {
           </div>
 
                   {/* Decision maker */}
-                  <div className="space-y-3">
-                    <label htmlFor="isDecisionMaker" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                  <div className="space-y-4">
+                    <label htmlFor="isDecisionMaker" className="block text-sm font-serif text-[var(--color-off-black)] uppercase tracking-[0.2em]">
                       Are you the primary decision-maker for your business?
                     </label>
                     <select
@@ -195,7 +179,7 @@ export default function CalendarPage() {
                       required
                       value={formData.isDecisionMaker}
                       onChange={(e) => setFormData({ ...formData, isDecisionMaker: e.target.value })}
-                      className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
+                      className="w-full px-0 py-3 text-base border-b border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300"
                     >
                       <option value="">Select an option</option>
                       <option value="yes">Yes</option>
@@ -204,8 +188,8 @@ export default function CalendarPage() {
         </div>
 
                   {/* How many closings in last 12 months */}
-                  <div className="space-y-3">
-                    <label htmlFor="closingsLast12Months" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                  <div className="space-y-4">
+                    <label htmlFor="closingsLast12Months" className="block text-sm font-serif text-[var(--color-off-black)] uppercase tracking-[0.2em]">
                       How many closings have you done in the last 12 months?
                     </label>
                     <input
@@ -215,29 +199,29 @@ export default function CalendarPage() {
                       min="0"
                       value={formData.closingsLast12Months}
                       onChange={(e) => setFormData({ ...formData, closingsLast12Months: e.target.value })}
-                      className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
+                      className="w-full px-0 py-3 text-base border-b border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300 placeholder:text-[var(--color-ink-300)]"
                       placeholder="Enter number of closings"
                     />
           </div>
 
                   {/* Which tools do you have */}
-                  <div className="space-y-3">
-                    <label className="block text-lg font-medium text-[var(--color-off-black)] mb-4">
+                  <div className="space-y-4">
+                    <label className="block text-sm font-serif text-[var(--color-off-black)] uppercase tracking-[0.2em]">
                       Which of the following tools do you have?
                     </label>
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                       {['CRM', 'Website', 'Ads Account'].map((tool) => (
                         <label
                           key={tool}
-                          className="flex items-center gap-4 cursor-pointer group p-4 rounded-[16px] border-2 border-transparent hover:border-[var(--color-trust)]/30 hover:bg-[var(--color-trust)]/5 transition-all duration-300"
+                          className="flex items-center gap-4 cursor-pointer group"
                         >
                           <input
                             type="checkbox"
                             checked={formData.tools.includes(tool)}
                             onChange={() => handleToolChange(tool)}
-                            className="w-6 h-6 rounded border-2 border-[var(--color-ink-200)] text-[var(--color-trust)] focus:ring-[var(--color-trust)] focus:ring-2 cursor-pointer"
+                            className="w-5 h-5 border border-[var(--color-off-black)] bg-transparent text-[var(--color-off-black)] focus:ring-0 focus:ring-offset-0 cursor-pointer accent-[var(--color-off-black)]"
                           />
-                          <span className="text-lg text-[var(--color-off-black)] font-serif group-hover:text-[var(--color-trust)] transition-colors duration-300">
+                          <span className="text-base text-[var(--color-off-black)] font-serif group-hover:opacity-60 transition-opacity duration-300">
                             {tool}
                           </span>
                         </label>
@@ -247,8 +231,8 @@ export default function CalendarPage() {
 
                   {/* Website URL - Only show if Website is checked */}
                   {formData.tools.includes('Website') && (
-                    <div className="space-y-3">
-                      <label htmlFor="websiteUrl" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                    <div className="space-y-4">
+                      <label htmlFor="websiteUrl" className="block text-sm font-serif text-[var(--color-off-black)] uppercase tracking-[0.2em]">
                         Website URL
                       </label>
                       <input
@@ -257,15 +241,15 @@ export default function CalendarPage() {
                         required
                         value={formData.websiteUrl}
                         onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
-                        className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
+                        className="w-full px-0 py-3 text-base border-b border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300 placeholder:text-[var(--color-ink-300)]"
                         placeholder="https://yourwebsite.com"
                       />
               </div>
                   )}
 
                   {/* Lead response time */}
-                  <div className="space-y-3">
-                    <label htmlFor="leadResponseTime" className="block text-lg font-medium text-[var(--color-off-black)] mb-3">
+                  <div className="space-y-4">
+                    <label htmlFor="leadResponseTime" className="block text-sm font-serif text-[var(--color-off-black)] uppercase tracking-[0.2em]">
                       What is your typical time to respond to a lead?
                     </label>
                     <select
@@ -273,7 +257,7 @@ export default function CalendarPage() {
                       required
                       value={formData.leadResponseTime}
                       onChange={(e) => setFormData({ ...formData, leadResponseTime: e.target.value })}
-                      className="w-full px-5 py-4 text-lg rounded-[20px] border-2 border-[var(--color-ink-200)] bg-white text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] focus:ring-2 focus:ring-[var(--color-trust)]/20 transition-all duration-300"
+                      className="w-full px-0 py-3 text-base border-b border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300"
                     >
                       <option value="">Select an option</option>
                       <option value="immediately">Immediately (within minutes)</option>
@@ -285,20 +269,17 @@ export default function CalendarPage() {
             </div>
 
                   <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center gap-3 rounded-full px-8 py-5 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                    className="w-full inline-flex items-center justify-center px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)] disabled:opacity-50 disabled:cursor-not-allowed mt-8"
                   >
                     {isSubmitting ? 'Submitting...' : 'Submit Application'}
                   </motion.button>
                 </form>
-              </div>
             </div>
           </motion.div>
-          </div>
         </div>
+      </div>
     </div>
   );
 }

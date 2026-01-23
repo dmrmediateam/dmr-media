@@ -68,9 +68,6 @@ export default function RootLayout({
         <ConditionalLayout>
           {children}
         </ConditionalLayout>
-        {/* Elfsight AI Chatbot | DMR Media Bot */}
-        <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
-        <div className="elfsight-app-90e5dbc1-4850-470a-b384-914842649785" data-elfsight-app-lazy></div>
       </body>
     </html>
   )

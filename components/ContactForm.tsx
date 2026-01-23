@@ -69,26 +69,21 @@ const ContactForm = () => {
   if (isSubmitted) {
     return (
       <motion.div 
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="py-32 bg-[var(--surface-base)]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="py-32 bg-white"
       >
         <div className="container-max flex justify-center">
-          <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm px-10 py-14 text-center max-w-md">
+          <div className="max-w-md text-center">
             <motion.div 
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-trust)]/10 text-[var(--color-trust)] mb-4">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </span>
-              <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-2">
+              <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-4">
                 Thank you.
               </h3>
-              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed">
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
                 We received your message and will reply within one business day.
               </p>
             </motion.div>

@@ -59,34 +59,34 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const portableTextComponents = {
   block: {
     h2: ({ children }: any) => (
-      <h2 className="text-[28px] sm:text-[32px] font-serif font-light text-[var(--color-off-black)] mt-10 mb-3 tracking-tight">
+      <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mt-12 mb-6 tracking-tight">
         {children}
       </h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-[22px] sm:text-[24px] font-serif font-light text-[var(--color-off-black)] mt-7 mb-2 tracking-tight">
+      <h3 className="text-xl md:text-2xl font-serif font-light text-[var(--color-off-black)] mt-10 mb-4 tracking-tight">
         {children}
       </h3>
     ),
     normal: ({ children }: any) => (
-      <p className="text-[var(--color-ink-300)] text-base sm:text-[17px] leading-[1.6] mb-4">
+      <p className="text-[var(--color-ink-300)] text-base leading-relaxed mb-6 font-serif">
         {children}
       </p>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-2 border-[var(--color-trust)] pl-5 my-8 italic text-[var(--color-ink-300)]">
+      <blockquote className="border-l border-[var(--color-off-black)] pl-6 my-8 text-[var(--color-ink-300)] font-serif">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="list-disc list-inside mb-4 text-[var(--color-ink-300)] space-y-1.5">
+      <ul className="list-disc list-inside mb-6 text-[var(--color-ink-300)] space-y-2 font-serif">
         {children}
       </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="list-decimal list-inside mb-4 text-[var(--color-ink-300)] space-y-1.5">
+      <ol className="list-decimal list-inside mb-6 text-[var(--color-ink-300)] space-y-2 font-serif">
         {children}
       </ol>
     ),
@@ -95,7 +95,7 @@ const portableTextComponents = {
     link: ({ children, value }: any) => (
       <a
         href={value.href}
-        className="text-[var(--color-trust)] hover:opacity-80 underline decoration-[var(--color-trust)]/40"
+        className="text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300 underline"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -165,71 +165,64 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <div className="min-h-screen bg-[var(--surface-base)]">
-      <section className="relative min-h-[60vh] lg:min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
-        <div className="pointer-events-none absolute inset-0 flex justify-end pr-4 sm:pr-10 lg:pr-20 pb-10 sm:pb-14">
-          <div className="relative w-[240px] sm:w-[320px] lg:w-[460px] aspect-[4/5] rounded-[40px] overflow-hidden bg-white/40 backdrop-blur-[2px] border border-[var(--color-ink-200)] opacity-70">
-            <Image
-              src={post.mainImage.asset.url}
-              alt={post.mainImage.alt}
-              fill
-              priority
-              className="object-cover"
-            />
-          </div>
-        </div>
-
-        <div className="relative z-10 w-full pt-12 pb-14">
-          <div className="container-max">
-            <div className="max-w-3xl space-y-4">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-[var(--color-off-black)]">
-                {post.category}
-              </span>
-              <h1 className="text-[40px] sm:text-[52px] lg:text-[60px] font-serif font-light text-[var(--color-off-black)] leading-[1.04] tracking-tight">
-                {post.title}
-                <span className="text-[var(--color-trust)] text-[1.05em] align-baseline">.</span>
-              </h1>
-              <p className="text-base sm:text-[17px] text-[var(--color-ink-300)] leading-[1.55] max-w-2xl">
-                {post.description}
-              </p>
-              <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--color-ink-300)]">
-                <div className="flex items-center gap-3">
-                  {post.author.image && (
-                    <Image
-                      src={post.author.image}
-                      alt={post.author.name}
-                      width={40}
-                      height={40}
-                      className="h-10 w-10 rounded-full border border-[var(--color-ink-200)] object-cover"
-                    />
-                  )}
-                  <span>{post.author.name}</span>
-                </div>
-                <span className="text-[var(--color-ink-200)]">•</span>
-                <span>{formattedDate}</span>
-                <span className="text-[var(--color-ink-200)]">•</span>
-                <span>{post.readTime}</span>
-              </div>
+      <div className="min-h-screen bg-white">
+      <section className="py-24 md:py-32 border-b border-[var(--color-ink-200)]">
+        <div className="container-max">
+          <div className="max-w-3xl">
+            <span className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-300)] font-serif mb-6 block">
+              {post.category}
+            </span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.1] tracking-tight mb-8">
+              {post.title}
+            </h1>
+            <p className="text-base text-[var(--color-ink-300)] leading-relaxed font-serif max-w-2xl mb-8">
+              {post.description}
+            </p>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--color-ink-300)] font-serif">
+              {post.author.image && (
+                <Image
+                  src={post.author.image}
+                  alt={post.author.name}
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 border border-[var(--color-ink-200)] object-cover"
+                />
+              )}
+              <span>{post.author.name}</span>
+              <span className="text-[var(--color-ink-200)]">•</span>
+              <span>{formattedDate}</span>
+              <span className="text-[var(--color-ink-200)]">•</span>
+              <span>{post.readTime}</span>
             </div>
           </div>
         </div>
       </section>
 
-      <article className="py-20">
+      <article className="py-24 md:py-32">
         <div className="container-max">
-          <div className="max-w-4xl mx-auto space-y-12">
+          <div className="max-w-3xl mx-auto space-y-12">
+            <div className="relative h-96 overflow-hidden mb-12">
+              <Image
+                src={post.mainImage.asset.url}
+                alt={post.mainImage.alt}
+                fill
+                priority
+                className="object-cover"
+              />
+            </div>
+
             <PortableText value={post.body} components={portableTextComponents} />
 
             {post.tags && post.tags.length > 0 && (
-              <div className="border-t border-[var(--color-ink-200)] pt-6">
-                <h3 className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-4">
+              <div className="border-t border-[var(--color-ink-200)] pt-8">
+                <h3 className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] mb-6 font-serif">
                   Topics
                 </h3>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-4">
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-[var(--color-ink-200)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)]"
+                      className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] font-serif"
                     >
                       {tag}
                     </span>
@@ -238,27 +231,27 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               </div>
             )}
 
-            <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/85 backdrop-blur-sm p-8">
-              <div className="flex flex-col sm:flex-row items-start gap-5">
+            <div className="border-t border-[var(--color-ink-200)] pt-12">
+              <div className="flex flex-col sm:flex-row items-start gap-8">
                 {post.author.image && (
                   <Image
                     src={post.author.image}
                     alt={post.author.name}
                     width={96}
                     height={96}
-                    className="h-24 w-24 rounded-full border border-[var(--color-ink-200)] object-cover"
+                    className="h-24 w-24 border border-[var(--color-ink-200)] object-cover"
                   />
                 )}
                 <div>
-                  <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-3">
+                  <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-4">
                     About {post.author.name}
                   </h3>
-                  <p className="text-sm text-[var(--color-ink-300)] leading-relaxed mb-4">
+                  <p className="text-sm text-[var(--color-ink-300)] leading-relaxed mb-6 font-serif">
                     Marketing experts specializing in luxury real estate SEO, Google Ads, and digital strategy. Helping premium agents dominate their markets with data-driven campaigns and proven results.
                   </p>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-3 rounded-full px-6 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
+                    className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)]"
                   >
                     Work With Us
                   </Link>
@@ -266,38 +259,37 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               </div>
             </div>
 
-            <div className="flex justify-center pt-2">
+            <div className="flex justify-center pt-8">
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.24em] text-[var(--color-trust)] hover:text-[var(--color-off-black)] transition-colors duration-300"
+                className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif hover:opacity-60 transition-opacity duration-300"
               >
-                <span>←</span>
-                <span>Back to all insights</span>
+                ← Back to all insights
               </Link>
             </div>
           </div>
         </div>
       </article>
 
-      <section className="py-20 bg-white">
+      <section className="py-24 md:py-32 bg-white border-t border-[var(--color-ink-200)]">
         <div className="container-max">
-          <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/85 backdrop-blur-sm px-8 py-14 md:px-14 md:py-18 text-center">
+          <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-6">
               Ready to elevate your real estate marketing?
             </h2>
-            <p className="text-sm sm:text-base text-[var(--color-ink-300)] max-w-2xl mx-auto mb-6 leading-[1.55]">
+            <p className="text-base text-[var(--color-ink-300)] max-w-2xl mx-auto mb-8 leading-relaxed font-serif">
               Let’s tailor a growth plan around your portfolio—SEO, paid media, and analytics working together.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-3 rounded-full px-6 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
+                className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)]"
               >
                 Start a Project
               </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-3 rounded-full px-6 py-3 border border-[var(--color-ink-200)] text-[var(--color-off-black)] uppercase tracking-[0.3em] text-[11px] hover:border-[var(--color-trust)] hover:text-[var(--color-trust)] transition-colors duration-300"
+                className="inline-flex items-center justify-center px-8 py-3 border border-[var(--color-off-black)] text-[var(--color-off-black)] uppercase tracking-[0.12em] text-xs font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-all duration-300"
               >
                 Explore Services
               </Link>

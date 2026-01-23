@@ -4,259 +4,128 @@ import { useState } from 'react';
 
 const testimonials = [
   {
-    id: 1,
-    name: 'Justin Armbruster',
-    company: 'The Armbruster Team',
-    location: 'Topeka, KS',
-    text: 'Andrew & his team are great communicators and definitely know their stuff. True professionals!',
-    shortText: 'Great communicators who definitely know their stuff. True professionals!',
-    bgImage: '/images/StockHomes/modern-luxury-house-at-dusk-2025-02-10-06-40-31-utc.jpg',
-    featured: false,
-  },
-  {
-    id: 2,
-    name: 'Rick Grueble',
-    company: 'Visions First Realty',
-    location: 'Ashland, WI',
-    text: 'As the Broker/Owner of Visions First Realty, I cannot speak highly enough of DMR Media\'s exceptional SEO services. Their strategic approach to improving our online presence has yielded remarkable results, consistently pushing our website to top rankings for key real estate search terms in our market.',
-    shortText: 'DMR Media\'s exceptional SEO services yielded remarkable results, consistently pushing our website to top rankings.',
-    bgImage: '/images/StockHomes/modern-villa-interior-with-sparkle-floor-2024-10-18-09-40-13-utc.jpg',
-    featured: true,
-  },
-  {
     id: 3,
     name: 'Jade Goodhue',
     company: 'Legendary Real Services',
-    location: 'Lake Geneva, WI',
+    location: 'Lake Geneva, Wisconsin',
     text: 'He\'s articulate, responsive, and provides amazing weekly updates. He works with us like a partner, rather than a vendor. If you have the opportunity to work with him, just DO IT. You\'ll be grateful you did!',
-    shortText: 'Amazing weekly updates. Works like a partner, not a vendor. Just DO IT!',
-    bgImage: '/images/StockHomes/spacious-living-room-with-staircase-in-residence-2025-10-10-15-17-44-utc (1).jpg',
-    featured: true,
+    cityImage: '/images/Cities/LakeGeneva.jpg',
   },
   {
     id: 6,
     name: 'Samantha Marquis',
     company: 'Marquis + Farwell Team',
-    location: 'Sonoma County, California',
+    location: 'Sonoma, California',
     text: 'We had been looking into SEO for a bit and interviewed some other companies. After each interview, we walked away feeling like we had to think about it. This was absolutely not the case with DMR. From the start, we knew their company was the right fit. We were thoroughly impressed with their knowledge, their willingness to give us tips immediately, and their easy communication style. SEO can be intimidating and daunting, but DMR holds your hand, answers your questions, and has great follow through. We never feel uncomfortable asking questions and they never make us feel less-then. Every bit of the process we have been through with them thus far has been exceptional. We highly recommend them',
-    shortText: 'From the start, we knew DMR was the right fit. They hold your hand, answer questions, and have great follow through.',
-    bgImage: '/images/StockHomes/modern-luxury-house-at-dusk-2025-02-10-06-40-31-utc.jpg',
-    featured: true,
+    cityImage: '/images/Cities/Sonoma.jpg',
+  },
+  {
+    id: 'linda-farwell',
+    name: 'Linda Farwell',
+    company: 'Marquis + Farwell Team',
+    location: 'Sonoma, California',
+    text: 'We interviewed a few different companies and had follow up meetings with scheduled with them. Once we met with Andrew at DMR, it was a done deal. In one meeting he not only presented himself in clear, easy to understand terms, but was very patient with us in explaining how all this works(this stuff is way over my head) He also gave us instant tips without even knowing if we were going to use him. Once we hung up, we cancelled all the other meetings and decided to go with DMR. They have been fantastic.',
+    cityImage: '/images/Cities/Sonoma.jpg',
   },
   {
     id: 7,
     name: 'William Breaden',
     company: 'Eagan Luxury',
-    location: 'St. Petersburg, FL',
+    location: 'St. Petersburg, Florida',
     text: 'Andrew was great to work with on setting up new Real Estate website and getting everything linked and functional. He was always willing to listen and help guide us through the process to get what we considered to be the best outcome. We highly recommend him.',
-    shortText: 'Andrew was great to work with, always willing to listen and guide us through the process for the best outcome.',
-    bgImage: '/images/StockHomes/modern-villa-interior-with-sparkle-floor-2024-10-18-09-40-13-utc.jpg',
-    featured: false,
+    cityImage: '/images/Cities/Stpet.jpg',
+  },
+  {
+    id: 'justin-armbruster',
+    name: 'Justin Armbruster',
+    company: '',
+    location: 'Topeka, Kansas',
+    text: 'Great Communication, True Proffesionals! Andrew & his team are great communicators and definitely know their stuff. True proffesionals',
+    cityImage: '/images/Cities/rochester-minnesota-usa-skyline-on-the-zumbro-r-2026-01-09-06-28-40-utc.jpg',
+  },
+  {
+    id: 'rick-gruebele',
+    name: 'Rick Gruebele',
+    company: 'Visions First Realty',
+    location: 'Ashland, Wisconsin',
+    text: 'As the Broker/Owner of Visions First Realty, I cannot speak highly enough of DMR Media\'s exceptional SEO services. Their strategic approach to improving our online presence has yielded remarkable results, consistently pushing our website to top rankings for key real estate search terms in our market. From the outset, their team demonstrated a deep understanding of the real estate industry\'s unique digital marketing challenges. They implemented a comprehensive SEO strategy that included local search optimization, content enhancement, and technical improvements to our website enhancing our website\'s performance, while maintaining a user friendly website.',
+    cityImage: '/images/Cities/beautiful-landscape-of-the-bay-a-cliff-near-a-lake-2026-01-07-23-46-50-utc.jpg',
   },
 ];
 
 const Testimonials = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const truncateText = (text: string, maxLength: number = 100) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength).trim() + '...';
+  };
 
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <section className="py-32 bg-white border-b border-[var(--color-ink-200)]">
+      <div className="container-max">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-300)] mb-4 block">
-            Voices
-          </span>
-          <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] mb-4">
-            Client <span className="italic">Success Stories</span>
+        <div className="max-w-3xl mb-24 mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1]">
+            Client Success Stories
           </h2>
-          <p className="text-[var(--color-ink-300)] max-w-2xl mx-auto leading-relaxed">
-            Real results from real estate professionals who transformed their digital presence
-          </p>
         </div>
 
-        {/* Desktop Horizontal Accordion */}
-        <div className="hidden lg:flex gap-4 h-[520px]">
-          {testimonials.map((testimonial, index) => (
-            <div
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+          {testimonials.map((testimonial) => (
+            <TestimonialCard
               key={testimonial.id}
-              className={`relative overflow-hidden cursor-pointer transition-all duration-700 ease-in-out rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm ${
-                hoveredIndex === index
-                  ? 'flex-[2.6]'
-                  : hoveredIndex === null
-                  ? 'flex-[1.2]'
-                  : 'flex-[0.4]'
-              }`}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <img
-                  src={testimonial.bgImage}
-                  alt={`${testimonial.name} testimonial background`}
-                  className="w-full h-full object-cover transition-transform duration-700"
-                />
-                {/* Overlay Gradient */}
-                <div className={`absolute inset-0 transition-all duration-700 ${
-                  hoveredIndex === index
-                    ? 'bg-gradient-to-t from-white via-white/85 to-white/40'
-                    : 'bg-white/85'
-                }`}></div>
-              </div>
-
-              {/* Content */}
-              <div className="relative h-full flex flex-col justify-end p-10">
-                {/* Default Content - Hidden when another panel is hovered */}
-                <div className={`transition-all duration-500 ${
-                  hoveredIndex !== null && hoveredIndex !== index
-                    ? 'opacity-0 pointer-events-none'
-                    : 'opacity-100'
-                }`}>
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        className="w-4 h-4 text-[var(--color-trust)]"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-
-                  {/* Name */}
-                  <h3 className={`font-serif text-[var(--color-off-black)] mb-2 transition-all duration-500 ${
-                    hoveredIndex === index ? 'text-3xl' : 'text-2xl'
-                  }`}>
-                    {testimonial.name}
-                  </h3>
-
-                  {/* Company & Location */}
-                  {testimonial.company && (
-                    <p className={`text-[var(--color-trust)] font-semibold transition-all duration-500 ${
-                      hoveredIndex === index ? 'text-base mb-2 opacity-100' : 'text-sm mb-1 opacity-80'
-                    }`}>
-                      {testimonial.company}
-                    </p>
-                  )}
-                  
-                  {testimonial.location && (
-                    <p className={`text-[var(--color-ink-300)] mb-6 transition-all duration-500 ${
-                      hoveredIndex === index ? 'text-sm opacity-100' : 'text-xs opacity-70'
-                    }`}>
-                      {testimonial.location}
-                    </p>
-                  )}
-
-                  {/* Testimonial Text - Expands on hover */}
-                  <div className={`transition-all duration-700 overflow-hidden ${
-                    hoveredIndex === index
-                      ? 'max-h-96 opacity-100'
-                      : 'max-h-0 opacity-0'
-                  }`}>
-                    <div className="mb-4 h-px bg-gradient-to-r from-[var(--color-trust)] via-[var(--color-trust)]/40 to-transparent"></div>
-                    <blockquote className="text-[var(--color-off-black)] leading-relaxed text-base font-serif italic mb-4">
-                      "{testimonial.text}"
-                    </blockquote>
-                  </div>
-
-                  {/* Short text - Visible when no panel is hovered */}
-                  <div className={`transition-all duration-700 ${
-                    hoveredIndex === null
-                      ? 'max-h-32 opacity-100'
-                      : 'max-h-0 opacity-0'
-                  }`}>
-                    <p className="text-[var(--color-ink-300)] text-sm leading-relaxed line-clamp-3">
-                      "{testimonial.shortText}"
-                    </p>
-                  </div>
-                </div>
-
-                {/* Vertical Text - Only shown when another panel is hovered */}
-                {hoveredIndex !== null && hoveredIndex !== index && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="transform -rotate-90 whitespace-nowrap">
-                      <span className="text-[var(--color-ink-300)] text-2xl font-serif tracking-wider">
-                        {testimonial.name}
-                      </span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
+              testimonial={testimonial}
+              truncateText={truncateText}
+            />
           ))}
-        </div>
-
-        {/* Mobile Vertical Scroll */}
-        <div className="lg:hidden space-y-6">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={testimonial.id}
-              className="relative overflow-hidden rounded-3xl border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm"
-            >
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <img
-                  src={testimonial.bgImage}
-                  alt={`${testimonial.name} testimonial background`}
-                  className="w-full h-full object-cover"
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/85 to-white/40"></div>
-              </div>
-
-              {/* Content */}
-              <div className="relative p-6 min-h-[200px] flex flex-col justify-end">
-                {/* Stars */}
-                <div className="flex gap-1 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-4 h-4 text-[var(--color-trust)]"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-
-                {/* Name */}
-                <h3 className="font-serif text-2xl text-[var(--color-off-black)] mb-2">
-                  {testimonial.name}
-                </h3>
-
-                {/* Company & Location */}
-                {testimonial.company && (
-                  <p className="text-[var(--color-trust)] font-semibold text-base mb-1">
-                    {testimonial.company}
-                  </p>
-                )}
-                
-                {testimonial.location && (
-                  <p className="text-[var(--color-ink-300)] text-sm mb-4">
-                    {testimonial.location}
-                  </p>
-                )}
-
-                {/* Testimonial Text */}
-                <div className="mb-4 h-px bg-gradient-to-r from-[var(--color-trust)] via-[var(--color-trust)]/40 to-transparent"></div>
-                <blockquote className="text-[var(--color-off-black)] leading-relaxed text-base font-serif italic mb-4">
-                  "{testimonial.text}"
-                </blockquote>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile Notice */}
-        <div className="mt-8 text-center text-sm text-[var(--color-ink-300)] lg:hidden">
-          Swipe to explore every story
         </div>
       </div>
     </section>
+  );
+};
+
+const TestimonialCard = ({ testimonial, truncateText }: { testimonial: typeof testimonials[0], truncateText: (text: string, maxLength?: number) => string }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const truncatedText = truncateText(testimonial.text, 80);
+
+  return (
+    <div
+      className="group relative aspect-[2/3] min-h-[500px] overflow-hidden cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src={testimonial.cityImage}
+          alt={`${testimonial.location}`}
+          className="w-full h-full object-cover"
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
+      </div>
+
+      {/* Location - Top Left */}
+      {testimonial.location && (
+        <div className="absolute top-6 left-6 z-10">
+          <span className="text-sm uppercase tracking-[0.2em] text-[#FAFAF9] font-serif font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)]">
+            {testimonial.location}
+          </span>
+        </div>
+      )}
+
+      {/* Client Name & Review - Bottom Left */}
+      <div className="absolute bottom-6 left-6 right-6 z-10">
+        <h3 className="text-xl font-serif font-light !text-white mb-3 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] [text-shadow:_0_2px_12px_rgba(0,0,0,0.9)]" style={{ color: '#FFFFFF' }}>
+          {testimonial.name}
+        </h3>
+        <blockquote className={`text-sm text-[#FAFAF9] leading-relaxed font-serif drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)] transition-all duration-300 ${
+          isHovered ? 'opacity-100' : 'opacity-90'
+        }`}>
+          "{isHovered ? testimonial.text : truncatedText}"
+        </blockquote>
+      </div>
+    </div>
   );
 };
 
