@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
 export default function HomeValuation() {
   const [formData, setFormData] = useState({
@@ -36,13 +37,27 @@ export default function HomeValuation() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Get stored UTM parameters
+    const utmParams = getStoredUTMParams();
+
     try {
       const response = await fetch('/api/home-valuation', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          utm_source: utmParams.utm_source,
+          utm_medium: utmParams.utm_medium,
+          utm_campaign: utmParams.utm_campaign,
+          utm_term: utmParams.utm_term,
+          utm_content: utmParams.utm_content,
+          gclid: utmParams.gclid,
+          fbclid: utmParams.fbclid,
+          landing_page: utmParams.landing_page,
+          first_visit: utmParams.first_visit,
+        }),
       });
 
       const data = await response.json();
@@ -54,6 +69,9 @@ export default function HomeValuation() {
       // Success!
       setIsSubmitting(false);
       setIsSubmitted(true);
+      
+      // Track conversion
+      trackConversion('Lead', { form_type: 'home_valuation' });
       
       // Reset form after 5 seconds
       setTimeout(() => {

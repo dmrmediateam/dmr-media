@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
 export default function CalendarPage() {
   const router = useRouter();
@@ -38,12 +39,26 @@ export default function CalendarPage() {
     
     setIsSubmitting(true);
     
+    // Get stored UTM parameters
+    const utmParams = getStoredUTMParams();
+    
     try {
       // Submit form data to API
       const response = await fetch('/api/qualification-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          utm_source: utmParams.utm_source,
+          utm_medium: utmParams.utm_medium,
+          utm_campaign: utmParams.utm_campaign,
+          utm_term: utmParams.utm_term,
+          utm_content: utmParams.utm_content,
+          gclid: utmParams.gclid,
+          fbclid: utmParams.fbclid,
+          landing_page: utmParams.landing_page,
+          first_visit: utmParams.first_visit,
+        }),
       });
 
       const result = await response.json();
@@ -83,6 +98,9 @@ export default function CalendarPage() {
         router.push('/landing/qualification-result?status=disqualified');
         return;
       }
+      
+      // Track conversion
+      trackConversion('Lead', { form_type: 'calendar_qualification' });
       
       // Qualified - redirect to qualification-result
       router.push('/landing/qualification-result?status=qualified');

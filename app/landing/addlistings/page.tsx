@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Testimonials from '@/components/Testimonials';
 import ReviewsAggregate from '@/components/ReviewsAggregate';
 import getStripe from '@/lib/stripe';
+import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
 function AddListingsLandingContent() {
   const router = useRouter();
@@ -103,6 +104,12 @@ function AddListingsLandingContent() {
 
       // If free registration, skip Stripe and submit directly to registration API
       if ((checkoutSession as any).isFree) {
+        // Get stored UTM parameters
+        const utmParams = getStoredUTMParams();
+        
+        // Track conversion
+        trackConversion('Lead', { form_type: 'add_listings_landing' });
+        
         // Submit to registration API
         const regResponse = await fetch('/api/landing-registration', {
           method: 'POST',
@@ -112,6 +119,16 @@ function AddListingsLandingContent() {
             email: formData.email,
             phone: formData.phone,
             website: formData.website, // Include honeypot field
+            source: 'add-listings-landing',
+            utm_source: utmParams.utm_source,
+            utm_medium: utmParams.utm_medium,
+            utm_campaign: utmParams.utm_campaign,
+            utm_term: utmParams.utm_term,
+            utm_content: utmParams.utm_content,
+            gclid: utmParams.gclid,
+            fbclid: utmParams.fbclid,
+            landing_page: utmParams.landing_page,
+            first_visit: utmParams.first_visit,
           }),
         });
 

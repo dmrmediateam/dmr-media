@@ -13,6 +13,16 @@ export interface ContactFormData {
   email: string;
   phone: string;
   message: string;
+  // UTM tracking fields (optional)
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  gclid?: string;
+  fbclid?: string;
+  landing_page?: string;
+  first_visit?: string;
 }
 
 export interface HomeValuationData {
@@ -30,6 +40,16 @@ export interface HomeValuationData {
   squareFeet: string;
   yearBuilt: string;
   message: string;
+  // UTM tracking fields (optional)
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  gclid?: string;
+  fbclid?: string;
+  landing_page?: string;
+  first_visit?: string;
 }
 
 /**

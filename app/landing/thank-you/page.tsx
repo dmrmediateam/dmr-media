@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Testimonials from '@/components/Testimonials';
 import ReviewsAggregate from '@/components/ReviewsAggregate';
 import Image from 'next/image';
+import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
 function ThankYouContent() {
   const router = useRouter();
@@ -87,6 +88,9 @@ function ThankYouContent() {
     
     setIsSubmitting(true);
     
+    // Get stored UTM parameters
+    const utmParams = getStoredUTMParams();
+    
     try {
       // Submit form data to new implementation session API
       const response = await fetch('/api/implementation-session', {
@@ -95,6 +99,15 @@ function ThankYouContent() {
         body: JSON.stringify({
           ...formData,
           email: userEmail,
+          utm_source: utmParams.utm_source,
+          utm_medium: utmParams.utm_medium,
+          utm_campaign: utmParams.utm_campaign,
+          utm_term: utmParams.utm_term,
+          utm_content: utmParams.utm_content,
+          gclid: utmParams.gclid,
+          fbclid: utmParams.fbclid,
+          landing_page: utmParams.landing_page,
+          first_visit: utmParams.first_visit,
         }),
       });
 
@@ -117,6 +130,9 @@ function ThankYouContent() {
       const hasGoodResponseTime = formData.leadResponseTime === 'immediately' || 
                                    formData.leadResponseTime === 'within-hour' || 
                                    formData.leadResponseTime === 'within-day';
+      
+      // Track conversion
+      trackConversion('Lead', { form_type: 'implementation_session' });
       
       // Only qualify if ALL 4 criteria are met
       if (has18PlusListings && isFullTime && isDecisionMaker && hasGoodResponseTime) {

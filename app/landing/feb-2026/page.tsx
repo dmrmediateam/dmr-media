@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Testimonials from '@/components/Testimonials';
 import ReviewsAggregate from '@/components/ReviewsAggregate';
 import getStripe from '@/lib/stripe';
+import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
 function Feb2026LandingContent() {
   const router = useRouter();
@@ -19,13 +20,6 @@ function Feb2026LandingContent() {
     homesSold2025: '',
     website: '', // Honeypot field - hidden from users
   });
-  const [utmParams, setUtmParams] = useState({
-    utm_source: '',
-    utm_medium: '',
-    utm_campaign: '',
-    utm_term: '',
-    utm_content: '',
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
   const [checkoutSessionId, setCheckoutSessionId] = useState<string | null>(null);
@@ -35,22 +29,6 @@ function Feb2026LandingContent() {
   const checkoutRef = useRef<HTMLDivElement>(null);
   const checkoutInstanceRef = useRef<any>(null);
 
-  // Capture UTM parameters from URL on mount
-  useEffect(() => {
-    const utm_source = searchParams.get('utm_source') || '';
-    const utm_medium = searchParams.get('utm_medium') || '';
-    const utm_campaign = searchParams.get('utm_campaign') || '';
-    const utm_term = searchParams.get('utm_term') || '';
-    const utm_content = searchParams.get('utm_content') || '';
-    
-    setUtmParams({
-      utm_source,
-      utm_medium,
-      utm_campaign,
-      utm_term,
-      utm_content,
-    });
-  }, [searchParams]);
 
   // Check if user canceled checkout
   useEffect(() => {
@@ -191,6 +169,12 @@ function Feb2026LandingContent() {
 
       // If free registration, skip Stripe and submit directly to registration API
       if ((checkoutSession as any).isFree) {
+        // Get stored UTM parameters
+        const utmParams = getStoredUTMParams();
+        
+        // Track conversion
+        trackConversion('Lead', { form_type: 'feb_2026_landing' });
+        
         // Submit to registration API with UTM parameters
         const regResponse = await fetch('/api/landing-registration', {
           method: 'POST',
@@ -204,12 +188,15 @@ function Feb2026LandingContent() {
             website: formData.website, // Include honeypot field
             source: 'feb-2026-landing',
             eventDate: 'February 11th, 2026',
-            // Include UTM parameters if present
-            ...(utmParams.utm_source && { utm_source: utmParams.utm_source }),
-            ...(utmParams.utm_medium && { utm_medium: utmParams.utm_medium }),
-            ...(utmParams.utm_campaign && { utm_campaign: utmParams.utm_campaign }),
-            ...(utmParams.utm_term && { utm_term: utmParams.utm_term }),
-            ...(utmParams.utm_content && { utm_content: utmParams.utm_content }),
+            utm_source: utmParams.utm_source,
+            utm_medium: utmParams.utm_medium,
+            utm_campaign: utmParams.utm_campaign,
+            utm_term: utmParams.utm_term,
+            utm_content: utmParams.utm_content,
+            gclid: utmParams.gclid,
+            fbclid: utmParams.fbclid,
+            landing_page: utmParams.landing_page,
+            first_visit: utmParams.first_visit,
           }),
         });
 

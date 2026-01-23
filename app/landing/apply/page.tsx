@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import ReviewsAggregate from '@/components/ReviewsAggregate';
+import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
 function ApplyContent() {
   const router = useRouter();
@@ -53,12 +54,26 @@ function ApplyContent() {
     e.preventDefault();
     setIsSubmitting(true);
     
+    // Get stored UTM parameters
+    const utmParams = getStoredUTMParams();
+    
     try {
       // Submit form data to API with email
       const response = await fetch('/api/strategy-call-apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          utm_source: utmParams.utm_source,
+          utm_medium: utmParams.utm_medium,
+          utm_campaign: utmParams.utm_campaign,
+          utm_term: utmParams.utm_term,
+          utm_content: utmParams.utm_content,
+          gclid: utmParams.gclid,
+          fbclid: utmParams.fbclid,
+          landing_page: utmParams.landing_page,
+          first_visit: utmParams.first_visit,
+        }),
       });
 
       const result = await response.json();
@@ -85,6 +100,9 @@ function ApplyContent() {
         // Maybe - 1-2 closings but missing website or ads
         router.push('/landing/qualification-result?status=maybe');
       } else {
+        // Track conversion
+        trackConversion('Lead', { form_type: 'strategy_call_apply' });
+        
         // Qualified
         router.push('/landing/qualification-result?status=qualified');
       }

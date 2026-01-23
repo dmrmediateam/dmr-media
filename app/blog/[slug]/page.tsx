@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { PortableText } from '@portabletext/react'
 import { getBlogPostBySlug, getAllBlogPosts } from '@/data/blogPosts'
 import type { Metadata } from 'next'
+import BlogContent from '@/components/BlogContent'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 60
@@ -54,55 +54,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: 'Blog Post Not Found',
     }
   }
-}
-
-const portableTextComponents = {
-  block: {
-    h2: ({ children }: any) => (
-      <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mt-12 mb-6 tracking-tight">
-        {children}
-      </h2>
-    ),
-    h3: ({ children }: any) => (
-      <h3 className="text-xl md:text-2xl font-serif font-light text-[var(--color-off-black)] mt-10 mb-4 tracking-tight">
-        {children}
-      </h3>
-    ),
-    normal: ({ children }: any) => (
-      <p className="text-[var(--color-ink-300)] text-base leading-relaxed mb-6 font-serif">
-        {children}
-      </p>
-    ),
-    blockquote: ({ children }: any) => (
-      <blockquote className="border-l border-[var(--color-off-black)] pl-6 my-8 text-[var(--color-ink-300)] font-serif">
-        {children}
-      </blockquote>
-    ),
-  },
-  list: {
-    bullet: ({ children }: any) => (
-      <ul className="list-disc list-inside mb-6 text-[var(--color-ink-300)] space-y-2 font-serif">
-        {children}
-      </ul>
-    ),
-    number: ({ children }: any) => (
-      <ol className="list-decimal list-inside mb-6 text-[var(--color-ink-300)] space-y-2 font-serif">
-        {children}
-      </ol>
-    ),
-  },
-  marks: {
-    link: ({ children, value }: any) => (
-      <a
-        href={value.href}
-        className="text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300 underline"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {children}
-      </a>
-    ),
-  },
 }
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
@@ -166,32 +117,46 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
       <div className="min-h-screen bg-white">
-      <section className="py-24 md:py-32 border-b border-[var(--color-ink-200)]">
-        <div className="container-max">
+      <section className="relative py-24 md:py-32 border-b border-[var(--color-ink-200)] min-h-[60vh] flex items-center">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={post.mainImage.asset.url}
+            alt={post.mainImage.alt}
+            fill
+            priority
+            className="object-cover"
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+        
+        {/* Content */}
+        <div className="container-max relative z-10">
           <div className="max-w-3xl">
-            <span className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-300)] font-serif mb-6 block">
+            <span className="uppercase tracking-[0.2em] text-xs text-white/80 font-serif mb-6 block">
               {post.category}
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.1] tracking-tight mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light !text-white leading-[1.1] tracking-tight mb-8 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]" style={{ color: '#FFFFFF' }}>
               {post.title}
             </h1>
-            <p className="text-base text-[var(--color-ink-300)] leading-relaxed font-serif max-w-2xl mb-8">
+            <p className="text-base text-white/90 leading-relaxed font-serif max-w-2xl mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               {post.description}
             </p>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--color-ink-300)] font-serif">
+            <div className="flex flex-wrap items-center gap-4 text-sm !text-white font-serif drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" style={{ color: '#FFFFFF' }}>
               {post.author.image && (
                 <Image
                   src={post.author.image}
                   alt={post.author.name}
                   width={40}
                   height={40}
-                  className="h-10 w-10 border border-[var(--color-ink-200)] object-cover"
+                  className="h-10 w-10 border border-white/30 object-cover"
                 />
               )}
-              <span>{post.author.name}</span>
-              <span className="text-[var(--color-ink-200)]">•</span>
+              <span style={{ color: '#FFFFFF' }}>{post.author.name}</span>
+              <span className="text-white/60">•</span>
               <span>{formattedDate}</span>
-              <span className="text-[var(--color-ink-200)]">•</span>
+              <span className="text-white/60">•</span>
               <span>{post.readTime}</span>
             </div>
           </div>
@@ -201,17 +166,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       <article className="py-24 md:py-32">
         <div className="container-max">
           <div className="max-w-3xl mx-auto space-y-12">
-            <div className="relative h-96 overflow-hidden mb-12">
-              <Image
-                src={post.mainImage.asset.url}
-                alt={post.mainImage.alt}
-                fill
-                priority
-                className="object-cover"
-              />
-            </div>
-
-            <PortableText value={post.body} components={portableTextComponents} />
+            <BlogContent body={post.body} />
 
             {post.tags && post.tags.length > 0 && (
               <div className="border-t border-[var(--color-ink-200)] pt-8">

@@ -5,6 +5,7 @@ import './globals.css'
 import ConditionalLayout from '@/components/ConditionalLayout'
 import ScrollAnimations from '@/components/ScrollAnimations'
 import ScrollProgressBar from '@/components/ScrollProgressBar'
+import UTMTracker from '@/components/UTMTracker'
 
 // Instrument Serif - Elegant, natural serif font
 const instrumentSerif = Instrument_Serif({ 
@@ -63,6 +64,7 @@ export default function RootLayout({
           />
         </noscript>
         {/* End Meta Pixel Code */}
+        <UTMTracker />
         <ScrollProgressBar />
         <ScrollAnimations />
         <ConditionalLayout>

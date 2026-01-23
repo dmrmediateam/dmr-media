@@ -35,6 +35,16 @@ export async function POST(request: Request) {
       tools: Array.isArray(body.tools) ? body.tools : [],
       leadResponseTime: body.leadResponseTime.trim(),
       timestamp: new Date().toISOString(),
+      // Include UTM parameters
+      utm_source: body.utm_source?.trim().substring(0, 100),
+      utm_medium: body.utm_medium?.trim().substring(0, 100),
+      utm_campaign: body.utm_campaign?.trim().substring(0, 100),
+      utm_term: body.utm_term?.trim().substring(0, 100),
+      utm_content: body.utm_content?.trim().substring(0, 100),
+      gclid: body.gclid?.trim().substring(0, 100),
+      fbclid: body.fbclid?.trim().substring(0, 100),
+      landing_page: body.landing_page?.trim().substring(0, 200),
+      first_visit: body.first_visit,
     };
 
     // Send to Zapier webhook

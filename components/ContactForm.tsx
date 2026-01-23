@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -28,13 +29,27 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Get stored UTM parameters
+    const utmParams = getStoredUTMParams();
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          utm_source: utmParams.utm_source,
+          utm_medium: utmParams.utm_medium,
+          utm_campaign: utmParams.utm_campaign,
+          utm_term: utmParams.utm_term,
+          utm_content: utmParams.utm_content,
+          gclid: utmParams.gclid,
+          fbclid: utmParams.fbclid,
+          landing_page: utmParams.landing_page,
+          first_visit: utmParams.first_visit,
+        }),
       });
 
       const data = await response.json();
@@ -46,6 +61,9 @@ const ContactForm = () => {
       // Success!
       setIsSubmitting(false);
       setIsSubmitted(true);
+      
+      // Track conversion
+      trackConversion('Lead', { form_type: 'contact' });
       
       // Reset form after showing success message
       setTimeout(() => {
