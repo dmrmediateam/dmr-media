@@ -36,7 +36,7 @@ const ClientLogosSlider = () => {
       <div 
         className="flex items-center"
         style={{
-          animation: 'scroll-slow 60s linear infinite',
+          animation: 'scroll-slow 40s linear infinite',
           gap: '6rem',
         }}
       >

@@ -473,27 +473,51 @@
   box-shadow: 0 2px 6px rgba(15, 15, 15, 0.08);
 }
 
+/* Custom scrollbar styling - Minimalist luxury */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 15, 15, 0.2) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(15, 15, 15, 0.2);
+  border-radius: 0;
+  transition: background-color 0.3s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(15, 15, 15, 0.4);
+}
+
 /* Custom scrollbar for testimonials */
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #D4AF37 #f5f5f4;
+  scrollbar-color: rgba(15, 15, 15, 0.2) transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #f5f5f4;
-  border-radius: 10px;
+  background: transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #D4AF37;
-  border-radius: 10px;
-  transition: background 0.3s ease;
+  background-color: rgba(15, 15, 15, 0.2);
+  border-radius: 0;
+  transition: background-color 0.3s ease;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #b8941f;
+  background-color: rgba(15, 15, 15, 0.4);
 }

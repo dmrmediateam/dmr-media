@@ -64,42 +64,39 @@ interface CaseStudyTemplateProps {
 
 export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
   return (
-    <div className="bg-[var(--surface-base)] text-[var(--color-off-black)]">
+    <div className="bg-white text-[var(--color-off-black)]">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-white via-white/95 to-[var(--surface-base)]">
-        <div className="container-max py-24">
-          <div className="max-w-3xl space-y-6">
-            <span className="uppercase tracking-[0.35em] text-[11px] text-[var(--color-ink-300)]">case study</span>
-            <h1 className="text-[42px] sm:text-[56px] font-serif font-light leading-[1.08]">
+      <section className="py-24 md:py-32 border-b border-[var(--color-ink-200)]">
+        <div className="container-max">
+          <div className="max-w-3xl space-y-8">
+            <span className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-300)] font-serif">case study</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light leading-[1.1] tracking-tight">
               {data.title}
-              <span className="text-[var(--color-trust)] text-[1.1em]">.</span>
             </h1>
-            <p className="text-base sm:text-lg text-[var(--color-ink-300)] leading-relaxed">
+            <p className="text-base text-[var(--color-ink-300)] leading-relaxed font-serif">
               {data.subtitle}
             </p>
           </div>
-        </div>
-        {data.heroImage && (
-          <div className="pointer-events-none absolute inset-0">
-            <div className="absolute right-[5%] bottom-[-180px] w-[420px] sm:w-[460px] rounded-[48px] border border-white/60 bg-white/35 backdrop-blur-2xl overflow-hidden">
+          {data.heroImage && (
+            <div className="mt-16 relative aspect-[16/9] overflow-hidden">
               <Image src={data.heroImage.src} alt={data.heroImage.alt} fill className="object-cover" priority />
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </section>
 
       {/* Stats Section */}
       {data.stats && data.stats.length > 0 && (
-        <section className="py-16">
-          <div className="container-max grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <section className="py-16 border-b border-[var(--color-ink-200)]">
+          <div className="container-max grid grid-cols-1 sm:grid-cols-3 gap-12">
             {data.stats.map((stat, index) => (
               <div
                 key={index}
-                className="rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 px-6 py-8 backdrop-blur-xl shadow-[0_25px_45px_rgba(15,15,15,0.08)]"
+                className="border-b border-[var(--color-ink-200)] pb-8"
               >
-                <div className="text-[36px] font-serif font-light">{stat.value}</div>
-                <p className="mt-2 text-sm text-[var(--color-ink-300)] uppercase tracking-[0.3em]">{stat.label}</p>
-                <p className="mt-4 text-sm text-[var(--color-ink-300)]">{stat.detail}</p>
+                <div className="text-3xl font-serif font-light text-[var(--color-off-black)] mb-4">{stat.value}</div>
+                <p className="text-xs text-[var(--color-ink-300)] uppercase tracking-[0.2em] font-serif mb-2">{stat.label}</p>
+                <p className="text-sm text-[var(--color-ink-300)] font-serif">{stat.detail}</p>
               </div>
             ))}
           </div>
@@ -107,81 +104,81 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
       )}
 
       {/* Content Sections */}
-      <article className="py-20">
+      <article className="py-24 md:py-32">
         <div className="container-max">
-          <div className="max-w-4xl mx-auto space-y-20">
+          <div className="max-w-3xl mx-auto space-y-20">
             {data.sections.map((section, index) => (
               <section key={index} className="space-y-8">
                 {section.title && (
                   <div className="space-y-4">
                     {section.subtitle && (
-                      <p className="text-xs uppercase tracking-[0.35em] text-[var(--color-ink-300)]">{section.subtitle}</p>
+                      <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] font-serif">{section.subtitle}</p>
                     )}
-                    <h2 className="text-[28px] sm:text-[36px] lg:text-[40px] font-serif font-light leading-tight text-[var(--color-off-black)]">
+                    <h2 className="text-2xl md:text-3xl font-serif font-light leading-tight text-[var(--color-off-black)] tracking-tight">
                       {section.title}
                     </h2>
                   </div>
                 )}
 
                 {section.image && section.imagePosition === 'full' && (
-                  <div className="relative w-full rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-6 overflow-hidden">
+                  <div className="relative w-full overflow-hidden mb-8">
                     <Image
                       src={section.image.src}
                       alt={section.image.alt}
                       width={section.image.width || 1200}
                       height={section.image.height || 600}
-                      className="w-full h-auto rounded-[24px]"
+                      className="w-full h-auto"
                     />
                   </div>
                 )}
 
                 {section.image && (section.imagePosition === 'left' || section.imagePosition === 'right') ? (
                   <div
-                    className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${
+                    className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
                       section.imagePosition === 'right' ? 'lg:grid-flow-dense' : ''
                     }`}
                   >
                     {section.imagePosition === 'left' && (
-                      <div className="relative w-full rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-6 overflow-hidden">
+                      <div className="relative w-full overflow-hidden">
                         <Image
                           src={section.image.src}
                           alt={section.image.alt}
                           width={section.image.width || 600}
                           height={section.image.height || 400}
-                          className="w-full h-auto rounded-[24px]"
+                          className="w-full h-auto"
                         />
                       </div>
                     )}
-                    <div className="space-y-6 text-[var(--color-ink-300)] text-base sm:text-[17px] leading-[1.6]">
+                    <div className="space-y-6 text-[var(--color-ink-300)] text-base leading-relaxed font-serif">
                       {section.content}
                     </div>
                     {section.imagePosition === 'right' && (
-                      <div className="relative w-full rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-6 overflow-hidden lg:col-start-2">
+                      <div className="relative w-full overflow-hidden lg:col-start-2">
                         <Image
                           src={section.image.src}
                           alt={section.image.alt}
                           width={section.image.width || 600}
                           height={section.image.height || 400}
-                          className="w-full h-auto rounded-[24px]"
+                          className="w-full h-auto"
                         />
                       </div>
                     )}
                   </div>
                 ) : (
-                  <div className="space-y-6 text-[var(--color-ink-300)] text-base sm:text-[17px] leading-[1.6]">
+                  <div className="space-y-6 text-[var(--color-ink-300)] text-base leading-relaxed font-serif">
                     {section.content}
                   </div>
                 )}
 
                 {section.image && section.imagePosition === 'center' && (
-                  <div className="flex justify-center">
-                    <div className="relative w-full max-w-2xl rounded-[32px] border border-[var(--color-ink-200)] bg-white/80 p-6 overflow-hidden">
+                  <div className="flex justify-center mb-8">
+                    <div className="relative w-full max-w-2xl overflow-hidden">
                       <Image
                         src={section.image.src}
                         alt={section.image.alt}
                         width={section.image.width || 800}
                         height={section.image.height || 500}
-                        className="w-full h-auto rounded-[24px]"
+                        className="w-full h-auto"
                       />
                     </div>
                   </div>
@@ -194,17 +191,17 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
 
       {/* Testimonial Section */}
       {(data.testimonial || data.secondaryTestimonial) && (
-        <section className="py-20">
+        <section className="py-24 md:py-32 border-t border-[var(--color-ink-200)]">
           <div className="container-max">
-            <div className="max-w-4xl mx-auto space-y-12">
+            <div className="max-w-3xl mx-auto space-y-16">
               {data.testimonial && (
-              <div className="rounded-[48px] border border-[var(--color-ink-200)] bg-white/80 p-10 backdrop-blur-xl">
+              <div className="border-b border-[var(--color-ink-200)] pb-16">
                 {data.testimonial.video ? (
                   <div className="space-y-8">
                     <h4 className="text-[24px] font-serif font-light text-[var(--color-off-black)] mb-6">
                       {data.testimonial.video.title}
                     </h4>
-                    <div className="relative w-full h-0 pb-[56.25%] overflow-hidden rounded-[32px] border border-[var(--color-ink-200)]">
+                    <div className="relative w-full h-0 pb-[56.25%] overflow-hidden mb-8">
                       <iframe
                         className="absolute inset-0 h-full w-full"
                         src={data.testimonial.video.src}
@@ -213,23 +210,20 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                         allowFullScreen
                       />
                     </div>
-                    <blockquote className="text-[22px] font-serif font-light text-[var(--color-off-black)] leading-relaxed text-center">
+                    <blockquote className="text-xl font-serif font-light text-[var(--color-off-black)] leading-relaxed text-center mb-6">
                       {data.testimonial.quote}
                     </blockquote>
-                    <div className="flex flex-col items-center gap-1 text-[var(--color-ink-300)]">
-                      <p className="text-sm uppercase tracking-[0.3em]">{data.testimonial.author}</p>
-                      <p className="text-xs uppercase tracking-[0.3em]">{data.testimonial.role}</p>
+                    <div className="flex flex-col items-center gap-2 text-[var(--color-ink-300)] font-serif">
+                      <p className="text-sm uppercase tracking-[0.2em]">{data.testimonial.author}</p>
+                      <p className="text-xs uppercase tracking-[0.2em]">{data.testimonial.role}</p>
                       {data.testimonial.link && (
                         <Link
                           href={data.testimonial.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="mt-4 text-xs uppercase tracking-[0.3em] text-[var(--color-trust)] hover:text-[var(--color-off-black)] transition-colors duration-300 flex items-center gap-2"
+                          className="mt-4 text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300"
                         >
                           Read full review
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
                         </Link>
                       )}
                     </div>
@@ -237,33 +231,30 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                 ) : (
                   <div className="text-center space-y-8">
                     {data.testimonial.image && (
-                      <div className="flex justify-center">
+                      <div className="flex justify-center mb-8">
                         <Image
                           src={data.testimonial.image}
                           alt={`${data.testimonial.author} testimonial`}
                           width={480}
                           height={320}
-                          className="w-full max-w-xl rounded-[32px] border border-[var(--color-ink-200)]"
+                          className="w-full max-w-xl"
                         />
                       </div>
                     )}
-                    <blockquote className="text-[22px] font-serif font-light text-[var(--color-off-black)] leading-relaxed">
+                    <blockquote className="text-xl font-serif font-light text-[var(--color-off-black)] leading-relaxed mb-6">
                       {data.testimonial.quote}
                     </blockquote>
-                    <div className="flex flex-col items-center gap-1 text-[var(--color-ink-300)]">
-                      <p className="text-sm uppercase tracking-[0.3em]">{data.testimonial.author}</p>
-                      <p className="text-xs uppercase tracking-[0.3em]">{data.testimonial.role}</p>
+                    <div className="flex flex-col items-center gap-2 text-[var(--color-ink-300)] font-serif">
+                      <p className="text-sm uppercase tracking-[0.2em]">{data.testimonial.author}</p>
+                      <p className="text-xs uppercase tracking-[0.2em]">{data.testimonial.role}</p>
                       {data.testimonial.link && (
                         <Link
                           href={data.testimonial.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="mt-4 text-xs uppercase tracking-[0.3em] text-[var(--color-trust)] hover:text-[var(--color-off-black)] transition-colors duration-300 flex items-center gap-2"
+                          className="mt-4 text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300"
                         >
                           Read full review
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
                         </Link>
                       )}
                     </div>
@@ -272,13 +263,13 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
               </div>
               )}
               {data.secondaryTestimonial && (
-                <div className="rounded-[48px] border border-[var(--color-ink-200)] bg-white/80 p-10 backdrop-blur-xl">
+                <div className="border-b border-[var(--color-ink-200)] pb-16">
                   {data.secondaryTestimonial.video ? (
                     <div className="space-y-8">
                       <h4 className="text-[24px] font-serif font-light text-[var(--color-off-black)] mb-6">
                         {data.secondaryTestimonial.video.title}
                       </h4>
-                      <div className="relative w-full h-0 pb-[56.25%] overflow-hidden rounded-[32px] border border-[var(--color-ink-200)]">
+                      <div className="relative w-full h-0 pb-[56.25%] overflow-hidden mb-8">
                         <iframe
                           className="absolute inset-0 h-full w-full"
                           src={data.secondaryTestimonial.video.src}
@@ -287,23 +278,20 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                           allowFullScreen
                         />
                       </div>
-                      <blockquote className="text-[22px] font-serif font-light text-[var(--color-off-black)] leading-relaxed text-center">
+                      <blockquote className="text-xl font-serif font-light text-[var(--color-off-black)] leading-relaxed text-center mb-6">
                         {data.secondaryTestimonial.quote}
                       </blockquote>
-                      <div className="flex flex-col items-center gap-1 text-[var(--color-ink-300)]">
-                        <p className="text-sm uppercase tracking-[0.3em]">{data.secondaryTestimonial.author}</p>
-                        <p className="text-xs uppercase tracking-[0.3em]">{data.secondaryTestimonial.role}</p>
+                      <div className="flex flex-col items-center gap-2 text-[var(--color-ink-300)] font-serif">
+                        <p className="text-sm uppercase tracking-[0.2em]">{data.secondaryTestimonial.author}</p>
+                        <p className="text-xs uppercase tracking-[0.2em]">{data.secondaryTestimonial.role}</p>
                         {data.secondaryTestimonial.link && (
                           <Link
                             href={data.secondaryTestimonial.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-4 text-xs uppercase tracking-[0.3em] text-[var(--color-trust)] hover:text-[var(--color-off-black)] transition-colors duration-300 flex items-center gap-2"
+                            className="mt-4 text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300"
                           >
                             Read full review
-                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
                           </Link>
                         )}
                       </div>
@@ -311,33 +299,30 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
                   ) : (
                     <div className="text-center space-y-8">
                       {data.secondaryTestimonial.image && (
-                        <div className="flex justify-center">
+                        <div className="flex justify-center mb-8">
                           <Image
                             src={data.secondaryTestimonial.image}
                             alt={`${data.secondaryTestimonial.author} testimonial`}
                             width={480}
                             height={320}
-                            className="w-full max-w-xl rounded-[32px] border border-[var(--color-ink-200)]"
+                            className="w-full max-w-xl"
                           />
                         </div>
                       )}
-                      <blockquote className="text-[22px] font-serif font-light text-[var(--color-off-black)] leading-relaxed">
+                      <blockquote className="text-xl font-serif font-light text-[var(--color-off-black)] leading-relaxed mb-6">
                         {data.secondaryTestimonial.quote}
                       </blockquote>
-                      <div className="flex flex-col items-center gap-1 text-[var(--color-ink-300)]">
-                        <p className="text-sm uppercase tracking-[0.3em]">{data.secondaryTestimonial.author}</p>
-                        <p className="text-xs uppercase tracking-[0.3em]">{data.secondaryTestimonial.role}</p>
+                      <div className="flex flex-col items-center gap-2 text-[var(--color-ink-300)] font-serif">
+                        <p className="text-sm uppercase tracking-[0.2em]">{data.secondaryTestimonial.author}</p>
+                        <p className="text-xs uppercase tracking-[0.2em]">{data.secondaryTestimonial.role}</p>
                         {data.secondaryTestimonial.link && (
                           <Link
                             href={data.secondaryTestimonial.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-4 text-xs uppercase tracking-[0.3em] text-[var(--color-trust)] hover:text-[var(--color-off-black)] transition-colors duration-300 flex items-center gap-2"
+                            className="mt-4 text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300"
                           >
                             Read full review
-                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
                           </Link>
                         )}
                       </div>
@@ -350,30 +335,6 @@ export default function CaseStudyTemplate({ data }: CaseStudyTemplateProps) {
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-20 bg-[var(--color-off-black)] text-white">
-        <div className="container-max text-center space-y-5">
-          <p className="text-xs uppercase tracking-[0.35em] text-white/60">next</p>
-          <h4 className="text-[36px] font-serif font-light">{data.cta.title}</h4>
-          <p className="text-base text-white/80 max-w-2xl mx-auto">{data.cta.description}</p>
-          <div className="flex flex-wrap justify-center gap-4 pt-4">
-            <Link
-              href={data.cta.primaryButton.href}
-              className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-xs uppercase tracking-[0.35em] text-[var(--color-off-black)] hover:bg-white/90 transition-colors"
-            >
-              {data.cta.primaryButton.text}
-            </Link>
-            {data.cta.secondaryButton && (
-              <Link
-                href={data.cta.secondaryButton.href}
-                className="inline-flex items-center justify-center rounded-full border border-white/40 px-8 py-3 text-xs uppercase tracking-[0.35em] text-white hover:border-white/60 transition-colors"
-              >
-                {data.cta.secondaryButton.text}
-              </Link>
-            )}
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
