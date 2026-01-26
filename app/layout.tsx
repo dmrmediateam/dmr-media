@@ -5,6 +5,7 @@ import './globals.css'
 import ConditionalLayout from '@/components/ConditionalLayout'
 import ScrollAnimations from '@/components/ScrollAnimations'
 import ScrollProgressBar from '@/components/ScrollProgressBar'
+import SmoothScroll from '@/components/SmoothScroll'
 import UTMTracker from '@/components/UTMTracker'
 
 // Instrument Serif - Elegant, natural serif font
@@ -67,6 +68,7 @@ export default function RootLayout({
         <UTMTracker />
         <ScrollProgressBar />
         <ScrollAnimations />
+        <SmoothScroll />
         <ConditionalLayout>
           {children}
         </ConditionalLayout>

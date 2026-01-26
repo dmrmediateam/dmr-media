@@ -11,7 +11,7 @@
   html {
     font-family: 'Montserrat', sans-serif;
     font-weight: 100;
-    scroll-behavior: smooth;
+    scroll-behavior: auto; /* Changed from smooth - handled by SmoothScroll component */
     scroll-padding-top: 80px;
   }
   
@@ -22,8 +22,11 @@
     color: var(--color-ink-300);
     background-color: var(--off-white);
     overflow-x: hidden;
+    overflow-y: auto;
     font-family: 'Montserrat', sans-serif;
     font-weight: 100;
+    /* Smooth scroll will be handled by JavaScript */
+    -webkit-overflow-scrolling: touch;
   }
   
   * {
