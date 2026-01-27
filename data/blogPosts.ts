@@ -322,8 +322,9 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 }
 
 // Fetch all blog posts from Sanity
-export async function getAllBlogPosts(): Promise<BlogPost[]> {
-  const query = `*[_type == "post"] | order(publishedAt desc){
+export async function getAllBlogPosts(limit?: number): Promise<BlogPost[]> {
+  const limitClause = limit ? `[0...${limit}]` : '';
+  const query = `*[_type == "post"] | order(publishedAt desc)${limitClause}{
     _id,
     _type,
     slug,

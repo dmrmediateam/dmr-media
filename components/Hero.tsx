@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
 
 const Hero = () => {
   const videos = [
@@ -12,13 +11,23 @@ const Hero = () => {
 
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const h1Ref = useRef<HTMLHeadingElement>(null);
-  const [centerOffset, setCenterOffset] = useState(0);
 
   useEffect(() => {
+    // Only load first video initially, lazy load others
+    if (videoRefs.current[0]) {
+      videoRefs.current[0].load();
+    }
+    
     // Cycle through videos every 8 seconds
     const interval = setInterval(() => {
-      setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
+      setCurrentVideoIndex((prev) => {
+        const next = (prev + 1) % videos.length;
+        // Lazy load next video when needed
+        if (videoRefs.current[next] && videoRefs.current[next].readyState === 0) {
+          videoRefs.current[next].load();
+        }
+        return next;
+      });
     }, 8000);
 
     return () => clearInterval(interval);
@@ -29,32 +38,13 @@ const Hero = () => {
     videoRefs.current.forEach((video, index) => {
       if (video) {
         if (index === currentVideoIndex) {
-          video.play().catch(() => {
-            // Ignore autoplay errors
-          });
+          video.play().catch(() => {});
         } else {
           video.pause();
         }
       }
     });
   }, [currentVideoIndex]);
-
-  useEffect(() => {
-    // Calculate center positions for DMR animation
-    // We'll use this to position letters at center initially
-    const handleResize = () => {
-      if (h1Ref.current) {
-        const rect = h1Ref.current.getBoundingClientRect();
-        const h1Center = rect.left + rect.width / 2;
-        const viewportCenter = window.innerWidth / 2;
-        setCenterOffset(viewportCenter - h1Center);
-      }
-    };
-    
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -72,7 +62,7 @@ const Hero = () => {
             muted
             loop
             playsInline
-            preload="auto"
+            preload={index === 0 ? 'auto' : 'none'}
           >
             <source src={videoSrc} type="video/mp4" />
           </video>
@@ -83,92 +73,31 @@ const Hero = () => {
 
       {/* Centered Text */}
       <div className="relative z-10 w-full flex items-center justify-center">
-        <h1
-          ref={h1Ref}
-          className="text-center text-[48px] sm:text-[60px] md:text-[72px] lg:text-[84px] font-serif font-light tracking-tight leading-[1.05] px-4 relative"
-          style={{ 
-            color: '#FAFAF9',
-            fontFamily: "'Instrument Serif', serif"
-          }}
-        >
+        <h1 className="text-center text-[48px] sm:text-[60px] md:text-[72px] lg:text-[84px] font-serif font-light tracking-tight leading-[1.05] px-4 relative text-[#FAFAF9]">
           {/* D - starts from center, moves left to form "DMR" */}
-          <motion.span 
-            className="text-[54px] sm:text-[66px] md:text-[78px] lg:text-[90px] inline-block"
-            initial={{ opacity: 0, x: centerOffset + 80, scale: 1.2 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0 }}
-            style={{ 
-              fontFamily: "'Instrument Serif', serif",
-              color: '#FAFAF9',
-              display: 'inline-block'
-            }}
-          >
+          <span className="hero-letter-d text-[54px] sm:text-[66px] md:text-[78px] lg:text-[90px] inline-block">
             D
-          </motion.span>
+          </span>
           {/* Rest of "Distinguished" */}
-          <motion.span
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut', delay: 1.2 }}
-            style={{ 
-              fontFamily: "'Instrument Serif', serif",
-              color: '#FAFAF9'
-            }}
-          >
+          <span className="hero-text-1">
             istinguished{' '}
-          </motion.span>
+          </span>
           {/* M - starts from center, stays at center */}
-          <motion.span 
-            className="text-[54px] sm:text-[66px] md:text-[78px] lg:text-[90px] inline-block"
-            initial={{ opacity: 0, x: centerOffset, scale: 1.2 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
-            style={{ 
-              fontFamily: "'Instrument Serif', serif",
-              color: '#FAFAF9',
-              display: 'inline-block'
-            }}
-          >
+          <span className="hero-letter-m text-[54px] sm:text-[66px] md:text-[78px] lg:text-[90px] inline-block">
             M
-          </motion.span>
+          </span>
           {/* Rest of "Marketing for" */}
-          <motion.span
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut', delay: 1.3 }}
-            style={{ 
-              fontFamily: "'Instrument Serif', serif",
-              color: '#FAFAF9'
-            }}
-          >
+          <span className="hero-text-2">
             arketing for{' '}
-          </motion.span>
+          </span>
           {/* R - starts from center, moves right to form "DMR" */}
-          <motion.span 
-            className="text-[54px] sm:text-[66px] md:text-[78px] lg:text-[90px] inline-block"
-            initial={{ opacity: 0, x: centerOffset - 80, scale: 1.2 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
-            style={{ 
-              fontFamily: "'Instrument Serif', serif",
-              color: '#FAFAF9',
-              display: 'inline-block'
-            }}
-          >
+          <span className="hero-letter-r text-[54px] sm:text-[66px] md:text-[78px] lg:text-[90px] inline-block">
             R
-          </motion.span>
+          </span>
           {/* Rest of "Real Estate" */}
-          <motion.span
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut', delay: 1.4 }}
-            style={{ 
-              fontFamily: "'Instrument Serif', serif",
-              color: '#FAFAF9'
-            }}
-          >
+          <span className="hero-text-3">
             eal Estate
-          </motion.span>
+          </span>
         </h1>
       </div>
     </section>

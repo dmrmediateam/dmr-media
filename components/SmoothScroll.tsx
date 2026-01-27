@@ -21,7 +21,8 @@ export default function SmoothScroll() {
 
     // Easing value - lower = more lag/smoother, higher = less lag
     // This creates the "lagged" scroll effect similar to the reference site
-    const ease = 0.075;
+    // Increased from 0.075 to 0.12 for better performance
+    const ease = 0.12;
 
     const lerp = (start: number, end: number, factor: number) => {
       return start + (end - start) * factor;

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 const testimonials = [
   {
@@ -96,10 +97,12 @@ const TestimonialCard = ({ testimonial, truncateText }: { testimonial: typeof te
     >
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src={testimonial.cityImage}
           alt={`${testimonial.location}`}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />

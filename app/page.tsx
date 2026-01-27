@@ -5,12 +5,14 @@ import CaseStudies from '@/components/CaseStudies';
 import Testimonials from '@/components/Testimonials';
 import { getAllBlogPosts } from '@/data/blogPosts';
 import Link from 'next/link';
+import Image from 'next/image';
+import { Suspense } from 'react';
 
 export default async function Home() {
-  const blogPosts = await getAllBlogPosts();
-  // Filter out posts without valid slugs
+  // Only fetch 3 posts for better performance
+  const blogPosts = await getAllBlogPosts(3);
   const validPosts = blogPosts.filter((post) => post.slug?.current);
-  const featuredPosts = validPosts.slice(0, 3);
+  const featuredPosts = validPosts;
 
   return (
     <div className="min-h-screen bg-[var(--surface-base)]">
@@ -55,10 +57,12 @@ export default async function Home() {
                     className="group bg-white border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300"
                   >
                     <div className="relative h-64 bg-gray-light overflow-hidden mb-6">
-                      <img
+                      <Image
                         src={post.mainImage.asset.url}
                         alt={post.mainImage.alt}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     </div>
 
@@ -93,9 +97,9 @@ export default async function Home() {
         </div>
       </section>
 
-      <Testimonials />
-
-     
+      <Suspense fallback={null}>
+        <Testimonials />
+      </Suspense>
     </div>
   );
 }

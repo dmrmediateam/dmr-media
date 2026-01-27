@@ -4,8 +4,7 @@
 
 @import './styles/foundation.css';
 
-/* Luxury Fonts - Instrument Serif (Primary) & Montserrat Thin */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@100&display=swap');
+/* Fonts loaded via next/font in layout.tsx - no external import needed */
 
 @layer base {
   html {
@@ -81,6 +80,81 @@
     color: var(--color-off-black) !important;
     font-family: 'Instrument Serif', serif !important;
   }
+}
+
+/* Hero Animations - CSS only, no Framer Motion */
+@keyframes heroLetterD {
+  from {
+    opacity: 0;
+    transform: translateX(80px) scale(1.2);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes heroLetterM {
+  from {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heroLetterR {
+  from {
+    opacity: 0;
+    transform: translateX(-80px) scale(1.2);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes heroText {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-letter-d {
+  animation: heroLetterD 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s forwards;
+  opacity: 0;
+}
+
+.hero-letter-m {
+  animation: heroLetterM 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
+  opacity: 0;
+}
+
+.hero-letter-r {
+  animation: heroLetterR 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+  opacity: 0;
+}
+
+.hero-text-1 {
+  animation: heroText 0.8s ease-out 1.2s forwards;
+  opacity: 0;
+}
+
+.hero-text-2 {
+  animation: heroText 0.8s ease-out 1.3s forwards;
+  opacity: 0;
+}
+
+.hero-text-3 {
+  animation: heroText 0.8s ease-out 1.4s forwards;
+  opacity: 0;
 }
 
 /* Fade In From Left Animation */
