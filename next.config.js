@@ -6,9 +6,6 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
   },
-  experimental: {
-    optimizeCss: true,
-  },
   webpack: (config, { isServer }) => {
     // Externalize @sanity/client for server-side to avoid webpack bundling issues
     if (isServer) {

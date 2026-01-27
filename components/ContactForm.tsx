@@ -110,7 +110,7 @@ const ContactForm = () => {
           <p className="mt-5 text-sm sm:text-base text-[var(--color-ink-300)] max-w-xl leading-relaxed">
             Share a few details about your goals and we’ll design a calm, measurable plan around them.
           </p>
-        </motion.div>
+        </div>
 
         <div className="mt-14 grid grid-cols-1 lg:grid-cols-[1.1fr_1.3fr] gap-8">
           <div className="scroll-animate rounded-[24px] border border-[var(--color-ink-200)] bg-white/70 backdrop-blur-sm p-8 sm:p-10 space-y-8">
@@ -201,13 +201,9 @@ const ContactForm = () => {
                   onChange={handleChange}
                   className="w-full rounded-full border border-[var(--color-ink-200)] bg-white px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-off-black)] transition-colors"
                 />
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.45, duration: 0.6 }}
-              >
+              <div>
                 <label htmlFor="message" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Your Message *
                 </label>
