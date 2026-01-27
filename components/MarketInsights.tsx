@@ -14,7 +14,7 @@ const MarketInsights = async () => {
           <h2 className="scroll-animate text-3xl sm:text-4xl font-serif font-light text-black mb-4 heading-underline pb-4">
             Market Insights & Resources
           </h2>
-          <p className="scroll-animate text-base text-gray-dark max-w-3xl mx-auto mt-8">
+          <p className="scroll-animate text-base text-[var(--color-ink-300)] max-w-3xl mx-auto mt-8">
             Informed perspectives and essential resources for navigating New Jersey's luxury real estate landscape in Cheryl's service areas.
           </p>
         </div>
@@ -42,7 +42,7 @@ const MarketInsights = async () => {
                   <h3 className="text-base font-medium text-black mb-3 group-hover:text-gold transition-colors duration-200">
                     {post.title}
                   </h3>
-                  <p className="text-gray-dark text-xs leading-relaxed mb-4">
+                  <p className="text-[var(--color-ink-300)] text-xs leading-relaxed mb-4">
                     {post.description}
                   </p>
                   <div className="flex items-center text-black group-hover:text-gold transition-colors duration-200">
@@ -55,7 +55,7 @@ const MarketInsights = async () => {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-gray-dark text-lg">
+            <p className="text-[var(--color-ink-300)] text-lg">
               Blog posts coming soon. Check back for market insights and real estate resources.
             </p>
           </div>

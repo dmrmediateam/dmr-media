@@ -1,163 +1,147 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/image'
+import Link from 'next/link'
+
+const caseStudies = [
+  {
+    id: 'willow-brook-realty',
+    title: 'Willow Brook Realty',
+    eyebrow: 'Inbound Foundation',
+    result: '2 Clients / 3 Weeks',
+    image: '/images/WillowBrookTraffic.png',
+    description:
+      'From zero visibility to 46 leads and 2 new clients (1 listing + 1 buyer) in 3 weeks. Built a complete inbound foundation with local SEO, Google Business Profile optimization, and targeted ads across Vermont and New Hampshire.',
+    tags: ['Local SEO', 'Google Business Profile', 'Google Ads', 'CRM Automation'],
+  },
+  {
+    id: 'eagan-luxury-real-estate',
+    title: 'Eagan Luxury Real Estate',
+    eyebrow: 'Website Consolidation',
+    result: 'Ongoing',
+    image: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
+    description:
+      'Consolidated multiple fragmented websites into a single, powerful brand presence—launched December 17th with 0 measurable ranking loss and 10% keyword increase. Currently redirecting legacy sites and running retargeting campaigns.',
+    tags: ['Website Build', 'SEO Preservation', '301 Redirects', 'Ongoing'],
+  },
+  {
+    id: 'jade-legendary-real-estate',
+    title: 'Jade Legendary Real Estate',
+    eyebrow: 'Lead Engine Rebuild',
+    result: '3x Leads in 90 Days',
+    image: '/images/JadeCRM.png',
+    description:
+      "Tripled inbound pipeline for a boutique broker by rebuilding her search footprint and automations around the way luxury buyers actually shop.",
+    tags: ['Content Architecture', 'Local SEO', 'Automation'],
+  },
+  {
+    id: 'michael-seo-transformation',
+    title: 'Michael SEO Cliff Notes',
+    eyebrow: 'Modern IDX Relaunch',
+    result: '21x Search Impressions',
+    image: '/images/MichealTraffic.png',
+    description:
+      'Turned a templated IDX site into a modern journal-driven experience that pulls in intent-rich keywords and nurtures them automatically.',
+    tags: ['WordPress Rebuild', 'Thought Leadership', 'YouTube'],
+  },
+  {
+    id: 'rick-visions-first-realty',
+    title: 'Rick Visions First Realty',
+    eyebrow: 'Keyword Reset',
+    result: '2–3 Leads Every Day',
+    image: '/images/RickAfter.png',
+    description:
+      'Rerouted a misaligned SEO program so it stopped ranking for discount shoppers and started capturing relocation-ready listings.',
+    tags: ['SERP Intelligence', 'GMB Optimization', 'Lead Handling'],
+  },
+  {
+    id: 'marquis-farwell-group',
+    title: 'Marquis + Farwell Group',
+    eyebrow: 'Organic Visibility',
+    result: '19x Daily Clicks',
+    image: '/images/MarquisFarwellGoogleSearchConsole.png',
+    description:
+      'Transformed organic visibility in Sonoma County, growing from 2 clicks per day to 38 clicks per day while generating qualified buyer leads directly from search—all without relying on portals or paid leads.',
+    tags: ['Local SEO', 'Google Business Profile', 'Organic Growth'],
+  },
+]
+
+const trustSignals = [
+  { label: 'Average lift in organic leads', value: '214%' },
+  { label: 'Launch timeline for full rebuilds', value: '6–9 weeks' },
+  { label: 'Markets activated in 2024', value: '18' },
+]
 
 export default function CaseStudiesPage() {
-  const caseStudies = [
-    {
-      id: 'jade-legendary-real-estate',
-      title: "Jade's Success Story",
-      client: "Jade Goodhue",
-      company: "Legendary Real Estate Services",
-      result: "3x Lead Generation",
-      description: "From frustrated content creator to lead generation powerhouse - how we transformed Jade's digital marketing strategy and tripled her inbound leads in one quarter.",
-      image: "/images/JadeCRM.png",
-      testimonial: "He works with us like a partner, rather than a vendor dealing with just another number.",
-      rating: 5,
-      category: "SEO & Content Strategy"
-    },
-    {
-      id: 'michael-seo-transformation',
-      title: "Michael's SEO Transformation",
-      client: "Michael",
-      company: "Real Estate Professional",
-      result: "21x Impressions",
-      description: "From abandoned SEO to 21x impressions growth - how we transformed Michael's website into a lead generation machine in just 7.5 weeks.",
-      image: "/images/MichealTraffic.png",
-      testimonial: "Despite being camera-shy, Michael gave us a video testimonial!",
-      rating: 5,
-      category: "Website Development & SEO"
-    },
-    {
-      id: 'rick-visions-first-realty',
-      title: "Rick's SEO Transformation",
-      client: "Rick",
-      company: "Visions First Realty",
-      result: "2-3 Leads/Day",
-      description: "From wrong keywords to qualified leads - how we fixed Rick's SEO strategy and transformed his website into a lead generation machine.",
-      image: "/images/RickAfter.png",
-      testimonial: "Exceptional SEO services with strategic approach",
-      rating: 5,
-      category: "SEO Strategy & Lead Generation"
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-off-white">
-      {/* Hero Section */}
-      <section className="section-padding bg-off-black text-off-white">
+    <div className="min-h-screen bg-white">
+      <section className="py-24 md:py-32 border-b border-[var(--color-ink-200)]">
         <div className="container-max">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-serif font-light text-off-white mb-6">
-              Success Stories
+          <div className="max-w-3xl space-y-8">
+            <span className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-300)] font-serif">
+              case studies
+            </span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.1] tracking-tight">
+              Luxury real estate growth stories
             </h1>
-            <div className="w-24 h-px bg-off-white mx-auto mb-6"></div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Real results from luxury real estate professionals who transformed their business with DMR <span className="italic">Media</span>
+            <p className="text-base text-[var(--color-ink-300)] max-w-2xl leading-relaxed font-serif">
+              Every engagement is a bespoke sprint. The structure is consistent—research, rebuild, relentless iteration—but
+              the look, feel, and commercial outcome are tailored to the brokerage, the market, and the listings they deserve.
             </p>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-12">
+            {trustSignals.map((signal) => (
+              <div
+                key={signal.label}
+                className="border-b border-[var(--color-ink-200)] pb-8"
+              >
+                <div className="text-3xl font-serif font-light text-[var(--color-off-black)] mb-4">{signal.value}</div>
+                <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] font-serif">{signal.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Case Studies Grid */}
-      <section className="section-padding bg-white">
-        <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <section className="py-24 md:py-32">
+        <div className="container-max space-y-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {caseStudies.map((study) => (
               <Link
                 key={study.id}
                 href={`/case-study/${study.id}`}
-                className="group bg-white border border-gray-200 overflow-hidden hover:border-off-black transition-all duration-400"
+                className="group border-b border-[var(--color-ink-200)] pb-12 hover:opacity-60 transition-opacity duration-300 flex flex-col"
               >
-                {/* Image */}
-                <div className="relative h-64 bg-gray-light overflow-hidden">
-                  <Image
-                    src={study.image}
-                    alt={`${study.client} case study results`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-400"
-                  />
-                  <div className="absolute top-4 left-4 bg-off-black text-off-white px-3 py-1 text-xs uppercase tracking-wider">
-                    {study.category}
-                  </div>
-                  <div className="absolute bottom-4 right-4 bg-off-white/90 text-off-black px-3 py-1 text-sm font-medium">
+                <div className="flex items-center justify-between gap-6 mb-6">
+                  <span className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-300)] font-serif">{study.eyebrow}</span>
+                  <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif">
                     {study.result}
-                  </div>
+                  </span>
                 </div>
 
-                {/* Content */}
-                <div className="p-8">
-                  <div className="flex items-center mb-4">
-                    <div className="flex text-yellow-400">
-                      {[...Array(study.rating)].map((_, i) => (
-                        <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
-                    </div>
-                  </div>
+                <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] leading-snug mb-6">{study.title}</h3>
 
-                  <h3 className="text-2xl font-serif font-light text-off-black mb-3 group-hover:text-gray-dark transition-colors duration-400">
-                    {study.title}
-                  </h3>
+                <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif mb-6">{study.description}</p>
 
-                  <div className="text-gray-dark mb-4">
-                    <div className="font-medium text-off-black">{study.client}</div>
-                    <div className="text-sm">{study.company}</div>
-                  </div>
-
-                  <p className="text-gray-dark leading-relaxed mb-6">
-                    {study.description}
-                  </p>
-
-                  <blockquote className="text-gray-dark italic mb-6 border-l-4 border-off-black pl-4">
-                    "{study.testimonial}"
-                  </blockquote>
-
-                  <div className="flex items-center text-off-black group-hover:text-gray-dark transition-colors duration-400">
-                    <span className="text-sm font-medium mr-2">Read Full Case Study</span>
-                    <span>→</span>
-                  </div>
+                <div className="flex flex-wrap gap-4 mb-8">
+                  {study.tags.map((tag) => (
+                    <span key={tag} className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] font-serif">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
+
+                <div className="relative aspect-[16/9] overflow-hidden mb-6">
+                  <Image src={study.image} alt={study.title} fill className="object-cover" />
+                </div>
+
+                <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif">
+                  Read the story
+                </span>
               </Link>
             ))}
-          </div>
-
-          {/* Coming Soon */}
-          <div className="mt-16 text-center">
-            <div className="bg-off-white p-12 border border-gray-200">
-              <h3 className="text-2xl font-serif font-light text-off-black mb-4">
-                More Success Stories Coming Soon
-              </h3>
-              <p className="text-gray-dark mb-6">
-                We're working on documenting more client success stories. Check back soon for additional case studies.
-              </p>
-              <Link href="/contact" className="btn-outline">
-                Start Your Success Story
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="section-padding bg-off-black text-off-white">
-        <div className="container-max text-center">
-          <h2 className="text-4xl md:text-5xl font-serif font-light text-off-white mb-6">
-            Ready to Be Our Next Success Story?
-          </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-            Join the luxury real estate professionals who have transformed their digital marketing with DMR <span className="italic">Media</span>.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="btn-primary">
-              Start Your Campaign
-            </Link>
-            <Link href="/" className="btn-outline">
-              Back to Home
-            </Link>
           </div>
         </div>
       </section>
     </div>
-  );
+  )
 }

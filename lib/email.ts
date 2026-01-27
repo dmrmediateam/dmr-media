@@ -1,13 +1,28 @@
 import sgMail from '@sendgrid/mail';
 
-// Initialize SendGrid
-sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
+// Initialize SendGrid with validation
+if (!process.env.SENDGRID_API_KEY) {
+  console.error('SENDGRID_API_KEY environment variable is not set')
+  throw new Error('SENDGRID_API_KEY is required for sending emails')
+}
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export interface ContactFormData {
   name: string;
   email: string;
   phone: string;
   message: string;
+  // UTM tracking fields (optional)
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  gclid?: string;
+  fbclid?: string;
+  landing_page?: string;
+  first_visit?: string;
 }
 
 export interface HomeValuationData {
@@ -25,6 +40,16 @@ export interface HomeValuationData {
   squareFeet: string;
   yearBuilt: string;
   message: string;
+  // UTM tracking fields (optional)
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  gclid?: string;
+  fbclid?: string;
+  landing_page?: string;
+  first_visit?: string;
 }
 
 /**
@@ -310,6 +335,162 @@ Submitted: ${new Date().toLocaleString()}
   } catch (error: any) {
     console.error('SendGrid Error:', error.response?.body || error);
     throw new Error('Failed to send email');
+  }
+}
+
+/**
+ * Send Password Reset Email
+ */
+export async function sendPasswordResetEmail({
+  to,
+  name,
+  resetUrl,
+}: {
+  to: string
+  name: string
+  resetUrl: string
+}) {
+  const emailContent = {
+    to,
+    from: {
+      email: process.env.SENDGRID_FROM_EMAIL || 'team@dmrmedia.org',
+      name: process.env.SENDGRID_FROM_NAME || 'DMR Media',
+    },
+    subject: 'Reset Your Password - DMR Media Dashboard',
+    html: `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@100&display=swap');
+            body { 
+              font-family: 'Montserrat', sans-serif; 
+              font-weight: 100;
+              line-height: 1.6; 
+              color: rgba(45, 45, 45, 0.85); 
+              background-color: #fafaf9;
+              margin: 0;
+              padding: 0;
+            }
+            .container { 
+              max-width: 600px; 
+              margin: 0 auto; 
+              padding: 40px 20px;
+            }
+            .content { 
+              background: #ffffff; 
+              padding: 48px 40px;
+              border: 1px solid rgba(231, 231, 229, 0.9);
+            }
+            h1 { 
+              font-family: 'Instrument Serif', serif;
+              font-weight: 400;
+              font-size: 32px;
+              color: #0f0f0f;
+              margin: 0 0 24px 0;
+              letter-spacing: -0.01em;
+            }
+            p { 
+              font-family: 'Montserrat', sans-serif;
+              font-weight: 100;
+              color: rgba(45, 45, 45, 0.85);
+              font-size: 16px;
+              line-height: 1.6;
+              margin: 0 0 20px 0;
+            }
+            .button { 
+              display: inline-block; 
+              padding: 16px 40px; 
+              background-color: #0f0f0f; 
+              color: #fafaf9; 
+              text-decoration: none; 
+              margin: 24px 0;
+              font-family: 'Instrument Serif', serif;
+              font-size: 14px;
+              text-transform: uppercase;
+              letter-spacing: 0.15em;
+              border: none;
+            }
+            .button:hover { 
+              opacity: 0.9;
+            }
+            .divider {
+              height: 1px;
+              background: rgba(231, 231, 229, 0.9);
+              margin: 32px 0;
+            }
+            .footer { 
+              padding: 32px 0 0 0; 
+              text-align: left; 
+              font-size: 13px; 
+              color: rgba(82, 82, 82, 0.68);
+              font-family: 'Montserrat', sans-serif;
+              font-weight: 100;
+            }
+            .footer a {
+              color: rgba(45, 45, 45, 0.85);
+              font-family: 'Instrument Serif', serif;
+              text-decoration: none;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="content">
+              <h1>Password Reset</h1>
+              <p>Hi ${name},</p>
+              <p>You requested to reset your password for your DMR Media dashboard. Click the button below to set a new password:</p>
+              <div style="text-align: left;">
+                <a href="${resetUrl}" class="button">Reset Password</a>
+              </div>
+              <div class="divider"></div>
+              <p style="font-size: 14px; color: rgba(82, 82, 82, 0.68);">
+                This link will expire in 1 hour.<br>
+                If you didn't request this password reset, you can safely ignore this email.
+              </p>
+            </div>
+            <div class="footer">
+              <p>DMR Media</p>
+              <p><a href="mailto:team@dmrmedia.org">team@dmrmedia.org</a></p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `,
+    text: `
+Password Reset Request
+
+Hi ${name},
+
+You requested to reset your password for your DMR Media dashboard. Click the link below to set a new password:
+
+${resetUrl}
+
+This link will expire in 1 hour.
+
+If you didn't request this password reset, you can safely ignore this email. Your password will remain unchanged.
+
+---
+DMR Media
+    `,
+  }
+
+  try {
+    await sgMail.send(emailContent)
+    return { success: true }
+  } catch (error: any) {
+    console.error('SendGrid Error:', error)
+    if (error.response) {
+      console.error('SendGrid Response Status:', error.response.statusCode)
+      console.error('SendGrid Response Body:', JSON.stringify(error.response.body, null, 2))
+    }
+    if (error.message) {
+      console.error('SendGrid Error Message:', error.message)
+    }
+    // Re-throw with more context
+    throw new Error(`Failed to send email: ${error.message || 'Unknown error'}`)
   }
 }
 

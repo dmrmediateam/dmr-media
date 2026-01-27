@@ -18,13 +18,13 @@ export default function ServiceCTA({
       <div className="container-max">
         <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm px-10 py-16 md:px-16 md:py-20 flex flex-col md:flex-row md:items-center md:justify-between gap-12">
           <div className="max-w-2xl">
-            <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)] mb-4 block">
+            <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-300)] mb-4 block">
               Start Now
             </span>
             <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-4">
               {heading}
             </h2>
-            <p className="text-sm sm:text-base text-[var(--color-ink-400)] leading-relaxed">
+            <p className="text-sm sm:text-base text-[var(--color-ink-300)] leading-relaxed">
               {description}
             </p>
           </div>

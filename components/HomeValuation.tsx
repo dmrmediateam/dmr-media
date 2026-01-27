@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
 export default function HomeValuation() {
   const [formData, setFormData] = useState({
@@ -36,13 +37,27 @@ export default function HomeValuation() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Get stored UTM parameters
+    const utmParams = getStoredUTMParams();
+
     try {
       const response = await fetch('/api/home-valuation', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          utm_source: utmParams.utm_source,
+          utm_medium: utmParams.utm_medium,
+          utm_campaign: utmParams.utm_campaign,
+          utm_term: utmParams.utm_term,
+          utm_content: utmParams.utm_content,
+          gclid: utmParams.gclid,
+          fbclid: utmParams.fbclid,
+          landing_page: utmParams.landing_page,
+          first_visit: utmParams.first_visit,
+        }),
       });
 
       const data = await response.json();
@@ -54,6 +69,9 @@ export default function HomeValuation() {
       // Success!
       setIsSubmitting(false);
       setIsSubmitted(true);
+      
+      // Track conversion
+      trackConversion('Lead', { form_type: 'home_valuation' });
       
       // Reset form after 5 seconds
       setTimeout(() => {
@@ -94,10 +112,10 @@ export default function HomeValuation() {
             </svg>
           </div>
           <h3 className="text-2xl font-serif font-light text-black mb-4">Thank You!</h3>
-          <p className="text-base text-gray-dark mb-6 leading-relaxed">
+          <p className="text-base text-[var(--color-ink-300)] mb-6 leading-relaxed">
             Your home valuation request has been received. Cheryl will personally review your property information and contact you within 24 hours with a comprehensive market analysis.
           </p>
-          <p className="text-sm text-gray-dark">
+          <p className="text-sm text-[var(--color-ink-300)]">
             Need immediate assistance? Call <a href="tel:9083340971" className="text-gold hover:text-gold-dark font-semibold">908.334.0971</a>
           </p>
         </div>
@@ -191,7 +209,7 @@ export default function HomeValuation() {
               {/* Personal Information */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="firstName" className="block text-xs font-semibold text-gray-dark mb-2">
+                  <label htmlFor="firstName" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                     First Name *
                   </label>
                   <input
@@ -205,7 +223,7 @@ export default function HomeValuation() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="lastName" className="block text-xs font-semibold text-gray-dark mb-2">
+                  <label htmlFor="lastName" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                     Last Name *
                   </label>
                   <input
@@ -222,7 +240,7 @@ export default function HomeValuation() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="email" className="block text-xs font-semibold text-gray-dark mb-2">
+                  <label htmlFor="email" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                     Email Address *
                   </label>
                   <input
@@ -236,7 +254,7 @@ export default function HomeValuation() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-xs font-semibold text-gray-dark mb-2">
+                  <label htmlFor="phone" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                     Phone Number *
                   </label>
                   <input
@@ -253,7 +271,7 @@ export default function HomeValuation() {
 
               {/* Property Address */}
               <div>
-                <label htmlFor="address" className="block text-xs font-semibold text-gray-dark mb-2">
+                <label htmlFor="address" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                   Property Address *
                 </label>
                 <input
@@ -270,7 +288,7 @@ export default function HomeValuation() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label htmlFor="city" className="block text-xs font-semibold text-gray-dark mb-2">
+                  <label htmlFor="city" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                     City *
                   </label>
                   <input
@@ -284,7 +302,7 @@ export default function HomeValuation() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="state" className="block text-xs font-semibold text-gray-dark mb-2">
+                  <label htmlFor="state" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                     State *
                   </label>
                   <select
@@ -301,7 +319,7 @@ export default function HomeValuation() {
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="zipCode" className="block text-xs font-semibold text-gray-dark mb-2">
+                  <label htmlFor="zipCode" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                     ZIP Code *
                   </label>
                   <input
@@ -322,7 +340,7 @@ export default function HomeValuation() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="propertyType" className="block text-xs font-semibold text-gray-dark mb-2">
+                    <label htmlFor="propertyType" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                       Property Type *
                     </label>
                     <select
@@ -342,7 +360,7 @@ export default function HomeValuation() {
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="yearBuilt" className="block text-xs font-semibold text-gray-dark mb-2">
+                    <label htmlFor="yearBuilt" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                       Year Built
                     </label>
                     <input
@@ -359,7 +377,7 @@ export default function HomeValuation() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                   <div>
-                    <label htmlFor="bedrooms" className="block text-xs font-semibold text-gray-dark mb-2">
+                    <label htmlFor="bedrooms" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                       Bedrooms
                     </label>
                     <input
@@ -373,7 +391,7 @@ export default function HomeValuation() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="bathrooms" className="block text-xs font-semibold text-gray-dark mb-2">
+                    <label htmlFor="bathrooms" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                       Bathrooms
                     </label>
                     <input
@@ -388,7 +406,7 @@ export default function HomeValuation() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="squareFeet" className="block text-xs font-semibold text-gray-dark mb-2">
+                    <label htmlFor="squareFeet" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                       Square Feet
                     </label>
                     <input
@@ -406,7 +424,7 @@ export default function HomeValuation() {
 
               {/* Additional Information */}
               <div>
-                <label htmlFor="message" className="block text-xs font-semibold text-gray-dark mb-2">
+                <label htmlFor="message" className="block text-xs font-semibold text-[var(--color-ink-300)] mb-2">
                   Additional Information (Optional)
                 </label>
                 <textarea
@@ -429,7 +447,7 @@ export default function HomeValuation() {
                 >
                   {isSubmitting ? 'Sending Request...' : 'Request Free Home Valuation'}
                 </button>
-                <p className="text-xs text-gray-400 text-center mt-4">
+                <p className="text-xs text-[var(--color-ink-300)] text-center mt-4">
                   By submitting this form, you agree to be contacted by Cheryl Towey regarding your property valuation.
                 </p>
               </div>

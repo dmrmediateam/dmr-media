@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -28,13 +29,27 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Get stored UTM parameters
+    const utmParams = getStoredUTMParams();
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          utm_source: utmParams.utm_source,
+          utm_medium: utmParams.utm_medium,
+          utm_campaign: utmParams.utm_campaign,
+          utm_term: utmParams.utm_term,
+          utm_content: utmParams.utm_content,
+          gclid: utmParams.gclid,
+          fbclid: utmParams.fbclid,
+          landing_page: utmParams.landing_page,
+          first_visit: utmParams.first_visit,
+        }),
       });
 
       const data = await response.json();
@@ -46,6 +61,9 @@ const ContactForm = () => {
       // Success!
       setIsSubmitting(false);
       setIsSubmitted(true);
+      
+      // Track conversion
+      trackConversion('Lead', { form_type: 'contact' });
       
       // Reset form after showing success message
       setTimeout(() => {
@@ -69,26 +87,21 @@ const ContactForm = () => {
   if (isSubmitted) {
     return (
       <motion.div 
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="py-32 bg-[var(--surface-base)]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="py-32 bg-white"
       >
         <div className="container-max flex justify-center">
-          <div className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm px-10 py-14 text-center max-w-md">
+          <div className="max-w-md text-center">
             <motion.div 
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-trust)]/10 text-[var(--color-trust)] mb-4">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </span>
-              <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-2">
+              <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-4">
                 Thank you.
               </h3>
-              <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
                 We received your message and will reply within one business day.
               </p>
             </motion.div>
@@ -107,13 +120,13 @@ const ContactForm = () => {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)] mb-4 block">
+          <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-300)] mb-4 block">
             Let's Work Together
           </span>
           <h2 className="text-[38px] sm:text-[46px] font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight">
             Tell us what you’re building. We’ll make the market notice.
           </h2>
-          <p className="mt-5 text-sm sm:text-base text-[var(--color-ink-400)] max-w-xl leading-relaxed">
+          <p className="mt-5 text-sm sm:text-base text-[var(--color-ink-300)] max-w-xl leading-relaxed">
             Share a few details about your goals and we’ll design a calm, measurable plan around them.
           </p>
         </motion.div>
@@ -129,7 +142,7 @@ const ContactForm = () => {
               <h3 className="text-xl font-serif font-light text-[var(--color-off-black)]">
                 Contact
               </h3>
-              <div className="mt-4 space-y-2 text-sm text-[var(--color-ink-400)]">
+              <div className="mt-4 space-y-2 text-sm text-[var(--color-ink-300)]">
                 <a href="mailto:team@dmrmedia.org" className="block hover:text-[var(--color-trust)] transition-colors">
                   team@dmrmedia.org
                 </a>
@@ -140,10 +153,10 @@ const ContactForm = () => {
             </div>
 
             <div className="pt-4 border-t border-[var(--color-ink-200)]">
-              <h4 className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-3">
+              <h4 className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-3">
                 Specialization
               </h4>
-              <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed">
                 Google Ads, SEO, and analytics frameworks for luxury real estate teams and developers.
               </p>
             </div>
@@ -180,7 +193,7 @@ const ContactForm = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <label htmlFor="name" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                <label htmlFor="name" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Name *
                 </label>
                 <input
@@ -199,7 +212,7 @@ const ContactForm = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.35, duration: 0.6 }}
               >
-                <label htmlFor="email" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                <label htmlFor="email" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Email *
                 </label>
                 <input
@@ -218,7 +231,7 @@ const ContactForm = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
-                <label htmlFor="phone" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                <label htmlFor="phone" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Phone
                 </label>
                 <input
@@ -236,7 +249,7 @@ const ContactForm = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.45, duration: 0.6 }}
               >
-                <label htmlFor="message" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-400)] mb-2">
+                <label htmlFor="message" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Your Message *
                 </label>
                 <textarea

@@ -28,6 +28,10 @@ export interface BlogPost {
     metaTitle: string;
     metaDescription: string;
   };
+  schemaMarkup?: {
+    dateModified?: string;
+    articleSection?: string;
+  };
 }
 
 // Sample blog post - This will be replaced by Sanity API calls
@@ -284,13 +288,35 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     readTime,
     body,
     tags,
-    seo
+    seo,
+    schemaMarkup
   }`
   
   try {
-    return await client.fetch(query, { slug })
-  } catch (error) {
-    console.error('Error fetching blog post:', error)
+    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'gvyjxd5j'
+    const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+    
+    if (!projectId) {
+      console.error('Sanity project ID is not configured')
+      return null
+    }
+    
+    const post = await client.fetch(query, { slug })
+    
+    if (!post) {
+      console.warn(`Blog post not found for slug: ${slug}`)
+      return null
+    }
+    
+    return post
+  } catch (error: any) {
+    console.error('Error fetching blog post:', {
+      error: error?.message || error,
+      slug,
+      projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+      dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+      hasToken: !!process.env.SANITY_API_TOKEN,
+    })
     return null
   }
 }
@@ -317,13 +343,33 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
     },
     readTime,
     tags,
-    seo
+    seo,
+    schemaMarkup
   }`
   
   try {
-    return await client.fetch(query)
-  } catch (error) {
-    console.error('Error fetching blog posts:', error)
+    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'gvyjxd5j'
+    
+    if (!projectId) {
+      console.error('Sanity project ID is not configured')
+      return []
+    }
+    
+    const posts = await client.fetch(query)
+    
+    if (!posts || !Array.isArray(posts)) {
+      console.warn('No blog posts found or invalid response format')
+      return []
+    }
+    
+    return posts
+  } catch (error: any) {
+    console.error('Error fetching blog posts:', {
+      error: error?.message || error,
+      projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+      dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+      hasToken: !!process.env.SANITY_API_TOKEN,
+    })
     return []
   }
 }

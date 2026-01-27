@@ -1,0 +1,141 @@
+# DMR Media - Luxury Real Estate Marketing Agency
+
+## Project Overview
+DMR Media is a Next.js-based website for a luxury real estate marketing agency specializing in SEO, Google Ads, and digital marketing strategies for real estate professionals. The site showcases case studies, services, blog content, and provides lead generation forms.
+
+## Technology Stack
+- **Framework**: Next.js 15.5.7 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS with custom CSS variables
+- **CMS**: Sanity.io for blog content management
+- **Fonts**: Instrument Serif (headings/links), Montserrat Thin 100 (body text)
+- **Animations**: Framer Motion
+- **Payment**: Stripe (for checkout sessions)
+- **Email**: SendGrid (contact form)
+- **Integrations**: Zapier webhooks for form submissions
+
+## Key Directories
+
+### `/app`
+Next.js App Router pages and routes:
+- `/` - Homepage with stats, case studies, services showcase
+- `/blog` - Blog listing page
+- `/blog/[slug]` - Individual blog post pages with schema markup
+- `/case-studies` - All case studies listing
+- `/case-study/[id]` - Individual case study pages
+- `/landing/*` - Landing pages for lead generation (thank-you, qualification-result, apply, etc.)
+- `/calendar` - Strategy call application form
+- `/contact` - Contact form page
+- `/privacy-policy`, `/terms-of-service`, `/fair-housing` - Legal pages
+- `/api/*` - API routes for forms, payments, webhooks
+
+### `/components`
+React components:
+- `Navbar.tsx` - Main navigation with mobile menu
+- `Footer.tsx` - Footer with links, SEMrush badge, legal links
+- `Hero.tsx` - Homepage hero section
+- `CaseStudies.tsx` - Case studies grid on homepage
+- `CaseStudyTemplate.tsx` - Reusable case study page template
+- `Testimonials.tsx` - Client testimonials
+- `ContactForm.tsx` - Contact form component
+- `ServicesShowcase.tsx` - Services display
+- `/service/*` - Service-specific components
+
+### `/sanity`
+Sanity CMS configuration:
+- `/schemas` - Content schemas (post, author, category, blockContent)
+- `sanity.config.ts` - Sanity Studio configuration
+- `sanity.cli.ts` - CLI configuration
+
+### `/lib`
+Utility libraries:
+- `sanity.ts` - Sanity client configuration
+- `email.ts` - SendGrid email functions
+- `zapier.ts` - Zapier webhook functions
+- `stripe.ts` - Stripe payment functions
+
+### `/data`
+Data fetching and types:
+- `blogPosts.ts` - Blog post data fetching from Sanity
+
+### `/public/images`
+Static images for case studies, testimonials, etc.
+
+## Key Features
+
+### Typography
+- Headings (h1-h6): Instrument Serif, black color
+- Body text: Montserrat Thin 100, darker gray (--color-ink-300)
+- Links: Instrument Serif
+- "Media" in "DMR Media": Instrument Serif italic
+
+### Color System
+- `--color-off-black`: #0f0f0f (headings)
+- `--color-ink-300`: rgba(45, 45, 45, 0.85) (body text)
+- `--color-trust`: #3c88c0 (accent/links)
+- `--color-off-white`: #fafaf9 (background)
+
+### Forms & Integrations
+- Contact form: Sends to both SendGrid and Zapier
+- Qualification form: Sends to Zapier webhook
+- Strategy call application: Sends to Zapier webhook
+- Webinar registration: Sends to Zapier webhook
+- Payment verification: Stripe checkout sessions
+
+### Case Studies
+Current featured case studies:
+- Willow Brook Realty (Vermont) - 46 leads in 3 weeks
+- Eagan Luxury Real Estate (St. Petersburg, FL) - Website consolidation
+- Visions First Realty (Ashland, WI) - SEO transformation
+
+### Schema Markup
+- Blog posts include automatic JSON-LD Article schema markup
+- Optional schema fields available in Sanity: dateModified, articleSection
+
+## Environment Variables
+Required in `.env.local`:
+- `NEXT_PUBLIC_SITE_URL` - Site URL for schema markup
+- `SENDGRID_API_KEY` - SendGrid email API key
+- `ZAPIER_QUALIFICATION_WEBHOOK_URL` - Qualification form webhook
+- `ZAPIER_LANDING_WEBHOOK_URL` - Landing page webhook
+- `ZAPIER_CONTACT_WEBHOOK_URL` - Contact form webhook
+- `STRIPE_SECRET_KEY` - Stripe API key
+- `SANITY_PROJECT_ID` - Sanity project ID
+- `SANITY_DATASET` - Sanity dataset name
+
+## Important Notes
+
+### Styling Conventions
+- Use CSS variables from `app/styles/foundation.css`
+- Non-heading text should use `text-[var(--color-ink-300)]`
+- Headings should use `text-[var(--color-off-black)]`
+- Container max width: `container-max` class
+- Section padding: `section-padding` class
+
+### Form Handling
+- All forms submit to API routes in `/app/api`
+- Contact form: Non-blocking SendGrid (errors logged but don't fail request)
+- Qualification forms: Auto-disqualification rules based on responses
+- All webinar-related flows use Zapier only (not SendGrid)
+
+### Case Study Structure
+- Small cards displayed on homepage in `CaseStudies.tsx`
+- Full case study pages use `CaseStudyTemplate.tsx`
+- Case studies include: title, subtitle, stats, sections, testimonial, CTA
+
+### Blog Posts
+- Fetched from Sanity CMS
+- Include schema markup (JSON-LD Article)
+- PortableText for rich content rendering
+- Author information and tags supported
+
+## Development Commands
+- `npm run dev` - Start Next.js dev server
+- `npm run sanity` - Start Sanity Studio locally
+- `npm run sanity:deploy` - Deploy Sanity Studio to hosted version
+- `npm run build` - Build for production
+
+## Deployment
+- Hosted on Vercel (based on vercel.json presence)
+- Sanity Studio hosted separately on sanity.io
+- Static assets in `/public` directory

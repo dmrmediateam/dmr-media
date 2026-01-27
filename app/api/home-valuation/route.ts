@@ -56,6 +56,16 @@ export async function POST(request: Request) {
       squareFeet: body.squareFeet?.trim() || '',
       yearBuilt: body.yearBuilt?.trim() || '',
       message: body.message?.trim().substring(0, 5000) || '',
+      // Include UTM parameters
+      utm_source: body.utm_source?.trim().substring(0, 100),
+      utm_medium: body.utm_medium?.trim().substring(0, 100),
+      utm_campaign: body.utm_campaign?.trim().substring(0, 100),
+      utm_term: body.utm_term?.trim().substring(0, 100),
+      utm_content: body.utm_content?.trim().substring(0, 100),
+      gclid: body.gclid?.trim().substring(0, 100),
+      fbclid: body.fbclid?.trim().substring(0, 100),
+      landing_page: body.landing_page?.trim().substring(0, 200),
+      first_visit: body.first_visit,
     };
 
     // Send email via SendGrid

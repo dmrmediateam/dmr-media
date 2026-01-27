@@ -1,37 +1,141 @@
 'use client';
 
-import Image from 'next/image';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
+  const videos = [
+    '/videos/entry-of-a-luxury-home-2026-01-21-18-28-02-utc (1).mp4',
+    '/videos/interior-of-a-luxury-home-fountain-2026-01-21-18-30-07-utc (1).mp4',
+    '/videos/rich-lifestyle-expensive-luxury-home-in-south-flor-2026-01-20-16-10-30-utc (1).mp4',
+  ];
+
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const h1Ref = useRef<HTMLHeadingElement>(null);
+  const [centerOffset, setCenterOffset] = useState(0);
+
+  useEffect(() => {
+    // Cycle through videos every 8 seconds
+    const interval = setInterval(() => {
+      setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, [videos.length]);
+
+  useEffect(() => {
+    // Play the current video and pause others
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        if (index === currentVideoIndex) {
+          video.play().catch(() => {
+            // Ignore autoplay errors
+          });
+        } else {
+          video.pause();
+        }
+      }
+    });
+  }, [currentVideoIndex]);
+
+  useEffect(() => {
+    // Calculate center positions for DMR animation
+    const handleResize = () => {
+      if (h1Ref.current) {
+        const rect = h1Ref.current.getBoundingClientRect();
+        const h1Center = rect.left + rect.width / 2;
+        const viewportCenter = window.innerWidth / 2;
+        setCenterOffset(viewportCenter - h1Center);
+      }
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-white via-white/90 to-[var(--surface-base)]">
-      <div className="pointer-events-none absolute inset-0 flex items-end justify-end pr-4 sm:pr-10 lg:pr-20 pb-10 lg:pb-16">
-        <div className="relative w-[280px] sm:w-[360px] lg:w-[520px] aspect-[4/5] rounded-[48px] overflow-hidden bg-white/40 backdrop-blur-[2px] border border-[var(--color-ink-200)] opacity-70">
-          <Image
-            src="/images/Untitled%20design%20(45).png"
-            alt="Modern luxury property exterior"
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
+    <section className="hero-section">
+      {/* Video Backgrounds */}
+      <div className="hero-video-container">
+        {videos.map((videoSrc, index) => (
+          <video
+            key={videoSrc}
+            ref={(el) => {
+              videoRefs.current[index] = el;
+            }}
+            className={`hero-video ${index === currentVideoIndex ? 'hero-video-active' : 'hero-video-hidden'}`}
+            muted
+            loop
+            playsInline
+            preload={index === 0 ? 'metadata' : 'none'}
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        ))}
+        {/* Overlay for better text readability */}
+        <div className="hero-overlay" />
       </div>
 
-      <div className="relative z-10 w-full pt-24 pb-20">
-        <div className="container-max">
-          <div className="max-w-3xl">
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="text-[48px] sm:text-[60px] md:text-[72px] font-serif font-light tracking-tight text-[var(--color-off-black)] leading-[1.05]"
-            >
-              Refined marketing systems for the luxury market
-              <span className="text-[var(--color-trust)] text-[1.1em] align-baseline">.</span>
-            </motion.h1>
-          </div>
-        </div>
+      {/* Centered Text */}
+      <div className="hero-text-container">
+        <h1 ref={h1Ref} className="hero-heading">
+          {/* D - starts from center, moves left to form "DMR" */}
+          <motion.span 
+            className="hero-letter-large"
+            initial={{ opacity: 0, x: centerOffset + 80, scale: 1.2 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0 }}
+          >
+            D
+          </motion.span>
+          {/* Rest of "Distinguished" */}
+          <motion.span
+            className="hero-text-normal"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 1.2 }}
+          >
+            istinguished{' '}
+          </motion.span>
+          {/* M - starts from center, stays at center */}
+          <motion.span 
+            className="hero-letter-large"
+            initial={{ opacity: 0, x: centerOffset, scale: 1.2 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
+          >
+            M
+          </motion.span>
+          {/* Rest of "Marketing for" */}
+          <motion.span
+            className="hero-text-normal"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 1.3 }}
+          >
+            arketing for{' '}
+          </motion.span>
+          {/* R - starts from center, moves right to form "DMR" */}
+          <motion.span 
+            className="hero-letter-large"
+            initial={{ opacity: 0, x: centerOffset - 80, scale: 1.2 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
+          >
+            R
+          </motion.span>
+          {/* Rest of "Real Estate" */}
+          <motion.span
+            className="hero-text-normal"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 1.4 }}
+          >
+            eal Estate
+          </motion.span>
+        </h1>
       </div>
     </section>
   );

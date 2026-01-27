@@ -90,7 +90,7 @@ export default function MortgageCalculator() {
                   onChange={(e) => setHomePrice(Number(e.target.value))}
                   className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gold"
                 />
-                <div className="flex justify-between text-xs text-gray-400 mt-1">
+                <div className="flex justify-between text-xs text-[var(--color-ink-300)] mt-1">
                   <span>$100K</span>
                   <span>$2M</span>
                 </div>
@@ -102,7 +102,7 @@ export default function MortgageCalculator() {
                   <label className="text-sm font-semibold text-black">Down Payment</label>
                   <div className="flex items-center gap-2">
                     <span className="text-gold font-mono text-sm">{formatCurrency(downPayment)}</span>
-                    <span className="text-xs text-gray-400">({downPaymentPercent}%)</span>
+                    <span className="text-xs text-[var(--color-ink-300)]">({downPaymentPercent}%)</span>
                   </div>
                 </div>
                 <input
@@ -114,7 +114,7 @@ export default function MortgageCalculator() {
                   onChange={(e) => setDownPayment(Number(e.target.value))}
                   className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gold"
                 />
-                <div className="flex justify-between text-xs text-gray-400 mt-1">
+                <div className="flex justify-between text-xs text-[var(--color-ink-300)] mt-1">
                   <span>$0</span>
                   <span>{formatCurrency(homePrice * 0.5)}</span>
                 </div>
@@ -135,7 +135,7 @@ export default function MortgageCalculator() {
                   onChange={(e) => setInterestRate(Number(e.target.value))}
                   className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gold"
                 />
-                <div className="flex justify-between text-xs text-gray-400 mt-1">
+                <div className="flex justify-between text-xs text-[var(--color-ink-300)] mt-1">
                   <span>2%</span>
                   <span>12%</span>
                 </div>
@@ -155,7 +155,7 @@ export default function MortgageCalculator() {
                       className={`py-3 px-4 rounded-sm border-2 text-sm font-semibold transition-all duration-200 ${
                         loanTerm === term
                           ? 'border-gold bg-gold text-white'
-                          : 'border-gray-200 text-gray-dark hover:border-gold'
+                          : 'border-gray-200 text-[var(--color-ink-300)] hover:border-gold'
                       }`}
                     >
                       {term} Years
@@ -171,9 +171,9 @@ export default function MortgageCalculator() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Property Tax */}
                   <div>
-                    <label className="text-xs text-gray-dark mb-2 block">Annual Property Tax</label>
+                    <label className="text-xs text-[var(--color-ink-300)] mb-2 block">Annual Property Tax</label>
                     <div className="relative">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-ink-300)]">$</span>
                       <input
                         type="number"
                         value={propertyTax}
@@ -185,9 +185,9 @@ export default function MortgageCalculator() {
 
                   {/* Home Insurance */}
                   <div>
-                    <label className="text-xs text-gray-dark mb-2 block">Annual Home Insurance</label>
+                    <label className="text-xs text-[var(--color-ink-300)] mb-2 block">Annual Home Insurance</label>
                     <div className="relative">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-ink-300)]">$</span>
                       <input
                         type="number"
                         value={homeInsurance}
@@ -199,9 +199,9 @@ export default function MortgageCalculator() {
 
                   {/* PMI */}
                   <div>
-                    <label className="text-xs text-gray-dark mb-2 block">Monthly PMI (if applicable)</label>
+                    <label className="text-xs text-[var(--color-ink-300)] mb-2 block">Monthly PMI (if applicable)</label>
                     <div className="relative">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-ink-300)]">$</span>
                       <input
                         type="number"
                         value={pmi}
@@ -214,9 +214,9 @@ export default function MortgageCalculator() {
 
                   {/* HOA Fees */}
                   <div>
-                    <label className="text-xs text-gray-dark mb-2 block">Monthly HOA Fees</label>
+                    <label className="text-xs text-[var(--color-ink-300)] mb-2 block">Monthly HOA Fees</label>
                     <div className="relative">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-ink-300)]">$</span>
                       <input
                         type="number"
                         value={hoaFees}

@@ -4,113 +4,161 @@ import Image from 'next/image';
 export default function CaseStudies() {
   const caseStudies = [
     {
-      id: 'jade-legendary-real-estate',
-      title: "Jade's Success Story",
-      client: 'Jade Goodhue',
-      company: 'Legendary Real Estate Services',
-      result: '3x Lead Generation',
+      id: 'willow-brook-realty',
+      title: "Willow Brook Realty",
+      client: 'Willow Brook',
+      company: 'Vermont',
+      location: 'South Royalton, Vermont',
+      result: '2 Clients / 3 Weeks',
       description:
-        "From frustrated content creator to lead generation powerhouse -- how we transformed Jade's digital strategy and tripled her inbound leads in one quarter.",
-      image: '/images/JadeCRM.png',
+        'From zero visibility to 46 leads and 2 new clients (1 listing + 1 buyer) in 3 weeks. Built a complete inbound foundation with local SEO, Google Business Profile optimization, and targeted ads across Vermont and New Hampshire.',
+      image: '/images/Cities/NewHampshire.jpg',
     },
     {
-      id: 'michael-seo-transformation',
-      title: "Michael's SEO Transformation",
-      client: 'Michael',
-      company: 'Real Estate Professional',
-      result: '21x Impressions',
+      id: 'eagan-luxury-real-estate',
+      title: "Eagan Luxury Real Estate",
+      client: 'Eagan Luxury',
+      company: 'St. Petersburg, FL',
+      location: 'St. Petersburg, Florida',
+      result: 'Ongoing',
       description:
-        "From abandoned SEO to 21x impressions growth -- how we turned Michael's website into a lead machine in just 7.5 weeks.",
-      image: '/images/MichealTraffic.png',
+        'Consolidated multiple fragmented websites into a single, powerful brand presence—launched December 17th with 0 measurable ranking loss and 10% keyword increase.',
+      image: '/images/Cities/Stpet.jpg',
     },
     {
-      id: 'rick-visions-first-realty',
-      title: "Rick's SEO Transformation",
-      client: 'Rick',
-      company: 'Visions First Realty',
-      result: '2-3 Leads / Day',
+      id: 'marquis-farwell-group',
+      title: 'Marquis + Farwell Group',
+      client: 'Marquis & Farwell Group',
+      company: 'Healdsburg, CA',
+      location: 'Sonoma, California',
+      result: '19x Daily Clicks',
       description:
-        "From misaligned keywords to daily qualified leads -- how we fixed Rick's SEO strategy and unlocked consistent deal flow.",
-      image: '/images/RickAfter.png',
+        'Transformed organic visibility in Sonoma County, growing from 2 clicks per day to 38 clicks per day while generating qualified buyer leads directly from search.',
+      image: '/images/Cities/Sonoma.jpg',
     },
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-32 bg-white border-b border-[var(--color-ink-200)]">
       <div className="container-max">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16">
-          <div>
-            <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
-              Results
-            </span>
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
-              Quiet confidence built on performance.
-            </h2>
-          </div>
-          <p className="text-[var(--color-ink-400)] max-w-xl text-base leading-relaxed">
-            We partner deeply with our clients, aligning marketing outcomes with revenue goals and brand stature.
-          </p>
+        <div className="max-w-3xl mb-24 mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1]">
+            Private Client Results
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {caseStudies.map((study) => (
             <Link
               key={study.id}
               href={`/case-study/${study.id}`}
-              className="group rounded-[24px] border border-[var(--color-ink-200)] bg-white/85 backdrop-blur-sm overflow-hidden hover:border-[var(--color-trust)] transition-colors duration-300 flex flex-col"
+              className="group border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300 flex flex-col"
             >
-              <div className="relative aspect-[3/2] overflow-hidden">
+              <div className="relative aspect-[3/2] overflow-hidden mb-6">
                 <Image
                   src={study.image}
                   alt={`${study.client} case study results`}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-white/20" />
-                <div className="absolute top-5 left-5 inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-[var(--color-off-black)]">
-                  Case Study
-                </div>
+                {/* Location overlay in left corner */}
+                {study.location && (
+                  <div className="absolute top-6 left-6">
+                    <span className="text-sm uppercase tracking-[0.2em] text-[#FAFAF9] font-serif font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)]">
+                      {study.location}
+                    </span>
+                  </div>
+                )}
               </div>
 
-              <div className="p-8 flex-1 flex flex-col gap-4">
-                <div className="flex items-center gap-2 text-[13px] uppercase tracking-[0.24em] text-[var(--color-trust)]">
+              <div className="flex-1 flex flex-col gap-4">
+                <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] font-serif">
                   {study.result}
-                  <span className="inline-block h-px w-8 bg-[var(--color-trust)] group-hover:w-12 transition-all duration-300" />
                 </div>
 
-                <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] group-hover:text-[var(--color-trust)] transition-colors duration-300 leading-snug">
+                <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] leading-snug">
                   {study.title}
                 </h3>
 
-                <div className="text-sm text-[var(--color-ink-400)]">
-                  <span className="font-semibold text-[var(--color-off-black)]">{study.client}</span>
-                  {study.company && <span className="block">{study.company}</span>}
+                <div className="text-sm text-[var(--color-ink-300)] font-serif">
+                  <span className="font-light text-[var(--color-off-black)]">{study.client}</span>
+                  {study.company && <span className="block mt-1">{study.company}</span>}
                 </div>
 
-                <p className="text-sm text-[var(--color-ink-400)] leading-relaxed flex-1">
+                <p className="text-sm text-[var(--color-ink-300)] leading-relaxed flex-1 font-serif">
                   {study.description}
                 </p>
 
-                <span className="inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.24em] text-[var(--color-off-black)] group-hover:text-[var(--color-trust)] transition-colors duration-300">
+                <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif">
                   View full story
-                  <svg
-                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
                 </span>
               </div>
             </Link>
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        {/* Large Jade Case Study Card */}
+        <div className="mt-24 border-b border-[var(--color-ink-200)] pb-16">
+          <Link
+            href="/case-study/jade-legendary-real-estate"
+            className="group block hover:opacity-60 transition-opacity duration-300"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* Left: Image */}
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src="/images/Cities/LakeGeneva.jpg"
+                  alt="Jade Goodhue - Legendary Real Estate Services"
+                  fill
+                  className="object-cover"
+                  loading="lazy"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                {/* Location overlay in left corner */}
+                <div className="absolute top-6 left-6">
+                  <span className="text-sm uppercase tracking-[0.2em] text-[#FAFAF9] font-serif font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)]">
+                    Lake Geneva, Wisconsin
+                  </span>
+                </div>
+              </div>
+
+              {/* Right: Content */}
+              <div className="flex flex-col justify-center gap-8">
+                <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] font-serif">
+                  3x Lead Generation
+                </div>
+
+                <div>
+                  <h3 className="text-3xl lg:text-4xl font-serif font-light text-[var(--color-off-black)] leading-snug mb-4">
+                    Jade Goodhue
+                  </h3>
+                  <div className="text-sm text-[var(--color-ink-300)] font-serif">
+                    <span className="block">Top Lake Geneva Area Realtor</span>
+                    <span className="block mt-1">Legendary Real Estate Services</span>
+                  </div>
+                </div>
+
+                {/* Testimonial Quote */}
+                <div className="border-t border-[var(--color-ink-200)] pt-8">
+                  <blockquote className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+                    "We started working with Andrew about a month ago. He's articulate, responsive, and provides amazing weekly updates. He's taken the time to really explain what the issues were on why we weren't ranking despite all our blogs and videos. It's exciting to watch his weekly progress, and he even provides us feedback for how we can better engage the leads we have. He works with us like a partner, rather than a vendor dealing with just another number. If you have the opportunity to work with him, just DO IT. You'll be grateful you did!"
+                  </blockquote>
+                </div>
+
+                <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif">
+                  View full story
+                </span>
+              </div>
+            </div>
+          </Link>
+        </div>
+
+        <div className="mt-16 text-center">
           <Link
             href="/case-studies"
-            className="inline-flex items-center gap-3 rounded-full px-6 py-3 border border-[var(--color-ink-200)] text-[var(--color-off-black)] uppercase tracking-[0.3em] text-[11px] hover:border-[var(--color-trust)] hover:text-[var(--color-trust)] transition-colors duration-300"
+            className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif hover:opacity-60 transition-opacity duration-300"
           >
             View all success stories
           </Link>

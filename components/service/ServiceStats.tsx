@@ -22,7 +22,7 @@ export default function ServiceStats({ stats, heading, description }: ServiceSta
               </h2>
             )}
             {description && (
-              <p className="text-sm sm:text-base text-[var(--color-ink-400)] leading-relaxed">
+              <p className="text-sm sm:text-base text-[var(--color-ink-300)] leading-relaxed">
                 {description}
               </p>
             )}
@@ -38,11 +38,11 @@ export default function ServiceStats({ stats, heading, description }: ServiceSta
               <span className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)]">
                 {stat.value}
               </span>
-              <span className="text-sm uppercase tracking-[0.3em] text-[var(--color-ink-400)]">
+              <span className="text-sm uppercase tracking-[0.3em] text-[var(--color-ink-300)]">
                 {stat.label}
               </span>
               {stat.description && (
-                <p className="text-sm text-[var(--color-ink-400)] leading-relaxed">
+                <p className="text-sm text-[var(--color-ink-300)] leading-relaxed">
                   {stat.description}
                 </p>
               )}

@@ -111,6 +111,26 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'schemaMarkup',
+      title: 'Schema Markup (Optional)',
+      type: 'object',
+      description: 'Optional fields for custom schema markup. If left empty, default Article schema will be generated automatically.',
+      fields: [
+        {
+          name: 'dateModified',
+          title: 'Date Modified',
+          type: 'datetime',
+          description: 'Last modification date. If not set, publishedAt will be used.',
+        },
+        {
+          name: 'articleSection',
+          title: 'Article Section',
+          type: 'string',
+          description: 'The section of the article (e.g., "SEO Strategy", "Marketing Insights"). Defaults to category if not set.',
+        },
+      ],
+    }),
   ],
   preview: {
     select: {

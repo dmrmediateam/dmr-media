@@ -39,13 +39,13 @@ export default function ServiceHero({
       <div className="relative z-10 w-full pt-20 pb-24">
         <div className="container-max">
           <div className="max-w-3xl space-y-6">
-            <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-400)]">
+            <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-300)]">
               {eyebrow}
             </span>
             <h1 className="text-[42px] sm:text-[54px] lg:text-[64px] font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight">
               {title}
             </h1>
-            <p className="text-sm sm:text-base text-[var(--color-ink-400)] leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base text-[var(--color-ink-300)] leading-relaxed max-w-2xl">
               {description}
             </p>
             {actions.length > 0 && (

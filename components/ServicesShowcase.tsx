@@ -39,22 +39,17 @@ export default function ServicesShowcase({
   sectionClassName,
 }: ServicesShowcaseProps) {
   const sectionClasses = sectionClassName
-    ? `py-24 ${sectionClassName}`
-    : 'py-24 bg-white'
+    ? `py-32 ${sectionClassName} border-b border-[var(--color-ink-200)]`
+    : 'py-32 bg-white border-b border-[var(--color-ink-200)]'
 
   return (
     <section className={sectionClasses}>
       <div className="container-max">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16">
-          <div>
-            <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-400)] mb-4 block">
-              Services
-            </span>
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
-              {heading}
-            </h2>
-          </div>
-          <p className="text-[var(--color-ink-400)] max-w-xl text-base leading-relaxed">
+        <div className="max-w-3xl mb-24 mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6">
+            {heading}
+          </h2>
+          <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
             {description}
           </p>
         </div>
@@ -64,25 +59,31 @@ export default function ServicesShowcase({
             <Link
               key={service.title}
               href={service.href}
-              className="group rounded-[24px] border border-[var(--color-ink-200)] overflow-hidden bg-white/80 backdrop-blur-sm hover:border-[var(--color-trust)] transition-colors duration-300"
+              className="group relative aspect-square overflow-hidden border-b border-[var(--color-ink-200)] hover:opacity-90 transition-opacity duration-300 flex flex-col"
             >
-              <div className="aspect-[3/2] overflow-hidden">
+              {/* Background Image */}
+              <div className="absolute inset-0">
                 <img
                   src={service.media}
                   alt={service.title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover"
                 />
+                {/* Dark overlay for text readability */}
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
               </div>
-              <div className="p-10 flex flex-col gap-4">
-                <span className="uppercase tracking-[0.3em] text-[11px] text-[var(--color-ink-400)]">
-                  {service.title}
-                </span>
-                <p className="text-[var(--color-off-black)] text-2xl font-serif font-light leading-snug">
-                  {service.copy}
-                </p>
-                <span className="inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.24em] text-[var(--color-trust)]">
+
+              {/* Content Overlay */}
+              <div className="relative z-10 flex flex-col justify-between h-full p-8 md:p-10">
+                <div className="flex flex-col gap-4">
+                  <span className="text-xs uppercase tracking-[0.2em] text-[#FAFAF9] font-serif">
+                    {service.title}
+                  </span>
+                  <p className="text-xl md:text-2xl font-serif font-light text-[#FAFAF9] leading-snug">
+                    {service.copy}
+                  </p>
+                </div>
+                <span className="text-xs uppercase tracking-[0.2em] text-[#FAFAF9] font-serif mt-auto">
                   Learn more
-                  <span className="inline-block h-px w-8 bg-[var(--color-trust)] group-hover:w-12 transition-all duration-300" />
                 </span>
               </div>
             </Link>

@@ -3,6 +3,16 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com', 'via.placeholder.com', 'cdn.sanity.io'],
   },
+  webpack: (config, { isServer }) => {
+    // Externalize @sanity/client for server-side to avoid webpack bundling issues
+    if (isServer) {
+      config.externals = config.externals || []
+      config.externals.push({
+        '@sanity/client': 'commonjs @sanity/client',
+      })
+    }
+    return config
+  },
   async headers() {
     return [
       {
@@ -24,7 +34,12 @@ const nextConfig = {
     return [
       {
         source: '/studio',
-        destination: 'https://realestatebycherlnj.sanity.studio/',
+        destination: 'https://www.sanity.io/@o0TLPxe4z/studio/gc5ifcysyqpinpbd50onl6r8/default/',
+        permanent: true,
+      },
+      {
+        source: '/oplogin',
+        destination: 'https://eagan-luxury.sanity.studio',
         permanent: true,
       },
       {
