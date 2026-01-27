@@ -60,6 +60,8 @@ export default function CaseStudies() {
                   alt={`${study.client} case study results`}
                   fill
                   className="object-cover"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 {/* Location overlay in left corner */}
                 {study.location && (
@@ -111,6 +113,8 @@ export default function CaseStudies() {
                   alt="Jade Goodhue - Legendary Real Estate Services"
                   fill
                   className="object-cover"
+                  loading="lazy"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 {/* Location overlay in left corner */}
                 <div className="absolute top-6 left-6">

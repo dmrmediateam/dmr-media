@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
 const ContactForm = () => {
@@ -13,6 +14,9 @@ const ContactForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -82,25 +86,40 @@ const ContactForm = () => {
 
   if (isSubmitted) {
     return (
-      <div className="py-32 bg-white">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="py-32 bg-white"
+      >
         <div className="container-max flex justify-center">
-          <div className="max-w-md text-center fade-in-up">
-            <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-4">
-              Thank you.
-            </h3>
-            <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
-              We received your message and will reply within one business day.
-            </p>
+          <div className="max-w-md text-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-4">
+                Thank you.
+              </h3>
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+                We received your message and will reply within one business day.
+              </p>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <section className="py-24 bg-[var(--surface-base)]">
+    <section ref={sectionRef} className="py-24 bg-[var(--surface-base)]">
       <div className="container-max">
-        <div className="max-w-3xl scroll-animate">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl"
+        >
           <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-300)] mb-4 block">
             Let's Work Together
           </span>
@@ -110,10 +129,15 @@ const ContactForm = () => {
           <p className="mt-5 text-sm sm:text-base text-[var(--color-ink-300)] max-w-xl leading-relaxed">
             Share a few details about your goals and we’ll design a calm, measurable plan around them.
           </p>
-        </div>
+        </motion.div>
 
         <div className="mt-14 grid grid-cols-1 lg:grid-cols-[1.1fr_1.3fr] gap-8">
-          <div className="scroll-animate rounded-[24px] border border-[var(--color-ink-200)] bg-white/70 backdrop-blur-sm p-8 sm:p-10 space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ delay: 0.1, duration: 0.6 }}
+            className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/70 backdrop-blur-sm p-8 sm:p-10 space-y-8"
+          >
             <div>
               <h3 className="text-xl font-serif font-light text-[var(--color-off-black)]">
                 Contact
@@ -155,11 +179,20 @@ const ContactForm = () => {
                 </a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="scroll-animate rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-8 sm:p-10">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-8 sm:p-10"
+          >
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
                 <label htmlFor="name" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Name *
                 </label>
@@ -172,9 +205,13 @@ const ContactForm = () => {
                   onChange={handleChange}
                   className="w-full rounded-full border border-[var(--color-ink-200)] bg-white px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-off-black)] transition-colors"
                 />
-              </div>
+              </motion.div>
 
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.35, duration: 0.6 }}
+              >
                 <label htmlFor="email" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Email *
                 </label>
@@ -187,9 +224,13 @@ const ContactForm = () => {
                   onChange={handleChange}
                   className="w-full rounded-full border border-[var(--color-ink-200)] bg-white px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-off-black)] transition-colors"
                 />
-              </div>
+              </motion.div>
 
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
                 <label htmlFor="phone" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Phone
                 </label>
@@ -201,9 +242,13 @@ const ContactForm = () => {
                   onChange={handleChange}
                   className="w-full rounded-full border border-[var(--color-ink-200)] bg-white px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-off-black)] transition-colors"
                 />
-              </div>
+              </motion.div>
 
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.45, duration: 0.6 }}
+              >
                 <label htmlFor="message" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                   Your Message *
                 </label>
@@ -216,17 +261,20 @@ const ContactForm = () => {
                   onChange={handleChange}
                   className="w-full rounded-3xl border border-[var(--color-ink-200)] bg-white px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-off-black)] transition-colors"
                 />
-              </div>
+              </motion.div>
 
-              <button
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
                 type="submit"
                 disabled={isSubmitting}
                 className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-[var(--color-off-black)] px-6 py-3 text-[11px] uppercase tracking-[0.3em] text-white transition-colors hover:bg-black disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isSubmitting ? 'Sending…' : 'Send Message'}
-              </button>
+              </motion.button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

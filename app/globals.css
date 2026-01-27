@@ -4,7 +4,9 @@
 
 @import './styles/foundation.css';
 
-/* Fonts loaded via next/font in layout.tsx - no external import needed */
+/* Luxury Fonts - Instrument Serif (Primary) & Montserrat Thin */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@100&display=swap');
+/* Preconnect to Google Fonts for faster loading */
 
 @layer base {
   html {
@@ -80,81 +82,6 @@
     color: var(--color-off-black) !important;
     font-family: 'Instrument Serif', serif !important;
   }
-}
-
-/* Hero Animations - CSS only, no Framer Motion */
-@keyframes heroLetterD {
-  from {
-    opacity: 0;
-    transform: translateX(80px) scale(1.2);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-}
-
-@keyframes heroLetterM {
-  from {
-    opacity: 0;
-    transform: scale(1.2);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes heroLetterR {
-  from {
-    opacity: 0;
-    transform: translateX(-80px) scale(1.2);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-}
-
-@keyframes heroText {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero-letter-d {
-  animation: heroLetterD 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s forwards;
-  opacity: 0;
-}
-
-.hero-letter-m {
-  animation: heroLetterM 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
-  opacity: 0;
-}
-
-.hero-letter-r {
-  animation: heroLetterR 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
-  opacity: 0;
-}
-
-.hero-text-1 {
-  animation: heroText 0.8s ease-out 1.2s forwards;
-  opacity: 0;
-}
-
-.hero-text-2 {
-  animation: heroText 0.8s ease-out 1.3s forwards;
-  opacity: 0;
-}
-
-.hero-text-3 {
-  animation: heroText 0.8s ease-out 1.4s forwards;
-  opacity: 0;
 }
 
 /* Fade In From Left Animation */
@@ -597,4 +524,112 @@
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: rgba(15, 15, 15, 0.4);
+}
+
+/* Hero Component Optimized Styles */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-video-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 1s ease;
+}
+
+.hero-video-active {
+  opacity: 1;
+}
+
+.hero-video-hidden {
+  opacity: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.hero-text-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-heading {
+  text-align: center;
+  font-size: 48px;
+  font-family: 'Instrument Serif', serif;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  padding: 0 1rem;
+  position: relative;
+  color: #FAFAF9;
+}
+
+@media (min-width: 640px) {
+  .hero-heading {
+    font-size: 60px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-heading {
+    font-size: 72px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-heading {
+    font-size: 84px;
+  }
+}
+
+.hero-letter-large {
+  display: inline-block;
+  font-family: 'Instrument Serif', serif;
+  color: #FAFAF9;
+  font-size: 54px;
+}
+
+@media (min-width: 640px) {
+  .hero-letter-large {
+    font-size: 66px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-letter-large {
+    font-size: 78px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-letter-large {
+    font-size: 90px;
+  }
+}
+
+.hero-text-normal {
+  font-family: 'Instrument Serif', serif;
+  color: #FAFAF9;
 }

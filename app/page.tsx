@@ -1,18 +1,16 @@
 import Hero from '@/components/Hero';
 import ClientLogosSlider from '@/components/ClientLogosSlider';
-import ContactForm from '@/components/ContactForm';
 import CaseStudies from '@/components/CaseStudies';
 import Testimonials from '@/components/Testimonials';
 import { getAllBlogPosts } from '@/data/blogPosts';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Suspense } from 'react';
 
 export default async function Home() {
-  // Only fetch 3 posts for better performance
-  const blogPosts = await getAllBlogPosts(3);
+  const blogPosts = await getAllBlogPosts();
+  // Filter out posts without valid slugs
   const validPosts = blogPosts.filter((post) => post.slug?.current);
-  const featuredPosts = validPosts;
+  const featuredPosts = validPosts.slice(0, 3);
 
   return (
     <div className="min-h-screen bg-[var(--surface-base)]">
@@ -62,6 +60,7 @@ export default async function Home() {
                         alt={post.mainImage.alt}
                         fill
                         className="object-cover"
+                        loading="lazy"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     </div>
@@ -97,9 +96,9 @@ export default async function Home() {
         </div>
       </section>
 
-      <Suspense fallback={null}>
-        <Testimonials />
-      </Suspense>
+      <Testimonials />
+
+     
     </div>
   );
 }

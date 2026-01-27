@@ -102,6 +102,7 @@ const TestimonialCard = ({ testimonial, truncateText }: { testimonial: typeof te
           alt={`${testimonial.location}`}
           fill
           className="object-cover"
+          loading="lazy"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {/* Dark overlay for text readability */}

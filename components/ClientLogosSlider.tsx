@@ -54,6 +54,8 @@ const ClientLogosSlider = () => {
                 width={200}
                 height={80}
                 className="h-full w-auto object-contain"
+                loading="lazy"
+                sizes="(max-width: 768px) 100px, 200px"
               />
             </div>
           );

@@ -14,6 +14,11 @@ export default function SmoothScroll() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
+    // Disable on mobile devices and low-end devices for better performance
+    const isMobile = window.innerWidth < 768;
+    const isLowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+    if (isMobile || isLowEndDevice) return;
+
     let currentScroll = 0;
     let targetScroll = 0;
     let rafId: number | null = null;
@@ -21,8 +26,7 @@ export default function SmoothScroll() {
 
     // Easing value - lower = more lag/smoother, higher = less lag
     // This creates the "lagged" scroll effect similar to the reference site
-    // Increased from 0.075 to 0.12 for better performance
-    const ease = 0.12;
+    const ease = 0.075;
 
     const lerp = (start: number, end: number, factor: number) => {
       return start + (end - start) * factor;

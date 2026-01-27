@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  compress: true,
   images: {
     domains: ['images.unsplash.com', 'via.placeholder.com', 'cdn.sanity.io'],
-    formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 60,
   },
   webpack: (config, { isServer }) => {
     // Externalize @sanity/client for server-side to avoid webpack bundling issues

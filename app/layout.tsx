@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Instrument_Serif, Montserrat } from 'next/font/google'
+import { Instrument_Serif } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import ConditionalLayout from '@/components/ConditionalLayout'
@@ -15,16 +15,6 @@ const instrumentSerif = Instrument_Serif({
   style: ['normal', 'italic'],
   variable: '--font-instrument',
   display: 'swap',
-  preload: true,
-})
-
-// Montserrat Thin - Body text font
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['100'],
-  variable: '--font-montserrat',
-  display: 'swap',
-  preload: true,
 })
 
 export const metadata: Metadata = {
@@ -44,8 +34,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${instrumentSerif.variable} ${montserrat.variable}`}>
-      <body className={`${instrumentSerif.className} ${montserrat.className}`}>
+    <html lang="en" className={instrumentSerif.variable}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
+      <body className={instrumentSerif.className}>
         {/* Meta Pixel Code */}
         <Script
           id="meta-pixel"
