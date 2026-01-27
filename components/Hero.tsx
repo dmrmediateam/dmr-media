@@ -70,7 +70,6 @@ const Hero = () => {
             loop
             playsInline
             preload={index === 0 ? 'metadata' : 'none'}
-            loading={index === 0 ? 'eager' : 'lazy'}
           >
             <source src={videoSrc} type="video/mp4" />
           </video>
