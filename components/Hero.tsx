@@ -14,7 +14,7 @@ const Hero = () => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const [centerOffset, setCenterOffset] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
   useEffect(() => {
     // Cycle through videos every 8 seconds
@@ -41,14 +41,14 @@ const Hero = () => {
   }, [currentVideoIndex]);
 
   useEffect(() => {
-    // Check if mobile (smallest breakpoint)
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640); // Tailwind's sm breakpoint
+    // Check if mobile or small tablet (up to md breakpoint)
+    const checkMobileOrTablet = () => {
+      setIsMobileOrTablet(window.innerWidth < 768); // Tailwind's md breakpoint (includes mobile and small tablets)
     };
     
     // Calculate center positions for DMR animation
     const handleResize = () => {
-      checkMobile();
+      checkMobileOrTablet();
       if (h1Ref.current) {
         const rect = h1Ref.current.getBoundingClientRect();
         const h1Center = rect.left + rect.width / 2;
@@ -57,7 +57,7 @@ const Hero = () => {
       }
     };
     
-    checkMobile();
+    checkMobileOrTablet();
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -89,9 +89,15 @@ const Hero = () => {
       {/* Centered Text */}
       <div className="hero-text-container">
         <h1 ref={h1Ref} className="hero-heading">
-          {isMobile ? (
-            // On mobile: Show full text without DMR animation
-            'Distinguished Marketing for Real Estate'
+          {isMobileOrTablet ? (
+            // On mobile and small tablets: Show full text with simple fade-in
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+            >
+              Distinguished Marketing for Real Estate
+            </motion.span>
           ) : (
             // On desktop: Show DMR animation
             <>
