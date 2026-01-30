@@ -155,9 +155,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               )}
               <span style={{ color: '#FFFFFF' }}>{post.author.name}</span>
               <span className="text-white/60">•</span>
-              <span>{formattedDate}</span>
+              <span style={{ color: '#FFFFFF' }}>{formattedDate}</span>
               <span className="text-white/60">•</span>
-              <span>{post.readTime}</span>
+              <span style={{ color: '#FFFFFF' }}>{post.readTime}</span>
             </div>
           </div>
         </div>
@@ -226,32 +226,6 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
       </article>
 
-      <section className="py-24 md:py-32 bg-white border-t border-[var(--color-ink-200)]">
-        <div className="container-max">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] mb-6">
-              Ready to elevate your real estate marketing?
-            </h2>
-            <p className="text-base text-[var(--color-ink-300)] max-w-2xl mx-auto mb-8 leading-relaxed font-serif">
-              Let’s tailor a growth plan around your portfolio—SEO, paid media, and analytics working together.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)]"
-              >
-                Start a Project
-              </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center px-8 py-3 border border-[var(--color-off-black)] text-[var(--color-off-black)] uppercase tracking-[0.12em] text-xs font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-all duration-300"
-              >
-                Explore Services
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
     </>
     )
