@@ -89,79 +89,77 @@ const Hero = () => {
       {/* Centered Text */}
       <div className="hero-text-container">
         <h1 ref={h1Ref} className="hero-heading">
-          {isMobileOrTablet ? (
-            // On mobile and small tablets: Show full text with simple fade-in
-            <motion.span
-              className="hero-text-mobile"
-              style={{ 
-                fontFamily: "'Instrument Serif', serif",
-                color: '#FAFAF9'
-              }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
+          {/* Mobile version - always rendered, hidden on desktop via CSS */}
+          <motion.span
+            className="hero-text-mobile hero-mobile-content"
+            style={{ 
+              fontFamily: "'Instrument Serif', serif",
+              color: '#FAFAF9'
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
+            Distinguished Marketing for Real Estate
+          </motion.span>
+          
+          {/* Desktop version - always rendered, hidden on mobile via CSS */}
+          <span className="hero-desktop-content">
+            {/* D - starts from center, moves left to form "DMR" */}
+            <motion.span 
+              className="hero-letter-large"
+              initial={{ opacity: 0, x: centerOffset + 80, scale: 1.2 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0 }}
             >
-              Distinguished Marketing for Real Estate
+              D
             </motion.span>
-          ) : (
-            // On desktop: Show DMR animation
-            <>
-              {/* D - starts from center, moves left to form "DMR" */}
-              <motion.span 
-                className="hero-letter-large"
-                initial={{ opacity: 0, x: centerOffset + 80, scale: 1.2 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0 }}
-              >
-                D
-              </motion.span>
-              {/* Rest of "Distinguished" */}
-              <motion.span
-                className="hero-text-normal"
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut', delay: 1.2 }}
-              >
-                istinguished{' '}
-              </motion.span>
-              {/* M - starts from center, stays at center */}
-              <motion.span 
-                className="hero-letter-large"
-                initial={{ opacity: 0, x: centerOffset, scale: 1.2 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
-              >
-                M
-              </motion.span>
-              {/* Rest of "Marketing for" */}
-              <motion.span
-                className="hero-text-normal"
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut', delay: 1.3 }}
-              >
-                arketing for{' '}
-              </motion.span>
-              {/* R - starts from center, moves right to form "DMR" */}
-              <motion.span 
-                className="hero-letter-large"
-                initial={{ opacity: 0, x: centerOffset - 80, scale: 1.2 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
-              >
-                R
-              </motion.span>
-              {/* Rest of "Real Estate" */}
-              <motion.span
-                className="hero-text-normal"
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut', delay: 1.4 }}
-              >
-                eal Estate
-              </motion.span>
-            </>
-          )}
+            {/* Rest of "Distinguished" */}
+            <motion.span
+              className="hero-text-normal"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 1.2 }}
+            >
+              istinguished{' '}
+            </motion.span>
+            {/* M - starts from center, stays at center */}
+            <motion.span 
+              className="hero-letter-large"
+              initial={{ opacity: 0, x: centerOffset, scale: 1.2 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
+            >
+              M
+            </motion.span>
+            {/* Rest of "Marketing for" */}
+            <motion.span
+              className="hero-text-normal"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 1.3 }}
+            >
+              arketing for{' '}
+            </motion.span>
+            {/* R - starts from center, moves right to form "DMR" */}
+            <motion.span 
+              className="hero-letter-large"
+              initial={{ opacity: 0, x: centerOffset - 80, scale: 1.2 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
+            >
+              R
+            </motion.span>
+            {/* Rest of "Real Estate" */}
+            <motion.span
+              className="hero-text-normal"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 1.4 }}
+            >
+              eal Estate
+            </motion.span>
+          </span>
         </h1>
       </div>
     </section>

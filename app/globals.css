@@ -572,6 +572,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 1rem;
 }
 
 .hero-heading {
@@ -581,9 +582,12 @@
   font-weight: 300;
   letter-spacing: -0.02em;
   line-height: 1.05;
-  padding: 0 1rem;
+  padding: 0;
+  margin: 0 auto;
   position: relative;
   color: #FAFAF9;
+  width: 100%;
+  max-width: 100%;
 }
 
 @media (min-width: 640px) {
@@ -638,4 +642,21 @@
   font-family: 'Instrument Serif', serif !important;
   color: #FAFAF9 !important;
   display: block;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Hide desktop animation on mobile */
+@media (max-width: 767px) {
+  .hero-desktop-content {
+    display: none !important;
+  }
+}
+
+/* Hide mobile text on desktop */
+@media (min-width: 768px) {
+  .hero-mobile-content {
+    display: none !important;
+  }
 }
