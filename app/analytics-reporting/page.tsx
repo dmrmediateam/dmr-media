@@ -1,14 +1,32 @@
+import type { Metadata } from 'next'
 import ContactForm from '@/components/ContactForm'
 import Testimonials from '@/components/Testimonials'
 import ServiceHero from '@/components/service/ServiceHero'
 import ServiceStats from '@/components/service/ServiceStats'
+import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
 import ServiceProcess from '@/components/service/ServiceProcess'
 import ServiceCities from '@/components/service/ServiceCities'
 import ServiceCTA from '@/components/service/ServiceCTA'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Analytics & Reporting for Real Estate | DMR Media',
-  description: 'Data-driven insights and transparent reporting to track campaign performance and optimize results for luxury real estate professionals.',
+  description: 'Data-driven insights and transparent reporting to track campaign performance and optimize results for luxury real estate professionals. Weekly dashboards, 50+ metrics monitored, 100% transparency.',
+  keywords: 'real estate analytics, real estate reporting, marketing dashboards, real estate metrics, campaign performance tracking, luxury real estate analytics, real estate data insights, marketing ROI reporting',
+  alternates: {
+    canonical: 'https://dmrmedia.org/analytics-reporting',
+  },
+  openGraph: {
+    title: 'Analytics & Reporting for Real Estate | DMR Media',
+    description: 'Data-driven insights and transparent reporting to track campaign performance and optimize results for luxury real estate professionals.',
+    url: 'https://dmrmedia.org/analytics-reporting',
+    siteName: 'DMR Media',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Analytics & Reporting for Real Estate | DMR Media',
+    description: 'Data-driven insights and transparent reporting to track campaign performance and optimize results for luxury real estate professionals.',
+  },
 }
 
 export default function AnalyticsReportingPage() {
@@ -46,6 +64,33 @@ export default function AnalyticsReportingPage() {
           { value: 'Weekly', label: 'Report cadence', description: 'Concise, actionable updates in your inbox every week.' },
           { value: '50+', label: 'Metrics monitored', description: 'From traffic and conversions to ROI across every channel.' },
           { value: '100%', label: 'Transparency', description: 'Live dashboards with nothing hidden or summarized away.' },
+        ]}
+      />
+
+      <ServiceCaseStudies
+        heading="Data-driven results across markets."
+        description="Transparent reporting and analytics that keep teams aligned and campaigns optimized."
+        studies={[
+          {
+            id: 'michael-seo-transformation',
+            title: "Michael's Analytics Success",
+            client: 'Michael',
+            company: 'Real Estate Professional',
+            result: '21x Impressions',
+            description:
+              "From abandoned SEO to 21x impressions growth—how transparent dashboards and weekly reporting rebuilt Michael's traffic and pipeline in 7.5 weeks.",
+            image: '/images/MichealTraffic.png',
+          },
+          {
+            id: 'jade-legendary-real-estate',
+            title: "Jade's Lead Tracking",
+            client: 'Jade Goodhue',
+            company: 'Legendary Real Estate Services',
+            result: '3x Lead Generation',
+            description:
+              "Real-time dashboards and weekly analytics transformed Jade's pipeline visibility, turning inconsistent lead flow into predictable growth.",
+            image: '/images/JadeCRM.png',
+          },
         ]}
       />
 

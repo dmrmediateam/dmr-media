@@ -17,25 +17,22 @@ type ServiceCitiesProps = {
 
 export default function ServiceCities({ heading, description, cities }: ServiceCitiesProps) {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-32 bg-white border-b border-[var(--color-ink-200)]">
       <div className="container-max">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16">
-          <div>
-            <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-300)] mb-4 block">
-              Cities
-            </span>
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-20">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1]">
               {heading}
             </h2>
           </div>
           {description && (
-            <p className="text-[var(--color-ink-300)] max-w-xl text-base leading-relaxed">
+            <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif max-w-xl">
               {description}
             </p>
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
           {cities.map((city) => {
             const href = city.slug.startsWith('#') ? city.slug : city.slug
             const isAnchor = city.slug.startsWith('#')
@@ -44,21 +41,25 @@ export default function ServiceCities({ heading, description, cities }: ServiceC
               <Link
                 key={`${city.name}-${city.slug}`}
                 href={isAnchor ? '#contact' : href}
-                className="group relative h-56 rounded-[24px] border border-[var(--color-ink-200)] overflow-hidden bg-white/80 backdrop-blur-sm"
+                className="group relative aspect-[3/2] overflow-hidden border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300"
               >
                 <Image
                   src={city.image}
                   alt={city.name}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
+                  className="object-cover"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-black/10 pointer-events-none" />
-                <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
-                  <h3 className="text-2xl font-serif font-light text-white">
+                <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent pointer-events-none" />
+                <div className="absolute top-6 left-6 z-10">
+                  <span className="text-sm uppercase tracking-[0.2em] text-[#FAFAF9] font-serif font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)]">
                     {city.name}
                     {city.state ? `, ${city.state}` : ''}
-                  </h3>
-                  <span className="text-sm text-white/80 mt-2">
+                  </span>
+                </div>
+                <div className="absolute bottom-6 left-6 right-6 z-10">
+                  <span className="text-xs uppercase tracking-[0.2em] text-[#FAFAF9] font-serif">
                     {city.subtitle ?? (isAnchor ? 'Contact us about your market →' : 'View local services →')}
                   </span>
                 </div>

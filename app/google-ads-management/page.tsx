@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import ContactForm from '@/components/ContactForm'
 import Testimonials from '@/components/Testimonials'
 import ServiceHero from '@/components/service/ServiceHero'
@@ -7,10 +8,26 @@ import ServiceProcess from '@/components/service/ServiceProcess'
 import ServiceCities from '@/components/service/ServiceCities'
 import ServiceCTA from '@/components/service/ServiceCTA'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Google Ads Management for Real Estate | DMR Media',
   description:
-    'Maximize ROI with precision-targeted Google Ads campaigns designed to reach affluent homebuyers and sellers in luxury real estate markets.',
+    'Maximize ROI with precision-targeted Google Ads campaigns designed to reach affluent homebuyers and sellers in luxury real estate markets. 450% average ROI, 3-5x lead volume increase, $2.50 cost per lead.',
+  keywords: 'Google Ads for real estate, real estate Google Ads management, luxury real estate advertising, real estate PPC, Google Ads campaigns, real estate paid search, property marketing ads, luxury real estate Google Ads',
+  alternates: {
+    canonical: 'https://dmrmedia.org/google-ads-management',
+  },
+  openGraph: {
+    title: 'Google Ads Management for Real Estate | DMR Media',
+    description: 'Maximize ROI with precision-targeted Google Ads campaigns designed to reach affluent homebuyers and sellers in luxury real estate markets.',
+    url: 'https://dmrmedia.org/google-ads-management',
+    siteName: 'DMR Media',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Google Ads Management for Real Estate | DMR Media',
+    description: 'Maximize ROI with precision-targeted Google Ads campaigns designed to reach affluent homebuyers and sellers in luxury real estate markets.',
+  },
 }
 
 export default function GoogleAdsPage() {
@@ -67,7 +84,28 @@ export default function GoogleAdsPage() {
       <ServiceCaseStudies
         heading="Campaigns that convert into appointments."
         description="Managed budgets, calibrated copy, and polished landing experiences that nurture discerning buyers."
-        studies={caseStudies}
+        studies={[
+          {
+            id: 'jade-legendary-real-estate',
+            title: "Jade's Paid Media Success",
+            client: 'Jade Goodhue',
+            company: 'Legendary Real Estate Services',
+            result: '3x Lead Generation',
+            description:
+              "From inconsistent lead flow to a 3x lift in qualified conversations—how a paid media overhaul with Google Ads transformed Jade's pipeline.",
+            image: '/images/JadeCRM.png',
+          },
+          {
+            id: 'willow-brook-realty',
+            title: "Willow Brook's Ad Performance",
+            client: 'Willow Brook Realty',
+            company: 'Vermont',
+            result: '2 Clients / 3 Weeks',
+            description:
+              'Targeted Google Ads campaigns across Vermont and New Hampshire generated 46 leads and 2 new clients in just 3 weeks.',
+            image: '/images/Cities/NewHampshire.jpg',
+          },
+        ]}
       />
 
       <ServiceProcess

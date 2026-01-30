@@ -1,15 +1,33 @@
+import type { Metadata } from 'next'
 import ContactForm from '@/components/ContactForm'
 import Testimonials from '@/components/Testimonials'
 import ServiceHero from '@/components/service/ServiceHero'
 import ServiceStats from '@/components/service/ServiceStats'
+import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
 import ServiceProcess from '@/components/service/ServiceProcess'
 import ServiceCities from '@/components/service/ServiceCities'
 import ServiceCTA from '@/components/service/ServiceCTA'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Property Marketing for Real Estate | DMR Media',
   description:
-    'Showcase premium listings with sophisticated digital marketing campaigns that attract qualified buyers and maximize property exposure.',
+    'Showcase premium listings with sophisticated digital marketing campaigns that attract qualified buyers and maximize property exposure. 40% faster sales, 250K+ listing impressions, 95% client satisfaction.',
+  keywords: 'property marketing, luxury property marketing, real estate listing marketing, property launch campaigns, real estate digital marketing, listing promotion, property advertising, luxury real estate marketing',
+  alternates: {
+    canonical: 'https://dmrmedia.org/property-marketing',
+  },
+  openGraph: {
+    title: 'Property Marketing for Real Estate | DMR Media',
+    description: 'Showcase premium listings with sophisticated digital marketing campaigns that attract qualified buyers and maximize property exposure.',
+    url: 'https://dmrmedia.org/property-marketing',
+    siteName: 'DMR Media',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Property Marketing for Real Estate | DMR Media',
+    description: 'Showcase premium listings with sophisticated digital marketing campaigns that attract qualified buyers and maximize property exposure.',
+  },
 }
 
 export default function PropertyMarketingPage() {
@@ -47,6 +65,33 @@ export default function PropertyMarketingPage() {
           { value: '40%', label: 'Faster sales', description: 'Average reduction in days on market for featured listings.' },
           { value: '250K+', label: 'Listing impressions', description: 'High-intent views across search, social, and email.' },
           { value: '95%', label: 'Client satisfaction', description: 'Consistent 5-star ratings from teams and developers.' },
+        ]}
+      />
+
+      <ServiceCaseStudies
+        heading="Listing campaigns that accelerate closings."
+        description="Cinematic property marketing that attracts qualified buyers and drives faster sales."
+        studies={[
+          {
+            id: 'willow-brook-realty',
+            title: "Willow Brook's Listing Success",
+            client: 'Willow Brook Realty',
+            company: 'Vermont',
+            result: '2 Clients / 3 Weeks',
+            description:
+              'From zero visibility to 46 leads and 2 new clients in 3 weeks. Comprehensive property marketing across SEO, Google Ads, and targeted campaigns.',
+            image: '/images/Cities/NewHampshire.jpg',
+          },
+          {
+            id: 'eagan-luxury-real-estate',
+            title: "Eagan's Brand Consolidation",
+            client: 'Eagan Luxury Real Estate',
+            company: 'St. Petersburg, FL',
+            result: 'Ongoing',
+            description:
+              'Consolidated multiple fragmented websites into a single, powerful brand presence with polished listing experiences and retargeting campaigns.',
+            image: '/images/Cities/Stpet.jpg',
+          },
         ]}
       />
 

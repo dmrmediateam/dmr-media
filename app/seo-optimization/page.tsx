@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import ContactForm from '@/components/ContactForm'
 import Testimonials from '@/components/Testimonials'
 import ServiceHero from '@/components/service/ServiceHero'
@@ -7,9 +8,25 @@ import ServiceProcess from '@/components/service/ServiceProcess'
 import ServiceCities from '@/components/service/ServiceCities'
 import ServiceCTA from '@/components/service/ServiceCTA'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'SEO Optimization for Real Estate | DMR Media',
-  description: 'Dominate local search results and attract high-value clients with strategic SEO campaigns tailored for luxury real estate professionals.',
+  description: 'Dominate local search results and attract high-value clients with strategic SEO campaigns tailored for luxury real estate professionals. 300%+ traffic lift, #1 local rankings, 2-3x lead volume increase.',
+  keywords: 'real estate SEO, luxury real estate SEO, local SEO for real estate, real estate search engine optimization, property SEO, real estate website SEO, luxury property SEO, real estate SEO services',
+  alternates: {
+    canonical: 'https://dmrmedia.org/seo-optimization',
+  },
+  openGraph: {
+    title: 'SEO Optimization for Real Estate | DMR Media',
+    description: 'Dominate local search results and attract high-value clients with strategic SEO campaigns tailored for luxury real estate professionals.',
+    url: 'https://dmrmedia.org/seo-optimization',
+    siteName: 'DMR Media',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SEO Optimization for Real Estate | DMR Media',
+    description: 'Dominate local search results and attract high-value clients with strategic SEO campaigns tailored for luxury real estate professionals.',
+  },
 }
 
 export default function SEOOptimizationPage() {
@@ -76,7 +93,38 @@ export default function SEOOptimizationPage() {
       <ServiceCaseStudies
         heading="SEO programs that translate into closings."
         description="Every engagement is engineered around measurable traffic, lead, and revenue goals."
-        studies={caseStudies}
+        studies={[
+          {
+            id: 'rick-visions-first-realty',
+            title: "Rick's SEO Transformation",
+            client: 'Rick Grueble',
+            company: 'Visions First Realty',
+            result: '2-3 Leads/Day',
+            description:
+              "From wrong keywords to qualified leads—how we rebuilt Rick's SEO strategy and turned his website into a daily lead engine.",
+            image: '/images/RickAfter.png',
+          },
+          {
+            id: 'michael-seo-transformation',
+            title: "Michael's SEO Success",
+            client: 'Michael',
+            company: 'Real Estate Professional',
+            result: '21x Impressions',
+            description:
+              "From abandoned SEO to 21x impressions growth—how we rebuilt Michael's traffic and pipeline in 7.5 weeks.",
+            image: '/images/MichealTraffic.png',
+          },
+          {
+            id: 'marquis-farwell-group',
+            title: "Marquis + Farwell's Organic Growth",
+            client: 'Marquis & Farwell Group',
+            company: 'Sonoma, California',
+            result: '19x Daily Clicks',
+            description:
+              'Transformed organic visibility in Sonoma County, growing from 2 clicks per day to 38 clicks per day while generating qualified buyer leads directly from search.',
+            image: '/images/Cities/Sonoma.jpg',
+          },
+        ]}
       />
 
       <ServiceProcess

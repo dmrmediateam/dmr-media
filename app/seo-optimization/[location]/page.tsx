@@ -125,36 +125,44 @@ export default async function LocationSEOPage({ params }: { params: Promise<{ lo
         ]}
       />
 
-      <section className="py-24 bg-white">
+      <section className="py-32 bg-white border-b border-[var(--color-ink-200)]">
         <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="max-w-3xl mb-20">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6">
+              Why strategic SEO matters in {location.name}.
+            </h2>
+            <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+              {location.name}'s {location.marketType.toLowerCase()} demands visibility across every neighborhood search. Our programs deliver the authority your listings and brand need to stay ahead of competing brokers.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="space-y-6">
-              <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-300)]">Key Advantages</span>
-              <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight">
-                Why strategic SEO matters in {location.name}.
-              </h2>
-              <p className="text-sm sm:text-base text-[var(--color-ink-300)] leading-relaxed">
-                {location.name}'s {location.marketType.toLowerCase()} demands visibility across every neighborhood search. Our programs deliver the authority your listings and brand need to stay ahead of competing brokers.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] leading-snug mb-6">
+                Key advantages
+              </h3>
+              <div className="space-y-4">
                 {location.keyFeatures.map((feature) => (
-                  <div key={feature} className="rounded-[20px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-6 text-sm text-[var(--color-ink-300)] leading-relaxed">
-                    {feature}
+                  <div key={feature} className="border-b border-[var(--color-ink-200)] pb-4">
+                    <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+                      {feature}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-10 space-y-6">
-              <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)]">
+            <div className="space-y-6">
+              <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] leading-snug mb-6">
                 Neighborhood focus
               </h3>
-              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed">
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif mb-6">
                 We optimize individual listing and community pages for the neighborhoods where your buyers are already searching.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {location.topNeighborhoods.map((neighborhood) => (
-                  <div key={neighborhood} className="rounded-full border border-[var(--color-ink-200)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.25em] text-[var(--color-ink-300)]">
-                    {neighborhood}
+                  <div key={neighborhood} className="border-b border-[var(--color-ink-200)] pb-3">
+                    <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] font-serif">
+                      {neighborhood}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -163,55 +171,106 @@ export default async function LocationSEOPage({ params }: { params: Promise<{ lo
         </div>
       </section>
 
-      <section className="py-24 bg-[var(--surface-base)]">
+      <section className="py-32 bg-[var(--surface-base)] border-b border-[var(--color-ink-200)]">
         <div className="container-max">
-          <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-10">
-            <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-4">Local results you can expect</h3>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-[var(--color-ink-300)] leading-relaxed">
-              <li>Ranking gains for high-value keywords like “{location.name.toLowerCase()} luxury homes” and neighborhood-specific searches.</li>
-              <li>Optimized Google Business Profiles that dominate the map pack across {location.name}'s prime areas.</li>
-              <li>Localized content strategy that answers relocation, investment, and lifestyle queries from affluent buyers.</li>
-              <li>Transparent reporting that shows exactly how organic demand is translating into pipeline growth.</li>
-            </ul>
+          <div className="max-w-3xl mb-20">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6">
+              Local results you can expect
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="border-b border-[var(--color-ink-200)] pb-8">
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+                Ranking gains for high-value keywords like "{location.name.toLowerCase()} luxury homes" and neighborhood-specific searches.
+              </p>
+            </div>
+            <div className="border-b border-[var(--color-ink-200)] pb-8">
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+                Optimized Google Business Profiles that dominate the map pack across {location.name}'s prime areas.
+              </p>
+            </div>
+            <div className="border-b border-[var(--color-ink-200)] pb-8">
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+                Localized content strategy that answers relocation, investment, and lifestyle queries from affluent buyers.
+              </p>
+            </div>
+            <div className="border-b border-[var(--color-ink-200)] pb-8">
+              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+                Transparent reporting that shows exactly how organic demand is translating into pipeline growth.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       <Testimonials />
 
-      <section className="py-24 bg-white">
+      <section className="py-32 bg-white border-b border-[var(--color-ink-200)]">
         <div className="container-max">
-          <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-8">
-            Recent success in {location.name}
-          </h3>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="max-w-3xl mb-20">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6">
+              Recent success in {location.name}
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <Link
               href="/case-study/michael-seo-transformation"
-              className="group relative h-[340px] rounded-[28px] border border-[var(--color-ink-200)] overflow-hidden"
+              className="group border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300 flex flex-col"
             >
-              <Image
-                src="/images/MichealTraffic.png"
-                alt="Google impressions growth graph"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20" />
-              <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
-                <span className="uppercase tracking-[0.3em] text-[11px] text-white/80">Case Study</span>
-                <h4 className="text-2xl font-serif font-light">21x impressions in 7.5 weeks.</h4>
-                <span className="text-sm text-white/80 mt-2">View story →</span>
+              <div className="relative aspect-[3/2] overflow-hidden mb-6">
+                <Image
+                  src="/images/MichealTraffic.png"
+                  alt="Google impressions growth graph"
+                  fill
+                  className="object-cover"
+                  loading="lazy"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent pointer-events-none" />
+                <div className="absolute top-6 left-6 z-10">
+                  <span className="text-sm uppercase tracking-[0.2em] text-[#FAFAF9] font-serif font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)]">
+                    21x Impressions
+                  </span>
+                </div>
+              </div>
+              <div className="flex-1 flex flex-col gap-4">
+                <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] leading-snug">
+                  Michael's SEO Success
+                </h3>
+                <p className="text-sm text-[var(--color-ink-300)] leading-relaxed flex-1 font-serif">
+                  21x impressions in 7.5 weeks—how we rebuilt Michael's traffic and pipeline.
+                </p>
+                <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif">
+                  View full story
+                </span>
               </div>
             </Link>
-            <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-8">
-              <h4 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3">
+            <div className="space-y-6">
+              <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] leading-snug mb-6">
                 Local deliverables
-              </h4>
-              <ul className="space-y-3 text-sm text-[var(--color-ink-300)] leading-relaxed">
-                <li>• Neighborhood landing pages designed for discovery and lead capture.</li>
-                <li>• Google Business Profile optimization with review generation guidance.</li>
-                <li>• Monthly content calendar covering market reports, relocation guides, and listing spotlights.</li>
-                <li>• Weekly keyword ranking and organic traffic dashboards for your leadership team.</li>
-              </ul>
+              </h3>
+              <div className="space-y-4">
+                <div className="border-b border-[var(--color-ink-200)] pb-4">
+                  <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+                    Neighborhood landing pages designed for discovery and lead capture.
+                  </p>
+                </div>
+                <div className="border-b border-[var(--color-ink-200)] pb-4">
+                  <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+                    Google Business Profile optimization with review generation guidance.
+                  </p>
+                </div>
+                <div className="border-b border-[var(--color-ink-200)] pb-4">
+                  <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+                    Monthly content calendar covering market reports, relocation guides, and listing spotlights.
+                  </p>
+                </div>
+                <div className="border-b border-[var(--color-ink-200)] pb-4">
+                  <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+                    Weekly keyword ranking and organic traffic dashboards for your leadership team.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

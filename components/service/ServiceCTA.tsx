@@ -14,31 +14,28 @@ export default function ServiceCTA({
   secondaryAction,
 }: ServiceCTAProps) {
   return (
-    <section className="py-24 bg-[var(--surface-base)]">
+    <section className="py-32 bg-[var(--surface-base)] border-b border-[var(--color-ink-200)]">
       <div className="container-max">
-        <div className="rounded-[28px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm px-10 py-16 md:px-16 md:py-20 flex flex-col md:flex-row md:items-center md:justify-between gap-12">
+        <div className="border-b border-[var(--color-ink-200)] pb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
           <div className="max-w-2xl">
-            <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-300)] mb-4 block">
-              Start Now
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6">
               {heading}
             </h2>
-            <p className="text-sm sm:text-base text-[var(--color-ink-300)] leading-relaxed">
+            <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
               {description}
             </p>
           </div>
-          <div className="flex flex-col md:items-end gap-4 min-w-[220px]">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href={primaryAction.href}
-              className="inline-flex items-center gap-3 rounded-full px-6 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300"
+              className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-[11px] hover:bg-black transition-colors duration-300 font-serif"
             >
               {primaryAction.label}
             </Link>
             {secondaryAction && (
               <Link
                 href={secondaryAction.href}
-                className="inline-flex items-center gap-3 rounded-full px-6 py-3 border border-[var(--color-ink-200)] text-[var(--color-off-black)] uppercase tracking-[0.3em] text-[11px] hover:border-[var(--color-trust)] hover:text-[var(--color-trust)] transition-colors duration-300"
+                className="inline-flex items-center justify-center gap-3 px-6 py-3 border border-[var(--color-ink-200)] text-[var(--color-off-black)] uppercase tracking-[0.3em] text-[11px] hover:border-[var(--color-trust)] hover:text-[var(--color-trust)] transition-colors duration-300 font-serif"
               >
                 {secondaryAction.label}
               </Link>

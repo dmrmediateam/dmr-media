@@ -27,54 +27,56 @@ export default function ServiceCaseStudies({
   ctaHref,
 }: ServiceCaseStudiesProps) {
   return (
-    <section className="py-24 bg-[var(--surface-base)]">
+    <section className="py-32 bg-white border-b border-[var(--color-ink-200)]">
       <div className="container-max">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-16">
-          <div>
-            <span className="uppercase tracking-[0.4em] text-[11px] text-[var(--color-ink-300)] mb-4 block">
-              Case Studies
-            </span>
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] tracking-tight">
-              {heading}
-            </h2>
-          </div>
+        <div className="max-w-3xl mb-24 mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6">
+            {heading}
+          </h2>
           {description && (
-            <p className="text-[var(--color-ink-300)] max-w-xl text-base leading-relaxed">
+            <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
               {description}
             </p>
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {studies.map((study) => (
             <Link
               key={study.id}
               href={`/case-study/${study.id}`}
-              className="group relative h-[420px] md:h-[480px] overflow-hidden rounded-[28px] border border-[var(--color-ink-200)] bg-black text-white"
+              className="group border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300 flex flex-col"
             >
-              <Image
-                src={study.image}
-                alt={study.title}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-70"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
-              <div className="relative h-full flex flex-col justify-end p-10 gap-4">
-                <span className="inline-flex w-fit items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-white">
-                  {study.result}
-                </span>
-                <h3 className="text-3xl font-serif font-light group-hover:text-[var(--color-trust)] transition-colors duration-300">
+              <div className="relative aspect-[3/2] overflow-hidden mb-6">
+                <Image
+                  src={study.image}
+                  alt={`${study.client} case study results`}
+                  fill
+                  className="object-cover"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                {/* Subtle black gradient overlay from top-left corner */}
+                <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent pointer-events-none" />
+                {/* Result overlay in left corner */}
+                <div className="absolute top-6 left-6 z-10">
+                  <span className="text-sm uppercase tracking-[0.2em] text-[#FAFAF9] font-serif font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)]">
+                    {study.result}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex-1 flex flex-col gap-4">
+                <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] leading-snug">
                   {study.title}
                 </h3>
-                <div className="text-white/80 text-sm">
-                  <div className="font-semibold text-base">{study.client}</div>
-                  {study.company && <div>{study.company}</div>}
-                </div>
-                <p className="text-white/70 text-sm leading-relaxed">
+
+                <p className="text-sm text-[var(--color-ink-300)] leading-relaxed flex-1 font-serif">
                   {study.description}
                 </p>
-                <span className="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.24em] text-white/80 group-hover:text-white transition-colors duration-300">
-                  View case study →
+
+                <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif">
+                  View full story
                 </span>
               </div>
             </Link>
@@ -82,10 +84,10 @@ export default function ServiceCaseStudies({
         </div>
 
         {ctaLabel && ctaHref && (
-          <div className="mt-12 text-center">
+          <div className="mt-16 text-center">
             <Link
               href={ctaHref}
-              className="inline-flex items-center gap-3 rounded-full px-6 py-3 border border-[var(--color-ink-200)] text-[var(--color-off-black)] uppercase tracking-[0.3em] text-[11px] hover:border-[var(--color-trust)] hover:text-[var(--color-trust)] transition-colors duration-300"
+              className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif hover:opacity-60 transition-opacity duration-300"
             >
               {ctaLabel}
             </Link>
