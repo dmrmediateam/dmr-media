@@ -63,9 +63,11 @@ export default function CaseStudies() {
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
+                {/* Subtle black gradient overlay from top-left corner */}
+                <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent pointer-events-none" />
                 {/* Location overlay in left corner */}
                 {study.location && (
-                  <div className="absolute top-6 left-6">
+                  <div className="absolute top-6 left-6 z-10">
                     <span className="text-sm uppercase tracking-[0.2em] text-[#FAFAF9] font-serif font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)]">
                       {study.location}
                     </span>
@@ -81,11 +83,6 @@ export default function CaseStudies() {
                 <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] leading-snug">
                   {study.title}
                 </h3>
-
-                <div className="text-sm text-[var(--color-ink-300)] font-serif">
-                  <span className="font-light text-[var(--color-off-black)]">{study.client}</span>
-                  {study.company && <span className="block mt-1">{study.company}</span>}
-                </div>
 
                 <p className="text-sm text-[var(--color-ink-300)] leading-relaxed flex-1 font-serif">
                   {study.description}
@@ -116,8 +113,10 @@ export default function CaseStudies() {
                   loading="lazy"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
+                {/* Subtle black gradient overlay from top-left corner */}
+                <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent pointer-events-none" />
                 {/* Location overlay in left corner */}
-                <div className="absolute top-6 left-6">
+                <div className="absolute top-6 left-6 z-10">
                   <span className="text-sm uppercase tracking-[0.2em] text-[#FAFAF9] font-serif font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)]">
                     Lake Geneva, Wisconsin
                   </span>
@@ -135,8 +134,7 @@ export default function CaseStudies() {
                     Jade Goodhue
                   </h3>
                   <div className="text-sm text-[var(--color-ink-300)] font-serif">
-                    <span className="block">Top Lake Geneva Area Realtor</span>
-                    <span className="block mt-1">Legendary Real Estate Services</span>
+                    <span className="block">Legendary Real Estate Services</span>
                   </div>
                 </div>
 

@@ -92,6 +92,11 @@ const Hero = () => {
           {isMobileOrTablet ? (
             // On mobile and small tablets: Show full text with simple fade-in
             <motion.span
+              className="hero-text-mobile"
+              style={{ 
+                fontFamily: "'Instrument Serif', serif",
+                color: '#FAFAF9'
+              }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}

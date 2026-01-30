@@ -128,15 +128,6 @@ const Navbar = () => {
                 </Link>
 
                 <Link
-                  href="/brokerages"
-                  className="text-2xl md:text-3xl font-serif font-light text-off-black hover:text-gray-dark transition-all duration-400 tracking-wide relative group"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Brokerages
-                  <span className="absolute bottom-0 left-0 w-0 h-px bg-off-black transition-all duration-400 group-hover:w-full"></span>
-                </Link>
-
-                <Link
                   href="/blog"
                   className="text-2xl font-serif font-light text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300 tracking-tight"
                   onClick={() => setIsMenuOpen(false)}
