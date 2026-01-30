@@ -26,20 +26,26 @@ const Footer = () => {
         </div>
 
         <div className="py-24 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-16">
-          <div className="max-w-xl">
+          <div className="max-w-xl space-y-6">
             <Link href="/" className="inline-flex items-center">
               <span className="text-2xl md:text-3xl font-serif text-[var(--color-off-black)] tracking-tight">
                 DMR
               </span>
             </Link>
-            <p className="mt-8 text-sm leading-relaxed text-[var(--color-ink-300)] font-serif">
+            <p className="text-sm leading-relaxed text-[var(--color-ink-300)] font-serif">
               Luxury real estate marketing, engineered with restraint and precision.
             </p>
-            <div className="mt-8 text-sm text-[var(--color-ink-300)] font-serif space-y-2">
+            <div className="space-y-3 text-sm text-[var(--color-ink-300)] font-serif">
               <a href="mailto:team@dmrmedia.org" className="block hover:opacity-60 transition-opacity">
                 team@dmrmedia.org
               </a>
-              <span>+1 (920) 940-4049</span>
+              <a href="tel:+19209404049" className="block hover:opacity-60 transition-opacity" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                +1 (920) 940-4049
+              </a>
+              <p className="block leading-relaxed" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                100 W College Ave, Office No. 326<br />
+                Appleton, Wisconsin 54911
+              </p>
             </div>
           </div>
 
@@ -110,7 +116,7 @@ const Footer = () => {
         <div className="border-t border-[var(--color-ink-200)] py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-8 text-xs text-[var(--color-ink-300)] font-serif">
           <div className="flex flex-col gap-6">
             <div>
-              © {currentYear} DMR. All rights reserved.
+              © {currentYear} DMR Media Specialists LLC. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-6">
               <Link href="/privacy-policy" className="hover:opacity-60 transition-opacity">
