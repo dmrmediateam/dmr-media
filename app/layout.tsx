@@ -39,6 +39,23 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={instrumentSerif.className}>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16882640022"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-ads-gtag"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-16882640022');
+            `,
+          }}
+        />
         {/* Meta Pixel Code */}
         <Script
           id="meta-pixel"
