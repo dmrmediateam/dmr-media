@@ -118,6 +118,16 @@
   }
 }
 
+/* Horizontal Scroll Animation - For Landing Page Agencies/Reviews */
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 @keyframes fadeInLeftSlow {
   from {
     opacity: 0;
