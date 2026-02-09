@@ -64,6 +64,11 @@ export default function ThankYouPage() {
         'value': 1.0,
         'currency': 'USD'
       });
+      
+      // Google tag (gtag.js) event - Begin checkout conversion
+      (window as any).gtag('event', 'ads_conversion_Begin_checkout_1', {
+        // <event_parameters>
+      });
     }
 
     // Facebook Pixel conversion
