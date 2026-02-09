@@ -667,7 +667,7 @@ export default function GoogleDirectLandingPage() {
               className="mb-12 text-center"
             >
               <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] mb-4">
-                Get a 15 min phone call to see where you website is leaking leads.
+                Get a 15 min phone call to see where your website is leaking leads.
               </h2>
               <p className="text-[22px] text-[var(--color-off-black)] font-serif">
                 One of our team members will reach out within 24 hours with a basic audit on your website.
