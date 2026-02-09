@@ -38,12 +38,22 @@ export async function POST(request: Request) {
       timestamp: new Date().toISOString(),
     };
 
-    // Get Zapier webhook URL from environment variable
-    const zapierWebhookUrl = process.env.ZAPIER_GOOGLE_DIRECT_WEBHOOK_URL || 
-                             process.env.NEXT_PUBLIC_ZAPIER_GOOGLE_DIRECT_WEBHOOK_URL ||
-                             'https://hooks.zapier.com/hooks/catch/21968997/uedm61t/';
+    // Get Zapier webhook URL from environment variable (server-side only)
+    const zapierWebhookUrl = process.env.ZAPIER_GOOGLE_DIRECT_WEBHOOK_URL;
     
-    console.log('Sending to Zapier webhook:', zapierWebhookUrl);
+    if (!zapierWebhookUrl) {
+      console.error('ZAPIER_GOOGLE_DIRECT_WEBHOOK_URL is not configured in environment variables');
+      // Still return success to user, but log the error
+      return NextResponse.json(
+        {
+          success: true,
+          message: 'Form submitted successfully!',
+        },
+        { status: 200 }
+      );
+    }
+    
+    console.log('Sending to Zapier webhook');
     console.log('Payload:', JSON.stringify(sanitizedData, null, 2));
 
     // Send to Zapier webhook server-side
