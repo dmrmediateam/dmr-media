@@ -630,7 +630,7 @@ export default function GoogleDirectLandingPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-light text-white mb-6 leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-light !text-white mb-6 leading-tight">
                 15 minutes to see exactly where your website is leaking deals.
               </h2>
               <motion.button
