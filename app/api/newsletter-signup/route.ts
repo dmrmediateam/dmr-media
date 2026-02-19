@@ -29,7 +29,9 @@ export async function POST(request: Request) {
 
     // Sanitize inputs
     const sanitizedData = {
+      name: body.name?.trim().substring(0, 150) || '',
       email: body.email.trim().toLowerCase().substring(0, 100),
+      phone: body.phone?.trim().substring(0, 50) || '',
       timestamp: new Date().toISOString(),
       source: 'newsletter_signup',
       // Always include UTM parameters (empty string if not provided)
@@ -53,7 +55,9 @@ export async function POST(request: Request) {
     } else {
       try {
         const zapierPayload = {
+          name: sanitizedData.name,
           email: sanitizedData.email,
+          phone: sanitizedData.phone,
           timestamp: sanitizedData.timestamp,
           source: sanitizedData.source,
           // Always include UTM parameters (even if blank)

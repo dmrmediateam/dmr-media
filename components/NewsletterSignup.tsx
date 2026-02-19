@@ -4,9 +4,14 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking'
 
+const inputClasses =
+  'w-full px-0 py-3 text-base border-b border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300 placeholder:text-[var(--color-ink-300)]'
+
 export default function NewsletterSignup() {
   const [isOpen, setIsOpen] = useState(false)
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
@@ -24,7 +29,9 @@ export default function NewsletterSignup() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          name: name.trim(),
           email: email.trim().toLowerCase(),
+          phone: phone.trim(),
           utm_source: utmParams.utm_source,
           utm_medium: utmParams.utm_medium,
           utm_campaign: utmParams.utm_campaign,
@@ -53,7 +60,9 @@ export default function NewsletterSignup() {
       setTimeout(() => {
         setIsOpen(false)
         setIsSubmitted(false)
+        setName('')
         setEmail('')
+        setPhone('')
       }, 2000)
     } catch (error) {
       console.error('Newsletter signup error:', error)
@@ -64,110 +73,129 @@ export default function NewsletterSignup() {
 
   return (
     <>
-      {/* Inline CTA Section */}
-      <div className="my-12 py-12 border-y border-[var(--color-ink-200)]">
-        <div className="max-w-2xl mx-auto text-center space-y-6">
-          <div>
-            <h3 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mb-4">
-              Private Briefings
-            </h3>
-            <p className="text-base text-[var(--color-ink-300)] leading-relaxed font-serif mb-2">
-              Occasional notes on positioning, demand capture, and what's actually working in real estate and professional services.
-            </p>
-            <p className="text-sm text-[var(--color-ink-300)] font-serif italic">
-              Shared selectively. No cadence. No noise.
-            </p>
-          </div>
+      {/* CTA Section */}
+      <section className="my-20 p-16 bg-[#353535]">
+        <div className="max-w-2xl mx-auto">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-light !text-white mb-5 md:mb-6 leading-[1.2] tracking-tight">
+            ChatGPT Ads Are About To Change Real Estate. Early Agents Will Take The Listings
+          </h3>
+          <p className="text-[15px] md:text-base text-white/90 leading-[1.65] font-serif mb-4">
+            In the next 30 days, buyers will start searching for homes inside ChatGPT instead of Google.
+            The agents who launch first will capture the conversations before competitors even know they exist.
+          </p>
+          <p className="text-[15px] md:text-base text-white/90 leading-[1.65] font-serif mb-8">
+            We&apos;re preparing a limited rollout for select markets.
+            If you get in early, you don&apos;t compete — you become the default.
+          </p>
           <button
             onClick={() => setIsOpen(true)}
-            className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)]"
+            className="inline-flex items-center justify-center px-8 py-3.5 bg-[var(--color-trust)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-90 transition-opacity duration-300"
           >
-            Request access
+            Reserve My Market Position
           </button>
+          <p className="mt-5 text-xs text-white/70 font-serif tracking-wide">
+            Free early-access briefing + setup priority · No spam. Only launch details and eligibility.
+          </p>
         </div>
-      </div>
+      </section>
 
-      {/* Modal/Popup */}
+      {/* Modal */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
             >
-              {/* Modal */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
                 onClick={(e) => e.stopPropagation()}
-                className="bg-white max-w-md w-full p-8 md:p-10 space-y-8 relative"
+                className="bg-white max-w-md w-full p-8 md:p-10 relative pointer-events-auto"
               >
-                {/* Close button */}
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="absolute top-6 right-6 text-[var(--color-ink-300)] hover:text-[var(--color-off-black)] transition-colors"
+                  className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center text-[var(--color-ink-300)] hover:text-[var(--color-off-black)] transition-colors"
                   aria-label="Close"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
 
                 {isSubmitted ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-[var(--color-off-black)] flex items-center justify-center mx-auto mb-6">
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="text-center py-6">
+                    <div className="w-14 h-14 bg-[var(--color-trust)] flex items-center justify-center mx-auto mb-5">
+                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-2">
+                    <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-1">
                       Thank you
                     </h3>
                     <p className="text-sm text-[var(--color-ink-300)] font-serif">
-                      You're on the list.
+                      You&apos;re on the list.
                     </p>
                   </div>
                 ) : (
                   <>
-                    <div className="space-y-4">
-                      <h3 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)]">
-                        Private Briefings
+                    <div className="space-y-3 mb-8">
+                      <h3 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] leading-tight">
+                        ChatGPT Ads Are About To Change Real Estate. Early Agents Will Take The Listings
                       </h3>
-                      <p className="text-base text-[var(--color-ink-300)] leading-relaxed font-serif">
-                        Occasional notes on positioning, demand capture, and what's actually working in real estate and professional services.
+                      <p className="text-[15px] text-[var(--color-ink-300)] leading-[1.6] font-serif">
+                        In the next 30 days, buyers will start searching for homes inside ChatGPT instead of Google.
+                        The agents who launch first will capture the conversations before competitors even know they exist.
                       </p>
-                      <p className="text-sm text-[var(--color-ink-300)] font-serif italic">
-                        Shared selectively.<br />
-                        No cadence. No noise.
+                      <p className="text-[15px] text-[var(--color-ink-300)] leading-[1.6] font-serif">
+                        We&apos;re preparing a limited rollout for select markets.
+                        If you get in early, you don&apos;t compete — you become the default.
                       </p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      <div>
-                        <input
-                          type="email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          placeholder="Email address"
-                          required
-                          className="w-full px-0 py-3 text-base border-b border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300 placeholder:text-[var(--color-ink-300)]"
-                        />
-                        <p className="text-xs text-[var(--color-ink-300)] mt-2 font-serif italic">
-                          We only send something when there's something worth sending.
-                        </p>
-                      </div>
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                      <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Name"
+                        required
+                        className={inputClasses}
+                      />
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email address"
+                        required
+                        className={inputClasses}
+                      />
+                      <input
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="Phone"
+                        required
+                        className={inputClasses}
+                      />
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full inline-flex items-center justify-center px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)] disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full py-4 bg-[var(--color-trust)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-90 transition-opacity duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        {isSubmitting ? 'Submitting...' : 'Request access'}
+                        {isSubmitting ? 'Submitting...' : 'Reserve My Market Position'}
                       </button>
+                      <p className="text-xs text-[var(--color-ink-400)] font-serif text-center pt-1">
+                        Free early-access briefing + setup priority · No spam. Only launch details.
+                      </p>
                     </form>
                   </>
                 )}
