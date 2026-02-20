@@ -163,9 +163,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
       </section>
 
-      <article className="py-24 md:py-32">
+      <article className="py-14 md:py-20">
         <div className="container-max">
-          <div className="max-w-3xl mx-auto space-y-12">
+          <div className="max-w-3xl mx-auto space-y-8">
             <BlogContent body={post.body} />
 
             {post.tags && post.tags.length > 0 && (

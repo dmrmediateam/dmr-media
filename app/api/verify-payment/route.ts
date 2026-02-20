@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-11-17.clover',
-});
+function getStripe() {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2025-11-17.clover',
+  });
+}
 
 /**
  * Verify Stripe Checkout Session and send registration to Zapier
@@ -36,7 +38,7 @@ export async function POST(request: Request) {
     }
 
     // Retrieve the checkout session from Stripe
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    const session = await getStripe().checkout.sessions.retrieve(sessionId);
 
     // Check if payment was successful
     if (session.payment_status !== 'paid') {

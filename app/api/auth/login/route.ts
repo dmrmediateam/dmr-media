@@ -5,14 +5,6 @@ import bcrypt from 'bcryptjs'
 import { SignJWT } from 'jose'
 import { cookies } from 'next/headers'
 
-if (!process.env.SANITY_API_TOKEN) {
-  throw new Error('SANITY_API_TOKEN environment variable is not set')
-}
-
-if (!process.env.JWT_SECRET) {
-  throw new Error('JWT_SECRET environment variable is not set')
-}
-
 const sanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'gvyjxd5j',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',

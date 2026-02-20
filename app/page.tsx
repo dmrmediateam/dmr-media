@@ -20,7 +20,7 @@ export default async function Home() {
 
       <CaseStudies />
 
-      <section className="py-32 bg-[var(--surface-base)]">
+      <section className="pt-10 pb-32 bg-[var(--surface-base)]">
         <div className="container-max">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-20">
             <div className="max-w-2xl">

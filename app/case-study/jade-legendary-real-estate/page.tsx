@@ -1,4 +1,8 @@
 import CaseStudyTemplate, { type CaseStudyData } from '@/components/CaseStudyTemplate'
+import SEOWrapper from '@/components/SEOWrapper'
+import { metadataFromRegistry } from '@/lib/content-registry'
+
+export const metadata = metadataFromRegistry('/case-study/jade-legendary-real-estate')
 
 const caseStudyData: CaseStudyData = {
   title: 'Jade · Legendary Real Estate',
@@ -162,5 +166,9 @@ const caseStudyData: CaseStudyData = {
 }
 
 export default function JadeCaseStudy() {
-  return <CaseStudyTemplate data={caseStudyData} />
+  return (
+    <SEOWrapper slug="/case-study/jade-legendary-real-estate" schemaType="article">
+      <CaseStudyTemplate data={caseStudyData} />
+    </SEOWrapper>
+  )
 }

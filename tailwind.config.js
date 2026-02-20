@@ -38,6 +38,19 @@ module.exports = {
         heading: ['Instrument Serif', 'serif'],
         body: ['Instrument Serif', 'serif'],
       },
+      fontSize: {
+        // Each size bumped +2px from Tailwind defaults
+        xs:   ['0.875rem', { lineHeight: '1.25rem' }],   // 14px (was 12px)
+        sm:   ['1rem',     { lineHeight: '1.5rem' }],    // 16px (was 14px)
+        base: ['1.125rem', { lineHeight: '1.75rem' }],   // 18px (was 16px)
+        lg:   ['1.25rem',  { lineHeight: '1.875rem' }],  // 20px (was 18px)
+        xl:   ['1.375rem', { lineHeight: '1.875rem' }],  // 22px (was 20px)
+        '2xl':['1.625rem', { lineHeight: '2rem' }],      // 26px (was 24px)
+        '3xl':['1.875rem', { lineHeight: '2.25rem' }],   // 30px (was 30px — already fine)
+        '4xl':['2.375rem', { lineHeight: '2.5rem' }],    // 38px (was 36px)
+        '5xl':['3.125rem', { lineHeight: '1' }],         // 50px (was 48px)
+        '6xl':['3.875rem', { lineHeight: '1' }],         // 62px (was 60px)
+      },
       animation: {
         'fade-in-left': 'fadeInLeft 0.6s ease-out',
         'fade-in-left-slow': 'fadeInLeftSlow 0.8s ease-out',

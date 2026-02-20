@@ -4,10 +4,6 @@ import { createClient } from '@sanity/client'
 import crypto from 'crypto'
 import { sendPasswordResetEmail } from '@/lib/email'
 
-if (!process.env.SANITY_API_TOKEN) {
-  throw new Error('SANITY_API_TOKEN environment variable is not set')
-}
-
 const sanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'gvyjxd5j',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',

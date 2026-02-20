@@ -7,6 +7,7 @@ import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
 import ServiceProcess from '@/components/service/ServiceProcess'
 import ServiceCities from '@/components/service/ServiceCities'
 import ServiceCTA from '@/components/service/ServiceCTA'
+import SEOWrapper from '@/components/SEOWrapper'
 
 export const metadata: Metadata = {
   title: 'SEO Optimization for Real Estate | DMR Media',
@@ -69,6 +70,7 @@ export default function SEOOptimizationPage() {
   ]
 
   return (
+    <SEOWrapper slug="/seo-optimization">
     <div className="min-h-screen bg-[var(--surface-base)]">
       <ServiceHero
         eyebrow="SEO Optimization"
@@ -177,5 +179,6 @@ export default function SEOOptimizationPage() {
         <ContactForm />
       </div>
     </div>
+    </SEOWrapper>
   )
 }

@@ -1,4 +1,8 @@
 import CaseStudyTemplate, { type CaseStudyData } from '@/components/CaseStudyTemplate'
+import SEOWrapper from '@/components/SEOWrapper'
+import { metadataFromRegistry } from '@/lib/content-registry'
+
+export const metadata = metadataFromRegistry('/case-study/michael-seo-transformation')
 
 const caseStudyData: CaseStudyData = {
   title: 'Michael · SEO Transformation',
@@ -162,5 +166,9 @@ const caseStudyData: CaseStudyData = {
 }
 
 export default function MichaelCaseStudy() {
-  return <CaseStudyTemplate data={caseStudyData} />
+  return (
+    <SEOWrapper slug="/case-study/michael-seo-transformation" schemaType="article">
+      <CaseStudyTemplate data={caseStudyData} />
+    </SEOWrapper>
+  )
 }

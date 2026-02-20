@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import SEOWrapper from '@/components/SEOWrapper'
 import ContactForm from '@/components/ContactForm'
 import Testimonials from '@/components/Testimonials'
 import ServiceHero from '@/components/service/ServiceHero'
@@ -47,6 +48,7 @@ export default function PropertyMarketingPage() {
   ]
 
   return (
+    <SEOWrapper slug="/property-marketing">
     <div className="min-h-screen bg-[var(--surface-base)]">
       <ServiceHero
         eyebrow="Property Marketing"
@@ -145,6 +147,7 @@ export default function PropertyMarketingPage() {
         <ContactForm />
       </div>
     </div>
+    </SEOWrapper>
   )
 }
 

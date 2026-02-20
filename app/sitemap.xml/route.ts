@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getAllBlogPosts } from '@/data/blogPosts';
+import { contentRegistry } from '@/lib/content-registry';
 
 type ChangeFreq = 'daily' | 'weekly' | 'monthly' | 'yearly';
 
@@ -14,76 +15,15 @@ export async function GET() {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org').replace(/\/$/, '');
   const today = new Date().toISOString().split('T')[0];
 
-  const staticPages: UrlEntry[] = [
-    { loc: `${baseUrl}/`, priority: 1, changefreq: 'weekly' },
-    { loc: `${baseUrl}/about`, priority: 0.8, changefreq: 'monthly' },
-    { loc: `${baseUrl}/services`, priority: 0.8, changefreq: 'monthly' },
-    { loc: `${baseUrl}/contact`, priority: 0.8, changefreq: 'monthly' },
-    { loc: `${baseUrl}/blog`, priority: 0.8, changefreq: 'weekly' },
-    { loc: `${baseUrl}/case-studies`, priority: 0.7, changefreq: 'monthly' },
-    { loc: `${baseUrl}/calendar`, priority: 0.6, changefreq: 'monthly' },
-    { loc: `${baseUrl}/privacy-policy`, priority: 0.3, changefreq: 'yearly' },
-    { loc: `${baseUrl}/terms-and-conditions`, priority: 0.3, changefreq: 'yearly' },
-    { loc: `${baseUrl}/accessibility`, priority: 0.3, changefreq: 'yearly' },
-  ];
+  // Use content registry for accurate lastmod on all static pages
+  const staticUrls: UrlEntry[] = contentRegistry.map((entry) => ({
+    loc: `${baseUrl}${entry.slug}`,
+    priority: entry.priority,
+    changefreq: entry.changeFrequency as ChangeFreq,
+    lastmod: entry.modifiedDate,
+  }));
 
-  const servicePractices = [
-    'seo-optimization',
-    'google-ads-management',
-    'property-marketing',
-    'analytics-reporting',
-    'services',
-  ];
-
-  const caseStudies = [
-    'case-study/willow-brook-realty',
-    'case-study/eagan-luxury-real-estate',
-    'case-study/jade-legendary-real-estate',
-    'case-study/michael-seo-transformation',
-    'case-study/rick-visions-first-realty',
-  ];
-
-  const communityPages = [
-    'communities/sussex-county',
-    'communities/warren-county',
-    'communities/hackettstown',
-    'communities/andover',
-    'communities/byram',
-    'communities/blairstown',
-    'communities/chester',
-    'communities/washington',
-  ];
-
-  const serviceMarkets = ['new-york-ny', 'los-angeles-ca', 'chicago-il', 'houston-tx', 'phoenix-az'];
-
-  const dynamicStatic = [
-    ...servicePractices.map<UrlEntry>((path) => ({
-      loc: `${baseUrl}/${path}`,
-      priority: 0.75,
-      changefreq: 'weekly',
-    })),
-    ...caseStudies.map<UrlEntry>((path) => ({
-      loc: `${baseUrl}/${path}`,
-      priority: 0.6,
-      changefreq: 'monthly',
-    })),
-    ...communityPages.map<UrlEntry>((path) => ({
-      loc: `${baseUrl}/${path}`,
-      priority: 0.5,
-      changefreq: 'monthly',
-    })),
-    ...servicePractices
-      .filter((path) => path !== 'services')
-      .flatMap<UrlEntry>((service) =>
-        serviceMarkets.map((market) => ({
-          loc: `${baseUrl}/${service}/${market}`,
-          priority: 0.55,
-          changefreq: 'monthly',
-        })),
-      ),
-  ];
-
-  const urls: UrlEntry[] = [...staticPages, ...dynamicStatic];
+  const urls: UrlEntry[] = [...staticUrls];
 
   try {
     const posts = await getAllBlogPosts();

@@ -1,7 +1,12 @@
 import ServicesShowcase from '@/components/ServicesShowcase'
+import SEOWrapper from '@/components/SEOWrapper'
+import { metadataFromRegistry } from '@/lib/content-registry'
+
+export const metadata = metadataFromRegistry('/services')
 
 export default function ServicesPage() {
   return (
+    <SEOWrapper slug="/services">
     <div className="min-h-screen bg-[var(--surface-base)]">
       <ServicesShowcase
         heading="Systems designed for market makers."
@@ -9,6 +14,7 @@ export default function ServicesPage() {
         sectionClassName="bg-[var(--surface-base)]"
       />
     </div>
+    </SEOWrapper>
   )
 }
 

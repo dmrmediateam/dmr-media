@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-11-17.clover',
-});
+// Lazy-initialized so the module can be imported at build time without the key
+function getStripe() {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2025-11-17.clover',
+  });
+}
 
 const CURRENCY = 'usd';
 const DEFAULT_AMOUNT = 0; // Default to free - $0.00
@@ -101,7 +104,7 @@ export async function POST(request: Request) {
       return_url: `${origin}/landing/thank-you?session_id={CHECKOUT_SESSION_ID}`,
     };
 
-    const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.create(params);
+    const checkoutSession: Stripe.Checkout.Session = await getStripe().checkout.sessions.create(params);
 
     return NextResponse.json({ 
       id: checkoutSession.id,

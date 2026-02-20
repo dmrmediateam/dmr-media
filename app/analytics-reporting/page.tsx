@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import SEOWrapper from '@/components/SEOWrapper'
 import ContactForm from '@/components/ContactForm'
 import Testimonials from '@/components/Testimonials'
 import ServiceHero from '@/components/service/ServiceHero'
@@ -46,6 +47,7 @@ export default function AnalyticsReportingPage() {
   ]
 
   return (
+    <SEOWrapper slug="/analytics-reporting">
     <div className="min-h-screen bg-[var(--surface-base)]">
       <ServiceHero
         eyebrow="Analytics & Reporting"
@@ -144,6 +146,7 @@ export default function AnalyticsReportingPage() {
         <ContactForm />
       </div>
     </div>
+    </SEOWrapper>
   )
 }
 

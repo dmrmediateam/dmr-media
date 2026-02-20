@@ -1,12 +1,14 @@
 import sgMail from '@sendgrid/mail';
 
-// Initialize SendGrid with validation
-if (!process.env.SENDGRID_API_KEY) {
-  console.error('SENDGRID_API_KEY environment variable is not set')
-  throw new Error('SENDGRID_API_KEY is required for sending emails')
+// Lazily set the API key — deferred until first use so build-time evaluation
+// doesn't throw when the env var isn't present in the build environment.
+function initSendGrid() {
+  if (!process.env.SENDGRID_API_KEY) {
+    throw new Error('SENDGRID_API_KEY is required for sending emails')
+  }
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+  return sgMail
 }
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export interface ContactFormData {
   name: string;
@@ -149,17 +151,13 @@ Submitted: ${new Date().toLocaleString()}
   };
 
   try {
-    await sgMail.send(emailContent);
+    await initSendGrid().send(emailContent);
     return { success: true };
   } catch (error: any) {
     console.error('SendGrid Error:', error.response?.body || error);
     throw new Error('Failed to send email');
   }
 }
-
-/**
- * Send Home Valuation Email
- */
 export async function sendHomeValuationEmail(data: HomeValuationData) {
   const {
     firstName,
@@ -330,7 +328,7 @@ Submitted: ${new Date().toLocaleString()}
   };
 
   try {
-    await sgMail.send(emailContent);
+    await initSendGrid().send(emailContent);
     return { success: true };
   } catch (error: any) {
     console.error('SendGrid Error:', error.response?.body || error);
@@ -478,7 +476,7 @@ DMR Media
   }
 
   try {
-    await sgMail.send(emailContent)
+    await initSendGrid().send(emailContent)
     return { success: true }
   } catch (error: any) {
     console.error('SendGrid Error:', error)

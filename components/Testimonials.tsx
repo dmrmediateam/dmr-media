@@ -61,12 +61,12 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-32 bg-white border-b border-[var(--color-ink-200)]">
+    <section className="pt-10 pb-32 bg-white border-b border-[var(--color-ink-200)]">
       <div className="container-max">
         {/* Section Header */}
-        <div className="max-w-3xl mb-24 mx-auto text-center">
+        <div className="mb-14">
           <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1]">
-            Client Success Stories
+            Client Reviews
           </h2>
         </div>
 

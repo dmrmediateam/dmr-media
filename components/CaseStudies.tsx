@@ -39,12 +39,13 @@ export default function CaseStudies() {
   ];
 
   return (
-    <section className="py-32 bg-white border-b border-[var(--color-ink-200)]">
+    <section className="pt-16 pb-12 bg-white">
       <div className="container-max">
-        <div className="max-w-3xl mb-24 mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1]">
-            Private Client Results
+        <div className="mb-14">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6">
+            DMR Client Results
           </h2>
+          <div className="w-72 h-[2px] bg-gradient-to-r from-[var(--color-off-black)] via-[var(--color-off-black)] to-transparent" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -153,7 +154,7 @@ export default function CaseStudies() {
           </Link>
         </div>
 
-        <div className="mt-16 text-center">
+        <div className="mt-10 text-center">
           <Link
             href="/case-studies"
             className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif hover:opacity-60 transition-opacity duration-300"

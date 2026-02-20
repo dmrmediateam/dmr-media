@@ -88,6 +88,48 @@ export default function RootLayout({
         <UTMTracker />
         <ScrollProgressBar />
         <ScrollAnimations />
+        {/* Global Organization + WebSite structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                '@context': 'https://schema.org',
+                '@type': 'Organization',
+                name: 'DMR Media',
+                url: 'https://dmrmedia.org',
+                logo: {
+                  '@type': 'ImageObject',
+                  url: 'https://dmrmedia.org/images/logo.png',
+                },
+                sameAs: [
+                  'https://www.linkedin.com/company/dmr-media',
+                  'https://www.instagram.com/dmrmedia',
+                ],
+                contactPoint: {
+                  '@type': 'ContactPoint',
+                  email: 'team@dmrmedia.org',
+                  contactType: 'customer support',
+                  areaServed: 'US',
+                  availableLanguage: 'English',
+                },
+                description:
+                  'Specialized Google marketing, SEO, and Google Ads for luxury real estate professionals.',
+              },
+              {
+                '@context': 'https://schema.org',
+                '@type': 'WebSite',
+                name: 'DMR Media',
+                url: 'https://dmrmedia.org',
+                potentialAction: {
+                  '@type': 'SearchAction',
+                  target: 'https://dmrmedia.org/blog?q={search_term_string}',
+                  'query-input': 'required name=search_term_string',
+                },
+              },
+            ]),
+          }}
+        />
         <ConditionalLayout>
           {children}
         </ConditionalLayout>

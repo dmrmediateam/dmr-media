@@ -1,5 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import SEOWrapper from '@/components/SEOWrapper'
+import { metadataFromRegistry } from '@/lib/content-registry'
+
+export const metadata = metadataFromRegistry('/case-studies')
+
 
 const caseStudies = [
   {
@@ -72,6 +77,7 @@ const trustSignals = [
 
 export default function CaseStudiesPage() {
   return (
+    <SEOWrapper slug="/case-studies">
     <div className="min-h-screen bg-white">
       <section className="py-24 md:py-32 border-b border-[var(--color-ink-200)]">
         <div className="container-max">
@@ -143,5 +149,6 @@ export default function CaseStudiesPage() {
         </div>
       </section>
     </div>
+    </SEOWrapper>
   )
 }

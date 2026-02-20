@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import SEOWrapper from '@/components/SEOWrapper'
 import ContactForm from '@/components/ContactForm'
 import Testimonials from '@/components/Testimonials'
 import ServiceHero from '@/components/service/ServiceHero'
@@ -60,6 +61,7 @@ export default function GoogleAdsPage() {
   ]
 
   return (
+    <SEOWrapper slug="/google-ads-management">
     <div className="min-h-screen bg-[var(--surface-base)]">
       <ServiceHero
         eyebrow="Google Ads Management"
@@ -158,6 +160,7 @@ export default function GoogleAdsPage() {
         <ContactForm />
       </div>
     </div>
+    </SEOWrapper>
   )
 }
 

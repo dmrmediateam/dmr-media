@@ -36,7 +36,7 @@ const Navbar = () => {
               href="/"
               className="flex items-center z-10 focus:outline-none"
             >
-              <span className="text-lg md:text-xl font-serif text-[var(--color-off-black)] tracking-[0.05em] font-light">
+              <span className="text-2xl md:text-3xl font-serif text-[var(--color-off-black)] tracking-[0.05em] font-light">
                 DMR
               </span>
             </Link>

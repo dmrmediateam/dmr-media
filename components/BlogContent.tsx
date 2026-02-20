@@ -42,22 +42,22 @@ export default function BlogContent({ body }: BlogContentProps) {
   const portableTextComponents = {
     block: {
       h2: ({ children }: any) => (
-        <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mt-12 mb-6 tracking-tight">
+        <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mt-8 mb-4 tracking-tight">
           {children}
         </h2>
       ),
       h3: ({ children }: any) => (
-        <h3 className="text-xl md:text-2xl font-serif font-light text-[var(--color-off-black)] mt-10 mb-4 tracking-tight">
+        <h3 className="text-xl md:text-2xl font-serif font-light text-[var(--color-off-black)] mt-6 mb-3 tracking-tight">
           {children}
         </h3>
       ),
       normal: ({ children }: any) => (
-        <p className="text-[var(--color-ink-300)] text-base leading-relaxed mb-6 font-serif">
+        <p className="text-[var(--color-ink-300)] text-base leading-relaxed mb-4 font-serif">
           {children}
         </p>
       ),
       blockquote: ({ children }: any) => (
-        <blockquote className="border-l border-[var(--color-off-black)] pl-6 my-8 text-[var(--color-ink-300)] font-serif">
+        <blockquote className="border-l border-[var(--color-off-black)] pl-6 my-5 text-[var(--color-ink-300)] font-serif">
           {children}
         </blockquote>
       ),

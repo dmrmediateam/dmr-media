@@ -70,6 +70,11 @@
     font-weight: 100;
     color: var(--color-ink-300);
   }
+
+  /* Paragraph font size - 18px (2px larger than default 16px) */
+  p {
+    font-size: 1.125rem;
+  }
   
   /* Links keep Instrument Serif */
   a {
