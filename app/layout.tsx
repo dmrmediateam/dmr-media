@@ -37,8 +37,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
-      <body className={instrumentSerif.className}>
         {/* Google tag (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16882640022"
@@ -56,6 +54,8 @@ export default function RootLayout({
             `,
           }}
         />
+      </head>
+      <body className={instrumentSerif.className}>
         {/* Meta Pixel Code */}
         <Script
           id="meta-pixel"
