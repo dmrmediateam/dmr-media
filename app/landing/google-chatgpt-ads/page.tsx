@@ -336,6 +336,73 @@ export default function GoogleChatGPTAdsLandingPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
+            BOOKING + OFFER - Primary conversion block
+            ═══════════════════════════════════════════════════════════════ */}
+        <section
+          ref={embedRef}
+          className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-[var(--surface-base)]"
+        >
+          <div className="container-max max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-start">
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="lg:sticky lg:top-32"
+              >
+                <span className="uppercase tracking-[0.2em] text-xs sm:text-sm text-[var(--color-ink-400)] font-serif mb-4 block">
+                  Limited Onboarding
+                </span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-6">
+                  Early Access Audit
+                </h2>
+                <p className="text-base sm:text-lg md:text-xl font-serif text-[var(--color-ink-300)] leading-relaxed mb-8">
+                  We&apos;re evaluating a limited number of agents for early access. Book a 15-minute call. We&apos;ll assess your current position—where you stand with Google Ads, SEO, and readiness for AI placement—and whether there&apos;s a fit for our rollout. This isn&apos;t open enrollment. It&apos;s an evaluation.
+                </p>
+                <p className="text-sm sm:text-base font-serif text-[var(--color-ink-400)] mb-6">
+                  No obligation. No sales pitch. We&apos;ll only recommend moving forward if there&apos;s a clear fit.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <motion.button
+                    onClick={scrollToBook}
+                    className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 bg-[var(--color-trust)] text-white uppercase tracking-[0.12em] text-sm sm:text-base font-serif hover:opacity-90 transition-opacity"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Request Audit
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </motion.button>
+                  <span className="text-sm font-serif text-[var(--color-ink-400)] self-center">
+                    15 minutes · Evaluation for fit
+                  </span>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="w-full"
+              >
+                <Script src="https://app.aura-app.ai/aura-embed.js" strategy="lazyOnload" />
+                <iframe
+                  data-aura-embed
+                  src="https://app.aura-app.ai/dmr-media/the-strategy-call/embed?theme_preset=light"
+                  title="Early Access Audit - Booking"
+                  loading="lazy"
+                  className="w-full border border-[var(--color-ink-200)] rounded-sm bg-white"
+                  style={{ minHeight: '420px' }}
+                />
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
             OPENING - Market Shift
             ═══════════════════════════════════════════════════════════════ */}
         <section id="market-shift" className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-[var(--surface-base)]">
@@ -515,73 +582,6 @@ export default function GoogleChatGPTAdsLandingPage() {
                 </div>
               </div>
             </motion.div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════════
-            OFFER - Early Access Audit
-            ═══════════════════════════════════════════════════════════════ */}
-        <section
-          ref={embedRef}
-          className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-[var(--surface-base)]"
-        >
-          <div className="container-max max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-start">
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="lg:sticky lg:top-32"
-              >
-                <span className="uppercase tracking-[0.2em] text-xs sm:text-sm text-[var(--color-ink-400)] font-serif mb-4 block">
-                  Limited Onboarding
-                </span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-6">
-                  Early Access Audit
-                </h2>
-                <p className="text-base sm:text-lg md:text-xl font-serif text-[var(--color-ink-300)] leading-relaxed mb-8">
-                  We&apos;re evaluating a limited number of agents for early access. Book a 15-minute call. We&apos;ll assess your current position—where you stand with Google Ads, SEO, and readiness for AI placement—and whether there&apos;s a fit for our rollout. This isn&apos;t open enrollment. It&apos;s an evaluation.
-                </p>
-                <p className="text-sm sm:text-base font-serif text-[var(--color-ink-400)] mb-6">
-                  No obligation. No sales pitch. We&apos;ll only recommend moving forward if there&apos;s a clear fit.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <motion.button
-                    onClick={scrollToBook}
-                    className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 bg-[var(--color-trust)] text-white uppercase tracking-[0.12em] text-sm sm:text-base font-serif hover:opacity-90 transition-opacity"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Request Audit
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </motion.button>
-                  <span className="text-sm font-serif text-[var(--color-ink-400)] self-center">
-                    15 minutes · Evaluation for fit
-                  </span>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="w-full"
-              >
-                <Script src="https://app.aura-app.ai/aura-embed.js" strategy="lazyOnload" />
-                <iframe
-                  data-aura-embed
-                  src="https://app.aura-app.ai/dmr-media/the-strategy-call/embed?theme_preset=light"
-                  title="Early Access Audit - Booking"
-                  loading="lazy"
-                  className="w-full border border-[var(--color-ink-200)] rounded-sm bg-white"
-                  style={{ minHeight: '420px' }}
-                />
-              </motion.div>
-            </div>
           </div>
         </section>
 

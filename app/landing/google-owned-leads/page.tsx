@@ -336,6 +336,73 @@ export default function GoogleOwnedLeadsLandingPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
+            BOOKING + OFFER - Primary conversion block
+            ═══════════════════════════════════════════════════════════════ */}
+        <section
+          ref={embedRef}
+          className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-[var(--surface-base)]"
+        >
+          <div className="container-max max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-start">
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="lg:sticky lg:top-32"
+              >
+                <span className="uppercase tracking-[0.2em] text-xs sm:text-sm text-[var(--color-ink-400)] font-serif mb-4 block">
+                  Free Audit
+                </span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-6">
+                  Your <em className="not-italic font-normal text-[var(--color-trust)]">Lead Dependency Score</em>
+                </h2>
+                <p className="text-base sm:text-lg md:text-xl font-serif text-[var(--color-ink-300)] leading-relaxed mb-8">
+                  Book a 15-minute call. We&apos;ll analyze where your leads come from today—Zillow, Realtor, Facebook, PPC—and how much of your pipeline would vanish if you stopped paying. You&apos;ll get a clear score: how dependent you are on rented attention, and what it would take to build search equity instead.
+                </p>
+                <p className="text-sm sm:text-base font-serif text-[var(--color-ink-400)] mb-6">
+                  This is a diagnostic. Not a sales pitch. No obligation.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <motion.button
+                    onClick={scrollToBook}
+                    className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 bg-[var(--color-trust)] text-white uppercase tracking-[0.12em] text-sm sm:text-base font-serif hover:opacity-90 transition-opacity"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Get Your Score
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </motion.button>
+                  <span className="text-sm font-serif text-[var(--color-ink-400)] self-center">
+                    15 minutes · Free · No commitment
+                  </span>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="w-full"
+              >
+                <Script src="https://app.aura-app.ai/aura-embed.js" strategy="lazyOnload" />
+                <iframe
+                  data-aura-embed
+                  src="https://app.aura-app.ai/dmr-media/the-strategy-call/embed?theme_preset=light"
+                  title="Lead Dependency Score - Booking"
+                  loading="lazy"
+                  className="w-full border border-[var(--color-ink-200)] rounded-sm bg-white"
+                  style={{ minHeight: '420px' }}
+                />
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
             OPEN - Hidden business model
             ═══════════════════════════════════════════════════════════════ */}
         <section id="business-model" className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-[var(--surface-base)]">
@@ -489,73 +556,6 @@ export default function GoogleOwnedLeadsLandingPage() {
                 </div>
               </div>
             </motion.div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════════
-            OFFER - Lead Dependency Score
-            ═══════════════════════════════════════════════════════════════ */}
-        <section
-          ref={embedRef}
-          className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-white"
-        >
-          <div className="container-max max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-start">
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="lg:sticky lg:top-32"
-              >
-                <span className="uppercase tracking-[0.2em] text-xs sm:text-sm text-[var(--color-ink-400)] font-serif mb-4 block">
-                  Free Audit
-                </span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-6">
-                  Your <em className="not-italic font-normal text-[var(--color-trust)]">Lead Dependency Score</em>
-                </h2>
-                <p className="text-base sm:text-lg md:text-xl font-serif text-[var(--color-ink-300)] leading-relaxed mb-8">
-                  Book a 15-minute call. We&apos;ll analyze where your leads come from today—Zillow, Realtor, Facebook, PPC—and how much of your pipeline would vanish if you stopped paying. You&apos;ll get a clear score: how dependent you are on rented attention, and what it would take to build search equity instead.
-                </p>
-                <p className="text-sm sm:text-base font-serif text-[var(--color-ink-400)] mb-6">
-                  This is a diagnostic. Not a sales pitch. No obligation.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <motion.button
-                    onClick={scrollToBook}
-                    className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 bg-[var(--color-trust)] text-white uppercase tracking-[0.12em] text-sm sm:text-base font-serif hover:opacity-90 transition-opacity"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Get Your Score
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </motion.button>
-                  <span className="text-sm font-serif text-[var(--color-ink-400)] self-center">
-                    15 minutes · Free · No commitment
-                  </span>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="w-full"
-              >
-                <Script src="https://app.aura-app.ai/aura-embed.js" strategy="lazyOnload" />
-                <iframe
-                  data-aura-embed
-                  src="https://app.aura-app.ai/dmr-media/the-strategy-call/embed?theme_preset=light"
-                  title="Lead Dependency Score - Booking"
-                  loading="lazy"
-                  className="w-full border border-[var(--color-ink-200)] rounded-sm bg-white"
-                  style={{ minHeight: '420px' }}
-                />
-              </motion.div>
-            </div>
           </div>
         </section>
 
