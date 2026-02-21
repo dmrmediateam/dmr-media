@@ -3,16 +3,9 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com', 'via.placeholder.com', 'cdn.sanity.io'],
   },
-  webpack: (config, { isServer }) => {
-    // Externalize @sanity/client for server-side to avoid webpack bundling issues
-    if (isServer) {
-      config.externals = config.externals || []
-      config.externals.push({
-        '@sanity/client': 'commonjs @sanity/client',
-      })
-    }
-    return config
-  },
+  // Use Next.js built-in externalization (works consistently in dev + prod)
+  // Custom webpack externals caused "Cannot read properties of undefined (reading 'call')" in dev
+  serverExternalPackages: ['@sanity/client'],
   async headers() {
     return [
       {

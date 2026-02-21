@@ -1,12 +1,11 @@
+@import './styles/foundation.css';
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@100&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import './styles/foundation.css';
-
 /* Luxury Fonts - Instrument Serif (Primary) & Montserrat Thin */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@100&display=swap');
-/* Preconnect to Google Fonts for faster loading */
 
 @layer base {
   html {
