@@ -1,21 +1,21 @@
-# Why Duda's Built-In SEO Is So Strong — And How to Replicate It in JavaScript
+# Why Webflow's Built-In SEO Is So Strong — And How to Replicate It in JavaScript
 
-> Internal reference document for ObjectWire engineering.
+> Internal reference document for DMR engineering.
 > Last updated: February 12, 2026
 
 ---
 
-## Part 1: Why Duda's Built-In SEO Was Strong
+## Part 1: Why Webflow's Built-In SEO Was Strong
 
-Duda is a website builder that handles SEO **automatically at the infrastructure level**. Here's what it did for ObjectWire out of the box:
+Webflow is a website builder that handles SEO **automatically at the infrastructure level**. Here's what it did for DMR out of the box:
 
 ### 1. Server-Side Rendering by Default
 
-Duda serves fully rendered HTML to crawlers. Google, Bing, Perplexity — they all receive complete page content on the first request. No JavaScript execution needed.
+Webflow serves fully rendered HTML to crawlers. Google, Bing, Perplexity — they all receive complete page content on the first request. No JavaScript execution needed.
 
 ### 2. Automatic Structured Data
 
-Duda injects `JSON-LD` schema markup for:
+Webflow injects `JSON-LD` schema markup for:
 
 - `Organization` schema on every page
 - `Article` / `NewsArticle` schema on blog posts
@@ -27,7 +27,7 @@ None of this required manual work. It was injected into every page automatically
 
 ### 3. Automatic Sitemap + Robots.txt
 
-Every time a page was published, Duda:
+Every time a page was published, Webflow:
 
 - Regenerated `sitemap.xml` with the correct `<lastmod>` timestamp
 - Pinged Google Search Console automatically
@@ -35,11 +35,11 @@ Every time a page was published, Duda:
 
 ### 4. Canonical URLs on Every Page
 
-Duda auto-generated `<link rel="canonical">` on every page, preventing duplicate content issues.
+Webflow auto-generated `<link rel="canonical">` on every page, preventing duplicate content issues.
 
 ### 5. Meta Tags with Fallbacks
 
-If a meta description was missing, Duda would auto-generate one from the first ~160 characters of content. Same for OG tags and Twitter cards.
+If a meta description was missing, Webflow would auto-generate one from the first ~160 characters of content. Same for OG tags and Twitter cards.
 
 ### 6. Page Speed Optimization
 
@@ -51,7 +51,7 @@ If a meta description was missing, Duda would auto-generate one from the first ~
 
 ### 7. Internal Linking Structure
 
-Duda's navigation system automatically created crawlable internal links. The header, footer, and breadcrumbs were all server-rendered `<a>` tags — not JavaScript-rendered links.
+Webflow's navigation system automatically created crawlable internal links. The header, footer, and breadcrumbs were all server-rendered `<a>` tags — not JavaScript-rendered links.
 
 ### 8. Proper HTTP Headers
 
@@ -62,9 +62,9 @@ Duda's navigation system automatically created crawlable internal links. The hea
 
 ---
 
-## Part 2: What ObjectWire Lost When Switching to Next.js
+## Part 2: What DMR Lost When Switching to Next.js
 
-Our current setup is missing several critical SEO systems that Duda handled automatically:
+Our current setup is missing several critical SEO systems that Webflow handled automatically:
 
 ### ❌ No Real Sitemap
 
@@ -72,19 +72,19 @@ Our `sitemap.xml` route exists but relies on `scanAllContent()` which uses **fil
 
 ### ❌ No Automatic `lastmod` Tracking
 
-Duda tracked when a page was actually edited. Our site has no CMS — dates are either hardcoded props or filesystem guesses.
+Webflow tracked when a page was actually edited. Our site has no CMS — dates are either hardcoded props or filesystem guesses.
 
 ### ❌ Inconsistent Structured Data
 
-Only ~30 of 200+ pages have `NewsArticleSchema`. Duda put structured data on **every single page**.
+Only ~30 of 200+ pages have `NewsArticleSchema`. Webflow put structured data on **every single page**.
 
 ### ❌ Missing Breadcrumbs on Most Pages
 
-The `Breadcrumbs` component exists, but it's only on a fraction of pages. Duda generated breadcrumb markup on every page automatically.
+The `Breadcrumbs` component exists, but it's only on a fraction of pages. Webflow generated breadcrumb markup on every page automatically.
 
 ### ❌ No Automatic Meta Fallbacks
 
-If a page is missing a `description` in its `metadata` export, Next.js renders nothing. Duda would have auto-generated one.
+If a page is missing a `description` in its `metadata` export, Next.js renders nothing. Webflow would have auto-generated one.
 
 ### ❌ Content Date Problem (The Sidemen Issue)
 
@@ -92,7 +92,7 @@ Because there's no CMS tracking publish dates, the content scanner falls back to
 
 ### ❌ No Google Ping on Publish
 
-Duda pinged Google every time content was published. Our site only gets re-crawled when Google decides to visit.
+Webflow pinged Google every time content was published. Our site only gets re-crawled when Google decides to visit.
 
 ---
 
@@ -127,7 +127,7 @@ export const contentRegistry: ContentEntry[] = [
     modifiedDate: '2026-02-11',
     category: 'Sports',
     tags: ['Winter Olympics', 'Team USA', 'Alpine Skiing'],
-    author: 'ObjectWire Team',
+    author: 'DMR Team',
     priority: 0.8,
     changeFrequency: 'weekly',
   },
@@ -143,7 +143,7 @@ import { MetadataRoute } from 'next';
 import { contentRegistry } from '@/lib/content-registry';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.objectwire.org';
+  const baseUrl = 'https://www.DMR.org';
 
   return contentRegistry.map((entry) => ({
     url: `${baseUrl}${entry.slug}`,
@@ -176,10 +176,10 @@ export function SEOWrapper({ slug, children }: { slug: string; children: React.R
     author: { '@type': 'Person', name: entry.author },
     publisher: {
       '@type': 'Organization',
-      name: 'ObjectWire',
-      url: 'https://www.objectwire.org',
+      name: 'DMR',
+      url: 'https://www.DMR.org',
     },
-    mainEntityOfPage: `https://www.objectwire.org${entry.slug}`,
+    mainEntityOfPage: `https://www.DMR.org${entry.slug}`,
   };
 
   const breadcrumbSchema = {
@@ -189,7 +189,7 @@ export function SEOWrapper({ slug, children }: { slug: string; children: React.R
       '@type': 'ListItem',
       position: i + 1,
       name: segment.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
-      item: `https://www.objectwire.org/${arr.slice(0, i + 1).join('/')}`,
+      item: `https://www.DMR.org/${arr.slice(0, i + 1).join('/')}`,
     })),
   };
 
@@ -220,7 +220,7 @@ import { contentRegistry } from '../lib/content-registry';
 async function pingGoogle() {
   // Ping sitemap
   await fetch(
-    `https://www.google.com/ping?sitemap=https://www.objectwire.org/sitemap.xml`
+    `https://www.google.com/ping?sitemap=https://www.DMR.org/sitemap.xml`
   );
 
   // For faster indexing, use Google Indexing API
@@ -283,7 +283,7 @@ export function RelatedArticles({ currentSlug, category, tags }: {
 
 ## Part 4: SEO Architecture Comparison
 
-| System | Duda (automatic) | ObjectWire (current) | What to Build |
+| System | Webflow (automatic) | DMR (current) | What to Build |
 |--------|------------------|---------------------:|---------------|
 | Sitemap with real `lastmod` | ✅ | ❌ Fake dates | Content registry |
 | Structured data every page | ✅ | ⚠️ ~30/200 pages | SEOWrapper component |
@@ -311,11 +311,11 @@ export function RelatedArticles({ currentSlug, category, tags }: {
 
 ## Key Takeaway
 
-> **Duda's SEO strength was never about being "better" — it was about being automatic.**
+> **Webflow's SEO strength was never about being "better" — it was about being automatic.**
 > Every page got structured data, breadcrumbs, canonical URLs, and real timestamps without
 > the developer doing anything. In Next.js, you must build these systems yourself. The
 > content registry is the foundation — everything else flows from it.
 
 ---
 
-*Document authored by ObjectWire Engineering, February 2026.*
+*Document authored by DMR Engineering, February 2026.*
