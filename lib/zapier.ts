@@ -66,13 +66,37 @@ export async function sendContactFormToZapier(formData: any) {
     return { success: false, error: 'Webhook URL not configured' };
   }
 
-  const payload: ZapierPayload = {
+  // Flat payload so Zapier can map name, email, phone, message at top level
+  const payload = {
     formType: 'contact',
     timestamp: new Date().toISOString(),
-    data: formData,
+    name: formData.name || '',
+    email: formData.email || '',
+    phone: formData.phone || '',
+    message: formData.message || '',
+    utm_source: formData.utm_source || '',
+    utm_medium: formData.utm_medium || '',
+    utm_campaign: formData.utm_campaign || '',
+    utm_term: formData.utm_term || '',
+    utm_content: formData.utm_content || '',
+    gclid: formData.gclid || '',
+    fbclid: formData.fbclid || '',
+    landing_page: formData.landing_page || '',
+    first_visit: formData.first_visit || '',
   };
 
-  return await sendToZapier(webhookUrl, payload);
+  try {
+    const response = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) throw new Error(`Zapier webhook failed: ${response.statusText}`);
+    return { success: true };
+  } catch (error: any) {
+    console.error('Zapier webhook error:', error);
+    return { success: false, error: error.message };
+  }
 }
 
 /**

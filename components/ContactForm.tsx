@@ -4,19 +4,28 @@ import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
+const inputClasses =
+  'w-full px-0 py-3.5 text-base border-b-2 border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300 placeholder:text-[var(--color-ink-400)]';
+
+const textareaClasses =
+  'w-full px-0 py-3.5 text-base border-b-2 border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300 placeholder:text-[var(--color-ink-400)] resize-none min-h-[120px]';
+
+const labelClasses = 'block text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] mb-2 font-serif font-medium';
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: '',
+    company_fax: '', // Honeypot - bots fill this; name chosen to avoid autofill
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.01 });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -27,11 +36,14 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Honeypot: if filled, silently reject (bot)
+    if (formData.company_fax) return;
     setIsSubmitting(true);
 
     // Get stored UTM parameters
     const utmParams = getStoredUTMParams();
 
+    const { company_fax: _company_fax, ...submitData } = formData;
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -39,7 +51,7 @@ const ContactForm = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...formData,
+          ...submitData,
           utm_source: utmParams.utm_source,
           utm_medium: utmParams.utm_medium,
           utm_campaign: utmParams.utm_campaign,
@@ -73,6 +85,7 @@ const ContactForm = () => {
           email: '',
           phone: '',
           message: '',
+          company_fax: '',
         });
       }, 3000);
 
@@ -86,22 +99,27 @@ const ContactForm = () => {
 
   if (isSubmitted) {
     return (
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="py-32 bg-white"
+        className="py-32 bg-[var(--surface-base)]"
       >
         <div className="container-max flex justify-center">
           <div className="max-w-md text-center">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-4">
+              <div className="w-14 h-14 bg-[var(--color-trust)] flex items-center justify-center mx-auto mb-5">
+                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-3">
                 Thank you.
               </h3>
-              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+              <p className="text-[15px] text-[var(--color-ink-300)] leading-relaxed font-serif">
                 We received your message and will reply within one business day.
               </p>
             </motion.div>
@@ -112,37 +130,37 @@ const ContactForm = () => {
   }
 
   return (
-    <section ref={sectionRef} className="py-24 bg-[var(--surface-base)]">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-[var(--surface-base)]">
       <div className="container-max">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
           className="max-w-3xl"
         >
-          <span className="uppercase tracking-[0.35em] text-[10px] text-[var(--color-ink-300)] mb-4 block">
+          <span className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-400)] mb-4 block font-serif">
             Let's Work Together
           </span>
-          <h2 className="text-[38px] sm:text-[46px] font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.1] tracking-tight">
             Tell us what you’re building. We’ll make the market notice.
           </h2>
-          <p className="mt-5 text-sm sm:text-base text-[var(--color-ink-300)] max-w-xl leading-relaxed">
+          <p className="mt-5 text-[15px] md:text-base text-[var(--color-ink-300)] max-w-xl leading-[1.65] font-serif">
             Share a few details about your goals and we’ll design a calm, measurable plan around them.
           </p>
         </motion.div>
 
-        <div className="mt-14 grid grid-cols-1 lg:grid-cols-[1.1fr_1.3fr] gap-8">
+        <div className="mt-16 grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-16">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-            transition={{ delay: 0.1, duration: 0.6 }}
-            className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/70 backdrop-blur-sm p-8 sm:p-10 space-y-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="space-y-8"
           >
             <div>
               <h3 className="text-xl font-serif font-light text-[var(--color-off-black)]">
                 Contact
               </h3>
-              <div className="mt-4 space-y-2 text-sm text-[var(--color-ink-300)]">
+              <div className="mt-5 space-y-2 text-[15px] text-[var(--color-ink-300)] font-serif">
                 <a href="mailto:team@dmrmedia.org" className="block hover:text-[var(--color-trust)] transition-colors">
                   team@dmrmedia.org
                 </a>
@@ -152,16 +170,16 @@ const ContactForm = () => {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-[var(--color-ink-200)]">
-              <h4 className="text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-3">
+            <div className="pt-6 border-t border-[var(--color-ink-200)]">
+              <h4 className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)] mb-3 font-serif">
                 Specialization
               </h4>
-              <p className="text-sm text-[var(--color-ink-300)] leading-relaxed">
+              <p className="text-[15px] text-[var(--color-ink-300)] leading-[1.6] font-serif">
                 Google Ads, SEO, and analytics frameworks for luxury real estate teams and developers.
               </p>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 pt-2">
               {[
                 { href: 'https://www.linkedin.com/company/90571937/', label: 'LinkedIn' },
                 { href: 'https://www.instagram.com/andrewrohmtcm/', label: 'Instagram' },
@@ -172,28 +190,38 @@ const ContactForm = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-ink-200)] text-[var(--color-off-black)] hover:text-[var(--color-trust)] hover:border-[var(--color-trust)] transition-colors"
+                  className="inline-flex h-10 w-10 items-center justify-center border border-[var(--color-ink-200)] text-[var(--color-off-black)] hover:text-[var(--color-trust)] hover:border-[var(--color-trust)] transition-colors font-serif text-xs"
                   aria-label={link.label}
                 >
-                  <span className="text-xs uppercase tracking-[0.3em]">{link.label[0]}</span>
+                  {link.label[0]}
                 </a>
               ))}
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="rounded-[24px] border border-[var(--color-ink-200)] bg-white/80 backdrop-blur-sm p-8 sm:p-10"
+            initial={{ opacity: 1, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 }}
+            transition={{ delay: 0.15, duration: 0.5 }}
+            className="border border-[var(--color-ink-200)] bg-white p-8 md:p-10 relative z-10"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-              >
-                <label htmlFor="name" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
+              {/* Honeypot - hidden from users, bots fill it; "company_fax" avoids autofill */}
+              <div className="absolute -left-[9999px] w-1 h-1 overflow-hidden" aria-hidden="true">
+                <label htmlFor="company_fax">Fax (leave blank)</label>
+                <input
+                  type="text"
+                  id="company_fax"
+                  name="company_fax"
+                  tabIndex={-1}
+                  autoComplete="nope"
+                  value={formData.company_fax}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="name" className={labelClasses}>
                   Name *
                 </label>
                 <input
@@ -203,16 +231,13 @@ const ContactForm = () => {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full rounded-full border border-[var(--color-ink-200)] bg-white px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-off-black)] transition-colors"
+                  className={inputClasses}
+                  placeholder="John Smith"
                 />
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.35, duration: 0.6 }}
-              >
-                <label htmlFor="email" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
+              <div>
+                <label htmlFor="email" className={labelClasses}>
                   Email *
                 </label>
                 <input
@@ -222,16 +247,13 @@ const ContactForm = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full rounded-full border border-[var(--color-ink-200)] bg-white px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-off-black)] transition-colors"
+                  className={inputClasses}
+                  placeholder="you@company.com"
                 />
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-              >
-                <label htmlFor="phone" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
+              <div>
+                <label htmlFor="phone" className={labelClasses}>
                   Phone
                 </label>
                 <input
@@ -240,39 +262,34 @@ const ContactForm = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full rounded-full border border-[var(--color-ink-200)] bg-white px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-off-black)] transition-colors"
+                  className={inputClasses}
+                  placeholder="(920) 555-0123"
                 />
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.45, duration: 0.6 }}
-              >
-                <label htmlFor="message" className="block text-xs uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
+              <div>
+                <label htmlFor="message" className={labelClasses}>
                   Your Message *
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   required
-                  rows={6}
+                  rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full rounded-3xl border border-[var(--color-ink-200)] bg-white px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-off-black)] transition-colors"
+                  className={textareaClasses}
+                  placeholder="Tell us about your goals and how we can help..."
                 />
-              </motion.div>
+              </div>
 
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
+              <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-[var(--color-off-black)] px-6 py-3 text-[11px] uppercase tracking-[0.3em] text-white transition-colors hover:bg-black disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-full py-4 bg-[var(--color-trust)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-90 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer relative z-10"
               >
                 {isSubmitting ? 'Sending…' : 'Send Message'}
-              </motion.button>
+              </button>
             </form>
           </motion.div>
         </div>

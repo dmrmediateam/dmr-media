@@ -7,10 +7,10 @@ export const metadata = metadataFromRegistry('/contact');
 export default function ContactPage() {
   return (
     <SEOWrapper slug="/contact">
-    <div className="min-h-screen bg-white">
-      {/* Contact Form Section */}
-      <ContactForm />
-    </div>
+      <div className="min-h-screen bg-white">
+        {/* Contact Form Section */}
+        <ContactForm />
+      </div>
     </SEOWrapper>
   );
 }
