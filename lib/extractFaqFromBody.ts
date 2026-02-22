@@ -11,13 +11,20 @@ export interface FaqItem {
   answer: string
 }
 
+/** Portable Text block shape (Sanity blockContent) */
+interface PTBlock {
+  _type?: string
+  style?: string
+  children?: Array<{ _type?: string; text?: string }>
+}
+
 /**
  * Extract plain text from a Portable Text block's children
  */
-function blockToText(block: { children?: Array<{ _type?: string; text?: string }> }): string {
+function blockToText(block: PTBlock): string {
   if (!block?.children || !Array.isArray(block.children)) return ''
   return block.children
-    .filter((child): child is { text: string } => typeof (child as any)?.text === 'string')
+    .filter((child): child is { text: string } => typeof (child as { text?: string })?.text === 'string')
     .map((child) => child.text)
     .join('')
 }
@@ -25,7 +32,7 @@ function blockToText(block: { children?: Array<{ _type?: string; text?: string }
 /**
  * Check if a block is an FAQ section header (h2 with "FAQ" or "Frequently Asked Questions")
  */
-function isFaqSectionHeader(block: { _type?: string; style?: string }): boolean {
+function isFaqSectionHeader(block: PTBlock): boolean {
   if (block._type !== 'block') return false
   const style = block.style || 'normal'
   if (style !== 'h2') return false
@@ -41,7 +48,7 @@ function isFaqSectionHeader(block: { _type?: string; style?: string }): boolean 
 /**
  * Check if a block is a question header (h3 or h4 when in FAQ section)
  */
-function isQuestionBlock(block: { _type?: string; style?: string }): boolean {
+function isQuestionBlock(block: PTBlock): boolean {
   if (block._type !== 'block') return false
   const style = block.style || 'normal'
   return style === 'h3' || style === 'h4'
@@ -50,7 +57,7 @@ function isQuestionBlock(block: { _type?: string; style?: string }): boolean {
 /**
  * Check if a block is a normal paragraph (answer content)
  */
-function isAnswerBlock(block: { _type?: string; style?: string }): boolean {
+function isAnswerBlock(block: PTBlock): boolean {
   if (block._type !== 'block') return false
   const style = block.style || 'normal'
   return style === 'normal' || style === 'blockquote'
@@ -72,7 +79,7 @@ export function extractFaqFromBody(body: unknown): FaqItem[] {
     // Skip non-block types (images, custom blocks, etc.)
     if (!block || typeof block !== 'object') continue
 
-    const blockObj = block as { _type?: string; style?: string; children?: unknown[] }
+    const blockObj = block as PTBlock
 
     if (blockObj._type === 'block') {
       if (isFaqSectionHeader(blockObj)) {
