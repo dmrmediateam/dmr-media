@@ -3,9 +3,9 @@ import Image from 'next/image'
 import { getAllBlogPosts } from '@/data/blogPosts'
 import SEOWrapper from '@/components/SEOWrapper'
 import { metadataFromRegistry } from '@/lib/content-registry'
+import { buildOrganizationSchema } from '@/lib/eeatSchema'
 
 export const metadata = metadataFromRegistry('/blog')
-
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
@@ -14,8 +14,21 @@ export default async function BlogPage() {
   // Filter out posts without valid slugs
   const validPosts = posts.filter((post) => post.slug?.current)
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org'
+  const organizationSchema = buildOrganizationSchema(baseUrl)
+
   return (
-    <SEOWrapper slug="/blog">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            ...organizationSchema,
+          }),
+        }}
+      />
+      <SEOWrapper slug="/blog">
     <div className="min-h-screen bg-white">
       <section className="py-14 md:py-20 border-b border-[var(--color-ink-200)]">
         <div className="container-max">
@@ -82,5 +95,6 @@ export default async function BlogPage() {
       </section>
     </div>
     </SEOWrapper>
+    </>
   )
 }

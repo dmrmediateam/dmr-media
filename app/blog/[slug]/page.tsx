@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getBlogPostBySlug, getAllBlogPosts } from '@/data/blogPosts'
+import { extractFaqFromBody, buildFaqSchema } from '@/lib/extractFaqFromBody'
+import { buildOrganizationSchema, buildPersonSchema } from '@/lib/eeatSchema'
 import type { Metadata } from 'next'
 import BlogContent from '@/components/BlogContent'
 
@@ -73,48 +75,67 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     day: 'numeric',
   })
 
-  // Build schema markup for Article
+  // Build schema markup: Article + EEAT (Person, Organization) + FAQ when present
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org'
   const postUrl = `${baseUrl}/blog/${post.slug.current}`
   const dateModified = post.schemaMarkup?.dateModified || post.publishedAt
   const articleSection = post.schemaMarkup?.articleSection || post.category
 
+  // EEAT: Organization & Person schemas for credibility
+  const organizationSchema = buildOrganizationSchema(baseUrl)
+  const personSchema = buildPersonSchema(
+    {
+      name: post.author.name,
+      image: post.author.image,
+      bio: post.author.bio,
+      slug: post.author.slug,
+    },
+    baseUrl
+  )
+
   const articleSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
+    '@id': `${postUrl}#article`,
     headline: post.title,
     description: post.description,
     image: post.mainImage.asset.url,
     datePublished: post.publishedAt,
     dateModified: dateModified,
-    author: {
-      '@type': 'Person',
-      name: post.author.name,
-      ...(post.author.image && { image: post.author.image }),
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'DMR Media',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/images/logo.png`,
-      },
-    },
+    author: { '@id': (personSchema as { '@id': string })['@id'] },
+    publisher: { '@id': (organizationSchema as { '@id': string })['@id'] },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': postUrl,
     },
     articleSection: articleSection,
+    url: postUrl,
     ...(post.tags && post.tags.length > 0 && {
       keywords: post.tags.join(', '),
     }),
+  }
+
+  // Auto-detect FAQ section
+  const faqItems = extractFaqFromBody(post.body)
+  const faqSchema = buildFaqSchema(faqItems)
+
+  // Single @graph with all schemas (Article, Organization, Person, optional FAQPage)
+  const graphItems = [
+    organizationSchema,
+    personSchema,
+    articleSchema,
+    ...(faqSchema ? [{ '@type': 'FAQPage', mainEntity: faqSchema.mainEntity }] : []),
+  ]
+
+  const schemaGraph = {
+    '@context': 'https://schema.org',
+    '@graph': graphItems,
   }
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
       />
       <div className="min-h-screen bg-white">
       <section className="relative py-24 md:py-32 border-b border-[var(--color-ink-200)] min-h-[60vh] flex items-center">

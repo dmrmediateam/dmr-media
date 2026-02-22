@@ -20,6 +20,8 @@ export interface BlogPost {
   author: {
     name: string;
     image?: string;
+    bio?: string;
+    slug?: string;
   };
   readTime: string;
   body: any[];
@@ -283,7 +285,9 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     publishedAt,
     "author": author->{
       name,
-      "image": image.asset->url
+      "image": image.asset->url,
+      bio,
+      "slug": slug.current
     },
     readTime,
     body,
