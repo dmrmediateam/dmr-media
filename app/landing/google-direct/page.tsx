@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Script from 'next/script';
 import Image from 'next/image';
 import ClientLogosSlider from '@/components/ClientLogosSlider';
 import LandingCaseStudies from '@/components/landing/LandingCaseStudies';
+import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
 const HERO_VIDEOS = [
   '/videos/entry-of-a-luxury-home-2026-01-21-18-28-02-utc (1).mp4',
@@ -41,12 +43,56 @@ const SCROLL_REVIEWS = [
   },
 ];
 
+const inputClasses =
+  'w-full px-0 py-3.5 text-base border-b-2 border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300 placeholder:text-[var(--color-ink-400)]';
+
 export default function GoogleDirectLandingPage() {
+  const router = useRouter();
   const [showFloatingCTA, setShowFloatingCTA] = useState(false);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', website: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const embedRef = useRef<HTMLDivElement>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formData.website) return;
+    setIsSubmitting(true);
+    const utmParams = getStoredUTMParams();
+    try {
+      const res = await fetch('/api/landing-registration', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          website: formData.website,
+          source: 'google-direct-landing',
+          utm_source: utmParams.utm_source,
+          utm_medium: utmParams.utm_medium,
+          utm_campaign: utmParams.utm_campaign,
+          utm_term: utmParams.utm_term,
+          utm_content: utmParams.utm_content,
+          gclid: utmParams.gclid,
+          fbclid: utmParams.fbclid,
+          landing_page: utmParams.landing_page,
+          first_visit: utmParams.first_visit,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to submit');
+      trackConversion('Lead', { form_type: 'google_direct_landing' });
+      router.push(
+        `/landing/thank-you?session_id=free_registration&email=${encodeURIComponent(formData.email)}&name=${encodeURIComponent(formData.name)}&phone=${encodeURIComponent(formData.phone)}`
+      );
+    } catch (err) {
+      setIsSubmitting(false);
+      alert(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    }
+  };
 
   // Video carousel - cycle every 8 seconds
   useEffect(() => {
@@ -170,25 +216,25 @@ export default function GoogleDirectLandingPage() {
                 <source src={src} type="video/mp4" />
               </video>
             ))}
-            {/* Overlay gradient - ensures text readability */}
+            {/* Dark overlay - ensures text pops and remains readable */}
             <div
               className="absolute inset-0 z-[2]"
               style={{
                 background:
-                  'linear-gradient(180deg, rgba(15,15,15,0.5) 0%, rgba(15,15,15,0.35) 30%, rgba(15,15,15,0.25) 60%, rgba(15,15,15,0.6) 100%)',
+                  'linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.75) 100%)',
               }}
             />
           </div>
 
           {/* Hero Content */}
-          <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl mx-auto pt-20 sm:pt-24">
-            <div className="max-w-2xl lg:max-w-3xl">
+          <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl mx-auto pt-20 sm:pt-24 flex flex-col items-center justify-center text-center">
+            <div className="max-w-2xl lg:max-w-3xl mx-auto">
               {/* Trust Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-6 sm:mb-8"
+                className="mb-6 sm:mb-8 flex justify-center"
               >
                 <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-2 bg-white/90 backdrop-blur-sm border border-white/20 rounded-full">
                   <span className="text-base sm:text-lg font-serif text-[var(--color-off-black)] whitespace-nowrap">
@@ -218,10 +264,10 @@ export default function GoogleDirectLandingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-light !text-white leading-[1.08] tracking-tight mb-4 sm:mb-6 [text-shadow:0_2px_20px_rgba(0,0,0,0.4)]"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light !text-white leading-[1.08] tracking-tight mb-4 sm:mb-6 [text-shadow:0_2px_20px_rgba(0,0,0,0.4)]"
               >
-                Turn Your Website Into a{' '}
-                <em className="not-italic font-normal">Lead Machine</em>
+                Get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
+                <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> in under 30 days
               </motion.h1>
 
               {/* Subheadline */}
@@ -229,9 +275,9 @@ export default function GoogleDirectLandingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-lg sm:text-xl md:text-2xl font-serif text-white/95 mb-8 sm:mb-10 max-w-xl [text-shadow:0_1px_12px_rgba(0,0,0,0.5)]"
+                className="text-lg sm:text-xl md:text-2xl font-serif text-white/95 mb-8 sm:mb-10 max-w-xl mx-auto [text-shadow:0_1px_12px_rgba(0,0,0,0.5)]"
               >
-                The same conversion system top agents use to turn traffic into daily buyer & seller conversations.
+                This is the exact system our teams use to dominate AI and optimize for the new age of search.
               </motion.p>
 
               {/* CTAs */}
@@ -239,7 +285,7 @@ export default function GoogleDirectLandingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
               >
                 <motion.button
                   onClick={scrollToBook}
@@ -247,7 +293,7 @@ export default function GoogleDirectLandingPage() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Book Your Free Strategy Call
+                  Start Building the System
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -269,7 +315,7 @@ export default function GoogleDirectLandingPage() {
                 transition={{ duration: 0.6, delay: 0.45 }}
                 className="mt-6 sm:mt-8 text-sm sm:text-base font-serif text-white/80"
               >
-                15 minutes · No obligation · See exactly where you&apos;re losing deals
+                Free access · No obligation · We&apos;ll be in touch
               </motion.p>
             </div>
           </div>
@@ -311,14 +357,14 @@ export default function GoogleDirectLandingPage() {
         >
           <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-base sm:text-lg font-serif text-[var(--color-off-black)] text-center sm:text-left">
-              Ready to turn traffic into conversations?
+              Ready to start building the system?
             </p>
             <motion.button
               onClick={scrollToBook}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 bg-[var(--color-trust)] text-white uppercase tracking-[0.12em] text-sm font-serif hover:opacity-90 transition-opacity"
               whileTap={{ scale: 0.98 }}
             >
-              Book Your Free Call
+              Get Started
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -372,7 +418,7 @@ export default function GoogleDirectLandingPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
-            BOOKING + OFFER - Primary conversion block
+            OPT-IN FORM - Primary conversion block
             ═══════════════════════════════════════════════════════════════ */}
         <section
           ref={embedRef}
@@ -388,31 +434,15 @@ export default function GoogleDirectLandingPage() {
                 className="lg:sticky lg:top-32"
               >
                 <span className="uppercase tracking-[0.2em] text-xs sm:text-sm text-[var(--color-ink-400)] font-serif mb-4 block">
-                  Free Strategy Call
+                  Get Early Access
                 </span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-6">
-                  Get Buyer & Seller Leads for{' '}
-                  <em className="not-italic font-normal text-[var(--color-trust)]">Under $70</em> Per Conversation
+                <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-6">
+                  Get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
+                  <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> in under 30 days
                 </h2>
                 <p className="text-base sm:text-lg md:text-xl font-serif text-[var(--color-ink-300)] leading-relaxed mb-8">
-                  Book a 15-minute strategy call. We&apos;ll show you exactly how our system converts website traffic into qualified buyer and seller conversations—and where yours might be leaking deals.
+                  Enter your details below. We&apos;ll show you exactly how our system converts traffic into qualified buyer and seller conversations—and where yours might be leaking deals.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <motion.button
-                    onClick={scrollToBook}
-                    className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 bg-[var(--color-trust)] text-white uppercase tracking-[0.12em] text-sm sm:text-base font-serif hover:opacity-90 transition-opacity"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Schedule Now
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </motion.button>
-                  <span className="text-sm font-serif text-[var(--color-ink-400)] self-center">
-                    No obligation · 15 min
-                  </span>
-                </div>
               </motion.div>
 
               <motion.div
@@ -420,18 +450,74 @@ export default function GoogleDirectLandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                id="aura-embed-section"
                 className="w-full"
               >
-                <Script src="https://app.aura-app.ai/aura-embed.js" strategy="lazyOnload" />
-                <iframe
-                  data-aura-embed
-                  src="https://app.aura-app.ai/dmr-media/the-strategy-call/embed?theme_preset=light"
-                  title="The Strategy Call - Booking"
-                  loading="lazy"
-                  className="w-full border border-[var(--color-ink-200)] rounded-sm bg-white"
-                  style={{ minHeight: '420px' }}
-                />
+                <form onSubmit={handleFormSubmit} className="relative bg-white p-8 md:p-10 space-y-6 rounded-lg border-2 border-[var(--color-trust)] shadow-[0_8px_32px_rgba(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.04)] ring-4 ring-[var(--color-trust)]/20">
+                  <div className="absolute -left-[9999px] w-1 h-1 overflow-hidden" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="nope"
+                      value={formData.website}
+                      onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="name" className="block text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] mb-2 font-serif font-medium">
+                      Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className={inputClasses}
+                      placeholder="John Smith"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] mb-2 font-serif font-medium">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className={inputClasses}
+                      placeholder="you@company.com"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className="block text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] mb-2 font-serif font-medium">
+                      Phone *
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className={inputClasses}
+                      placeholder="(920) 555-0123"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-4 bg-[var(--color-trust)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-90 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+                  >
+                    {isSubmitting ? 'Submitting…' : 'Start Building the System'}
+                  </button>
+                </form>
               </motion.div>
             </div>
           </div>
@@ -631,7 +717,7 @@ export default function GoogleDirectLandingPage() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-light !text-white mb-6 leading-tight">
-                15 minutes to see exactly where your website is leaking deals.
+                Get the system that turns traffic into daily buyer &amp; seller conversations.
               </h2>
               <motion.button
                 onClick={scrollToBook}
@@ -639,7 +725,7 @@ export default function GoogleDirectLandingPage() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Book Your Free Strategy Call
+                Start Building the System
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>

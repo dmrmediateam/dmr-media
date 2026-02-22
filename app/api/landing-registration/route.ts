@@ -121,21 +121,28 @@ export async function POST(request: Request) {
     };
 
     // Determine which webhook URL to use based on source
+    const isGoogleDirect = source === 'google-direct-landing';
     const zapierWebhookUrl = isFeb2026
       ? process.env.ZAPIER_FEB_WEBINAR_WEBHOOK_URL
-      : process.env.ZAPIER_LANDING_WEBHOOK_URL;
+      : isGoogleDirect
+        ? process.env.ZAPIER_GOOGLE_DIRECT_WEBHOOK_URL
+        : process.env.ZAPIER_LANDING_WEBHOOK_URL;
+    
+    const webhookEnvName = isFeb2026
+      ? 'ZAPIER_FEB_WEBINAR_WEBHOOK_URL'
+      : isGoogleDirect
+        ? 'ZAPIER_GOOGLE_DIRECT_WEBHOOK_URL'
+        : 'ZAPIER_LANDING_WEBHOOK_URL';
     
     console.log('Webhook Configuration:', {
       isFeb2026,
       source,
       webhookUrl: zapierWebhookUrl ? 'Configured' : 'NOT CONFIGURED',
-      envVarName: isFeb2026 ? 'ZAPIER_FEB_WEBINAR_WEBHOOK_URL' : 'ZAPIER_LANDING_WEBHOOK_URL',
+      envVarName: webhookEnvName,
     });
     
     if (!zapierWebhookUrl) {
-      console.error(isFeb2026
-        ? 'ZAPIER_FEB_WEBINAR_WEBHOOK_URL is not configured. Please add it to your .env.local file.' 
-        : 'ZAPIER_LANDING_WEBHOOK_URL is not configured');
+      console.error(`${webhookEnvName} is not configured. Please add it to your .env.local file.`);
       // Continue without failing the request
     } else {
       try {

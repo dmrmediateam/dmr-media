@@ -1,16 +1,30 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Script from 'next/script';
 
-export default function ThankYouPage() {
+function ThankYouContent() {
+  const searchParams = useSearchParams();
+  const name = searchParams.get('name') || '';
+  const email = searchParams.get('email') || '';
+  const phone = searchParams.get('phone') || '';
+
+  // Build Aura embed URL with pre-populated fields from URL params
+  const buildAuraUrl = () => {
+    let url = 'https://app.aura-app.ai/dmr-media/the-strategy-call/embed?theme_preset=light';
+    if (name) url += `&name=${encodeURIComponent(name)}`;
+    if (email) url += `&email=${encodeURIComponent(email)}`;
+    if (phone) url += `&phone=${encodeURIComponent(phone)}`;
+    return url;
+  };
+
   // Hide header, footer, and AI chatbot for this landing page
   useEffect(() => {
     const nav = document.querySelector('nav') as HTMLElement | null;
     const footer = document.querySelector('footer') as HTMLElement | null;
-    
+
     const hideElfsightWidgets = () => {
       const selectors = [
         '.elfsight-app-90e5dbc1-4850-470a-b384-914842649785',
@@ -19,11 +33,11 @@ export default function ThankYouPage() {
         '[data-elfsight]',
         'iframe[src*="elfsight"]',
       ];
-      
-      selectors.forEach(selector => {
+
+      selectors.forEach((selector) => {
         try {
           const elements = document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
-          elements.forEach(el => {
+          elements.forEach((el) => {
             if (el) el.style.display = 'none';
           });
         } catch (e) {
@@ -31,22 +45,22 @@ export default function ThankYouPage() {
         }
       });
     };
-    
+
     if (nav) nav.style.display = 'none';
     if (footer) footer.style.display = 'none';
     hideElfsightWidgets();
-    
+
     const observer = new MutationObserver(() => {
       hideElfsightWidgets();
     });
-    
+
     observer.observe(document.body, {
       childList: true,
       subtree: true,
     });
-    
+
     const intervalId = setInterval(hideElfsightWidgets, 500);
-    
+
     return () => {
       if (nav) nav.style.display = '';
       if (footer) footer.style.display = '';
@@ -57,21 +71,14 @@ export default function ThankYouPage() {
 
   // Track conversion when page loads
   useEffect(() => {
-    // Google Ads conversion tracking
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
-        'send_to': 'AW-CONVERSION_ID/AW-CONVERSION_LABEL',
-        'value': 1.0,
-        'currency': 'USD'
+        send_to: 'AW-CONVERSION_ID/AW-CONVERSION_LABEL',
+        value: 1.0,
+        currency: 'USD',
       });
-      
-      // Google tag (gtag.js) event - Begin checkout conversion
-      (window as any).gtag('event', 'ads_conversion_Begin_checkout_1', {
-        // <event_parameters>
-      });
+      (window as any).gtag('event', 'ads_conversion_Begin_checkout_1', {});
     }
-
-    // Facebook Pixel conversion
     if (typeof window !== 'undefined' && (window as any).fbq) {
       (window as any).fbq('track', 'Lead');
     }
@@ -109,85 +116,64 @@ export default function ThankYouPage() {
         `}
       </Script>
 
-      <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative py-16 md:py-24 px-4 md:px-6 min-h-screen flex items-center justify-center">
-        {/* Gray fade overlay from top */}
-        <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-gray-900/20 via-gray-900/10 to-transparent pointer-events-none z-0" />
-        
-        <div className="container-max max-w-4xl mx-auto relative z-10 text-center">
-          {/* Reviews Pill */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center justify-center mb-8"
-          >
-            <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/90 backdrop-blur-sm border border-[var(--color-ink-200)] rounded-full">
-              <span className="text-[22px] text-[var(--color-off-black)] font-serif whitespace-nowrap">5 stars since 2022</span>
-              <div className="flex items-center gap-2">
-                <Image
-                  src="/images/Untitled design (81).png"
-                  alt="Trustpilot"
-                  width={72}
-                  height={24}
-                  className="h-5 md:h-6 w-auto object-contain"
-                />
-                <Image
-                  src="/images/Google__G__logo.svg.png"
-                  alt="Google"
-                  width={58}
-                  height={19}
-                  className="h-4 md:h-5 w-auto object-contain"
+      <div className="min-h-screen bg-[var(--surface-base)]">
+        <section className="py-16 md:py-24 px-4 sm:px-6">
+          <div className="max-w-3xl mx-auto text-center">
+            {/* Step 1: VSL Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-14"
+            >
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.15] tracking-tight mb-4">
+                The Exact AI System we built our clients to generate{' '}
+                <span className="font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</span> in every 30 days…
+              </h1>
+              <p className="text-lg sm:text-xl md:text-2xl font-serif text-[var(--color-ink-300)] mb-6">
+                Step 1: Watch the full video below
+              </p>
+              <div className="relative mx-auto max-w-xl aspect-video rounded-md overflow-hidden border border-[var(--color-ink-200)] bg-black shadow-sm">
+                <iframe
+                  src="https://www.loom.com/embed/5d4a7e47744d4d86ba14c888e5f0b8cf"
+                  title="The Exact AI System - VSL"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
                 />
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Checkmark Icon */}
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2, type: 'spring', stiffness: 200 }}
-            className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[var(--color-trust)]/10 flex items-center justify-center mx-auto mb-8 shadow-lg"
-          >
-            <svg className="w-10 h-10 md:w-12 md:h-12 text-[var(--color-trust)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-            </svg>
-          </motion.div>
-
-          {/* Thank You Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-serif font-light text-[var(--color-off-black)] leading-[1.1] tracking-tight mb-6"
-          >
-            Thank You
-          </motion.h1>
-
-          {/* Main Message */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-[22px] md:text-[28px] text-[var(--color-off-black)] font-serif mb-6 leading-relaxed max-w-2xl mx-auto"
-          >
-            Our team will be in touch shortly.
-          </motion.p>
-
-          {/* Email Check Message */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-[22px] text-[var(--color-ink-300)] font-serif leading-relaxed max-w-2xl mx-auto"
-          >
-            In the meantime, please check your email for additional information.
-          </motion.p>
-        </div>
-      </section>
-    </div>
+            {/* Step 2: Strategy Call Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <p className="text-lg sm:text-xl md:text-2xl font-serif text-[var(--color-ink-300)] mb-6">
+                Step 2: See if we can help you below
+              </p>
+              <div className="mx-auto max-w-xl overflow-hidden rounded-md border border-[var(--color-ink-200)] bg-white shadow-sm min-h-[420px]">
+                <Script src="https://app.aura-app.ai/aura-embed.js" strategy="lazyOnload" />
+                <iframe
+                  data-aura-embed
+                  src={buildAuraUrl()}
+                  title="The Strategy Call - Booking"
+                  loading="lazy"
+                  className="w-full border-0 min-h-[420px]"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      </div>
     </>
+  );
+}
+
+export default function ThankYouPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[var(--surface-base)] flex items-center justify-center font-serif text-[var(--color-ink-300)]">Loading…</div>}>
+      <ThankYouContent />
+    </Suspense>
   );
 }
