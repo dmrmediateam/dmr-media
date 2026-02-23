@@ -75,11 +75,6 @@ const Footer = () => {
                     Schedule
                   </Link>
                 </li>
-                <li>
-                  <Link href="/dashboard/sign-in" className="hover:opacity-60 transition-opacity">
-                    Client Sign In
-                  </Link>
-                </li>
               </ul>
             </div>
 

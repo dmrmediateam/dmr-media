@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/', '/dashboard/'],
+        disallow: ['/api/', '/_next/'],
       },
     ],
     sitemap: 'https://dmrmedia.org/sitemap.xml',
