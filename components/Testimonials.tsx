@@ -45,11 +45,11 @@ const testimonials = [
     cityImage: '/images/Cities/rochester-minnesota-usa-skyline-on-the-zumbro-r-2026-01-09-06-28-40-utc.jpg',
   },
   {
-    id: 'rick-gruebele',
-    name: 'Rick Gruebele',
-    company: 'Visions First Realty',
-    location: 'Ashland, Wisconsin',
-    text: 'As the Broker/Owner of Visions First Realty, I cannot speak highly enough of DMR Media\'s exceptional SEO services. Their strategic approach to improving our online presence has yielded remarkable results, consistently pushing our website to top rankings for key real estate search terms in our market. From the outset, their team demonstrated a deep understanding of the real estate industry\'s unique digital marketing challenges. They implemented a comprehensive SEO strategy that included local search optimization, content enhancement, and technical improvements to our website enhancing our website\'s performance, while maintaining a user friendly website.',
+    id: 'marsha-v',
+    name: 'Marsha V.',
+    company: '',
+    location: 'Wisconsin',
+    text: 'Andrew was so helpful! I asked him to see why my website was coming up in unrelated searches. He went above and beyond to investigate the problems. He provided me with valuable insight and feedback that helped me move forward and solve the problems. Thank you so much, Andrew!!!',
     cityImage: '/images/Cities/beautiful-landscape-of-the-bay-a-cliff-near-a-lake-2026-01-07-23-46-50-utc.jpg',
   },
 ];
