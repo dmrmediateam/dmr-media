@@ -293,7 +293,7 @@ export default function GoogleDirectLandingPage() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Start Building the System
+                  Get Free Training
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -315,7 +315,7 @@ export default function GoogleDirectLandingPage() {
                 transition={{ duration: 0.6, delay: 0.45 }}
                 className="mt-6 sm:mt-8 text-sm sm:text-base font-serif text-white/80"
               >
-                Free access · No obligation · We&apos;ll be in touch
+                Free training · No obligation · We&apos;ll be in touch
               </motion.p>
             </div>
           </div>
@@ -357,14 +357,14 @@ export default function GoogleDirectLandingPage() {
         >
           <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-base sm:text-lg font-serif text-[var(--color-off-black)] text-center sm:text-left">
-              Ready to start building the system?
+              Ready for your free training?
             </p>
             <motion.button
               onClick={scrollToBook}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 bg-[var(--color-trust)] text-white uppercase tracking-[0.12em] text-sm font-serif hover:opacity-90 transition-opacity"
               whileTap={{ scale: 0.98 }}
             >
-              Get Started
+              Get Free Training
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -434,14 +434,14 @@ export default function GoogleDirectLandingPage() {
                 className="lg:sticky lg:top-32"
               >
                 <span className="uppercase tracking-[0.2em] text-xs sm:text-sm text-[var(--color-ink-400)] font-serif mb-4 block">
-                  Get Early Access
+                  Free Training
                 </span>
                 <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-6">
                   Get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
                   <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> in under 30 days
                 </h2>
                 <p className="text-base sm:text-lg md:text-xl font-serif text-[var(--color-ink-300)] leading-relaxed mb-8">
-                  Enter your details below. We&apos;ll show you exactly how our system converts traffic into qualified buyer and seller conversations—and where yours might be leaking deals.
+                  Enter your details below to claim your free training. We&apos;ll show you exactly how our system converts traffic into qualified buyer and seller conversations—and where yours might be leaking deals.
                 </p>
               </motion.div>
 
@@ -515,7 +515,7 @@ export default function GoogleDirectLandingPage() {
                     disabled={isSubmitting}
                     className="w-full py-4 bg-[var(--color-trust)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-90 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
                   >
-                    {isSubmitting ? 'Submitting…' : 'Start Building the System'}
+                    {isSubmitting ? 'Submitting…' : 'Get Free Training'}
                   </button>
                 </form>
               </motion.div>
@@ -717,7 +717,7 @@ export default function GoogleDirectLandingPage() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-light !text-white mb-6 leading-tight">
-                Get the system that turns traffic into daily buyer &amp; seller conversations.
+                Get the free training that turns traffic into daily buyer &amp; seller conversations.
               </h2>
               <motion.button
                 onClick={scrollToBook}
@@ -725,7 +725,7 @@ export default function GoogleDirectLandingPage() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Start Building the System
+                Get Free Training
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
