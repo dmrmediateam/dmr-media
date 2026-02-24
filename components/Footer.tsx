@@ -75,6 +75,11 @@ const Footer = () => {
                     Schedule
                   </Link>
                 </li>
+                <li>
+                  <Link href="/mls-integrations" className="hover:opacity-60 transition-opacity">
+                    MLS Integrations
+                  </Link>
+                </li>
               </ul>
             </div>
 

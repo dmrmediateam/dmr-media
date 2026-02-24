@@ -1,15 +1,15 @@
 @import './styles/foundation.css';
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Luxury Fonts - Instrument Serif (Primary) & Montserrat Thin */
+/* Luxury Fonts - Instrument Serif (Primary) */
 
 @layer base {
   html {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-system), sans-serif;
     font-weight: 100;
     scroll-behavior: auto; /* Changed from smooth - handled by SmoothScroll component */
     scroll-padding-top: 80px;
@@ -23,7 +23,7 @@
     background-color: var(--off-white);
     overflow-x: hidden;
     overflow-y: auto;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-system), sans-serif;
     font-weight: 100;
     /* Smooth scroll will be handled by JavaScript */
     -webkit-overflow-scrolling: touch;
@@ -63,9 +63,9 @@
     @apply text-xl sm:text-2xl;
   }
 
-  /* Body text with Montserrat Thin 100 - darker gray for readability */
+  /* Body text - darker gray for readability */
   p, span, div, button, input, textarea, label, td, th {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-system), sans-serif;
     font-weight: 100;
     color: var(--color-ink-300);
   }
