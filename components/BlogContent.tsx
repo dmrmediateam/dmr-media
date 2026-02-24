@@ -64,14 +64,22 @@ export default function BlogContent({ body }: BlogContentProps) {
     },
     list: {
       bullet: ({ children }: any) => (
-        <ul className="list-disc list-inside mb-6 text-[var(--color-ink-300)] space-y-2 font-serif">
+        <ul className="list-disc list-inside mb-6 text-black space-y-2 font-serif">
           {children}
         </ul>
       ),
       number: ({ children }: any) => (
-        <ol className="list-decimal list-inside mb-6 text-[var(--color-ink-300)] space-y-2 font-serif">
+        <ol className="list-decimal list-inside mb-6 text-black space-y-2 font-serif">
           {children}
         </ol>
+      ),
+    },
+    listItem: {
+      bullet: ({ children }: any) => (
+        <li className="text-black font-serif">{children}</li>
+      ),
+      number: ({ children }: any) => (
+        <li className="text-black font-serif">{children}</li>
       ),
     },
     marks: {

@@ -64,10 +64,23 @@
   }
 
   /* Body text with Montserrat Thin 100 - darker gray for readability */
-  p, span, div, button, input, textarea, label, li, td, th {
+  p, span, div, button, input, textarea, label, td, th {
     font-family: 'Montserrat', sans-serif;
     font-weight: 100;
     color: var(--color-ink-300);
+  }
+
+  /* List items - black, same font as parent context */
+  li {
+    font-family: inherit;
+    color: inherit;
+  }
+
+  /* Blog list items - black, Instrument Serif to match blog typography */
+  article ul li,
+  article ol li {
+    font-family: 'Instrument Serif', serif !important;
+    color: black !important;
   }
 
   /* Paragraph font size - 18px (2px larger than default 16px) */
