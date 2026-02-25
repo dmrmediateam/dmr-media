@@ -36,9 +36,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       }
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org'
+    const canonicalUrl = `${baseUrl}/blog/${post.slug.current}`
+
     return {
       title: post.seo?.metaTitle || post.title,
       description: post.seo?.metaDescription || post.description,
+      alternates: {
+        canonical: canonicalUrl,
+      },
       openGraph: {
         title: post.seo?.metaTitle || post.title,
         description: post.seo?.metaDescription || post.description,
