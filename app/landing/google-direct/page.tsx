@@ -9,11 +9,7 @@ import ClientLogosSlider from '@/components/ClientLogosSlider';
 import LandingCaseStudies from '@/components/landing/LandingCaseStudies';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
-const HERO_VIDEOS = [
-  '/videos/entry-of-a-luxury-home-2026-01-21-18-28-02-utc (1).mp4',
-  '/videos/interior-of-a-luxury-home-fountain-2026-01-21-18-30-07-utc (1).mp4',
-  '/videos/rich-lifestyle-expensive-luxury-home-in-south-flor-2026-01-20-16-10-30-utc (1).mp4',
-];
+const VSL_VIDEO_ID = 'KORkKVO3qZM';
 
 const SCROLL_REVIEWS = [
   {
@@ -49,12 +45,10 @@ const inputClasses =
 export default function GoogleDirectLandingPage() {
   const router = useRouter();
   const [showFloatingCTA, setShowFloatingCTA] = useState(false);
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', website: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const embedRef = useRef<HTMLDivElement>(null);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -93,27 +87,6 @@ export default function GoogleDirectLandingPage() {
       alert(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     }
   };
-
-  // Video carousel - cycle every 8 seconds
-  useEffect(() => {
-    const interval = setInterval(
-      () => setCurrentVideoIndex((prev) => (prev + 1) % HERO_VIDEOS.length),
-      8000
-    );
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    videoRefs.current.forEach((video, index) => {
-      if (video) {
-        if (index === currentVideoIndex) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      }
-    });
-  }, [currentVideoIndex]);
 
   // Hide header, footer, and AI chatbot for this landing page
   useEffect(() => {
@@ -193,152 +166,93 @@ export default function GoogleDirectLandingPage() {
         style={{ WebkitOverflowScrolling: 'touch' }}
       >
         {/* ═══════════════════════════════════════════════════════════════
-            HERO SECTION - Cinematic video carousel, conversion-focused
+            HERO SECTION - VSL video, trust badge, CTA
             ═══════════════════════════════════════════════════════════════ */}
         <section
           ref={heroRef}
-          className="relative min-h-[100dvh] flex items-center overflow-hidden"
+          className="relative bg-white pt-10 sm:pt-14 md:pt-16 pb-10 sm:pb-12"
         >
-          {/* Video Background Carousel */}
-          <div className="absolute inset-0 z-0">
-            {HERO_VIDEOS.map((src, index) => (
-              <video
-                key={src}
-                ref={(el) => { videoRefs.current[index] = el; }}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                  index === currentVideoIndex ? 'opacity-100 z-[1]' : 'opacity-0 z-0'
-                }`}
-                muted
-                loop
-                playsInline
-                preload={index === 0 ? 'metadata' : 'none'}
-              >
-                <source src={src} type="video/mp4" />
-              </video>
-            ))}
-            {/* Dark overlay - ensures text pops and remains readable */}
-            <div
-              className="absolute inset-0 z-[2]"
-              style={{
-                background:
-                  'linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.75) 100%)',
-              }}
-            />
-          </div>
-
-          {/* Hero Content */}
-          <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl mx-auto pt-20 sm:pt-24 flex flex-col items-center justify-center text-center">
-            <div className="max-w-2xl lg:max-w-3xl mx-auto">
-              {/* Trust Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="mb-6 sm:mb-8 flex justify-center"
-              >
-                <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-2 bg-white/90 backdrop-blur-sm border border-white/20 rounded-full">
-                  <span className="text-base sm:text-lg font-serif text-[var(--color-off-black)] whitespace-nowrap">
-                    5 stars since 2022
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <Image
-                      src="/images/Untitled design (81).png"
-                      alt="Trustpilot"
-                      width={72}
-                      height={24}
-                      className="h-4 sm:h-5 w-auto object-contain"
-                    />
-                    <Image
-                      src="/images/Google__G__logo.svg.png"
-                      alt="Google"
-                      width={58}
-                      height={19}
-                      className="h-3 sm:h-4 w-auto object-contain"
-                    />
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Headline */}
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light !text-white leading-[1.08] tracking-tight mb-4 sm:mb-6 [text-shadow:0_2px_20px_rgba(0,0,0,0.4)]"
-              >
-                Get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
-                <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> in under 30 days
-              </motion.h1>
-
-              {/* Subheadline */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-lg sm:text-xl md:text-2xl font-serif text-white/95 mb-8 sm:mb-10 max-w-xl mx-auto [text-shadow:0_1px_12px_rgba(0,0,0,0.5)]"
-              >
-                This is the exact system our teams use to dominate AI and optimize for the new age of search.
-              </motion.p>
-
-              {/* CTAs */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
-              >
-                <motion.button
-                  onClick={scrollToBook}
-                  className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 bg-[var(--color-trust)] text-white uppercase tracking-[0.12em] text-sm sm:text-base font-serif hover:opacity-90 transition-opacity duration-300"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Get Free Training
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </motion.button>
-                <motion.a
-                  href="#how-it-works"
-                  className="inline-flex items-center justify-center min-h-[52px] px-8 py-4 border border-white/60 bg-white/10 backdrop-blur-sm text-[#FAFAF9] uppercase tracking-[0.12em] text-sm sm:text-base font-serif hover:bg-white/20 transition-colors duration-300"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  See How It Works
-                </motion.a>
-              </motion.div>
-
-              {/* Secondary trust */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.45 }}
-                className="mt-6 sm:mt-8 text-sm sm:text-base font-serif text-white/80"
-              >
-                Free training · No obligation · We&apos;ll be in touch
-              </motion.p>
-            </div>
-          </div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-          >
-            <motion.button
-              onClick={() => document.getElementById('authority')?.scrollIntoView({ behavior: 'smooth' })}
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              className="p-2 text-white/80 hover:text-white transition-colors"
-              aria-label="Scroll to content"
+          <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl mx-auto flex flex-col items-center text-center">
+            {/* Trust Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-4 sm:mb-5 flex justify-center"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </motion.button>
-          </motion.div>
+              <div className="inline-flex items-center gap-2 sm:gap-3 px-3 py-1.5 border border-[var(--color-ink-200)] rounded-full bg-[var(--surface-base)]">
+                <span className="text-sm sm:text-base font-serif text-[var(--color-off-black)] whitespace-nowrap">
+                  5 stars since 2022
+                </span>
+                <div className="flex items-center gap-2">
+                  <Image
+                    src="/images/Untitled design (81).png"
+                    alt="Trustpilot"
+                    width={72}
+                    height={24}
+                    className="h-3.5 sm:h-4 w-auto object-contain"
+                  />
+                  <Image
+                    src="/images/Google__G__logo.svg.png"
+                    alt="Google"
+                    width={58}
+                    height={19}
+                    className="h-2.5 sm:h-3 w-auto object-contain"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-5 sm:mb-6 max-w-3xl"
+            >
+              Get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
+              <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> in under 30 days
+            </motion.h1>
+
+            {/* VSL Video */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="w-full max-w-3xl mx-auto mb-6 sm:mb-7 aspect-video rounded overflow-hidden bg-[var(--color-ink-200)]"
+            >
+              <iframe
+                src={`https://www.youtube.com/embed/${VSL_VIDEO_ID}?rel=0`}
+                title="DMR Media - Get More Real Estate Buyers & Sellers"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </motion.div>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-col items-center gap-3"
+            >
+              <motion.button
+                onClick={scrollToBook}
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 bg-[var(--color-trust)] text-white uppercase tracking-[0.12em] text-sm font-serif hover:opacity-90 transition-opacity duration-300"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Get Free Training
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </motion.button>
+              <p className="text-sm sm:text-base font-serif text-[var(--color-ink-400)]">
+                Free training · No obligation · We&apos;ll be in touch
+              </p>
+            </motion.div>
+          </div>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
