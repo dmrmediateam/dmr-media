@@ -66,6 +66,7 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     states: ['CA'],
     idxVendors: ['iHomeFinder'],
     cost: 'Varies (confirm with MLS)',
+    links: [{ label: 'BAREIS Website', url: 'https://bareis.com/' }],
   },
 ];
 

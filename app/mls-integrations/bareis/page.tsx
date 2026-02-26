@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'BAREIS MLS | Bay Area Real Estate Information Services | iHomeFinder IDX | DMR Media',
   description:
     'BAREIS MLS with iHomeFinder IDX coverage. Marin, Sonoma, Napa, Solano, Mendocino counties. North Bay and Wine Country live listings.',
+  alternates: {
+    canonical: 'https://dmrmedia.org/mls-integrations/bareis',
+  },
 };
 
 const IDX_VENDORS = ['iHomeFinder'];
@@ -123,7 +126,16 @@ export default function BareisMlsPage() {
             </h2>
             <div className="space-y-6 text-[var(--color-off-black)] font-serif leading-relaxed">
               <div>
-                BAREIS MLS® (Bay Area Real Estate Information Services) is the broker-owned multiple listing service serving real estate professionals throughout Marin, Sonoma, Napa, Solano, and Mendocino counties in Northern California. Since 1997, BAREIS has provided members with personalized service, accurate listing data, broad distribution, and powerful technology tools. iHomeFinder provides IDX integration so agents and brokers can display live listings on their websites.
+                BAREIS MLS® (Bay Area Real Estate Information Services) is the broker-owned multiple listing service serving real estate professionals throughout Marin, Sonoma, Napa, Solano, and Mendocino counties in Northern California. Since 1997, BAREIS has provided members with personalized service and support, accurate and extensive listing data, broad listing distribution, and powerful technology tools. iHomeFinder provides IDX integration so agents and brokers can display live listings on their websites. Visit{' '}
+                <a
+                  href="https://bareis.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:opacity-70 transition-opacity"
+                >
+                  bareis.com
+                </a>
+                {' '}for membership, orientation, and member support.
               </div>
               <div>
                 <h3 className="text-sm uppercase tracking-[0.2em] text-[var(--color-off-black)] mb-3">
@@ -347,6 +359,7 @@ export default function BareisMlsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-5xl">
             <Link
               href="/case-study/marquis-farwell-group"
+              className="group border-b border-[var(--color-ink-200)] pb-12 hover:opacity-60 transition-opacity duration-300 flex flex-col"
               className="group border-b border-[var(--color-ink-200)] pb-12 hover:opacity-60 transition-opacity duration-300 flex flex-col"
             >
               <div className="flex items-center justify-between gap-6 mb-6">
