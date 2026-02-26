@@ -36,7 +36,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       }
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org'
+    const rawBase = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org'
+    const baseUrl =
+      rawBase.includes('dmrmedia.org') && !rawBase.includes('www.')
+        ? 'https://www.dmrmedia.org'
+        : rawBase
     const canonicalUrl = `${baseUrl}/blog/${post.slug.current}`
 
     return {
@@ -82,7 +86,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   })
 
   // Build schema markup: Article + EEAT (Person, Organization) + FAQ when present
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org'
+  const rawBase = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org'
+  const baseUrl =
+    rawBase.includes('dmrmedia.org') && !rawBase.includes('www.')
+      ? 'https://www.dmrmedia.org'
+      : rawBase
   const postUrl = `${baseUrl}/blog/${post.slug.current}`
   const dateModified = post.schemaMarkup?.dateModified || post.publishedAt
   const articleSection = post.schemaMarkup?.articleSection || post.category
