@@ -8,6 +8,7 @@ export default function ContactPage() {
   return (
     <SEOWrapper slug="/contact">
       <div className="min-h-screen bg-white">
+        <h1 className="sr-only">Contact DMR Media</h1>
         {/* Contact Form Section */}
         <ContactForm />
       </div>

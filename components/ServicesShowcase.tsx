@@ -46,9 +46,9 @@ export default function ServicesShowcase({
     <section className={sectionClasses}>
       <div className="container-max">
         <div className="max-w-3xl mb-24 mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6">
+          <h1 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6">
             {heading}
-          </h2>
+          </h1>
           <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
             {description}
           </p>
