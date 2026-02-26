@@ -13,7 +13,11 @@ interface UrlEntry {
 
 export async function GET() {
   const rawBase = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.dmrmedia.org').replace(/\/$/, '');
-  const baseUrl = rawBase.replace(/^https:\/\/dmrmedia\.org(?:\/|$)/, 'https://www.dmrmedia.org');
+  // Sitemap must use canonical www URLs - force www.dmrmedia.org
+  const baseUrl =
+    rawBase.includes('dmrmedia.org') && !rawBase.includes('www.')
+      ? 'https://www.dmrmedia.org'
+      : rawBase;
   const today = new Date().toISOString().split('T')[0];
 
   // Use content registry for accurate lastmod on all static pages
