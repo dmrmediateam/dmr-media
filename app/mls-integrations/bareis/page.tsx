@@ -360,7 +360,6 @@ export default function BareisMlsPage() {
             <Link
               href="/case-study/marquis-farwell-group"
               className="group border-b border-[var(--color-ink-200)] pb-12 hover:opacity-60 transition-opacity duration-300 flex flex-col"
-              className="group border-b border-[var(--color-ink-200)] pb-12 hover:opacity-60 transition-opacity duration-300 flex flex-col"
             >
               <div className="flex items-center justify-between gap-6 mb-6">
                 <span className="uppercase tracking-[0.2em] text-xs text-[var(--color-off-black)] font-serif">
