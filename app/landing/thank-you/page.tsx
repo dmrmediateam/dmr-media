@@ -135,7 +135,7 @@ function ThankYouContent() {
               </p>
               <div className="relative mx-auto max-w-xl aspect-video rounded-md overflow-hidden border border-[var(--color-ink-200)] bg-black shadow-sm">
                 <iframe
-                  src="https://www.youtube.com/embed/5wFdk6qlxp8?rel=0"
+                  src="https://www.youtube.com/embed/5wFdk6qlxp8?rel=0&autoplay=1&mute=1"
                   title="The Exact AI System - VSL"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
