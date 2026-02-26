@@ -12,7 +12,8 @@ interface UrlEntry {
 }
 
 export async function GET() {
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org').replace(/\/$/, '');
+  const rawBase = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.dmrmedia.org').replace(/\/$/, '');
+  const baseUrl = rawBase.replace(/^https:\/\/dmrmedia\.org(?:\/|$)/, 'https://www.dmrmedia.org');
   const today = new Date().toISOString().split('T')[0];
 
   // Use content registry for accurate lastmod on all static pages

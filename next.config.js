@@ -40,6 +40,22 @@ const nextConfig = {
         destination: '/blog',
         permanent: true,
       },
+      // 301 redirects for 404 pages
+      {
+        source: '/blog/luxury-real-estate-marketing-ideas-to-print-luxury-listings',
+        destination: '/blog/best-10-luxury-real-estate-marketing-tactics-for-2026',
+        permanent: true,
+      },
+      {
+        source: '/ads',
+        destination: '/google-ads-management',
+        permanent: true,
+      },
+      {
+        source: '/lead/gmb',
+        destination: '/seo-optimization',
+        permanent: true,
+      },
     ]
   },
 }
