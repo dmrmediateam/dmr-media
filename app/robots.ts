@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: ['/', '/_next/image', '/_next/static/'],
-        disallow: ['/api/', '/_next/'],
+        allow: ['/'],
+        disallow: ['/api/'],
       },
     ],
     sitemap: 'https://www.dmrmedia.org/sitemap.xml',
