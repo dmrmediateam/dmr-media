@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     icon: '/icon.png',
     apple: '/icon.png',
   },
-  metadataBase: new URL('https://dmrmedia.org'),
+  metadataBase: new URL('https://www.dmrmedia.org'),
 }
 
 export default function RootLayout({
@@ -97,10 +97,10 @@ export default function RootLayout({
                 '@context': 'https://schema.org',
                 '@type': 'Organization',
                 name: 'DMR Media',
-                url: 'https://dmrmedia.org',
+                url: 'https://www.dmrmedia.org',
                 logo: {
                   '@type': 'ImageObject',
-                  url: 'https://dmrmedia.org/images/logo.png',
+                  url: 'https://www.dmrmedia.org/images/logo.png',
                 },
                 sameAs: [
                   'https://www.linkedin.com/company/dmr-media',
@@ -120,10 +120,10 @@ export default function RootLayout({
                 '@context': 'https://schema.org',
                 '@type': 'WebSite',
                 name: 'DMR Media',
-                url: 'https://dmrmedia.org',
+                url: 'https://www.dmrmedia.org',
                 potentialAction: {
                   '@type': 'SearchAction',
-                  target: 'https://dmrmedia.org/blog?q={search_term_string}',
+                  target: 'https://www.dmrmedia.org/blog?q={search_term_string}',
                   'query-input': 'required name=search_term_string',
                 },
               },

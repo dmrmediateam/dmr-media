@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     'BAREIS MLS with iHomeFinder IDX coverage. Marin, Sonoma, Napa, Solano, Mendocino counties. North Bay and Wine Country live listings.',
   alternates: {
-    canonical: 'https://dmrmedia.org/mls-integrations/bareis',
+    canonical: 'https://www.dmrmedia.org/mls-integrations/bareis',
   },
 };
 

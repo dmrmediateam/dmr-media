@@ -19,7 +19,7 @@
 
 import { getContentEntry } from '@/lib/content-registry'
 
-const BASE_URL = 'https://dmrmedia.org'
+const BASE_URL = 'https://www.dmrmedia.org'
 const ORG_NAME = 'DMR Media'
 
 interface SEOWrapperProps {

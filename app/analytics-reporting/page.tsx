@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   description: 'Data-driven insights and transparent reporting to track campaign performance and optimize results for luxury real estate professionals. Weekly dashboards, 50+ metrics monitored, 100% transparency.',
   keywords: 'real estate analytics, real estate reporting, marketing dashboards, real estate metrics, campaign performance tracking, luxury real estate analytics, real estate data insights, marketing ROI reporting',
   alternates: {
-    canonical: 'https://dmrmedia.org/analytics-reporting',
+    canonical: 'https://www.dmrmedia.org/analytics-reporting',
   },
   openGraph: {
     title: 'Analytics & Reporting for Real Estate | DMR Media',
     description: 'Data-driven insights and transparent reporting to track campaign performance and optimize results for luxury real estate professionals.',
-    url: 'https://dmrmedia.org/analytics-reporting',
+    url: 'https://www.dmrmedia.org/analytics-reporting',
     siteName: 'DMR Media',
     type: 'website',
   },

@@ -15,12 +15,12 @@ export const metadata: Metadata = {
     'Showcase premium listings with sophisticated digital marketing campaigns that attract qualified buyers and maximize property exposure. 40% faster sales, 250K+ listing impressions, 95% client satisfaction.',
   keywords: 'property marketing, luxury property marketing, real estate listing marketing, property launch campaigns, real estate digital marketing, listing promotion, property advertising, luxury real estate marketing',
   alternates: {
-    canonical: 'https://dmrmedia.org/property-marketing',
+    canonical: 'https://www.dmrmedia.org/property-marketing',
   },
   openGraph: {
     title: 'Property Marketing for Real Estate | DMR Media',
     description: 'Showcase premium listings with sophisticated digital marketing campaigns that attract qualified buyers and maximize property exposure.',
-    url: 'https://dmrmedia.org/property-marketing',
+    url: 'https://www.dmrmedia.org/property-marketing',
     siteName: 'DMR Media',
     type: 'website',
   },

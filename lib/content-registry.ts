@@ -313,7 +313,7 @@ export function getContentEntry(slug: string): ContentEntry | undefined {
  * Falls back to the site default description if the slug isn't registered.
  */
 export function metadataFromRegistry(slug: string) {
-  const BASE_URL = 'https://dmrmedia.org'
+  const BASE_URL = 'https://www.dmrmedia.org'
   const SITE_NAME = 'DMR Media'
   const FALLBACK_DESCRIPTION =
     'Specialized Google marketing, SEO, and Google Ads for luxury real estate professionals. Elevate your brand and dominate the premium property market.'

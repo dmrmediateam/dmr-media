@@ -14,7 +14,11 @@ export default async function BlogPage() {
   // Filter out posts without valid slugs
   const validPosts = posts.filter((post) => post.slug?.current)
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org'
+  const rawBase = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org'
+  const baseUrl =
+    rawBase.includes('dmrmedia.org') && !rawBase.includes('www.')
+      ? 'https://www.dmrmedia.org'
+      : rawBase
   const organizationSchema = buildOrganizationSchema(baseUrl)
 
   return (

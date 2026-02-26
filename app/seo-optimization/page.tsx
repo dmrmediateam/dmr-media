@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   description: 'Dominate local search results and attract high-value clients with strategic SEO campaigns tailored for luxury real estate professionals. 300%+ traffic lift, #1 local rankings, 2-3x lead volume increase.',
   keywords: 'real estate SEO, luxury real estate SEO, local SEO for real estate, real estate search engine optimization, property SEO, real estate website SEO, luxury property SEO, real estate SEO services',
   alternates: {
-    canonical: 'https://dmrmedia.org/seo-optimization',
+    canonical: 'https://www.dmrmedia.org/seo-optimization',
   },
   openGraph: {
     title: 'SEO Optimization for Real Estate | DMR Media',
     description: 'Dominate local search results and attract high-value clients with strategic SEO campaigns tailored for luxury real estate professionals.',
-    url: 'https://dmrmedia.org/seo-optimization',
+    url: 'https://www.dmrmedia.org/seo-optimization',
     siteName: 'DMR Media',
     type: 'website',
   },

@@ -15,12 +15,12 @@ export const metadata: Metadata = {
     'Maximize ROI with precision-targeted Google Ads campaigns designed to reach affluent homebuyers and sellers in luxury real estate markets. 450% average ROI, 3-5x lead volume increase, $2.50 cost per lead.',
   keywords: 'Google Ads for real estate, real estate Google Ads management, luxury real estate advertising, real estate PPC, Google Ads campaigns, real estate paid search, property marketing ads, luxury real estate Google Ads',
   alternates: {
-    canonical: 'https://dmrmedia.org/google-ads-management',
+    canonical: 'https://www.dmrmedia.org/google-ads-management',
   },
   openGraph: {
     title: 'Google Ads Management for Real Estate | DMR Media',
     description: 'Maximize ROI with precision-targeted Google Ads campaigns designed to reach affluent homebuyers and sellers in luxury real estate markets.',
-    url: 'https://dmrmedia.org/google-ads-management',
+    url: 'https://www.dmrmedia.org/google-ads-management',
     siteName: 'DMR Media',
     type: 'website',
   },

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'MLS PIN (MLS Property Information Network) with Showcase IDX and iHomeFinder IDX coverage. Massachusetts, Rhode Island, New Hampshire. New England live listings.',
   alternates: {
-    canonical: 'https://dmrmedia.org/mls-integrations/mls-pin',
+    canonical: 'https://www.dmrmedia.org/mls-integrations/mls-pin',
   },
 };
 
