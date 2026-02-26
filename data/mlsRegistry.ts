@@ -68,6 +68,17 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     cost: 'Varies (confirm with MLS)',
     links: [{ label: 'BAREIS Website', url: 'https://bareis.com/' }],
   },
+  {
+    name: 'MLS Property Information Network (MLS PIN)',
+    slug: 'mls-pin',
+    states: ['MA', 'RI', 'NH'],
+    idxVendors: ['Showcase IDX', 'iHomeFinder'],
+    cost: 'Varies (IDX fee ~$10/mo via some vendors; confirm with MLS)',
+    links: [
+      { label: 'MLS PIN Website', url: 'https://www.mlspin.com/' },
+      { label: 'Showcase IDX Coverage', url: 'https://showcaseidx.com/mls-coverage/mls-property-information-network-mlspin/' },
+    ],
+  },
 ];
 
 // --- Parsed Registry ---
@@ -84,7 +95,7 @@ const MLS_REGISTRY: MlsEntry[] = RAW_REGISTRY.map((raw, idx) => {
 
 // --- Serviced States (highlighted on map) ---
 
-export const SERVICED_STATES = ['WI', 'FL', 'CA', 'IL', 'VT', 'NH'] as const;
+export const SERVICED_STATES = ['WI', 'FL', 'CA', 'IL', 'VT', 'NH', 'MA', 'RI'] as const;
 export type ServicedState = (typeof SERVICED_STATES)[number];
 
 // --- Validation: Uniqueness & Fail Fast ---
