@@ -212,7 +212,7 @@ export default function GoogleDirectLandingPage() {
                   </div>
                 </div>
                 <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-6">
-                  Get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
+                  In the next few years 80% of agents will go bankrupt. Instead, get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
                   <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> in under 30 days
                 </h2>
                 <p className="text-base sm:text-lg md:text-xl font-serif text-[var(--color-ink-300)] leading-relaxed mb-8">
@@ -412,7 +412,7 @@ export default function GoogleDirectLandingPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-5 sm:mb-6 max-w-3xl"
             >
-              Get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
+              In the next few years 80% of agents will go bankrupt. Instead, get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
               <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> in under 30 days
             </motion.h1>
 

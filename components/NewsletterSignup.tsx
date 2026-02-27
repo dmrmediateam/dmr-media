@@ -72,7 +72,7 @@ export default function NewsletterSignup() {
       <section className="my-20 p-16 bg-[#353535]">
         <div className="max-w-2xl mx-auto text-center">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-light !text-white mb-5 md:mb-6 leading-[1.2] tracking-tight">
-            Get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
+            In the next few years 80% of agents will go bankrupt. Instead, get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
             <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> in under 30 days
           </h3>
           <div className="w-full max-w-xl mx-auto mb-8 aspect-video rounded overflow-hidden bg-black/30">
@@ -151,7 +151,7 @@ export default function NewsletterSignup() {
                     {/* Copy - Centered */}
                     <div className="space-y-3 mb-8 max-w-xl mx-auto">
                       <h3 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] leading-tight">
-                        Get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
+                        In the next few years 80% of agents will go bankrupt. Instead, get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
                         <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> in under 30 days
                       </h3>
                       <p className="text-[15px] text-[var(--color-ink-300)] leading-[1.6] font-serif">
