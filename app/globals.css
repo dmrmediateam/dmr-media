@@ -135,6 +135,16 @@
   }
 }
 
+.scroll-slow-logos {
+  animation: scroll-slow 18s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .scroll-slow-logos {
+    animation-duration: 10s;
+  }
+}
+
 /* Horizontal Scroll Animation - For Landing Page Agencies/Reviews */
 @keyframes scroll-horizontal {
   0% {

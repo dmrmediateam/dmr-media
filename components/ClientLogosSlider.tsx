@@ -25,7 +25,7 @@ const ClientLogosSlider = () => {
   const duplicatedLogos = [...logos, ...logos, ...logos];
 
   return (
-    <section className="relative py-12 bg-[var(--surface-base)] overflow-hidden border-b border-[var(--color-ink-200)]">
+    <section className="relative py-6 bg-[var(--surface-base)] overflow-hidden border-b border-[var(--color-ink-200)]">
       {/* Left fade gradient */}
       <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[var(--surface-base)] via-[var(--surface-base)]/80 to-transparent z-10 pointer-events-none" />
       
@@ -34,11 +34,8 @@ const ClientLogosSlider = () => {
 
       {/* Scrolling container */}
       <div 
-        className="flex items-center"
-        style={{
-          animation: 'scroll-slow 18s linear infinite',
-          gap: '6rem',
-        }}
+        className="flex items-center scroll-slow-logos"
+        style={{ gap: '6rem' }}
       >
         {duplicatedLogos.map((logo, index) => {
           const isSmaller = smallerLogos.includes(logo);
