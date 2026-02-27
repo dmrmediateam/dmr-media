@@ -9,7 +9,7 @@ interface BlogContentProps {
 }
 
 export default function BlogContent({ body }: BlogContentProps) {
-  // Process blocks to insert newsletter signup after 3rd paragraph
+  // Process blocks to insert newsletter signup just before a heading, after enough content
   const processedBody = useMemo(() => {
     if (!body || !Array.isArray(body)) return body
 
@@ -18,21 +18,24 @@ export default function BlogContent({ body }: BlogContentProps) {
     let newsletterInserted = false
 
     for (const block of body) {
+      // Insert newsletter signup just before first heading after 8+ paragraphs
+      if (
+        block._type === 'block' &&
+        (block.style === 'h2' || block.style === 'h3') &&
+        paragraphCount >= 8 &&
+        !newsletterInserted
+      ) {
+        newsletterInserted = true
+        result.push({
+          _type: 'newsletterSignup',
+          _key: `newsletter-${Date.now()}`,
+        })
+      }
+
       result.push(block)
 
-      // Count normal paragraphs (not headings, blockquotes, etc.)
       if (block._type === 'block' && block.style === 'normal') {
         paragraphCount++
-
-        // Insert newsletter signup after 3rd paragraph
-        if (paragraphCount === 3 && !newsletterInserted) {
-          newsletterInserted = true
-          // Insert a custom block that will render the newsletter signup
-          result.push({
-            _type: 'newsletterSignup',
-            _key: `newsletter-${Date.now()}`,
-          })
-        }
       }
     }
 
