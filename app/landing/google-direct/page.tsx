@@ -9,7 +9,7 @@ import ClientLogosSlider from '@/components/ClientLogosSlider';
 import LandingCaseStudies from '@/components/landing/LandingCaseStudies';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 
-const VSL_VIDEO_ID = 'KORkKVO3qZM';
+const VSL_VIDEO_ID = 'Cty5rQPwksM';
 
 const SCROLL_REVIEWS = [
   {
