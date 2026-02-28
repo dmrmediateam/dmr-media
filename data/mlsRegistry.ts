@@ -69,6 +69,17 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     links: [{ label: 'BAREIS Website', url: 'https://bareis.com/' }],
   },
   {
+    name: 'Hudson MLS',
+    slug: 'hudson-mls',
+    states: ['NY', 'NJ'],
+    idxVendors: ['iHomeFinder'],
+    cost: 'Varies (confirm with MLS)',
+    links: [
+      { label: 'Hudson Gateway Association of REALTORS®', url: 'https://www.hgar.com/' },
+      { label: 'iHomeFinder Hudson Gateway Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/hudson-gateway-multiple-listing-service/' },
+    ],
+  },
+  {
     name: 'MLS Property Information Network (MLS PIN)',
     slug: 'mls-pin',
     states: ['MA', 'RI', 'NH'],
@@ -95,7 +106,7 @@ const MLS_REGISTRY: MlsEntry[] = RAW_REGISTRY.map((raw, idx) => {
 
 // --- Serviced States (highlighted on map) ---
 
-export const SERVICED_STATES = ['WI', 'FL', 'CA', 'IL', 'VT', 'NH', 'MA', 'RI'] as const;
+export const SERVICED_STATES = ['WI', 'FL', 'CA', 'IL', 'VT', 'NH', 'MA', 'RI', 'NY', 'NJ'] as const;
 export type ServicedState = (typeof SERVICED_STATES)[number];
 
 // --- Validation: Uniqueness & Fail Fast ---
