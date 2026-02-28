@@ -76,7 +76,8 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     cost: 'Varies (confirm with MLS)',
     links: [
       { label: 'Hudson Gateway Association of REALTORS®', url: 'https://www.hgar.com/' },
-      { label: 'iHomeFinder Hudson Gateway Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/hudson-gateway-multiple-listing-service/' },
+      { label: 'AgentFire Hudson MLS Coverage', url: 'https://agentfire.com/mls-coverage/hudson-mls/' },
+      { label: 'iHomeFinder IDX Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/hudson-gateway-multiple-listing-service/' },
     ],
   },
   {

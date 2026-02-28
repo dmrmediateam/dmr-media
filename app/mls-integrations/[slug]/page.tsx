@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getMlsBySlug, listMls } from '@/data/mlsRegistry';
 import type { Metadata } from 'next';
 
-/** Slugs that have dedicated custom pages - exclude from dynamic route to avoid conflict */
+/** Slugs that have dedicated custom pages - exclude from dynamic route */
 const DEDICATED_PAGE_SLUGS = new Set([
   'stellar-mls',
   'south-central-wisconsin-mls',

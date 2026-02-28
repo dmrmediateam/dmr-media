@@ -2,9 +2,9 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Hudson MLS | iHomeFinder IDX Coverage | New York & New Jersey | DMR Media',
+  title: 'Hudson MLS | New York & New Jersey Real Estate | iHomeFinder IDX | DMR Media',
   description:
-    'Hudson MLS with iHomeFinder IDX coverage. Connect your site to live listings across the New York metro and New Jersey tri-state area.',
+    'Hudson MLS with iHomeFinder IDX coverage. New York and New Jersey live listings. Hudson Gateway, tri-state area. DMR Media serves 2 clients in this region.',
   alternates: {
     canonical: 'https://www.dmrmedia.org/mls-integrations/hudson-mls',
   },
@@ -125,17 +125,14 @@ export default function HudsonMlsPage() {
             </h2>
             <div className="space-y-6 text-[var(--color-off-black)] font-serif leading-relaxed">
               <div>
-                Hudson MLS, powered by Paragon, is a leading multiple listing service provider serving the real estate markets of New York and New Jersey. With its user-friendly interface and powerful features, Hudson MLS helps real estate professionals navigate the fast-paced and competitive tri-state area with ease.
-              </div>
-              <div>
-                As a trusted resource for thousands of REALTORS®, Hudson MLS provides comprehensive property listings, market data, and innovative tools that make buying and selling homes a breeze. From the lively streets of New York City to the suburbs of New Jersey, Hudson MLS connects real estate professionals with the information and resources they need to thrive.
+                Hudson MLS, powered by Paragon, is a leading multiple listing service provider serving the real estate markets of New York and New Jersey. With its user-friendly interface and powerful features, Hudson MLS helps real estate professionals navigate the fast-paced and competitive tri-state area with ease. As a trusted resource for thousands of REALTORS®, Hudson MLS provides comprehensive property listings, market data, and innovative tools. DMR Media integrates with iHomeFinder for this MLS and currently serves 2 clients in this area.
               </div>
               <div>
                 <h3 className="text-sm uppercase tracking-[0.2em] text-[var(--color-off-black)] mb-3">
                   Coverage
                 </h3>
                 <div>
-                  New York and New Jersey—including New York City, Staten Island, Newark, Jersey City, Paterson, Edison, Elizabeth, Clifton, Plainfield, Spring Valley, Passaic, East Orange, Union City, Piscataway, Irvington, Bayonne, and surrounding areas. The Hudson Gateway Association of REALTORS® (HGAR) region includes Bronx, Dutchess, Orange, Putnam, Rockland, Sullivan, Ulster, and Westchester Counties—including The Bronx, Yonkers, Middletown, Newburgh, White Plains, Mount Vernon, New Rochelle, Carmel, Monroe, Scarsdale, Warwick, New Windsor, Poughkeepsie, and Bronxville.
+                  New York and New Jersey—including New York City, Staten Island, Newark, Jersey City, Paterson, Edison, Elizabeth, Clifton, Plainfield, Spring Valley, Passaic, East Orange, Union City, Piscataway, Irvington, Bayonne, and surrounding tri-state areas. Hudson Gateway MLS (HGMLS) merged with MLS of Long Island in March 2020 to form OneKey® MLS; IDX coverage is available through iHomeFinder for the combined system.
                 </div>
               </div>
               <div>
@@ -152,7 +149,7 @@ export default function HudsonMlsPage() {
                   >
                     hgar.com
                   </a>
-                  {' '}for membership, OneKey® MLS access, and member support.
+                  {' '}(Hudson Gateway Association of REALTORS®) for membership, OneKey® MLS access, and member support.
                 </div>
               </div>
             </div>
@@ -165,23 +162,12 @@ export default function HudsonMlsPage() {
             </h2>
             <div className="space-y-6 text-[var(--color-off-black)] font-serif leading-relaxed">
               <div>
-                Hudson MLS integrates with iHomeFinder to provide IDX (Internet Data Exchange) services. iHomeFinder connects directly to the MLS feed, allowing agents to display current listings—including active, pending, and sold—on their websites with automatic updates.
+                Hudson MLS integrates with iHomeFinder to provide IDX (Internet Data Exchange) services. iHomeFinder connects directly to the MLS feed, allowing agents to display current listings—including active and sold—on their websites with automatic updates approximately every hour.
               </div>
               <div>
                 <h3 className="text-lg font-serif font-light text-[var(--color-off-black)] mb-4">
                   iHomeFinder IDX Services for Hudson MLS
                 </h3>
-                <p className="mb-4">
-                  iHomeFinder is a licensed IDX vendor for Hudson Gateway MLS (now part of OneKey® MLS). Learn more at{' '}
-                  <a
-                    href="https://www.ihomefinder.com/resources/idx-coverage/hudson-gateway-multiple-listing-service/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline hover:opacity-70 transition-opacity"
-                  >
-                    iHomeFinder Hudson Gateway coverage
-                  </a>.
-                </p>
                 <ul className="list-disc list-inside space-y-2">
                   <li>Live property search widgets</li>
                   <li>Listing detail pages with full photos and descriptions</li>
@@ -195,7 +181,7 @@ export default function HudsonMlsPage() {
                   Integration Notes & Restrictions
                 </h3>
                 <div>
-                  Agents must hold active MLS membership. Your employing broker must be an MLS subscriber. Display rules and data refresh schedules are set by the MLS. Contact the MLS or iHomeFinder directly for the latest integration requirements.
+                  Agents must hold active membership in the Hudson Gateway Association of REALTORS® (or applicable association) and subscribe to OneKey® MLS to use iHomeFinder IDX coverage. Display rules and data refresh schedules are set by the MLS. Contact the MLS or iHomeFinder directly for the latest integration requirements.
                 </div>
               </div>
               <div>
@@ -203,7 +189,7 @@ export default function HudsonMlsPage() {
                   href="/mls-integrations"
                   className="text-[var(--color-off-black)] underline hover:opacity-60 transition-opacity font-serif"
                 >
-                  Browse all MLS integrations
+                  Learn more about IDX services with iHomeFinder here
                 </Link>
                 .
               </div>
@@ -217,15 +203,18 @@ export default function HudsonMlsPage() {
             </h2>
             <div className="space-y-6 text-[var(--color-off-black)] font-serif leading-relaxed">
               <div>
-                Membership in the Hudson Gateway Association of REALTORS® (HGAR) or the appropriate local board is required for agents and brokers who wish to list or show properties in the New York and New Jersey tri-state area. OneKey® MLS (formed from the merger of Hudson Gateway MLS and MLS of Long Island) provides the consolidated listing feed for the region.
+                Membership in the Hudson Gateway Association of REALTORS® and subscription to OneKey® MLS is required for agents and brokers who wish to list or show properties in the New York and New Jersey tri-state area.
               </div>
               <div>
                 <h3 className="text-lg font-serif font-light text-[var(--color-off-black)] mb-4">
-                  IDX Data Feed Fees
+                  Association Fees (via iHomeFinder)
                 </h3>
                 <div>
-                  Fees vary by association and vendor. iHomeFinder charges separate subscription fees for IDX integration. Confirm current costs with iHomeFinder and your local board before signing up.
+                  None. iHomeFinder does not charge fees paid to the association for Hudson MLS / OneKey® MLS IDX coverage.
                 </div>
+              </div>
+              <div>
+                iHomeFinder charges separate subscription fees for IDX integration; pricing varies by plan. Confirm current costs with iHomeFinder before signing up.
               </div>
             </div>
           </section>
@@ -238,25 +227,35 @@ export default function HudsonMlsPage() {
             <div className="space-y-6 text-[var(--color-off-black)] font-serif leading-relaxed">
               <div>
                 <h3 className="text-lg font-serif font-light text-[var(--color-off-black)] mb-4">
-                  MLS Tools & Benefits
+                  Listing Types Supported
                 </h3>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>OneKey® MLS platform for the tri-state region</li>
-                  <li>Comprehensive property listings and market data</li>
-                  <li>Education and professional development</li>
-                  <li>Member support and advocacy</li>
+                  <li>Residential (single-family, condos, townhomes)</li>
+                  <li>Commercial properties</li>
+                  <li>Land and lots</li>
                 </ul>
               </div>
               <div>
                 <h3 className="text-lg font-serif font-light text-[var(--color-off-black)] mb-4">
-                  IDX Search & Data Features
+                  Search & Data Features
                 </h3>
                 <ul className="list-disc list-inside space-y-2">
                   <li>Large photos, virtual tours, and property details</li>
                   <li>Map-based search and boundary filters</li>
-                  <li>Active, pending, and sold listings</li>
-                  <li>Open house information</li>
+                  <li>Market statistics and sold data</li>
+                  <li>Open house and showing information</li>
+                  <li>Distressed listing search</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-serif font-light text-[var(--color-off-black)] mb-4">
+                  iHomeFinder Tools & Benefits
+                </h3>
+                <ul className="list-disc list-inside space-y-2">
                   <li>Lead capture from property views and searches</li>
+                  <li>CRM integration for follow-up</li>
+                  <li>Customizable search widgets for agent websites</li>
+                  <li>Mobile-responsive listing displays</li>
                 </ul>
               </div>
             </div>
@@ -269,13 +268,13 @@ export default function HudsonMlsPage() {
             </h2>
             <div className="space-y-6 text-[var(--color-off-black)] font-serif leading-relaxed">
               <div>
-                With a focus on innovation and exceptional service, Hudson MLS is always improving to meet the changing needs of its members and the diverse communities they serve. By using advanced technology and industry expertise, Hudson MLS plays a key role in making successful real estate transactions happen and supporting growth in one of the nation&apos;s most exciting and desirable regions.
+                Hudson MLS serves real estate professionals throughout the New York metropolitan area and New Jersey. From the streets of New York City to the suburbs of New Jersey, Hudson MLS connects agents with the information and resources they need to thrive in one of the nation&apos;s most competitive markets.
               </div>
               <div>
-                From the famous skyline of New York City to the neighborhoods of New Jersey, the Hudson MLS region centralizes listing data for one of the most competitive real estate markets in the country.
+                With a focus on innovation and exceptional service, Hudson MLS and OneKey® MLS play a key role in making successful real estate transactions happen. DMR Media integrates with iHomeFinder for this MLS and serves 2 clients in the Hudson region.
               </div>
               <div>
-                DMR Media serves clients in the Hudson MLS region. If you&apos;re an agent or broker in New York or New Jersey and want to display live listings on your website, we can help you connect via iHomeFinder.
+                If you&apos;re an agent or broker in New York or New Jersey and want to display live listings on your website, we can help you connect via iHomeFinder IDX integration.
               </div>
             </div>
           </section>
@@ -291,15 +290,15 @@ export default function HudsonMlsPage() {
                   What is Hudson MLS?
                 </dt>
                 <dd className="text-[var(--color-off-black)] font-serif leading-relaxed">
-                  Hudson MLS is a leading multiple listing service provider serving the real estate markets of New York and New Jersey. It provides comprehensive property listings, market data, and tools for real estate professionals in the tri-state area. Hudson Gateway MLS merged with MLS of Long Island in 2020 to form OneKey® MLS.
+                  Hudson MLS, powered by Paragon, is a leading multiple listing service serving the real estate markets of New York and New Jersey. Hudson Gateway MLS merged with MLS of Long Island in March 2020 to form OneKey® MLS. The combined system provides comprehensive property listings and market data for the tri-state area.
                 </dd>
               </div>
               <div>
                 <dt className="text-lg font-serif font-light text-[var(--color-off-black)] mb-2">
-                  Does DMR Media support Hudson MLS?
+                  Does iHomeFinder support Hudson MLS?
                 </dt>
                 <dd className="text-[var(--color-off-black)] font-serif leading-relaxed">
-                  Yes. We support Hudson MLS through iHomeFinder. iHomeFinder provides IDX integration so agents can display live listings on their websites. We currently serve clients in this region.
+                  Yes. iHomeFinder is a licensed IDX vendor for Hudson MLS / OneKey® MLS. Agents can use iHomeFinder to display active and sold listings on their websites via IDX integration.
                 </dd>
               </div>
               <div>
@@ -307,7 +306,7 @@ export default function HudsonMlsPage() {
                   What areas does Hudson MLS cover?
                 </dt>
                 <dd className="text-[var(--color-off-black)] font-serif leading-relaxed">
-                  New York and New Jersey—including New York City, Staten Island, Newark, Jersey City, Paterson, Edison, Elizabeth, White Plains, Yonkers, Westchester County, the Hudson Valley, and surrounding areas.
+                  New York and New Jersey—including New York City, Staten Island, Newark, Jersey City, Paterson, Edison, Elizabeth, White Plains, Mount Vernon, New Rochelle, Yonkers, Poughkeepsie, and surrounding tri-state areas. OneKey® MLS covers Bronx, Dutchess, Orange, Putnam, Rockland, Sullivan, Ulster, and Westchester counties in New York.
                 </dd>
               </div>
               <div>
@@ -315,15 +314,15 @@ export default function HudsonMlsPage() {
                   How do I get IDX integration for my website?
                 </dt>
                 <dd className="text-[var(--color-off-black)] font-serif leading-relaxed">
-                  You must be an active MLS member with an employing broker who is an MLS subscriber. Contact iHomeFinder for IDX subscription options, or work with a web partner like DMR Media to configure integration on your behalf.
+                  You must be an active member of the Hudson Gateway Association of REALTORS® (or applicable association) and subscribe to OneKey® MLS. Contact iHomeFinder for IDX subscription options, or work with a web partner who can configure iHomeFinder IDX integration for Hudson MLS on your behalf.
                 </dd>
               </div>
               <div>
                 <dt className="text-lg font-serif font-light text-[var(--color-off-black)] mb-2">
-                  Does DMR Media help with Hudson MLS IDX setup?
+                  Does DMR Media help with iHomeFinder IDX setup for Hudson MLS?
                 </dt>
                 <dd className="text-[var(--color-off-black)] font-serif leading-relaxed">
-                  Yes. Our team can help you connect your site to Hudson MLS via iHomeFinder. Contact us for assistance with IDX implementation.
+                  Yes. We integrate with iHomeFinder for Hudson MLS and serve 2 clients in this area. Our team can help you connect your site to Hudson MLS. Contact us for assistance with iHomeFinder integration and IDX implementation.
                 </dd>
               </div>
             </dl>
@@ -335,7 +334,7 @@ export default function HudsonMlsPage() {
               Connect Your Site to Hudson MLS
             </h2>
             <div className="text-[var(--color-off-black)] font-serif leading-relaxed mb-8">
-              If you serve New York or New Jersey and want to display live listings on your website, iHomeFinder offers Hudson MLS IDX integration. Our team can help you set up coverage and ensure your site complies with MLS display rules.
+              If you serve the New York or New Jersey tri-state area and want to display live listings on your website, iHomeFinder IDX integration for Hudson MLS is a proven solution. Our team can help you set up iHomeFinder MLS coverage and ensure your site complies with MLS display rules.
             </div>
             <Link
               href="/contact"
@@ -357,7 +356,7 @@ export default function HudsonMlsPage() {
             New York & New Jersey real estate growth stories
           </h2>
           <p className="text-[var(--color-off-black)] font-serif leading-relaxed mb-8 max-w-2xl">
-            We serve clients in the Hudson MLS region. Case studies from the New York and New Jersey tri-state area coming soon.
+            We serve 2 clients in the Hudson MLS region. Case studies from the New York and New Jersey area coming soon.
           </p>
           <Link
             href="/case-studies"
