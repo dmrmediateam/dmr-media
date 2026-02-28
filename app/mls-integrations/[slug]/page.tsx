@@ -3,8 +3,20 @@ import Link from 'next/link';
 import { getMlsBySlug, listMls } from '@/data/mlsRegistry';
 import type { Metadata } from 'next';
 
+/** Slugs that have dedicated custom pages - exclude from dynamic route to avoid conflict */
+const DEDICATED_PAGE_SLUGS = new Set([
+  'stellar-mls',
+  'south-central-wisconsin-mls',
+  'prime-mls',
+  'bareis',
+  'hudson-mls',
+  'mls-pin',
+]);
+
 export function generateStaticParams() {
-  return listMls().map((e) => ({ slug: e.slug }));
+  return listMls()
+    .filter((e) => !DEDICATED_PAGE_SLUGS.has(e.slug))
+    .map((e) => ({ slug: e.slug }));
 }
 
 export async function generateMetadata({
