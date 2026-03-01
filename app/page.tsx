@@ -54,15 +54,21 @@ export default async function Home() {
                     href={`/blog/${post.slug?.current || ''}`}
                     className="group bg-white border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300"
                   >
-                    <div className="relative h-64 bg-gray-light overflow-hidden mb-6">
-                      <Image
-                        src={post.mainImage.asset.url}
-                        alt={post.mainImage.alt}
-                        fill
-                        className="object-cover"
-                        loading="lazy"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
+                    <div className="relative h-64 bg-[var(--color-ink-200)] overflow-hidden mb-6">
+                      {post.mainImage?.asset?.url ? (
+                        <Image
+                          src={post.mainImage.asset.url}
+                          alt={post.mainImage.alt || post.title}
+                          fill
+                          className="object-cover"
+                          loading="lazy"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-[var(--color-ink-400)] text-sm font-serif">
+                          No image
+                        </div>
+                      )}
                     </div>
 
                     <div>

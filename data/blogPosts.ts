@@ -290,7 +290,17 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       "slug": slug.current
     },
     readTime,
-    body,
+    "body": body[]{
+      ...,
+      _type == "image" => {
+        ...,
+        "asset": asset->{
+          _id,
+          url,
+          metadata { dimensions }
+        }
+      }
+    },
     tags,
     seo,
     schemaMarkup

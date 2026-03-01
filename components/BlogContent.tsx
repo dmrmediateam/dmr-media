@@ -3,6 +3,7 @@
 import { PortableText } from '@portabletext/react'
 import NewsletterSignup from './NewsletterSignup'
 import { useMemo } from 'react'
+import { urlFor } from '@/lib/sanity'
 
 interface BlogContentProps {
   body: any[]
@@ -98,6 +99,23 @@ export default function BlogContent({ body }: BlogContentProps) {
       ),
     },
     types: {
+      image: ({ value }: { value: { asset?: { url?: string }; alt?: string } }) => {
+        if (!value?.asset) return null
+        const src =
+          typeof value.asset === 'object' && 'url' in value.asset
+            ? value.asset.url
+            : urlFor(value).width(1200).url()
+        if (!src) return null
+        return (
+          <figure className="my-8">
+            <img
+              src={src}
+              alt={value.alt || ''}
+              className="w-full h-auto rounded-sm"
+            />
+          </figure>
+        )
+      },
       newsletterSignup: () => <NewsletterSignup />,
     },
   }

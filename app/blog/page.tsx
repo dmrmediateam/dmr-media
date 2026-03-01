@@ -65,12 +65,20 @@ export default async function BlogPage() {
                     href={`/blog/${post.slug?.current || ''}`}
                     className="group border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300 flex flex-col"
                   >
-                    <div className="relative h-64 overflow-hidden mb-4">
-                      <img
-                        src={post.mainImage.asset.url}
-                        alt={post.mainImage.alt}
-                        className="h-full w-full object-cover"
-                      />
+                    <div className="relative h-64 overflow-hidden mb-4 bg-[var(--color-ink-200)]">
+                      {post.mainImage?.asset?.url ? (
+                        <Image
+                          src={post.mainImage.asset.url}
+                          alt={post.mainImage.alt || post.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-[var(--color-ink-400)] text-sm font-serif">
+                          No image
+                        </div>
+                      )}
                     </div>
                     <div className="flex flex-col gap-3">
                       <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] font-serif">

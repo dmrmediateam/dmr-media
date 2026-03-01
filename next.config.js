@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['images.unsplash.com', 'via.placeholder.com', 'cdn.sanity.io'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'cdn.sanity.io', pathname: '/**' },
+      { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'via.placeholder.com', pathname: '/**' },
+    ],
   },
   // Use Next.js built-in externalization (works consistently in dev + prod)
   // Custom webpack externals caused "Cannot read properties of undefined (reading 'call')" in dev

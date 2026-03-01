@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       openGraph: {
         title: post.seo?.metaTitle || post.title,
         description: post.seo?.metaDescription || post.description,
-        images: [post.mainImage.asset.url],
+        images: post.mainImage?.asset?.url ? [post.mainImage.asset.url] : [],
         type: 'article',
         publishedTime: post.publishedAt,
       },
@@ -155,13 +155,17 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       <section className="relative py-24 md:py-32 border-b border-[var(--color-ink-200)] min-h-[60vh] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src={post.mainImage.asset.url}
-            alt={post.mainImage.alt}
-            fill
-            priority
-            className="object-cover"
-          />
+          {post.mainImage?.asset?.url ? (
+            <Image
+              src={post.mainImage.asset.url}
+              alt={post.mainImage.alt || post.title}
+              fill
+              priority
+              className="object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-[var(--color-ink-200)]" />
+          )}
           {/* Dark overlay for text readability */}
           <div className="absolute inset-0 bg-black/50" />
         </div>
