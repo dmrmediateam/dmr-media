@@ -81,6 +81,18 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     ],
   },
   {
+    name: 'Yes MLS',
+    slug: 'yes-mls',
+    states: ['OH', 'PA', 'MI', 'WV'],
+    idxVendors: ['iHomeFinder'],
+    cost: 'Varies ($50 set-up fee; confirm with MLS)',
+    links: [
+      { label: 'AgentFire Yes MLS Coverage', url: 'https://agentfire.com/mls-coverage/mls-now-yes-mls/' },
+      { label: 'Realtyna Yes MLS Coverage', url: 'https://realtyna.com/mls-coverage/mls/yes-mls/' },
+      { label: 'iHomeFinder IDX Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/neohrex/' },
+    ],
+  },
+  {
     name: 'MLS Property Information Network (MLS PIN)',
     slug: 'mls-pin',
     states: ['MA', 'RI', 'NH'],
