@@ -132,6 +132,12 @@ const caseStudyData: CaseStudyData = {
       imagePosition: 'full',
     },
   ],
+  testimonial: {
+    quote:
+      "Andrew and Max are The Best! We've had an outstanding experience working with Andrew Rohm and Max Deleonardis at DMR Media. Their website management and search engine placement services have been exceptional. They are fast, reliable, and always provide smart, practical advice that truly makes a difference. Since partnering with them, our web traffic has increased tremendously, and we're seeing real results from their work. They are responsive, professional, and clearly experts in what they do. Highly recommend Andrew, Max, and the entire DMR Media team to anyone looking to grow their online presence!",
+    author: 'Sandy Reavill',
+    role: 'Woodstock, Vermont',
+  },
   cta: {
     title: 'Ready to build your inbound foundation?',
     description:
