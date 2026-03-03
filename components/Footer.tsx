@@ -89,6 +89,11 @@ const Footer = () => {
               </h4>
               <ul className="space-y-4">
                 <li>
+                  <Link href="/real-estate-agent-website-samples" className="hover:opacity-60 transition-opacity">
+                    Website Design Portfolio
+                  </Link>
+                </li>
+                <li>
                   <Link href="/seo-optimization" className="hover:opacity-60 transition-opacity">
                     SEO Optimization
                   </Link>
