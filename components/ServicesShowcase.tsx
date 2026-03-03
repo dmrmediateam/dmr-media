@@ -1,10 +1,13 @@
-import Link from 'next/link'
+import Link from 'next/link';
+import Image from 'next/image';
 
 type ServicesShowcaseProps = {
-  heading?: string
-  description?: string
-  sectionClassName?: string
-}
+  heading?: string;
+  description?: string;
+  sectionClassName?: string;
+  /** When true, only render the services grid (no intro). Used when intro is on the page. */
+  hideIntro?: boolean;
+};
 
 const services = [
   {
@@ -31,66 +34,73 @@ const services = [
     href: '/analytics-reporting',
     media: '/images/StockHomes/a-backyard-with-a-swimming-pool-hot-tub-and-pati-2025-02-10-06-23-51-utc.jpg',
   },
-]
+];
 
 export default function ServicesShowcase({
   heading = 'Tailored programs for market makers.',
   description = 'We craft end-to-end acquisition systems that feel bespoke to your brand while being engineered for scale.',
   sectionClassName,
+  hideIntro = false,
 }: ServicesShowcaseProps) {
   const sectionClasses = sectionClassName
-    ? `py-32 ${sectionClassName} border-b border-[var(--color-ink-200)]`
-    : 'py-32 bg-white border-b border-[var(--color-ink-200)]'
+    ? `py-20 md:py-28 ${sectionClassName}`
+    : 'py-20 md:py-28 bg-white';
 
   return (
     <section className={sectionClasses}>
       <div className="container-max">
-        <div className="max-w-3xl mb-24 mx-auto text-center">
-          <h1 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6">
-            {heading}
-          </h1>
-          <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
-            {description}
-          </p>
-        </div>
+        {!hideIntro && (
+          <div className="max-w-2xl mb-20 md:mb-28">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.15] mb-6">
+              {heading}
+            </h2>
+            <p className="text-[15px] sm:text-base text-[var(--color-ink-300)] font-serif leading-[1.7]">
+              {description}
+            </p>
+          </div>
+        )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {services.map((service) => (
+        <div className="space-y-0">
+          {services.map((service, index) => (
             <Link
               key={service.title}
               href={service.href}
-              className="group relative aspect-square overflow-hidden border-b border-[var(--color-ink-200)] hover:opacity-90 transition-opacity duration-300 flex flex-col"
+              className="group block border-b border-[var(--color-ink-200)] last:border-b-0"
             >
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <img
-                  src={service.media}
-                  alt={service.title}
-                  className="h-full w-full object-cover"
-                />
-                {/* Dark overlay for text readability */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
-              </div>
-
-              {/* Content Overlay */}
-              <div className="relative z-10 flex flex-col justify-between h-full p-8 md:p-10">
-                <div className="flex flex-col gap-4">
-                  <span className="text-xs uppercase tracking-[0.2em] text-[#FAFAF9] font-serif">
+              <article className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch">
+                <div
+                  className={`flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24 py-14 lg:py-20 order-2 ${
+                    index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'
+                  }`}
+                >
+                  <p className="text-[11px] uppercase tracking-[0.25em] text-[var(--color-ink-400)] font-serif mb-3">
                     {service.title}
-                  </span>
-                  <p className="text-xl md:text-2xl font-serif font-light text-[#FAFAF9] leading-snug">
-                    {service.copy}
                   </p>
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mb-4 tracking-tight leading-[1.2] group-hover:opacity-80 transition-opacity">
+                    {service.copy}
+                  </h3>
+                  <span className="text-[11px] uppercase tracking-[0.25em] text-[var(--color-off-black)] font-serif group-hover:opacity-60 transition-opacity border-b border-[var(--color-off-black)] pb-1 w-fit">
+                    Learn more
+                  </span>
                 </div>
-                <span className="text-xs uppercase tracking-[0.2em] text-[#FAFAF9] font-serif mt-auto">
-                  Learn more
-                </span>
-              </div>
+                <div
+                  className={`relative min-h-[280px] sm:min-h-[340px] lg:min-h-[400px] overflow-hidden bg-[var(--color-ink-200)] order-1 m-4 sm:m-6 lg:m-8 ${
+                    index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'
+                  }`}
+                >
+                  <Image
+                    src={service.media}
+                    alt={service.title}
+                    fill
+                    className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-500"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+              </article>
             </Link>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
-

@@ -261,6 +261,20 @@ export const contentRegistry: ContentEntry[] = [
     changeFrequency: 'monthly',
   },
 
+  // ─── Portfolio / Samples ─────────────────────────────────────────────────────
+  {
+    slug: '/real-estate-agent-website-samples',
+    title: 'Real Estate Agent Website Examples | DMR Media Design Portfolio',
+    description:
+      'Real estate agent website examples from award-winning designs. Legendary Real Estate, Eagan Luxury, Cheryl Towey, Valoria Homes—custom sites built for top agents, teams, and brokers.',
+    publishDate: '2026-03-01',
+    modifiedDate: '2026-03-01',
+    category: 'Portfolio',
+    tags: ['real estate agent website examples', 'real estate website examples', 'real estate website design', 'luxury real estate websites', 'agent websites'],
+    priority: 0.7,
+    changeFrequency: 'monthly',
+  },
+
   // ─── Legal / Utility ────────────────────────────────────────────────────────
   {
     slug: '/privacy-policy',
