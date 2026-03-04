@@ -208,7 +208,7 @@ export default function GoogleDirectLandingPage() {
                   </div>
                 </div>
                 <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.08] tracking-tight mb-6">
-                  Stop Wasting Money on Bad Leads. Get the Free AI System That Generated <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> For Agents In Under 30 Days.
+                  80% of Realtors will fail within the few years. Instead, get the Free AI System That Generated <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> For Agents In Under 30 Days.
                 </h2>
                 <p className="text-base sm:text-lg md:text-xl font-serif text-[var(--color-ink-300)] leading-relaxed mb-8">
                   Enter your email &amp; phone below to get the free video case study that reveals the entire system. We&apos;ll show you exactly how it turns cold traffic into qualified buyer and seller conversations.
