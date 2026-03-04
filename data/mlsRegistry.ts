@@ -93,6 +93,18 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     ],
   },
   {
+    name: 'California Regional Multiple Listing Service (CRMLS)',
+    slug: 'california-regional-multiple-listing-service',
+    states: ['CA'],
+    idxVendors: ['Showcase IDX', 'iHomeFinder'],
+    cost: 'Varies (IDX fee ~$10/mo via Showcase IDX; confirm with MLS)',
+    links: [
+      { label: 'CRMLS Website', url: 'https://go.crmls.org/' },
+      { label: 'Showcase IDX Coverage', url: 'https://showcaseidx.com/mls-coverage/california-regional-multiple-listing-service-crmls/' },
+      { label: 'Realtyna CRMLS Coverage', url: 'https://realtyna.com/mls-coverage/mls/california-regional-mls-crmls/' },
+    ],
+  },
+  {
     name: 'MLS Property Information Network (MLS PIN)',
     slug: 'mls-pin',
     states: ['MA', 'RI', 'NH'],
