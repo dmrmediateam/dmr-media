@@ -105,6 +105,19 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     ],
   },
   {
+    name: 'San Francisco MLS (SFARMLS)',
+    slug: 'san-francisco-mls-sfarmls',
+    states: ['CA'],
+    idxVendors: ['Showcase IDX', 'iHomeFinder'],
+    cost: 'Varies (IDX fee ~$10/mo via Showcase IDX; confirm with MLS)',
+    links: [
+      { label: 'MLSListings Search', url: 'https://www.mlslistings.com/search/result/city/San%20Francisco/rent' },
+      { label: 'Showcase IDX Coverage', url: 'https://showcaseidx.com/mls-coverage/san-francisco-association-of-realtors-sfar/' },
+      { label: 'Realtyna SFARMLS Coverage', url: 'https://realtyna.com/mls-coverage/mls/san-francisco-mls-sfarmls/' },
+      { label: 'AgentFire SFARMLS Coverage', url: 'https://agentfire.com/mls-coverage/san-francisco-multiple-listing-service/' },
+    ],
+  },
+  {
     name: 'MLS Property Information Network (MLS PIN)',
     slug: 'mls-pin',
     states: ['MA', 'RI', 'NH'],

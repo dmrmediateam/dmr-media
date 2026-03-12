@@ -11,6 +11,7 @@ const DEDICATED_PAGE_SLUGS = new Set([
   'bareis',
   'hudson-mls',
   'california-regional-multiple-listing-service',
+  'san-francisco-mls-sfarmls',
   'mls-pin',
 ]);
 
