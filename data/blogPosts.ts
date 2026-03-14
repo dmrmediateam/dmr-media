@@ -1,6 +1,11 @@
 // Blog post data structure from Sanity CMS
 import { client } from '@/lib/sanity'
 
+/** Slugs to exclude from listings, sitemap, and internal links (e.g. deprecated posts) */
+const EXCLUDED_BLOG_SLUGS = new Set([
+  'real-estate-ads-every-ad-type-agents-need-to-know-in-2026',
+])
+
 export interface BlogPost {
   _id: string;
   _type: 'post';
@@ -376,7 +381,7 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
       return []
     }
     
-    return posts
+    return posts.filter((post) => post.slug?.current && !EXCLUDED_BLOG_SLUGS.has(post.slug.current))
   } catch (error: any) {
     console.error('Error fetching blog posts:', {
       error: error?.message || error,
