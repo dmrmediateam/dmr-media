@@ -43,23 +43,24 @@ export default function VideoTestimonials() {
   return (
     <>
       <section
-        className="py-12 sm:py-20 md:py-24 lg:py-28 bg-[var(--surface-base)] border-b border-[var(--color-ink-200)]"
+        className="py-16 md:py-24 lg:py-28 bg-[var(--surface-base)] border-b border-[var(--color-ink-200)]"
         aria-labelledby="video-testimonials-heading"
       >
         <div className="container-max">
-          <header className="mb-8 sm:mb-12 md:mb-14">
-            <span className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-300)] font-serif block mb-2">
+          <header className="mb-12 md:mb-16">
+            <span className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-300)] font-serif block mb-3">
               Video testimonials
             </span>
             <h2
               id="video-testimonials-heading"
-              className="text-2xl sm:text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1]"
+              className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6"
             >
               Hear from our clients
             </h2>
+            <div className="w-48 h-[1px] bg-gradient-to-r from-[var(--color-off-black)] via-[var(--color-off-black)] to-transparent" />
           </header>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-stretch">
             {videoTestimonials.map((testimonial) => (
               <VideoTestimonialCard
                 key={testimonial.id}
@@ -99,7 +100,7 @@ function VideoModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 sm:p-6"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/98 p-6 sm:p-8"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -111,7 +112,7 @@ function VideoModal({
       >
         <button
           onClick={onClose}
-          className="absolute -top-10 sm:-top-12 right-0 min-h-[44px] min-w-[44px] flex items-center justify-end text-white/90 hover:text-white text-sm uppercase tracking-[0.2em] font-serif transition-opacity"
+          className="absolute -top-12 sm:-top-14 right-0 min-h-[44px] min-w-[44px] flex items-center justify-end text-[#FAFAF9]/90 hover:text-[#FAFAF9] text-xs uppercase tracking-[0.25em] font-serif transition-opacity duration-300"
           aria-label="Close video"
         >
           Close
@@ -121,7 +122,7 @@ function VideoModal({
           title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
-          className="absolute inset-0 w-full h-full rounded-sm"
+          className="absolute inset-0 w-full h-full"
         />
       </div>
     </div>
@@ -139,44 +140,51 @@ function VideoTestimonialCard({
     <button
       type="button"
       onClick={onClick}
-      className="group relative overflow-hidden text-left w-full rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)] focus-visible:ring-offset-2"
+      className="group relative overflow-hidden text-left w-full h-full min-h-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)] focus-visible:ring-offset-2"
       aria-label={`Watch video testimonial from ${testimonial.name} of ${testimonial.agency}`}
     >
-      <div className="relative overflow-hidden bg-[var(--color-ink-200)] aspect-[16/10]">
+      <div className="relative overflow-hidden bg-[var(--color-ink-200)] min-h-[280px] h-full flex flex-col">
         <Image
           src={testimonial.backgroundImage}
           alt=""
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          sizes="(max-width: 640px) 100vw, 50vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
-        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
-          <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-white/85 font-serif">
+        <div className="absolute top-5 left-5 md:top-6 md:left-6 z-10">
+          <span className="text-xs uppercase tracking-[0.2em] text-[#FAFAF9] font-serif font-medium drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_12px_rgba(0,0,0,0.8)]">
             {testimonial.agency}
           </span>
         </div>
 
-        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 flex items-center gap-1.5 sm:gap-2">
+        <div className="absolute top-5 right-5 md:top-6 md:right-6 z-10 flex items-center gap-2">
           <svg
-            className="w-3.5 h-3.5 text-white/75 shrink-0"
+            className="w-3.5 h-3.5 text-[#FAFAF9]/80 shrink-0"
             fill="currentColor"
             viewBox="0 0 24 24"
             aria-hidden
           >
             <path d="M8 5v14l11-7z" />
           </svg>
-          <span className="text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white/75 font-serif">
+          <span className="text-xs uppercase tracking-[0.2em] text-[#FAFAF9]/80 font-serif drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.6)]">
             Watch video
           </span>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6 lg:p-8 z-10">
-          <span className="block text-base sm:text-lg md:text-xl lg:text-2xl font-serif font-light text-white mb-2 sm:mb-3 md:mb-4">
+        <div className="relative z-10 pt-[50%] px-5 pb-5 md:px-6 md:pb-6 lg:px-8 lg:pb-8 flex-1 flex flex-col justify-end min-h-0">
+          <span
+            className="block font-serif font-light text-[#FAFAF9] mb-3 md:mb-4 drop-shadow-[0_2px_16px_rgba(0,0,0,0.9)] [text-shadow:_0_2px_16px_rgba(0,0,0,0.9)]"
+            style={{ fontSize: 'clamp(1.125rem, 2.5vw + 1rem, 1.5rem)' }}
+          >
             {testimonial.name}
           </span>
-          <p className="font-serif text-white/95 text-sm sm:text-base md:text-lg leading-[1.65]">
+          <p
+            className="font-serif text-[#FAFAF9]/95 leading-[1.7] max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_12px_rgba(0,0,0,0.8)]"
+            style={{ fontSize: 'clamp(0.9375rem, 1.25vw + 0.75rem, 1.125rem)' }}
+          >
             &ldquo;{testimonial.highlight}&rdquo;
           </p>
         </div>
