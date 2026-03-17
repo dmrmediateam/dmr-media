@@ -51,6 +51,21 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/blog/real-estate-ads-every-ad-type-agents-need-to-know-in-2026',
+        destination: '/blog/google-ads-for-realtors',
+        permanent: true,
+      },
+      {
+        source: '/blog/the-agents-roi-guide-to-real-estate-photography-pricing-in-2026',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/blog/top-real-estate-marketing-agencies-2025',
+        destination: '/blog/best-real-estate-marketing-agencies',
+        permanent: true,
+      },
+      {
         source: '/ads',
         destination: '/google-ads-management',
         permanent: true,
