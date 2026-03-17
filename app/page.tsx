@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero';
 import ClientLogosSlider from '@/components/ClientLogosSlider';
 import CaseStudies from '@/components/CaseStudies';
+import VideoTestimonials from '@/components/VideoTestimonials';
 import Testimonials from '@/components/Testimonials';
 import { getAllBlogPosts } from '@/data/blogPosts';
 import Link from 'next/link';
@@ -19,6 +20,8 @@ export default async function Home() {
       <ClientLogosSlider />
 
       <CaseStudies />
+
+      <VideoTestimonials />
 
       <section className="pt-10 pb-32 bg-[var(--surface-base)]">
         <div className="container-max">
