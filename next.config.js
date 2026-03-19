@@ -46,6 +46,11 @@ const nextConfig = {
       },
       // 301 redirects for 404 pages
       {
+        source: '/blog/viral-content-patterns-in-real-estate-2025',
+        destination: '/blog/viral-content-patterns-for-real-estate',
+        permanent: true,
+      },
+      {
         source: '/blog/luxury-real-estate-marketing-ideas-to-print-luxury-listings',
         destination: '/blog/best-10-luxury-real-estate-marketing-tactics-for-2026',
         permanent: true,
