@@ -75,6 +75,17 @@ const nextConfig = {
         destination: '/seo-optimization',
         permanent: true,
       },
+      // Brokerages pages removed - redirect to homepage
+      {
+        source: '/brokerages',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/brokerages/:path*',
+        destination: '/',
+        permanent: true,
+      },
     ]
   },
 }

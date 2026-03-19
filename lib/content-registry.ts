@@ -223,44 +223,6 @@ export const contentRegistry: ContentEntry[] = [
     changeFrequency: 'monthly',
   },
 
-  // ─── Brokerage / Location Pages ─────────────────────────────────────────────
-  {
-    slug: '/brokerages',
-    title: 'Real Estate Brokerage Marketing | DMR Media',
-    description:
-      'Marketing systems built for brokerages — from single-office teams to multi-location brands. SEO, ads, and lead infrastructure tailored to your market.',
-    publishDate: '2025-01-01',
-    modifiedDate: '2026-01-01',
-    category: 'Brokerages',
-    tags: ['brokerage marketing', 'real estate brokerage', 'team marketing'],
-    priority: 0.7,
-    changeFrequency: 'monthly',
-  },
-  {
-    slug: '/brokerages/new-jersey',
-    title: 'New Jersey Real Estate Brokerage Marketing | DMR Media',
-    description:
-      'Specialized digital marketing for New Jersey real estate brokerages. Local SEO, Google Ads, and lead generation systems for NJ agents.',
-    publishDate: '2025-01-01',
-    modifiedDate: '2026-01-01',
-    category: 'Brokerages',
-    tags: ['New Jersey real estate', 'NJ brokerage marketing', 'local SEO NJ'],
-    priority: 0.65,
-    changeFrequency: 'monthly',
-  },
-  {
-    slug: '/brokerages/wisconsin',
-    title: 'Wisconsin Real Estate Brokerage Marketing | DMR Media',
-    description:
-      'Digital marketing for Wisconsin real estate brokerages. Proven SEO and Google Ads strategies for WI agents looking to dominate local search.',
-    publishDate: '2025-01-01',
-    modifiedDate: '2026-01-01',
-    category: 'Brokerages',
-    tags: ['Wisconsin real estate', 'WI brokerage marketing', 'local SEO Wisconsin'],
-    priority: 0.65,
-    changeFrequency: 'monthly',
-  },
-
   // ─── Portfolio / Samples ─────────────────────────────────────────────────────
   {
     slug: '/real-estate-agent-website-samples',
