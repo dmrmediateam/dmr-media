@@ -46,9 +46,12 @@ export async function GET() {
     console.error('Failed to append blog posts to sitemap:', error);
   }
 
+  // Exclude brokerages pages (removed, now 301 to homepage)
+  const filteredUrls = urls.filter((entry) => !entry.loc.includes('/brokerages'));
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
+${filteredUrls
   .map(
     (entry) => `  <url>
     <loc>${entry.loc}</loc>

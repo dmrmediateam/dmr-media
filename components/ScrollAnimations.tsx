@@ -42,6 +42,17 @@ export default function ScrollAnimations() {
       // Observe all elements that need scroll animations
       const elementsToAnimate = document.querySelectorAll('.scroll-animate');
       const legacyElements = document.querySelectorAll('.animate-on-scroll');
+      const sections = document.querySelectorAll('main section');
+
+      // Observe all main sections for default luxury fade-up animation
+      sections.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+        if (isInViewport) {
+          el.classList.add('in-view');
+        }
+        observer.observe(el);
+      });
 
       // Immediately trigger animations for elements already in viewport
       elementsToAnimate.forEach((el) => {
@@ -103,6 +114,21 @@ export default function ScrollAnimations() {
                 legacyObserver.observe(element);
               }
               
+              // Check for new sections (default luxury animation)
+              const newSections = element.tagName === 'SECTION'
+                ? [element]
+                : element.querySelectorAll?.('section') || [];
+              newSections.forEach((section: Element) => {
+                if (!section.classList.contains('in-view')) {
+                  const rect = section.getBoundingClientRect();
+                  const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+                  if (isInViewport) {
+                    setTimeout(() => section.classList.add('in-view'), 100);
+                  }
+                  observer.observe(section);
+                }
+              });
+
               // Check children of the added node
               const childElements = element.querySelectorAll('.scroll-animate');
               const legacyChildElements = element.querySelectorAll('.animate-on-scroll');
