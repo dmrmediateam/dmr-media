@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 
-const luxuryEase = [0.25, 0.1, 0.25, 1]; // Elegant ease-out
+const luxuryEase = [0.25, 0.1, 0.25, 1] as const; // Elegant ease-out (cubic-bezier)
 
 interface AnimateSectionProps {
   children: React.ReactNode;
