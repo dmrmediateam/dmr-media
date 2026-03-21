@@ -54,6 +54,13 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     cost: 'Varies (confirm with MLS)',
   },
   {
+    name: 'Cooperative Arkansas Realtors MLS (CARMLS)',
+    slug: 'cooperative-arkansas-realtors-mls',
+    states: ['AR'],
+    idxVendors: ['IDX Broker', 'iHomefinder'],
+    cost: 'Varies (confirm with MLS). iHomefinder: no fees paid to association.',
+  },
+  {
     name: 'Metro MLS',
     slug: 'metro-mls',
     states: ['WI'],
@@ -158,7 +165,7 @@ const MLS_REGISTRY: MlsEntry[] = RAW_REGISTRY.map((raw, idx) => {
 
 // --- Serviced States (highlighted on map) ---
 
-export const SERVICED_STATES = ['WI', 'FL', 'CA', 'IL', 'VT', 'NH', 'MA', 'RI', 'NY', 'NJ'] as const;
+export const SERVICED_STATES = ['WI', 'FL', 'CA', 'IL', 'VT', 'NH', 'MA', 'RI', 'NY', 'NJ', 'AR'] as const;
 export type ServicedState = (typeof SERVICED_STATES)[number];
 
 // --- Validation: Uniqueness & Fail Fast ---

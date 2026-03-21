@@ -7,6 +7,8 @@ import type { Metadata } from 'next';
 const DEDICATED_PAGE_SLUGS = new Set([
   'stellar-mls',
   'south-central-wisconsin-mls',
+  'cooperative-arkansas-realtors-mls',
+  'metro-mls',
   'prime-mls',
   'bareis',
   'hudson-mls',
