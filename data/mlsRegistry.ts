@@ -54,6 +54,20 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     cost: 'Varies (confirm with MLS)',
   },
   {
+    name: 'Metro MLS',
+    slug: 'metro-mls',
+    states: ['WI'],
+    idxVendors: ['iHomefinder'],
+    cost: '$99–$299 set-up fee; $9.95/mo IDX via iHomefinder (confirm with MLS)',
+    coverage: 'Greater Milwaukee and southeastern Wisconsin. Over 9,000 professionals across 10 REALTOR® associations. Cities include Milwaukee, Madison, Green Bay, Racine, Appleton, Kenosha, Waukesha, and more.',
+    notes: 'DMR client Legendary Real Estate Services (Lake Geneva, WI) is in this MLS.',
+    links: [
+      { label: 'Metro MLS Website', url: 'https://metromls.com/' },
+      { label: 'AgentFire Metro MLS Coverage', url: 'https://agentfire.com/mls-coverage/metro-mls/' },
+      { label: 'iHomefinder IDX Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/metro-mls-milwaukee-area/' },
+    ],
+  },
+  {
     name: 'Prime MLS',
     slug: 'prime-mls',
     states: ['NH', 'VT', 'ME', 'MA', 'RI', 'CT'],

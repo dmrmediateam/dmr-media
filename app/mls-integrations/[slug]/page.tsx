@@ -79,6 +79,16 @@ export default async function MlsDetailPage({
                 {entry.states.join(', ')}
               </dd>
             </div>
+            {entry.coverage && (
+              <div>
+                <dt className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif mb-3">
+                  Coverage
+                </dt>
+                <dd className="text-[var(--color-off-black)] font-serif text-lg leading-relaxed">
+                  {entry.coverage}
+                </dd>
+              </div>
+            )}
             <div>
               <dt className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif mb-3">
                 IDX Vendors
@@ -95,12 +105,39 @@ export default async function MlsDetailPage({
                 {entry.cost}
               </dd>
             </div>
+            {entry.notes && (
+              <div>
+                <dt className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif mb-3">
+                  Note
+                </dt>
+                <dd className="text-[var(--color-off-black)] font-serif text-lg leading-relaxed">
+                  {entry.notes}
+                </dd>
+              </div>
+            )}
           </dl>
 
-          <p className="mt-16 text-sm text-[var(--color-off-black)] font-serif italic opacity-80">
-            This page is a base template. Additional custom sections will be
-            added per MLS.
-          </p>
+          {entry.links && entry.links.length > 0 && (
+            <div className="mt-16 pt-12 border-t border-[var(--color-ink-200)]">
+              <h2 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-6 tracking-tight">
+                Resources
+              </h2>
+              <ul className="space-y-3">
+                {entry.links.map((link) => (
+                  <li key={link.url}>
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--color-off-black)] font-serif hover:opacity-60 transition-opacity underline underline-offset-2"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </section>
     </div>
