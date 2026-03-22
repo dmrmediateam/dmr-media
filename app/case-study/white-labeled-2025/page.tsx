@@ -134,7 +134,7 @@ export default function WhiteLabeledCaseStudy2025() {
               <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
                 Where they started
               </p>
-              <ul className="font-serif text-sm leading-[1.9] text-[#ccc] space-y-2">
+              <ul className="font-serif text-sm leading-[1.9] text-[#F5F4F0] space-y-2">
                 <li>457 monthly organic visits</li>
                 <li>369 ranking keywords</li>
                 <li>No SEO strategy</li>
