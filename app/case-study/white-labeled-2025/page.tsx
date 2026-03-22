@@ -134,14 +134,14 @@ export default function WhiteLabeledCaseStudy2025() {
               <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
                 Where they started
               </p>
-              <ul className="font-serif text-sm leading-[1.9] text-[#F5F4F0] space-y-2">
-                <li>457 monthly organic visits</li>
-                <li>369 ranking keywords</li>
-                <li>No SEO strategy</li>
-                <li>Orphan pages throughout the site</li>
-                <li>Unresolved 404 errors</li>
-                <li>Zero location or listing page infrastructure</li>
-                <li>Zero paid media budget</li>
+              <ul className="font-serif text-sm leading-[1.9] space-y-2 [&>li]:text-[#F5F4F0] [&>li]:!text-[#F5F4F0]">
+                <li style={{ color: '#F5F4F0' }}>457 monthly organic visits</li>
+                <li style={{ color: '#F5F4F0' }}>369 ranking keywords</li>
+                <li style={{ color: '#F5F4F0' }}>No SEO strategy</li>
+                <li style={{ color: '#F5F4F0' }}>Orphan pages throughout the site</li>
+                <li style={{ color: '#F5F4F0' }}>Unresolved 404 errors</li>
+                <li style={{ color: '#F5F4F0' }}>Zero location or listing page infrastructure</li>
+                <li style={{ color: '#F5F4F0' }}>Zero paid media budget</li>
               </ul>
             </div>
           </div>
