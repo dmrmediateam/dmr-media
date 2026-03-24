@@ -3,7 +3,6 @@ import { Instrument_Serif, Inter } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import ConditionalLayout from '@/components/ConditionalLayout'
-import ScrollAnimations from '@/components/ScrollAnimations'
 import ScrollProgressBar from '@/components/ScrollProgressBar'
 import UTMTracker from '@/components/UTMTracker'
 
@@ -91,7 +90,6 @@ export default function RootLayout({
         {/* End Meta Pixel Code */}
         <UTMTracker />
         <ScrollProgressBar />
-        <ScrollAnimations />
         {/* Global Organization + WebSite structured data */}
         <script
           type="application/ld+json"
