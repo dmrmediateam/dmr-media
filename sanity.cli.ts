@@ -7,6 +7,10 @@ export default defineCliConfig({
   },
   deployment: {
     appId: 'smdevccx8icmgxhe3v98ym7f',
-  }
+  },
+  vite: (config) => ({
+    ...config,
+    publicDir: false,
+  }),
 })
 

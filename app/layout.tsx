@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Instrument_Serif } from 'next/font/google'
+import { Instrument_Serif, Inter } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import ConditionalLayout from '@/components/ConditionalLayout'
@@ -7,12 +7,18 @@ import ScrollAnimations from '@/components/ScrollAnimations'
 import ScrollProgressBar from '@/components/ScrollProgressBar'
 import UTMTracker from '@/components/UTMTracker'
 
-// Instrument Serif - Elegant, natural serif font
 const instrumentSerif = Instrument_Serif({ 
   subsets: ['latin'],
   weight: ['400'],
   style: ['normal', 'italic'],
   variable: '--font-instrument',
+  display: 'swap',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-inter',
   display: 'swap',
 })
 
@@ -33,10 +39,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={instrumentSerif.variable}>
+    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Google tag (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16882640022"
@@ -55,7 +59,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={instrumentSerif.className}>
+      <body className={`${instrumentSerif.className} ${inter.variable}`}>
         {/* Meta Pixel Code */}
         <Script
           id="meta-pixel"
