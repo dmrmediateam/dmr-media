@@ -13,9 +13,15 @@ type ServiceCitiesProps = {
   heading: string
   description?: string
   cities: City[]
+  /** Number of columns on large screens. Defaults to 3. */
+  columns?: 3 | 4
 }
 
-export default function ServiceCities({ heading, description, cities }: ServiceCitiesProps) {
+export default function ServiceCities({ heading, description, cities, columns = 3 }: ServiceCitiesProps) {
+  const gridCols = columns === 4
+    ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+    : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+
   return (
     <section className="py-32 bg-white border-b border-[var(--color-ink-200)]">
       <div className="container-max">
@@ -32,7 +38,7 @@ export default function ServiceCities({ heading, description, cities }: ServiceC
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className={`grid ${gridCols} gap-8`}>
           {cities.map((city) => {
             const href = city.slug.startsWith('#') ? city.slug : city.slug
             const isAnchor = city.slug.startsWith('#')
@@ -41,7 +47,7 @@ export default function ServiceCities({ heading, description, cities }: ServiceC
               <Link
                 key={`${city.name}-${city.slug}`}
                 href={isAnchor ? '#contact' : href}
-                className="group relative aspect-[3/2] overflow-hidden border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300"
+                className="group relative aspect-[4/3] overflow-hidden border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300"
               >
                 <Image
                   src={city.image}
