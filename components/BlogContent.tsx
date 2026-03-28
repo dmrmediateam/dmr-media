@@ -45,11 +45,25 @@ export default function BlogContent({ body }: BlogContentProps) {
 
   const portableTextComponents = {
     block: {
-      h2: ({ children }: any) => (
-        <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mt-8 mb-4 tracking-tight">
-          {children}
-        </h2>
-      ),
+      h2: ({ children, value }: any) => {
+        const rawText: string = (value?.children ?? [])
+          .map((c: any) => c.text ?? '')
+          .join('')
+        const id = rawText
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-')
+          .trim()
+        return (
+          <h2
+            id={id}
+            className="scroll-mt-16 text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] mt-8 mb-4 tracking-tight"
+          >
+            {children}
+          </h2>
+        )
+      },
       h3: ({ children }: any) => (
         <h3 className="text-xl md:text-2xl font-serif font-light text-[var(--color-off-black)] mt-6 mb-3 tracking-tight">
           {children}

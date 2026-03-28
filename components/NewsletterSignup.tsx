@@ -69,7 +69,7 @@ export default function NewsletterSignup() {
   return (
     <>
       {/* CTA Section */}
-      <section className="my-20 p-16 bg-[#353535]">
+      <section className="my-10 md:my-12 px-8 md:px-12 py-10 md:py-12 bg-[#353535]">
         <div className="max-w-2xl mx-auto text-center">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-light !text-white mb-5 md:mb-6 leading-[1.2] tracking-tight">
             In the next few years 80% of agents will go bankrupt. Instead, get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}

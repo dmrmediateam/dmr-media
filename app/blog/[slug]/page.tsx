@@ -2,10 +2,11 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getBlogPostBySlug, getAllBlogPosts } from '@/data/blogPosts'
-import { extractFaqFromBody, buildFaqSchema } from '@/lib/extractFaqFromBody'
 import { buildOrganizationSchema, buildPersonSchema } from '@/lib/eeatSchema'
 import type { Metadata } from 'next'
 import BlogContent from '@/components/BlogContent'
+import BlogFAQ from '@/components/BlogFAQ'
+import BlogNavBar, { type NavHeading } from '@/components/BlogNavBar'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 60
@@ -85,7 +86,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     day: 'numeric',
   })
 
-  // Build schema markup: Article + EEAT (Person, Organization) + FAQ when present
+  // Build schema markup: Article + EEAT (Person, Organization)
   const rawBase = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org'
   const baseUrl =
     rawBase.includes('dmrmedia.org') && !rawBase.includes('www.')
@@ -128,21 +129,47 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     }),
   }
 
-  // Auto-detect FAQ section
-  const faqItems = extractFaqFromBody(post.body)
-  const faqSchema = buildFaqSchema(faqItems)
-
-  // Single @graph with all schemas (Article, Organization, Person, optional FAQPage)
-  const graphItems = [
+  // Single @graph with all schemas (Article, Organization, Person)
+  const graphItems: object[] = [
     organizationSchema,
     personSchema,
     articleSchema,
-    ...(faqSchema ? [{ '@type': 'FAQPage', mainEntity: faqSchema.mainEntity }] : []),
   ]
+
+  // FAQPage schema — only emitted when the post has FAQ items
+  if (post.faq && post.faq.length > 0) {
+    graphItems.push({
+      '@type': 'FAQPage',
+      '@id': `${postUrl}#faq`,
+      mainEntity: post.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    })
+  }
 
   const schemaGraph = {
     '@context': 'https://schema.org',
     '@graph': graphItems,
+  }
+
+  // Extract h2 headings for the sticky nav (same slugify logic as BlogContent)
+  const navHeadings: NavHeading[] = (post.body ?? [])
+    .filter((block: any) => block._type === 'block' && block.style === 'h2')
+    .map((block: any) => {
+      const text: string = (block.children ?? []).map((c: any) => c.text ?? '').join('');
+      const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
+      return { id, text };
+    })
+    .filter((h: NavHeading) => h.id && h.text);
+
+  // Append the hardcoded FAQ section heading when FAQ items exist
+  if (post.faq && post.faq.length > 0) {
+    navHeadings.push({ id: 'frequently-asked-questions', text: 'Frequently Asked Questions' });
   }
 
   return (
@@ -152,7 +179,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
       />
       <div className="min-h-screen bg-white">
-      <section className="relative py-24 md:py-32 border-b border-[var(--color-ink-200)] min-h-[60vh] flex items-center">
+      <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 border-b border-[var(--color-ink-200)] min-h-[55vh]">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           {post.mainImage?.asset?.url ? (
@@ -167,35 +194,32 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             <div className="absolute inset-0 bg-[var(--color-ink-200)]" />
           )}
           {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/55" />
         </div>
         
         {/* Content */}
         <div className="container-max relative z-10">
-          <div className="max-w-3xl">
-            <span className="uppercase tracking-[0.2em] text-xs text-white/80 font-serif mb-6 block">
+          <div className="max-w-3xl text-left">
+            <span className="uppercase tracking-[0.2em] text-xs text-white/70 font-serif mb-5 block">
               {post.category}
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light !text-white leading-[1.1] tracking-tight mb-8 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]" style={{ color: '#FFFFFF' }}>
               {post.title}
             </h1>
-            <p className="text-base text-white/90 leading-relaxed font-serif max-w-2xl mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-              {post.description}
-            </p>
             <div className="flex flex-wrap items-center gap-4 text-sm !text-white font-serif drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" style={{ color: '#FFFFFF' }}>
               {post.author.image && (
                 <Image
                   src={post.author.image}
                   alt={post.author.name}
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 border border-white/30 object-cover"
+                  width={36}
+                  height={36}
+                  className="h-9 w-9 border border-white/30 object-cover"
                 />
               )}
               <span style={{ color: '#FFFFFF' }}>{post.author.name}</span>
-              <span className="text-white/60">•</span>
+              <span className="text-white/50">•</span>
               <span style={{ color: '#FFFFFF' }}>{formattedDate}</span>
-              <span className="text-white/60">•</span>
+              <span className="text-white/50">•</span>
               <span style={{ color: '#FFFFFF' }}>{post.readTime}</span>
             </div>
           </div>
@@ -204,8 +228,15 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
       <article className="py-14 md:py-20">
         <div className="container-max">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <BlogContent body={post.body} />
+          <div className="flex gap-16 xl:gap-20">
+
+            {/* ── Main content ── */}
+            <div className="flex-1 min-w-0 space-y-8">
+              <BlogContent body={post.body} />
+
+            {post.faq && post.faq.length > 0 && (
+              <BlogFAQ items={post.faq} />
+            )}
 
             {post.tags && post.tags.length > 0 && (
               <div className="border-t border-[var(--color-ink-200)] pt-8">
@@ -240,9 +271,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                   <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-4">
                     About {post.author.name}
                   </h3>
-                  <p className="text-sm text-[var(--color-ink-300)] leading-relaxed mb-6 font-serif">
-                    Marketing experts specializing in luxury real estate SEO, Google Ads, and digital strategy. Helping premium agents dominate their markets with data-driven campaigns and proven results.
-                  </p>
+                  {post.author.bio && (
+                    <p className="text-sm text-[var(--color-ink-300)] leading-relaxed mb-6 font-serif">
+                      {post.author.bio}
+                    </p>
+                  )}
                   <Link
                     href="/contact"
                     className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)]"
@@ -261,7 +294,16 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                 ← Back to all insights
               </Link>
             </div>
-          </div>
+            </div>{/* end main content */}
+
+            {/* ── Right sidebar ToC ── */}
+            {navHeadings.length > 0 && (
+              <aside className="hidden xl:block w-52 shrink-0 self-stretch">
+                <BlogNavBar headings={navHeadings} />
+              </aside>
+            )}
+
+          </div>{/* end flex row */}
         </div>
       </article>
 

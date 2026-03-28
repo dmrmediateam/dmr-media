@@ -131,6 +131,39 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'faq',
+      title: 'FAQ Section',
+      type: 'array',
+      description:
+        'Add frequently asked questions for this post. These appear as a styled FAQ section below the article body and generate FAQPage structured data (schema.org) for Google rich results.',
+      of: [
+        {
+          type: 'object',
+          name: 'faqItem',
+          title: 'FAQ Item',
+          fields: [
+            {
+              name: 'question',
+              title: 'Question',
+              type: 'string',
+              validation: (Rule: { required: () => unknown }) => Rule.required(),
+            },
+            {
+              name: 'answer',
+              title: 'Answer',
+              type: 'text',
+              rows: 4,
+              description: 'Plain text answer. Keep it concise — Google truncates long answers in rich results.',
+              validation: (Rule: { required: () => unknown }) => Rule.required(),
+            },
+          ],
+          preview: {
+            select: { title: 'question', subtitle: 'answer' },
+          },
+        },
+      ],
+    }),
   ],
   preview: {
     select: {

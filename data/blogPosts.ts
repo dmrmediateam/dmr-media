@@ -39,6 +39,11 @@ export interface BlogPost {
     dateModified?: string;
     articleSection?: string;
   };
+  faq?: Array<{
+    _key: string;
+    question: string;
+    answer: string;
+  }>;
 }
 
 // Sample blog post - This will be replaced by Sanity API calls
@@ -308,7 +313,12 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     },
     tags,
     seo,
-    schemaMarkup
+    schemaMarkup,
+    "faq": faq[]{
+      _key,
+      question,
+      answer
+    }
   }`
   
   try {
