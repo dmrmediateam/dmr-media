@@ -143,20 +143,20 @@ export default defineType({
           name: 'faqItem',
           title: 'FAQ Item',
           fields: [
-            {
+            defineField({
               name: 'question',
               title: 'Question',
               type: 'string',
-              validation: (Rule: { required: () => unknown }) => Rule.required(),
-            },
-            {
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
               name: 'answer',
               title: 'Answer',
               type: 'text',
               rows: 4,
               description: 'Plain text answer. Keep it concise — Google truncates long answers in rich results.',
-              validation: (Rule: { required: () => unknown }) => Rule.required(),
-            },
+              validation: (Rule) => Rule.required(),
+            }),
           ],
           preview: {
             select: { title: 'question', subtitle: 'answer' },
