@@ -157,9 +157,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     '@graph': graphItems,
   }
 
-  // Extract h2 headings for the sticky nav (same slugify logic as BlogContent)
+  // Extract h2 + h3 headings for the sticky nav (same slugify logic as BlogContent)
   const navHeadings: NavHeading[] = (post.body ?? [])
-    .filter((block: any) => block._type === 'block' && block.style === 'h2')
+    .filter((block: any) => block._type === 'block' && (block.style === 'h2' || block.style === 'h3'))
     .map((block: any) => {
       const text: string = (block.children ?? []).map((c: any) => c.text ?? '').join('');
       const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();

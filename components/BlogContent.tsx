@@ -64,11 +64,25 @@ export default function BlogContent({ body }: BlogContentProps) {
           </h2>
         )
       },
-      h3: ({ children }: any) => (
-        <h3 className="text-xl md:text-2xl font-serif font-light text-[var(--color-off-black)] mt-6 mb-3 tracking-tight">
-          {children}
-        </h3>
-      ),
+      h3: ({ children, value }: any) => {
+        const rawText: string = (value?.children ?? [])
+          .map((c: any) => c.text ?? '')
+          .join('')
+        const id = rawText
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-')
+          .trim()
+        return (
+          <h3
+            id={id}
+            className="scroll-mt-16 text-xl md:text-2xl font-serif font-light text-[var(--color-off-black)] mt-6 mb-3 tracking-tight"
+          >
+            {children}
+          </h3>
+        )
+      },
       normal: ({ children }: any) => (
         <p className="text-[var(--color-ink-300)] text-base leading-relaxed mb-4 font-serif">
           {children}
