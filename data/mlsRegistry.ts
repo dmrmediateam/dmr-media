@@ -47,6 +47,19 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     cost: 'Varies (confirm with MLS)',
   },
   {
+    name: 'Southwest Florida MLS (SWFLMLS)',
+    slug: 'southwest-florida-mls',
+    states: ['FL'],
+    idxVendors: ['iHomeFinder', 'Showcase IDX'],
+    cost: 'Pass-through fees apply (confirm with local board)',
+    coverage: 'Naples, Fort Myers, Cape Coral, Bonita Springs, Estero, Marco Island, and Collier County. Six member associations including Naples Area Board of REALTORS® and Royal Palm Coast REALTOR® Association.',
+    notes: 'Formerly SunshineMLS. Select your local board (Bonita Springs-Estero, Naples, or Royal Palm Coast) when signing up with iHomeFinder.',
+    links: [
+      { label: 'SWFLMLS Matrix Login', url: 'https://www.swflamls.com/matrix/login.aspx' },
+      { label: 'iHomeFinder IDX Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/southwest-florida-mls/' },
+    ],
+  },
+  {
     name: 'South-Central Wisconsin MLS',
     slug: 'south-central-wisconsin-mls',
     states: ['WI'],
