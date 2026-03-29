@@ -47,6 +47,20 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     cost: 'Varies (confirm with MLS)',
   },
   {
+    name: 'Beaches MLS (BeachesMLS)',
+    slug: 'beaches-mls',
+    states: ['FL'],
+    idxVendors: ['iHomeFinder', 'Showcase IDX'],
+    cost: 'Free IDX feed included with membership. iHomeFinder & Showcase IDX subscription fees apply separately.',
+    coverage: 'Broward, Palm Beach, and St. Lucie counties — Fort Lauderdale, West Palm Beach, Boca Raton, Hollywood, Pompano Beach, Port Saint Lucie, and surrounding South Florida communities.',
+    notes: 'Formerly Florida Regional MLS. Operated by Broward, Palm Beaches & St. Lucie Realtors®. Members can access both Flexmls and Matrix data feeds. JTHS served via MIAMI IDX feed.',
+    links: [
+      { label: 'Broward, Palm Beaches & St. Lucie Realtors®', url: 'https://rworld.com/' },
+      { label: 'iHomeFinder IDX Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/realtors-area-palm-beach/' },
+      { label: 'AgentFire Beaches MLS Coverage', url: 'https://agentfire.com/mls-coverage/beaches-mls-matrix-mls/' },
+    ],
+  },
+  {
     name: 'Southwest Florida MLS (SWFLMLS)',
     slug: 'southwest-florida-mls',
     states: ['FL'],
