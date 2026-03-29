@@ -70,8 +70,15 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     name: 'Cooperative Arkansas Realtors MLS (CARMLS)',
     slug: 'cooperative-arkansas-realtors-mls',
     states: ['AR'],
-    idxVendors: ['IDX Broker', 'iHomefinder'],
-    cost: 'Varies (confirm with MLS). iHomefinder: no fees paid to association.',
+    idxVendors: ['iHomeFinder', 'Showcase IDX'],
+    cost: 'None via iHomeFinder (no association fees). Showcase IDX fees vary by plan.',
+    coverage: 'All 75 Arkansas counties. Cities include Little Rock, Fayetteville, Fort Smith, Rogers, Bentonville, Jonesboro, Conway, Hot Springs, and Pine Bluff. Also covers neighboring areas in TN, LA, and TX.',
+    notes: 'Largest MLS in Arkansas. Over 6,000 members across 931+ brokerages.',
+    links: [
+      { label: 'CARMLS Website', url: 'https://carmls.com/' },
+      { label: 'iHomeFinder IDX Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/cooperative-arkansas-realtors-mls/' },
+      { label: 'AgentFire CARMLS Coverage', url: 'https://agentfire.com/mls-coverage/cooperative-arkansas-realtors-mls/' },
+    ],
   },
   {
     name: 'Metro MLS',
