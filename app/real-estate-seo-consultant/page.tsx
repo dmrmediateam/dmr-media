@@ -55,7 +55,7 @@ const WHAT_YOU_GET = [
     description:
       'A full crawl of your site surfacing every technical issue holding your rankings back — site speed, crawlability, schema, Core Web Vitals, and more.',
     imageRight: false,
-    image: '/images/Cities/Sonoma.jpg',
+    image: '/images/whitelabeledcase/semrushCS.webp',
   },
 ];
 
@@ -257,6 +257,110 @@ export default function RealEstateSeoConsultantPage() {
           },
         ]}
       />
+
+      {/* White-labeled Case Study */}
+      <section className="py-16 md:py-24 bg-[#0D0D0D]">
+        <div className="container-max">
+          <div className="max-w-3xl mb-14">
+            <p className="text-[11px] uppercase tracking-[0.25em] font-serif mb-4" style={{ color: '#B8925A' }}>
+              Case Study — Confidential · 2025
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-light text-white tracking-tight leading-[1.15] mb-6">
+              We built the infrastructure. It never stopped working.
+            </h2>
+            <p className="text-[15px] text-white/60 font-serif leading-[1.7]">
+              A boutique luxury brokerage. Zero SEO. Zero paid media. Here&rsquo;s what happened over the next 20 months.
+            </p>
+          </div>
+
+          {/* Stat bar */}
+          <div className="grid grid-cols-2 md:grid-cols-4 border border-white/10 mb-12">
+            {[
+              { number: '4x', label: 'Non-Branded Click Growth' },
+              { number: '6%', label: 'CTR Today', sub: 'was 1.1%' },
+              { number: '9.7', label: 'Avg. Search Position', sub: 'was 18.6' },
+              { number: '20+', label: 'Months Growing After We Stopped' },
+            ].map((s, i) => (
+              <div
+                key={s.label}
+                className={`flex flex-col items-center justify-center text-center py-10 px-6 ${i < 3 ? 'border-r border-white/10' : ''} border-b md:border-b-0 border-white/10`}
+              >
+                <span className="text-3xl md:text-4xl font-serif font-light text-white leading-none mb-2">
+                  {s.number}
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.18em] text-white/60 font-serif mb-1">
+                  {s.label}
+                </span>
+                {s.sub && (
+                  <span className="text-[10px] text-white/35 font-serif tracking-wide">{s.sub}</span>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* SEMrush chart */}
+          <div className="mb-10">
+            <Image
+              src="/images/whitelabeledcase/semrushCS.webp"
+              alt="SEMrush organic traffic growth — boutique luxury brokerage, June 2024 to March 2026"
+              width={1440}
+              height={900}
+              className="w-full h-auto border border-white/10"
+            />
+            <p className="text-[11px] font-serif text-white/35 mt-3 tracking-wide">
+              SEMrush organic traffic trend — June 2024 through March 2026
+            </p>
+          </div>
+
+          {/* Before / After GSC */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+            <div>
+              <Image
+                src="/images/whitelabeledcase/beforeNonBrandedGSCCS.webp"
+                alt="Google Search Console non-branded — January 2025: 1.1% CTR, position 18.6"
+                width={720}
+                height={480}
+                className="w-full h-auto border border-white/10"
+              />
+              <p className="text-[11px] font-serif text-white/35 mt-2 tracking-wide">
+                January 2025 — End of engagement
+              </p>
+            </div>
+            <div>
+              <Image
+                src="/images/whitelabeledcase/afternonbrandedGSCCS.webp"
+                alt="Google Search Console non-branded — March 2026: 6% CTR, position 9.7"
+                width={720}
+                height={480}
+                className="w-full h-auto border border-white/10"
+              />
+              <p className="text-[11px] font-serif text-white/35 mt-2 tracking-wide">
+                March 2026 — 14 months later, zero active SEO work
+              </p>
+            </div>
+          </div>
+
+          {/* Insight callout */}
+          <div className="border border-white/10 p-8 md:p-12 max-w-3xl mb-10">
+            <p className="text-[11px] uppercase tracking-[0.2em] font-serif mb-5" style={{ color: '#B8925A' }}>
+              The insight
+            </p>
+            <blockquote className="text-xl md:text-2xl font-serif font-light italic text-white leading-snug mb-6">
+              &ldquo;A 1.1% CTR on position 18.6 is a site that ranks but doesn&rsquo;t earn the click. A 6% CTR on position 9.7 is a site built with the right structure. The pages matured from broad visibility into targeted authority.&rdquo;
+            </blockquote>
+            <p className="text-[15px] text-white/55 font-serif leading-[1.7]">
+              This is what a correctly structured SEO plan produces — not just traffic, but the right traffic. Location page clusters, non-branded keyword focus, technical foundation. The work compounds long after the engagement ends.
+            </p>
+          </div>
+
+          <Link
+            href="/case-study/white-labeled-2025"
+            className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.25em] text-white font-serif hover:opacity-60 transition-opacity border-b border-white/40 pb-1"
+          >
+            Read the full case study
+          </Link>
+        </div>
+      </section>
 
       {/* SEO Consulting vs. SEO Management */}
       <section className="py-16 md:py-24 bg-white border-t border-[var(--color-ink-200)]">
