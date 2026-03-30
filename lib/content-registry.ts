@@ -149,6 +149,19 @@ export const contentRegistry: ContentEntry[] = [
     changeFrequency: 'monthly',
   },
 
+  {
+    slug: '/real-estate-seo-consultant',
+    title: 'Real Estate SEO Consultant | SEO Plans for Agents & Teams | DMR Media',
+    description:
+      'We create custom SEO plans for real estate agents and teams. Keyword strategy, content architecture, technical audits, and local search frameworks built around your market.',
+    publishDate: '2026-03-30',
+    modifiedDate: '2026-03-30',
+    category: 'SEO',
+    tags: ['real estate SEO consultant', 'SEO plan real estate', 'real estate SEO consulting', 'SEO strategy real estate agents'],
+    priority: 0.9,
+    changeFrequency: 'weekly',
+  },
+
   // ─── Case Study Pages ───────────────────────────────────────────────────────
   {
     slug: '/case-study/willow-brook-realty',
