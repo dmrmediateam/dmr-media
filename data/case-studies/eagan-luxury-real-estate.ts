@@ -16,7 +16,7 @@ export const eaganLuxuryData: CaseStudyData = {
     dateModified: '2026-03-25',
   },
   hero: {
-    image: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
+    image: '',
     imageAlt: 'Eagan Luxury Real Estate website homepage — DMR Media St. Petersburg Florida',
     subtitle:
       'Zero organic traffic. Zero rankings. Strong agents with no digital foundation. We built the system — brand consolidation, full SEO, and targeted Google Ads — and Eagan Luxury closed $11,075,000 in Q1 2026.',
@@ -80,10 +80,6 @@ export const eaganLuxuryData: CaseStudyData = {
           body: `Once the organic foundation was in place, we launched Google Search Ads optimized for qualified buyers. The campaign generates home valuation leads at $36.93 each — well below industry benchmarks for luxury real estate. Within the first 30 days of ads running, Eagan Luxury secured a $1,000,000 listing. That listing sold in one day.`,
         },
       ],
-      screenshot: {
-        src: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
-        alt: 'Eagan Luxury Real Estate unified website — eaganluxury.com launched December 2024',
-      },
     },
     {
       id: 'results',

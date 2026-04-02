@@ -51,16 +51,18 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
               {data.hero.subtitle}
             </p>
           </div>
-          <div className="mt-12 w-full max-w-[1200px] mx-auto overflow-hidden">
-            <Image
-              src={data.hero.image}
-              alt={data.hero.imageAlt}
-              width={1920}
-              height={1080}
-              className="w-full h-auto"
-              priority
-            />
-          </div>
+          {data.hero.image && (
+            <div className="mt-12 w-full max-w-[1200px] mx-auto overflow-hidden">
+              <Image
+                src={data.hero.image}
+                alt={data.hero.imageAlt}
+                width={1920}
+                height={1080}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          )}
         </div>
       </section>
 

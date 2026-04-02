@@ -1,6 +1,7 @@
 import CaseStudyLayout from '@/app/case-study/CaseStudyLayout'
 import SEOWrapper from '@/components/SEOWrapper'
 import { eaganLuxuryData } from '@/data/case-studies/eagan-luxury-real-estate'
+import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
@@ -30,6 +31,20 @@ export default function EaganLuxuryCaseStudy() {
       schemaType="article"
     >
       <CaseStudyLayout data={eaganLuxuryData} />
+
+      {/* Website screenshot — full-width, shown once */}
+      <section className="border-t border-[var(--color-ink-200)]">
+        <div className="container-max py-16 md:py-20">
+          <Image
+            src="/images/screencapture-eaganluxury-2025-12-17-21_25_49.png"
+            alt="Eagan Luxury Real Estate — eaganluxury.com, St. Petersburg Florida"
+            width={1920}
+            height={1080}
+            className="w-full h-auto border border-[var(--color-ink-200)]"
+            loading="lazy"
+          />
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="bg-[#0D0D0D] py-24 md:py-32 text-center">
