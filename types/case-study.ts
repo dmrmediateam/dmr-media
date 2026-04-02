@@ -25,6 +25,7 @@ export interface CaseStudySection {
   headline: string
   body: string[]
   screenshot?: { src: string; alt: string }
+  screenshots?: Array<{ src: string; alt: string; caption?: string }>
   phases?: CaseStudyPhase[]
 }
 

@@ -7,25 +7,25 @@ export const eaganLuxuryData: CaseStudyData = {
   market: 'Tampa Bay / St. Petersburg',
   status: 'Ongoing',
   seo: {
-    title: 'Eagan Luxury Real Estate — Zero Ranking Loss After Site Consolidation | DMR Media',
+    title: 'Eagan Luxury Real Estate — $11M Closed Volume, Q1 2026 | DMR Media',
     description:
-      'DMR Media consolidated multiple fragmented websites into a single brand presence for Eagan Luxury Real Estate. Zero measurable ranking loss, 10% keyword increase. Launched December 2024.',
+      'From zero organic traffic to $11,075,000 in closed sales volume in Q1 2026. DMR Media built the brand, dominated organic search, and layered in Google Ads for Eagan Luxury Real Estate in St. Petersburg, FL.',
     canonical: 'https://www.dmrmedia.org/case-study/eagan-luxury-real-estate',
     ogImage: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
     datePublished: '2024-12-17',
-    dateModified: '2026-03-17',
+    dateModified: '2026-03-25',
   },
   hero: {
     image: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
     imageAlt: 'Eagan Luxury Real Estate website homepage — DMR Media St. Petersburg Florida',
     subtitle:
-      "We consolidated multiple fragmented websites into a single, powerful brand presence for Eagan Luxury Real Estate. Launched December 17th with zero measurable ranking loss and a 10% increase in keywords—all while maintaining SEO authority during a complete website consolidation.",
+      'Zero organic traffic. Zero rankings. Strong agents with no digital foundation. We built the system — brand consolidation, full SEO, and targeted Google Ads — and Eagan Luxury closed $11,075,000 in Q1 2026.',
   },
   metrics: [
-    { number: '0%', label: 'Ranking loss', context: 'Maintained all rankings at launch' },
-    { number: '+10%', label: 'Keyword growth', context: 'Increase in tracked keywords' },
-    { number: 'Dec 17', label: 'Launch date', context: '2024 website consolidation' },
-    { number: 'Ongoing', label: 'Status', context: 'Active consolidation & retargeting' },
+    { number: '$11.07M', label: 'Closed Volume', context: 'Q1 2026' },
+    { number: '0 → 812', label: 'Daily Impressions', context: 'Google Search Console' },
+    { number: '#1', label: 'Ranked', context: '"Realtor in Dolphin Cay"' },
+    { number: '$36.93', label: 'Cost Per Lead', context: 'Home valuation (Google Ads)' },
   ],
   reviews: [
     {
@@ -40,75 +40,72 @@ export const eaganLuxuryData: CaseStudyData = {
     {
       id: 'the-problem',
       eyebrow: 'The Problem',
-      headline: 'The Challenge: Fragmented Digital Presence',
+      headline: 'Strong Agents. Zero Online Presence.',
       body: [
-        `Eagan Luxury Real Estate had multiple websites operating independently—each serving different communities and markets. This fragmented approach created confusion for potential clients, diluted brand authority, and made it impossible to track performance across their entire digital footprint.`,
-        `The team needed a unified brand presence that consolidated all their properties, communities, and services into a single, powerful website. But they couldn't afford to lose the SEO authority they'd built across these legacy sites. Every redirect, every URL change, every content migration had to be executed with surgical precision to maintain search rankings.`,
-        `Working with Bill, one of the main realtors at Eagan Luxury, we identified the need for a complete website consolidation that would unify their brand while preserving every ounce of SEO value they'd accumulated over years of operation.`,
+        `Eagan Luxury Real Estate had everything it takes to dominate the St. Petersburg luxury market — elite agents, deep community knowledge, and a high-quality brand. What they didn't have was a single buyer finding them online.`,
+        `Before DMR Media, their website generated zero organic traffic. Not a trickle. Zero. Luxury buyers searching for homes in Dolphin Cay, waterfront properties in Tierra Verde, and high-end listings across greater Pinellas County were landing on competitor websites. Eagan Luxury didn't even show up.`,
+        `The team was competing at the highest level of real estate without a digital foundation to match. No keyword rankings. No local SEO authority. No content strategy. No paid system to capture demand. Fragmented legacy websites were splitting what little authority existed across multiple domains — none of them strong enough to rank for anything meaningful.`,
+        `Every day without a digital system was a day a buyer chose someone else.`,
       ],
     },
     {
       id: 'the-diagnosis',
       eyebrow: 'The Diagnosis',
-      headline: 'What We Discovered',
+      headline: 'The Market Was Winnable. They Just Needed the System.',
       body: [
-        `Our audit revealed a complex web of legacy websites that needed consolidation. The Dolphin Cay Community website, the Tierra Verde community website, and several other properties were all operating as separate entities. Each had its own domain authority, backlink profile, and keyword rankings that needed to be preserved.`,
-        `The challenge wasn't just technical—it was strategic. We needed to consolidate these properties in a way that maintained <a href="/seo-optimization">SEO authority</a> while creating a unified brand experience. Every redirect had to be planned carefully to minimize any potential ranking impact.`,
-        `Additionally, we identified opportunities to boost organic leads through retargeting campaigns. The new unified website would serve as the foundation for a comprehensive digital marketing strategy that combined organic SEO with strategic <a href="/google-ads-management">paid advertising</a>.`,
+        `Our audit confirmed the damage: multiple fragmented legacy websites, split domain authority, zero keyword rankings, and no content architecture. The Dolphin Cay community website, the Tierra Verde community website, and several other properties were each operating independently — diluting the brand and canceling each other out in search.`,
+        `But the opportunity was obvious. St. Petersburg luxury real estate — especially niche waterfront communities like Dolphin Cay — had real buyer demand and thin competition at the top. The market was winnable. Eagan Luxury had the brand. They just needed a unified system to go take it.`,
+        `The plan: consolidate the brand into one authoritative presence, build an <a href="/seo-optimization">SEO engine</a> designed to own their niche, then layer in <a href="/google-ads-management">Google Ads</a> to capture qualified buyers already searching. Every piece built on the last.`,
       ],
     },
     {
       id: 'the-solution',
       eyebrow: 'The Solution',
-      headline: 'How We Built the System',
-      body: [
-        `We built a completely new website that consolidated all of Eagan Luxury's properties and communities into a single, powerful brand presence. The new site launched on December 17th, 2024, with a focus on maintaining every ranking and keyword position they'd built over the years.`,
-        `The launch strategy was surgical. We implemented strategic 301 redirects that preserved SEO authority while consolidating the brand. The result? Zero measurable ranking loss at launch, and actually a 10% increase in tracked keywords. Every redirect was planned to minimize SEO impact while maximizing brand consolidation.`,
-        `Currently, we're in the process of slowly redirecting the remaining legacy websites—including the Dolphin Cay Community website and the Tierra Verde community website. This slow, methodical approach ensures we maintain SEO presence throughout the consolidation process, rather than risking a sudden drop in rankings.`,
-        `In parallel, we're running retargeting ads to boost organic leads to the new website. These campaigns help drive qualified traffic while the organic SEO foundation continues to build authority. The combination of strategic redirects and retargeting creates a comprehensive lead generation system that works across multiple channels.`,
-      ],
-      screenshot: {
-        src: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
-        alt: 'Eagan Luxury Real Estate website — DMR Media St. Petersburg Florida',
-      },
-    },
-    {
-      id: 'how-we-did-it',
-      eyebrow: 'How We Did It',
-      headline: 'The Process: Launch, Consolidate, Scale',
+      headline: 'Three Phases. One System.',
       body: [],
       phases: [
         {
           label: 'Phase 01',
-          name: 'Launch',
-          body: "We built the new unified website and launched it on December 17th, 2024, with strategic 301 redirects that preserved SEO authority. The launch was successful—zero measurable ranking loss and a 10% increase in tracked keywords. This proved that consolidation could be done without sacrificing search performance.",
+          name: 'Build the Foundation — December 2024',
+          body: `We consolidated multiple fragmented websites into one unified brand presence at eaganluxury.com. The new site launched December 17, 2024 with surgical 301 redirects mapping every legacy URL to its new home. Result: zero measurable ranking loss and a 10% increase in tracked keywords at launch. The foundation was set without losing a single position — and with more firepower than any of the legacy sites had individually.`,
         },
         {
           label: 'Phase 02',
-          name: 'Consolidate',
-          body: "We're slowly redirecting legacy websites—the Dolphin Cay Community website, the Tierra Verde community website, and others—to the new unified site. This slow, methodical approach minimizes SEO impact while gradually consolidating all digital properties under one brand.",
+          name: 'Dominate Organic Search',
+          body: `With the foundation live, we deployed a full SEO campaign built around owning Eagan Luxury's niche. Five blog posts per month targeting both top-of-funnel discovery content ("Green Parrots in St. Pete," "Retiring in Florida") and high-intent buyer searches ("Dolphin Cay homes for sale," "luxury waterfront homes St. Petersburg"). Five hundred citations per month to build local authority. Two high-quality backlinks per month to build domain strength. The result: daily impressions climbed from 0 to 812. Eagan Luxury now ranks #1 for "Realtor in Dolphin Cay" — their most valuable niche search.`,
         },
         {
           label: 'Phase 03',
-          name: 'Scale',
-          body: "We're running retargeting ads to boost organic leads to the new website. These campaigns work alongside the organic SEO foundation to create a comprehensive lead generation system. The goal is to maximize visibility and conversions while maintaining the SEO authority we've preserved.",
+          name: 'Layer in Paid Demand — Google Search Ads',
+          body: `Once the organic foundation was in place, we launched Google Search Ads optimized for qualified buyers. The campaign generates home valuation leads at $36.93 each — well below industry benchmarks for luxury real estate. Within the first 30 days of ads running, Eagan Luxury secured a $1,000,000 listing. That listing sold in one day.`,
         },
-      ],
-    },
-    {
-      id: 'results',
-      eyebrow: 'What Eagan Luxury Achieved',
-      headline: 'The Results: Zero Loss, 10% Growth, Ongoing Expansion',
-      body: [
-        `The website launched on December 17th with zero measurable ranking loss. In fact, we saw a 10% increase in tracked keywords—proving that strategic consolidation can actually improve <a href="/seo-optimization">SEO performance</a> when done correctly. Every ranking was preserved, every keyword maintained, and the brand now has a unified digital presence.`,
-        `The consolidation is ongoing. We're methodically redirecting legacy websites—the Dolphin Cay Community website, the Tierra Verde community website, and others—to the new unified site. This slow approach ensures we maintain SEO presence throughout the process, rather than risking sudden ranking drops.`,
-        `Retargeting campaigns are running to boost organic leads, creating a comprehensive lead generation system that combines organic SEO with strategic paid advertising. The new website serves as the foundation for a unified brand experience that works across all channels.`,
-        `This is an ongoing case study. As we continue to consolidate legacy properties and optimize the retargeting campaigns, we'll track performance and refine the strategy to maximize results for Eagan Luxury Real Estate.`,
       ],
       screenshot: {
         src: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
-        alt: 'Eagan Luxury Real Estate website showing unified brand presence — DMR Media',
+        alt: 'Eagan Luxury Real Estate unified website — eaganluxury.com launched December 2024',
       },
+    },
+    {
+      id: 'results',
+      eyebrow: 'The Results',
+      headline: '$11,075,000 in Closed Volume. Starting From Zero.',
+      body: [
+        `Starting from zero organic traffic, Eagan Luxury Real Estate closed <strong>$11,075,000 in sales volume in Q1 2026</strong> — the quarter immediately following their site launch. That is not a projection. That is the scoreboard.`,
+        `Daily search impressions grew from 0 to 812. They now hold the #1 ranking for "Realtor in Dolphin Cay." Their Google Ads generate qualified home valuation leads at $36.93 each. Within the first 30 days of ads going live, they landed a $1M listing that sold in a single day.`,
+        `This is what happens when brand, SEO, and paid search work together as a system — not as separate tactics, but as one compounding machine built to produce results.`,
+      ],
+      screenshots: [
+        {
+          src: '/images/EaganCaseStudy/GoogleSearchConsole.png',
+          alt: 'Google Search Console showing Eagan Luxury Real Estate impressions growing from 0 to 812 daily — DMR Media',
+          caption: 'Google Search Console — Daily impressions: 0 → 812',
+        },
+        {
+          src: '/images/EaganCaseStudy/SearchAds.png',
+          alt: 'Google Ads transparency showing Eagan Luxury Real Estate active campaigns — DMR Media St. Petersburg',
+          caption: 'Google Search Ads — 22 active ads for eaganluxury.com',
+        },
+      ],
     },
   ],
 }

@@ -184,6 +184,28 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
                   </div>
                 )}
 
+                {section.screenshots && section.screenshots.length > 0 && (
+                  <div className={`mt-10 grid gap-6 ${section.screenshots.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
+                    {section.screenshots.map((shot, i) => (
+                      <figure key={i} className="w-full">
+                        <Image
+                          src={shot.src}
+                          alt={shot.alt}
+                          width={900}
+                          height={560}
+                          className="w-full h-auto border border-[var(--color-ink-200)]"
+                          loading="lazy"
+                        />
+                        {shot.caption && (
+                          <figcaption className="mt-2 text-xs text-[var(--color-ink-300)] font-serif tracking-wide text-center">
+                            {shot.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    ))}
+                  </div>
+                )}
+
                 {section.phases && section.phases.length > 0 && (
                   <div className="mt-10 space-y-8">
                     {section.phases.map((phase) => (
