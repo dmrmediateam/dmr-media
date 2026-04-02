@@ -45,6 +45,49 @@ export default function CaseStudies() {
           <div className="w-72 h-[2px] bg-gradient-to-r from-[var(--color-off-black)] via-[var(--color-off-black)] to-transparent" />
         </div>
 
+        {/* Small Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+          {SMALL_STUDIES.map((study) => (
+            <Link
+              key={study.id}
+              href={`/case-study/${study.id}`}
+              className="group border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300 flex flex-col"
+            >
+              <div className="relative aspect-[3/2] overflow-hidden mb-6">
+                <Image
+                  src={study.image}
+                  alt={`${study.client} case study results`}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent pointer-events-none" />
+                <div className="absolute top-6 left-6 z-10">
+                  <span className="text-sm uppercase tracking-[0.2em] text-[#FAFAF9] font-serif font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)]">
+                    {study.comment}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex-1 flex flex-col gap-4">
+                <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] font-serif">
+                  {study.result}
+                </div>
+                <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] leading-snug">
+                  {study.title}
+                </h3>
+                <p className="text-sm text-[var(--color-ink-300)] leading-relaxed flex-1 font-serif">
+                  {study.description}
+                </p>
+                <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif">
+                  View full story
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+
         {/* Large Featured Card — Eagan Luxury */}
         <div className="mb-20 border-b border-[var(--color-ink-200)] pb-16">
           <Link
@@ -102,53 +145,6 @@ export default function CaseStudies() {
               </div>
             </div>
           </Link>
-        </div>
-
-        {/* Small Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {SMALL_STUDIES.map((study) => (
-            <Link
-              key={study.id}
-              href={`/case-study/${study.id}`}
-              className="group border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300 flex flex-col"
-            >
-              <div className="relative aspect-[3/2] overflow-hidden mb-6">
-                <Image
-                  src={study.image}
-                  alt={`${study.client} case study results`}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent pointer-events-none" />
-                {/* Achievement comment */}
-                <div className="absolute top-6 left-6 z-10">
-                  <span className="text-sm uppercase tracking-[0.2em] text-[#FAFAF9] font-serif font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)]">
-                    {study.comment}
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex-1 flex flex-col gap-4">
-                <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] font-serif">
-                  {study.result}
-                </div>
-
-                <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] leading-snug">
-                  {study.title}
-                </h3>
-
-                <p className="text-sm text-[var(--color-ink-300)] leading-relaxed flex-1 font-serif">
-                  {study.description}
-                </p>
-
-                <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif">
-                  View full story
-                </span>
-              </div>
-            </Link>
-          ))}
         </div>
 
         <div className="mt-10 text-center">
