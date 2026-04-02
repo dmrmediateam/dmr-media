@@ -90,6 +90,21 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     ],
   },
   {
+    name: 'NorthstarMLS (RMLS-MN)',
+    slug: 'rmlsmn',
+    states: ['MN'],
+    idxVendors: ['iHomeFinder', 'IDX Broker'],
+    cost: 'Varies (confirm with NorthstarMLS and local association)',
+    coverage:
+      'Minnesota and Upper Midwest. Twin Cities metro (Minneapolis, St. Paul, Bloomington, Edina, Plymouth, Minnetonka, Eden Prairie, Lakeville) plus Rochester, Duluth, and hundreds of surrounding communities. 22,000+ members.',
+    notes:
+      'Formerly RMLS-MN (Regional Multiple Listing Service of Minnesota). Now branded as NorthstarMLS. Offers both Flexmls and Matrix platforms. IDX available to agents with broker signoff. Feed approval approx. 5 business days. Geo-codes provided.',
+    links: [
+      { label: 'NorthstarMLS Website', url: 'https://northstarmls.com/' },
+      { label: 'Real Estate Webmasters RMLS-MN IDX', url: 'https://www.realestatewebmasters.com/mls/rmls-mn/' },
+    ],
+  },
+  {
     name: 'South-Central Wisconsin MLS',
     slug: 'south-central-wisconsin-mls',
     states: ['WI'],
