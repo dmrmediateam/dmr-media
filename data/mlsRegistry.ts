@@ -74,6 +74,22 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     ],
   },
   {
+    name: 'Midwest Real Estate Data (MRED / MLSNI)',
+    slug: 'mlsni',
+    states: ['IL', 'WI', 'IN'],
+    idxVendors: ['iHomeFinder', 'IDX Broker'],
+    cost: 'Varies (confirm with MLS and local association)',
+    coverage:
+      'Chicago metro and surrounding collar counties — Northern Illinois, Southern Wisconsin (including Lake Geneva, Kenosha), and Northwest Indiana. Key cities: Chicago, Naperville, Evanston, Schaumburg, Aurora, Joliet, Rockford, Oak Park, and hundreds more. 40,000+ members across 13 REALTOR® associations.',
+    notes:
+      'Formerly MLSNI (Multiple Listing Service of Northern Illinois), rebranded to MRED in the mid-2000s. Also known as MAPMLS. IDX feed available to brokers of record only; agents must go through their managing broker. Feed approval approx. 5 business days.',
+    links: [
+      { label: 'MLSNI/MRED Website', url: 'http://www.mlsni.com/' },
+      { label: 'Real Estate Webmasters MLSNI IDX', url: 'https://www.realestatewebmasters.com/mls/mlsni/' },
+      { label: 'RealtyCandy MRED IDX Broker', url: 'https://realtycandy.com/idx-broker-mls-services/illinois/midwest-real-estate-data/' },
+    ],
+  },
+  {
     name: 'South-Central Wisconsin MLS',
     slug: 'south-central-wisconsin-mls',
     states: ['WI'],
