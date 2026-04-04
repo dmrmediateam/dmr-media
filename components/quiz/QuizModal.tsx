@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
-// ─── Quiz config ────────────────────────────────────────────────────────────
+// ─── Quiz config ─────────────────────────────────────────────────────────────
 
-const QUESTIONS = [
+export const QUESTIONS = [
   {
     id: 'organic-traffic',
     qNum: 'Q1',
@@ -136,141 +137,7 @@ const QUESTIONS = [
   },
 ]
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
-type GaugeColor = 'red' | 'amber' | 'green'
-
-function getColor(score: number, thresholds: { red: number; amber: number }): GaugeColor {
-  if (score <= thresholds.red) return 'red'
-  if (score <= thresholds.amber) return 'amber'
-  return 'green'
-}
-
-const STROKE_COLOR: Record<GaugeColor, string> = {
-  red: '#EF4444',
-  amber: '#F59E0B',
-  green: '#22C55E',
-}
-
-const LABEL_COLOR: Record<GaugeColor, string> = {
-  red: 'text-red-600',
-  amber: 'text-amber-600',
-  green: 'text-green-600',
-}
-
-function getScoreRange(s: number) {
-  if (s >= 80)
-    return {
-      label: 'High Performer',
-      copy: "You're ahead of 90% of agents online. Your digital foundation is solid — let's talk about where to optimize next.",
-      cta: 'Book a Free 20-Min Website Lead Audit',
-    }
-  if (s >= 55)
-    return {
-      label: 'Needs Work',
-      copy: 'You have a foundation but there are clear gaps costing you leads. The fixes are straightforward — and the upside is significant.',
-      cta: 'Book a Call or Start the Course',
-    }
-  if (s >= 30)
-    return {
-      label: 'Significant Gaps',
-      copy: 'Multiple systems are either missing or underperforming. The good news: each one is fixable. The course walks you through every gauge on this dashboard.',
-      cta: 'Get the Course — $297',
-    }
-  return {
-    label: 'Starting From Zero',
-    copy: "Your website isn't working for you yet — but that's exactly what this course fixes. Start here.",
-    cta: 'Get the Course — $297',
-  }
-}
-
-// ─── SVG semi-circle gauge ────────────────────────────────────────────────────
-
-function GaugeArc({
-  score,
-  maxScore,
-  color,
-}: {
-  score: number
-  maxScore: number
-  color: GaugeColor
-}) {
-  const r = 36
-  const cx = 50
-  const cy = 50
-  const pathLen = Math.PI * r // ≈ 113.1
-  const filled = (score / maxScore) * pathLen
-
-  return (
-    <svg viewBox="0 0 100 65" className="w-full max-w-[110px]" aria-hidden="true">
-      {/* Background arc */}
-      <path
-        d={`M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`}
-        fill="none"
-        stroke="#E5E7EB"
-        strokeWidth="8"
-        strokeLinecap="round"
-      />
-      {/* Fill arc */}
-      <path
-        d={`M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`}
-        fill="none"
-        stroke={STROKE_COLOR[color]}
-        strokeWidth="8"
-        strokeLinecap="round"
-        strokeDasharray={`${filled} ${pathLen}`}
-        strokeDashoffset="0"
-      />
-      {/* Score */}
-      <text
-        x="50"
-        y="46"
-        textAnchor="middle"
-        fontSize="12"
-        fontFamily="Georgia, serif"
-        fill="#1a1a1a"
-      >
-        {score}
-      </text>
-      <text
-        x="50"
-        y="57"
-        textAnchor="middle"
-        fontSize="8"
-        fontFamily="Georgia, serif"
-        fill="#9ca3af"
-      >
-        /{maxScore}
-      </text>
-    </svg>
-  )
-}
-
-// ─── Progress dots ────────────────────────────────────────────────────────────
-
-function ProgressDots({ step }: { step: number }) {
-  // step 0 = URL, 1 = email, 2–8 = Q1–Q7, 9 = results
-  const total = 9
-  const current = Math.min(step, total)
-  return (
-    <div className="flex items-center gap-1.5">
-      {Array.from({ length: total }).map((_, i) => (
-        <div
-          key={i}
-          className={`h-1 rounded-full transition-all duration-300 ${
-            i < current
-              ? 'bg-[var(--color-off-black)] w-4'
-              : i === current
-              ? 'bg-[var(--color-off-black)] w-4'
-              : 'bg-[var(--color-ink-200)] w-1.5'
-          }`}
-        />
-      ))}
-    </div>
-  )
-}
-
-// ─── Main modal ───────────────────────────────────────────────────────────────
+// ─── Modal component ──────────────────────────────────────────────────────────
 
 interface QuizModalProps {
   isOpen: boolean
@@ -278,6 +145,7 @@ interface QuizModalProps {
 }
 
 export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
+  const router = useRouter()
   const [step, setStep] = useState(0)
   const [websiteUrl, setWebsiteUrl] = useState('')
   const [email, setEmail] = useState('')
@@ -285,86 +153,97 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
 
   if (!isOpen) return null
 
+  // step 0 = URL, 1 = email, 2–8 = Q1–Q7
+  const totalSteps = 9
+  const progressPct = (step / totalSteps) * 100
   const currentQ = step >= 2 && step <= 8 ? QUESTIONS[step - 2] : null
 
-  // Results
-  const totalScore = Object.values(answers).reduce((a, b) => a + b, 0)
-  const scoreRange = getScoreRange(totalScore)
-  const questionScores = QUESTIONS.map((q) => ({
-    ...q,
-    score: answers[q.id] ?? 0,
-    pct: (answers[q.id] ?? 0) / q.maxPts,
-  }))
-  const lowestGauge = [...questionScores].sort((a, b) => a.pct - b.pct)[0]
-
   const handleAnswer = (qId: string, score: number) => {
-    setAnswers((prev) => ({ ...prev, [qId]: score }))
-    setStep((s) => s + 1)
+    const newAnswers = { ...answers, [qId]: score }
+    setAnswers(newAnswers)
+
+    if (step === 8) {
+      // Last question — store results and redirect
+      const totalScore = Object.values(newAnswers).reduce((a, b) => a + b, 0)
+      sessionStorage.setItem(
+        'quizResults',
+        JSON.stringify({ websiteUrl, email, totalScore, answers: newAnswers })
+      )
+      router.push('/quiz/thank-you')
+    } else {
+      setStep((s) => s + 1)
+    }
   }
 
-  const handleReset = () => {
-    setStep(0)
-    setWebsiteUrl('')
-    setEmail('')
-    setAnswers({})
-  }
+  const stepLabel =
+    step === 0
+      ? 'Your website'
+      : step === 1
+      ? 'Your results'
+      : `${step - 1} of 7`
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/70 backdrop-blur-sm"
       onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
     >
-      <div className="relative bg-white w-full max-w-lg max-h-[92vh] overflow-y-auto shadow-2xl flex flex-col">
+      <div className="relative bg-white w-full sm:max-w-2xl max-h-[96vh] sm:max-h-[88vh] overflow-y-auto flex flex-col shadow-2xl">
 
-        {/* Top bar: progress + close */}
-        <div className="sticky top-0 z-10 bg-white border-b border-[var(--color-ink-200)] px-6 py-3 flex items-center justify-between gap-4">
-          <ProgressDots step={step} />
-          {step < 9 && (
-            <span className="text-xs font-serif text-[var(--color-ink-300)] shrink-0">
-              {step === 0 ? 'Step 1 of 9' : step === 1 ? 'Step 2 of 9' : `Q${step - 1} of 7`}
-            </span>
-          )}
+        {/* Progress bar */}
+        <div className="h-[2px] bg-[var(--color-ink-200)] w-full shrink-0">
+          <div
+            className="h-[2px] bg-[var(--color-off-black)] transition-all duration-500"
+            style={{ width: `${progressPct}%` }}
+          />
+        </div>
+
+        {/* Header */}
+        <div className="px-8 md:px-12 pt-6 pb-0 flex items-center justify-between shrink-0">
+          <span className="text-xs uppercase tracking-[0.2em] font-serif text-[var(--color-ink-300)]">
+            {stepLabel}
+          </span>
           <button
             onClick={onClose}
-            className="shrink-0 text-[var(--color-ink-300)] hover:text-[var(--color-off-black)] transition-colors text-xl leading-none ml-auto"
+            className="text-[var(--color-ink-300)] hover:text-[var(--color-off-black)] transition-colors text-2xl leading-none"
             aria-label="Close"
           >
             ×
           </button>
         </div>
 
-        <div className="p-8 md:p-10 flex-1">
+        {/* Content */}
+        <div className="px-8 md:px-12 py-10 md:py-14 flex-1">
 
           {/* ── Gate 1: Website URL ── */}
           {step === 0 && (
-            <div className="space-y-8">
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] font-serif mb-3" style={{ color: '#B8925A' }}>
-                  Gate 1 · Website Capture
+            <div className="space-y-10">
+              <div className="space-y-4">
+                <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
+                  First things first
                 </p>
-                <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] leading-tight tracking-tight">
+                <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] leading-[1.15] tracking-tight">
                   What&apos;s your website URL?
                 </h2>
-                <p className="mt-3 text-sm text-[var(--color-ink-300)] font-serif leading-relaxed">
-                  We&apos;ll reference it in your results and use it to record your personalized Loom audit.
+                <p className="text-base text-[var(--color-ink-300)] font-serif leading-relaxed">
+                  We&apos;ll use it to personalize your results and record your Loom audit.
                 </p>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <input
                   type="url"
                   value={websiteUrl}
                   onChange={(e) => setWebsiteUrl(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter' && websiteUrl.trim()) setStep(1) }}
                   placeholder="https://yourwebsite.com"
-                  className="w-full border border-[var(--color-ink-200)] px-4 py-3 font-serif text-sm text-[var(--color-off-black)] placeholder:text-[var(--color-ink-300)] focus:outline-none focus:border-[var(--color-off-black)] transition-colors"
+                  className="w-full border-b border-[var(--color-ink-200)] px-0 py-4 font-serif text-lg text-[var(--color-off-black)] placeholder:text-[var(--color-ink-300)] focus:outline-none focus:border-[var(--color-off-black)] transition-colors bg-transparent"
                   autoFocus
                 />
                 <button
                   onClick={() => { if (websiteUrl.trim()) setStep(1) }}
                   disabled={!websiteUrl.trim()}
-                  className="w-full py-3.5 bg-[var(--color-off-black)] text-white text-xs uppercase tracking-[0.2em] font-serif hover:opacity-85 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="w-full py-4 bg-[var(--color-off-black)] text-white text-xs uppercase tracking-[0.25em] font-serif hover:opacity-85 transition-opacity disabled:opacity-30 disabled:cursor-not-allowed mt-2"
                 >
-                  Continue →
+                  Continue
                 </button>
               </div>
             </div>
@@ -372,39 +251,39 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
 
           {/* ── Gate 2: Email ── */}
           {step === 1 && (
-            <div className="space-y-8">
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] font-serif mb-3" style={{ color: '#B8925A' }}>
-                  Gate 2 · Email Capture
+            <div className="space-y-10">
+              <div className="space-y-4">
+                <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
+                  Almost there
                 </p>
-                <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] leading-tight tracking-tight">
+                <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] leading-[1.15] tracking-tight">
                   Where should we send your results?
                 </h2>
-                <p className="mt-3 text-sm text-[var(--color-ink-300)] font-serif leading-relaxed">
+                <p className="text-base text-[var(--color-ink-300)] font-serif leading-relaxed">
                   Your personalized score and audit will be delivered here.
                 </p>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter' && email.includes('@')) setStep(2) }}
                   placeholder="you@yourbrokerage.com"
-                  className="w-full border border-[var(--color-ink-200)] px-4 py-3 font-serif text-sm text-[var(--color-off-black)] placeholder:text-[var(--color-ink-300)] focus:outline-none focus:border-[var(--color-off-black)] transition-colors"
+                  className="w-full border-b border-[var(--color-ink-200)] px-0 py-4 font-serif text-lg text-[var(--color-off-black)] placeholder:text-[var(--color-ink-300)] focus:outline-none focus:border-[var(--color-off-black)] transition-colors bg-transparent"
                   autoFocus
                 />
                 <button
                   onClick={() => { if (email.includes('@')) setStep(2) }}
                   disabled={!email.includes('@')}
-                  className="w-full py-3.5 bg-[var(--color-off-black)] text-white text-xs uppercase tracking-[0.2em] font-serif hover:opacity-85 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="w-full py-4 bg-[var(--color-off-black)] text-white text-xs uppercase tracking-[0.25em] font-serif hover:opacity-85 transition-opacity disabled:opacity-30 disabled:cursor-not-allowed mt-2"
                 >
-                  Unlock My Score →
+                  Unlock My Score
                 </button>
               </div>
               <button
                 onClick={() => setStep(0)}
-                className="text-xs text-[var(--color-ink-300)] font-serif hover:text-[var(--color-off-black)] transition-colors"
+                className="text-sm text-[var(--color-ink-300)] font-serif hover:text-[var(--color-off-black)] transition-colors"
               >
                 ← Back
               </button>
@@ -413,177 +292,35 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
 
           {/* ── Q1–Q7 ── */}
           {currentQ && (
-            <div className="space-y-8">
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] font-serif mb-3" style={{ color: '#B8925A' }}>
-                  {currentQ.qNum} · {currentQ.label} · {currentQ.maxPts} pts
+            <div className="space-y-10">
+              <div className="space-y-4">
+                <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
+                  {currentQ.qNum} · {currentQ.label}
                 </p>
-                <h2 className="text-xl md:text-2xl font-serif font-light text-[var(--color-off-black)] leading-tight tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] leading-[1.2] tracking-tight">
                   {currentQ.question}
                 </h2>
               </div>
-              <div className="space-y-2.5">
-                {currentQ.options.map((opt) => (
+              <div className="divide-y divide-[var(--color-ink-200)] border-t border-b border-[var(--color-ink-200)]">
+                {currentQ.options.map((opt, i) => (
                   <button
-                    key={opt.score}
+                    key={i}
                     onClick={() => handleAnswer(currentQ.id, opt.score)}
-                    className="w-full text-left px-5 py-4 border border-[var(--color-ink-200)] font-serif text-sm text-[var(--color-off-black)] hover:border-[var(--color-off-black)] hover:bg-[var(--surface-base,#FAFAF9)] transition-all duration-150 group"
+                    className="w-full text-left px-0 py-5 font-serif text-base md:text-lg text-[var(--color-off-black)] hover:pl-3 hover:text-[var(--color-off-black)] transition-all duration-200 group flex items-center justify-between gap-4"
                   >
-                    <span className="flex items-center justify-between gap-4">
-                      <span>{opt.label}</span>
-                      <span className="shrink-0 text-xs text-[var(--color-ink-300)] group-hover:text-[var(--color-off-black)] transition-colors tabular-nums">
-                        {opt.score} pts
-                      </span>
+                    <span>{opt.label}</span>
+                    <span className="shrink-0 text-[var(--color-ink-200)] group-hover:text-[var(--color-off-black)] transition-colors text-lg">
+                      →
                     </span>
                   </button>
                 ))}
               </div>
               <button
                 onClick={() => setStep((s) => s - 1)}
-                className="text-xs text-[var(--color-ink-300)] font-serif hover:text-[var(--color-off-black)] transition-colors"
+                className="text-sm text-[var(--color-ink-300)] font-serif hover:text-[var(--color-off-black)] transition-colors"
               >
                 ← Back
               </button>
-            </div>
-          )}
-
-          {/* ── Results Dashboard ── */}
-          {step === 9 && (
-            <div className="space-y-10">
-
-              {/* Score headline */}
-              <div className="text-center">
-                <p className="text-xs uppercase tracking-[0.2em] font-serif mb-3" style={{ color: '#B8925A' }}>
-                  Your Website Lead Generation Score
-                </p>
-                <div className="text-6xl md:text-7xl font-serif font-light text-[var(--color-off-black)] leading-none mb-2">
-                  {totalScore}
-                  <span className="text-2xl text-[var(--color-ink-300)] align-middle ml-1">/100</span>
-                </div>
-                <div
-                  className="inline-block mt-3 px-4 py-1 text-xs uppercase tracking-[0.2em] font-serif border"
-                  style={{ borderColor: '#B8925A', color: '#B8925A' }}
-                >
-                  {scoreRange.label}
-                </div>
-                <p className="mt-4 text-sm text-[var(--color-ink-300)] font-serif leading-relaxed max-w-sm mx-auto">
-                  {scoreRange.copy}
-                </p>
-              </div>
-
-              {/* 7-gauge dashboard */}
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] font-serif text-[var(--color-ink-300)] mb-5">
-                  Your dashboard
-                </p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                  {questionScores.map((q) => {
-                    const color = getColor(q.score, q.thresholds)
-                    const isLowest = q.id === lowestGauge.id
-                    return (
-                      <div
-                        key={q.id}
-                        className={`relative border rounded p-3 text-center transition-all ${
-                          isLowest
-                            ? 'border-amber-400 bg-amber-50 ring-2 ring-amber-300 ring-offset-1'
-                            : 'border-[var(--color-ink-200)]'
-                        }`}
-                      >
-                        {isLowest && (
-                          <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-amber-400 text-white text-[8px] uppercase tracking-[0.1em] px-2 py-0.5 rounded-full whitespace-nowrap font-serif">
-                            Lever Pull
-                          </div>
-                        )}
-                        <div className="flex justify-center">
-                          <GaugeArc score={q.score} maxScore={q.maxPts} color={color} />
-                        </div>
-                        <p className={`text-[9px] uppercase tracking-[0.08em] font-serif leading-tight mt-0.5 ${isLowest ? 'text-amber-700' : LABEL_COLOR[color]}`}>
-                          {q.label}
-                        </p>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-
-              {/* Highest Lever Pull */}
-              <div className="border border-amber-300 bg-amber-50 p-6 space-y-4">
-                <p className="text-xs uppercase tracking-[0.2em] font-serif text-amber-700">
-                  Your Highest Lever Pull Right Now
-                </p>
-                <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] leading-snug">
-                  {lowestGauge.label} — this is the single area where fixing one thing will have the biggest impact on your lead generation.
-                </h3>
-                <p className="text-sm font-serif text-[var(--color-ink-300)] leading-relaxed">
-                  {lowestGauge.loom.hook}
-                </p>
-                {/* Loom embed placeholder */}
-                <div className="aspect-video bg-white border border-amber-200 flex flex-col items-center justify-center gap-3">
-                  <div className="w-12 h-12 rounded-full border-2 border-amber-300 flex items-center justify-center">
-                    <span className="text-amber-400 text-lg ml-0.5">▶</span>
-                  </div>
-                  <p className="text-xs uppercase tracking-[0.12em] font-serif text-[var(--color-ink-300)] text-center px-6 leading-relaxed">
-                    {lowestGauge.loom.title}
-                  </p>
-                  <p className="text-[10px] font-serif text-[var(--color-ink-300)] opacity-60">
-                    [ Insert Loom embed link here ]
-                  </p>
-                </div>
-              </div>
-
-              {/* Course offer */}
-              <div className="border border-[var(--color-ink-200)] p-6 space-y-5">
-                <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
-                  Want to fix all of it?
-                </p>
-                <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] leading-snug">
-                  The DMR Website Lead Generation Course walks you through every gauge on this dashboard.
-                </h3>
-                <p className="text-sm text-[var(--color-ink-300)] font-serif leading-relaxed">
-                  What it means, why it matters, and how to fix it. Built specifically for real estate agents who want more leads without guessing.
-                </p>
-                <div className="space-y-2.5">
-                  <a
-                    href="/contact"
-                    className="flex items-center justify-between w-full px-5 py-4 bg-[var(--color-off-black)] text-white hover:opacity-85 transition-opacity"
-                  >
-                    <span className="font-serif text-sm">Course + Resources + Personalized Loom Audit</span>
-                    <span className="text-sm font-serif shrink-0 ml-4">$297</span>
-                  </a>
-                  <a
-                    href="/contact"
-                    className="flex items-center justify-between w-full px-5 py-4 border border-[var(--color-ink-200)] text-[var(--color-off-black)] hover:border-[var(--color-off-black)] transition-colors"
-                  >
-                    <span className="font-serif text-sm">Course + Resources (no audit)</span>
-                    <span className="text-sm font-serif shrink-0 ml-4">$197</span>
-                  </a>
-                </div>
-                <div className="pt-3 border-t border-[var(--color-ink-200)]">
-                  <a
-                    href="/contact"
-                    className="text-xs uppercase tracking-[0.2em] font-serif text-[var(--color-off-black)] hover:opacity-60 transition-opacity"
-                  >
-                    {scoreRange.cta} →
-                  </a>
-                </div>
-              </div>
-
-              {/* Website ref + retake */}
-              <div className="flex flex-col items-center gap-3 text-center">
-                {websiteUrl && (
-                  <p className="text-xs text-[var(--color-ink-300)] font-serif">
-                    Audit for:{' '}
-                    <span className="text-[var(--color-off-black)]">{websiteUrl}</span>
-                  </p>
-                )}
-                <button
-                  onClick={handleReset}
-                  className="text-xs text-[var(--color-ink-300)] font-serif hover:text-[var(--color-off-black)] transition-colors underline"
-                >
-                  Retake quiz
-                </button>
-              </div>
-
             </div>
           )}
 
