@@ -172,28 +172,75 @@ export default function QuizThankYou() {
 
       {/* ── Course offer ── */}
       <section className="py-20 md:py-24">
-        <div className="container-max max-w-3xl space-y-6">
-          <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
-            Want to fix all of it?
+        <div className="container-max max-w-4xl">
+          <p className="text-xs uppercase tracking-[0.2em] font-serif mb-4" style={{ color: '#B8925A' }}>
+            Next step
           </p>
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] leading-snug tracking-tight">
-            The DMR Website Lead Generation Course walks you through every gauge on this dashboard.
+          <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] leading-snug tracking-tight mb-12">
+            Generate Leads from your Website
           </h2>
-          <div className="space-y-2.5 pt-4">
-            <a
-              href="/contact"
-              className="flex items-center justify-between w-full px-7 py-5 bg-[var(--color-off-black)] text-white hover:opacity-85 transition-opacity"
-            >
-              <span className="font-serif text-base">Course + Resources + Personalized Loom Audit</span>
-              <span className="font-serif text-base shrink-0 ml-6 opacity-70">$297</span>
-            </a>
-            <a
-              href="/contact"
-              className="flex items-center justify-between w-full px-7 py-5 border border-[var(--color-ink-200)] text-[var(--color-off-black)] hover:border-[var(--color-off-black)] transition-colors"
-            >
-              <span className="font-serif text-base">Course + Resources (no audit)</span>
-              <span className="font-serif text-base shrink-0 ml-6 text-[var(--color-ink-300)]">$197</span>
-            </a>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {/* $197 — Base */}
+            <div className="border border-[var(--color-ink-200)] p-8 flex flex-col gap-6">
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] font-serif text-[var(--color-ink-300)] mb-2">
+                  Course + Resources
+                </p>
+                <div className="text-4xl font-serif font-light text-[var(--color-off-black)]">$197</div>
+              </div>
+              <ul className="space-y-3 flex-1">
+                {[
+                  'All 7 course modules — one per gauge',
+                  'Fix-it guides for each weak area',
+                  'Resource library & templates',
+                  'Self-guided implementation',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm font-serif text-[var(--color-ink-300)] leading-relaxed">
+                    <span className="mt-0.5 shrink-0 text-[var(--color-ink-300)]">—</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="/contact"
+                className="flex items-center justify-center w-full px-6 py-4 border border-[var(--color-off-black)] text-[var(--color-off-black)] text-xs uppercase tracking-[0.2em] font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-all duration-200"
+              >
+                Get the Course
+              </a>
+            </div>
+
+            {/* $297 — With Audit */}
+            <div className="border border-[var(--color-off-black)] bg-[var(--color-off-black)] p-8 flex flex-col gap-6">
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] font-serif text-white/40 mb-2">
+                  Course + Personalized Audit
+                </p>
+                <div className="text-4xl font-serif font-light text-white">$297</div>
+              </div>
+              <ul className="space-y-3 flex-1">
+                {[
+                  'Everything in the base course',
+                  'Personalized Loom audit of your site',
+                  'Andrew reviews your specific website',
+                  'Delivered within 48 hours',
+                  'Exact fixes for your exact gaps',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm font-serif text-white/70 leading-relaxed">
+                    <span className="mt-0.5 shrink-0 text-white/40">—</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="/contact"
+                className="flex items-center justify-center w-full px-6 py-4 bg-white text-[var(--color-off-black)] text-xs uppercase tracking-[0.2em] font-serif hover:opacity-85 transition-opacity"
+              >
+                Get Course + Audit
+              </a>
+            </div>
+
           </div>
         </div>
       </section>
