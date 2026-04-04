@@ -170,24 +170,6 @@ export default function QuizThankYou() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section className="bg-[#0D0D0D] py-24 text-center">
-        <div className="container-max max-w-xl space-y-6">
-          <h2 className="text-3xl md:text-4xl font-serif font-light text-[#F5F4F0] leading-tight tracking-tight">
-            We build the system. You close the deals.
-          </h2>
-          <a
-            href="/contact"
-            className="inline-flex items-center justify-center px-10 py-4 bg-[#F5F4F0] text-[#0D0D0D] uppercase tracking-[0.15em] text-xs font-serif hover:opacity-85 transition-opacity"
-          >
-            Let&apos;s Talk
-          </a>
-          <p className="text-[10px] uppercase tracking-[0.15em] font-serif text-white/20 pt-2">
-            <Link href="/quiz" className="hover:text-white/40 transition-colors">Retake the audit</Link>
-          </p>
-        </div>
-      </section>
-
     </div>
   )
 }
