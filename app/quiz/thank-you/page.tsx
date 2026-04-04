@@ -167,31 +167,40 @@ export default function QuizThankYou() {
               </div>
             </div>
 
-            {/* Right — video placeholder */}
-            <div className="w-full">
-              <div className="aspect-video bg-[#0D0D0D] relative overflow-hidden flex flex-col items-center justify-center gap-4">
-                {/* Play button */}
-                <div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center hover:border-white/60 transition-colors cursor-pointer">
-                  <span className="text-white text-2xl ml-1">▶</span>
-                </div>
-                <div className="text-center px-8 space-y-2">
-                  <p className="text-xs uppercase tracking-[0.2em] font-serif text-white/40">
-                    Personalized Loom Audit
-                  </p>
-                  <p className="text-sm font-serif font-light text-white/70 leading-relaxed">
-                    Your 48-hour site review is being recorded. <br className="hidden sm:block" />
-                    We&apos;ll send it directly to your inbox.
-                  </p>
-                </div>
-                {/* Corner bracket decoration */}
-                <div className="absolute top-4 left-4 w-6 h-6 border-t border-l border-white/15" />
-                <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-white/15" />
-                <div className="absolute bottom-4 left-4 w-6 h-6 border-b border-l border-white/15" />
-                <div className="absolute bottom-4 right-4 w-6 h-6 border-b border-r border-white/15" />
+            {/* Right — Highest Lever Pull video */}
+            <div className="w-full space-y-5">
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] font-serif mb-3" style={{ color: '#B8925A' }}>
+                  Your Highest Lever Pull Right Now
+                </p>
+                <h3 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] leading-snug tracking-tight mb-3">
+                  {lowestGauge.label}
+                </h3>
+                <p className="text-sm font-serif text-[var(--color-ink-300)] leading-relaxed mb-1">
+                  This is the single area where fixing one thing will have the biggest impact on your lead generation.
+                </p>
+                <p className="text-sm font-serif text-[var(--color-ink-300)] leading-relaxed italic border-l-2 border-[var(--color-ink-200)] pl-4 mt-4">
+                  &ldquo;{lowestGauge.loom.hook}&rdquo;
+                </p>
               </div>
-              <p className="text-[10px] uppercase tracking-[0.15em] font-serif text-[var(--color-ink-300)] mt-3 text-center">
-                [ Replace with Loom embed when ready ]
-              </p>
+              <div className="aspect-video bg-[#0D0D0D] relative overflow-hidden flex flex-col items-center justify-center gap-4">
+                <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center">
+                  <span className="text-white/70 text-xl ml-0.5">▶</span>
+                </div>
+                <div className="text-center px-8 space-y-1">
+                  <p className="text-xs uppercase tracking-[0.15em] font-serif text-white/40">
+                    Watch the fix
+                  </p>
+                  <p className="text-xs font-serif text-white/50 leading-relaxed">
+                    {lowestGauge.loom.title}
+                  </p>
+                  <p className="text-[10px] font-serif text-white/20 pt-1">[ Insert Loom embed link here ]</p>
+                </div>
+                <div className="absolute top-4 left-4 w-5 h-5 border-t border-l border-white/10" />
+                <div className="absolute top-4 right-4 w-5 h-5 border-t border-r border-white/10" />
+                <div className="absolute bottom-4 left-4 w-5 h-5 border-b border-l border-white/10" />
+                <div className="absolute bottom-4 right-4 w-5 h-5 border-b border-r border-white/10" />
+              </div>
             </div>
           </div>
         </div>
@@ -235,53 +244,7 @@ export default function QuizThankYou() {
         </div>
       </section>
 
-      {/* ── 3. Highest lever pull — dark section ─────────────────────────── */}
-      <section className="bg-[#0D0D0D] py-24 md:py-32">
-        <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-
-            {/* Left — copy */}
-            <div className="space-y-6">
-              <p className="text-xs uppercase tracking-[0.2em] font-serif text-amber-400">
-                Your Highest Lever Pull Right Now
-              </p>
-              <h2 className="text-3xl md:text-4xl font-serif font-light text-[#F5F4F0] leading-[1.15] tracking-tight">
-                {lowestGauge.label}
-              </h2>
-              <p className="text-base font-serif font-light text-[#888] leading-relaxed">
-                This is the single area where fixing one thing will have the biggest impact on your lead generation.
-              </p>
-              <div className="border-t border-white/10 pt-6">
-                <p className="text-base font-serif font-light text-[#aaa] leading-relaxed italic">
-                  &ldquo;{lowestGauge.loom.hook}&rdquo;
-                </p>
-              </div>
-            </div>
-
-            {/* Right — Loom video */}
-            <div>
-              <div className="aspect-video bg-[#1A1A1A] border border-white/10 relative overflow-hidden flex flex-col items-center justify-center gap-4">
-                <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center">
-                  <span className="text-white/60 text-xl ml-0.5">▶</span>
-                </div>
-                <div className="text-center px-8 space-y-1.5">
-                  <p className="text-xs uppercase tracking-[0.15em] font-serif text-white/30">
-                    Watch the fix
-                  </p>
-                  <p className="text-sm font-serif font-light text-white/60 leading-relaxed text-center">
-                    {lowestGauge.loom.title}
-                  </p>
-                  <p className="text-[10px] font-serif text-white/20 pt-1">
-                    [ Insert Loom embed link here ]
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 4. Course offer ───────────────────────────────────────────────── */}
+      {/* ── 3. Course offer ───────────────────────────────────────────────── */}
       <section className="py-24 md:py-32 border-b border-[var(--color-ink-200)]">
         <div className="container-max max-w-3xl">
           <p className="text-xs uppercase tracking-[0.2em] font-serif mb-6" style={{ color: '#B8925A' }}>
@@ -320,7 +283,7 @@ export default function QuizThankYou() {
         </div>
       </section>
 
-      {/* ── 5. Dark closing CTA ───────────────────────────────────────────── */}
+      {/* ── 4. Dark closing CTA ───────────────────────────────────────────── */}
       <section className="bg-[#0D0D0D] py-24 md:py-32 text-center">
         <div className="container-max max-w-2xl space-y-6">
           <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
