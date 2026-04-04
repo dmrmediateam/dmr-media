@@ -170,6 +170,34 @@ export default function QuizThankYou() {
         </div>
       </section>
 
+      {/* ── Course offer ── */}
+      <section className="py-20 md:py-24">
+        <div className="container-max max-w-3xl space-y-6">
+          <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
+            Want to fix all of it?
+          </p>
+          <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] leading-snug tracking-tight">
+            The DMR Website Lead Generation Course walks you through every gauge on this dashboard.
+          </h2>
+          <div className="space-y-2.5 pt-4">
+            <a
+              href="/contact"
+              className="flex items-center justify-between w-full px-7 py-5 bg-[var(--color-off-black)] text-white hover:opacity-85 transition-opacity"
+            >
+              <span className="font-serif text-base">Course + Resources + Personalized Loom Audit</span>
+              <span className="font-serif text-base shrink-0 ml-6 opacity-70">$297</span>
+            </a>
+            <a
+              href="/contact"
+              className="flex items-center justify-between w-full px-7 py-5 border border-[var(--color-ink-200)] text-[var(--color-off-black)] hover:border-[var(--color-off-black)] transition-colors"
+            >
+              <span className="font-serif text-base">Course + Resources (no audit)</span>
+              <span className="font-serif text-base shrink-0 ml-6 text-[var(--color-ink-300)]">$197</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
     </div>
   )
 }
