@@ -182,35 +182,6 @@ export default function QuizThankYou() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            {/* $197 — Base */}
-            <div className="border border-[var(--color-ink-200)] p-8 flex flex-col gap-6">
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] font-serif text-[var(--color-ink-300)] mb-2">
-                  Course + Resources
-                </p>
-                <div className="text-4xl font-serif font-light text-[var(--color-off-black)]">$197</div>
-              </div>
-              <ul className="space-y-3 flex-1">
-                {[
-                  'All 7 course modules — one per gauge',
-                  'Fix-it guides for each weak area',
-                  'Resource library & templates',
-                  'Self-guided implementation',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm font-serif text-[var(--color-ink-300)] leading-relaxed">
-                    <span className="mt-0.5 shrink-0 text-[var(--color-ink-300)]">—</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="/contact"
-                className="flex items-center justify-center w-full px-6 py-4 border border-[var(--color-off-black)] text-[var(--color-off-black)] text-xs uppercase tracking-[0.2em] font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-all duration-200"
-              >
-                Get the Course
-              </a>
-            </div>
-
             {/* $297 — With Audit */}
             <div className="border border-[var(--color-off-black)] bg-[var(--color-off-black)] p-8 flex flex-col gap-6">
               <div>
@@ -238,6 +209,35 @@ export default function QuizThankYou() {
                 className="flex items-center justify-center w-full px-6 py-4 bg-white text-[var(--color-off-black)] text-xs uppercase tracking-[0.2em] font-serif hover:opacity-85 transition-opacity"
               >
                 Get Course + Audit
+              </a>
+            </div>
+
+            {/* $197 — Base */}
+            <div className="border border-[var(--color-ink-200)] p-8 flex flex-col gap-6">
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] font-serif text-[var(--color-ink-300)] mb-2">
+                  Course + Resources
+                </p>
+                <div className="text-4xl font-serif font-light text-[var(--color-off-black)]">$197</div>
+              </div>
+              <ul className="space-y-3 flex-1">
+                {[
+                  'All 7 course modules — one per gauge',
+                  'Fix-it guides for each weak area',
+                  'Resource library & templates',
+                  'Self-guided implementation',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm font-serif text-[var(--color-ink-300)] leading-relaxed">
+                    <span className="mt-0.5 shrink-0 text-[var(--color-ink-300)]">—</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="/contact"
+                className="flex items-center justify-center w-full px-6 py-4 border border-[var(--color-off-black)] text-[var(--color-off-black)] text-xs uppercase tracking-[0.2em] font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-all duration-200"
+              >
+                Get the Course
               </a>
             </div>
 
