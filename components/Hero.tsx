@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 const HERO_VIDEO_SRC =
-  process.env.NEXT_PUBLIC_HERO_VIDEO_URL?.trim() || '/videos/dmr-full-hd.mp4';
+  process.env.NEXT_PUBLIC_HERO_VIDEO_URL?.trim() || '/videos/dmr-hero-web.mp4';
 
 function VolumeOffIcon({ className }: { className?: string }) {
   return (

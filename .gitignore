@@ -38,3 +38,6 @@ next-env.d.ts
 # sanity
 /dist
 .sanity
+
+# Full-res hero source (optional local); repo ships compressed dmr-hero-web.mp4
+public/videos/dmr-full-hd.mp4

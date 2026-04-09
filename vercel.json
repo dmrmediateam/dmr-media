@@ -1,5 +1,4 @@
 {
-  "installCommand": "dnf install -y git-lfs && git lfs install && git lfs pull && npm install",
   "buildCommand": "npm run build",
   "framework": "nextjs",
   "env": {
