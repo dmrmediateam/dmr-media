@@ -1,6 +1,7 @@
 /**
- * Fails the build if the hero MP4 is still a Git LFS pointer (common when
- * deploy hosts clone without LFS smudge). Set NEXT_PUBLIC_HERO_VIDEO_URL to skip.
+ * Fails the build if the hero MP4 is still a Git LFS pointer.
+ * Vercel: vercel.json installCommand runs `git lfs pull` after `dnf install git-lfs`.
+ * Or enable Git LFS in Project Settings → Git, or set NEXT_PUBLIC_HERO_VIDEO_URL.
  */
 const fs = require('fs');
 const path = require('path');
