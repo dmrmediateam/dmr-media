@@ -597,6 +597,38 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+.hero-sound-toggle {
+  position: absolute;
+  z-index: 5;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(250, 250, 249, 0.35);
+  background-color: rgba(15, 15, 15, 0.55);
+  color: #fafaf9;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.hero-sound-toggle:hover {
+  background-color: rgba(15, 15, 15, 0.72);
+  border-color: rgba(250, 250, 249, 0.5);
+}
+
+.hero-sound-toggle:active {
+  transform: scale(0.96);
+}
+
+.hero-sound-toggle-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
 .hero-text-container {
   position: relative;
   z-index: 10;
