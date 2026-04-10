@@ -5,7 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const HERO_REL = path.join('public', 'videos', 'dmr-hero-web.mp4');
+const HERO_REL = path.join('public', 'videos', 'DMR - INTRO 4K.mp4');
 
 if (process.env.NEXT_PUBLIC_HERO_VIDEO_URL?.trim()) {
   process.exit(0);

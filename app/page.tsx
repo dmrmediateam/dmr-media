@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero';
 import ClientLogosSlider from '@/components/ClientLogosSlider';
 import CaseStudies from '@/components/CaseStudies';
+import DMRWaySection from '@/components/DMRWaySection';
 import VideoTestimonials from '@/components/VideoTestimonials';
 import Testimonials from '@/components/Testimonials';
 import HomeBlogSection from '@/components/HomeBlogSection';
@@ -16,6 +17,7 @@ export default async function Home() {
       <Hero />
       <ClientLogosSlider />
       <CaseStudies />
+      <DMRWaySection />
       <VideoTestimonials />
       <HomeBlogSection posts={featuredPosts} />
       <Testimonials />

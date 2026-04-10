@@ -4,7 +4,8 @@ import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const HERO_VIDEO_SRC =
-  process.env.NEXT_PUBLIC_HERO_VIDEO_URL?.trim() || '/videos/dmr-hero-web.mp4';
+  process.env.NEXT_PUBLIC_HERO_VIDEO_URL?.trim() ||
+  `/videos/${encodeURIComponent('DMR - INTRO 4K.mp4')}`;
 
 function VolumeOffIcon({ className }: { className?: string }) {
   return (
