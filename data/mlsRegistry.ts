@@ -214,6 +214,42 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
       { label: 'Showcase IDX Coverage', url: 'https://showcaseidx.com/mls-coverage/mls-property-information-network-mlspin/' },
     ],
   },
+  {
+    name: 'North Texas Real Estate Information Systems (NTREIS)',
+    slug: 'north-texas-real-estate-information-systems',
+    states: ['TX'],
+    idxVendors: ['Showcase IDX', 'iHomeFinder'],
+    cost:
+      'Varies (~$20/mo IDX data fee via Showcase IDX in many cases; no association fees via iHomeFinder—confirm with MLS and vendor)',
+    coverage:
+      'Greater Dallas–Fort Worth metro and North Texas—including Dallas, Fort Worth, Arlington, Plano, Frisco, McKinney, Denton, Irving, Garland, Grand Prairie, Rockwall, Granbury, Abilene, Corsicana, Weatherford, Cleburne, Whitney, Possum Kingdom Lake, and surrounding communities across 48,000+ square miles.',
+    notes:
+      'Serves 40,000+ MLS subscribers across 14+ shareholder Realtor® associations. Technology offerings include NTREIS Matrix, InnoVia, Go, Find, Tax, Doc Storage, and more.',
+    links: [
+      { label: 'NTREIS Website', url: 'https://www.ntreis.net/' },
+      { label: 'Showcase IDX Coverage', url: 'https://showcaseidx.com/mls-coverage/north-texas-real-estate-information-systems-ntreis/' },
+      { label: 'iHomeFinder IDX Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/north-texas-real-estate-information-systems-ntreis/' },
+      { label: 'Realtyna MLS Coverage', url: 'https://realtyna.com/mls-coverage/mls/north-texas-real-estate-info-systems-ntreis/' },
+    ],
+  },
+  {
+    name: 'REcolorado',
+    slug: 'recolorado',
+    states: ['CO'],
+    idxVendors: ['Showcase IDX', 'iHomeFinder'],
+    cost:
+      'Varies (~$15/mo IDX data fee via Showcase IDX in many cases; MLS subscription fees separate—confirm with REcolorado and vendor)',
+    coverage:
+      'Colorado statewide—including Denver, Aurora, Colorado Springs, Fort Collins, Boulder, Pueblo, Grand Junction, Loveland, Greeley, Arvada, Westminster, Castle Rock, Parker, Brighton, Broomfield, Littleton, Longmont, and surrounding communities.',
+    notes:
+      'Colorado’s largest MLS: 26,000+ brokers, agents, appraisers, and professionals. Headquartered in Greenwood Village; facilitates a large share of Colorado residential transactions.',
+    links: [
+      { label: 'REcolorado Website', url: 'https://recolorado.com/' },
+      { label: 'Showcase IDX Coverage', url: 'https://showcaseidx.com/mls-coverage/recolorado-recolorado/' },
+      { label: 'iHomeFinder IDX Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/recolorado/' },
+      { label: 'AgentFire REcolorado Coverage', url: 'https://agentfire.com/mls-coverage/recolorado/' },
+    ],
+  },
 ];
 
 // --- Parsed Registry ---
@@ -230,7 +266,7 @@ const MLS_REGISTRY: MlsEntry[] = RAW_REGISTRY.map((raw, idx) => {
 
 // --- Serviced States (highlighted on map) ---
 
-export const SERVICED_STATES = ['WI', 'FL', 'CA', 'IL', 'VT', 'NH', 'MA', 'RI', 'NY', 'NJ', 'AR'] as const;
+export const SERVICED_STATES = ['WI', 'FL', 'CA', 'IL', 'VT', 'NH', 'MA', 'RI', 'NY', 'NJ', 'AR', 'TX', 'CO'] as const;
 export type ServicedState = (typeof SERVICED_STATES)[number];
 
 // --- Validation: Uniqueness & Fail Fast ---

@@ -15,6 +15,8 @@ const DEDICATED_PAGE_SLUGS = new Set([
   'california-regional-multiple-listing-service',
   'san-francisco-mls-sfarmls',
   'mls-pin',
+  'north-texas-real-estate-information-systems',
+  'recolorado',
 ]);
 
 export function generateStaticParams() {
