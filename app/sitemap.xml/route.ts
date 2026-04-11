@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getAllBlogPosts } from '@/data/blogPosts';
+import { listMls } from '@/data/mlsRegistry';
 import { contentRegistry } from '@/lib/content-registry';
 
 type ChangeFreq = 'daily' | 'weekly' | 'monthly' | 'yearly';
@@ -29,6 +30,16 @@ export async function GET() {
   }));
 
   const urls: UrlEntry[] = [...staticUrls];
+
+  // MLS detail pages — single source of truth: data/mlsRegistry.ts (see docs/mls-directory.md)
+  for (const mls of listMls()) {
+    urls.push({
+      loc: `${baseUrl}/mls-integrations/${mls.slug}`,
+      priority: 0.55,
+      changefreq: 'monthly',
+      lastmod: today,
+    });
+  }
 
   try {
     const posts = await getAllBlogPosts();

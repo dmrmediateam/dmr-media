@@ -250,6 +250,19 @@ export const contentRegistry: ContentEntry[] = [
     changeFrequency: 'monthly',
   },
 
+  {
+    slug: '/mls-integrations',
+    title: 'MLS Integrations | DMR Media',
+    description:
+      'Browse MLS integrations supported by DMR Media. Filter by state, search by name or IDX vendor, and open detail pages for each MLS.',
+    publishDate: '2026-04-01',
+    modifiedDate: '2026-04-11',
+    category: 'MLS',
+    tags: ['MLS integrations', 'IDX', 'iHomeFinder', 'Showcase IDX', 'real estate MLS'],
+    priority: 0.65,
+    changeFrequency: 'monthly',
+  },
+
   // ─── Legal / Utility ────────────────────────────────────────────────────────
   {
     slug: '/privacy-policy',

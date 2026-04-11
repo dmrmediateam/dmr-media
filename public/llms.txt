@@ -57,6 +57,34 @@ Utility libraries:
 ### `/data`
 Data fetching and types:
 - `blogPosts.ts` - Blog post data fetching from Sanity
+- `mlsRegistry.ts` - MLS integrations directory (single source of truth for MLS names, slugs, states, IDX vendors, optional coverage/links). Validated with Zod at module load. See `docs/mls-directory.md`.
+
+### MLS integrations (`/mls-integrations`)
+Public routes:
+- `/mls-integrations` - Searchable directory with US map filter (`MlsDirectoryClient`, `components/mls/`)
+- `/mls-integrations/[slug]` - Detail page for each MLS in `mlsRegistry` (registry-driven layout)
+Several MLS also have **dedicated long-form pages** under `app/mls-integrations/<slug>/page.tsx` (same URL as dynamic route; excluded from `[slug]` static params via `DEDICATED_PAGE_SLUGS` in `app/mls-integrations/[slug]/page.tsx`).
+
+Current registry slugs (path `/mls-integrations/<slug>`):
+- `stellar-mls` — Stellar MLS (FL)
+- `beaches-mls` — Beaches MLS / BeachesMLS (FL)
+- `southwest-florida-mls` — Southwest Florida MLS (FL)
+- `mlsni` — Midwest Real Estate Data / MRED (IL, WI, IN)
+- `rmlsmn` — NorthstarMLS / RMLS-MN (MN)
+- `south-central-wisconsin-mls` — South-Central Wisconsin MLS (WI)
+- `cooperative-arkansas-realtors-mls` — CARMLS (AR)
+- `metro-mls` — Metro MLS (WI)
+- `prime-mls` — Prime MLS (NH, VT, ME, MA, RI, CT)
+- `bareis` — BAREIS (CA)
+- `hudson-mls` — Hudson MLS (NY, NJ)
+- `yes-mls` — Yes MLS (OH, PA, MI, WV)
+- `california-regional-multiple-listing-service` — CRMLS (CA)
+- `san-francisco-mls-sfarmls` — San Francisco MLS / SFARMLS (CA)
+- `mls-pin` — MLS PIN (MA, RI, NH)
+- `north-texas-real-estate-information-systems` — NTREIS (TX)
+- `recolorado` — REcolorado (CO)
+
+Sitemap: `/mls-integrations` and every `/mls-integrations/<slug>` are emitted from `app/sitemap.xml/route.ts` (index via `contentRegistry`, detail URLs from `listMls()`). Footer links to the directory.
 
 ### `/public/images`
 Static images for case studies, testimonials, etc.
