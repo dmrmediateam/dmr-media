@@ -48,16 +48,6 @@ const caseStudies = [
     tags: ['WordPress Rebuild', 'Thought Leadership', 'YouTube'],
   },
   {
-    id: 'rick-visions-first-realty',
-    title: 'Rick Visions First Realty',
-    eyebrow: 'Keyword Reset',
-    result: '2–3 Leads Every Day',
-    image: '/images/RickAfter.png',
-    description:
-      'Rerouted a misaligned SEO program so it stopped ranking for discount shoppers and started capturing relocation-ready listings.',
-    tags: ['SERP Intelligence', 'GMB Optimization', 'Lead Handling'],
-  },
-  {
     id: 'marquis-farwell-group',
     title: 'Marquis + Farwell Group',
     eyebrow: 'Organic Visibility',

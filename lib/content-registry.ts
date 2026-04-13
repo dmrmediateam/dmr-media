@@ -223,19 +223,6 @@ export const contentRegistry: ContentEntry[] = [
     priority: 0.75,
     changeFrequency: 'monthly',
   },
-  {
-    slug: '/case-study/rick-visions-first-realty',
-    title: 'Rick — Visions First Realty SEO Transformation | DMR Media',
-    description:
-      'Rebuilt an agent\'s search presence in a competitive Wisconsin market, driving consistent 2–3 inbound leads per day from organic search.',
-    publishDate: '2025-01-01',
-    modifiedDate: '2025-12-01',
-    category: 'Case Study',
-    tags: ['Wisconsin real estate', 'real estate SEO', 'inbound leads', 'organic search'],
-    priority: 0.75,
-    changeFrequency: 'monthly',
-  },
-
   // ─── Portfolio / Samples ─────────────────────────────────────────────────────
   {
     slug: '/real-estate-agent-website-samples',

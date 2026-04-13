@@ -36,15 +36,6 @@ export const metadata: Metadata = {
 
 const CASE_STUDIES = [
   {
-    id: 'rick-visions-first-realty',
-    subheading: '2-3 Leads/Day',
-    title: "Rick's SEO Transformation",
-    description:
-      "From wrong keywords to qualified leads—how we rebuilt Rick's SEO strategy and turned his website into a daily lead engine at Visions First Realty.",
-    image: '/images/RickAfter.png',
-    imageRight: true,
-  },
-  {
     id: 'michael-seo-transformation',
     subheading: '21x Impressions',
     title: "Michael's SEO Success",

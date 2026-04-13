@@ -109,6 +109,11 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/case-study/rick-visions-first-realty',
+        destination: '/case-studies',
+        permanent: true,
+      },
     ]
   },
 }

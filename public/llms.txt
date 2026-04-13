@@ -22,7 +22,7 @@ Next.js App Router pages and routes:
 - `/blog` - Blog listing page
 - `/blog/[slug]` - Individual blog post pages with schema markup
 - `/case-studies` - All case studies listing
-- `/case-study/[id]` - Individual case study pages
+- `/case-study/[id]` - Individual case study pages (retired slugs may 301 to `/case-studies`; see `next.config.js` redirects)
 - `/landing/*` - Landing pages for lead generation (thank-you, qualification-result, apply, etc.)
 - `/calendar` - Strategy call application form
 - `/contact` - Contact form page
@@ -114,7 +114,6 @@ Static images for case studies, testimonials, etc.
 Current featured case studies:
 - Willow Brook Realty (Vermont) - 46 leads in 3 weeks
 - Eagan Luxury Real Estate (St. Petersburg, FL) - Website consolidation
-- Visions First Realty (Ashland, WI) - SEO transformation
 
 ### Schema Markup
 - Blog posts include automatic JSON-LD Article schema markup
