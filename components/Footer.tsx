@@ -20,7 +20,7 @@ const Footer = () => {
               href="/calendar"
               className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)]"
             >
-              Get Started
+              Apply
             </Link>
           </div>
         </div>
@@ -72,7 +72,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link href="/calendar" className="hover:opacity-60 transition-opacity">
-                    Schedule
+                    Apply
                   </Link>
                 </li>
                 <li>

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import GrowthPartnerPromoCard from '@/components/GrowthPartnerPromoCard'
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking'
 
 const VSL_VIDEO_ID = 'Cty5rQPwksM'
@@ -68,31 +69,17 @@ export default function NewsletterSignup() {
 
   return (
     <>
-      {/* CTA Section */}
-      <section className="my-10 md:my-12 px-8 md:px-12 py-10 md:py-12 bg-[#353535]">
-        <div className="max-w-2xl mx-auto text-center">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-light !text-white mb-5 md:mb-6 leading-[1.2] tracking-tight">
-            In the next few years 80% of agents will go bankrupt. Instead, get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
-            <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> in under 30 days
-          </h3>
-          <div className="w-full max-w-xl mx-auto mb-8 aspect-video rounded overflow-hidden bg-black/30">
-            <iframe
-              src={`https://www.youtube.com/embed/${VSL_VIDEO_ID}?rel=0`}
-              title="DMR Media - Get More Real Estate Buyers & Sellers"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              className="w-full h-full"
-            />
-          </div>
+      {/* CTA — same card style as site-wide growth / calendar promo */}
+      <section className="my-10 md:my-14 px-4 sm:px-6" aria-labelledby="blog-growth-promo-heading">
+        <div className="mx-auto flex w-full max-w-[480px] flex-col items-center">
+          <GrowthPartnerPromoCard headingId="blog-growth-promo-heading" className="w-full" />
           <button
+            type="button"
             onClick={() => setIsOpen(true)}
-            className="inline-flex items-center justify-center px-8 py-3.5 bg-[var(--color-trust)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-90 transition-opacity duration-300"
+            className="mt-5 font-serif text-xs uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline decoration-[var(--color-ink-200)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)]"
           >
-            Get Free Training
+            Get the free AI training video instead
           </button>
-          <p className="mt-5 text-xs text-white/70 font-serif tracking-wide">
-            Free training · No obligation · We&apos;ll be in touch
-          </p>
         </div>
       </section>
 
@@ -149,14 +136,23 @@ export default function NewsletterSignup() {
                 ) : (
                   <div className="flex flex-col items-center text-center">
                     {/* Copy - Centered */}
-                    <div className="space-y-3 mb-8 max-w-xl mx-auto">
+                    <div className="space-y-3 mb-6 max-w-xl mx-auto">
                       <h3 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] leading-tight">
-                        In the next few years 80% of agents will go bankrupt. Instead, get More Real Estate Buyers &amp; Sellers with the Same AI System that got our agents{' '}
-                        <em className="not-italic font-serif font-normal text-[var(--color-trust)]">$353,912 GCI</em> in under 30 days
+                        Free AI training for real estate teams
                       </h3>
                       <p className="text-[15px] text-[var(--color-ink-300)] leading-[1.6] font-serif">
                         Enter your details below to claim your free training. We&apos;ll show you exactly how our system converts traffic into qualified buyer and seller conversations—and where yours might be leaking deals.
                       </p>
+                    </div>
+
+                    <div className="mb-8 w-full max-w-xl mx-auto aspect-video overflow-hidden rounded-sm border border-[var(--color-ink-200)] bg-[var(--color-off-white)]">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${VSL_VIDEO_ID}?rel=0`}
+                        title="DMR Media — free AI training for real estate"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        className="h-full w-full"
+                      />
                     </div>
 
                     {/* Form - Centered */}

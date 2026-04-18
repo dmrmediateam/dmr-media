@@ -88,13 +88,19 @@ export const contentRegistry: ContentEntry[] = [
   },
   {
     slug: '/calendar',
-    title: 'Schedule a Strategy Call | DMR Media',
+    title: 'Apply for a Fit Call | DMR Media',
     description:
-      'Book a free strategy session with DMR Media to explore how we can grow your luxury real estate business through targeted digital marketing.',
+      'Apply to see if DMR Media is the right marketing partner for your real estate business. Book a mutual-fit strategy call with 5-star Trustpilot and Google reviews and SEMrush Agency recognition.',
     publishDate: '2024-06-01',
-    modifiedDate: '2025-10-01',
+    modifiedDate: '2026-04-18',
     category: 'Booking',
-    tags: ['strategy call', 'book a call', 'real estate marketing consultation'],
+    tags: [
+      'apply',
+      'strategy call',
+      'fit call',
+      'real estate marketing consultation',
+      'book a call',
+    ],
     priority: 0.7,
     changeFrequency: 'monthly',
   },

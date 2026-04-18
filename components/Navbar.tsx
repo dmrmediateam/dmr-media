@@ -156,7 +156,7 @@ const Navbar = () => {
                   className="text-2xl font-serif font-light text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300 tracking-tight"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Schedule
+                  Apply
                 </Link>
               </div>
 
