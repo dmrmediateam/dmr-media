@@ -13,6 +13,8 @@ const DEDICATED_PAGE_SLUGS = new Set([
   'bareis',
   'hudson-mls',
   'california-regional-multiple-listing-service',
+  'northern-great-lakes-realtors-mls',
+  'western-regional-information-systems-and-technology-inc',
   'san-francisco-mls-sfarmls',
   'mls-pin',
   'north-texas-real-estate-information-systems',

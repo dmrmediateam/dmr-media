@@ -77,10 +77,12 @@ Current registry slugs (path `/mls-integrations/<slug>`):
 - `prime-mls` — Prime MLS (NH, VT, ME, MA, RI, CT)
 - `bareis` — BAREIS (CA)
 - `hudson-mls` — Hudson MLS (NY, NJ)
+- `western-regional-information-systems-and-technology-inc` — WRIST / Western Regional Information Systems and Technology, Inc. (OH)
 - `yes-mls` — Yes MLS (OH, PA, MI, WV)
 - `california-regional-multiple-listing-service` — CRMLS (CA)
 - `san-francisco-mls-sfarmls` — San Francisco MLS / SFARMLS (CA)
 - `mls-pin` — MLS PIN (MA, RI, NH)
+- `northern-great-lakes-realtors-mls` — Northern Great Lakes Realtors MLS (NGLRMLS) (MI, WI)
 - `north-texas-real-estate-information-systems` — NTREIS (TX)
 - `recolorado` — REcolorado (CO)
 

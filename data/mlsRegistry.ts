@@ -215,6 +215,37 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     ],
   },
   {
+    name: 'Western Regional Information Systems and Technology, Inc. (WRIST)',
+    slug: 'western-regional-information-systems-and-technology-inc',
+    states: ['OH'],
+    idxVendors: ['IDX Broker', 'iHomeFinder'],
+    cost:
+      '$150/year per client RETS (iHomeFinder); WRIST membership ~$25/member/mo + office fees (confirm with MLS); IDX Broker separate',
+    coverage:
+      'West Ohio. Vendor summaries include Columbus, Cincinnati, Dayton, Springfield, Westerville, Dublin, Middletown, Lima, Grove City, Hilliard, Delaware, Reynoldsburg, Loveland, Mason, West Chester, Marion, and Midwestern Ohio markets such as Springfield, Sidney, Troy, Urbana, and Piqua. Exact IDX footprint depends on association membership—confirm with WRIST.',
+    notes:
+      'Regional MLS (WRIST). iHomeFinder lists Midwestern Ohio Association of REALTORS® and Springfield Board of REALTORS® as member associations. New licensed members typically complete a 2-hour orientation within 60 days of acceptance.',
+    links: [
+      { label: 'AgentFire WRIST Coverage', url: 'https://agentfire.com/mls-coverage/western-regional-information-systems-and-technology-inc/' },
+      { label: 'iHomeFinder IDX Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/western-ohio-regional-mls-wrist/' },
+    ],
+  },
+  {
+    name: 'Northern Great Lakes Realtors MLS (NGLRMLS)',
+    slug: 'northern-great-lakes-realtors-mls',
+    states: ['MI', 'WI'],
+    idxVendors: ['IDX Broker', 'iHomeFinder'],
+    cost: '$100 set-up + $20/mo via iHomeFinder (confirm with MLS); IDX Broker pricing varies',
+    coverage:
+      'Northern Lower Michigan and the Great Lakes region. Member associations include Central Michigan Association of REALTORS®, Northeastern Michigan Board of REALTORS®, and Traverse Area Association of REALTORS®. Markets include Traverse City, Mt. Pleasant, Cadillac, Lansing, Saginaw, Bay City, Midland, East Lansing, Petoskey, Gaylord, and surrounding communities. Vendor materials also reference Wisconsin—confirm your office’s MLS with the board or IDX provider.',
+    notes:
+      'Association-owned MLS (NGLRMLS) serving participating boards across northern Michigan. Governed by a Board of Representatives with voting members from participating associations.',
+    links: [
+      { label: 'AgentFire NGLRMLS Coverage', url: 'https://agentfire.com/mls-coverage/northern-great-lakes-realtors-mls/' },
+      { label: 'iHomeFinder IDX Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/northern-great-lakes-realtors-mls/' },
+    ],
+  },
+  {
     name: 'North Texas Real Estate Information Systems (NTREIS)',
     slug: 'north-texas-real-estate-information-systems',
     states: ['TX'],
