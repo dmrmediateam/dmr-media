@@ -49,7 +49,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-16 text-sm text-[var(--color-ink-300)] font-serif">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 text-sm text-[var(--color-ink-300)] font-serif">
             <div>
               <h4 className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-300)] mb-6 font-serif">
                 Navigate
@@ -85,9 +85,24 @@ const Footer = () => {
 
             <div>
               <h4 className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-300)] mb-6 font-serif">
-                Services
+                Website &amp; SEO
               </h4>
               <ul className="space-y-4">
+                <li>
+                  <Link href="/single-property-websites" className="hover:opacity-60 transition-opacity">
+                    Single Property Websites
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/luxury-condo-websites" className="hover:opacity-60 transition-opacity">
+                    Luxury Condo Websites
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/websites-for-new-developments" className="hover:opacity-60 transition-opacity">
+                    Website for New Developments
+                  </Link>
+                </li>
                 <li>
                   <Link href="/real-estate-agent-website-samples" className="hover:opacity-60 transition-opacity">
                     Website Design Portfolio
@@ -98,6 +113,19 @@ const Footer = () => {
                     SEO Optimization
                   </Link>
                 </li>
+                <li>
+                  <Link href="/real-estate-seo-consultant" className="hover:opacity-60 transition-opacity">
+                    SEO Consulting
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className="sm:col-span-2 lg:col-span-1">
+              <h4 className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-300)] mb-6 font-serif">
+                Lead Generation &amp; PPC
+              </h4>
+              <ul className="space-y-4">
                 <li>
                   <Link href="/google-ads-management" className="hover:opacity-60 transition-opacity">
                     Google Ads Management
@@ -110,12 +138,17 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link href="/analytics-reporting" className="hover:opacity-60 transition-opacity">
-                    Analytics & Reporting
+                    Analytics &amp; Reporting
                   </Link>
                 </li>
                 <li>
-                  <Link href="/real-estate-seo-consultant" className="hover:opacity-60 transition-opacity">
-                    SEO Consulting
+                  <Link href="/luxury-development-marketing" className="hover:opacity-60 transition-opacity">
+                    Luxury Development Marketing
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/real-estate-lead-generation" className="hover:opacity-60 transition-opacity">
+                    Real Estate Lead Generation
                   </Link>
                 </li>
               </ul>

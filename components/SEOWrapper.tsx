@@ -157,7 +157,20 @@ export default function SEOWrapper({
   if (schemaType === 'website' && entry) {
     if (entry.category === 'Case Study' || entry.category === 'Blog') {
       resolvedType = 'article'
-    } else if (['SEO', 'Google Ads', 'Property Marketing', 'Analytics', 'Services'].includes(entry.category)) {
+    } else if (
+      [
+        'SEO',
+        'Google Ads',
+        'Property Marketing',
+        'Analytics',
+        'Services',
+        'Luxury Development',
+        'Single Property Websites',
+        'Luxury Condo Websites',
+        'New Development Websites',
+        'Lead Generation',
+      ].includes(entry.category)
+    ) {
       resolvedType = 'service'
     }
   }
