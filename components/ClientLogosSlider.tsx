@@ -11,6 +11,7 @@ const ClientLogosSlider = () => {
     '/images/ClientLogos/Untitled design (74).png',
     '/images/ClientLogos/Untitled design (67).png',
     '/images/ClientLogos/Untitled design (72).png',
+    '/images/ClientLogos/Untitled design (92).png',
   ];
 
   // Logos that need to be smaller
