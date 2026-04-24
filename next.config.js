@@ -45,8 +45,19 @@ const nextConfig = {
       },
     ]
   },
+  async rewrites() {
+    return [
+      { source: '/cake', destination: '/cake/index.html' },
+      { source: '/cake/', destination: '/cake/index.html' },
+    ]
+  },
   async redirects() {
     return [
+      {
+        source: '/dmr-media-specialists-landing.html',
+        destination: '/cake',
+        permanent: true,
+      },
       {
         source: '/studio',
         destination: 'https://www.sanity.io/@o0TLPxe4z/studio/gc5ifcysyqpinpbd50onl6r8/default/',

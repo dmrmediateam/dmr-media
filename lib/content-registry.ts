@@ -104,6 +104,18 @@ export const contentRegistry: ContentEntry[] = [
     priority: 0.7,
     changeFrequency: 'monthly',
   },
+  {
+    slug: '/cake',
+    title: 'Listings, not cake | DMR Media Specialists',
+    description:
+      'The cake does not get you listings—our system does. A private intro for agents and teams we believe we can help: Google, SEO, and proof from real case studies.',
+    publishDate: '2026-04-24',
+    modifiedDate: '2026-04-24',
+    category: 'Campaign',
+    tags: ['outreach', 'real estate marketing', 'DMR Media Specialists'],
+    priority: 0.35,
+    changeFrequency: 'monthly',
+  },
 
   // ─── Service Pages ──────────────────────────────────────────────────────────
   {
