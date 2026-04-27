@@ -6,6 +6,7 @@ import Script from 'next/script';
 import Image from 'next/image';
 import ClientLogosSlider from '@/components/ClientLogosSlider';
 import LandingCaseStudies from '@/components/landing/LandingCaseStudies';
+import { ELFSIGHT_LANDING_HIDE_SELECTORS } from '@/lib/elfsight-widgets';
 
 const HERO_VIDEOS = [
   '/videos/entry-of-a-luxury-home-2026-01-21-18-28-02-utc (1).mp4',
@@ -72,14 +73,7 @@ export default function GoogleOwnedLeadsLandingPage() {
     const nav = document.querySelector('nav') as HTMLElement | null;
     const footer = document.querySelector('footer') as HTMLElement | null;
     const hideElfsightWidgets = () => {
-      const selectors = [
-        '.elfsight-app-90e5dbc1-4850-470a-b384-914842649785',
-        '[class*="elfsight"]',
-        '[id*="elfsight"]',
-        '[data-elfsight]',
-        'iframe[src*="elfsight"]',
-      ];
-      selectors.forEach((selector) => {
+      ELFSIGHT_LANDING_HIDE_SELECTORS.forEach((selector) => {
         try {
           document.querySelectorAll(selector).forEach((el) => {
             (el as HTMLElement).style.display = 'none';

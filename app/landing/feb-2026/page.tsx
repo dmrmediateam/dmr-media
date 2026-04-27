@@ -8,6 +8,7 @@ import Testimonials from '@/components/Testimonials';
 import ReviewsAggregate from '@/components/ReviewsAggregate';
 import getStripe from '@/lib/stripe';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
+import { ELFSIGHT_LANDING_HIDE_SELECTORS } from '@/lib/elfsight-widgets';
 
 function Feb2026LandingContent() {
   const router = useRouter();
@@ -45,16 +46,7 @@ function Feb2026LandingContent() {
     const footer = document.querySelector('footer') as HTMLElement | null;
     
     const hideElfsightWidgets = () => {
-      // Hide all Elfsight embeds - target by class, ID, and data attributes
-      const selectors = [
-        '.elfsight-app-90e5dbc1-4850-470a-b384-914842649785',
-        '[class*="elfsight"]',
-        '[id*="elfsight"]',
-        '[data-elfsight]',
-        'iframe[src*="elfsight"]',
-      ];
-      
-      selectors.forEach(selector => {
+      ELFSIGHT_LANDING_HIDE_SELECTORS.forEach((selector) => {
         try {
           const elements = document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
           elements.forEach(el => {
@@ -92,16 +84,8 @@ function Feb2026LandingContent() {
       observer.disconnect();
       clearInterval(intervalId);
       
-      // Restore Elfsight widgets on unmount
-      const selectors = [
-        '.elfsight-app-90e5dbc1-4850-470a-b384-914842649785',
-        '[class*="elfsight"]',
-        '[id*="elfsight"]',
-        '[data-elfsight]',
-        'iframe[src*="elfsight"]',
-      ];
-      
-      selectors.forEach(selector => {
+      // Restore chatbot visibility on unmount (reviews widget stays global)
+      ELFSIGHT_LANDING_HIDE_SELECTORS.forEach((selector) => {
         try {
           const elements = document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
           elements.forEach(el => {

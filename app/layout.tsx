@@ -3,6 +3,7 @@ import { Instrument_Serif, Inter } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import ConditionalLayout from '@/components/ConditionalLayout'
+import { ELFSIGHT_REVIEWS_APP_CLASS } from '@/lib/elfsight-widgets'
 import ScrollProgressBar from '@/components/ScrollProgressBar'
 import UTMTracker from '@/components/UTMTracker'
 
@@ -135,6 +136,9 @@ export default function RootLayout({
         <ConditionalLayout>
           {children}
         </ConditionalLayout>
+        {/* Elfsight All-in-One Reviews | DMR Widget (global) */}
+        <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
+        <div className={ELFSIGHT_REVIEWS_APP_CLASS} data-elfsight-app-lazy />
       </body>
     </html>
   )

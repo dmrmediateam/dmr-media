@@ -17,6 +17,7 @@
  *   </SEOWrapper>
  */
 
+import { buildBreadcrumbListJsonLd } from '@/lib/breadcrumb-jsonld'
 import { getContentEntry } from '@/lib/content-registry'
 
 const BASE_URL = 'https://www.dmrmedia.org'
@@ -34,34 +35,11 @@ interface SEOWrapperProps {
   dateModified?: string
   /** 'article' forces Article schema; 'service' forces Service schema; 'website' (default) uses WebPage */
   schemaType?: 'article' | 'service' | 'website'
+  /** When false, the generic WebPage/Article/Service script is omitted (e.g. when the page ships a custom @graph). */
+  includePageJsonLd?: boolean
+  /** When false, the BreadcrumbList script is omitted (e.g. when breadcrumbs are inside a combined @graph). */
+  includeBreadcrumbJsonLd?: boolean
   children: React.ReactNode
-}
-
-function buildBreadcrumbs(slug: string) {
-  const segments = slug.split('/').filter(Boolean)
-
-  const items = [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Home',
-      item: BASE_URL,
-    },
-    ...segments.map((segment, i) => ({
-      '@type': 'ListItem',
-      position: i + 2,
-      name: segment
-        .replace(/-/g, ' ')
-        .replace(/\b\w/g, (c) => c.toUpperCase()),
-      item: `${BASE_URL}/${segments.slice(0, i + 1).join('/')}`,
-    })),
-  ]
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: items,
-  }
 }
 
 function buildPageSchema(
@@ -143,6 +121,8 @@ export default function SEOWrapper({
   datePublished,
   dateModified,
   schemaType = 'website',
+  includePageJsonLd = true,
+  includeBreadcrumbJsonLd = true,
   children,
 }: SEOWrapperProps) {
   const entry = getContentEntry(slug)
@@ -175,7 +155,7 @@ export default function SEOWrapper({
     }
   }
 
-  const breadcrumbSchema = buildBreadcrumbs(slug)
+  const breadcrumbSchema = buildBreadcrumbListJsonLd(slug, BASE_URL)
   const pageSchema = buildPageSchema(
     slug,
     resolvedTitle,
@@ -187,14 +167,18 @@ export default function SEOWrapper({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
-      />
+      {includeBreadcrumbJsonLd !== false ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+      ) : null}
+      {includePageJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+        />
+      ) : null}
       {children}
     </>
   )

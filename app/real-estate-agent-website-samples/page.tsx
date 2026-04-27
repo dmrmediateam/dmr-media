@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import ClientLogosSlider from '@/components/ClientLogosSlider';
 import SEOWrapper from '@/components/SEOWrapper';
 import { metadataFromRegistry } from '@/lib/content-registry';
+import { buildRealEstatePortfolioSamplesGraph } from '@/lib/real-estate-portfolio-schema';
 
 const BASE_URL = 'https://www.dmrmedia.org';
 
@@ -83,32 +84,22 @@ const PROPERTY_WEBSITES = [
   },
 ];
 
-const ITEM_LIST_SCHEMA = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: 'Real Estate Agent Website Examples',
-  description:
-    'Award-winning real estate agent website examples from DMR Media. Custom designs for Legendary Real Estate, Eagan Luxury, Cheryl Towey, Valoria Homes.',
-  numberOfItems: WEBSITE_SAMPLES.length,
-  itemListElement: WEBSITE_SAMPLES.map((sample, i) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    item: {
-      '@type': 'CreativeWork',
-      name: sample.name,
-      description: sample.description,
-      url: sample.url,
-      image: `${BASE_URL}${sample.image}`,
-    },
-  })),
-};
+const PORTFOLIO_JSON_LD = buildRealEstatePortfolioSamplesGraph(
+  BASE_URL,
+  WEBSITE_SAMPLES,
+  PROPERTY_WEBSITES,
+);
 
 export default function RealEstateAgentWebsiteSamplesPage() {
   return (
-    <SEOWrapper slug="/real-estate-agent-website-samples">
+    <SEOWrapper
+      slug="/real-estate-agent-website-samples"
+      includePageJsonLd={false}
+      includeBreadcrumbJsonLd={false}
+    >
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ITEM_LIST_SCHEMA) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(PORTFOLIO_JSON_LD) }}
       />
       <div className="min-h-screen bg-white">
         {/* Hero with background video */}
@@ -137,10 +128,10 @@ export default function RealEstateAgentWebsiteSamplesPage() {
                 <span className="uppercase tracking-[0.2em] text-sm sm:text-base text-white font-serif block mb-6 [text-shadow:0_2px_8px_rgba(0,0,0,0.9),0_4px_16px_rgba(0,0,0,0.7)]">
                   Website Design Portfolio
                 </span>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light !text-white leading-[1.08] tracking-tight mb-6 [text-shadow:0_2px_8px_rgba(0,0,0,0.9),0_4px_24px_rgba(0,0,0,0.8)]">
+                <h1 className="portfolio-schema-hero-h1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light !text-white leading-[1.08] tracking-tight mb-6 [text-shadow:0_2px_8px_rgba(0,0,0,0.9),0_4px_24px_rgba(0,0,0,0.8)]">
                   Distinguished Real Estate Website Designs.
                 </h1>
-                <p className="text-xl sm:text-2xl md:text-3xl font-serif text-white leading-relaxed max-w-2xl mx-auto [text-shadow:0_2px_8px_rgba(0,0,0,0.9),0_4px_16px_rgba(0,0,0,0.7)]">
+                <p className="portfolio-schema-hero-summary text-xl sm:text-2xl md:text-3xl font-serif text-white leading-relaxed max-w-2xl mx-auto [text-shadow:0_2px_8px_rgba(0,0,0,0.9),0_4px_16px_rgba(0,0,0,0.7)]">
                   Websites that continue to earn 5-stars since 2022 from top agents, teams, and brokers.
                 </p>
               </div>

@@ -8,6 +8,7 @@ import Testimonials from '@/components/Testimonials';
 import ReviewsAggregate from '@/components/ReviewsAggregate';
 import getStripe from '@/lib/stripe';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
+import { ELFSIGHT_CHATBOT_SELECTOR } from '@/lib/elfsight-widgets';
 
 function AddListingsLandingContent() {
   const router = useRouter();
@@ -40,7 +41,7 @@ function AddListingsLandingContent() {
   useEffect(() => {
     const nav = document.querySelector('nav') as HTMLElement | null;
     const footer = document.querySelector('footer') as HTMLElement | null;
-    const chatbot = document.querySelector('.elfsight-app-90e5dbc1-4850-470a-b384-914842649785') as HTMLElement | null;
+    const chatbot = document.querySelector(ELFSIGHT_CHATBOT_SELECTOR) as HTMLElement | null;
     if (nav) nav.style.display = 'none';
     if (footer) footer.style.display = 'none';
     if (chatbot) chatbot.style.display = 'none';

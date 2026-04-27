@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { ELFSIGHT_LANDING_HIDE_SELECTORS } from '@/lib/elfsight-widgets';
 import { motion } from 'framer-motion';
 
 export default function ThankYouBookingPage() {
@@ -10,15 +11,7 @@ export default function ThankYouBookingPage() {
     const footer = document.querySelector('footer') as HTMLElement | null;
 
     const hideElfsightWidgets = () => {
-      const selectors = [
-        '.elfsight-app-90e5dbc1-4850-470a-b384-914842649785',
-        '[class*="elfsight"]',
-        '[id*="elfsight"]',
-        '[data-elfsight]',
-        'iframe[src*="elfsight"]',
-      ];
-
-      selectors.forEach((selector) => {
+      ELFSIGHT_LANDING_HIDE_SELECTORS.forEach((selector) => {
         try {
           const elements = document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
           elements.forEach((el) => {
