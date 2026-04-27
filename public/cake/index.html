@@ -82,7 +82,7 @@
       }
     }
 
-    /* Hero — same video treatment as components/Hero.tsx (DMR - INTRO 4K.mp4) */
+    /* Hero same video treatment as components/Hero.tsx (DMR - INTRO 4K.mp4) */
     .cake-hero {
       position: relative;
       min-height: 100vh;
@@ -158,6 +158,39 @@
       z-index: 10;
       width: 100%;
       padding-block: clamp(3rem, 10vh, 5rem);
+    }
+    .cake-hero__scroll {
+      position: absolute;
+      left: 50%;
+      bottom: 1.5rem;
+      transform: translateX(-50%);
+      z-index: 12;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(250, 250, 249, 0.42);
+      background: rgba(15, 15, 15, 0.4);
+      color: #fafaf9;
+      animation: cake-scroll-bounce 1.8s ease-in-out infinite;
+    }
+    .cake-hero__scroll:hover {
+      background: rgba(15, 15, 15, 0.58);
+      border-color: rgba(250, 250, 249, 0.6);
+      opacity: 1;
+    }
+    .cake-hero__scroll-icon {
+      width: 1.05rem;
+      height: 1.05rem;
+    }
+    @keyframes cake-scroll-bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(5px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cake-hero__scroll { animation: none; }
     }
     .cake-hero h1 {
       font-size: clamp(2.375rem, 5.5vw, 3.875rem);
@@ -779,7 +812,7 @@
     </div>
     <div class="cake-hero__inner wrap">
       <h1>
-        We know this cake doesn&rsquo;t get closings,<span class="line-italic">but our ads &amp; aio do.</span>
+        We know this cake doesn&rsquo;t get closings,<span class="line-italic">but our ads &amp; seo do.</span>
       </h1>
       <div class="sub">
         <p>
@@ -789,6 +822,11 @@
       </div>
       <a class="cta" href="#form">Let&rsquo;s Talk</a>
     </div>
+    <a class="cake-hero__scroll" href="#problem" aria-label="Scroll down to the next section">
+      <svg class="cake-hero__scroll-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </a>
   </section>
 
   <section class="logo-slider" aria-label="Clients we work with">
@@ -828,13 +866,13 @@
       <p class="eyebrow">The Blind Spot</p>
       <h2 class="h2-accent">Your ads are running. Whether they&rsquo;re profitable is still a guess.</h2>
       <p>
-        The familiar story: a lead comes in from an ad, drops into the CRM, and your team runs the follow-up. Weeks later—often sixty to ninety days—you are still waiting to learn if that person will ever close, which campaign actually earned the commission, and whether the dollars you spent were a smart bet or an expensive maybe.
+        The familiar story: a lead comes in from an ad, drops into the CRM, and your team runs the follow-up. Weeks later, often sixty to ninety days, you are still waiting to learn if that person will ever close, which campaign actually earned the commission, and whether the dollars you spent were a smart bet or an expensive maybe.
       </p>
       <p>
-        That hesitation is rational. Most real estate marketing setups are built to report activity, not economics—clicks, impressions, cost per lead—because tying spend to closed business is genuinely hard. When nobody can show you the line from ad to GCI with clarity, every budget increase feels like hope instead of strategy.
+        That hesitation is rational. Most real estate marketing setups are built to report activity, not economics clicks, impressions, cost per lead because tying spend to closed business is genuinely hard. When nobody can show you the line from ad to GCI with clarity, every budget increase feels like hope instead of strategy.
       </p>
       <p>
-        DMR Media exists for the next question: not just &ldquo;how many leads,&rdquo; but what share of them convert, what portion should realistically close, and what that is worth in revenue—so we can forecast outcomes and scale paid media with evidence, not nerves. When you can see conversion percentage and modeled close value, you finally get permission to push harder where the math says you should.
+        DMR Media exists for the next question: not just &ldquo;how many leads,&rdquo; but what share of them convert, what portion should realistically close, and what that is worth in revenue so we can forecast outcomes and scale paid media with evidence, not nerves. When you can see conversion percentage and modeled close value, you finally get permission to push harder where the math says you should.
       </p>
     </div>
   </section>
@@ -906,15 +944,15 @@
   <section class="paid-media section" data-animate id="paid-media">
     <div class="wrap">
       <p class="eyebrow">Paid Media</p>
-      <h2 class="h2-accent">The same playbook portals use&mdash;without the forty-percent haircut.</h2>
+      <h2 class="h2-accent">The same playbook portals use without the forty-percent haircut.</h2>
       <p>
         When you give up a third or half of your commission to a portal or lead program, you are not buying something mystical. You are underwriting their paid acquisition: the ads, the placements, and the audience engineering that put their brand in front of your buyer. Paid media is already what they are doing with your money.
       </p>
       <p>
-        Running paid search and paid social in-house is not &ldquo;spending twice.&rdquo; It is swapping a tax for a budget you control. Many teams we work with invest a fraction of that referral percentage in structured campaigns and keep the economics on their own P&amp;L&mdash;often well under half of what they were effectively paying the portal&mdash;which is why the gap feels so dramatic once you line the numbers up.
+        Running paid search and paid social in-house is not &ldquo;spending twice.&rdquo; It is swapping a tax for a budget you control. Many teams we work with invest a fraction of that referral percentage in structured campaigns and keep the economics on their own P&amp;L, often well under half of what they were effectively paying the portal, which is why the gap feels so dramatic once you line the numbers up.
       </p>
       <p>
-        There is a second advantage that rarely shows up on a spreadsheet: you are not waiting for a portal to raise fees, rewrite the rules, or quietly throttle your visibility. Owned paid media answers to your strategy, your creative, and your timeline&mdash;not a policy change announced in a vendor email.
+        There is a second advantage that rarely shows up on a spreadsheet: you are not waiting for a portal to raise fees, rewrite the rules, or quietly throttle your visibility. Owned paid media answers to your strategy, your creative, and your timeline, not a policy change announced in a vendor email.
       </p>
     </div>
   </section>
@@ -1003,7 +1041,7 @@
       <p class="eyebrow">Why DMR</p>
       <h2 class="h2-accent">We&rsquo;re not a platform. We&rsquo;re your partner.</h2>
       <p>
-        We are a boutique agency built for operators who want a senior team accountable to outcomes—not a dashboard, not a ticket queue, and not a one-size template sold at scale. Strategy, execution, and reporting stay tied to the people doing the work.
+        We are a boutique agency built for operators who want a senior team accountable to outcomes not a dashboard, not a ticket queue, and not a one-size template sold at scale. Strategy, execution, and reporting stay tied to the people doing the work.
       </p>
       <p>
         Our clients are luxury agents, teams, and brokerages who already close serious volume and are ready to own their market online with the same standards they bring to a listing. If that is your profile, the work we do is designed to match how you already compete.
