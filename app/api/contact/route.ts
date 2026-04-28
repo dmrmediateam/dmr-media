@@ -84,9 +84,14 @@ export async function POST(request: Request) {
     }
     }
 
-    // Always return success - form submission was received
-    // Even if SendGrid or Zapier fail, we don't want to show an error to the user
-    // The data was captured and logged
+    // If both delivery channels fail, surface an error so the frontend can show failure.
+    if (!sendGridSuccess && !zapierSuccess) {
+      return NextResponse.json(
+        { error: 'Submission received but delivery failed. Please try again.' },
+        { status: 502 }
+      );
+    }
+
     return NextResponse.json(
       {
         success: true,
