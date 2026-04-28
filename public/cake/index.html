@@ -1059,6 +1059,7 @@
         <h2 class="h2-accent">Tell us about your market, your listings, and the pipeline you&rsquo;re building.</h2>
 
         <form id="contact-form" novalidate>
+          <input type="text" name="company_fax" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" />
           <div class="field-row">
             <div class="field">
               <label for="firstName">First Name</label>
@@ -1167,15 +1168,61 @@
       var success = document.getElementById("form-success");
       if (!form || !success) return;
 
-      form.addEventListener("submit", function (e) {
+      var submitBtn = form.querySelector('button[type="submit"]');
+
+      form.addEventListener("submit", async function (e) {
         e.preventDefault();
         if (!form.checkValidity()) {
           form.reportValidity();
           return;
         }
-        form.classList.add("is-hidden");
-        success.classList.add("is-shown");
-        success.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        var firstName = (form.querySelector("#firstName") || {}).value || "";
+        var lastName = (form.querySelector("#lastName") || {}).value || "";
+        var phone = (form.querySelector("#phone") || {}).value || "";
+        var email = (form.querySelector("#email") || {}).value || "";
+        var company = (form.querySelector("#company") || {}).value || "";
+        var topic = (form.querySelector("#topic") || {}).value || "";
+        var honeypot = (form.querySelector('input[name="company_fax"]') || {}).value || "";
+
+        var payload = {
+          name: (firstName + " " + lastName).trim(),
+          email: String(email).trim(),
+          phone: String(phone).trim(),
+          message:
+            "Brokerage/Company: " +
+            String(company).trim() +
+            "\n\nDiscussion topic:\n" +
+            String(topic).trim(),
+          company_fax: String(honeypot).trim(),
+        };
+
+        var originalBtnText = submitBtn ? submitBtn.textContent : "";
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Sending...";
+        }
+
+        try {
+          var res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          if (!res.ok) throw new Error("Request failed");
+
+          form.classList.add("is-hidden");
+          success.classList.add("is-shown");
+          success.scrollIntoView({ behavior: "smooth", block: "center" });
+        } catch (err) {
+          alert("Something went wrong. Please try again.");
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+          }
+        }
       });
     })();
   </script>
