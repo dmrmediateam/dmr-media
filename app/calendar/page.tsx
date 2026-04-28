@@ -64,7 +64,7 @@ export default function CalendarPage() {
               <div className="border border-[rgba(15,15,15,0.12)] bg-white p-6 sm:p-8 shadow-[0_18px_50px_rgba(15,15,15,0.08)]">
                 <form
                   className="space-y-6"
-                  action="https://hooks.zapier.com/hooks/catch/21968997/uvmtlp5/"
+                  action="/api/application"
                   method="POST"
                 >
                   <input type="hidden" name="formName" value="calendar-application" />
