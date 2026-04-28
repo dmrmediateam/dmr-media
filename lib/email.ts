@@ -55,6 +55,24 @@ export interface HomeValuationData {
   first_visit?: string;
 }
 
+export interface ApplicationFormEmailData {
+  formName: string;
+  name: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  profileType?: string;
+  website?: string;
+  market?: string;
+  annualSalesVolume?: string;
+  teamSize?: string;
+  biggestChallenge?: string;
+  bookingReason?: string[];
+  notes?: string;
+  submittedAt: string;
+}
+
 /**
  * Send Contact Form Email
  */
@@ -334,6 +352,118 @@ Submitted: ${new Date().toLocaleString()}
   } catch (error: any) {
     console.error('SendGrid Error:', error.response?.body || error);
     throw new Error('Failed to send email');
+  }
+}
+
+/**
+ * Send Application Form Email (calendar + landing forms)
+ */
+export async function sendApplicationFormEmail(data: ApplicationFormEmailData) {
+  const {
+    formName,
+    name,
+    firstName,
+    lastName,
+    email,
+    phone,
+    profileType,
+    website,
+    market,
+    annualSalesVolume,
+    teamSize,
+    biggestChallenge,
+    bookingReason,
+    notes,
+    submittedAt,
+  } = data;
+
+  const prettyBookingReasons = bookingReason && bookingReason.length > 0
+    ? bookingReason.join(', ')
+    : 'Not provided';
+
+  const emailContent = {
+    to: process.env.APPLICATION_FORM_EMAIL || 'team@dmrmedia.org',
+    from: {
+      email: process.env.SENDGRID_FROM_EMAIL || 'noreply@sendgrid.net',
+      name: process.env.SENDGRID_FROM_NAME || 'DMR Media',
+    },
+    replyTo: email,
+    subject: `New Application Submission (${formName}) - ${name || `${firstName} ${lastName}`.trim() || 'Unknown'}`,
+    html: `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 700px; margin: 0 auto; padding: 20px; }
+            .header { background: #0f0f0f; color: #fff; padding: 24px; border-radius: 8px 8px 0 0; }
+            .content { background: #fff; border: 1px solid #e5e5e5; border-top: none; padding: 24px; }
+            .section-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin: 20px 0 10px; }
+            .field { margin-bottom: 10px; }
+            .label { font-weight: 600; color: #444; margin-right: 6px; }
+            .value { color: #111; }
+            .note { background: #f9f9f9; border-left: 4px solid #0f0f0f; padding: 12px; white-space: pre-wrap; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h2 style="margin:0;">New Application Form Submission</h2>
+              <p style="margin:8px 0 0 0; opacity:.85;">Form: ${formName}</p>
+            </div>
+            <div class="content">
+              <div class="field"><span class="label">Name:</span><span class="value">${name || `${firstName} ${lastName}`.trim() || 'Not provided'}</span></div>
+              <div class="field"><span class="label">Email:</span><span class="value">${email || 'Not provided'}</span></div>
+              <div class="field"><span class="label">Phone:</span><span class="value">${phone || 'Not provided'}</span></div>
+
+              <div class="section-title">Business Details</div>
+              <div class="field"><span class="label">Profile Type:</span><span class="value">${profileType || 'Not provided'}</span></div>
+              <div class="field"><span class="label">Website:</span><span class="value">${website || 'Not provided'}</span></div>
+              <div class="field"><span class="label">Market / City:</span><span class="value">${market || 'Not provided'}</span></div>
+              <div class="field"><span class="label">Annual Sales Volume:</span><span class="value">${annualSalesVolume || 'Not provided'}</span></div>
+              <div class="field"><span class="label">Team Size:</span><span class="value">${teamSize || 'Not provided'}</span></div>
+              <div class="field"><span class="label">Biggest Challenge:</span><span class="value">${biggestChallenge || 'Not provided'}</span></div>
+              <div class="field"><span class="label">Booking Reasons:</span><span class="value">${prettyBookingReasons}</span></div>
+
+              <div class="section-title">Additional Notes</div>
+              <div class="note">${notes || 'None provided'}</div>
+
+              <div class="section-title">Submitted</div>
+              <div class="field"><span class="value">${new Date(submittedAt).toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' })}</span></div>
+            </div>
+          </div>
+        </body>
+      </html>
+    `,
+    text: `
+New Application Form Submission
+Form: ${formName}
+
+Name: ${name || `${firstName} ${lastName}`.trim() || 'Not provided'}
+Email: ${email || 'Not provided'}
+Phone: ${phone || 'Not provided'}
+
+Profile Type: ${profileType || 'Not provided'}
+Website: ${website || 'Not provided'}
+Market / City: ${market || 'Not provided'}
+Annual Sales Volume: ${annualSalesVolume || 'Not provided'}
+Team Size: ${teamSize || 'Not provided'}
+Biggest Challenge: ${biggestChallenge || 'Not provided'}
+Booking Reasons: ${prettyBookingReasons}
+
+Notes:
+${notes || 'None provided'}
+
+Submitted: ${new Date(submittedAt).toLocaleString()}
+    `,
+  };
+
+  try {
+    await initSendGrid().send(emailContent);
+    return { success: true };
+  } catch (error: any) {
+    console.error('SendGrid Error (application form):', error.response?.body || error);
+    throw new Error('Failed to send application form email');
   }
 }
 
