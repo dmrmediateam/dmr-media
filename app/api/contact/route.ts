@@ -84,10 +84,16 @@ export async function POST(request: Request) {
     }
     }
 
-    // If both delivery channels fail, surface an error so the frontend can show failure.
-    if (!sendGridSuccess && !zapierSuccess) {
+    // Require both delivery channels for this endpoint.
+    if (!sendGridSuccess || !zapierSuccess) {
       return NextResponse.json(
-        { error: 'Submission received but delivery failed. Please try again.' },
+        {
+          error: 'Submission received but one or more delivery channels failed.',
+          channels: {
+            email: sendGridSuccess,
+            zapier: zapierSuccess,
+          },
+        },
         { status: 502 }
       );
     }
@@ -96,6 +102,10 @@ export async function POST(request: Request) {
       {
         success: true,
         message: 'Thank you for your message. We will get back to you soon!',
+        channels: {
+          email: sendGridSuccess,
+          zapier: zapierSuccess,
+        },
       },
       { status: 200 }
     );

@@ -1059,7 +1059,6 @@
         <h2 class="h2-accent">Tell us about your market, your listings, and the pipeline you&rsquo;re building.</h2>
 
         <form id="contact-form" novalidate>
-          <input type="text" name="company_fax" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" />
           <div class="field-row">
             <div class="field">
               <label for="firstName">First Name</label>
@@ -1183,8 +1182,6 @@
         var email = (form.querySelector("#email") || {}).value || "";
         var company = (form.querySelector("#company") || {}).value || "";
         var topic = (form.querySelector("#topic") || {}).value || "";
-        var honeypot = (form.querySelector('input[name="company_fax"]') || {}).value || "";
-
         var payload = {
           name: (firstName + " " + lastName).trim(),
           email: String(email).trim(),
@@ -1194,7 +1191,7 @@
             String(company).trim() +
             "\n\nDiscussion topic:\n" +
             String(topic).trim(),
-          company_fax: String(honeypot).trim(),
+          company_fax: "",
         };
 
         var originalBtnText = submitBtn ? submitBtn.textContent : "";
