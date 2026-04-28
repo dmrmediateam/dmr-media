@@ -37,6 +37,8 @@ interface SEOWrapperProps {
   schemaType?: 'article' | 'service' | 'website'
   /** When false, the generic WebPage/Article/Service script is omitted (e.g. when the page ships a custom @graph). */
   includePageJsonLd?: boolean
+  /** When set, replaces the auto-generated page JSON-LD (e.g. rich @graph for property-marketing). BreadcrumbList unchanged. */
+  pageJsonLd?: Record<string, unknown>
   /** When false, the BreadcrumbList script is omitted (e.g. when breadcrumbs are inside a combined @graph). */
   includeBreadcrumbJsonLd?: boolean
   children: React.ReactNode
@@ -123,6 +125,7 @@ export default function SEOWrapper({
   schemaType = 'website',
   includePageJsonLd = true,
   includeBreadcrumbJsonLd = true,
+  pageJsonLd,
   children,
 }: SEOWrapperProps) {
   const entry = getContentEntry(slug)
@@ -164,6 +167,7 @@ export default function SEOWrapper({
     resolvedDatePublished,
     resolvedDateModified,
   )
+  const pageLdToRender = pageJsonLd ?? (includePageJsonLd ? pageSchema : null)
 
   return (
     <>
@@ -173,10 +177,10 @@ export default function SEOWrapper({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       ) : null}
-      {includePageJsonLd ? (
+      {pageLdToRender ? (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(pageLdToRender) }}
         />
       ) : null}
       {children}

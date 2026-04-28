@@ -125,6 +125,57 @@ const nextConfig = {
         destination: '/case-studies',
         permanent: true,
       },
+      // Consolidate templated city service URLs into parent pages (avoid thin duplicate content)
+      {
+        source: '/seo-optimization/:location',
+        destination: '/seo-optimization',
+        permanent: true,
+      },
+      {
+        source: '/google-ads-management/:location',
+        destination: '/google-ads-management',
+        permanent: true,
+      },
+      {
+        source: '/luxury-condo-websites/:location',
+        destination: '/luxury-condo-websites',
+        permanent: true,
+      },
+      {
+        source: '/single-property-websites/:location',
+        destination: '/single-property-websites',
+        permanent: true,
+      },
+      {
+        source: '/websites-for-new-developments/:location',
+        destination: '/websites-for-new-developments',
+        permanent: true,
+      },
+      {
+        source: '/property-marketing/:location',
+        destination: '/property-marketing',
+        permanent: true,
+      },
+      {
+        source: '/analytics-reporting/:location',
+        destination: '/analytics-reporting',
+        permanent: true,
+      },
+      {
+        source: '/luxury-development-marketing/:location',
+        destination: '/luxury-development-marketing',
+        permanent: true,
+      },
+      {
+        source: '/real-estate-lead-generation/:location',
+        destination: '/real-estate-lead-generation',
+        permanent: true,
+      },
+      {
+        source: '/real-estate-seo-consultant',
+        destination: '/seo-consulting',
+        permanent: true,
+      },
     ]
   },
 }

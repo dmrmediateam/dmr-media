@@ -9,6 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/'],
       },
     ],
+    host: 'https://www.dmrmedia.org',
     sitemap: 'https://www.dmrmedia.org/sitemap.xml',
   }
 }

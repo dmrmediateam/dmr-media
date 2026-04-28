@@ -40,13 +40,13 @@ export default function ServiceCities({ heading, description, cities, columns = 
 
         <div className={`grid ${gridCols} gap-8`}>
           {cities.map((city) => {
-            const href = city.slug.startsWith('#') ? city.slug : city.slug
             const isAnchor = city.slug.startsWith('#')
+            const isContactAnchor = city.slug === '#contact'
 
             return (
               <Link
                 key={`${city.name}-${city.slug}`}
-                href={isAnchor ? '#contact' : href}
+                href={city.slug}
                 className="group relative aspect-[4/3] overflow-hidden border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300"
               >
                 <Image
@@ -66,7 +66,12 @@ export default function ServiceCities({ heading, description, cities, columns = 
                 </div>
                 <div className="absolute bottom-6 left-6 right-6 z-10">
                   <span className="text-xs uppercase tracking-[0.2em] text-[#FAFAF9] font-serif">
-                    {city.subtitle ?? (isAnchor ? 'Contact us about your market →' : 'View local services →')}
+                    {city.subtitle ??
+                      (isContactAnchor
+                        ? 'Contact us about your market →'
+                        : isAnchor
+                          ? 'Read how we work this market →'
+                          : 'View local services →')}
                   </span>
                 </div>
               </Link>

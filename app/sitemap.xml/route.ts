@@ -3,6 +3,31 @@ import { getAllBlogPosts } from '@/data/blogPosts';
 import { listMls } from '@/data/mlsRegistry';
 import { contentRegistry } from '@/lib/content-registry';
 
+/**
+ * Former templated `/{service}/[location]` routes 301 to the parent service URL.
+ * Exclude any such URLs from the sitemap if they ever appear in a data source.
+ */
+const REDIRECT_ONLY_SERVICE_PREFIXES = new Set([
+  'seo-optimization',
+  'google-ads-management',
+  'luxury-condo-websites',
+  'single-property-websites',
+  'websites-for-new-developments',
+  'property-marketing',
+  'analytics-reporting',
+  'luxury-development-marketing',
+  'real-estate-lead-generation',
+]);
+
+function isRemovedServiceLocationUrl(loc: string, baseUrl: string): boolean {
+  const prefix = `${baseUrl}/`;
+  if (!loc.startsWith(prefix)) return false;
+  const path = loc.slice(prefix.length);
+  const segments = path.split('/').filter(Boolean);
+  if (segments.length !== 2) return false;
+  return REDIRECT_ONLY_SERVICE_PREFIXES.has(segments[0]!);
+}
+
 type ChangeFreq = 'daily' | 'weekly' | 'monthly' | 'yearly';
 
 interface UrlEntry {
@@ -57,8 +82,10 @@ export async function GET() {
     console.error('Failed to append blog posts to sitemap:', error);
   }
 
-  // Exclude brokerages pages (removed, now 301 to homepage)
-  const filteredUrls = urls.filter((entry) => !entry.loc.includes('/brokerages'));
+  const filteredUrls = urls.filter(
+    (entry) =>
+      !entry.loc.includes('/brokerages') && !isRemovedServiceLocationUrl(entry.loc, baseUrl),
+  );
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

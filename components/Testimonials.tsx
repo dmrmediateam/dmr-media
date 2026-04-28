@@ -54,7 +54,20 @@ const testimonials = [
   },
 ];
 
-const Testimonials = () => {
+type TestimonialsProps = {
+  /** When true, the "Client Reviews" H2 is omitted (parent section supplies the heading). */
+  omitHeading?: boolean
+  /** When true, each card shows a 5-star row (visual trust signal). */
+  showStarRating?: boolean
+  /** When set, only testimonials whose `id` is in this list are rendered (order follows this array). */
+  visibleIds?: (string | number)[]
+}
+
+const Testimonials = ({ omitHeading = false, showStarRating = false, visibleIds }: TestimonialsProps) => {
+  const list =
+    visibleIds && visibleIds.length > 0
+      ? visibleIds.map((vid) => testimonials.find((t) => t.id === vid)).filter(Boolean) as typeof testimonials
+      : testimonials
   const truncateText = (text: string, maxLength: number = 100) => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength).trim() + '...';
@@ -64,19 +77,22 @@ const Testimonials = () => {
     <section className="pt-10 pb-32 bg-white border-b border-[var(--color-ink-200)]">
       <div className="container-max">
         {/* Section Header */}
-        <div className="mb-14">
-          <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1]">
-            Client Reviews
-          </h2>
-        </div>
+        {!omitHeading ? (
+          <div className="mb-14">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1]">
+              Client Reviews
+            </h2>
+          </div>
+        ) : null}
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-          {testimonials.map((testimonial) => (
+          {list.map((testimonial) => (
             <TestimonialCard
               key={testimonial.id}
               testimonial={testimonial}
               truncateText={truncateText}
+              showStarRating={showStarRating}
             />
           ))}
         </div>
@@ -85,7 +101,15 @@ const Testimonials = () => {
   );
 };
 
-const TestimonialCard = ({ testimonial, truncateText }: { testimonial: typeof testimonials[0], truncateText: (text: string, maxLength?: number) => string }) => {
+const TestimonialCard = ({
+  testimonial,
+  truncateText,
+  showStarRating,
+}: {
+  testimonial: (typeof testimonials)[0]
+  truncateText: (text: string, maxLength?: number) => string
+  showStarRating?: boolean
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   const truncatedText = truncateText(testimonial.text, 80);
 
@@ -120,9 +144,17 @@ const TestimonialCard = ({ testimonial, truncateText }: { testimonial: typeof te
 
       {/* Client Name & Review - Bottom Left */}
       <div className="absolute bottom-6 left-6 right-6 z-10">
-        <h3 className="text-xl font-serif font-light !text-white mb-3 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] [text-shadow:_0_2px_12px_rgba(0,0,0,0.9)]" style={{ color: '#FFFFFF' }}>
+        <h3 className="text-xl font-serif font-light !text-white mb-2 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] [text-shadow:_0_2px_12px_rgba(0,0,0,0.9)]" style={{ color: '#FFFFFF' }}>
           {testimonial.name}
         </h3>
+        {showStarRating ? (
+          <p
+            className="text-amber-400 text-sm mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+            aria-label="5 out of 5 stars"
+          >
+            ★★★★★ <span className="text-[#FAFAF9] text-xs font-serif tracking-wide">5.0</span>
+          </p>
+        ) : null}
         <blockquote className={`text-sm text-[#FAFAF9] leading-relaxed font-serif drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)] transition-all duration-300 ${
           isHovered ? 'opacity-100' : 'opacity-90'
         }`}>
