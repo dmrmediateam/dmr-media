@@ -11,14 +11,6 @@ export async function POST(request: Request) {
     // Parse request body
     const body: ContactFormData = await request.json();
 
-    // Honeypot: reject if filled (bot submission)
-    if (body.company_fax && body.company_fax.trim()) {
-      return NextResponse.json(
-        { success: true, message: 'Thank you for your message.' },
-        { status: 200 }
-      );
-    }
-
     // Validate required fields
     if (!body.name || !body.email || !body.message) {
       return NextResponse.json(

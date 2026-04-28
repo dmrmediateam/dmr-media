@@ -18,7 +18,6 @@ const ContactForm = () => {
     email: '',
     phone: '',
     message: '',
-    company_fax: '', // Honeypot - bots fill this; name chosen to avoid autofill
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,14 +35,11 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Honeypot: if filled, silently reject (bot)
-    if (formData.company_fax) return;
     setIsSubmitting(true);
 
     // Get stored UTM parameters
     const utmParams = getStoredUTMParams();
 
-    const { company_fax: _company_fax, ...submitData } = formData;
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -51,7 +47,7 @@ const ContactForm = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...submitData,
+          ...formData,
           utm_source: utmParams.utm_source,
           utm_medium: utmParams.utm_medium,
           utm_campaign: utmParams.utm_campaign,
@@ -85,7 +81,6 @@ const ContactForm = () => {
           email: '',
           phone: '',
           message: '',
-          company_fax: '',
         });
       }, 3000);
 
@@ -206,20 +201,6 @@ const ContactForm = () => {
             className="border border-[var(--color-ink-200)] bg-white p-8 md:p-10 relative z-10"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Honeypot - hidden from users, bots fill it; "company_fax" avoids autofill */}
-              <div className="absolute -left-[9999px] w-1 h-1 overflow-hidden" aria-hidden="true">
-                <label htmlFor="company_fax">Fax (leave blank)</label>
-                <input
-                  type="text"
-                  id="company_fax"
-                  name="company_fax"
-                  tabIndex={-1}
-                  autoComplete="nope"
-                  value={formData.company_fax}
-                  onChange={handleChange}
-                />
-              </div>
-
               <div>
                 <label htmlFor="name" className={labelClasses}>
                   Name *

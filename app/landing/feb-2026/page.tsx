@@ -19,7 +19,6 @@ function Feb2026LandingContent() {
     email: '',
     averageSalePrice: '',
     homesSold2025: '',
-    website: '', // Honeypot field - hidden from users
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
@@ -169,7 +168,6 @@ function Feb2026LandingContent() {
             phone: formData.phone,
             averageSalePrice: formData.averageSalePrice,
             homesSold2025: formData.homesSold2025,
-            website: formData.website, // Include honeypot field
             source: 'feb-2026-landing',
             eventDate: 'February 11th, 2026',
             utm_source: utmParams.utm_source,
@@ -1074,20 +1072,6 @@ function Feb2026LandingContent() {
                       onChange={(e) => setFormData({ ...formData, homesSold2025: e.target.value })}
                       className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
                       placeholder="12"
-                    />
-                  </div>
-
-                  {/* Honeypot field - hidden from users, bots will fill this */}
-                  <div className="absolute opacity-0 pointer-events-none h-0 w-0 overflow-hidden">
-                    <label htmlFor="website">Website (leave blank)</label>
-                    <input
-                      type="text"
-                      id="website"
-                      name="website"
-                      tabIndex={-1}
-                      autoComplete="off"
-                      value={formData.website}
-                      onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                     />
                   </div>
 

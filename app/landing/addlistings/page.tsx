@@ -17,7 +17,6 @@ function AddListingsLandingContent() {
     name: '',
     phone: '',
     email: '',
-    website: '', // Honeypot field - hidden from users
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
@@ -119,7 +118,6 @@ function AddListingsLandingContent() {
             name: formData.name,
             email: formData.email,
             phone: formData.phone,
-            website: formData.website, // Include honeypot field
             source: 'add-listings-landing',
             utm_source: utmParams.utm_source,
             utm_medium: utmParams.utm_medium,
@@ -990,20 +988,6 @@ function AddListingsLandingContent() {
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3 rounded-[20px] border border-[var(--color-ink-200)] bg-white/90 text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-trust)] transition-colors duration-300"
                       placeholder="(555) 123-4567"
-                    />
-                  </div>
-
-                  {/* Honeypot field - hidden from users, bots will fill this */}
-                  <div className="absolute opacity-0 pointer-events-none h-0 w-0 overflow-hidden">
-                    <label htmlFor="website">Website (leave blank)</label>
-                    <input
-                      type="text"
-                      id="website"
-                      name="website"
-                      tabIndex={-1}
-                      autoComplete="off"
-                      value={formData.website}
-                      onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                     />
                   </div>
 

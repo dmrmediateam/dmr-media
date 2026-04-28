@@ -15,7 +15,6 @@ export interface ContactFormData {
   email: string;
   phone: string;
   message: string;
-  company_fax?: string; // Honeypot field - not sent to email
   // UTM tracking fields (optional)
   utm_source?: string;
   utm_medium?: string;

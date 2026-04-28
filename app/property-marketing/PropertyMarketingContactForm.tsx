@@ -21,7 +21,6 @@ export default function PropertyMarketingContactForm() {
     brokerage: '',
     listing_address: '',
     message: '',
-    company_fax: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,7 +35,6 @@ export default function PropertyMarketingContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.company_fax) return;
     setIsSubmitting(true);
 
     const utmParams = getStoredUTMParams();
@@ -86,7 +84,6 @@ export default function PropertyMarketingContactForm() {
           brokerage: '',
           listing_address: '',
           message: '',
-          company_fax: '',
         });
       }, 4000);
     } catch (error) {
@@ -198,19 +195,6 @@ export default function PropertyMarketingContactForm() {
             className="border border-[var(--color-ink-200)] bg-white p-8 md:p-10 relative z-10"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="absolute -left-[9999px] w-1 h-1 overflow-hidden" aria-hidden="true">
-                <label htmlFor="company_fax">Fax (leave blank)</label>
-                <input
-                  type="text"
-                  id="company_fax"
-                  name="company_fax"
-                  tabIndex={-1}
-                  autoComplete="nope"
-                  value={formData.company_fax}
-                  onChange={handleChange}
-                />
-              </div>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="pm_name" className={labelClasses}>

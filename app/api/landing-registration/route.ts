@@ -14,17 +14,6 @@ export async function POST(request: Request) {
     // Parse request body
     const body = await request.json();
 
-    // BOT PROTECTION: Honeypot field check
-    // If the hidden "website" field is filled, it's likely a bot
-    if (body.website && body.website.trim() !== '') {
-      console.warn('Bot detected via honeypot field:', { ip, email: body.email });
-      // Return success to bot but don't process
-      return NextResponse.json(
-        { success: true, message: 'Registration successful!' },
-        { status: 200 }
-      );
-    }
-
     // Validate required fields
     const source = body.source || 'add-listings-landing';
     const isFeb2026 = source === 'feb-2026-landing';
