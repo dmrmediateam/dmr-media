@@ -4,12 +4,15 @@ import { sendApplicationFormEmail } from '@/lib/email'
 const DEFAULT_THANK_YOU_PATH = '/landing/thank-you'
 const GOOGLE_GENERAL_FORM_NAME = 'google-general-strategy-call'
 const GOOGLE_GENERAL_THANK_YOU_PATH = '/landing/thank-you-g'
+const GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH = '/landing/thank-you-g-dq'
 
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData()
     const formName = formData.get('formName')?.toString() ?? 'calendar-application'
     const isGoogleGeneral = formName === GOOGLE_GENERAL_FORM_NAME
+    const annualSalesVolume = formData.get('annualSalesVolume')?.toString() ?? ''
+    const isUnderTwentyM = annualSalesVolume === 'Under $20M'
     const firstName = formData.get('firstName')?.toString().trim() ?? ''
     const lastName = formData.get('lastName')?.toString().trim() ?? ''
     const fullName = [firstName, lastName].filter(Boolean).join(' ')
@@ -24,7 +27,7 @@ export async function POST(req: NextRequest) {
       profileType: formData.get('profileType')?.toString() ?? '',
       website: formData.get('website')?.toString() ?? '',
       market: formData.get('market')?.toString() ?? '',
-      annualSalesVolume: formData.get('annualSalesVolume')?.toString() ?? '',
+      annualSalesVolume,
       teamSize: formData.get('teamSize')?.toString() ?? '',
       biggestChallenge: formData.get('biggestChallenge')?.toString() ?? '',
       bookingReason: formData.getAll('bookingReason').map(String),
@@ -62,7 +65,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Failed to submit application' }, { status: 502 })
     }
 
-    const redirectPath = isGoogleGeneral ? GOOGLE_GENERAL_THANK_YOU_PATH : DEFAULT_THANK_YOU_PATH
+    let redirectPath = DEFAULT_THANK_YOU_PATH
+    if (isGoogleGeneral) {
+      redirectPath = isUnderTwentyM
+        ? GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH
+        : GOOGLE_GENERAL_THANK_YOU_PATH
+    }
 
     return NextResponse.redirect(new URL(redirectPath, req.url), 303)
   } catch {
