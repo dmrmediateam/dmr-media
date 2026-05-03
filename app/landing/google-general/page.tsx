@@ -321,7 +321,8 @@ export default function GoogleGeneralLandingPage() {
         className="relative min-h-screen overflow-hidden border-b border-[var(--color-ink-200)]"
         aria-labelledby="google-landing-hero-title"
       >
-        <div className="absolute inset-0">
+        {/* Video + scrim only (z-0). Copy and controls sit above in separate layers. */}
+        <div className="absolute inset-0 z-0">
           <video
             ref={heroVideoRef}
             className="absolute inset-0 z-0 h-full w-full object-cover"
@@ -333,23 +334,14 @@ export default function GoogleGeneralLandingPage() {
             preload="metadata"
             aria-hidden
           />
-          {/* Video paints above non-z-indexed siblings in some browsers; keep scrim strictly above video, below copy. */}
           <div
             className="pointer-events-none absolute inset-0 z-[1]"
             style={{ backgroundColor: 'rgba(15, 15, 15, 0.72)' }}
             aria-hidden
           />
-          <button
-            type="button"
-            onClick={toggleHeroMute}
-            className="absolute bottom-5 right-5 z-[3] flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-colors hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50"
-            aria-label={isHeroMuted ? 'Unmute hero video' : 'Mute hero video'}
-          >
-            {isHeroMuted ? <VolumeOffIcon className="h-5 w-5" /> : <VolumeOnIcon className="h-5 w-5" />}
-          </button>
         </div>
-        <div className="relative container-max flex min-h-screen items-center justify-center py-20 text-center">
-          <div className="max-w-4xl">
+        <div className="relative z-10 container-max flex min-h-screen items-center justify-center py-20 text-center pointer-events-none">
+          <div className="max-w-4xl pointer-events-auto">
             <p className="mb-6 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
               The AI-First Real Estate Marketing Agency
             </p>
@@ -397,6 +389,14 @@ export default function GoogleGeneralLandingPage() {
             </div>
           </div>
         </div>
+        <button
+          type="button"
+          onClick={toggleHeroMute}
+          className="absolute bottom-5 right-5 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-colors hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50"
+          aria-label={isHeroMuted ? 'Unmute hero video' : 'Mute hero video'}
+        >
+          {isHeroMuted ? <VolumeOffIcon className="h-5 w-5" /> : <VolumeOnIcon className="h-5 w-5" />}
+        </button>
       </section>
 
       <section id="client-logos" className="scroll-mt-6 border-b border-[var(--color-ink-200)] bg-white" aria-label="Client logos">
