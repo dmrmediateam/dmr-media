@@ -1,8 +1,9 @@
- 'use client'
+'use client'
 
 import Image from 'next/image'
 import ClientLogosSlider from '@/components/ClientLogosSlider'
-import { useEffect, useRef, useState } from 'react'
+import ApplyModal from '@/components/ApplyModal'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 
 function PlayIcon({ className }: { className?: string }) {
   return (
@@ -175,6 +176,93 @@ const processItems = [
   },
 ]
 
+const proofItems = [
+  {
+    src: '/images/landing/google-general/01-claude-ranking.png',
+    label: 'Claude ranking mention',
+    stat: 'Claude: DMR Media listed as top-rated for luxury-focused real estate PPC.',
+  },
+  {
+    src: '/images/landing/google-general/02-perplexity-ranking.png',
+    label: 'Perplexity ranking mention',
+    stat: 'Perplexity: DMR Media highlighted as a standout and ranked #1 in a 2026 roundup.',
+  },
+  {
+    src: '/images/landing/google-general/03-semrush-ranking.png',
+    label: 'SEMrush ranking mention',
+    stat: 'SEMrush directory: DMR Media appears in top US real estate PPC companies.',
+  },
+  {
+    src: '/images/landing/google-general/04-google-ranking.png',
+    label: 'Google AI Overview ranking mention',
+    stat: 'Google AI Overview: DMR Media included among top real estate PPC agencies in 2026.',
+  },
+] as const
+
+function SectionHeading({
+  titleId,
+  eyebrow,
+  title,
+  align = 'left',
+}: {
+  titleId: string
+  eyebrow: string
+  title: ReactNode
+  align?: 'left' | 'center'
+}) {
+  const wrap = align === 'center' ? 'mx-auto max-w-4xl text-center' : 'max-w-3xl'
+  return (
+    <header className={wrap}>
+      <p className="mb-3 font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)]">{eyebrow}</p>
+      <h2
+        id={titleId}
+        className="font-serif text-[2rem] font-light leading-[1.12] tracking-tight text-[var(--color-off-black)] sm:text-[2.35rem]"
+      >
+        {title}
+      </h2>
+      <div
+        className={`mt-5 h-[2px] w-14 bg-gradient-to-r from-[var(--color-off-black)] via-[var(--color-off-black)]/60 to-transparent sm:w-20 ${align === 'center' ? 'mx-auto' : ''}`}
+        aria-hidden
+      />
+    </header>
+  )
+}
+
+function ApplyCtaBand({
+  surface,
+  hint,
+  onApply,
+}: {
+  surface: 'base' | 'white'
+  hint: string
+  onApply: () => void
+}) {
+  const bg = surface === 'white' ? 'bg-white' : 'bg-[var(--surface-base)]'
+  const ringOffset =
+    surface === 'white' ? 'focus-visible:ring-offset-white' : 'focus-visible:ring-offset-[var(--surface-base)]'
+
+  return (
+    <aside
+      className={`${bg} border-b border-[var(--color-ink-200)] py-10 md:py-14`}
+      aria-label="Apply for a strategy call"
+    >
+      <div className="container-max mx-auto flex max-w-lg flex-col items-center gap-4 px-4 text-center">
+        <p className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
+        <button
+          type="button"
+          onClick={onApply}
+          className={`inline-flex min-h-[52px] min-w-[12rem] items-center justify-center px-10 uppercase tracking-[0.15em] text-xs text-white transition-colors bg-[var(--color-off-black)] hover:bg-[var(--color-off-black)]/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)] focus-visible:ring-offset-2 ${ringOffset}`}
+        >
+          Apply Now
+        </button>
+      </div>
+    </aside>
+  )
+}
+
+const cardArticleClass =
+  'border border-[var(--color-ink-200)] bg-white p-5 sm:p-6 transition-colors duration-200 hover:border-[var(--color-ink-300)]'
+
 export default function GoogleGeneralLandingPage() {
   useEffect(() => {
     const nav = document.querySelector('nav') as HTMLElement | null
@@ -223,13 +311,20 @@ export default function GoogleGeneralLandingPage() {
     }
   }
 
+  const openApplyModal = () => {
+    window.dispatchEvent(new CustomEvent('openApplyModal'))
+  }
+
   return (
     <main className="min-h-screen bg-[var(--surface-base)]">
-      <section className="relative min-h-screen overflow-hidden border-b border-[var(--color-ink-200)]">
+      <section
+        className="relative min-h-screen overflow-hidden border-b border-[var(--color-ink-200)]"
+        aria-labelledby="google-landing-hero-title"
+      >
         <div className="absolute inset-0">
           <video
             ref={heroVideoRef}
-            className="h-full w-full object-cover"
+            className="absolute inset-0 z-0 h-full w-full object-cover"
             src="/videos/DMR%20-%20INTRO%204K.mp4"
             autoPlay
             muted={isHeroMuted}
@@ -238,71 +333,99 @@ export default function GoogleGeneralLandingPage() {
             preload="metadata"
             aria-hidden
           />
-          <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.58)' }} />
+          {/* Video paints above non-z-indexed siblings in some browsers; keep scrim strictly above video, below copy. */}
+          <div
+            className="pointer-events-none absolute inset-0 z-[1]"
+            style={{ backgroundColor: 'rgba(15, 15, 15, 0.72)' }}
+            aria-hidden
+          />
           <button
             type="button"
             onClick={toggleHeroMute}
-            className="absolute z-20 bottom-5 right-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-colors hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute bottom-5 right-5 z-[3] flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-colors hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50"
             aria-label={isHeroMuted ? 'Unmute hero video' : 'Mute hero video'}
           >
             {isHeroMuted ? <VolumeOffIcon className="h-5 w-5" /> : <VolumeOnIcon className="h-5 w-5" />}
           </button>
         </div>
-        <div className="relative container-max min-h-screen flex items-center justify-center py-20 text-center">
+        <div className="relative container-max flex min-h-screen items-center justify-center py-20 text-center">
           <div className="max-w-4xl">
-            <p className="text-[11px] uppercase tracking-[0.24em] text-white/80 mb-6 font-serif">
+            <p className="mb-6 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
               The AI-First Real Estate Marketing Agency
             </p>
-            <h1 className="font-serif font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.04] tracking-tight !text-white">
+            <h1
+              id="google-landing-hero-title"
+              className="font-serif text-4xl font-light leading-[1.04] tracking-tight !text-white sm:text-5xl md:text-6xl lg:text-7xl"
+            >
               Your Market Has a #1 Agent.
               <br />
               It Should Be You.
             </h1>
-            <p className="mt-8 text-lg sm:text-xl text-white/90 max-w-3xl font-serif mx-auto leading-relaxed">
+            <p className="mx-auto mt-8 max-w-3xl font-serif text-lg leading-relaxed text-white/90 sm:text-xl">
               Most luxury teams doing $40M+ a year are invisible on Google. We fix that. AI-powered SEO.
               Precision Google Ads. Full execution. No dashboards to babysit. No excuses.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#form"
-                className="inline-flex min-h-[52px] items-center justify-center px-8 bg-white text-[var(--color-off-black)] uppercase tracking-[0.15em] text-xs"
+            <div className="mt-10 flex flex-col items-center gap-8">
+              <button
+                type="button"
+                onClick={openApplyModal}
+                className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center bg-white px-10 uppercase tracking-[0.15em] text-xs text-[var(--color-off-black)] transition-colors hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] sm:w-auto sm:min-w-[12rem]"
               >
-                Apply today
-              </a>
+                Apply now
+              </button>
               <a
-                href="#proof"
-                className="inline-flex min-h-[52px] items-center justify-center px-8 border border-white/60 text-white uppercase tracking-[0.15em] text-xs"
+                href="#client-logos"
+                aria-label="Continue to client logos and page content"
+                className="group inline-flex flex-col items-center gap-2 rounded-sm pb-1 text-white/70 outline-none transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
               >
-                See Results ↓
+                <span className="font-serif text-xs uppercase tracking-[0.2em]">Continue</span>
+                <svg
+                  className="h-6 w-6 transition-transform duration-300 group-hover:translate-y-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                  />
+                </svg>
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-[var(--color-ink-200)] bg-white">
+      <section id="client-logos" className="scroll-mt-6 border-b border-[var(--color-ink-200)] bg-white" aria-label="Client logos">
         <ClientLogosSlider />
       </section>
 
-      <section className="py-16 md:py-24 bg-[var(--surface-base)] border-b border-[var(--color-ink-200)]">
+      <section
+        id="problem"
+        className="scroll-mt-6 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-14 md:py-20 lg:py-24"
+        aria-labelledby="problem-title"
+      >
         <div className="container-max max-w-4xl text-center">
-          <p className="text-sm text-[var(--color-ink-400)] font-serif mb-6">
-            The Problem
-          </p>
-          <h2 className="font-serif font-light text-[2rem] sm:text-[2.3rem] text-[var(--color-off-black)] leading-tight">
-            Buyers are Googling. They&apos;re not finding you.
-          </h2>
-          <p className="mt-6 text-[var(--color-ink-300)] font-serif leading-relaxed">
+          <SectionHeading
+            titleId="problem-title"
+            eyebrow="The Problem"
+            align="center"
+            title="Buyers are AI Searching. They&apos;re not finding you."
+          />
+          <p className="mx-auto mt-8 max-w-3xl font-serif leading-relaxed text-[var(--color-ink-300)]">
             You&apos;re closing deals. You&apos;re building a team. But between your last closing and your next
             one, buyers and sellers are finding competitors. Not because those agents are better. Because they
             rank higher.
           </p>
-          <p className="mt-3 text-[var(--color-ink-300)] font-serif leading-relaxed">
+          <p className="mx-auto mt-3 max-w-3xl font-serif leading-relaxed text-[var(--color-ink-300)]">
             That gap costs you deals you never even see.
           </p>
         </div>
-        <div className="container-max mt-10">
-          <div className="relative overflow-hidden border border-[var(--color-ink-200)] bg-black h-[320px] sm:h-[460px] md:h-[560px] w-full">
+        <div className="container-max mt-12">
+          <div className="relative h-[320px] w-full overflow-hidden border border-[var(--color-ink-200)] bg-black sm:h-[460px] md:h-[560px]">
             <video
               ref={problemVideoRef}
               className="h-full w-full object-cover"
@@ -312,14 +435,18 @@ export default function GoogleGeneralLandingPage() {
               loop
               playsInline
               preload="metadata"
-              aria-label="DMR Media video"
+              aria-label="DMR Media overview video"
             />
-            <div className="absolute z-20 bottom-5 right-5 flex gap-2">
+            <div
+              className="absolute bottom-5 right-5 z-20 flex gap-2"
+              role="group"
+              aria-label="Video playback controls"
+            >
               <button
                 type="button"
                 onClick={toggleProblemPlayPause}
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-colors hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                aria-label={isProblemPaused ? 'Play problem video' : 'Pause problem video'}
+                aria-label={isProblemPaused ? 'Play video' : 'Pause video'}
               >
                 {isProblemPaused ? <PlayIcon className="ml-0.5 h-5 w-5" /> : <PauseIcon className="h-5 w-5" />}
               </button>
@@ -327,117 +454,15 @@ export default function GoogleGeneralLandingPage() {
                 type="button"
                 onClick={toggleProblemMute}
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-colors hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                aria-label={isProblemMuted ? 'Unmute problem video' : 'Mute problem video'}
+                aria-label={isProblemMuted ? 'Unmute video' : 'Mute video'}
               >
                 {isProblemMuted ? <VolumeOffIcon className="h-5 w-5" /> : <VolumeOnIcon className="h-5 w-5" />}
               </button>
             </div>
           </div>
-          <div className="mt-8 grid sm:grid-cols-2 gap-4">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2">
             {problemItems.map((item) => (
-              <article key={item.title} className="border border-[var(--color-ink-200)] bg-white p-5">
-                <h3 className="font-serif text-xl text-[var(--color-off-black)]">{item.title}</h3>
-                <p className="mt-3 text-[var(--color-ink-300)] font-serif">{item.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 bg-white border-b border-[var(--color-ink-200)]">
-        <div className="container-max grid lg:grid-cols-2 gap-10 items-start">
-          <div className="relative h-[420px] sm:h-[560px] border border-[var(--color-ink-200)] overflow-hidden">
-            <Image
-              src="/images/landing/google-general/andrew-rohm-coffee.png"
-              alt="Andrew Rohm"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
-          <div>
-            <p className="text-sm text-[var(--color-ink-400)] font-serif mb-4">
-              Why DMR
-            </p>
-            <h2 className="font-serif font-light text-[2rem] sm:text-[2.3rem] text-[var(--color-off-black)] leading-tight">
-              We don&apos;t sell you a platform. We build your pipeline.
-            </h2>
-            <p className="mt-6 text-[var(--color-ink-300)] font-serif leading-relaxed">
-              We started DMR at 18. Moved the agency to Bali at 20 while serving US luxury teams daily. We&apos;ve
-              helped sell $6.5M properties and supported agents breaking into new price tiers.
-            </p>
-            <ul className="mt-6 space-y-3">
-              {whyDmrBullets.map((bullet) => (
-                <li key={bullet} className="font-serif text-[var(--color-off-black)]">
-                  → {bullet}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="proof" className="py-16 md:py-24 bg-[var(--surface-base)] border-b border-[var(--color-ink-200)]">
-        <div className="container-max">
-          <p className="text-sm text-[var(--color-ink-400)] font-serif mb-4 text-center">
-            We Do It For Ourselves
-          </p>
-          <h2 className="font-serif font-light text-[2rem] sm:text-[2.3rem] text-[var(--color-off-black)] text-center leading-tight">
-            We Practice What We Preach
-          </h2>
-          <p className="mt-6 text-[var(--color-ink-300)] font-serif max-w-4xl mx-auto text-center leading-relaxed">
-            Most agencies sell SEO but can&apos;t rank. Most agencies sell Google Ads but never run profitable
-            campaigns for themselves. We are the case study.
-          </p>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
-            {[
-              {
-                src: '/images/landing/google-general/01-claude-ranking.png',
-                label: 'Claude ranking mention',
-                stat: 'Claude: DMR Media listed as top-rated for luxury-focused real estate PPC.',
-              },
-              {
-                src: '/images/landing/google-general/02-perplexity-ranking.png',
-                label: 'Perplexity ranking mention',
-                stat: 'Perplexity: DMR Media highlighted as a standout and ranked #1 in a 2026 roundup.',
-              },
-              {
-                src: '/images/landing/google-general/03-semrush-ranking.png',
-                label: 'SEMrush ranking mention',
-                stat: 'SEMrush directory: DMR Media appears in top US real estate PPC companies.',
-              },
-              {
-                src: '/images/landing/google-general/04-google-ranking.png',
-                label: 'Google AI Overview ranking mention',
-                stat: 'Google AI Overview: DMR Media included among top real estate PPC agencies in 2026.',
-              },
-            ].map((item) => (
-              <article key={item.src} className="border border-[var(--color-ink-200)] bg-white p-4">
-                <div className="relative w-full aspect-[16/7] border border-[var(--color-ink-200)] overflow-hidden">
-                  <Image src={item.src} alt={item.label} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
-                </div>
-                <p className="font-serif text-[var(--color-off-black)] mt-4 leading-relaxed">{item.stat}</p>
-              </article>
-            ))}
-          </div>
-          <blockquote className="mt-8 max-w-4xl mx-auto border-l border-[var(--color-ink-300)] pl-5 text-[var(--color-off-black)] font-serif text-lg">
-            If we can rank in a space where we&apos;re competing against agencies with 10x our budget — imagine
-            what we do for you in a market where you&apos;re already the expert.
-          </blockquote>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 bg-white border-b border-[var(--color-ink-200)]">
-        <div className="container-max">
-          <p className="text-sm text-[var(--color-ink-400)] font-serif mb-4">
-            The System
-          </p>
-          <h2 className="font-serif font-light text-[2rem] sm:text-[2.3rem] text-[var(--color-off-black)] leading-tight">
-            Four things. Executed relentlessly.
-          </h2>
-          <div className="mt-10 grid md:grid-cols-2 gap-5">
-            {systemItems.map((item) => (
-              <article key={item.title} className="bg-[var(--surface-base)] border border-[var(--color-ink-200)] p-6">
+              <article key={item.title} className={cardArticleClass}>
                 <h3 className="font-serif text-xl text-[var(--color-off-black)]">{item.title}</h3>
                 <p className="mt-3 font-serif text-[var(--color-ink-300)]">{item.body}</p>
               </article>
@@ -446,18 +471,132 @@ export default function GoogleGeneralLandingPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-[var(--surface-base)] border-b border-[var(--color-ink-200)]">
+      <ApplyCtaBand
+        surface="base"
+        hint="If this resonates, tell us about your market—we come to the call prepared."
+        onApply={openApplyModal}
+      />
+
+      <section
+        className="border-b border-[var(--color-ink-200)] bg-white py-14 md:py-20 lg:py-24"
+        aria-labelledby="why-dmr-title"
+      >
+        <div className="container-max grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+          <div className="relative h-[420px] overflow-hidden border border-[var(--color-ink-200)] sm:h-[560px]">
+            <Image
+              src="/images/landing/google-general/andrew-rohm-coffee.png"
+              alt="Andrew Rohm, DMR Media"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
+          <div>
+            <SectionHeading
+              titleId="why-dmr-title"
+              eyebrow="Why DMR"
+              title={<>We don&apos;t sell you a platform. We build your pipeline.</>}
+            />
+            <p className="mt-8 font-serif leading-relaxed text-[var(--color-ink-300)]">
+              We started DMR at 18. Moved the agency to Bali at 20 while serving US luxury teams daily. We&apos;ve
+              helped sell $6.5M properties and supported agents breaking into new price tiers.
+            </p>
+            <ul className="mt-8 space-y-4 border-l border-[var(--color-ink-200)] pl-5">
+              {whyDmrBullets.map((bullet) => (
+                <li key={bullet} className="font-serif text-[var(--color-off-black)] leading-snug">
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <ApplyCtaBand
+        surface="white"
+        hint="Ready to see how we work with teams like yours?"
+        onApply={openApplyModal}
+      />
+
+      <section
+        id="proof"
+        className="scroll-mt-6 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-14 md:py-20 lg:py-24"
+        aria-labelledby="proof-title"
+      >
         <div className="container-max">
-          <p className="text-sm text-[var(--color-ink-400)] font-serif mb-4">
-            Case Studies
+          <SectionHeading
+            titleId="proof-title"
+            eyebrow="We Do It For Ourselves"
+            align="center"
+            title="We Practice What We Preach"
+          />
+          <p className="mx-auto mt-8 max-w-4xl text-center font-serif leading-relaxed text-[var(--color-ink-300)]">
+            Most agencies sell SEO but can&apos;t rank. Most agencies sell Google Ads but never run profitable
+            campaigns for themselves. We are the case study.
           </p>
-          <h2 className="font-serif font-light text-[2rem] sm:text-[2.3rem] text-[var(--color-off-black)] leading-tight">
-            Real teams. Real numbers.
-          </h2>
-          <div className="mt-10 grid lg:grid-cols-3 gap-6">
+          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+            {proofItems.map((item) => (
+              <article key={item.src} className={cardArticleClass}>
+                <div className="relative aspect-[16/7] w-full overflow-hidden border border-[var(--color-ink-200)]">
+                  <Image
+                    src={item.src}
+                    alt={item.label}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <p className="mt-5 font-serif leading-relaxed text-[var(--color-off-black)]">{item.stat}</p>
+              </article>
+            ))}
+          </div>
+          <blockquote className="mx-auto mt-12 max-w-4xl border-l-2 border-[var(--color-off-black)]/20 py-1 pl-6 font-serif text-lg leading-relaxed text-[var(--color-off-black)]">
+            If we can rank in a space where we&apos;re competing against agencies with 10x our budget — imagine
+            what we do for you in a market where you&apos;re already the expert.
+          </blockquote>
+        </div>
+      </section>
+
+      <section
+        className="border-b border-[var(--color-ink-200)] bg-white py-14 md:py-20 lg:py-24"
+        aria-labelledby="system-title"
+      >
+        <div className="container-max">
+          <SectionHeading
+            titleId="system-title"
+            eyebrow="The System"
+            title="Four things. Executed relentlessly."
+          />
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {systemItems.map((item) => (
+              <article
+                key={item.title}
+                className={`${cardArticleClass} bg-[var(--surface-base)]`}
+              >
+                <h3 className="font-serif text-xl text-[var(--color-off-black)]">{item.title}</h3>
+                <p className="mt-3 font-serif text-[var(--color-ink-300)]">{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <ApplyCtaBand
+        surface="white"
+        hint="Same four pillars—mapped to your market on a strategy call."
+        onApply={openApplyModal}
+      />
+
+      <section
+        className="border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-14 md:py-20 lg:py-24"
+        aria-labelledby="case-studies-title"
+      >
+        <div className="container-max">
+          <SectionHeading titleId="case-studies-title" eyebrow="Case Studies" title="Real teams. Real numbers." />
+          <div className="mt-12 grid gap-8 lg:grid-cols-3 lg:gap-6">
             {caseStudies.map((study) => (
-              <article key={study.title} className="border border-[var(--color-ink-200)] p-6 bg-white">
-                <div className="relative h-44 mb-5 border border-[var(--color-ink-200)] overflow-hidden bg-white">
+              <article key={study.title} className={cardArticleClass}>
+                <div className="relative mb-5 h-44 overflow-hidden border border-[var(--color-ink-200)] bg-white">
                   <Image
                     src={study.image}
                     alt={`${study.title} case study`}
@@ -474,46 +613,59 @@ export default function GoogleGeneralLandingPage() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-5 text-sm font-serif text-[var(--color-ink-400)]">{study.footer}</p>
+                <p className="mt-5 font-serif text-sm text-[var(--color-ink-400)]">{study.footer}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-white border-b border-[var(--color-ink-200)]">
+      <ApplyCtaBand
+        surface="base"
+        hint="Proof is one thing—your numbers are the conversation we want next."
+        onApply={openApplyModal}
+      />
+
+      <section
+        className="border-b border-[var(--color-ink-200)] bg-white py-14 md:py-20 lg:py-24"
+        aria-labelledby="reviews-title"
+      >
         <div className="container-max">
-          <p className="text-sm text-[var(--color-ink-400)] font-serif mb-4">
-            Reviews
-          </p>
-          <h2 className="font-serif font-light text-[2rem] sm:text-[2.3rem] text-[var(--color-off-black)] leading-tight">
-            What clients say
-          </h2>
-          <div className="mt-10 grid md:grid-cols-3 gap-6">
+          <SectionHeading titleId="reviews-title" eyebrow="Reviews" title="What clients say" />
+          <div className="mt-12 grid gap-8 md:grid-cols-3 md:gap-6">
             {reviews.map((review) => (
-              <article key={review.author} className="bg-[var(--surface-base)] border border-[var(--color-ink-200)] p-6">
-                <p className="text-[var(--color-trust)] mb-3">★★★★★</p>
-                <blockquote className="font-serif text-[var(--color-off-black)] leading-relaxed">
+              <article
+                key={review.author}
+                className={`${cardArticleClass} bg-[var(--surface-base)]`}
+              >
+                <p className="mb-3 text-[var(--color-trust)]" aria-hidden>
+                  ★★★★★
+                </p>
+                <blockquote className="font-serif leading-relaxed text-[var(--color-off-black)]">
                   &quot;{review.quote}&quot;
                 </blockquote>
-                <p className="mt-4 text-sm font-serif text-[var(--color-ink-400)]">{review.author}</p>
+                <p className="mt-4 font-serif text-sm text-[var(--color-ink-400)]">{review.author}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-[var(--surface-base)] border-b border-[var(--color-ink-200)]">
+      <ApplyCtaBand
+        surface="white"
+        hint="Teams like yours use the same process—we tailor it to your market."
+        onApply={openApplyModal}
+      />
+
+      <section
+        className="border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-14 md:py-20 lg:py-24"
+        aria-labelledby="process-title"
+      >
         <div className="container-max">
-          <p className="text-sm text-[var(--color-ink-400)] font-serif mb-4">
-            Process
-          </p>
-          <h2 className="font-serif font-light text-[2rem] sm:text-[2.3rem] text-[var(--color-off-black)] leading-tight">
-            What happens next
-          </h2>
-          <div className="mt-10 grid md:grid-cols-2 gap-5">
+          <SectionHeading titleId="process-title" eyebrow="Process" title="What happens next" />
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
             {processItems.map((item) => (
-              <article key={item.title} className="border border-[var(--color-ink-200)] bg-white p-6">
+              <article key={item.title} className={cardArticleClass}>
                 <h3 className="font-serif text-xl text-[var(--color-off-black)]">{item.title}</h3>
                 <p className="mt-3 font-serif text-[var(--color-ink-300)]">{item.body}</p>
               </article>
@@ -522,122 +674,13 @@ export default function GoogleGeneralLandingPage() {
         </div>
       </section>
 
-      <section id="form" className="py-16 md:py-24 bg-white">
-        <div className="container-max grid lg:grid-cols-[1fr_1.1fr] gap-10 items-start">
-          <div>
-            <p className="text-sm text-[var(--color-ink-400)] font-serif mb-4">
-              Apply
-            </p>
-            <h2 className="font-serif font-light text-[2rem] sm:text-[2.3rem] text-[var(--color-off-black)] leading-tight">
-              Let&apos;s see what you&apos;re missing on Google.
-            </h2>
-            <p className="mt-6 font-serif text-[var(--color-ink-300)] max-w-xl leading-relaxed">
-              Takes 2 minutes to fill out. We come to the call prepared with your market, rankings, and biggest
-              growth gaps already mapped.
-            </p>
-          </div>
+      <ApplyCtaBand
+        surface="base"
+        hint="You know the steps—apply when you want a straight conversation about fit."
+        onApply={openApplyModal}
+      />
 
-          <div className="border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-6 sm:p-8">
-            <form action="/api/application" method="POST" className="space-y-5">
-              <input type="hidden" name="formName" value="google-general-strategy-call" />
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="firstName" className="block text-[11px] uppercase tracking-[0.12em] text-[var(--color-off-black)] mb-2">
-                    First Name
-                  </label>
-                  <input id="firstName" name="firstName" required className="w-full min-h-[46px] border-0 border-b border-[var(--color-ink-300)] bg-transparent px-0 text-[var(--color-off-black)] focus:outline-none focus:border-[var(--color-off-black)]" />
-                </div>
-                <div>
-                  <label htmlFor="lastName" className="block text-[11px] uppercase tracking-[0.12em] text-[var(--color-off-black)] mb-2">
-                    Last Name
-                  </label>
-                  <input id="lastName" name="lastName" required className="w-full min-h-[46px] border-0 border-b border-[var(--color-ink-300)] bg-transparent px-0 text-[var(--color-off-black)] focus:outline-none focus:border-[var(--color-off-black)]" />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-[11px] uppercase tracking-[0.12em] text-[var(--color-off-black)] mb-2">
-                  Business Email
-                </label>
-                <input id="email" type="email" name="email" required className="w-full min-h-[46px] border-0 border-b border-[var(--color-ink-300)] bg-transparent px-0 text-[var(--color-off-black)] focus:outline-none focus:border-[var(--color-off-black)]" />
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block text-[11px] uppercase tracking-[0.12em] text-[var(--color-off-black)] mb-2">
-                  Phone Number
-                </label>
-                <input id="phone" type="tel" name="phone" required className="w-full min-h-[46px] border-0 border-b border-[var(--color-ink-300)] bg-transparent px-0 text-[var(--color-off-black)] focus:outline-none focus:border-[var(--color-off-black)]" />
-              </div>
-
-              <div>
-                <label htmlFor="market" className="block text-[11px] uppercase tracking-[0.12em] text-[var(--color-off-black)] mb-2">
-                  Your Market / City
-                </label>
-                <input id="market" name="market" required className="w-full min-h-[46px] border-0 border-b border-[var(--color-ink-300)] bg-transparent px-0 text-[var(--color-off-black)] focus:outline-none focus:border-[var(--color-off-black)]" />
-              </div>
-
-              <div>
-                <label htmlFor="annualSalesVolume" className="block text-[11px] uppercase tracking-[0.12em] text-[var(--color-off-black)] mb-2">
-                  Annual Sales Volume
-                </label>
-                <select id="annualSalesVolume" name="annualSalesVolume" required defaultValue="" className="w-full min-h-[46px] border-0 border-b border-[var(--color-ink-300)] bg-transparent px-0 text-[var(--color-off-black)] focus:outline-none focus:border-[var(--color-off-black)]">
-                  <option value="" disabled>
-                    Select one
-                  </option>
-                  <option>Under $20M</option>
-                  <option>$20M-$40M</option>
-                  <option>$40M-$75M</option>
-                  <option>$75M-$150M</option>
-                  <option>$150M+</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="teamSize" className="block text-[11px] uppercase tracking-[0.12em] text-[var(--color-off-black)] mb-2">
-                  Team Size
-                </label>
-                <select id="teamSize" name="teamSize" required defaultValue="" className="w-full min-h-[46px] border-0 border-b border-[var(--color-ink-300)] bg-transparent px-0 text-[var(--color-off-black)] focus:outline-none focus:border-[var(--color-off-black)]">
-                  <option value="" disabled>
-                    Select one
-                  </option>
-                  <option>Solo</option>
-                  <option>2-4</option>
-                  <option>5-10</option>
-                  <option>10-20</option>
-                  <option>20+</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="biggestChallenge" className="block text-[11px] uppercase tracking-[0.12em] text-[var(--color-off-black)] mb-2">
-                  Biggest Challenge Right Now
-                </label>
-                <select id="biggestChallenge" name="biggestChallenge" required defaultValue="" className="w-full min-h-[46px] border-0 border-b border-[var(--color-ink-300)] bg-transparent px-0 text-[var(--color-off-black)] focus:outline-none focus:border-[var(--color-off-black)]">
-                  <option value="" disabled>
-                    Select one
-                  </option>
-                  <option>Not ranking on Google</option>
-                  <option>Poor ad ROI</option>
-                  <option>Not enough inbound leads</option>
-                  <option>Need more listing leads</option>
-                  <option>Weak presence vs competitors</option>
-                  <option>Starting from zero</option>
-                </select>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full min-h-[52px] bg-[var(--color-off-black)] text-white uppercase tracking-[0.15em] text-xs mt-3"
-              >
-                Apply today →
-              </button>
-              <p className="text-xs text-[var(--color-ink-400)] text-center font-serif">
-                No spam. No sales pressure. Just a straight conversation.
-              </p>
-            </form>
-          </div>
-        </div>
-      </section>
+      <ApplyModal />
     </main>
   )
 }

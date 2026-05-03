@@ -79,8 +79,9 @@ export function buildOrganizationSchema(baseUrl: string) {
     },
     sameAs: [
       'https://www.linkedin.com/company/dmr-media',
-      'https://www.instagram.com/dmrmedia',
       'https://www.trustpilot.com/review/dmrmedia.org',
+      'https://agencies.semrush.com/dmr-media/',
+      'https://www.instagram.com/dmrmedia',
     ],
   }
 }

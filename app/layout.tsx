@@ -4,6 +4,7 @@ import Script from 'next/script'
 import './globals.css'
 import ConditionalLayout from '@/components/ConditionalLayout'
 import { ELFSIGHT_REVIEWS_APP_CLASS } from '@/lib/elfsight-widgets'
+import { buildOrganizationSchema } from '@/lib/eeatSchema'
 import ScrollProgressBar from '@/components/ScrollProgressBar'
 import UTMTracker from '@/components/UTMTracker'
 
@@ -91,39 +92,18 @@ export default function RootLayout({
         {/* End Meta Pixel Code */}
         <UTMTracker />
         <ScrollProgressBar />
-        {/* Global Organization + WebSite structured data */}
+        {/* Global Organization + WebSite structured data (same source as EEAT / property-marketing graphs) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify([
-              {
-                '@context': 'https://schema.org',
-                '@type': 'Organization',
-                name: 'DMR Media',
-                url: 'https://www.dmrmedia.org',
-                logo: {
-                  '@type': 'ImageObject',
-                  url: 'https://www.dmrmedia.org/images/logo.png',
-                },
-                sameAs: [
-                  'https://www.linkedin.com/company/dmr-media',
-                  'https://www.instagram.com/dmrmedia',
-                ],
-                contactPoint: {
-                  '@type': 'ContactPoint',
-                  email: 'team@dmrmedia.org',
-                  contactType: 'customer support',
-                  areaServed: 'US',
-                  availableLanguage: 'English',
-                },
-                description:
-                  'Specialized Google marketing, SEO, and Google Ads for luxury real estate professionals.',
-              },
+              { '@context': 'https://schema.org', ...buildOrganizationSchema('https://www.dmrmedia.org') },
               {
                 '@context': 'https://schema.org',
                 '@type': 'WebSite',
                 name: 'DMR Media',
                 url: 'https://www.dmrmedia.org',
+                publisher: { '@id': 'https://www.dmrmedia.org/#organization' },
                 potentialAction: {
                   '@type': 'SearchAction',
                   target: 'https://www.dmrmedia.org/blog?q={search_term_string}',

@@ -3,11 +3,92 @@ import { sendApplicationFormEmail } from '@/lib/email'
 
 const DEFAULT_THANK_YOU_PATH = '/landing/thank-you'
 const GOOGLE_GENERAL_FORM_NAME = 'google-general-strategy-call'
+const GOOGLE_GENERAL_MODAL_FORM_NAME = 'google-general-modal'
 const GOOGLE_GENERAL_THANK_YOU_PATH = '/landing/thank-you-g'
 const GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH = '/landing/thank-you-g-dq'
 
+function usesGoogleGeneralWebhook(formName: string) {
+  return formName === GOOGLE_GENERAL_FORM_NAME || formName === GOOGLE_GENERAL_MODAL_FORM_NAME
+}
+
 export async function POST(req: NextRequest) {
   try {
+    const contentType = req.headers.get('content-type') ?? ''
+
+    if (contentType.includes('application/json')) {
+      const body = (await req.json()) as Record<string, unknown>
+      const formName =
+        typeof body.formName === 'string' && body.formName.trim()
+          ? body.formName.trim()
+          : 'calendar-application'
+      const firstName = typeof body.firstName === 'string' ? body.firstName.trim() : ''
+      const lastName = typeof body.lastName === 'string' ? body.lastName.trim() : ''
+      const fullName = [firstName, lastName].filter(Boolean).join(' ')
+
+      const payload = {
+        formName,
+        name: (typeof body.name === 'string' ? body.name : fullName) || fullName,
+        firstName,
+        lastName,
+        email: typeof body.email === 'string' ? body.email : '',
+        phone: typeof body.phone === 'string' ? body.phone : '',
+        profileType: typeof body.profileType === 'string' ? body.profileType : '',
+        website: typeof body.website === 'string' ? body.website : '',
+        market: typeof body.market === 'string' ? body.market : '',
+        annualSalesVolume: typeof body.annualSalesVolume === 'string' ? body.annualSalesVolume : '',
+        teamSize: typeof body.teamSize === 'string' ? body.teamSize : '',
+        biggestChallenge: typeof body.biggestChallenge === 'string' ? body.biggestChallenge : '',
+        bookingReason: Array.isArray(body.bookingReason)
+          ? body.bookingReason.map(String)
+          : typeof body.bookingReason === 'string'
+            ? [body.bookingReason]
+            : [],
+        notes: typeof body.notes === 'string' ? body.notes : '',
+        submittedAt: new Date().toISOString(),
+      }
+
+      await sendApplicationFormEmail(payload)
+
+      const useGoogleGeneral = usesGoogleGeneralWebhook(formName)
+      const webhookUrl = useGoogleGeneral
+        ? process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL
+        : process.env.ZAPIER_WEBHOOK_URL
+
+      if (!webhookUrl) {
+        return NextResponse.json(
+          {
+            error: useGoogleGeneral
+              ? 'Missing ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL'
+              : 'Missing ZAPIER_WEBHOOK_URL',
+          },
+          { status: 500 }
+        )
+      }
+
+      const webhookResponse = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+        cache: 'no-store',
+      })
+
+      if (!webhookResponse.ok) {
+        return NextResponse.json({ error: 'Failed to submit application' }, { status: 502 })
+      }
+
+      if (formName === GOOGLE_GENERAL_FORM_NAME) {
+        const isUnderTwentyM = payload.annualSalesVolume === 'Under $20M'
+        const redirectPath = isUnderTwentyM
+          ? GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH
+          : GOOGLE_GENERAL_THANK_YOU_PATH
+        return NextResponse.json({ ok: true, redirectPath })
+      }
+
+      return NextResponse.json({ ok: true })
+    }
+
     const formData = await req.formData()
     const formName = formData.get('formName')?.toString() ?? 'calendar-application'
     const isGoogleGeneral = formName === GOOGLE_GENERAL_FORM_NAME
@@ -37,14 +118,14 @@ export async function POST(req: NextRequest) {
 
     await sendApplicationFormEmail(payload)
 
-    const webhookUrl = isGoogleGeneral
+    const webhookUrl = usesGoogleGeneralWebhook(formName)
       ? process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL
       : process.env.ZAPIER_WEBHOOK_URL
 
     if (!webhookUrl) {
       return NextResponse.json(
         {
-          error: isGoogleGeneral
+          error: usesGoogleGeneralWebhook(formName)
             ? 'Missing ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL'
             : 'Missing ZAPIER_WEBHOOK_URL',
         },
