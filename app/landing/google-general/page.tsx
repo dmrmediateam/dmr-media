@@ -343,7 +343,7 @@ export default function GoogleGeneralLandingPage() {
         <div className="relative z-10 container-max flex min-h-screen items-center justify-center py-20 text-center pointer-events-none">
           <div className="max-w-4xl pointer-events-auto">
             <p className="mb-6 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
-              The AI-First Real Estate Marketing Agency
+              The AI-First Agency with 5-stars on Trustpilot & Google.
             </p>
             <h1
               id="google-landing-hero-title"
@@ -354,10 +354,10 @@ export default function GoogleGeneralLandingPage() {
               It Should Be You.
             </h1>
             <p className="mx-auto mt-8 max-w-3xl font-serif text-lg leading-relaxed text-white/90 sm:text-xl">
-              Most luxury teams doing $40M+ a year are invisible on Google. We fix that. AI-powered SEO.
-              Precision Google Ads. Full execution. No dashboards to babysit. No excuses.
+              Most luxury agents &amp; teams doing $10M+ a year are invisible on Google. We fix that. AI-powered SEO.
+              Precision Google Ads. All optimized for GCI not &apos;Leads&apos;.
             </p>
-            <div className="mt-10 flex flex-col items-center gap-8">
+            <div className="mt-10 flex flex-col items-center">
               <button
                 type="button"
                 onClick={openApplyModal}
@@ -367,12 +367,11 @@ export default function GoogleGeneralLandingPage() {
               </button>
               <a
                 href="#client-logos"
-                aria-label="Continue to client logos and page content"
-                className="group inline-flex flex-col items-center gap-2 rounded-sm pb-1 text-white/70 outline-none transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                aria-label="Scroll to page content"
+                className="mt-10 inline-flex rounded-sm p-1 text-white/30 outline-none transition-colors hover:text-white/45 focus-visible:ring-1 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
               >
-                <span className="font-serif text-xs uppercase tracking-[0.2em]">Continue</span>
                 <svg
-                  className="h-6 w-6 transition-transform duration-300 group-hover:translate-y-1"
+                  className="h-4 w-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -381,7 +380,7 @@ export default function GoogleGeneralLandingPage() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={1.5}
                     d="M19 14l-7 7m0 0l-7-7m7 7V3"
                   />
                 </svg>

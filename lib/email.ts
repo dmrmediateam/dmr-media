@@ -70,6 +70,18 @@ export interface ApplicationFormEmailData {
   bookingReason?: string[];
   notes?: string;
   submittedAt: string;
+  /** Page path (+ query) where the user submitted the apply flow */
+  submissionPage?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  gclid?: string;
+  fbclid?: string;
+  /** First-touch path captured when UTM params were stored (session) */
+  landing_page?: string;
+  first_visit?: string;
 }
 
 /**
@@ -374,6 +386,16 @@ export async function sendApplicationFormEmail(data: ApplicationFormEmailData) {
     bookingReason,
     notes,
     submittedAt,
+    submissionPage,
+    utm_source,
+    utm_medium,
+    utm_campaign,
+    utm_term,
+    utm_content,
+    gclid,
+    fbclid,
+    landing_page,
+    first_visit,
   } = data;
 
   const prettyBookingReasons = bookingReason && bookingReason.length > 0
@@ -427,6 +449,18 @@ export async function sendApplicationFormEmail(data: ApplicationFormEmailData) {
               <div class="section-title">Additional Notes</div>
               <div class="note">${notes || 'None provided'}</div>
 
+              <div class="section-title">Attribution &amp; submission context</div>
+              <div class="field"><span class="label">Submission page:</span><span class="value">${submissionPage || 'Not provided'}</span></div>
+              <div class="field"><span class="label">UTM source:</span><span class="value">${utm_source || '—'}</span></div>
+              <div class="field"><span class="label">UTM medium:</span><span class="value">${utm_medium || '—'}</span></div>
+              <div class="field"><span class="label">UTM campaign:</span><span class="value">${utm_campaign || '—'}</span></div>
+              <div class="field"><span class="label">UTM term:</span><span class="value">${utm_term || '—'}</span></div>
+              <div class="field"><span class="label">UTM content:</span><span class="value">${utm_content || '—'}</span></div>
+              <div class="field"><span class="label">gclid:</span><span class="value">${gclid || '—'}</span></div>
+              <div class="field"><span class="label">fbclid:</span><span class="value">${fbclid || '—'}</span></div>
+              <div class="field"><span class="label">First-touch landing (session):</span><span class="value">${landing_page || '—'}</span></div>
+              <div class="field"><span class="label">First visit (session):</span><span class="value">${first_visit || '—'}</span></div>
+
               <div class="section-title">Submitted</div>
               <div class="field"><span class="value">${new Date(submittedAt).toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' })}</span></div>
             </div>
@@ -452,6 +486,18 @@ Booking Reasons: ${prettyBookingReasons}
 
 Notes:
 ${notes || 'None provided'}
+
+Attribution:
+Submission page: ${submissionPage || 'Not provided'}
+UTM source: ${utm_source || '—'}
+UTM medium: ${utm_medium || '—'}
+UTM campaign: ${utm_campaign || '—'}
+UTM term: ${utm_term || '—'}
+UTM content: ${utm_content || '—'}
+gclid: ${gclid || '—'}
+fbclid: ${fbclid || '—'}
+First-touch landing (session): ${landing_page || '—'}
+First visit (session): ${first_visit || '—'}
 
 Submitted: ${new Date(submittedAt).toLocaleString()}
     `,

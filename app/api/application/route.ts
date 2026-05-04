@@ -11,6 +11,22 @@ function usesGoogleGeneralWebhook(formName: string) {
   return formName === GOOGLE_GENERAL_FORM_NAME || formName === GOOGLE_GENERAL_MODAL_FORM_NAME
 }
 
+function readAttributionFromJson(body: Record<string, unknown>) {
+  const s = (k: string) => (typeof body[k] === 'string' ? (body[k] as string) : '')
+  return {
+    submissionPage: s('submissionPage'),
+    utm_source: s('utm_source'),
+    utm_medium: s('utm_medium'),
+    utm_campaign: s('utm_campaign'),
+    utm_term: s('utm_term'),
+    utm_content: s('utm_content'),
+    gclid: s('gclid'),
+    fbclid: s('fbclid'),
+    landing_page: s('landing_page'),
+    first_visit: s('first_visit'),
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const contentType = req.headers.get('content-type') ?? ''
@@ -45,6 +61,7 @@ export async function POST(req: NextRequest) {
             : [],
         notes: typeof body.notes === 'string' ? body.notes : '',
         submittedAt: new Date().toISOString(),
+        ...readAttributionFromJson(body),
       }
 
       await sendApplicationFormEmail(payload)

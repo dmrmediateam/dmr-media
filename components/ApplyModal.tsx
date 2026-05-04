@@ -10,8 +10,10 @@ import {
   type FormEvent,
   type KeyboardEvent as ReactKeyboardEvent,
 } from 'react'
+import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking'
 
 const TOTAL_STEPS = 3
+const DEFAULT_APPLY_FORM_NAME = 'google-general-strategy-call'
 
 const initialFormData = {
   firstName: '',
@@ -26,9 +28,22 @@ const initialFormData = {
 
 type FormDataState = typeof initialFormData
 
+const inputClass =
+  'w-full min-h-[48px] rounded-sm border border-[var(--color-ink-200)] bg-[var(--surface-base)] px-3 py-2.5 font-serif text-base leading-normal text-[var(--color-off-black)] placeholder:text-[var(--color-ink-400)]/80 transition-colors focus:border-[var(--color-off-black)] focus:outline-none focus:ring-1 focus:ring-[var(--color-off-black)]/15'
+
+const labelClass =
+  'mb-2 block font-serif text-[11px] font-normal uppercase tracking-[0.16em] text-[var(--color-ink-300)]'
+
+const btnPrimary =
+  'inline-flex min-h-[48px] w-full items-center justify-center px-6 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-colors bg-[var(--color-off-black)] hover:bg-[var(--color-off-black)]/88 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:pointer-events-none disabled:opacity-45 sm:w-auto sm:min-w-[10.5rem]'
+
+const btnGhost =
+  'inline-flex min-h-[48px] w-full items-center justify-center border border-[var(--color-off-black)]/16 bg-transparent px-6 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-colors hover:border-[var(--color-off-black)]/28 hover:bg-[var(--color-off-black)]/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:pointer-events-none disabled:opacity-45 sm:w-auto'
+
 export default function ApplyModal() {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
+  const [formName, setFormName] = useState(DEFAULT_APPLY_FORM_NAME)
   const [step, setStep] = useState(0)
   const [formData, setFormData] = useState<FormDataState>(initialFormData)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -40,10 +55,19 @@ export default function ApplyModal() {
     setSubmitMessage('')
     setStep(0)
     setFormData(initialFormData)
+    setFormName(DEFAULT_APPLY_FORM_NAME)
   }, [])
 
   useEffect(() => {
-    const handleOpenModal = () => setIsOpen(true)
+    const handleOpenModal = (event: Event) => {
+      const detail = (event as CustomEvent<{ formName?: string }>).detail
+      setFormName(
+        typeof detail?.formName === 'string' && detail.formName.trim()
+          ? detail.formName.trim()
+          : DEFAULT_APPLY_FORM_NAME
+      )
+      setIsOpen(true)
+    }
     window.addEventListener('openApplyModal', handleOpenModal)
     return () => window.removeEventListener('openApplyModal', handleOpenModal)
   }, [])
@@ -116,13 +140,19 @@ export default function ApplyModal() {
     setIsSubmitting(true)
     setSubmitMessage('')
 
+    const utm = getStoredUTMParams()
+    const submissionPage =
+      typeof window !== 'undefined' ? `${window.location.pathname}${window.location.search}` : ''
+
     try {
       const response = await fetch('/api/application', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          formName: 'google-general-strategy-call',
+          formName,
+          submissionPage,
+          ...utm,
         }),
       })
 
@@ -133,12 +163,22 @@ export default function ApplyModal() {
       }
 
       if (response.ok && data.ok && typeof data.redirectPath === 'string') {
+        trackConversion('Lead', {
+          form_name: formName,
+          submission_page: submissionPage,
+          ...utm,
+        })
         close()
         router.push(data.redirectPath)
         return
       }
 
       if (response.ok && data.ok) {
+        trackConversion('Lead', {
+          form_name: formName,
+          submission_page: submissionPage,
+          ...utm,
+        })
         setSubmitMessage("Thank you! We'll be in touch shortly.")
         setFormData(initialFormData)
         setStep(0)
@@ -156,21 +196,16 @@ export default function ApplyModal() {
 
   if (!isOpen) return null
 
-  const inputClass =
-    'w-full min-h-[46px] border-0 border-b border-[var(--color-ink-300)] bg-transparent px-0 text-[var(--color-off-black)] focus:outline-none focus:border-[var(--color-off-black)]'
-  const labelClass =
-    'block text-[11px] uppercase tracking-[0.12em] text-[var(--color-off-black)] mb-2'
-
   return (
     <>
       <div
-        className="fixed inset-0 bg-black/50 z-40 transition-opacity"
+        className="fixed inset-0 z-40 bg-black/45 backdrop-blur-[2px] transition-opacity"
         onClick={close}
         aria-hidden="true"
       />
 
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
         role="presentation"
         onClick={close}
       >
@@ -178,18 +213,21 @@ export default function ApplyModal() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="apply-modal-title"
-          aria-describedby="apply-modal-step-label"
-          className="bg-white rounded-lg shadow-lg max-w-lg w-full max-h-[90vh] overflow-y-auto"
+          aria-describedby="apply-modal-step-label apply-modal-intro"
+          className="max-h-[min(90vh,40rem)] w-full max-w-[26rem] overflow-y-auto rounded-sm border border-[var(--color-ink-200)] bg-white shadow-[var(--shadow-soft)]"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="sticky top-0 bg-white border-b border-[var(--color-ink-200)] p-6 flex justify-between items-start gap-4">
-            <div>
-              <p id="apply-modal-step-label" className="text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink-400)] mb-2">
+          <div className="sticky top-0 z-[1] flex items-start justify-between gap-4 border-b border-[var(--color-ink-200)] bg-white px-5 py-5 sm:px-6">
+            <div className="min-w-0 pr-2">
+              <p
+                id="apply-modal-step-label"
+                className="mb-2 font-serif text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]"
+              >
                 Step {step + 1} of {TOTAL_STEPS}
               </p>
               <h2
                 id="apply-modal-title"
-                className="font-serif text-xl text-[var(--color-off-black)]"
+                className="font-serif text-[1.35rem] font-light leading-snug tracking-tight text-[var(--color-off-black)] sm:text-2xl"
               >
                 Let&apos;s See What You&apos;re Missing
               </h2>
@@ -197,19 +235,19 @@ export default function ApplyModal() {
             <button
               type="button"
               onClick={close}
-              className="shrink-0 text-[var(--color-ink-400)] hover:text-[var(--color-off-black)] transition-colors"
-              aria-label="Close modal"
+              className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-sm text-[var(--color-ink-400)] transition-colors hover:bg-[var(--surface-base)] hover:text-[var(--color-off-black)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2"
+              aria-label="Close"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
 
-          <div className="px-6 pt-2 pb-1">
-            <div className="h-1 w-full bg-[var(--color-ink-200)] rounded-full overflow-hidden">
+          <div className="px-5 pb-1 pt-3 sm:px-6">
+            <div className="h-0.5 w-full overflow-hidden rounded-full bg-[var(--color-ink-200)]">
               <div
-                className="h-full bg-[var(--color-off-black)] transition-[width] duration-300 ease-out"
+                className="h-full rounded-full bg-[var(--color-off-black)] transition-[width] duration-300 ease-out"
                 style={{ width: `${((step + 1) / TOTAL_STEPS) * 100}%` }}
               />
             </div>
@@ -218,20 +256,23 @@ export default function ApplyModal() {
           <form
             onKeyDown={handleFormKeyDown}
             onSubmit={step === TOTAL_STEPS - 1 ? handleSubmit : (e) => e.preventDefault()}
-            className="p-6 space-y-5"
+            className="space-y-6 px-5 pb-6 pt-5 sm:px-6 sm:pb-7"
           >
-            <p className="text-sm text-[var(--color-ink-400)] font-serif">
-              Takes 2 minutes. We&apos;ll come prepared with your market, rankings, and biggest growth gaps
+            <p
+              id="apply-modal-intro"
+              className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-300)]"
+            >
+              Takes about two minutes. We&apos;ll come to the call with your market, rankings, and biggest gaps
               already mapped.
             </p>
 
-            <div ref={stepPanelRef}>
+            <div ref={stepPanelRef} className="space-y-5">
               {step === 0 ? (
                 <>
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid gap-5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="apply-modal-firstName" className={labelClass}>
-                        First Name
+                        First name
                       </label>
                       <input
                         id="apply-modal-firstName"
@@ -245,7 +286,7 @@ export default function ApplyModal() {
                     </div>
                     <div>
                       <label htmlFor="apply-modal-lastName" className={labelClass}>
-                        Last Name
+                        Last name
                       </label>
                       <input
                         id="apply-modal-lastName"
@@ -260,7 +301,7 @@ export default function ApplyModal() {
                   </div>
                   <div>
                     <label htmlFor="apply-modal-email" className={labelClass}>
-                      Business Email
+                      Business email
                     </label>
                     <input
                       id="apply-modal-email"
@@ -275,7 +316,7 @@ export default function ApplyModal() {
                   </div>
                   <div>
                     <label htmlFor="apply-modal-phone" className={labelClass}>
-                      Phone Number
+                      Phone
                     </label>
                     <input
                       id="apply-modal-phone"
@@ -295,7 +336,7 @@ export default function ApplyModal() {
                 <>
                   <div>
                     <label htmlFor="apply-modal-market" className={labelClass}>
-                      Your Market / City
+                      Market / city
                     </label>
                     <input
                       id="apply-modal-market"
@@ -309,7 +350,7 @@ export default function ApplyModal() {
                   </div>
                   <div>
                     <label htmlFor="apply-modal-annualSalesVolume" className={labelClass}>
-                      Annual Sales Volume
+                      Annual sales volume
                     </label>
                     <select
                       id="apply-modal-annualSalesVolume"
@@ -317,7 +358,7 @@ export default function ApplyModal() {
                       value={formData.annualSalesVolume}
                       onChange={handleChange}
                       required
-                      className={inputClass}
+                      className={`${inputClass} cursor-pointer`}
                     >
                       <option value="" disabled>
                         Select one
@@ -331,7 +372,7 @@ export default function ApplyModal() {
                   </div>
                   <div>
                     <label htmlFor="apply-modal-teamSize" className={labelClass}>
-                      Team Size
+                      Team size
                     </label>
                     <select
                       id="apply-modal-teamSize"
@@ -339,7 +380,7 @@ export default function ApplyModal() {
                       value={formData.teamSize}
                       onChange={handleChange}
                       required
-                      className={inputClass}
+                      className={`${inputClass} cursor-pointer`}
                     >
                       <option value="" disabled>
                         Select one
@@ -357,7 +398,7 @@ export default function ApplyModal() {
               {step === 2 ? (
                 <div>
                   <label htmlFor="apply-modal-biggestChallenge" className={labelClass}>
-                    Biggest Challenge Right Now
+                    Biggest challenge right now
                   </label>
                   <select
                     id="apply-modal-biggestChallenge"
@@ -365,7 +406,7 @@ export default function ApplyModal() {
                     value={formData.biggestChallenge}
                     onChange={handleChange}
                     required
-                    className={inputClass}
+                    className={`${inputClass} cursor-pointer`}
                   >
                     <option value="" disabled>
                       Select one
@@ -383,48 +424,44 @@ export default function ApplyModal() {
 
             {submitMessage ? (
               <p
-                className={`text-sm text-center font-serif ${submitMessage.includes('Thank you') ? 'text-green-600' : 'text-red-600'}`}
+                role="status"
+                className={`rounded-sm border px-4 py-3 text-center font-serif text-sm leading-snug ${
+                  submitMessage.includes('Thank you')
+                    ? 'border-emerald-200/80 bg-emerald-50/90 text-emerald-900'
+                    : 'border-red-200/80 bg-red-50/90 text-red-900'
+                }`}
               >
                 {submitMessage}
               </p>
             ) : null}
 
-            <div className="flex flex-col-reverse sm:flex-row gap-3 sm:justify-between sm:items-center pt-1">
-              <div className="flex gap-3">
-                {step > 0 ? (
-                  <button
-                    type="button"
-                    onClick={goBack}
-                    disabled={isSubmitting}
-                    className="inline-flex min-h-[52px] items-center justify-center px-6 border border-[var(--color-ink-300)] text-[var(--color-off-black)] uppercase tracking-[0.15em] text-xs hover:border-[var(--color-off-black)] transition-colors disabled:opacity-50"
-                  >
+            <div
+              className={`flex flex-col-reverse gap-3 border-t border-[var(--color-ink-200)] pt-5 sm:flex-row sm:items-center ${
+                step > 0 ? 'sm:justify-between' : 'sm:justify-end'
+              }`}
+            >
+              {step > 0 ? (
+                <div className="flex w-full sm:w-auto">
+                  <button type="button" onClick={goBack} disabled={isSubmitting} className={btnGhost}>
                     Back
                   </button>
-                ) : null}
-              </div>
-              <div className="flex gap-3 sm:ml-auto">
+                </div>
+              ) : null}
+              <div className="flex w-full sm:w-auto sm:justify-end">
                 {step < TOTAL_STEPS - 1 ? (
-                  <button
-                    type="button"
-                    onClick={goNext}
-                    className="inline-flex min-h-[52px] items-center justify-center px-8 bg-[var(--color-off-black)] text-white uppercase tracking-[0.15em] text-xs hover:bg-[var(--color-off-black)]/90 transition-colors"
-                  >
-                    Continue →
+                  <button type="button" onClick={goNext} className={btnPrimary}>
+                    Continue
                   </button>
                 ) : (
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="inline-flex min-h-[52px] items-center justify-center px-8 bg-[var(--color-off-black)] text-white uppercase tracking-[0.15em] text-xs hover:bg-[var(--color-off-black)]/90 transition-colors disabled:opacity-50"
-                  >
-                    {isSubmitting ? 'Submitting...' : 'Apply today →'}
+                  <button type="submit" disabled={isSubmitting} className={btnPrimary}>
+                    {isSubmitting ? 'Sending…' : 'Submit application'}
                   </button>
                 )}
               </div>
             </div>
 
-            <p className="text-xs text-[var(--color-ink-400)] text-center font-serif">
-              No spam. No sales pressure. Just a straight conversation.
+            <p className="text-center font-serif text-[13px] leading-relaxed text-[var(--color-ink-400)]">
+              No spam. No pressure—just a direct conversation about fit.
             </p>
           </form>
         </div>

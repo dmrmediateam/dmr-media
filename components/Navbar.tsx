@@ -3,49 +3,66 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
+function openApplyModal() {
+  window.dispatchEvent(new CustomEvent('openApplyModal'));
+}
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isAtTop, setIsAtTop] = useState(true);
 
   useEffect(() => {
     const onScroll = () => {
       const scrollY = window.scrollY;
       setIsScrolled(scrollY > 12);
-      setIsAtTop(scrollY === 0);
     };
 
-    // Check initial scroll position
     onScroll();
 
-    window.addEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const showTopBar = isScrolled || isMenuOpen;
 
   return (
     <nav className="relative z-50">
       <div
-        className={`fixed inset-x-0 top-0 transition-all duration-500 ease-out ${
-          isAtTop ? 'opacity-0 pointer-events-none' : isScrolled ? 'bg-white/95 backdrop-blur-sm border-b border-[rgba(15,15,15,0.06)]' : 'bg-white/90 backdrop-blur-sm border-b border-transparent'
+        aria-hidden={!showTopBar}
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out ${
+          showTopBar
+            ? 'translate-y-0 opacity-100'
+            : 'pointer-events-none -translate-y-full opacity-0'
+        } ${
+          isScrolled
+            ? 'border-b border-[rgba(15,15,15,0.06)] bg-white/95 backdrop-blur-sm'
+            : 'border-b border-transparent bg-white/90 backdrop-blur-sm'
         }`}
       >
         <div className="container-max">
-          <div className="flex justify-between items-center py-4 md:py-5">
+          <div className="flex items-center justify-between py-4 md:py-5">
             {/* Logo */}
-            <Link
-              href="/"
-              className="flex items-center z-10 focus:outline-none"
-            >
-              <span className="text-2xl md:text-3xl font-serif text-[var(--color-off-black)] tracking-[0.05em] font-light">
+            <Link href="/" className="z-10 flex items-center focus:outline-none">
+              <span className="font-serif text-2xl font-light tracking-[0.05em] text-[var(--color-off-black)] md:text-3xl">
                 DMR
               </span>
             </Link>
 
-            <div className="flex items-center">
+            <div className="flex items-center gap-4 md:gap-5">
+              <button
+                type="button"
+                onClick={() => {
+                  openApplyModal();
+                  setIsMenuOpen(false);
+                }}
+                className="inline-flex min-h-[40px] items-center justify-center border border-[var(--color-off-black)]/18 bg-transparent px-4 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-colors hover:border-[var(--color-off-black)]/35 hover:bg-[var(--color-off-black)]/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:min-h-[44px] md:px-5"
+              >
+                Apply
+              </button>
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="flex flex-col items-center justify-center gap-1.5 w-6 h-6 text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300 focus:outline-none"
+                className="flex h-6 w-6 flex-col items-center justify-center gap-1.5 text-[var(--color-off-black)] transition-opacity duration-300 hover:opacity-60 focus:outline-none"
                 aria-label="Toggle menu"
                 aria-expanded={isMenuOpen}
               >
@@ -78,7 +95,7 @@ const Navbar = () => {
 
       {/* Full Screen Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-[rgba(15,15,15,0.2)] backdrop-blur-sm z-40 transition-opacity duration-500 ease-out ${
+        className={`fixed inset-0 z-[60] bg-[rgba(15,15,15,0.2)] backdrop-blur-sm transition-opacity duration-500 ease-out ${
           isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setIsMenuOpen(false)}
@@ -86,7 +103,7 @@ const Navbar = () => {
 
       {/* Full Screen Menu - Slides from Right */}
       <div
-        className={`fixed top-0 right-0 h-full w-full md:w-2/5 lg:w-1/3 bg-white z-40 transition-transform duration-700 ease-out ${
+        className={`fixed top-0 right-0 z-[61] h-full w-full bg-white transition-transform duration-700 ease-out md:w-2/5 lg:w-1/3 ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -151,13 +168,18 @@ const Navbar = () => {
                   Contact
                 </Link>
 
-                <Link
-                  href="/calendar"
-                  className="text-2xl font-serif font-light text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300 tracking-tight"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Apply
-                </Link>
+                <div className="pt-2">
+                  <button
+                    type="button"
+                    className="inline-flex min-h-[44px] items-center justify-center border border-[var(--color-off-black)]/18 bg-transparent px-6 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-colors hover:border-[var(--color-off-black)]/35 hover:bg-[var(--color-off-black)]/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      openApplyModal();
+                    }}
+                  >
+                    Apply
+                  </button>
+                </div>
               </div>
 
               {/* Contact Information */}
