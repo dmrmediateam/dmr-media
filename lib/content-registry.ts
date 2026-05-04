@@ -63,6 +63,18 @@ export const contentRegistry: ContentEntry[] = [
     changeFrequency: 'monthly',
   },
   {
+    slug: '/about',
+    title: 'About DMR Media | Luxury Real Estate Marketing Agency',
+    description:
+      'Our story, client case studies, website samples, and blog—how DMR Media serves luxury agents and teams with SEO, Google Ads, and web.',
+    publishDate: '2026-05-04',
+    modifiedDate: '2026-05-04',
+    category: 'Agency',
+    tags: ['about DMR Media', 'luxury real estate marketing', 'case studies', 'portfolio'],
+    priority: 0.75,
+    changeFrequency: 'monthly',
+  },
+  {
     slug: '/blog',
     title: 'Real Estate Marketing Insights | DMR Media Blog',
     description:

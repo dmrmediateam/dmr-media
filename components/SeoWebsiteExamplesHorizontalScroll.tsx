@@ -35,22 +35,40 @@ const INTRO = {
       </>
     ),
   },
+  about: {
+    kicker: 'Our Websites',
+    title: 'Sample sites',
+    body: (
+      <>
+        Live agent, team, and listing experiences we&apos;ve designed and shipped. Explore the full portfolio on{' '}
+        <Link href="/real-estate-agent-website-samples" className="underline underline-offset-2 hover:opacity-70">
+          real estate website examples
+        </Link>
+        .
+      </>
+    ),
+  },
 } as const
 
 type SeoWebsiteExamplesHorizontalScrollProps = {
   /** Defaults to SEO page copy. */
   variant?: keyof typeof INTRO
+  /** Override section id (default: websites) */
+  sectionId?: string
 }
 
 /** Horizontal portfolio strip; matches case-study carousel UX. */
-export default function SeoWebsiteExamplesHorizontalScroll({ variant = 'seo' }: SeoWebsiteExamplesHorizontalScrollProps) {
+export default function SeoWebsiteExamplesHorizontalScroll({
+  variant = 'seo',
+  sectionId = 'websites',
+}: SeoWebsiteExamplesHorizontalScrollProps) {
   const { scrollerRef, atStart, atEnd, scrollByCard } = useSeoHorizontalCardScroll()
   const intro = INTRO[variant]
 
   return (
     <section
       className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]"
-      id="websites"
+      id={sectionId}
       aria-label="Website design examples"
     >
       <div className="container-max mb-8 md:mb-10">

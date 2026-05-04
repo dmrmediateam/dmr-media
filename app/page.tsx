@@ -13,13 +13,13 @@ export default async function Home() {
   const featuredPosts = validPosts.slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-[var(--surface-base)]">
+    <div className="min-h-screen bg-[var(--surface-base)] [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
       <Hero />
       <ClientLogosSlider />
       <CaseStudies />
       <DMRWaySection />
       <VideoTestimonials />
-      <HomeBlogSection posts={featuredPosts} />
+      <HomeBlogSection posts={featuredPosts} layoutVariant="seo" />
       <Testimonials />
     </div>
   );

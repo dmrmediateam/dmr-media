@@ -148,6 +148,16 @@ const Navbar = () => {
 
                 <li>
                   <Link
+                    href="/about"
+                    className="text-2xl font-serif font-light text-[var(--color-off-black)] transition-opacity duration-300 tracking-tight hover:opacity-60"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    About
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
                     href="/blog"
                     className="text-2xl font-serif font-light text-[var(--color-off-black)] transition-opacity duration-300 tracking-tight hover:opacity-60"
                     onClick={() => setIsMenuOpen(false)}

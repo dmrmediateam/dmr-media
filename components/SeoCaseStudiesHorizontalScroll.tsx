@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import type { ReactNode } from 'react'
 import SeoCarouselArrows from '@/components/SeoCarouselArrows'
 import SeoCaseStudyCard, { type SeoCaseStudyTemplate } from '@/components/SeoCaseStudyCard'
 import { useSeoHorizontalCardScroll } from '@/components/useSeoHorizontalCardScroll'
@@ -56,13 +57,52 @@ const SCROLL_CARDS: SeoCaseStudyTemplate[] = [
   },
 ]
 
-export default function SeoCaseStudiesHorizontalScroll() {
+function SectionRule({ align = 'left' }: { align?: 'left' | 'center' }) {
+  return (
+    <div
+      className={`mt-5 h-[2px] w-14 bg-gradient-to-r from-[var(--color-off-black)] via-[var(--color-off-black)]/55 to-transparent sm:w-20 ${align === 'center' ? 'mx-auto' : ''}`}
+      aria-hidden
+    />
+  )
+}
+
+export type SeoCaseStudiesHorizontalScrollProps = {
+  /** Defaults to “Client results” */
+  eyebrow?: string
+  title?: string
+  description?: ReactNode
+  /** Accessible name for the section */
+  ariaLabel?: string
+}
+
+export default function SeoCaseStudiesHorizontalScroll({
+  eyebrow = 'Client results',
+  title,
+  description,
+  ariaLabel = 'Client case studies',
+}: SeoCaseStudiesHorizontalScrollProps) {
   const { scrollerRef, atStart, atEnd, scrollByCard } = useSeoHorizontalCardScroll()
 
   return (
-    <section className="border-b border-[var(--color-ink-200)] bg-white pb-14 pt-8 md:pb-16 md:pt-10" aria-label="Client case studies">
+    <section
+      className="border-b border-[var(--color-ink-200)] bg-white pb-14 pt-8 md:pb-16 md:pt-10"
+      aria-label={ariaLabel}
+    >
       <div className="container-max mb-6 md:mb-8">
-        <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Client results</p>
+        <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">{eyebrow}</p>
+        {title ? (
+          <>
+            <h2 className="mt-3 max-w-3xl font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
+              {title}
+            </h2>
+            <SectionRule />
+            {description ? (
+              <div className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
+                {description}
+              </div>
+            ) : null}
+          </>
+        ) : null}
       </div>
 
       <div className="container-max">

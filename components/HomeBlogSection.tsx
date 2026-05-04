@@ -17,31 +17,88 @@ interface Post {
 
 interface HomeBlogSectionProps {
   posts: Post[];
+  /** Defaults: "Latest insights" */
+  eyebrow?: string;
+  /** Defaults: strategy / luxury market heading */
+  heading?: string;
+  /** Defaults: /blog */
+  viewAllHref?: string;
+  /** Defaults: "View all insights" */
+  viewAllLabel?: string;
+  /** Extra section classes (e.g. background) */
+  sectionClassName?: string;
+  /** Match /seo-optimization section typography and cards */
+  layoutVariant?: 'default' | 'seo';
 }
 
-export default function HomeBlogSection({ posts }: HomeBlogSectionProps) {
+const DEFAULT_EYEBROW = 'Latest insights';
+const DEFAULT_HEADING = 'Strategy, timing, and positioning for the luxury market.';
+const DEFAULT_VIEW_ALL = 'View all insights';
+
+export default function HomeBlogSection({
+  posts,
+  eyebrow = DEFAULT_EYEBROW,
+  heading = DEFAULT_HEADING,
+  viewAllHref = '/blog',
+  viewAllLabel = DEFAULT_VIEW_ALL,
+  sectionClassName = '',
+  layoutVariant = 'default',
+}: HomeBlogSectionProps) {
+  const isSeoLayout = layoutVariant === 'seo';
+
+  const sectionClasses = isSeoLayout
+    ? `scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)] ${sectionClassName}`.trim()
+    : `pt-10 pb-32 bg-[var(--surface-base)] ${sectionClassName}`.trim();
+
   return (
-    <section className="pt-10 pb-32 bg-[var(--surface-base)]">
+    <section className={sectionClasses}>
       <div className="container-max">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-20">
+        <div
+          className={
+            isSeoLayout
+              ? 'mb-10 flex flex-col gap-8 md:mb-12 md:flex-row md:items-end md:justify-between'
+              : 'mb-20 flex flex-col gap-10 md:flex-row md:items-end md:justify-between'
+          }
+        >
           <div className="max-w-2xl">
-            <span className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-300)] mb-6 block font-serif">
-              Latest insights
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1]">
-              Strategy, timing, and positioning for the luxury market.
-            </h2>
+            {isSeoLayout ? (
+              <>
+                <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
+                  {eyebrow}
+                </p>
+                <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
+                  {heading}
+                </h2>
+                <div
+                  className="mt-5 h-[2px] w-14 bg-gradient-to-r from-[var(--color-off-black)] via-[var(--color-off-black)]/55 to-transparent sm:w-20"
+                  aria-hidden
+                />
+              </>
+            ) : (
+              <>
+                <span className="mb-6 block font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)]">
+                  {eyebrow}
+                </span>
+                <h2 className="font-serif text-3xl font-light leading-[1.1] tracking-tight text-[var(--color-off-black)] md:text-4xl">
+                  {heading}
+                </h2>
+              </>
+            )}
           </div>
           <Link
-            href="/blog"
-            className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif hover:opacity-60 transition-opacity duration-300 self-start md:self-auto"
+            href={viewAllHref}
+            className={
+              isSeoLayout
+                ? 'inline-flex items-center self-start font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-opacity hover:opacity-60 md:self-auto'
+                : 'inline-flex items-center self-start font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-opacity duration-300 hover:opacity-60 md:self-auto'
+            }
           >
-            View all insights
+            {viewAllLabel}
           </Link>
         </div>
 
         {posts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className={isSeoLayout ? 'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3' : 'grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3'}>
             {posts.map((post) => {
               const formattedDate = post.publishedAt
                 ? new Date(post.publishedAt).toLocaleDateString('en-US', {
@@ -51,13 +108,20 @@ export default function HomeBlogSection({ posts }: HomeBlogSectionProps) {
                   })
                 : '';
 
+              const cardLinkClass = isSeoLayout
+                ? 'group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md motion-reduce:hover:translate-y-0'
+                : 'group block border-b border-[var(--color-ink-200)] bg-white pb-8 transition-opacity duration-300 hover:opacity-60';
+
+              const imageWrapClass = isSeoLayout
+                ? 'relative h-56 overflow-hidden border-b border-[var(--color-ink-200)] bg-[var(--color-ink-200)]'
+                : 'relative mb-6 h-64 overflow-hidden bg-[var(--color-ink-200)]';
+
+              const bodyPadding = isSeoLayout ? 'flex flex-1 flex-col p-6' : '';
+
               return (
                 <div key={post._id}>
-                  <Link
-                    href={`/blog/${post.slug?.current || ''}`}
-                    className="group bg-white border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300 block"
-                  >
-                    <div className="relative h-64 bg-[var(--color-ink-200)] overflow-hidden mb-6">
+                  <Link href={`/blog/${post.slug?.current || ''}`} className={`${cardLinkClass} block`}>
+                    <div className={imageWrapClass}>
                       {post.mainImage?.asset?.url ? (
                         <Image
                           src={post.mainImage.asset.url}
@@ -68,26 +132,26 @@ export default function HomeBlogSection({ posts }: HomeBlogSectionProps) {
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-[var(--color-ink-400)] text-sm font-serif">
+                        <div className="absolute inset-0 flex items-center justify-center font-serif text-sm text-[var(--color-ink-400)]">
                           No image
                         </div>
                       )}
                     </div>
 
-                    <div>
-                      <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] mb-4 font-serif">
+                    <div className={bodyPadding}>
+                      <div className={`font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] ${isSeoLayout ? 'mb-3' : 'mb-4'}`}>
                         {formattedDate}
                       </div>
 
-                      <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-3 leading-snug">
+                      <h3 className={`font-serif text-xl font-light leading-snug text-[var(--color-off-black)] ${isSeoLayout ? 'mb-3' : 'mb-3'}`}>
                         {post.title}
                       </h3>
 
-                      <p className="text-[var(--color-ink-300)] text-sm leading-relaxed mb-6">
+                      <p className={`text-sm leading-relaxed text-[var(--color-ink-300)] ${isSeoLayout ? 'mb-6 flex-1' : 'mb-6'}`}>
                         {post.description}
                       </p>
 
-                      <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif">
+                      <div className="font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)]">
                         Read article
                       </div>
                     </div>

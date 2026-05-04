@@ -61,6 +61,11 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/about" className="hover:opacity-60 transition-opacity">
+                    About
+                  </Link>
+                </li>
+                <li>
                   <Link href="/blog" className="hover:opacity-60 transition-opacity">
                     Blog
                   </Link>
