@@ -90,63 +90,65 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
         </div>
       </section>
 
-      {/* 3. Client Review — Featured, position #2 after metrics */}
-      <section className="bg-[#0D0D0D] text-[#F5F4F0] py-16 md:py-24" aria-label="Client testimonial">
-        <div className="container-max">
-          <div className="max-w-[820px] mx-auto space-y-16">
-            <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
-              Client Review
-            </p>
-            {data.reviews.map((review, i) => (
-              <div key={i} className="text-center">
-                {review.image && (
-                  <div className="flex justify-center mb-6">
-                    <Image
-                      src={review.image}
-                      alt={`${review.author} testimonial — DMR Media client`}
-                      width={480}
-                      height={320}
-                      className="w-full max-w-xl"
-                    />
-                  </div>
-                )}
-                {review.video && (
-                  <div className="relative w-full aspect-video pb-[56.25%] overflow-hidden mb-8">
-                    <iframe
-                      className="absolute inset-0 w-full h-full"
-                      src={review.video.src}
-                      title={review.video.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
-                  </div>
-                )}
-                <blockquote className="text-lg sm:text-xl md:text-2xl font-serif font-light italic leading-relaxed text-[#F5F4F0] my-6">
-                  &ldquo;{review.text}&rdquo;
-                </blockquote>
-                <div className="mt-10">
-                  <strong className="block text-base font-semibold text-[#F5F4F0] mb-1">
-                    {review.author}
-                  </strong>
-                  <span className="block text-xs uppercase tracking-[0.1em] text-[#888]">
-                    {review.role}
-                  </span>
-                  {review.link && (
-                    <a
-                      href={review.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-block text-xs uppercase tracking-[0.2em] text-[#B8925A] hover:opacity-80 transition-opacity"
-                    >
-                      Read full review
-                    </a>
+      {/* 3. Client Review — Featured, position #2 after metrics (omitted when no reviews) */}
+      {data.reviews.length > 0 ? (
+        <section className="bg-[#0D0D0D] text-[#F5F4F0] py-16 md:py-24" aria-label="Client testimonial">
+          <div className="container-max">
+            <div className="max-w-[820px] mx-auto space-y-16">
+              <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
+                Client Review
+              </p>
+              {data.reviews.map((review, i) => (
+                <div key={i} className="text-center">
+                  {review.image && (
+                    <div className="flex justify-center mb-6">
+                      <Image
+                        src={review.image}
+                        alt={`${review.author} testimonial — DMR Media client`}
+                        width={480}
+                        height={320}
+                        className="w-full max-w-xl"
+                      />
+                    </div>
                   )}
+                  {review.video && (
+                    <div className="relative w-full aspect-video pb-[56.25%] overflow-hidden mb-8">
+                      <iframe
+                        className="absolute inset-0 w-full h-full"
+                        src={review.video.src}
+                        title={review.video.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    </div>
+                  )}
+                  <blockquote className="text-lg sm:text-xl md:text-2xl font-serif font-light italic leading-relaxed text-[#F5F4F0] my-6">
+                    &ldquo;{review.text}&rdquo;
+                  </blockquote>
+                  <div className="mt-10">
+                    <strong className="block text-base font-semibold text-[#F5F4F0] mb-1">
+                      {review.author}
+                    </strong>
+                    <span className="block text-xs uppercase tracking-[0.1em] text-[#888]">
+                      {review.role}
+                    </span>
+                    {review.link && (
+                      <a
+                        href={review.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-block text-xs uppercase tracking-[0.2em] text-[#B8925A] hover:opacity-80 transition-opacity"
+                      >
+                        Read full review
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       {/* 4–8. Narrative sections */}
       <article>

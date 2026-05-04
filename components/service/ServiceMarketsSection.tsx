@@ -26,9 +26,9 @@ const METROS: Metro[] = [
     seoLead:
       'New York is one of the few U.S. markets where buyers routinely start on portals yet still search building names, co-op boards, and micro-neighborhoods in Google.',
     seoDetail:
-      'We focus on entity-level clarity (agent, brokerage, development, and listing schema), internal linking that mirrors how people actually move from “neighborhood + price band” queries into listing funnels, and content that earns citations from local publishers and community sites—so you are not competing with yourself across dozens of thin location URLs.',
+      'We focus on entity-level clarity (agent, brokerage, development, and listing schema), internal linking that mirrors how people actually move from “neighborhood + price band” queries into listing funnels, and content that earns citations from local publishers and community sites, so you are not competing with yourself across dozens of thin location URLs.',
     adsLead:
-      'Search costs are high and intent is fragmented between renters, investors, first-time buyers, and trophy-home seekers—often in the same zip code.',
+      'Search costs are high and intent is fragmented between renters, investors, first-time buyers, and trophy-home seekers, often in the same zip code.',
     adsDetail:
       'We structure campaigns by intent stage and geography: tight radius around proven pockets, disciplined negatives for low-quality rental queries, and landing experiences that match the promise of the ad so Quality Score and conversion rate protect your CPL as you scale.',
   },
@@ -42,7 +42,7 @@ const METROS: Metro[] = [
     seoLead:
       'Los Angeles rewards specificity: canyon roads, view corridors, architectural pedigrees, and school districts all show up as distinct search clusters.',
     seoDetail:
-      'Our SEO work maps those clusters to crawlable site architecture, neighborhood hubs that do not duplicate one another, and listing experiences that load fast on mobile—because a large share of luxury discovery still happens from the car, open house line, or showing schedule.',
+      'Our SEO work maps those clusters to crawlable site architecture, neighborhood hubs that do not duplicate one another, and listing experiences that load fast on mobile, because a large share of luxury discovery still happens from the car, open house line, or showing schedule.',
     adsLead:
       'Paid search here competes with entertainment, auto, and travel advertisers, so efficient geo and audience layering matters as much as copy.',
     adsDetail:
@@ -78,7 +78,7 @@ const METROS: Metro[] = [
     adsLead:
       'Large geographic footprints and rapid new supply can burn budget fast if campaigns are too broad.',
     adsDetail:
-      'We anchor spend on proven ZIPs and communities, use ad customizers where inventory changes quickly, and feed offline outcomes back into bidding so Google’s automation is trained on real appointments—not just form fills.',
+      'We anchor spend on proven ZIPs and communities, use ad customizers where inventory changes quickly, and feed offline outcomes back into bidding so Google’s automation is trained on real appointments, not just form fills.',
   },
   {
     slug: 'phoenix-az',
@@ -90,7 +90,7 @@ const METROS: Metro[] = [
     seoLead:
       'Phoenix combines snowbird seasonality, strong new construction, and a wide luxury band from patio homes to desert modern estates.',
     seoDetail:
-      'We emphasize topical depth on the communities you want to own, connect editorial content to live inventory where it helps users, and structure internal links so seasonal guides and market commentary reinforce—not compete with—your core money pages.',
+      'We emphasize topical depth on the communities you want to own, connect editorial content to live inventory where it helps users, and structure internal links so seasonal guides and market commentary reinforce your core money pages instead of competing with them.',
     adsLead:
       'Second-home and relocation intent spikes in predictable windows; campaigns should flex budgets with heat and holidays, not run flat year-round.',
     adsDetail:
@@ -105,12 +105,12 @@ const INTROS: Record<
   seo: {
     kicker: 'Markets we serve',
     headline: 'SEO depth in the metros that define luxury search.',
-    body: 'We work nationally, but we are deepest in high-competition markets where thin template pages fail and topical authority wins. Below is how we think about organic search—not a list of duplicate city landing pages, but the real dynamics of each region.',
+    body: 'We work nationally, but we are deepest in high-competition markets where thin template pages fail and topical authority wins. Below is how we think about organic search: not a list of duplicate city landing pages, but the real dynamics of each region.',
   },
   'google-ads': {
     kicker: 'Markets we serve',
     headline: 'Paid search calibrated for competitive luxury corridors.',
-    body: 'The same metro can require completely different account architecture depending on inventory, average sale price, and how buyers discover homes. Here is how we approach Google Ads in the markets where we spend the most time tuning accounts—not generic “local PPC” copy.',
+    body: 'The same metro can require completely different account architecture depending on inventory, average sale price, and how buyers discover homes. Here is how we approach Google Ads in the markets where we spend the most time tuning accounts, not generic “local PPC” copy.',
   },
 }
 

@@ -4,7 +4,7 @@ import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
-import { SeoReveal } from './SeoReveal'
+import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
 import SeoCaseStudiesHorizontalScroll from '@/components/SeoCaseStudiesHorizontalScroll'
 import SeoWebsiteExamplesHorizontalScroll from '@/components/SeoWebsiteExamplesHorizontalScroll'
 import ClientLogosSlider from '@/components/ClientLogosSlider'
@@ -17,9 +17,9 @@ import {
   processPhases,
   stakesThree,
   FAQ_ITEMS,
-} from './seo-data'
+} from './google-ads-data'
 
-const APPLY_FORM = 'seo-optimization-apply'
+const APPLY_FORM = 'google-ads-management-apply'
 const HERO_VIDEO_SRC = '/videos/DMR%20-%20INTRO%204K.mp4'
 
 function VolumeOffIcon({ className }: { className?: string }) {
@@ -79,7 +79,7 @@ function ApplyCtaBand({
   return (
     <aside
       className={`${bg} border-b border-[var(--color-ink-200)] py-10 md:py-14 ${className}`}
-      aria-label="Apply for SEO strategy"
+      aria-label="Apply for Google Ads strategy"
     >
       <div className="container-max mx-auto flex max-w-xl flex-col items-center gap-4 px-4 text-center">
         <p className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
@@ -104,7 +104,7 @@ function SectionRule({ align = 'left' }: { align?: 'left' | 'center' }) {
   )
 }
 
-export default function SEOOptimizationPageContent() {
+export default function GoogleAdsManagementPageContent() {
   const heroVideoRef = useRef<HTMLVideoElement>(null)
   const [isHeroMuted, setIsHeroMuted] = useState(true)
   const reduceMotion = useReducedMotion()
@@ -122,11 +122,10 @@ export default function SEOOptimizationPageContent() {
 
   return (
     <div className="min-h-screen bg-white [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
-      {/* Hero: full-bleed video + scrim (aligned with /landing/google-general) */}
       <section
         className="relative min-h-screen overflow-hidden border-b border-[var(--color-ink-200)] scroll-mt-6"
         id="top"
-        aria-labelledby="seo-hero-title"
+        aria-labelledby="ads-hero-title"
       >
         <div className="absolute inset-0 z-0">
           <video
@@ -154,21 +153,20 @@ export default function SEOOptimizationPageContent() {
             transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
           >
             <p className="mb-6 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
-              SEO for luxury real estate
+              Google Ads for luxury real estate
             </p>
             <h1
-              id="seo-hero-title"
+              id="ads-hero-title"
               className="font-serif text-4xl font-light leading-[1.04] tracking-tight !text-white sm:text-5xl md:text-6xl lg:text-7xl"
             >
-              Be the name buyers find before they ever call an agent.
+              Be the name buyers click when intent is highest.
             </h1>
             <p className="mx-auto mt-8 max-w-3xl font-serif text-lg leading-relaxed text-white/90 sm:text-xl">
-              Your competitors are not “better.” They are easier to find. We build the search engine story that
-              matches how affluent clients actually decide, then we ship the technical and content work so Google
-              recommends you, not a template farm.
+              Your buyer is not confused. They are deciding. We position you as the guide at that moment: clear promise,
+              disciplined geography, and landing paths that turn spend into conversations your team can feel in the CRM.
             </p>
             <p className="mx-auto mt-4 max-w-3xl font-serif text-sm leading-relaxed text-white/75 sm:text-base">
-              Trusted by teams from Sonoma to Lake Geneva, with documented lifts in impressions, clicks, and pipeline.
+              Trusted by teams who needed predictable pipeline, not another dashboard subscription.
             </p>
             <div className="mt-10 flex flex-col items-center">
               <button
@@ -221,7 +219,6 @@ export default function SEOOptimizationPageContent() {
         <ClientLogosSlider />
       </section>
 
-      {/* Stakes: internal + external + philosophical (StoryBrand problem) */}
       <section
         className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]"
         id="stakes"
@@ -229,13 +226,14 @@ export default function SEOOptimizationPageContent() {
         <div className="container-max">
           <SeoReveal>
             <div className="mx-auto max-w-3xl text-center">
-              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Why this page exists</p>
+              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">The stakes</p>
               <h2 className="mt-3 font-serif text-3xl font-light leading-tight tracking-tight text-[var(--color-off-black)] md:text-4xl">
-                Is your website a luxury asset, or a digital anchor?
+                Is your paid media buying conversations, or buying noise?
               </h2>
               <SectionRule align="center" />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                Three patterns we see in teams already winning offline, but losing the invisible first conversation online.
+                Three patterns we see when teams win trust in person, but lose the first digital moment where budgets get
+                decided.
               </p>
             </div>
           </SeoReveal>
@@ -261,10 +259,9 @@ export default function SEOOptimizationPageContent() {
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="If one of these sounds familiar, the next step is a short application; we show up with your market already researched."
+        hint="If the stakes feel familiar, the smallest brave step is a short application. We show up with your market researched so the first call respects your time."
       />
 
-      {/* Guide + plan: authority + empathy */}
       <section
         className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]"
         id="guide"
@@ -272,21 +269,21 @@ export default function SEOOptimizationPageContent() {
         <div className="container-max grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           <SeoReveal>
             <div>
-              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">How we work</p>
+              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Meet your guide</p>
               <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-                We do not sell “SEO packages.” We install a growth engine.
+                We do not sell “Google Ads packages.” We install a demand system.
               </h2>
               <SectionRule />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                You need a guide who has walked the map: weekly shipping, technical honesty, and reporting tied to GCI
-                outcomes, not vanity charts. DMR is AI-first, search-obsessed, and built for teams who already close at a
-                high level but deserve to be found first.
+                You need a guide who has seen luxury markets at full throttle: where bids lie, where negatives save
+                margin, and where creative either earns the click or trains the wrong buyer. DMR combines execution speed
+                with reporting your leadership can repeat without a decoder ring.
               </p>
               <ul className="mt-8 space-y-4 border-l-2 border-[var(--color-off-black)]/15 pl-5">
                 {[
-                  'Clarity: a prioritized roadmap you can defend to leadership',
-                  'Cadence: execution that compounds instead of quarterly theater',
-                  'Proof: documented movement in Search Console and real pipeline',
+                  'Agreement: success defined as qualified conversations, not raw volume',
+                  'Cadence: weekly iteration so accounts improve while competitors coast',
+                  'Proof: CPL trends, search themes, and CRM outcomes in one narrative',
                 ].map((line) => (
                   <li key={line} className="font-serif text-[var(--color-off-black)]">
                     {line}
@@ -336,20 +333,19 @@ export default function SEOOptimizationPageContent() {
         </div>
       </section>
 
-      <SeoWebsiteExamplesHorizontalScroll />
+      <SeoWebsiteExamplesHorizontalScroll variant="ads" />
 
-      {/* Framework */}
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="framework">
         <div className="container-max">
           <SeoReveal>
-            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Execution model</p>
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">The plan, simplified</p>
             <h2 className="mt-3 max-w-3xl font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
               Three pillars. One accountable team.
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
-              Technical foundations, on-page precision, and editorial systems, so every page earns trust from Google and
-              from buyers ready to transact.
+              Intent architecture, message match, and closed-loop measurement, so every dollar votes for the reputation you
+              want in the market.
             </p>
           </SeoReveal>
           <div className="mt-14 grid gap-8 md:grid-cols-3 md:gap-10">
@@ -373,7 +369,7 @@ export default function SEOOptimizationPageContent() {
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="Prefer we audit before you commit? Apply anyway; we use your application to prep a serious first conversation."
+        hint="Prefer to hear how we would structure your account before you commit? Apply anyway; we use your answers to prepare a serious first conversation, not a generic pitch."
       />
 
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="stats">
@@ -383,37 +379,36 @@ export default function SEOOptimizationPageContent() {
             heading="Benchmarks teams actually feel"
             stats={[
               {
-                value: '300%+',
-                label: 'Traffic lift',
-                description: 'Average organic growth in the first 90 days across documented programs.',
+                value: '3×',
+                label: 'Qualified conversations',
+                description: 'Typical lift when accounts are rebuilt around luxury intent and clean routing.',
               },
               {
-                value: '#1',
-                label: 'Neighborhood intent',
-                description: 'Competitive local and buyer-intent terms that convert to tours and conversations.',
+                value: '65%',
+                label: 'Lower CPL',
+                description: 'Improvement patterns versus prior agency setups in documented engagements.',
               },
               {
-                value: '2–3×',
-                label: 'Qualified inquiries',
-                description: 'Lift patterns when technical debt is cleared and content matches market truth.',
+                value: '1.8×',
+                label: 'Booked appointments',
+                description: 'Attributed lift when retargeting and nurture reinforce core Search.',
               },
             ]}
           />
         </div>
       </section>
 
-      {/* Process */}
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="process">
         <div className="container-max">
           <SeoReveal>
-            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Cadence</p>
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">The process</p>
             <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
               A plan you can repeat
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm text-[var(--color-ink-300)]">
-              Clear steps reduce anxiety (and increase follow-through). Here is how we guide you from diagnosis to compounding
-              results.
+              Clarity reduces anxiety and increases follow-through. Here is how we move you from diagnosis to compounding
+              results without mystery milestones.
             </p>
           </SeoReveal>
           <div className="relative mt-12 md:pl-3">
@@ -446,8 +441,8 @@ export default function SEOOptimizationPageContent() {
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Social proof</p>
             <h2 className="mt-3 font-serif text-3xl font-light text-[var(--color-off-black)] md:text-4xl">What clients say</h2>
             <p className="mt-3 max-w-2xl font-serif text-sm text-[var(--color-ink-300)]">
-              Consensus from teams who value partnership over vendor theater: liking, authority, and social proof in their
-              own words.
+              Consensus from teams who wanted partnership, not vendor theater: liking, authority, and proof in their own
+              words.
             </p>
           </SeoReveal>
         </div>
@@ -459,13 +454,13 @@ export default function SEOOptimizationPageContent() {
           <SeoReveal>
             <div className="rounded-xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] md:p-10">
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Ecosystem</p>
-              <h2 className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)] md:text-3xl">How SEO fits your stack</h2>
+              <h2 className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)] md:text-3xl">How Google Ads fits your stack</h2>
               <p className="mt-5 font-serif text-[15px] leading-[1.85] text-[var(--color-ink-300)]">
-                Pair organic programs with{' '}
-                <Link href="/google-ads-management" className="underline underline-offset-2 hover:opacity-70">
-                  Google Ads management
-                </Link>
-                , full-funnel{' '}
+                Pair paid demand with{' '}
+                <Link href="/seo-optimization" className="underline underline-offset-2 hover:opacity-70">
+                  SEO optimization
+                </Link>{' '}
+                so you earn shelf space while spend captures intent now, full-funnel{' '}
                 <Link href="/real-estate-lead-generation" className="underline underline-offset-2 hover:opacity-70">
                   lead generation
                 </Link>
@@ -478,17 +473,16 @@ export default function SEOOptimizationPageContent() {
                   website design
                 </Link>
                 , and{' '}
-                <Link href="/seo-consulting" className="underline underline-offset-2 hover:opacity-70">
-                  SEO consulting
+                <Link href="/property-marketing" className="underline underline-offset-2 hover:opacity-70">
+                  property marketing
                 </Link>{' '}
-                when you need strategy without full execution.
+                when listings need their own campaigns.
               </p>
             </div>
           </SeoReveal>
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="faq">
         <div className="container-max max-w-3xl">
           <SeoReveal>
@@ -522,21 +516,20 @@ export default function SEOOptimizationPageContent() {
         </div>
       </section>
 
-      {/* Final CTA: scarcity of attention, not fake inventory */}
       <section
-        id="seo-apply-cta"
+        id="ads-apply-cta"
         className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]"
       >
         <div className="container-max mx-auto max-w-2xl text-center">
           <SeoReveal>
-            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Next step</p>
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Call to action</p>
             <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              Stop renting your reputation to the SERP. Own the story.
+              Stop renting demand. Own the next conversation.
             </h2>
             <SectionRule align="center" />
             <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-              A short application is the smallest commitment that lets us come prepared: your market, your competitors, and
-              the gaps costing you GCI. No spam. No pressure. Just a direct conversation about fit.
+              A short application is the smallest commitment that lets us arrive prepared: your markets, your competitors,
+              and the gaps that quietly tax GCI. No spam. No pressure. Just a direct conversation about fit.
             </p>
           </SeoReveal>
           <motion.button

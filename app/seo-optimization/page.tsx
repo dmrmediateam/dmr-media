@@ -8,7 +8,7 @@ const BASE = 'https://www.dmrmedia.org'
 export const metadata: Metadata = {
   title: 'Real Estate SEO That Earns the First Conversation | DMR Media',
   description:
-    'Luxury real estate SEO with documented lifts in impressions and pipeline. Technical foundations, on-page precision, and content systems—plus portfolio sites built to rank.',
+    'Luxury real estate SEO with documented lifts in impressions and pipeline. Technical foundations, on-page precision, and content systems, plus portfolio sites built to rank.',
   keywords: [
     'SEO optimization for real estate',
     'real estate SEO',

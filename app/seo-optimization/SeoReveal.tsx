@@ -12,7 +12,7 @@ type SeoRevealProps = {
   y?: number
 }
 
-/** Scroll-triggered fade/slide — disabled when the user prefers reduced motion (Finck-style respectful motion). */
+/** Scroll-triggered fade/slide: disabled when the user prefers reduced motion (Finck-style respectful motion). */
 export function SeoReveal({ children, className, delay = 0, y = 18 }: SeoRevealProps) {
   const reduce = useReducedMotion()
 

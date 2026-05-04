@@ -27,15 +27,7 @@ export const eaganLuxuryData: CaseStudyData = {
     { number: '#1', label: 'Ranked', context: '"Realtor in Dolphin Cay"' },
     { number: '$36.93', label: 'Cost Per Lead', context: 'Home valuation (Google Ads)' },
   ],
-  reviews: [
-    {
-      text: "Andrew was great to work with on setting up new Real Estate website and getting everything linked and functional. He was always willing to listen and help guide us through the process to get what we considered to be the best outcome. We highly recommend him.",
-      author: 'William Breaden',
-      role: 'Eagan Luxury Real Estate',
-      image: null,
-      link: 'https://www.trustpilot.com/reviews/69387ab2bee5b0b7530b2b0f',
-    },
-  ],
+  reviews: [],
   sections: [
     {
       id: 'the-problem',

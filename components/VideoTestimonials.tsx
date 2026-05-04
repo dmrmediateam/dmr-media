@@ -22,7 +22,7 @@ const videoTestimonials = [
     videoId: 'ng_7ysEAlkc',
     image: '/images/ClientImages/Micheal.png',
     highlight:
-      "Andrew's been great to work with. He's been awesome especially with updates, ideas and planning. Looking forward to continuing to work with him — he's been a great resource for everything I'm looking to do.",
+      "Andrew's been great to work with. He's been awesome especially with updates, ideas and planning. Looking forward to continuing to work with him; he's been a great resource for everything I'm looking to do.",
   },
 ] as const;
 
