@@ -1,4 +1,26 @@
 /** @type {import('next').NextConfig} */
+const THANK_YOU_NOINDEX_HEADERS = [
+  {
+    key: 'X-Robots-Tag',
+    value: 'noindex, nofollow, noarchive, nosnippet, noimageindex',
+  },
+]
+
+/** Post-checkout / post-form thank-you URLs — not for indexing or caching by crawlers. */
+const thankYouHeaderRules = [
+  '/landing/thank-you',
+  '/landing/thank-you-g',
+  '/landing/thank-you-g-dq',
+  '/landing/thank-you-feb-2026',
+  '/landing/thank-you-booking',
+  '/thank-you',
+  '/thank-you-q',
+  '/thank-you-dq',
+].map((source) => ({
+  source,
+  headers: THANK_YOU_NOINDEX_HEADERS,
+}))
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -43,6 +65,7 @@ const nextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
+      ...thankYouHeaderRules,
     ]
   },
   async rewrites() {
