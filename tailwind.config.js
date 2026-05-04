@@ -37,6 +37,7 @@ module.exports = {
         serif: ['Instrument Serif', 'serif'],
         heading: ['Instrument Serif', 'serif'],
         body: ['Instrument Serif', 'serif'],
+        'general-sans': ['General Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         // Each size bumped +2px from Tailwind defaults

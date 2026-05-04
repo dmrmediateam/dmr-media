@@ -213,7 +213,7 @@ function SectionHeading({
   const wrap = align === 'center' ? 'mx-auto max-w-4xl text-center' : 'max-w-3xl'
   return (
     <header className={wrap}>
-      <p className="mb-3 font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)]">{eyebrow}</p>
+      <p className="mb-3 font-general-sans text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)]">{eyebrow}</p>
       <h2
         id={titleId}
         className="font-serif text-[2rem] font-light leading-[1.12] tracking-tight text-[var(--color-off-black)] sm:text-[2.35rem]"
@@ -247,7 +247,7 @@ function ApplyCtaBand({
       aria-label="Apply for a strategy call"
     >
       <div className="container-max mx-auto flex max-w-lg flex-col items-center gap-4 px-4 text-center">
-        <p className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
+        <p className="font-general-sans text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
         <button
           type="button"
           onClick={onApply}
@@ -342,7 +342,7 @@ export default function GoogleGeneralLandingPage() {
         </div>
         <div className="relative z-10 container-max flex min-h-screen items-center justify-center py-20 text-center pointer-events-none">
           <div className="max-w-4xl pointer-events-auto">
-            <p className="mb-6 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
+            <p className="mb-6 font-general-sans text-[11px] uppercase tracking-[0.24em] text-white/80">
               The AI-First Agency with 5-stars on Trustpilot & Google.
             </p>
             <h1
@@ -353,7 +353,7 @@ export default function GoogleGeneralLandingPage() {
               <br />
               It Should Be You.
             </h1>
-            <p className="mx-auto mt-8 max-w-3xl font-serif text-lg leading-relaxed text-white/90 sm:text-xl">
+            <p className="mx-auto mt-8 max-w-3xl font-general-sans text-lg leading-relaxed text-white/90 sm:text-xl">
               Most luxury agents &amp; teams doing $10M+ a year are invisible on Google. We fix that. AI-powered SEO.
               Precision Google Ads. All optimized for GCI not &apos;Leads&apos;.
             </p>
@@ -414,12 +414,12 @@ export default function GoogleGeneralLandingPage() {
             align="center"
             title="Buyers are AI Searching. They&apos;re not finding you."
           />
-          <p className="mx-auto mt-8 max-w-3xl font-serif leading-relaxed text-[var(--color-ink-300)]">
+          <p className="mx-auto mt-8 max-w-3xl font-general-sans leading-relaxed text-[var(--color-ink-300)]">
             You&apos;re closing deals. You&apos;re building a team. But between your last closing and your next
             one, buyers and sellers are finding competitors. Not because those agents are better. Because they
             rank higher.
           </p>
-          <p className="mx-auto mt-3 max-w-3xl font-serif leading-relaxed text-[var(--color-ink-300)]">
+          <p className="mx-auto mt-3 max-w-3xl font-general-sans leading-relaxed text-[var(--color-ink-300)]">
             That gap costs you deals you never even see.
           </p>
         </div>
@@ -463,7 +463,7 @@ export default function GoogleGeneralLandingPage() {
             {problemItems.map((item) => (
               <article key={item.title} className={cardArticleClass}>
                 <h3 className="font-serif text-xl text-[var(--color-off-black)]">{item.title}</h3>
-                <p className="mt-3 font-serif text-[var(--color-ink-300)]">{item.body}</p>
+                <p className="mt-3 font-general-sans text-[var(--color-ink-300)]">{item.body}</p>
               </article>
             ))}
           </div>
@@ -496,7 +496,7 @@ export default function GoogleGeneralLandingPage() {
               eyebrow="Why DMR"
               title={<>We don&apos;t sell you a platform. We build your pipeline.</>}
             />
-            <p className="mt-8 font-serif leading-relaxed text-[var(--color-ink-300)]">
+            <p className="mt-8 font-general-sans leading-relaxed text-[var(--color-ink-300)]">
               We started DMR at 18. Moved the agency to Bali at 20 while serving US luxury teams daily. We&apos;ve
               helped sell $6.5M properties and supported agents breaking into new price tiers.
             </p>
@@ -529,7 +529,7 @@ export default function GoogleGeneralLandingPage() {
             align="center"
             title="We Practice What We Preach"
           />
-          <p className="mx-auto mt-8 max-w-4xl text-center font-serif leading-relaxed text-[var(--color-ink-300)]">
+          <p className="mx-auto mt-8 max-w-4xl text-center font-general-sans leading-relaxed text-[var(--color-ink-300)]">
             Most agencies sell SEO but can&apos;t rank. Most agencies sell Google Ads but never run profitable
             campaigns for themselves. We are the case study.
           </p>
@@ -545,7 +545,7 @@ export default function GoogleGeneralLandingPage() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
-                <p className="mt-5 font-serif leading-relaxed text-[var(--color-off-black)]">{item.stat}</p>
+                <p className="mt-5 font-general-sans leading-relaxed text-[var(--color-off-black)]">{item.stat}</p>
               </article>
             ))}
           </div>
@@ -573,7 +573,7 @@ export default function GoogleGeneralLandingPage() {
                 className={`${cardArticleClass} bg-[var(--surface-base)]`}
               >
                 <h3 className="font-serif text-xl text-[var(--color-off-black)]">{item.title}</h3>
-                <p className="mt-3 font-serif text-[var(--color-ink-300)]">{item.body}</p>
+                <p className="mt-3 font-general-sans text-[var(--color-ink-300)]">{item.body}</p>
               </article>
             ))}
           </div>
@@ -612,7 +612,7 @@ export default function GoogleGeneralLandingPage() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-5 font-serif text-sm text-[var(--color-ink-400)]">{study.footer}</p>
+                <p className="mt-5 font-general-sans text-sm text-[var(--color-ink-400)]">{study.footer}</p>
               </article>
             ))}
           </div>
@@ -637,13 +637,13 @@ export default function GoogleGeneralLandingPage() {
                 key={review.author}
                 className={`${cardArticleClass} bg-[var(--surface-base)]`}
               >
-                <p className="mb-3 text-[var(--color-trust)]" aria-hidden>
+                <p className="mb-3 font-general-sans text-[var(--color-trust)]" aria-hidden>
                   ★★★★★
                 </p>
                 <blockquote className="font-serif leading-relaxed text-[var(--color-off-black)]">
                   &quot;{review.quote}&quot;
                 </blockquote>
-                <p className="mt-4 font-serif text-sm text-[var(--color-ink-400)]">{review.author}</p>
+                <p className="mt-4 font-general-sans text-sm text-[var(--color-ink-400)]">{review.author}</p>
               </article>
             ))}
           </div>
@@ -666,7 +666,7 @@ export default function GoogleGeneralLandingPage() {
             {processItems.map((item) => (
               <article key={item.title} className={cardArticleClass}>
                 <h3 className="font-serif text-xl text-[var(--color-off-black)]">{item.title}</h3>
-                <p className="mt-3 font-serif text-[var(--color-ink-300)]">{item.body}</p>
+                <p className="mt-3 font-general-sans text-[var(--color-ink-300)]">{item.body}</p>
               </article>
             ))}
           </div>

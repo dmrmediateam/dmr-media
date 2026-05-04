@@ -135,52 +135,62 @@ const Navbar = () => {
             <div className="flex flex-col h-full pt-20">
               
               {/* Navigation */}
-              <div className="flex flex-col space-y-6 px-8 md:px-12">
-                <Link
-                  href="/"
-                  className="text-2xl font-serif font-light text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300 tracking-tight"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Home
-                </Link>
+              <ul className="m-0 list-none space-y-6 px-8 md:px-12">
+                <li>
+                  <Link
+                    href="/"
+                    className="text-2xl font-serif font-light text-[var(--color-off-black)] transition-opacity duration-300 tracking-tight hover:opacity-60"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Home
+                  </Link>
+                </li>
 
-                <Link
-                  href="/blog"
-                  className="text-2xl font-serif font-light text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300 tracking-tight"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Blog
-                </Link>
+                <li>
+                  <Link
+                    href="/blog"
+                    className="text-2xl font-serif font-light text-[var(--color-off-black)] transition-opacity duration-300 tracking-tight hover:opacity-60"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Blog
+                  </Link>
+                </li>
 
-                <Link
-                  href="/services"
-                  className="text-2xl font-serif font-light text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300 tracking-tight"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Services
-                </Link>
+                <li>
+                  <Link
+                    href="/services"
+                    className="text-2xl font-serif font-light text-[var(--color-off-black)] transition-opacity duration-300 tracking-tight hover:opacity-60"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Services
+                  </Link>
+                </li>
 
-                <Link
-                  href="/contact"
-                  className="text-2xl font-serif font-light text-[var(--color-off-black)] hover:opacity-60 transition-opacity duration-300 tracking-tight"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contact
-                </Link>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-2xl font-serif font-light text-[var(--color-off-black)] transition-opacity duration-300 tracking-tight hover:opacity-60"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Contact
+                  </Link>
+                </li>
 
-                <div className="pt-2">
-                  <button
-                    type="button"
-                    className="inline-flex min-h-[44px] items-center justify-center border border-[var(--color-off-black)]/18 bg-transparent px-6 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-colors hover:border-[var(--color-off-black)]/35 hover:bg-[var(--color-off-black)]/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-                    onClick={() => {
+                <li>
+                  <a
+                    href="#apply-strategy"
+                    className="text-2xl font-serif font-light text-[var(--color-off-black)] transition-opacity duration-300 tracking-tight hover:opacity-60"
+                    aria-haspopup="dialog"
+                    onClick={(e) => {
+                      e.preventDefault();
                       setIsMenuOpen(false);
                       openApplyModal();
                     }}
                   >
                     Apply
-                  </button>
-                </div>
-              </div>
+                  </a>
+                </li>
+              </ul>
 
               {/* Contact Information */}
               <div className="flex flex-col space-y-8 px-8 md:px-12 mt-12 pt-12 border-t border-[rgba(15,15,15,0.08)]">
