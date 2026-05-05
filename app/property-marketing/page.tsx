@@ -648,7 +648,7 @@ export default function PropertyMarketingPage() {
               <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] tracking-tight mb-10 md:mb-12">
                 What listing marketing clients say
               </h2>
-              <Testimonials omitHeading showStarRating visibleIds={[3, 7, 'david-heine']} />
+              <Testimonials omitHeading showStarRating visibleIds={[3, 7, 'jorge-elizondo']} />
             </div>
           </section>
 

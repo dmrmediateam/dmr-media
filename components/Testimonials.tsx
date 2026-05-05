@@ -1,99 +1,97 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
+
+const cardClassName =
+  'group relative flex h-[28rem] flex-col overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md motion-reduce:hover:translate-y-0 sm:h-[29rem]';
 
 const testimonials = [
   {
     id: 3,
     name: 'Jade Goodhue',
-    company: 'Legendary Real Services',
+    teamName: 'Legendary Real Services',
     location: 'Lake Geneva, Wisconsin',
-    text: 'He\'s articulate, responsive, and provides amazing weekly updates. He works with us like a partner, rather than a vendor. If you have the opportunity to work with him, just DO IT. You\'ll be grateful you did!',
-    cityImage: '/images/Cities/LakeGeneva.jpg',
+    text: "He's articulate, responsive, and provides amazing weekly updates. He works with us like a partner, rather than a vendor. If you have the opportunity to work with him, just DO IT. You'll be grateful you did!",
+    image: '/images/Cities/LakeGeneva.jpg',
   },
   {
     id: 6,
     name: 'Samantha Marquis',
-    company: 'Marquis + Farwell Team',
+    teamName: 'Marquis + Farwell Team',
     location: 'Sonoma, California',
-    text: 'We had been looking into SEO for a bit and interviewed some other companies. After each interview, we walked away feeling like we had to think about it. This was absolutely not the case with DMR. From the start, we knew their company was the right fit. We were thoroughly impressed with their knowledge, their willingness to give us tips immediately, and their easy communication style. SEO can be intimidating and daunting, but DMR holds your hand, answers your questions, and has great follow through. We never feel uncomfortable asking questions and they never make us feel less-then. Every bit of the process we have been through with them thus far has been exceptional. We highly recommend them',
-    cityImage: '/images/Cities/Sonoma.jpg',
+    text: 'We interviewed several SEO firms and always walked away unsure. With DMR it was different from the start—their depth, willingness to share tips immediately, and calm communication made a daunting topic feel manageable. We never feel silly asking questions, and the process so far has been exceptional.',
+    image: '/images/Cities/Sonoma.jpg',
   },
   {
-    id: 'linda-farwell',
-    name: 'Linda Farwell',
-    company: 'Marquis + Farwell Team',
-    location: 'Sonoma, California',
-    text: 'We interviewed a few different companies and had follow up meetings with scheduled with them. Once we met with Andrew at DMR, it was a done deal. In one meeting he not only presented himself in clear, easy to understand terms, but was very patient with us in explaining how all this works(this stuff is way over my head) He also gave us instant tips without even knowing if we were going to use him. Once we hung up, we cancelled all the other meetings and decided to go with DMR. They have been fantastic.',
-    cityImage: '/images/Cities/Sonoma.jpg',
+    id: 'gregg-rossman',
+    name: 'Gregg Rossman',
+    teamName: 'Keller Williams St. Petersburg',
+    location: 'St. Petersburg, Florida',
+    text: 'The DMR team has made everything super simple to understand and handle so much of the setup. Already getting leads after a week!',
+    image: '/images/Cities/Stpet.jpg',
   },
   {
     id: 7,
     name: 'William Breaden',
-    company: 'Eagan Luxury',
+    teamName: 'Eagan Luxury',
     location: 'St. Petersburg, Florida',
-    text: 'Andrew was great to work with on setting up new Real Estate website and getting everything linked and functional. He was always willing to listen and help guide us through the process to get what we considered to be the best outcome. We highly recommend him.',
-    cityImage: '/images/Cities/Stpet.jpg',
+    text: 'Andrew was great to work with on setting up our real estate site and getting everything linked and functional. He listened, guided us to the outcome we wanted, and we highly recommend him.',
+    image: '/images/Cities/Stpet.jpg',
   },
   {
     id: 'sandy-reavill',
     name: 'Sandy Reavill',
-    company: '',
+    teamName: 'Willowbrook Realty',
     location: 'Woodstock, Vermont',
-    text: 'Andrew and Max are The Best! We\'ve had an outstanding experience working with Andrew Rohm and Max Deleonardis at DMR Media. Their website management and search engine placement services have been exceptional. They are fast, reliable, and always provide smart, practical advice that truly makes a difference. Since partnering with them, our web traffic has increased tremendously, and we\'re seeing real results from their work. They are responsive, professional, and clearly experts in what they do. Highly recommend Andrew, Max, and the entire DMR Media team to anyone looking to grow their online presence!',
-    cityImage: '/images/Cities/NewHampshire.jpg',
+    text: 'Andrew and Max are outstanding—fast, reliable, and practical. Traffic is up materially and the team is responsive and expert. We recommend DMR Media to anyone serious about growing online.',
+    image: '/images/Cities/NewHampshire.jpg',
   },
   {
-    id: 'david-heine',
-    name: 'David Heine',
-    company: '',
-    location: 'Denver, Colorado',
-    text: 'Andrew and Max are amazing at online lead Gen. They are extremely skilled in their craft and passionate about what they do. They are true advisors with the ability to breakdown a complex system into manageable steps and provide transparent and honest feedback and guidance along the way.',
-    cityImage: '/images/Cities/beautiful-landscape-of-the-bay-a-cliff-near-a-lake-2026-01-07-23-46-50-utc.jpg',
+    id: 'jorge-elizondo',
+    name: 'Jorge Elizondo',
+    teamName: "Christie's International",
+    location: 'Costa Rica',
+    text: "It's been great working with Andrew, very responsive and professional. I interviewed several other companies but I was looking something more sophisticated and that understands more about real estate and how to find the right buyer for my listings, after the first meeting with Andrew I knew they were a great fit for me.",
+    image: '/images/ClientWebsiteImages/screencapture-ocean-breeze-one-vercel-app-2026-03-29-19_49_50.png',
   },
 ];
 
 type TestimonialsProps = {
   /** When true, the "Client Reviews" H2 is omitted (parent section supplies the heading). */
-  omitHeading?: boolean
+  omitHeading?: boolean;
   /** When true, each card shows a 5-star row (visual trust signal). */
-  showStarRating?: boolean
+  showStarRating?: boolean;
   /** When set, only testimonials whose `id` is in this list are rendered (order follows this array). */
-  visibleIds?: (string | number)[]
-}
+  visibleIds?: (string | number)[];
+};
 
 const Testimonials = ({ omitHeading = false, showStarRating = false, visibleIds }: TestimonialsProps) => {
   const list =
     visibleIds && visibleIds.length > 0
-      ? visibleIds.map((vid) => testimonials.find((t) => t.id === vid)).filter(Boolean) as typeof testimonials
-      : testimonials
-  const truncateText = (text: string, maxLength: number = 100) => {
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength).trim() + '...';
-  };
+      ? (visibleIds.map((vid) => testimonials.find((t) => t.id === vid)).filter(Boolean) as typeof testimonials)
+      : testimonials;
 
   return (
-    <section className="pt-10 pb-32 bg-white border-b border-[var(--color-ink-200)]">
+    <section
+      className={`border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] ${omitHeading ? 'pt-0 pb-12 md:pb-16' : 'py-[var(--seo-section-y,theme(spacing.20))] md:py-[var(--seo-section-y,theme(spacing.28))]'}`}
+    >
       <div className="container-max">
-        {/* Section Header */}
         {!omitHeading ? (
-          <div className="mb-14">
-            <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1]">
-              Client Reviews
+          <div className="mb-10 md:mb-12">
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Reviews</p>
+            <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
+              Client reviews
             </h2>
+            <div
+              className="mt-5 h-[2px] w-14 bg-gradient-to-r from-[var(--color-off-black)] via-[var(--color-off-black)]/55 to-transparent sm:w-20"
+              aria-hidden
+            />
           </div>
         ) : null}
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3">
           {list.map((testimonial) => (
-            <TestimonialCard
-              key={testimonial.id}
-              testimonial={testimonial}
-              truncateText={truncateText}
-              showStarRating={showStarRating}
-            />
+            <TestimonialCard key={testimonial.id} testimonial={testimonial} showStarRating={showStarRating} />
           ))}
         </div>
       </div>
@@ -103,65 +101,55 @@ const Testimonials = ({ omitHeading = false, showStarRating = false, visibleIds 
 
 const TestimonialCard = ({
   testimonial,
-  truncateText,
   showStarRating,
 }: {
-  testimonial: (typeof testimonials)[0]
-  truncateText: (text: string, maxLength?: number) => string
-  showStarRating?: boolean
+  testimonial: (typeof testimonials)[0];
+  showStarRating?: boolean;
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const truncatedText = truncateText(testimonial.text, 80);
-
   return (
-    <div
-      className="group relative aspect-[2/3] min-h-[500px] overflow-hidden cursor-pointer"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Background Image */}
-      <div className="absolute inset-0">
+    <article className={cardClassName}>
+      <div className="pointer-events-none absolute inset-0">
         <Image
-          src={testimonial.cityImage}
-          alt={`${testimonial.location}`}
+          src={testimonial.image}
+          alt=""
           fill
-          className="object-cover"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           loading="lazy"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          aria-hidden
         />
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
+        <div
+          className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.38)_0%,rgba(0,0,0,0.12)_18%,rgba(255,255,255,0.88)_36%,#ffffff_44%,#ffffff_100%)]"
+          aria-hidden
+        />
       </div>
 
-      {/* Location - Top Left */}
-      {testimonial.location && (
-        <div className="absolute top-6 left-6 z-10">
-          <span className="text-sm uppercase tracking-[0.2em] text-[#FAFAF9] font-serif font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)]">
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col p-6 pb-6 pt-28 sm:pt-32">
+        <div className="absolute left-6 top-6 right-6 z-10">
+          <span className="text-sm font-medium uppercase tracking-[0.2em] text-[#FAFAF9] [text-shadow:_0_2px_8px_rgba(0,0,0,0.75)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] font-serif">
             {testimonial.location}
           </span>
         </div>
-      )}
 
-      {/* Client Name & Review - Bottom Left */}
-      <div className="absolute bottom-6 left-6 right-6 z-10">
-        <h3 className="text-xl font-serif font-light !text-white mb-2 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] [text-shadow:_0_2px_12px_rgba(0,0,0,0.9)]" style={{ color: '#FFFFFF' }}>
-          {testimonial.name}
-        </h3>
         {showStarRating ? (
-          <p
-            className="text-amber-400 text-sm mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
-            aria-label="5 out of 5 stars"
-          >
-            ★★★★★ <span className="text-[#FAFAF9] text-xs font-serif tracking-wide">5.0</span>
+          <p className="font-general-sans text-[var(--color-trust)]" aria-hidden>
+            ★★★★★
           </p>
         ) : null}
-        <blockquote className={`text-sm text-[#FAFAF9] leading-relaxed font-serif drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)] transition-all duration-300 ${
-          isHovered ? 'opacity-100' : 'opacity-90'
-        }`}>
-          "{isHovered ? testimonial.text : truncatedText}"
+
+        <h3 className={`font-serif text-xl font-light leading-snug text-[var(--color-off-black)] ${showStarRating ? 'mt-2' : 'mt-1'}`}>
+          {testimonial.name}
+        </h3>
+
+        <blockquote className="mt-3 line-clamp-6 min-h-0 flex-1 font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
+          &quot;{testimonial.text}&quot;
         </blockquote>
+
+        <p className="mt-auto self-start pt-4 text-left font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)]">
+          {testimonial.teamName}
+        </p>
       </div>
-    </div>
+    </article>
   );
 };
 

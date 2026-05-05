@@ -535,7 +535,7 @@ export default function LuxuryDevelopmentMarketingPage() {
               <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] tracking-tight mb-10 md:mb-12">
                 What luxury marketing partners say
               </h2>
-              <Testimonials omitHeading showStarRating visibleIds={[3, 7, 'linda-farwell']} />
+              <Testimonials omitHeading showStarRating visibleIds={[3, 7, 'gregg-rossman']} />
             </div>
           </section>
 

@@ -20,7 +20,7 @@ export default async function Home() {
       <DMRWaySection />
       <VideoTestimonials />
       <HomeBlogSection posts={featuredPosts} layoutVariant="seo" />
-      <Testimonials />
+      <Testimonials showStarRating />
     </div>
   );
 }

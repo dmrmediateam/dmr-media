@@ -585,7 +585,7 @@ export default function RealEstateLeadGenerationPage() {
               <h2 className="text-2xl md:text-3xl font-serif font-light text-[var(--color-off-black)] tracking-tight mb-10 md:mb-12">
                 What lead generation clients say
               </h2>
-              <Testimonials omitHeading showStarRating visibleIds={[3, 'sandy-reavill', 'david-heine']} />
+              <Testimonials omitHeading showStarRating visibleIds={[3, 'sandy-reavill', 'jorge-elizondo']} />
             </div>
           </section>
 
