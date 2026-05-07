@@ -165,8 +165,13 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/single-property-websites',
+        destination: '/real-estate-website-design',
+        permanent: true,
+      },
+      {
         source: '/single-property-websites/:location',
-        destination: '/single-property-websites',
+        destination: '/real-estate-website-design',
         permanent: true,
       },
       {

@@ -94,8 +94,8 @@ const Footer = () => {
               </h4>
               <ul className="space-y-4">
                 <li>
-                  <Link href="/single-property-websites" className="hover:opacity-60 transition-opacity">
-                    Single Property Websites
+                  <Link href="/real-estate-website-design" className="hover:opacity-60 transition-opacity">
+                    Real Estate Website Design
                   </Link>
                 </li>
                 <li>
