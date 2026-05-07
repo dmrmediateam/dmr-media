@@ -12,7 +12,7 @@ import {
 } from 'react'
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking'
 
-const TOTAL_STEPS = 3
+const TOTAL_STEPS = 2
 const DEFAULT_APPLY_FORM_NAME = 'google-general-strategy-call'
 
 const initialFormData = {
@@ -23,22 +23,21 @@ const initialFormData = {
   market: '',
   annualSalesVolume: '',
   teamSize: '',
-  biggestChallenge: '',
 }
 
 type FormDataState = typeof initialFormData
 
 const inputClass =
-  'w-full min-h-[48px] rounded-sm border border-[var(--color-ink-200)] bg-[var(--surface-base)] px-3 py-2.5 font-serif text-base leading-normal text-[var(--color-off-black)] placeholder:text-[var(--color-ink-400)]/80 transition-colors focus:border-[var(--color-off-black)] focus:outline-none focus:ring-1 focus:ring-[var(--color-off-black)]/15'
+  'w-full min-h-[48px] rounded-lg border border-[var(--color-ink-200)] bg-white px-3 py-2.5 font-serif text-base leading-normal text-[var(--color-off-black)] placeholder:text-[var(--color-ink-400)]/80 shadow-[0_1px_0_rgba(15,15,15,0.03)] transition-colors focus:border-[var(--color-off-black)] focus:outline-none focus:ring-1 focus:ring-[var(--color-off-black)]/15'
 
 const labelClass =
   'mb-2 block font-serif text-[11px] font-normal uppercase tracking-[0.16em] text-[var(--color-ink-300)]'
 
 const btnPrimary =
-  'inline-flex min-h-[48px] w-full items-center justify-center px-6 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-colors bg-[var(--color-off-black)] hover:bg-[var(--color-off-black)]/88 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:pointer-events-none disabled:opacity-45 sm:w-auto sm:min-w-[10.5rem]'
+  'inline-flex min-h-[48px] w-full items-center justify-center rounded-lg px-6 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_1px_0_rgba(15,15,15,0.06)] transition-colors bg-[var(--color-off-black)] hover:bg-[var(--color-off-black)]/88 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] disabled:pointer-events-none disabled:opacity-45 sm:w-auto sm:min-w-[10.5rem]'
 
 const btnGhost =
-  'inline-flex min-h-[48px] w-full items-center justify-center border border-[var(--color-off-black)]/16 bg-transparent px-6 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-colors hover:border-[var(--color-off-black)]/28 hover:bg-[var(--color-off-black)]/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:pointer-events-none disabled:opacity-45 sm:w-auto'
+  'inline-flex min-h-[48px] w-full items-center justify-center rounded-lg border border-[var(--color-ink-200)] bg-white px-6 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] shadow-[0_1px_0_rgba(15,15,15,0.03)] transition-colors hover:border-[var(--color-off-black)]/22 hover:bg-[var(--color-off-black)]/[0.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] disabled:pointer-events-none disabled:opacity-45 sm:w-auto'
 
 export default function ApplyModal() {
   const router = useRouter()
@@ -214,20 +213,20 @@ export default function ApplyModal() {
           aria-modal="true"
           aria-labelledby="apply-modal-title"
           aria-describedby="apply-modal-step-label apply-modal-intro"
-          className="max-h-[min(90vh,40rem)] w-full max-w-[26rem] overflow-y-auto rounded-sm border border-[var(--color-ink-200)] bg-white shadow-[var(--shadow-soft)]"
+          className="max-h-[min(90vh,40rem)] w-full max-w-[26rem] overflow-y-auto rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)] shadow-[0_12px_40px_-12px_rgba(15,15,15,0.12),0_1px_0_rgba(15,15,15,0.04)]"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="sticky top-0 z-[1] flex items-start justify-between gap-4 border-b border-[var(--color-ink-200)] bg-white px-5 py-5 sm:px-6">
+          <div className="sticky top-0 z-[1] flex items-start justify-between gap-4 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] px-6 py-6">
             <div className="min-w-0 pr-2">
               <p
                 id="apply-modal-step-label"
-                className="mb-2 font-serif text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]"
+                className="mb-2 font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]"
               >
                 Step {step + 1} of {TOTAL_STEPS}
               </p>
               <h2
                 id="apply-modal-title"
-                className="font-serif text-[1.35rem] font-light leading-snug tracking-tight text-[var(--color-off-black)] sm:text-2xl"
+                className="font-serif text-xl font-light leading-snug tracking-tight text-[var(--color-off-black)] sm:text-2xl"
               >
                 Let&apos;s See What You&apos;re Missing
               </h2>
@@ -235,7 +234,7 @@ export default function ApplyModal() {
             <button
               type="button"
               onClick={close}
-              className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-sm text-[var(--color-ink-400)] transition-colors hover:bg-[var(--surface-base)] hover:text-[var(--color-off-black)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2"
+              className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-transparent text-[var(--color-ink-400)] transition-colors hover:border-[var(--color-ink-200)] hover:bg-white hover:text-[var(--color-off-black)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)]"
               aria-label="Close"
             >
               <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden>
@@ -244,8 +243,8 @@ export default function ApplyModal() {
             </button>
           </div>
 
-          <div className="px-5 pb-1 pt-3 sm:px-6">
-            <div className="h-0.5 w-full overflow-hidden rounded-full bg-[var(--color-ink-200)]">
+          <div className="px-6 pb-1 pt-4">
+            <div className="h-1 w-full overflow-hidden rounded-full bg-[var(--color-ink-200)]/80">
               <div
                 className="h-full rounded-full bg-[var(--color-off-black)] transition-[width] duration-300 ease-out"
                 style={{ width: `${((step + 1) / TOTAL_STEPS) * 100}%` }}
@@ -256,11 +255,11 @@ export default function ApplyModal() {
           <form
             onKeyDown={handleFormKeyDown}
             onSubmit={step === TOTAL_STEPS - 1 ? handleSubmit : (e) => e.preventDefault()}
-            className="space-y-6 px-5 pb-6 pt-5 sm:px-6 sm:pb-7"
+            className="space-y-6 px-6 pb-7 pt-6"
           >
             <p
               id="apply-modal-intro"
-              className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-300)]"
+              className="font-serif text-sm leading-relaxed text-[var(--color-ink-300)]"
             >
               Takes about two minutes. We&apos;ll come to the call with your market, rankings, and biggest gaps
               already mapped.
@@ -394,41 +393,15 @@ export default function ApplyModal() {
                   </div>
                 </>
               ) : null}
-
-              {step === 2 ? (
-                <div>
-                  <label htmlFor="apply-modal-biggestChallenge" className={labelClass}>
-                    Biggest challenge right now
-                  </label>
-                  <select
-                    id="apply-modal-biggestChallenge"
-                    name="biggestChallenge"
-                    value={formData.biggestChallenge}
-                    onChange={handleChange}
-                    required
-                    className={`${inputClass} cursor-pointer`}
-                  >
-                    <option value="" disabled>
-                      Select one
-                    </option>
-                    <option>Not ranking on Google</option>
-                    <option>Poor ad ROI</option>
-                    <option>Not enough inbound leads</option>
-                    <option>Need more listing leads</option>
-                    <option>Weak presence vs competitors</option>
-                    <option>Starting from zero</option>
-                  </select>
-                </div>
-              ) : null}
             </div>
 
             {submitMessage ? (
               <p
                 role="status"
-                className={`rounded-sm border px-4 py-3 text-center font-serif text-sm leading-snug ${
+                className={`rounded-lg border px-4 py-3 text-center font-serif text-sm leading-snug ${
                   submitMessage.includes('Thank you')
-                    ? 'border-emerald-200/80 bg-emerald-50/90 text-emerald-900'
-                    : 'border-red-200/80 bg-red-50/90 text-red-900'
+                    ? 'border-emerald-200/80 bg-white text-emerald-900 shadow-[0_1px_0_rgba(15,15,15,0.04)]'
+                    : 'border-red-200/80 bg-white text-red-900 shadow-[0_1px_0_rgba(15,15,15,0.04)]'
                 }`}
               >
                 {submitMessage}
@@ -436,7 +409,7 @@ export default function ApplyModal() {
             ) : null}
 
             <div
-              className={`flex flex-col-reverse gap-3 border-t border-[var(--color-ink-200)] pt-5 sm:flex-row sm:items-center ${
+              className={`flex flex-col-reverse gap-3 border-t border-[var(--color-ink-200)] pt-6 sm:flex-row sm:items-center ${
                 step > 0 ? 'sm:justify-between' : 'sm:justify-end'
               }`}
             >
@@ -460,7 +433,7 @@ export default function ApplyModal() {
               </div>
             </div>
 
-            <p className="text-center font-serif text-[13px] leading-relaxed text-[var(--color-ink-400)]">
+            <p className="text-center font-serif text-sm leading-relaxed text-[var(--color-ink-400)]">
               No spam. No pressure—just a direct conversation about fit.
             </p>
           </form>
