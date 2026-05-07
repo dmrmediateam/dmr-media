@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import {
   useState,
   useEffect,
@@ -41,6 +41,7 @@ const btnGhost =
 
 export default function ApplyModal() {
   const router = useRouter()
+  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const [formName, setFormName] = useState(DEFAULT_APPLY_FORM_NAME)
   const [step, setStep] = useState(0)
@@ -49,13 +50,57 @@ export default function ApplyModal() {
   const [submitMessage, setSubmitMessage] = useState('')
   const stepPanelRef = useRef<HTMLDivElement>(null)
 
+  const formDataRef = useRef(formData)
+  const formNameRef = useRef(formName)
+  const eligibleForPartialRef = useRef(false)
+  const partialSentRef = useRef(false)
+  const submissionCompleteRef = useRef(false)
+
+  formDataRef.current = formData
+  formNameRef.current = formName
+
+  const flushPartialLead = useCallback(() => {
+    if (!eligibleForPartialRef.current || partialSentRef.current || submissionCompleteRef.current) {
+      return
+    }
+    const fd = formDataRef.current
+    if (!fd.email?.trim()) return
+
+    partialSentRef.current = true
+
+    const utm = getStoredUTMParams()
+    const submissionPage =
+      typeof window !== 'undefined' ? `${window.location.pathname}${window.location.search}` : ''
+
+    const body = JSON.stringify({
+      ...fd,
+      formName: formNameRef.current,
+      submissionPage,
+      ...utm,
+      submissionStatus: 'partial' as const,
+    })
+
+    const url = '/api/application'
+    if (typeof navigator.sendBeacon === 'function') {
+      const blob = new Blob([body], { type: 'application/json' })
+      if (navigator.sendBeacon(url, blob)) return
+    }
+    void fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body,
+      keepalive: true,
+    })
+  }, [])
+
   const close = useCallback(() => {
+    flushPartialLead()
     setIsOpen(false)
     setSubmitMessage('')
     setStep(0)
     setFormData(initialFormData)
     setFormName(DEFAULT_APPLY_FORM_NAME)
-  }, [])
+  }, [flushPartialLead])
 
   useEffect(() => {
     const handleOpenModal = (event: Event) => {
@@ -76,6 +121,9 @@ export default function ApplyModal() {
     setStep(0)
     setSubmitMessage('')
     setFormData(initialFormData)
+    eligibleForPartialRef.current = false
+    partialSentRef.current = false
+    submissionCompleteRef.current = false
   }, [isOpen])
 
   useEffect(() => {
@@ -83,14 +131,27 @@ export default function ApplyModal() {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close()
     }
+    const onPageHide = () => {
+      flushPartialLead()
+    }
     window.addEventListener('keydown', onKeyDown)
+    window.addEventListener('pagehide', onPageHide)
     const prevOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     return () => {
       window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('pagehide', onPageHide)
       document.body.style.overflow = prevOverflow
     }
-  }, [isOpen, close])
+  }, [isOpen, close, flushPartialLead])
+
+  const prevPathnameRef = useRef(pathname)
+  useEffect(() => {
+    if (prevPathnameRef.current !== pathname) {
+      prevPathnameRef.current = pathname
+      if (isOpen) flushPartialLead()
+    }
+  }, [pathname, isOpen, flushPartialLead])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -116,7 +177,10 @@ export default function ApplyModal() {
 
   const goNext = () => {
     if (!validateCurrentStep()) return
-    setStep((s) => Math.min(s + 1, TOTAL_STEPS - 1))
+    setStep((s) => {
+      if (s === 0) eligibleForPartialRef.current = true
+      return Math.min(s + 1, TOTAL_STEPS - 1)
+    })
   }
 
   const goBack = () => {
@@ -162,6 +226,7 @@ export default function ApplyModal() {
       }
 
       if (response.ok && data.ok && typeof data.redirectPath === 'string') {
+        submissionCompleteRef.current = true
         trackConversion('Lead', {
           form_name: formName,
           submission_page: submissionPage,
@@ -173,6 +238,7 @@ export default function ApplyModal() {
       }
 
       if (response.ok && data.ok) {
+        submissionCompleteRef.current = true
         trackConversion('Lead', {
           form_name: formName,
           submission_page: submissionPage,

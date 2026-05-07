@@ -40,9 +40,12 @@ export async function POST(req: NextRequest) {
       const firstName = typeof body.firstName === 'string' ? body.firstName.trim() : ''
       const lastName = typeof body.lastName === 'string' ? body.lastName.trim() : ''
       const fullName = [firstName, lastName].filter(Boolean).join(' ')
+      const submissionStatus =
+        body.submissionStatus === 'partial' ? ('partial' as const) : ('complete' as const)
 
       const payload = {
         formName,
+        submissionStatus,
         name: (typeof body.name === 'string' ? body.name : fullName) || fullName,
         firstName,
         lastName,
@@ -117,6 +120,7 @@ export async function POST(req: NextRequest) {
 
     const payload = {
       formName,
+      submissionStatus: 'complete' as const,
       name: formData.get('name')?.toString() ?? fullName,
       firstName,
       lastName,

@@ -61,6 +61,8 @@ export interface ApplicationFormEmailData {
   lastName: string;
   email: string;
   phone: string;
+  /** Set when the apply modal is abandoned after step 1 (contact) was completed */
+  submissionStatus?: 'complete' | 'partial';
   profileType?: string;
   website?: string;
   market?: string;
@@ -377,6 +379,7 @@ export async function sendApplicationFormEmail(data: ApplicationFormEmailData) {
     lastName,
     email,
     phone,
+    submissionStatus = 'complete',
     profileType,
     website,
     market,
@@ -402,6 +405,10 @@ export async function sendApplicationFormEmail(data: ApplicationFormEmailData) {
     ? bookingReason.join(', ')
     : 'Not provided';
 
+  const isPartial = submissionStatus === 'partial';
+  const leadKind = isPartial ? 'Partial application (abandoned modal)' : 'New Application Form Submission';
+  const subjectLead = isPartial ? `[Partial lead] ${formName}` : `New Application Submission (${formName})`;
+
   const emailContent = {
     to: process.env.APPLICATION_FORM_EMAIL || 'team@dmrmedia.org',
     from: {
@@ -409,7 +416,7 @@ export async function sendApplicationFormEmail(data: ApplicationFormEmailData) {
       name: process.env.SENDGRID_FROM_NAME || 'DMR Media',
     },
     replyTo: email,
-    subject: `New Application Submission (${formName}) - ${name || `${firstName} ${lastName}`.trim() || 'Unknown'}`,
+    subject: `${subjectLead} - ${name || `${firstName} ${lastName}`.trim() || 'Unknown'}`,
     html: `
       <!DOCTYPE html>
       <html>
@@ -429,10 +436,12 @@ export async function sendApplicationFormEmail(data: ApplicationFormEmailData) {
         <body>
           <div class="container">
             <div class="header">
-              <h2 style="margin:0;">New Application Form Submission</h2>
+              <h2 style="margin:0;">${leadKind}</h2>
               <p style="margin:8px 0 0 0; opacity:.85;">Form: ${formName}</p>
+              ${isPartial ? '<p style="margin:12px 0 0 0;padding:10px 12px;background:#fff8e6;border-radius:6px;font-size:14px;">User continued past contact details then closed the site or the form before submitting. Business fields may be incomplete.</p>' : ''}
             </div>
             <div class="content">
+              <div class="field"><span class="label">Submission status:</span><span class="value">${submissionStatus}</span></div>
               <div class="field"><span class="label">Name:</span><span class="value">${name || `${firstName} ${lastName}`.trim() || 'Not provided'}</span></div>
               <div class="field"><span class="label">Email:</span><span class="value">${email || 'Not provided'}</span></div>
               <div class="field"><span class="label">Phone:</span><span class="value">${phone || 'Not provided'}</span></div>
@@ -469,8 +478,10 @@ export async function sendApplicationFormEmail(data: ApplicationFormEmailData) {
       </html>
     `,
     text: `
-New Application Form Submission
+${leadKind}
 Form: ${formName}
+Submission status: ${submissionStatus}
+${isPartial ? '\nNote: User continued past contact details then closed before final submit. Business fields may be incomplete.\n' : ''}
 
 Name: ${name || `${firstName} ${lastName}`.trim() || 'Not provided'}
 Email: ${email || 'Not provided'}
