@@ -61,81 +61,81 @@ function VolumeOnIcon({ className }: { className?: string }) {
 
 const problemItems = [
   {
-    title: "You're invisible on Google",
-    body: "Agents in your market own Page 1. You're on Page 3. Buyers never scroll that far.",
+    title: 'You need senior strategy, not another retainer',
+    body: 'You already have execution capacity, but your roadmap lacks clear SEO priorities tied to revenue outcomes.',
   },
   {
-    title: "You've burned ad budget before",
-    body: 'You tried Google or Facebook Ads. The agency got paid. You got nothing. Zero accountability.',
+    title: 'A relaunch is at risk without search input',
+    body: 'Design and dev are moving, but no one has pressure-tested IA, indexation, and keyword coverage before launch.',
   },
   {
-    title: 'You hired an agency that disappeared',
-    body: "Big pitch. A login to a portal. Then silence. You've been here. You don't want to go back.",
+    title: 'Leadership needs a defensible plan',
+    body: 'You need a documented strategy your board, brokerage, or partners can review and approve with confidence.',
   },
   {
-    title: "You don't have time to manage vendors",
-    body: "You're running a $40M+ operation. You can't babysit a team that doesn't understand real estate.",
+    title: 'You want clarity before committing to monthly SEO',
+    body: 'Consulting gives you fixed deliverables, fixed timeline, and a clean handoff before choosing full management.',
   },
 ]
 
 const whyDmrBullets = [
-  'Pitched Nobu at 18. Understood luxury before most people enter the workforce.',
-  'Built a running agency by 20 and moved it to Bali while still delivering for US luxury teams.',
-  "Clients include Wisconsin's Realtor of the Year and Dolphin Cay's #1 team.",
+  'Fixed-scope consulting engagement with clear deliverables and timeline.',
+  'Roadmap built for your internal team to execute without ambiguity.',
+  'Option to stay independent or upgrade later to managed SEO execution.',
 ]
 
 const systemItems = [
   {
-    title: '01 — AI-First SEO',
-    body: 'We build content and backlinks that rank for buyer-intent searches in your exact market. Blogs, citations, and backlinks executed monthly without you thinking about it.',
+    title: '01 — Discovery & Audit',
+    body: 'Stakeholder interviews, analytics review, crawl diagnostics, Core Web Vitals, schema, and indexation analysis.',
   },
   {
-    title: '02 — Google Ads That Convert',
-    body: 'Campaigns built around luxury real estate search behavior. Every keyword intentional. Every dollar tracked. One client landed a $1M listing in 30 days at $36.93 CPL.',
+    title: '02 — Competitive + Keyword Strategy',
+    body: 'SERP landscape mapping, entity opportunities, and intent-led keyword architecture tied to your inventory and market.',
   },
   {
-    title: '03 — Websites That Work',
-    body: 'We build and optimize on Luxury Presence and custom platforms designed to capture leads, not just impress at listing presentations.',
+    title: '03 — Roadmap + Content Calendar',
+    body: 'Prioritized implementation plan sequencing impact vs. effort, plus a practical editorial calendar your team can ship.',
   },
   {
-    title: '04 — A Real Team Behind You',
-    body: 'Direct access. Real communication. Real accountability. No support-ticket queue. No SaaS chat widget.',
+    title: '04 — Workshop + Implementation Handoff',
+    body: 'We translate strategy into executable tickets, ownership, and timelines so dev and marketing can move immediately.',
   },
 ]
 
 const caseStudies = [
   {
-    title: 'Eagan Luxury Real Estate · St. Petersburg, FL',
+    title: 'In-house Marketing Team Needing SEO Direction',
     image: '/images/EaganCaseStudy/GoogleSearchConsole.png',
     points: [
-      '$11.07M closed volume in Q1 2026.',
-      'Daily impressions grew from 0 to 812.',
-      `#1 ranking for "Realtor in Dolphin Cay".`,
-      '$36.93 cost per lead from Google Ads.',
+      'Needed a strategy before scaling content output.',
+      'Received prioritized technical fixes and keyword map.',
+      'Internal team converted roadmap into weekly tickets.',
+      'Avoided a costly rebuild driven by guesswork.',
     ],
-    footer: "William Breaden · Dolphin Cay's #1 Team",
+    footer: 'Typical consulting outcome',
   },
   {
-    title: 'Jade · Legendary Real Estate · Wisconsin',
+    title: 'Brokerage Preparing a Website Relaunch',
     image: '/images/JadeCRM.png',
     points: [
-      '3x qualified inbound leads in 90 days.',
-      '42 connected content assets rebuilt into one funnel.',
-      'Signal-first SEO system tied to real conversion intent.',
-      'Luxury nurture automation built around buyer behavior.',
+      'Audit identified crawl/indexation issues pre-launch.',
+      'Information architecture adjusted before development freeze.',
+      'Content plan aligned to neighborhood and buyer-intent queries.',
+      'Launch proceeded with reduced SEO rework risk.',
     ],
-    footer: 'Jade Goodhue · Legendary Real Estate',
+    footer: 'Typical consulting outcome',
   },
   {
-    title: 'Marquis + Farwell Group · Sonoma County, CA',
+    title: 'Leadership Team Comparing Agency Options',
     image: '/images/MarquisFarwellGoogleSearchConsole.png',
     points: [
-      'Daily organic clicks increased 2 → 38 (19x growth).',
-      'Google Business interactions increased +41% in one month.',
-      'Healdsburg and Sonoma County visibility improved for high-intent terms.',
-      'Qualified buyer leads generated directly from organic search.',
+      'Needed independent baseline before signing a retainer.',
+      'Received board-ready roadmap with owners and sequencing.',
+      'Used deliverables to evaluate agency proposals objectively.',
+      'Moved forward with a clear scope and measurable milestones.',
     ],
-    footer: 'Samantha Marquis + Linda Farwell · Founding Agents',
+    footer: 'Typical consulting outcome',
   },
 ]
 
@@ -159,20 +159,70 @@ const reviews = [
 
 const processItems = [
   {
-    title: '01 — Free Audit',
-    body: "We review your market, rankings, and digital presence and show you exactly what's costing you leads right now.",
+    title: '01 — Discovery & Audit (2 weeks)',
+    body: 'Interviews, analytics review, technical crawl, and competitive baseline to define the right scope.',
   },
   {
-    title: '02 — Custom Plan',
-    body: 'Strategy built around your market and volume targets. Not a template. Not a package.',
+    title: '02 — Strategy Development (1-2 weeks)',
+    body: 'Keyword architecture, IA recommendations, technical fixes, and a board-ready narrative.',
   },
   {
-    title: '03 — We Execute',
-    body: "Blogs, backlinks, ads, website. You stay in your lane. We stay in ours. You don't manage us.",
+    title: '03 — Delivery & Kickoff (1 week)',
+    body: 'Workshop handoff with your team and clear next actions for content, development, and reporting.',
   },
   {
-    title: '04 — You Close More Deals',
-    body: "More qualified traffic, inbound leads, and listings. That's the scoreboard.",
+    title: '04 — Optional Quarterly Check-ins',
+    body: 'Stay consulting-only or add lightweight strategic reviews while your team executes.',
+  },
+]
+
+const faqItems = [
+  {
+    question: 'How long does SEO consulting take?',
+    answer:
+      'Most engagements run four to five weeks end-to-end: two weeks for discovery/audit, one to two for strategy, then one week for delivery and kickoff.',
+  },
+  {
+    question: 'Can we upgrade to full SEO management later?',
+    answer: (
+      <>
+        Yes. This is the smaller strategy package. If you want weekly execution afterward, move into{' '}
+        <a
+          href="https://www.dmrmedia.org/seo-optimization"
+          className="underline decoration-[var(--color-ink-300)] underline-offset-4 hover:decoration-[var(--color-off-black)]"
+        >
+          SEO Optimization
+        </a>{' '}
+        when the roadmap is approved.
+      </>
+    ),
+  },
+  {
+    question: 'Do you provide implementation support?',
+    answer:
+      'Yes. Every consulting project includes a kickoff workshop that translates findings into executable tickets and owners for your internal team.',
+  },
+  {
+    question: 'What if we already need execution now?',
+    answer: (
+      <>
+        If you want us to run technical + content execution weekly, skip straight to{' '}
+        <a
+          href="https://www.dmrmedia.org/seo-optimization"
+          className="underline decoration-[var(--color-ink-300)] underline-offset-4 hover:decoration-[var(--color-off-black)]"
+        >
+          SEO Optimization
+        </a>
+        . If you need strategic direction first, stay with{' '}
+        <a
+          href="https://www.dmrmedia.org/seo-consulting"
+          className="underline decoration-[var(--color-ink-300)] underline-offset-4 hover:decoration-[var(--color-off-black)]"
+        >
+          SEO Consulting
+        </a>
+        .
+      </>
+    ),
   },
 ]
 
@@ -180,22 +230,22 @@ const proofItems = [
   {
     src: '/images/landing/google-general/01-claude-ranking.png',
     label: 'Claude ranking mention',
-    stat: 'Claude: DMR Media listed as top-rated for luxury-focused real estate PPC.',
+    stat: 'Audit narratives prioritize impact vs. effort so your team knows exactly what to ship first.',
   },
   {
     src: '/images/landing/google-general/02-perplexity-ranking.png',
     label: 'Perplexity ranking mention',
-    stat: 'Perplexity: DMR Media highlighted as a standout and ranked #1 in a 2026 roundup.',
+    stat: 'Competitive research clarifies where head terms matter and where long-tail intent converts faster.',
   },
   {
     src: '/images/landing/google-general/03-semrush-ranking.png',
     label: 'SEMrush ranking mention',
-    stat: 'SEMrush directory: DMR Media appears in top US real estate PPC companies.',
+    stat: 'Keyword architecture maps content to actual buyer and seller intent, not vanity volume targets.',
   },
   {
     src: '/images/landing/google-general/04-google-ranking.png',
     label: 'Google AI Overview ranking mention',
-    stat: 'Google AI Overview: DMR Media included among top real estate PPC agencies in 2026.',
+    stat: 'Implementation workshops turn strategy into actionable tickets for dev, content, and leadership.',
   },
 ] as const
 
@@ -343,19 +393,19 @@ export default function GoogleGeneralLandingPage() {
         <div className="relative z-10 container-max flex min-h-screen items-center justify-center py-20 text-center pointer-events-none">
           <div className="max-w-4xl pointer-events-auto">
             <p className="mb-6 font-general-sans text-[11px] uppercase tracking-[0.24em] text-white/80">
-              The AI-First Agency with 5-stars on Trustpilot & Google.
+              SEO Consulting for Real Estate Teams
             </p>
             <h1
               id="google-landing-hero-title"
               className="font-serif text-4xl font-light leading-[1.04] tracking-tight !text-white sm:text-5xl md:text-6xl lg:text-7xl"
             >
-              Your Market Has a #1 Agent.
+              SEO Strategy Without
               <br />
-              It Should Be You.
+              the Long-Term Contract.
             </h1>
             <p className="mx-auto mt-8 max-w-3xl font-general-sans text-lg leading-relaxed text-white/90 sm:text-xl">
-              Most luxury agents &amp; teams doing $10M+ a year are invisible on Google. We fix that. AI-powered SEO.
-              Precision Google Ads. All optimized for GCI not &apos;Leads&apos;.
+              Get a documented SEO roadmap, competitive analysis, and implementation plan your team can execute with
+              confidence.
             </p>
             <div className="mt-10 flex flex-col items-center">
               <button
@@ -412,15 +462,14 @@ export default function GoogleGeneralLandingPage() {
             titleId="problem-title"
             eyebrow="The Problem"
             align="center"
-            title="Buyers are AI Searching. They&apos;re not finding you."
+            title="Most teams don&apos;t need another vendor. They need a clear plan."
           />
           <p className="mx-auto mt-8 max-w-3xl font-general-sans leading-relaxed text-[var(--color-ink-300)]">
-            You&apos;re closing deals. You&apos;re building a team. But between your last closing and your next
-            one, buyers and sellers are finding competitors. Not because those agents are better. Because they
-            rank higher.
+            Consulting is built for teams with internal capacity that need strategy, sequencing, and QA before they
+            ship.
           </p>
           <p className="mx-auto mt-3 max-w-3xl font-general-sans leading-relaxed text-[var(--color-ink-300)]">
-            That gap costs you deals you never even see.
+            You leave with a practical roadmap, not a retainer dependency.
           </p>
         </div>
         <div className="container-max mt-12">
@@ -472,7 +521,7 @@ export default function GoogleGeneralLandingPage() {
 
       <ApplyCtaBand
         surface="base"
-        hint="If this resonates, tell us about your market—we come to the call prepared."
+        hint="Need strategy first? Apply and we will map your consulting scope."
         onApply={openApplyModal}
       />
 
@@ -494,11 +543,11 @@ export default function GoogleGeneralLandingPage() {
             <SectionHeading
               titleId="why-dmr-title"
               eyebrow="Why DMR"
-              title={<>We don&apos;t sell you a platform. We build your pipeline.</>}
+              title={<>Smaller package. Senior guidance. Zero fluff.</>}
             />
             <p className="mt-8 font-general-sans leading-relaxed text-[var(--color-ink-300)]">
-              We started DMR at 18. Moved the agency to Bali at 20 while serving US luxury teams daily. We&apos;ve
-              helped sell $6.5M properties and supported agents breaking into new price tiers.
+              This package is for teams that want strategic clarity before committing to ongoing execution. You get
+              fixed deliverables, fixed timeline, and a handoff your internal operators can run.
             </p>
             <ul className="mt-8 space-y-4 border-l border-[var(--color-ink-200)] pl-5">
               {whyDmrBullets.map((bullet) => (
@@ -513,7 +562,7 @@ export default function GoogleGeneralLandingPage() {
 
       <ApplyCtaBand
         surface="white"
-        hint="Ready to see how we work with teams like yours?"
+        hint="If you have team capacity, consulting is usually the fastest path to clarity."
         onApply={openApplyModal}
       />
 
@@ -525,13 +574,13 @@ export default function GoogleGeneralLandingPage() {
         <div className="container-max">
           <SectionHeading
             titleId="proof-title"
-            eyebrow="We Do It For Ourselves"
+            eyebrow="What You Get"
             align="center"
-            title="We Practice What We Preach"
+            title="Consulting deliverables built to be used, not filed away"
           />
           <p className="mx-auto mt-8 max-w-4xl text-center font-general-sans leading-relaxed text-[var(--color-ink-300)]">
-            Most agencies sell SEO but can&apos;t rank. Most agencies sell Google Ads but never run profitable
-            campaigns for themselves. We are the case study.
+            Each engagement ships with an audit narrative, competitive insights, keyword mapping, and a prioritized
+            implementation roadmap.
           </p>
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
             {proofItems.map((item) => (
@@ -550,8 +599,7 @@ export default function GoogleGeneralLandingPage() {
             ))}
           </div>
           <blockquote className="mx-auto mt-12 max-w-4xl border-l-2 border-[var(--color-off-black)]/20 py-1 pl-6 font-serif text-lg leading-relaxed text-[var(--color-off-black)]">
-            If we can rank in a space where we&apos;re competing against agencies with 10x our budget — imagine
-            what we do for you in a market where you&apos;re already the expert.
+            Strategy should make your next 90 days easier to execute, not add another reporting layer.
           </blockquote>
         </div>
       </section>
@@ -563,8 +611,8 @@ export default function GoogleGeneralLandingPage() {
         <div className="container-max">
           <SectionHeading
             titleId="system-title"
-            eyebrow="The System"
-            title="Four things. Executed relentlessly."
+            eyebrow="Consulting Package"
+            title="Four deliverables. One clear handoff."
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {systemItems.map((item) => (
@@ -582,7 +630,7 @@ export default function GoogleGeneralLandingPage() {
 
       <ApplyCtaBand
         surface="white"
-        hint="Same four pillars—mapped to your market on a strategy call."
+        hint="You can execute this with your current team or keep us involved."
         onApply={openApplyModal}
       />
 
@@ -591,7 +639,7 @@ export default function GoogleGeneralLandingPage() {
         aria-labelledby="case-studies-title"
       >
         <div className="container-max">
-          <SectionHeading titleId="case-studies-title" eyebrow="Case Studies" title="Real teams. Real numbers." />
+          <SectionHeading titleId="case-studies-title" eyebrow="Use Cases" title="Where consulting is the right fit" />
           <div className="mt-12 grid gap-8 lg:grid-cols-3 lg:gap-6">
             {caseStudies.map((study) => (
               <article key={study.title} className={cardArticleClass}>
@@ -621,7 +669,7 @@ export default function GoogleGeneralLandingPage() {
 
       <ApplyCtaBand
         surface="base"
-        hint="Proof is one thing—your numbers are the conversation we want next."
+        hint="Bring your market, team structure, and growth target. We will scope the roadmap."
         onApply={openApplyModal}
       />
 
@@ -630,7 +678,7 @@ export default function GoogleGeneralLandingPage() {
         aria-labelledby="reviews-title"
       >
         <div className="container-max">
-          <SectionHeading titleId="reviews-title" eyebrow="Reviews" title="What clients say" />
+          <SectionHeading titleId="reviews-title" eyebrow="Client Feedback" title="What clients say" />
           <div className="mt-12 grid gap-8 md:grid-cols-3 md:gap-6">
             {reviews.map((review) => (
               <article
@@ -652,7 +700,7 @@ export default function GoogleGeneralLandingPage() {
 
       <ApplyCtaBand
         surface="white"
-        hint="Teams like yours use the same process—we tailor it to your market."
+        hint="Consulting first when you need direction. Optimization when you need full execution."
         onApply={openApplyModal}
       />
 
@@ -661,7 +709,7 @@ export default function GoogleGeneralLandingPage() {
         aria-labelledby="process-title"
       >
         <div className="container-max">
-          <SectionHeading titleId="process-title" eyebrow="Process" title="What happens next" />
+          <SectionHeading titleId="process-title" eyebrow="Process" title="Three phases, then your team executes" />
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {processItems.map((item) => (
               <article key={item.title} className={cardArticleClass}>
@@ -675,9 +723,23 @@ export default function GoogleGeneralLandingPage() {
 
       <ApplyCtaBand
         surface="base"
-        hint="You know the steps—apply when you want a straight conversation about fit."
+        hint="If this smaller package fits, apply and we will map your timeline."
         onApply={openApplyModal}
       />
+
+      <section className="border-b border-[var(--color-ink-200)] bg-white py-14 md:py-20 lg:py-24" aria-labelledby="faq-title">
+        <div className="container-max">
+          <SectionHeading titleId="faq-title" eyebrow="FAQ" title="Questions teams ask before choosing a package" />
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {faqItems.map((item) => (
+              <article key={item.question} className={`${cardArticleClass} bg-[var(--surface-base)]`}>
+                <h3 className="font-serif text-xl text-[var(--color-off-black)]">{item.question}</h3>
+                <p className="mt-3 font-general-sans text-[var(--color-ink-300)]">{item.answer}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <ApplyModal />
     </main>

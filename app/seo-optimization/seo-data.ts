@@ -14,7 +14,7 @@ export const FAQ_ITEMS = [
   {
     question: 'What does ongoing SEO actually look like?',
     answer:
-      'Search is a moving target: algorithms shift, competitors publish, inventory changes. Retainers include monitoring, technical hygiene, content cadence, and internal linking so your site earns trust from Google and from buyers. You stay in your lane; we own the execution rhythm.',
+      'Search is a moving target: algorithms shift, competitors publish, inventory changes. Retainers include monitoring, technical hygiene, content cadence, and internal linking so your site earns trust from Google and from buyers. If you need a smaller strategy-first package, see https://www.dmrmedia.org/seo-consulting.',
   },
   {
     question: 'We already have a site. Do we have to rebuild?',
@@ -24,7 +24,7 @@ export const FAQ_ITEMS = [
   {
     question: 'How is pricing scoped?',
     answer:
-      'After audit we align scope to market difficulty, site size, content velocity, and your growth target, then we put deliverables in writing. No opaque “packages,” no surprise invoices for basic edits.',
+      'After audit we align scope to market difficulty, site size, content velocity, and your growth target, then we put deliverables in writing. No opaque “packages,” no surprise invoices for basic edits. If you are not ready for weekly execution, start with https://www.dmrmedia.org/seo-consulting.',
   },
 ] as const
 

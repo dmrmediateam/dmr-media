@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, type ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -16,7 +16,6 @@ import {
   frameworkPillars,
   processPhases,
   stakesThree,
-  FAQ_ITEMS,
 } from './seo-data'
 
 const APPLY_FORM = 'seo-optimization-apply'
@@ -119,6 +118,23 @@ export default function SEOOptimizationPageContent() {
   }
 
   const heroEase = [0.25, 0.1, 0.25, 1] as const
+  const rankingProof = [
+    {
+      term: 'Luxury real estate SEO',
+      result: '#1',
+      note: 'DMR ranks for our own service-intent SEO terms in competitive result sets.',
+    },
+    {
+      term: 'Real estate SEO consulting',
+      result: 'Top positions',
+      note: 'Our consulting and optimization pages both attract qualified discovery traffic.',
+    },
+    {
+      term: 'Real estate website SEO',
+      result: 'Page 1 visibility',
+      note: 'We publish, iterate, and rank our own properties before prescribing client playbooks.',
+    },
+  ] as const
 
   return (
     <div className="min-h-screen bg-white [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
@@ -149,7 +165,7 @@ export default function SEOOptimizationPageContent() {
         <div className="relative z-10 container-max flex min-h-screen items-center justify-center py-20 text-center pointer-events-none">
           <motion.div
             className="max-w-4xl pointer-events-auto"
-            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+            initial={reduceMotion ? false : { opacity: 0.5, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
           >
@@ -402,6 +418,30 @@ export default function SEOOptimizationPageContent() {
         </div>
       </section>
 
+      <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]" id="dmr-rankings">
+        <div className="container-max">
+          <SeoReveal>
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">We do it ourselves</p>
+            <h2 className="mt-3 max-w-3xl font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
+              We rank DMR first, then apply the same system to clients
+            </h2>
+            <SectionRule />
+            <p className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
+              This is not theory from a slide deck. The same technical, on-page, and editorial cadence we sell is what we run on our own site every week.
+            </p>
+          </SeoReveal>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {rankingProof.map((item) => (
+              <article key={item.term} className="rounded-lg border border-[var(--color-ink-200)] bg-white p-6">
+                <p className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">{item.term}</p>
+                <p className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)]">{item.result}</p>
+                <p className="mt-3 font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">{item.note}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Process */}
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="process">
         <div className="container-max">
@@ -498,8 +538,51 @@ export default function SEOOptimizationPageContent() {
             </h2>
             <SectionRule />
           </SeoReveal>
+          {(() => {
+            const faqRenderItems: ReadonlyArray<{ question: string; answer: ReactNode }> = [
+              {
+                question: 'How long until we see movement in search?',
+                answer:
+                  'Technical fixes and long-tail terms often move first, sometimes within weeks. Competitive head terms compound over quarters as authority stacks. We report weekly on leading indicators (coverage, impressions, crawl health) so you always know what the work is doing, not just where you hope to land someday.',
+              },
+              {
+                question: 'Do you guarantee #1 rankings?',
+                answer:
+                  'No ethical partner guarantees a position you do not control. What we do guarantee is a disciplined system: clear priorities, accountable execution, and reporting tied to pipeline, not vanity charts. When you need demand while organic compounds, we pair SEO with Google Ads so you are not betting the business on a single channel.',
+              },
+              {
+                question: 'What does ongoing SEO actually look like?',
+                answer: (
+                  <>
+                    Search is a moving target: algorithms shift, competitors publish, inventory changes. Retainers include monitoring, technical hygiene, content cadence, and internal linking so your site earns trust from Google and from buyers. If you need a smaller strategy-first package, start with{' '}
+                    <Link href="/seo-consulting" className="underline underline-offset-2 hover:opacity-70">
+                      SEO consulting
+                    </Link>
+                    .
+                  </>
+                ),
+              },
+              {
+                question: 'We already have a site. Do we have to rebuild?',
+                answer:
+                  'Usually no. Most teams need audit-first prioritization: fix what blocks crawl and conversion, then scale content. We only recommend rebuilds when the stack caps growth or makes every change expensive and slow.',
+              },
+              {
+                question: 'How is pricing scoped?',
+                answer: (
+                  <>
+                    After audit we align scope to market difficulty, site size, content velocity, and your growth target, then we put deliverables in writing. No opaque packages, no surprise invoices for basic edits. If you are not ready for weekly execution, begin with{' '}
+                    <Link href="/seo-consulting" className="underline underline-offset-2 hover:opacity-70">
+                      SEO consulting
+                    </Link>
+                    .
+                  </>
+                ),
+              },
+            ]
+            return (
           <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-1 md:px-2">
-            {FAQ_ITEMS.map((item) => (
+                {faqRenderItems.map((item) => (
               <details
                 key={item.question}
                 className="group border-0 px-3 py-1 transition-colors [&[open]]:bg-white/90 md:px-4"
@@ -513,12 +596,14 @@ export default function SEOOptimizationPageContent() {
                     ▼
                   </span>
                 </summary>
-                <p className="border-t border-transparent pb-5 pl-0.5 pr-2 pt-3 font-serif text-sm leading-relaxed text-[var(--color-ink-300)] group-open:border-[var(--color-ink-200)]/60 motion-reduce:transition-none">
+                    <div className="border-t border-transparent pb-5 pl-0.5 pr-2 pt-3 font-serif text-sm leading-relaxed text-[var(--color-ink-300)] group-open:border-[var(--color-ink-200)]/60 motion-reduce:transition-none">
                   {item.answer}
-                </p>
+                    </div>
               </details>
             ))}
           </div>
+            )
+          })()}
         </div>
       </section>
 
