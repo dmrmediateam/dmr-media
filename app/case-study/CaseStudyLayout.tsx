@@ -28,7 +28,7 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
     : null
 
   return (
-    <div className="bg-white text-[var(--color-off-black)]">
+    <div className="min-h-screen bg-[var(--surface-base)] text-[var(--color-off-black)]">
       {/* Review schema — Article schema provided by SEOWrapper */}
       {reviewSchema && (
         <script
@@ -38,16 +38,20 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
       )}
 
       {/* 1. Hero */}
-      <section className="py-24 md:py-32 border-b border-[var(--color-ink-200)]">
+      <section className="border-b border-[var(--color-ink-200)] py-24 md:py-32">
         <div className="container-max">
           <div className="max-w-3xl space-y-6">
-            <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
               case study
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light leading-[1.1] tracking-tight">
+            <h1 className="text-3xl font-serif font-light leading-[1.1] tracking-tight sm:text-4xl md:text-5xl">
               {data.client}
             </h1>
-            <p className="text-base sm:text-lg text-[var(--color-ink-300)] leading-relaxed font-serif max-w-[700px]">
+            <div
+              className="h-[2px] w-14 bg-gradient-to-r from-[var(--color-off-black)] via-[var(--color-off-black)]/55 to-transparent sm:w-20"
+              aria-hidden
+            />
+            <p className="max-w-[700px] font-serif text-base leading-relaxed text-[var(--color-ink-300)] sm:text-lg">
               {data.hero.subtitle}
             </p>
           </div>
@@ -58,7 +62,7 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
                 alt={data.hero.imageAlt}
                 width={1920}
                 height={1080}
-                className="w-full h-auto"
+                className="h-auto w-full rounded-lg border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
                 priority
               />
             </div>
@@ -67,7 +71,7 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
       </section>
 
       {/* 2. Metrics Bar */}
-      <section className="border-t border-b border-[var(--color-ink-200)]" aria-label="Key results">
+      <section className="border-y border-[var(--color-ink-200)] bg-white" aria-label="Key results">
         <div className="container-max">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-0 [&>*]:border-r [&>*]:border-[var(--color-ink-200)] [&>*:nth-child(2n)]:border-r-0 md:[&>*:nth-child(2n)]:border-r md:[&>*:last-child]:border-r-0">
             {data.metrics.map((m) => (
@@ -92,29 +96,36 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
 
       {/* 3. Client Review — Featured, position #2 after metrics (omitted when no reviews) */}
       {data.reviews.length > 0 ? (
-        <section className="bg-[#0D0D0D] text-[#F5F4F0] py-16 md:py-24" aria-label="Client testimonial">
+        <section
+          className="border-y border-[var(--color-ink-200)] bg-white py-16 md:py-24"
+          aria-label="Client testimonial"
+        >
           <div className="container-max">
-            <div className="max-w-[820px] mx-auto space-y-16">
-              <p className="text-xs uppercase tracking-[0.2em] font-serif" style={{ color: '#B8925A' }}>
-                Client Review
+            <div className="mx-auto max-w-[820px] space-y-16">
+              <p className="text-center font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
+                Client review
               </p>
+              <div
+                className="mx-auto h-[2px] w-14 bg-gradient-to-r from-transparent via-[var(--color-off-black)]/55 to-transparent sm:w-20"
+                aria-hidden
+              />
               {data.reviews.map((review, i) => (
                 <div key={i} className="text-center">
                   {review.image && (
-                    <div className="flex justify-center mb-6">
+                    <div className="mb-6 flex justify-center">
                       <Image
                         src={review.image}
                         alt={`${review.author} testimonial — DMR Media client`}
                         width={480}
                         height={320}
-                        className="w-full max-w-xl"
+                        className="w-full max-w-xl rounded-lg border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
                       />
                     </div>
                   )}
                   {review.video && (
-                    <div className="relative w-full aspect-video pb-[56.25%] overflow-hidden mb-8">
+                    <div className="relative mb-8 aspect-video w-full overflow-hidden rounded-lg border border-[var(--color-ink-200)] pb-[56.25%] shadow-[0_1px_0_rgba(15,15,15,0.04)]">
                       <iframe
-                        className="absolute inset-0 w-full h-full"
+                        className="absolute inset-0 h-full w-full"
                         src={review.video.src}
                         title={review.video.title}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -122,14 +133,14 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
                       />
                     </div>
                   )}
-                  <blockquote className="text-lg sm:text-xl md:text-2xl font-serif font-light italic leading-relaxed text-[#F5F4F0] my-6">
+                  <blockquote className="my-6 font-serif text-lg font-light italic leading-relaxed text-[var(--color-off-black)] sm:text-xl md:text-2xl">
                     &ldquo;{review.text}&rdquo;
                   </blockquote>
                   <div className="mt-10">
-                    <strong className="block text-base font-semibold text-[#F5F4F0] mb-1">
+                    <strong className="mb-1 block text-base font-semibold text-[var(--color-off-black)]">
                       {review.author}
                     </strong>
-                    <span className="block text-xs uppercase tracking-[0.1em] text-[#888]">
+                    <span className="block text-xs uppercase tracking-[0.1em] text-[var(--color-ink-400)]">
                       {review.role}
                     </span>
                     {review.link && (
@@ -137,7 +148,7 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
                         href={review.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-4 inline-block text-xs uppercase tracking-[0.2em] text-[#B8925A] hover:opacity-80 transition-opacity"
+                        className="mt-4 inline-block font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] underline decoration-[var(--color-ink-200)] underline-offset-4 transition-opacity hover:opacity-70"
                       >
                         Read full review
                       </a>
@@ -156,16 +167,20 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
           <section
             key={section.id}
             id={section.id}
-            className="py-16 md:py-20 border-b border-[var(--color-ink-200)] last:border-b-0"
+            className="border-b border-[var(--color-ink-200)] py-16 md:py-20 last:border-b-0"
           >
             <div className="container-max">
-              <div className="max-w-[820px] mx-auto">
-                <p className="text-xs uppercase tracking-[0.2em] font-serif mb-3" style={{ color: '#B8925A' }}>
+              <div className="mx-auto max-w-[820px]">
+                <p className="mb-3 font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
                   {section.eyebrow}
                 </p>
-                <h2 className="text-2xl md:text-3xl font-serif font-light leading-tight text-[var(--color-off-black)] tracking-tight mb-6">
+                <h2 className="mb-6 font-serif text-2xl font-light leading-tight tracking-tight text-[var(--color-off-black)] md:text-3xl">
                   {section.headline}
                 </h2>
+                <div
+                  className="mb-8 h-[2px] w-14 bg-gradient-to-r from-[var(--color-off-black)] via-[var(--color-off-black)]/55 to-transparent sm:w-20"
+                  aria-hidden
+                />
 
                 {section.body.length > 0 && (
                   <div className="space-y-5 [&_p]:font-serif [&_p]:text-base [&_p]:leading-[1.85] [&_p]:text-[var(--color-ink-300)] [&_a]:underline [&_a]:hover:opacity-70 [&_a]:transition-opacity">
@@ -182,7 +197,7 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
                       alt={section.screenshot.alt}
                       width={1440}
                       height={900}
-                      className="w-full h-auto border border-[var(--color-ink-200)]"
+                      className="h-auto w-full rounded-lg border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
                       loading="lazy"
                     />
                   </div>
@@ -197,7 +212,7 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
                           alt={shot.alt}
                           width={900}
                           height={560}
-                          className="w-full h-auto border border-[var(--color-ink-200)]"
+                          className="h-auto w-full rounded-lg border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
                           loading="lazy"
                         />
                         {shot.caption && (
@@ -217,10 +232,7 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
                         key={phase.name}
                         className="grid grid-cols-1 sm:grid-cols-[80px_1fr] gap-6 pt-8 border-t border-[var(--color-ink-200)] first:pt-0 first:border-t-0"
                       >
-                        <span
-                          className="text-xs uppercase tracking-[0.15em] font-serif sm:pt-0.5"
-                          style={{ color: '#B8925A' }}
-                        >
+                        <span className="pt-0.5 font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)] sm:pt-0.5">
                           {phase.label}
                         </span>
                         <div>

@@ -1,6 +1,7 @@
 import CaseStudyLayout from '@/app/case-study/CaseStudyLayout'
 import SEOWrapper from '@/components/SEOWrapper'
 import { jadeLegendaryData } from '@/data/case-studies/jade-legendary-real-estate'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -29,6 +30,19 @@ export default function JadeCaseStudy() {
       schemaType="article"
     >
       <CaseStudyLayout data={jadeLegendaryData} />
+
+      <section className="border-t border-[var(--color-ink-200)] bg-white" aria-label="Website preview">
+        <div className="container-max py-16 md:py-20">
+          <Image
+            src={jadeLegendaryData.seo.ogImage}
+            alt={jadeLegendaryData.hero.imageAlt}
+            width={1920}
+            height={1080}
+            className="h-auto w-full rounded-lg border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
+            loading="lazy"
+          />
+        </div>
+      </section>
     </SEOWrapper>
   )
 }

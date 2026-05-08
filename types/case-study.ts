@@ -44,7 +44,8 @@ export interface CaseStudyData {
     dateModified: string
   }
   hero: {
-    image: string
+    /** Omit to show hero text only; page can render the asset at the end. */
+    image?: string
     imageAlt: string
     subtitle: string
   }

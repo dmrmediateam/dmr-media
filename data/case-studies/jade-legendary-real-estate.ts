@@ -7,24 +7,37 @@ export const jadeLegendaryData: CaseStudyData = {
   market: 'Lake Geneva / Southeastern Wisconsin',
   status: 'Ongoing',
   seo: {
-    title: 'Jade Legendary Real Estate — 3x Leads in 90 Days | DMR Media',
+    title:
+      'Legendary Real Estate — $9.22 Inquiry Cost, SEO-Led Growth & a Year-Two Site Relaunch | DMR Media',
     description:
-      "DMR Media transformed Jade's content-heavy marketing system into a signal-rich engine that tripled her inbound pipeline in 90 days. 42 content assets rebuilt, 12hr automation velocity.",
+      'How Legendary Real Estate compounding SEO, Google Business Profile, Performance Max, and retargeting—without cold top-of-funnel spend—produced qualified “work with us” inquiries at $9.22 and a full website redesign one year in.',
     canonical: 'https://www.dmrmedia.org/case-study/jade-legendary-real-estate',
-    ogImage: '/images/JadeCRM.png',
+    ogImage: '/images/ClientWebsiteImages/LegendaryRealEstate-Website.png',
     datePublished: '2025-04-01',
-    dateModified: '2026-03-17',
+    dateModified: '2026-05-08',
   },
   hero: {
-    image: '/images/JadeCRM.png',
-    imageAlt: 'Jade CRM dashboard showing lead growth — DMR Media Lake Geneva Wisconsin',
+    imageAlt:
+      'Legendary Real Estate Services homepage — Lake Geneva Wisconsin luxury positioning',
     subtitle:
-      "We helped Jade transform her content-heavy but context-poor marketing system into a signal-rich engine that tripled her inbound pipeline in 90 days, with every lead understanding exactly why Jade was different.",
+      'Legendary did not need louder marketing. They needed a guide with a plan: own intent in search, earn trust before the first click, then capture hand-raisers with surgical paid media. Alongside partner Chris—Wisconsin Realtor of the Year—we rebuilt the spine of their system, relaunched the website at the one-year mark, and proved the model with inquiries from people explicitly asking to work with them.',
   },
   metrics: [
-    { number: '3x', label: 'Qualified leads', context: 'Inbound pipeline inside 90 days' },
-    { number: '42', label: 'Content assets', context: 'Blogs, landing pages, nurture flows' },
-    { number: '12 hrs', label: 'Automation velocity', context: 'From lead to curated follow-up' },
+    {
+      number: '$9.22',
+      label: 'Cost per inquiry',
+      context: '“Work with us” leads via P-Max + retargeting',
+    },
+    {
+      number: '3×',
+      label: 'Qualified pipeline',
+      context: 'Inbound lift inside 90 days of the rebuild',
+    },
+    {
+      number: '400+',
+      label: 'Organic visits / mo',
+      context: 'Site + SEO + Google Business Profile (US)',
+    },
   ],
   reviews: [
     {
@@ -37,76 +50,77 @@ export const jadeLegendaryData: CaseStudyData = {
   sections: [
     {
       id: 'the-problem',
-      eyebrow: 'The Problem',
-      headline: 'The Challenge: Content Without Context',
+      eyebrow: 'The character',
+      headline: 'A hero-level team stuck in a noisy story',
       body: [
-        `Jade was publishing weekly—blogs, shorts, emails. But nothing was connected. She had hundreds of content assets with zero keyword hierarchy or conversion path. Searchers would land, skim, and bounce because the content wasn't mapped to what they were really buying: a trusted guide for complex listings.`,
-        `The content wasn't the problem. Context was. Jade was ranking for aspirational topics, not listings and relocation triggers. Her Google Business Profile was under-optimized with sporadic posting cadence. And traffic stalled at page views because automations stopped at "thanks for visiting."`,
-        `Jade needed a complete rebuild of her marketing spine—not more content, but better content connected to a system that actually converted visitors into clients.`,
+        `In StoryBrand terms, the person buying or selling the home is the <em>hero</em>—and Legendary’s role is the <em>guide</em> with a plan they can trust. The digital layer was not making that clarity obvious. Legendary was publishing weekly: blogs, shorts, emails. The problem was not effort. It was <strong>connection</strong>. Hundreds of assets lived without keyword hierarchy, without a conversion path, and without one narrative that said: this is who we are for, and this is the next step.`,
+        `The external problem looked like “more traffic.” The internal problem was uncertainty: which conversations were earned, and which were accidents? The philosophical problem was sharper: a brand anchored by people at the top of their field—including partner <strong>Chris, Wisconsin Realtor of the Year</strong>—should never feel like it is guessing on Monday mornings.`,
+        `Legendary did not need another content calendar. They needed a system where search, reputation, and follow-up agreed on the same story.`,
       ],
     },
     {
       id: 'the-diagnosis',
-      eyebrow: 'The Diagnosis',
-      headline: 'What We Discovered',
+      eyebrow: 'The reality',
+      headline: 'What the audit exposed',
       body: [
-        `Our full crawl of every article, URL, schema tag, and CRM touchpoint revealed where momentum was leaking. First, the content had no context. Hundreds of blogs existed with zero keyword hierarchy or conversion path. There was no structure to guide readers from discovery to decision.`,
-        `Second, there was a search intent mismatch. Jade was ranking for aspirational topics, not listings and relocation triggers. The content answered questions that didn't lead to transactions, so even engaged readers had no reason to convert.`,
-        `Third, local presence had significant gaps. Her Google Business Profile was under-optimized with sporadic posting cadence. The neighborhoods she dominated weren't reflected in her online presence.`,
-        `Finally, there was no nurture spine. Traffic stalled at page views because automations stopped at "thanks for visiting." There was no system to move interested visitors through a journey that ended in booked calls.`,
+        `Our crawl of more than two hundred URLs, schema touchpoints, and CRM events showed where attention evaporated. Content answered questions that did not lead to transactions. Local presence under-represented the neighborhoods Legendary already dominated. Automations stopped at polite acknowledgments instead of moving intent toward a booked call.`,
+        `Influence only works when proof is visible. The authority was already in the room—Realtor of the Year, lake-market expertise—but the digital layer was not yet translating that authority into <em>discoverable</em> proof.`,
       ],
     },
     {
       id: 'the-solution',
-      eyebrow: 'The Solution',
-      headline: 'How We Built the System',
+      eyebrow: 'The guide & the plan',
+      headline: 'Clarity first. Capture second.',
       body: [
-        `We rebuilt Jade's marketing ecosystem from the inside out, starting with a forensic audit of the 216 assets she already had. Then we rebuilt the top of the funnel with dead-simple landing pages that reflected the exact questions buyers asked her on calls.`,
-        `We created a signal-first content system. We rebuilt her editorial calendar around the questions high-net buyers ask minutes before texting an agent. Every piece of content now serves a dual purpose: ranking for the right searches and guiding readers toward conversion.`,
-        `We built a local authority spine. We structured her Google Business ecosystem—posts, products, Q&A—around the neighborhoods she dominates. Every touchpoint now reinforces her expertise in the markets where she's legendary.`,
-        `Finally, we introduced a luxury nurture layer. Voice-note follow-ups, video walkthroughs, and concierge drip sequences trigger based on specific behaviors, not generic timers. Every automation now references each reader's intent and moves them closer to booking a call.`,
+        `We positioned DMR as the guide with a simple plan: <strong>(1)</strong> rebuild the organic spine so Google and AI-assisted search have unmistakable signals; <strong>(2)</strong> tighten the Google Business Profile ecosystem so local intent meets a consistent story; <strong>(3)</strong> only then layer paid media where hand-raisers already exist. Along the way we rebuilt more than <strong>forty-two</strong> priority content assets and shortened the path from lead to curated follow-up to roughly <strong>twelve hours</strong>—so momentum did not die in the inbox.`,
+        `SEO and the profile carried top-of-funnel and consideration. We did not rely on cold prospecting ads to manufacture curiosity—the site, content architecture, and local presence did that work. <strong>Performance Max</strong> plus a dedicated <strong>retargeting</strong> campaign captured people who had already raised their hands: pricing pages, long sessions, repeat visits, and “contact” intent behaviors.`,
+        `At the one-year mark we <strong>redesigned and relaunched the website</strong>: clearer hero narrative, refined information architecture, and conversion paths that match how luxury buyers and sellers actually decide. The first site got them into the fight; the second site made the story feel as premium as the service.`,
       ],
-      screenshot: {
-        src: '/images/JadeCRM.png',
-        alt: 'CRM dashboard showing lead pipeline growth — Jade Legendary Real Estate DMR Media',
-      },
     },
     {
       id: 'how-we-did-it',
-      eyebrow: 'How We Did It',
-      headline: 'The Process: Diagnose, Rebuild, Scale',
+      eyebrow: 'Process',
+      headline: 'Diagnose, rebuild, then compound',
       body: [],
       phases: [
         {
           label: 'Phase 01',
           name: 'Diagnose',
-          body: "We performed a full crawl of every article, URL, schema tag, and CRM touchpoint to see where attention evaporated. This comprehensive audit revealed exactly where the disconnect was happening between content and conversion.",
+          body: 'We mapped every article, URL, schema tag, and CRM touchpoint to see where stories, search intent, and follow-up diverged. That baseline became the scoreboard—not opinions, but observable gaps.',
         },
         {
           label: 'Phase 02',
-          name: 'Rebuild',
-          body: "We re-scripted the hero narrative, rebuilt the site information architecture, and layered in automations that referenced each reader's intent. The content strategy shifted from 'publish more' to 'publish with purpose.'",
+          name: 'Rebuild & launch',
+          body: 'We re-scripted the narrative, rebuilt IA and landing experiences, structured GBP posts and proof assets around the markets Legendary owns, and wired automations that reference real behavior—not generic timers. Year one proved the model; the year-one site relaunch elevated creative and conversion.',
         },
         {
           label: 'Phase 03',
-          name: 'Scale',
-          body: "We established a weekly experimentation cadence—new hooks, new keyword clusters, new campaign angles—until the pipeline tripled. The goal was continuous improvement, not just a one-time fix.",
+          name: 'Scale with discipline',
+          body: 'We scaled with Performance Max and retargeting aimed at qualified inquiry—not broad awareness—and kept SEO + GBP as the compounding engine. Weekly experiments on hooks, clusters, and creative angles protected momentum without blurring the story.',
         },
       ],
     },
     {
       id: 'results',
-      eyebrow: 'What Jade Achieved',
-      headline: 'The Results: A Pipeline That Tripled',
+      eyebrow: 'Proof',
+      headline: 'Numbers buyers respect',
       body: [
-        `Within 90 days, Jade's inbound pipeline tripled. But more importantly, every lead knew exactly why Jade was different. The content now speaks to the right audience, the local presence reinforces her authority, and the nurture system moves interested visitors through a journey that ends in booked calls.`,
-        `Every Monday, Jade receives a signal report with the exact posts, keywords, and conversations driving revenue. No more guessing if the work is landing. The work shows up as booked calls, vetted buyers, and listings that feel on-brand.`,
-        `The transformation wasn't just about more content or more traffic. It was about building a system where content, local presence, and automation work together to create a marketing engine that feels like couture—premium, personalized, and perfectly aligned with Jade's service level.`,
+        `Over time, blended Performance Max and retargeting produced <strong>$9.22 cost per inquiry</strong> for people asking to work with Legendary—the kind of lead where the sales conversation starts warm, not skeptical.`,
+        `Organic visibility followed the longer arc you want from authority: steady growth in tracked organic visits as the domain earned keywords, backlinks, and AI-mode visibility—not a sugar high from rented reach. Paid search stayed <strong>down-funnel by design</strong>; discovery stayed owned by the website and Google Business Profile.`,
+        `Today Jade receives a clear weekly signal on what is ranking, what is earning clicks, and which conversations are tied to revenue. The transformation is not “more noise.” It is a guide-led system: story, search, local proof, and capture—all pointing the same direction.`,
       ],
-      screenshot: {
-        src: '/images/JadeCRM.png',
-        alt: 'CRM dashboard showing lead growth metrics — Jade Legendary Real Estate DMR Media',
-      },
+      screenshots: [
+        {
+          src: '/images/LegendaryRealEstateCaseSTudy/GoogleAdsSCreenshot.png',
+          alt: 'Google Ads — Performance Max campaign metrics showing cost per conversion near $9.22',
+          caption: 'Performance Max + conversion-focused bidding: cost per “work with us” inquiry in band with $9.22 CPL.',
+        },
+        {
+          src: '/images/LegendaryRealEstateCaseSTudy/SEMRUSHTraffic.png',
+          alt: 'SEMrush domain overview — organic traffic growth for legendaryrealestateservices.com',
+          caption: 'Organic compounding: visibility and visits driven primarily by site + SEO + GBP, not paid discovery.',
+        },
+      ],
     },
   ],
 }
