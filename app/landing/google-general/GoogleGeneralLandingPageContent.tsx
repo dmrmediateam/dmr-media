@@ -100,10 +100,16 @@ function ApplyCtaBand({
   hint,
   surface,
   className = '',
+  primaryLabel = 'Get my free integrated audit',
+  secondaryHref = '/calendar',
+  secondaryLabel = 'Or book a strategy call',
 }: {
   hint: string
   surface: 'base' | 'white'
   className?: string
+  primaryLabel?: string
+  secondaryHref?: string
+  secondaryLabel?: string
 }) {
   const bg = surface === 'white' ? 'bg-white' : 'bg-[var(--surface-base)]'
   const ring =
@@ -111,17 +117,26 @@ function ApplyCtaBand({
   return (
     <aside
       className={`${bg} border-b border-[var(--color-ink-200)] py-10 md:py-14 ${className}`}
-      aria-label="Apply for a strategy call"
+      aria-label="Get a free integrated SEO and Google Ads audit or book a call"
     >
       <div className="container-max mx-auto flex max-w-xl flex-col items-center gap-4 px-4 text-center">
         <p className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
         <button
           type="button"
           onClick={openApplyModal}
-          className={`inline-flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-transparent px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/30 hover:bg-[var(--color-off-black)]/[0.04] hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
+          className={`inline-flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
         >
-          Apply
+          {primaryLabel}
         </button>
+        <Link
+          href={secondaryHref}
+          className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
+        >
+          {secondaryLabel}
+        </Link>
+        <p className="font-serif text-[11px] leading-snug text-[var(--color-ink-400)]/85">
+          Free integrated audit. If we don&apos;t identify at least $30K in annual missed opportunity across SEO + Google Ads, you owe nothing.
+        </p>
       </div>
     </aside>
   )
@@ -196,32 +211,39 @@ export default function GoogleGeneralLandingPageContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
           >
-            <p className="mb-5 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
-              #1 in the U.S. on SEMrush · SEO + PPC · five-star luxury agency
+            <p className="mb-5 max-w-xl font-serif text-[10px] uppercase leading-relaxed tracking-[0.14em] text-white/80 sm:text-[11px] sm:tracking-[0.16em]">
+              #1 U.S. real estate agency on SEMrush · 24+ luxury teams · 5★ partner
             </p>
             <h1
               id="google-landing-hero-title"
-              className="font-serif text-4xl font-light leading-[1.06] tracking-tight !text-white sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl"
+              className="font-serif text-[1.625rem] font-light leading-[1.1] tracking-tight !text-white sm:text-[2rem] md:text-[2.125rem] lg:text-[2.625rem] xl:text-5xl"
             >
-              Be the name buyers find before they ever call an agent.
+              #1 U.S. Real Estate Marketing Agency on SEMrush. 3× Pipeline. 65% Lower CPL. One Integrated System.
             </h1>
             <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
-              DMR Media is a five-star luxury real estate marketing agency, ranked #1 in the United States on SEMrush in
-              our category—we run organic SEO and Google Ads (PPC) as one system: shared intent maps, message match from
-              query to landing, and reporting tied to pipeline, not vanity charts.
+              SEO and Google Ads run as one engine, not two vendors fighting in your CRM. Organic compounds your authority while paid captures buyers naming neighborhoods today. Documented client averages: 3× pipeline, 65% lower CPL, 19× organic clicks.
             </p>
-            <div className="mt-9 flex flex-col items-stretch gap-3 sm:items-start">
+            <div className="mt-7 flex flex-col items-stretch gap-3 sm:items-start">
               <button
                 type="button"
                 onClick={openApplyModal}
                 className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm bg-white px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] shadow-[0_4px_24px_rgba(0,0,0,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/95 hover:shadow-[0_8px_32px_rgba(0,0,0,0.22)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] motion-reduce:hover:translate-y-0 sm:w-auto sm:min-w-[12rem]"
               >
-                Apply now
+                Get my free integrated audit
               </button>
+              <Link
+                href="/calendar"
+                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline sm:self-start"
+              >
+                Or book a strategy call
+              </Link>
+              <p className="mt-1 max-w-md font-serif text-[12px] leading-snug text-white/70">
+                Free integrated audit. If we don&apos;t identify at least $30K in annual missed opportunity across SEO + Google Ads, you owe nothing.
+              </p>
               <motion.a
                 href="#after-hero"
                 aria-label="Scroll to client logos and page content"
-                className="inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                className="mt-2 inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
                 animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
                 transition={
                   reduceMotion
@@ -280,11 +302,11 @@ export default function GoogleGeneralLandingPageContent() {
             <div className="mx-auto max-w-3xl text-center">
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Why this page exists</p>
               <h2 className="mt-3 font-serif text-3xl font-light leading-tight tracking-tight text-[var(--color-off-black)] md:text-4xl">
-                Is your Google growth earning shelf space and intent—or leaking trust?
+                Is your Google growth earning shelf space and intent, or leaking trust?
               </h2>
               <SectionRule align="center" />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                Three patterns we see when teams win offline but lose the first digital moment—across organic results and
+                Three patterns we see when teams win offline but lose the first digital moment, across organic results and
                 paid search.
               </p>
             </div>
@@ -307,7 +329,7 @@ export default function GoogleGeneralLandingPageContent() {
         <SeoCaseStudiesHorizontalScroll
           eyebrow="Luxury markets"
           title="Documented lifts across SEO, PPC, and pipeline"
-          description="From Sonoma to Lake Geneva: timelines include organic, Google Ads, and full channel mix—plus CRM outcomes, not cherry-picked screenshots alone."
+          description="From Sonoma to Lake Geneva: timelines include organic, Google Ads, and full channel mix, plus CRM outcomes, not cherry-picked screenshots alone."
         />
         <VideoTestimonials />
       </div>
@@ -315,7 +337,7 @@ export default function GoogleGeneralLandingPageContent() {
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="If one of these sounds familiar, the next step is a short application; we show up with your market already researched."
+        hint="See where SEO and PPC are leaving money on the table. Free integrated audit: your top organic gaps, your wasted ad spend, and the unified plan that compounds them."
       />
 
       {/* Guide + plan: authority + empathy */}
@@ -326,21 +348,19 @@ export default function GoogleGeneralLandingPageContent() {
         <div className="container-max grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           <SeoReveal>
             <div>
-              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">How we work</p>
+              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Why integration wins</p>
               <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-                We do not sell disconnected SEO and Ads tickets. We install one luxury growth engine.
+                Two vendors fight in your CRM. One integrated team compounds.
               </h2>
               <SectionRule />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                You need a five-star partner who runs organic and PPC as one narrative: weekly shipping, technical honesty,
-                and reporting tied to GCI—not vanity charts. DMR is ranked #1 among U.S. real estate marketing agencies on
-                SEMrush, built for teams who already close at a high level but deserve to own both sides of Google demand.
+                When SEO and Google Ads come from separate shops, intent leaks at every handoff: different keywords, different landing logic, different definitions of a qualified lead. We close that gap with one engine: shared intent maps, message match from query to landing, and reporting your leadership can defend. That&apos;s how you compound a 3× pipeline lift on top of a 65% lower CPL.
               </p>
               <ul className="mt-8 space-y-4 border-l-2 border-[var(--color-off-black)]/15 pl-5">
                 {[
-                  'Clarity: one intent map for SEO + PPC your leadership can defend',
-                  'Cadence: organic and paid iteration weekly—not quarterly theater',
-                  'Proof: SEMrush U.S. leadership plus Search, Ads, and CRM outcomes you can repeat',
+                  'One intent map for SEO + PPC: no duplicate spend, no missed terms',
+                  'Weekly iteration on both channels, not quarterly theater from siloed agencies',
+                  '#1 on SEMrush U.S. plus 24+ luxury teams running the same integrated playbook',
                 ].map((line) => (
                   <li key={line} className="font-serif text-[var(--color-off-black)]">
                     {line}
@@ -402,7 +422,7 @@ export default function GoogleGeneralLandingPageContent() {
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
-              Category visibility, disciplined PPC, and organic systems—so paid and earned search tell the same luxury
+              Category visibility, disciplined PPC, and organic systems, so paid and earned search tell the same luxury
               story and every dollar votes for the reputation you want in the market.
             </p>
           </SeoReveal>
@@ -427,7 +447,7 @@ export default function GoogleGeneralLandingPageContent() {
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="Prefer we audit before you commit? Apply anyway; we use your application to prep a serious first conversation."
+        hint="Two minutes now. We arrive with both sides of Google audited and a unified plan drafted, no decoder ring required."
       />
 
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]" id="agency-authority">
@@ -440,7 +460,7 @@ export default function GoogleGeneralLandingPageContent() {
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
               Benchmarks meet bedside manner: the same organic, paid, and editorial cadence we sell is what we run on our
-              own footprint every week—then we bring that standard to luxury teams who expect white-glove partnership.
+              own footprint every week, then we bring that standard to luxury teams who expect white-glove partnership.
             </p>
           </SeoReveal>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -586,25 +606,31 @@ export default function GoogleGeneralLandingPageContent() {
       >
         <div className="container-max mx-auto max-w-2xl text-center">
           <SeoReveal>
-            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Next step</p>
-            <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              Stop renting your reputation to the SERP. Own the story.
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Your next 90 days</p>
+            <h2 className="mt-3 font-serif text-2xl font-light tracking-tight text-[var(--color-off-black)] sm:text-3xl md:text-4xl">
+              3× pipeline. 65% lower CPL. One integrated team, or you owe nothing for the audit.
             </h2>
             <SectionRule align="center" />
             <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-              A short application is the smallest commitment that lets us come prepared: your market, your competitors, and
-              the gaps costing you GCI across organic and paid search. No spam. No pressure. Just a direct conversation about
-              fit.
+              Two minutes. We arrive with both sides of Google audited: organic gaps ranked by GCI impact, ad spend leaks quantified, and the unified plan drafted. If we can&apos;t identify at least $30K in annual missed opportunity across SEO + Ads, the audit is on us.
             </p>
           </SeoReveal>
-          <motion.button
-            type="button"
-            onClick={openApplyModal}
-            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-            className="mt-10 inline-flex min-h-[52px] items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0"
-          >
-            Apply
-          </motion.button>
+          <div className="mt-10 flex flex-col items-center gap-4">
+            <motion.button
+              type="button"
+              onClick={openApplyModal}
+              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+              className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
+            >
+              Get my free integrated audit
+            </motion.button>
+            <Link
+              href="/calendar"
+              className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
+            >
+              Or book a strategy call
+            </Link>
+          </div>
           <p className="mt-6 font-serif text-xs text-[var(--color-ink-400)]">
             UTM parameters from your visit are attached when you submit so we can honor the campaign that brought you here.
           </p>

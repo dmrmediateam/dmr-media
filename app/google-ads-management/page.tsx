@@ -6,9 +6,9 @@ import { FAQ_ITEMS } from './google-ads-data'
 const BASE = 'https://www.dmrmedia.org'
 
 export const metadata: Metadata = {
-  title: 'Google Ads Management for Luxury Real Estate | DMR Media',
+  title: 'Cut Cost Per Lead by 65% | Luxury Real Estate Google Ads | DMR Media',
   description:
-    'Story-led Google Ads for teams who close at a high level: intent architecture, message match on landings, and reporting tied to qualified conversations and CRM truth.',
+    'Documented client averages: 65% lower CPL, 1.8× more booked appointments, 3× qualified pipeline. Free Google Ads audit: if we don\'t find $30K+ in wasted spend, you owe nothing.',
   keywords: [
     'Google Ads management for real estate',
     'real estate PPC',
@@ -19,18 +19,18 @@ export const metadata: Metadata = {
     canonical: `${BASE}/google-ads-management`,
   },
   openGraph: {
-    title: 'Google Ads Management for Luxury Real Estate | DMR Media',
+    title: 'Cut Cost Per Lead by 65% | Luxury Real Estate Google Ads | DMR Media',
     description:
-      'Intent-led campaigns, disciplined geography, and measurement your sales team recognizes. Built for luxury markets where trust is earned at the click.',
+      'Documented averages: 65% lower CPL, 1.8× more appointments, 3× pipeline. Free Google Ads audit: if we don\'t find $30K+ in wasted spend, you owe nothing.',
     url: `${BASE}/google-ads-management`,
     siteName: 'DMR Media',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Google Ads Management for Luxury Real Estate | DMR Media',
+    title: 'Cut Cost Per Lead by 65% | Luxury Real Estate Google Ads | DMR Media',
     description:
-      'Intent-led campaigns, disciplined geography, and measurement your sales team recognizes. Built for luxury markets where trust is earned at the click.',
+      'Documented averages: 65% lower CPL, 1.8× more appointments, 3× pipeline. Free Google Ads audit: if we don\'t find $30K+ in wasted spend, you owe nothing.',
   },
 }
 

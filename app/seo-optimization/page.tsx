@@ -6,9 +6,9 @@ import { FAQ_ITEMS } from './seo-data'
 const BASE = 'https://www.dmrmedia.org'
 
 export const metadata: Metadata = {
-  title: 'Real Estate SEO That Earns the First Conversation | DMR Media',
+  title: 'Get 19× More Organic Clicks in 90 Days | Luxury Real Estate SEO | DMR Media',
   description:
-    'Luxury real estate SEO with documented lifts in impressions and pipeline. Technical foundations, on-page precision, and content systems, plus portfolio sites built to rank.',
+    'Luxury real estate SEO with documented 19× organic-click lifts and 300%+ traffic in 90 days. Free 30-minute audit: if we don\'t find $50K+ in missed opportunity, you owe nothing.',
   keywords: [
     'SEO optimization for real estate',
     'real estate SEO',
@@ -21,18 +21,18 @@ export const metadata: Metadata = {
     canonical: `${BASE}/seo-optimization`,
   },
   openGraph: {
-    title: 'Real Estate SEO That Earns the First Conversation | DMR Media',
+    title: 'Get 19× More Organic Clicks in 90 Days | Luxury Real Estate SEO | DMR Media',
     description:
-      'Luxury real estate SEO with documented lifts in impressions and pipeline. Technical foundations, on-page precision, and content systems.',
+      'Luxury real estate SEO with documented 19× organic-click lifts and 300%+ traffic in 90 days. Free audit: if we don\'t find $50K+ in missed opportunity, you owe nothing.',
     url: `${BASE}/seo-optimization`,
     siteName: 'DMR Media',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Real Estate SEO That Earns the First Conversation | DMR Media',
+    title: 'Get 19× More Organic Clicks in 90 Days | Luxury Real Estate SEO | DMR Media',
     description:
-      'Luxury real estate SEO with documented lifts in impressions and pipeline. Technical foundations, on-page precision, and content systems.',
+      'Luxury real estate SEO with documented 19× organic-click lifts and 300%+ traffic in 90 days. Free audit: if we don\'t find $50K+ in missed opportunity, you owe nothing.',
   },
 }
 

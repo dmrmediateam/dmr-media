@@ -6,9 +6,9 @@ import { FAQ_ITEMS } from './lead-generation-data'
 const BASE = 'https://www.dmrmedia.org'
 
 export const metadata: Metadata = {
-  title: 'Real Estate Lead Generation That Books Conversations | DMR Media',
+  title: '46 Qualified Leads in 3 Weeks | Luxury Real Estate Lead Generation | DMR Media',
   description:
-    'Luxury inbound systems: SEO, Google Ads, landing capture, and CRM velocity—exclusive pipeline you can measure. Apply for a market-ready first conversation.',
+    'Documented: 46 qualified inbound leads in 3 weeks, 3× pipeline in 90 days, exclusive to your brand. 30-day pilot guarantee: 10+ qualified leads or your setup fee is on us.',
   keywords: [
     'real estate lead generation',
     'luxury real estate lead generation',
@@ -21,18 +21,18 @@ export const metadata: Metadata = {
     canonical: `${BASE}/real-estate-lead-generation`,
   },
   openGraph: {
-    title: 'Real Estate Lead Generation That Books Conversations | DMR Media',
+    title: '46 Qualified Leads in 3 Weeks | Luxury Real Estate Lead Generation | DMR Media',
     description:
-      'Luxury inbound systems: SEO, Google Ads, landing capture, and CRM velocity—exclusive pipeline you can measure.',
+      'Documented: 46 qualified inbound leads in 3 weeks, 3× pipeline in 90 days, exclusive to your brand. 30-day pilot guarantee: 10+ qualified leads or setup fee is on us.',
     url: `${BASE}/real-estate-lead-generation`,
     siteName: 'DMR Media',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Real Estate Lead Generation That Books Conversations | DMR Media',
+    title: '46 Qualified Leads in 3 Weeks | Luxury Real Estate Lead Generation | DMR Media',
     description:
-      'Luxury inbound systems: SEO, Google Ads, landing capture, and CRM velocity—exclusive pipeline you can measure.',
+      'Documented: 46 qualified inbound leads in 3 weeks, 3× pipeline in 90 days, exclusive to your brand. 30-day pilot guarantee: 10+ qualified leads or setup fee is on us.',
   },
 }
 

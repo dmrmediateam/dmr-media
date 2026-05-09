@@ -4,7 +4,7 @@ export const FAQ_ITEMS = [
   {
     question: 'What does “#1 in the U.S. on SEMrush” mean?',
     answer:
-      'SEMrush ranks agencies and sites by visibility and momentum within their category. DMR Media is ranked first among U.S. real estate marketing agencies in that benchmark—meaning our own digital footprint competes at the top of the field we serve, not that every keyword or auction in your market is guaranteed to you.',
+      'SEMrush ranks agencies and sites by visibility and momentum within their category. DMR Media is ranked first among U.S. real estate marketing agencies in that benchmark, meaning our own digital footprint competes at the top of the field we serve, not that every keyword or auction in your market is guaranteed to you.',
   },
   {
     question: 'Do you run both SEO and Google Ads (PPC)?',
@@ -24,12 +24,12 @@ export const FAQ_ITEMS = [
   {
     question: 'What does ongoing work look like with a five-star agency?',
     answer:
-      'Weekly iteration on both sides of search: technical hygiene, content cadence, and internal linking for organic; search terms, negatives, audiences, and creative tests for PPC—always tied to the same definitions of a qualified conversation. If you need strategy first, see https://www.dmrmedia.org/seo-consulting.',
+      'Weekly iteration on both sides of search: technical hygiene, content cadence, and internal linking for organic; search terms, negatives, audiences, and creative tests for PPC, always tied to the same definitions of a qualified conversation. If you need strategy first, see https://www.dmrmedia.org/seo-consulting.',
   },
   {
     question: 'How is pricing scoped?',
     answer:
-      'After audit we align scope to market difficulty, site size, content velocity, recommended ad budgets, and your growth target—then we put deliverables in writing. No opaque packages, no surprise invoices for basic edits.',
+      'After audit we align scope to market difficulty, site size, content velocity, recommended ad budgets, and your growth target, then we put deliverables in writing. No opaque packages, no surprise invoices for basic edits.',
   },
 ] as const
 
@@ -38,7 +38,7 @@ export const stakesThree = [
     title: 'Shelf space',
     subtitle: 'Organic + paid, one story',
     body:
-      'Luxury buyers still start on Google. If organic and PPC tell different stories—or if paid clicks land on generic pages—you leak trust at the exact moment intent is highest. One team keeps query, creative, and landing aligned.',
+      'Luxury buyers still start on Google. If organic and PPC tell different stories, or if paid clicks land on generic pages, you leak trust at the exact moment intent is highest. One team keeps query, creative, and landing aligned.',
   },
   {
     title: 'Category',
@@ -50,7 +50,7 @@ export const stakesThree = [
     title: 'Execution',
     subtitle: 'Velocity without theatrics',
     body:
-      'You need weekly shipping on SEO and PPC: technical honesty, disciplined negatives, and CRM-tied reporting—so leadership can defend spend and your agents feel qualified conversations, not just clicks.',
+      'You need weekly shipping on SEO and PPC: technical honesty, disciplined negatives, and CRM-tied reporting, so leadership can defend spend and your agents feel qualified conversations, not just clicks.',
   },
 ] as const
 
@@ -86,17 +86,17 @@ export const processPhases = [
   {
     title: 'Diagnose',
     description:
-      'We map how affluent buyers search your market—organic SERPs and paid auction pressure—then prioritize fixes by revenue impact, not ego metrics.',
+      'We map how affluent buyers search your market (organic SERPs and paid auction pressure), then prioritize fixes by revenue impact, not ego metrics.',
   },
   {
     title: 'Stabilize',
     description:
-      'Crawl clarity, speed, schema, and indexation for organic; tracking, conversion actions, and account hygiene for PPC—so neither channel fights the foundation.',
+      'Crawl clarity, speed, schema, and indexation for organic; tracking, conversion actions, and account hygiene for PPC, so neither channel fights the foundation.',
   },
   {
     title: 'Scale',
     description:
-      'Editorial systems and neighborhood depth for SEO; structured campaigns, negatives, and message match for Google Ads—so demand and authority compound together.',
+      'Editorial systems and neighborhood depth for SEO; structured campaigns, negatives, and message match for Google Ads, so demand and authority compound together.',
   },
   {
     title: 'Compound',
@@ -109,7 +109,7 @@ export const frameworkPillars = [
   {
     title: 'Category visibility',
     body:
-      'SEMrush-tracked momentum and competitive context—DMR is ranked #1 among U.S. real estate marketing agencies on SEMrush, and we bring that same rigor to how you show up in search.',
+      'SEMrush-tracked momentum and competitive context: DMR is ranked #1 among U.S. real estate marketing agencies on SEMrush, and we bring that same rigor to how you show up in search.',
     image: '/images/landing/google-general/03-semrush-ranking.png',
     imageAlt: 'SEMrush visibility and agency category context',
   },
@@ -122,7 +122,7 @@ export const frameworkPillars = [
   },
   {
     title: 'Organic SEO & content',
-    body: 'Technical foundations, on-page precision, and editorial systems—neighborhood pillars and proof pages that earn trust from Google and from buyers ready to transact.',
+    body: 'Technical foundations, on-page precision, and editorial systems: neighborhood pillars and proof pages that earn trust from Google and from buyers ready to transact.',
     image: '/images/EaganCaseStudy/GoogleSearchConsole.png',
     imageAlt: 'Organic search visibility and performance',
   },
@@ -132,16 +132,16 @@ export const agencyProof = [
   {
     term: 'SEMrush · United States',
     result: '#1',
-    note: 'Ranked first among U.S. real estate marketing agencies on SEMrush—national category leadership in the benchmark we are measured against.',
+    note: 'Ranked first among U.S. real estate marketing agencies on SEMrush: national category leadership in the benchmark we are measured against.',
   },
   {
     term: 'Client experience',
     result: '5★',
-    note: 'Five-star luxury partnerships across organic search, Google Ads, and flagship sites—with documented lifts you can align to GCI.',
+    note: 'Five-star luxury partnerships across organic search, Google Ads, and flagship sites, with documented lifts you can align to GCI.',
   },
   {
     term: 'Practice what we preach',
     result: 'Organic + paid',
-    note: 'The same SEO, PPC, and editorial cadence we recommend is what we run on our own footprint—then we bring that standard to teams who expect white-glove partnership.',
+    note: 'The same SEO, PPC, and editorial cadence we recommend is what we run on our own footprint, then we bring that standard to teams who expect white-glove partnership.',
   },
 ] as const

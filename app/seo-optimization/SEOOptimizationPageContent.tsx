@@ -68,10 +68,16 @@ function ApplyCtaBand({
   hint,
   surface,
   className = '',
+  primaryLabel = 'Get my free SEO audit',
+  secondaryHref = '/calendar',
+  secondaryLabel = 'Or schedule a 15-minute call',
 }: {
   hint: string
   surface: 'base' | 'white'
   className?: string
+  primaryLabel?: string
+  secondaryHref?: string
+  secondaryLabel?: string
 }) {
   const bg = surface === 'white' ? 'bg-white' : 'bg-[var(--surface-base)]'
   const ring =
@@ -79,17 +85,26 @@ function ApplyCtaBand({
   return (
     <aside
       className={`${bg} border-b border-[var(--color-ink-200)] py-10 md:py-14 ${className}`}
-      aria-label="Apply for SEO strategy"
+      aria-label="Get a free SEO audit or book a call"
     >
       <div className="container-max mx-auto flex max-w-xl flex-col items-center gap-4 px-4 text-center">
         <p className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
         <button
           type="button"
           onClick={openApplyModal}
-          className={`inline-flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-transparent px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/30 hover:bg-[var(--color-off-black)]/[0.04] hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
+          className={`inline-flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
         >
-          Apply
+          {primaryLabel}
         </button>
+        <Link
+          href={secondaryHref}
+          className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
+        >
+          {secondaryLabel}
+        </Link>
+        <p className="font-serif text-[11px] leading-snug text-[var(--color-ink-400)]/85">
+          Free 30-minute audit. If we don&apos;t identify at least $50K in annual missed organic opportunity, you owe nothing.
+        </p>
       </div>
     </aside>
   )
@@ -170,30 +185,39 @@ export default function SEOOptimizationPageContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
           >
-            <p className="mb-5 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
-              SEO for luxury real estate
+            <p className="mb-5 max-w-xl font-serif text-[10px] uppercase leading-relaxed tracking-[0.14em] text-white/80 sm:text-[11px] sm:tracking-[0.16em]">
+              #1 U.S. real estate agency on SEMrush · 24+ luxury teams · 5★ partner
             </p>
             <h1
               id="seo-hero-title"
-              className="font-serif text-4xl font-light leading-[1.06] tracking-tight !text-white sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl"
+              className="font-serif text-3xl font-light leading-[1.08] tracking-tight !text-white sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
             >
-              Be the name buyers find before they ever call an agent.
+              Get 19× More Organic Clicks in 90 Days, Without Paying Per Click.
             </h1>
             <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
-              Technical SEO, on-page precision, and content systems so Google recommends you first—not a template farm.
+              Technical SEO, on-page precision, and content systems built for luxury real estate, so Google recommends you first, not a template farm. Documented client lifts include 19× daily organic clicks and 300%+ traffic in the first 90 days.
             </p>
-            <div className="mt-9 flex flex-col items-stretch gap-3 sm:items-start">
+            <div className="mt-7 flex flex-col items-stretch gap-3 sm:items-start">
               <button
                 type="button"
                 onClick={openApplyModal}
                 className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm bg-white px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] shadow-[0_4px_24px_rgba(0,0,0,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/95 hover:shadow-[0_8px_32px_rgba(0,0,0,0.22)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] motion-reduce:hover:translate-y-0 sm:w-auto sm:min-w-[12rem]"
               >
-                Apply now
+                Get my free SEO audit
               </button>
+              <Link
+                href="/calendar"
+                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline sm:self-start"
+              >
+                Or book a 15-minute strategy call
+              </Link>
+              <p className="mt-1 max-w-md font-serif text-[12px] leading-snug text-white/70">
+                Free 30-minute audit. If we don&apos;t identify at least $50K in annual missed organic opportunity, you owe nothing.
+              </p>
               <motion.a
                 href="#after-hero"
                 aria-label="Scroll to client logos and page content"
-                className="inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                className="mt-2 inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
                 animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
                 transition={
                   reduceMotion
@@ -282,7 +306,7 @@ export default function SEOOptimizationPageContent() {
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="If one of these sounds familiar, the next step is a short application; we show up with your market already researched."
+        hint="See exactly where your market is leaking organic traffic. Free 30-minute audit: your competitors mapped, your top 10 missed keywords ranked by GCI impact."
       />
 
       {/* Guide + plan: authority + empathy */}
@@ -394,7 +418,7 @@ export default function SEOOptimizationPageContent() {
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="Prefer we audit before you commit? Apply anyway; we use your application to prep a serious first conversation."
+        hint="Two minutes now saves three months of guessing. We arrive with your market, rankings, and biggest gaps already mapped."
       />
 
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="stats">
@@ -619,24 +643,31 @@ export default function SEOOptimizationPageContent() {
       >
         <div className="container-max mx-auto max-w-2xl text-center">
           <SeoReveal>
-            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Next step</p>
-            <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              Stop renting your reputation to the SERP. Own the story.
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Your next 90 days</p>
+            <h2 className="mt-3 font-serif text-2xl font-light tracking-tight text-[var(--color-off-black)] sm:text-3xl md:text-4xl">
+              19× organic clicks in 90 days, or you owe nothing for the audit.
             </h2>
             <SectionRule align="center" />
             <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-              A short application is the smallest commitment that lets us come prepared: your market, your competitors, and
-              the gaps costing you GCI. No spam. No pressure. Just a direct conversation about fit.
+              Two minutes. We arrive prepared with your market, your competitors, and the top organic gaps costing you GCI today. If we can&apos;t identify at least $50K in annual missed opportunity, the audit is on us.
             </p>
           </SeoReveal>
-          <motion.button
-            type="button"
-            onClick={openApplyModal}
-            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-            className="mt-10 inline-flex min-h-[52px] items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0"
-          >
-            Apply
-          </motion.button>
+          <div className="mt-10 flex flex-col items-center gap-4">
+            <motion.button
+              type="button"
+              onClick={openApplyModal}
+              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+              className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
+            >
+              Get my free SEO audit
+            </motion.button>
+            <Link
+              href="/calendar"
+              className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
+            >
+              Or book a 15-minute strategy call
+            </Link>
+          </div>
           <p className="mt-6 font-serif text-xs text-[var(--color-ink-400)]">
             UTM parameters from your visit are attached when you submit so we can honor the campaign that brought you here.
           </p>

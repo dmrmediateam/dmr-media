@@ -100,10 +100,16 @@ function ApplyCtaBand({
   hint,
   surface,
   className = '',
+  primaryHref = '/calendar',
+  primaryLabel = 'Book 15-min strategy call',
+  secondaryLabel = 'Or get my free lead audit',
 }: {
   hint: string
   surface: 'base' | 'white'
   className?: string
+  primaryHref?: string
+  primaryLabel?: string
+  secondaryLabel?: string
 }) {
   const bg = surface === 'white' ? 'bg-white' : 'bg-[var(--surface-base)]'
   const ring =
@@ -111,17 +117,26 @@ function ApplyCtaBand({
   return (
     <aside
       className={`${bg} border-b border-[var(--color-ink-200)] py-10 md:py-14 ${className}`}
-      aria-label="Apply for lead generation"
+      aria-label="Book a strategy call or get a free lead audit"
     >
       <div className="container-max mx-auto flex max-w-xl flex-col items-center gap-4 px-4 text-center">
         <p className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
+        <Link
+          href={primaryHref}
+          className={`inline-flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
+        >
+          {primaryLabel}
+        </Link>
         <button
           type="button"
           onClick={openApplyModal}
-          className={`inline-flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-transparent px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/30 hover:bg-[var(--color-off-black)]/[0.04] hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
+          className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
         >
-          Apply
+          {secondaryLabel}
         </button>
+        <p className="font-serif text-[11px] leading-snug text-[var(--color-ink-400)]/85">
+          30-day pilot guarantee. If we don&apos;t deliver 10+ qualified leads in your first month, your setup fee is on us.
+        </p>
       </div>
     </aside>
   )
@@ -189,38 +204,39 @@ export default function RealEstateLeadGenerationPageContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
           >
-            <p className="mb-5 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
-              Lead generation for luxury real estate
+            <p className="mb-5 max-w-xl font-serif text-[10px] uppercase leading-relaxed tracking-[0.14em] text-white/80 sm:text-[11px] sm:tracking-[0.16em]">
+              #1 U.S. real estate agency on SEMrush · 24+ luxury teams · 5★ partner
             </p>
             <h1
               id="leadgen-hero-title"
-              className="font-serif text-4xl font-light leading-[1.06] tracking-tight !text-white sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl"
+              className="font-serif text-3xl font-light leading-[1.08] tracking-tight !text-white sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
             >
-              Turn intent into appointments—not inbox noise.
+              46 Qualified Leads in 3 Weeks. 3× Pipeline in 90 Days. Exclusive to Your Brand.
             </h1>
             <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
-              Search, Google Ads, landing capture, and CRM velocity—one team so spend, capture, and nurture tell the same
-              story. Documented programs include 46+ qualified inbound leads in three weeks and 3× pipeline in ninety days,
-              exclusive to your brand.
+              Most agencies need 60–90 days to launch. Our flagship system delivered 46 qualified inbound leads in three weeks, then tripled pipeline by day 90. SEO, Google Ads, landing capture, and CRM velocity from one team. Your brand, your buyers, never resold.
             </p>
-            <div className="mt-9 flex flex-col items-stretch gap-3 sm:items-start">
+            <div className="mt-7 flex flex-col items-stretch gap-3 sm:items-start">
+              <Link
+                href="/calendar"
+                className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm bg-white px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] shadow-[0_4px_24px_rgba(0,0,0,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/95 hover:shadow-[0_8px_32px_rgba(0,0,0,0.22)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] motion-reduce:hover:translate-y-0 sm:w-auto sm:min-w-[12rem]"
+              >
+                Book 15-min strategy call
+              </Link>
               <button
                 type="button"
                 onClick={openApplyModal}
-                className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm bg-white px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] shadow-[0_4px_24px_rgba(0,0,0,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/95 hover:shadow-[0_8px_32px_rgba(0,0,0,0.22)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] motion-reduce:hover:translate-y-0 sm:w-auto sm:min-w-[12rem]"
+                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline sm:self-start"
               >
-                Apply now
+                Or get my free lead audit
               </button>
-              <Link
-                href="/calendar"
-                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/75 underline-offset-4 transition-colors hover:text-white/95 hover:underline sm:self-start"
-              >
-                Or book time on our calendar
-              </Link>
+              <p className="mt-1 max-w-md font-serif text-[12px] leading-snug text-white/70">
+                30-day pilot guarantee. If we don&apos;t deliver 10+ qualified leads in your first month, your setup fee is on us.
+              </p>
               <motion.a
                 href="#after-hero"
                 aria-label="Scroll to client logos and page content"
-                className="inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                className="mt-2 inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
                 animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
                 transition={
                   reduceMotion ? undefined : { duration: 2.6, repeat: Infinity, ease: 'easeInOut' as const }
@@ -268,7 +284,7 @@ export default function RealEstateLeadGenerationPageContent() {
             <div className="mx-auto max-w-3xl text-center">
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Why this page exists</p>
               <h2 className="mt-3 font-serif text-3xl font-light leading-tight tracking-tight text-[var(--color-off-black)] md:text-4xl">
-                Is your funnel filling the CRM—or filling a dashboard?
+                Is your funnel filling the CRM, or filling a dashboard?
               </h2>
               <SectionRule align="center" />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
@@ -294,7 +310,7 @@ export default function RealEstateLeadGenerationPageContent() {
         <SeoCaseStudiesHorizontalScroll
           eyebrow="Pipeline proof"
           title="Systems that produced qualified conversations"
-          description="Case studies include channel mix, timelines, and CRM outcomes—not cherry-picked screenshots alone. Swipe for more, then apply when you are ready for the same rigor in your market."
+          description="Case studies include channel mix, timelines, and CRM outcomes, not cherry-picked screenshots alone. Swipe for more, then apply when you are ready for the same rigor in your market."
         />
         <VideoTestimonials />
       </div>
@@ -302,7 +318,7 @@ export default function RealEstateLeadGenerationPageContent() {
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="If the stakes feel familiar, the next step is a short application. We show up with your market researched so the first call is about fit and leverage—not a generic pitch."
+        hint="15 minutes. We arrive with your market mapped, the leakage points circled, and a phased plan to your first 46 qualified leads."
       />
 
       <section
@@ -320,7 +336,7 @@ export default function RealEstateLeadGenerationPageContent() {
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
                 You need a guide who connects demand, capture, and CRM in one narrative: where intent shows up, where
                 clicks leak, and what your team needs on the phone inside five minutes. DMR ships weekly, reports in
-                language leadership can defend, and optimizes to booked conversations—not vanity volume.
+                language leadership can defend, and optimizes to booked conversations, not vanity volume.
               </p>
               <ul className="mt-8 space-y-4 border-l-2 border-[var(--color-off-black)]/15 pl-5">
                 {[
@@ -387,7 +403,7 @@ export default function RealEstateLeadGenerationPageContent() {
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
-              Demand, capture, and pipeline wired together—so every dollar and every page reinforces the reputation you
+              Demand, capture, and pipeline wired together, so every dollar and every page reinforces the reputation you
               want in the market.
             </p>
           </SeoReveal>
@@ -412,7 +428,7 @@ export default function RealEstateLeadGenerationPageContent() {
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="Want an audit before you scale? Apply anyway—we use your answers to prep routing, leakage, and channel notes for a serious first conversation."
+        hint="Pick a 15-minute slot. We bring your routing audit, leakage map, and channel mix already drafted, so the call moves the needle, not the noise."
       />
 
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]" id="documented-outcomes">
@@ -420,11 +436,11 @@ export default function RealEstateLeadGenerationPageContent() {
           <SeoReveal>
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Documented outcomes</p>
             <h2 className="mt-3 max-w-3xl font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              We ship systems clients can measure—not theory from a slide deck
+              We ship systems clients can measure, not theory from a slide deck
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
-              The same demand, capture, and pipeline discipline we describe here is what we run in flagship engagements—with
+              The same demand, capture, and pipeline discipline we describe here is what we run in flagship engagements, with
               timelines and channel mix spelled out in each case study.
             </p>
           </SeoReveal>
@@ -491,7 +507,7 @@ export default function RealEstateLeadGenerationPageContent() {
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Social proof</p>
             <h2 className="mt-3 font-serif text-3xl font-light text-[var(--color-off-black)] md:text-4xl">What clients say</h2>
             <p className="mt-3 max-w-2xl font-serif text-sm text-[var(--color-ink-300)]">
-              Teams who wanted partnership over vendor theater—pipeline, responsiveness, and trust in their own words.
+              Teams who wanted partnership over vendor theater: pipeline, responsiveness, and trust in their own words.
             </p>
           </SeoReveal>
         </div>
@@ -575,32 +591,32 @@ export default function RealEstateLeadGenerationPageContent() {
       >
         <div className="container-max mx-auto max-w-2xl text-center">
           <SeoReveal>
-            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Next step</p>
-            <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              Own the first conversation—then the appointment.
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Your next 30 days</p>
+            <h2 className="mt-3 font-serif text-2xl font-light tracking-tight text-[var(--color-off-black)] sm:text-3xl md:text-4xl">
+              10+ qualified leads in your first month, or your setup fee is on us.
             </h2>
             <SectionRule align="center" />
             <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-              A short application is the smallest commitment that lets us arrive prepared: your markets, your competitors,
-              and the gaps costing you GCI. No spam. No pressure. Just a direct conversation about fit.
+              Most agencies take 60–90 days to launch. We move in three weeks. Pick a 15-minute slot and we&apos;ll arrive with your markets, your competitors, and the leakage points already mapped, then back the rebuild with a 30-day pilot guarantee.
             </p>
           </SeoReveal>
-          <motion.button
-            type="button"
-            onClick={openApplyModal}
-            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-            className="mt-10 inline-flex min-h-[52px] items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0"
-          >
-            Apply
-          </motion.button>
-          <p className="mt-5">
-            <Link
-              href="/calendar"
-              className="font-serif text-xs uppercase tracking-[0.14em] text-[var(--color-ink-400)] underline-offset-2 transition-opacity hover:opacity-70 hover:underline"
+          <div className="mt-10 flex flex-col items-center gap-4">
+            <motion.div whileTap={reduceMotion ? undefined : { scale: 0.98 }}>
+              <Link
+                href="/calendar"
+                className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
+              >
+                Book 15-min strategy call
+              </Link>
+            </motion.div>
+            <button
+              type="button"
+              onClick={openApplyModal}
+              className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
             >
-              Prefer to book directly? Open the calendar
-            </Link>
-          </p>
+              Or get my free lead audit
+            </button>
+          </div>
           <p className="mt-6 font-serif text-xs text-[var(--color-ink-400)]">
             UTM parameters from your visit are attached when you submit so we can honor the campaign that brought you here.
           </p>

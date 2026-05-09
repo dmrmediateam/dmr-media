@@ -4,27 +4,27 @@ export const FAQ_ITEMS = [
   {
     question: 'How much does lead generation cost?',
     answer:
-      'Investment scales with market depth, channel mix, and how much rebuild your site and CRM need before we scale spend. We scope management fees and recommended ad budgets after diagnosis—aligned to cost-per-qualified-conversation targets, not opaque “per lead” bundles.',
+      'Investment scales with market depth, channel mix, and how much rebuild your site and CRM need before we scale spend. We scope management fees and recommended ad budgets after diagnosis, aligned to cost-per-qualified-conversation targets, not opaque “per lead” bundles.',
   },
   {
     question: 'How quickly will I get leads?',
     answer:
-      'Paid channels can produce conversations within days of launch when tracking and landing paths are correct; organic and authority layers compound over weeks. Published examples include a sharp lift inside three weeks once the full system was live—your timeline depends on starting assets and competition, which we set explicitly in discovery.',
+      'Paid channels can produce conversations within days of launch when tracking and landing paths are correct; organic and authority layers compound over weeks. Published examples include a sharp lift inside three weeks once the full system was live. Your timeline depends on starting assets and competition, which we set explicitly in discovery.',
   },
   {
     question: 'Are the leads exclusive?',
     answer:
-      'Yes. Inbound leads generated through your properties, search presence, and paid campaigns are yours—not shared portal inventory sold to multiple agents. Exclusivity is the point of owning acquisition instead of renting it from third-party marketplaces.',
+      'Yes. Inbound leads generated through your properties, search presence, and paid campaigns are yours, not shared portal inventory sold to multiple agents. Exclusivity is the point of owning acquisition instead of renting it from third-party marketplaces.',
   },
   {
     question: 'Can you integrate with my CRM?',
     answer:
-      'We routinely wire forms, call tracking, and ad platforms into common real estate CRMs and automation tools—routing, tagging, sequences, and offline conversion imports so optimization follows real pipeline outcomes, not click volume alone.',
+      'We routinely wire forms, call tracking, and ad platforms into common real estate CRMs and automation tools: routing, tagging, sequences, and offline conversion imports so optimization follows real pipeline outcomes, not click volume alone.',
   },
   {
     question: "What if I'm not ready to commit?",
     answer:
-      'Start with a structured audit: intent map, leakage points, and a phased plan. Many teams pilot one metro or one inventory vertical before expanding—so you can validate response discipline and CRM hygiene before scaling media.',
+      'Start with a structured audit: intent map, leakage points, and a phased plan. Many teams pilot one metro or one inventory vertical before expanding, so you can validate response discipline and CRM hygiene before scaling media.',
   },
 ] as const
 
@@ -33,7 +33,7 @@ export const stakesThree = [
     title: 'Volume',
     subtitle: 'Leads that never become tours',
     body:
-      'Portal and shared-list models optimize for names sold to brokers—not for your brand, your markets, or your cost per booked appointment. When quality breaks first, “more leads” becomes a tax on your best agents’ time.',
+      'Portal and shared-list models optimize for names sold to brokers, not for your brand, your markets, or your cost per booked appointment. When quality breaks first, “more leads” becomes a tax on your best agents’ time.',
   },
   {
     title: 'Velocity',
@@ -81,7 +81,7 @@ export const processPhases = [
   {
     title: 'Diagnose intent and leakage',
     description:
-      'Search, ads, form analytics, and speed-to-lead—we find where budget and attention evaporate before conversations hit the CRM, prioritized by revenue impact.',
+      'Search, ads, form analytics, and speed-to-lead: we find where budget and attention evaporate before conversations hit the CRM, prioritized by revenue impact.',
   },
   {
     title: 'Rebuild the acquisition spine',
@@ -96,7 +96,7 @@ export const processPhases = [
   {
     title: 'Instrument and iterate weekly',
     description:
-      'Dashboards and CRM signals so you scale what books tours and cut what only burns budget—reporting tied to pipeline, not vanity clicks.',
+      'Dashboards and CRM signals so you scale what books tours and cut what only burns budget, with reporting tied to pipeline, not vanity clicks.',
   },
 ] as const
 
@@ -104,21 +104,21 @@ export const frameworkPillars = [
   {
     title: 'Demand layer',
     body:
-      'SEO, Google Ads, and GBP working as one intent map—so you earn shelf space while spend captures buyers naming neighborhoods and price bands today.',
+      'SEO, Google Ads, and GBP working as one intent map, so you earn shelf space while spend captures buyers naming neighborhoods and price bands today.',
     image: '/images/MarquisFarwellGoogleSearchConsole.png',
     imageAlt: 'Organic and paid demand signals for luxury real estate',
   },
   {
     title: 'Capture layer',
     body:
-      'Message match from ad to headline to proof, mobile-first forms, and progressive qualification—so the click you paid for does not die on the landing page.',
+      'Message match from ad to headline to proof, mobile-first forms, and progressive qualification, so the click you paid for does not die on the landing page.',
     image: '/images/EaganCaseStudy/SearchAds.png',
     imageAlt: 'Paid search and campaign structure supporting conversion',
   },
   {
     title: 'Pipeline layer',
     body:
-      'Instant routing, sequences, scoring, and offline conversion feedback—so sales sees context, automation respects luxury tone, and media learns from appointments.',
+      'Instant routing, sequences, scoring, and offline conversion feedback, so sales sees context, automation respects luxury tone, and media learns from appointments.',
     image: '/images/JadeCRM.png',
     imageAlt: 'CRM pipeline and lead context for real estate teams',
   },
@@ -126,18 +126,18 @@ export const frameworkPillars = [
 
 export const programProof = [
   {
-    label: 'Willow Brook launch',
+    label: 'Willow Brook launch · 3 weeks',
     result: '46 inbound leads',
-    note: 'Complete inbound system: local SEO, GBP, and targeted ads—documented in the first three weeks of the push.',
+    note: 'Complete inbound system (local SEO, GBP, and targeted ads), live and producing qualified conversations inside 21 days. Most agencies are still scoping at that point.',
   },
   {
-    label: 'Legendary orchestration',
-    result: '3× qualified leads',
-    note: 'Search, paid, landing, and automation aligned so CRM conversations tripled in ninety days with follow-up you can read.',
+    label: 'Legendary orchestration · 90 days',
+    result: '3× qualified pipeline',
+    note: 'Search, paid, landing, and automation aligned so CRM conversations tripled in ninety days, with follow-up your team can defend.',
   },
   {
-    label: 'Exclusive pipeline',
-    result: '100% yours',
-    note: 'Inbound you own—not shared portal inventory—so optimization follows booked appointments and GCI, not vendor scorecards.',
+    label: 'Your pipeline · always',
+    result: '100% exclusive',
+    note: 'Leads you own, never shared portal inventory resold to competing agents. Optimization follows booked appointments and GCI, not vendor scorecards.',
   },
 ] as const
