@@ -3,13 +3,10 @@ import { sendApplicationFormEmail } from '@/lib/email'
 
 const DEFAULT_THANK_YOU_PATH = '/landing/thank-you'
 const GOOGLE_GENERAL_FORM_NAME = 'google-general-strategy-call'
-const GOOGLE_GENERAL_MODAL_FORM_NAME = 'google-general-modal'
 const GOOGLE_GENERAL_THANK_YOU_PATH = '/landing/thank-you-g'
 const GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH = '/landing/thank-you-g-dq'
 
-function usesGoogleGeneralWebhook(formName: string) {
-  return formName === GOOGLE_GENERAL_FORM_NAME || formName === GOOGLE_GENERAL_MODAL_FORM_NAME
-}
+const ZAPIER_MISSING_ERROR = 'Missing ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL'
 
 /** POST JSON to Zapier; returns an error response, or null on success / dev skip. */
 async function postApplicationToZapier(
@@ -20,7 +17,7 @@ async function postApplicationToZapier(
   if (!webhookUrl) {
     if (process.env.NODE_ENV === 'development') {
       console.warn(
-        `[api/application] ${missingEnvError}: Zapier webhook skipped (set ZAPIER_WEBHOOK_URL in .env.local for local Zapier testing).`
+        `[api/application] ${missingEnvError}: Zapier webhook skipped (set ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL in .env.local for local Zapier testing).`
       )
       return null
     }
@@ -101,15 +98,8 @@ export async function POST(req: NextRequest) {
 
       await sendApplicationFormEmail(payload)
 
-      const useGoogleGeneral = usesGoogleGeneralWebhook(formName)
-      const webhookUrl = useGoogleGeneral
-        ? process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL
-        : process.env.ZAPIER_WEBHOOK_URL
-      const missingWebhookError = useGoogleGeneral
-        ? 'Missing ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL'
-        : 'Missing ZAPIER_WEBHOOK_URL'
-
-      const zapierError = await postApplicationToZapier(webhookUrl, missingWebhookError, payload)
+      const webhookUrl = process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL
+      const zapierError = await postApplicationToZapier(webhookUrl, ZAPIER_MISSING_ERROR, payload)
       if (zapierError) return zapierError
 
       if (formName === GOOGLE_GENERAL_FORM_NAME) {
@@ -153,11 +143,8 @@ export async function POST(req: NextRequest) {
 
     await sendApplicationFormEmail(payload)
 
-    const useGg = usesGoogleGeneralWebhook(formName)
-    const webhookUrl = useGg ? process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL : process.env.ZAPIER_WEBHOOK_URL
-    const missingWebhookError = useGg ? 'Missing ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL' : 'Missing ZAPIER_WEBHOOK_URL'
-
-    const zapierError = await postApplicationToZapier(webhookUrl, missingWebhookError, payload)
+    const webhookUrl = process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL
+    const zapierError = await postApplicationToZapier(webhookUrl, ZAPIER_MISSING_ERROR, payload)
     if (zapierError) return zapierError
 
     let redirectPath = DEFAULT_THANK_YOU_PATH
