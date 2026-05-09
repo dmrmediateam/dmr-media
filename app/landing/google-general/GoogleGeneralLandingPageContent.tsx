@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -12,36 +12,36 @@ import VideoTestimonials from '@/components/VideoTestimonials'
 import Testimonials from '@/components/Testimonials'
 import SeoHeroCaseStudyShowcase, { type SeoHeroCaseStudySlide } from '@/components/SeoHeroCaseStudyShowcase'
 import {
+  agencyProof,
   dmrVsAlternatives,
+  FAQ_ITEMS,
   frameworkPillars,
   processPhases,
-  programProof,
   stakesThree,
-  FAQ_ITEMS,
-} from './lead-generation-data'
+} from './google-general-landing-data'
 
-const APPLY_FORM = 'real-estate-lead-generation-apply'
+const APPLY_FORM = 'google-general-modal'
 const HERO_VIDEO_SRC = '/videos/DMR%20-%20INTRO%204K.mp4'
 
-/** Hero carousel: lead-gen proof (inbound volume, CRM pipeline, paid demand). */
-const LEAD_GEN_HERO_SLIDES: SeoHeroCaseStudySlide[] = [
-  {
-    id: 'willow-brook-realty',
-    href: '/case-study/willow-brook-realty',
-    teamName: 'Willow Brook Realty',
-    region: 'Vermont & New Hampshire',
-    highlight: '46 inbound leads in 3 weeks',
-    image: '/images/WillowBrookLeads.png',
-    imageAlt: 'Inbound lead volume after Willow Brook Realty system launch',
-  },
+/** Hero carousel: Legendary Google Ads first for this SEO + PPC landing. */
+const GOOGLE_GENERAL_HERO_SLIDES: SeoHeroCaseStudySlide[] = [
   {
     id: 'jade-legendary-real-estate',
     href: '/case-study/jade-legendary-real-estate',
     teamName: 'Legendary Real Estate Services',
     region: 'Lake Geneva, WI',
-    highlight: '3× qualified pipeline in 90 days',
-    image: '/images/JadeCRM.png',
-    imageAlt: 'CRM pipeline and lead context for Legendary Real Estate Services',
+    highlight: '3× inbound pipeline · Google Ads + organic',
+    image: '/images/LegendaryRealEstateCaseSTudy/GoogleAdsSCreenshot.png',
+    imageAlt: 'Google Ads campaign performance for Legendary Real Estate Services',
+  },
+  {
+    id: 'marquis-farwell-group',
+    href: '/case-study/marquis-farwell-group',
+    teamName: 'Marquis + Farwell Group',
+    region: 'Sonoma County, CA',
+    highlight: '19× daily organic clicks',
+    image: '/images/MarquisFarwellGoogleSearchConsole.png',
+    imageAlt: 'Google Search Console growth for Marquis + Farwell luxury real estate',
   },
   {
     id: 'eagan-luxury-real-estate',
@@ -49,8 +49,8 @@ const LEAD_GEN_HERO_SLIDES: SeoHeroCaseStudySlide[] = [
     teamName: 'Eagan Luxury Real Estate',
     region: 'St. Petersburg, FL',
     highlight: '$11M+ closed volume, Q1 2026',
-    image: '/images/EaganCaseStudy/SearchAds.png',
-    imageAlt: 'Google Ads performance supporting Eagan Luxury inbound demand',
+    image: '/images/EaganCaseStudy/GoogleSearchConsole.png',
+    imageAlt: 'Organic visibility growth for Eagan Luxury Real Estate',
   },
 ]
 
@@ -111,7 +111,7 @@ function ApplyCtaBand({
   return (
     <aside
       className={`${bg} border-b border-[var(--color-ink-200)] py-10 md:py-14 ${className}`}
-      aria-label="Apply for lead generation"
+      aria-label="Apply for a strategy call"
     >
       <div className="container-max mx-auto flex max-w-xl flex-col items-center gap-4 px-4 text-center">
         <p className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
@@ -136,10 +136,21 @@ function SectionRule({ align = 'left' }: { align?: 'left' | 'center' }) {
   )
 }
 
-export default function RealEstateLeadGenerationPageContent() {
+export default function GoogleGeneralLandingPageContent() {
   const heroVideoRef = useRef<HTMLVideoElement>(null)
   const [isHeroMuted, setIsHeroMuted] = useState(true)
   const reduceMotion = useReducedMotion()
+
+  useEffect(() => {
+    const nav = document.querySelector('nav') as HTMLElement | null
+    const footer = document.querySelector('footer') as HTMLElement | null
+    if (nav) nav.style.display = 'none'
+    if (footer) footer.style.display = 'none'
+    return () => {
+      if (nav) nav.style.display = ''
+      if (footer) footer.style.display = ''
+    }
+  }, [])
 
   const toggleHeroMute = () => {
     const video = heroVideoRef.current
@@ -152,17 +163,13 @@ export default function RealEstateLeadGenerationPageContent() {
 
   const heroEase = [0.25, 0.1, 0.25, 1] as const
 
-  const faqRenderItems: ReadonlyArray<{ question: string; answer: ReactNode }> = FAQ_ITEMS.map((item) => ({
-    question: item.question,
-    answer: item.answer,
-  }))
-
   return (
     <div className="min-h-screen bg-white [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
+      {/* Hero: organic + PPC positioning (layout mirrors /seo-optimization) */}
       <section
         className="relative min-h-screen overflow-hidden border-b border-[var(--color-ink-200)] scroll-mt-6"
         id="top"
-        aria-labelledby="leadgen-hero-title"
+        aria-labelledby="google-landing-hero-title"
       >
         <div className="absolute inset-0 z-0">
           <video
@@ -190,18 +197,18 @@ export default function RealEstateLeadGenerationPageContent() {
             transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
           >
             <p className="mb-5 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
-              Lead generation for luxury real estate
+              #1 in the U.S. on SEMrush · SEO + PPC · five-star luxury agency
             </p>
             <h1
-              id="leadgen-hero-title"
+              id="google-landing-hero-title"
               className="font-serif text-4xl font-light leading-[1.06] tracking-tight !text-white sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl"
             >
-              Turn intent into appointments—not inbox noise.
+              Be the name buyers find before they ever call an agent.
             </h1>
             <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
-              Search, Google Ads, landing capture, and CRM velocity—one team so spend, capture, and nurture tell the same
-              story. Documented programs include 46+ qualified inbound leads in three weeks and 3× pipeline in ninety days,
-              exclusive to your brand.
+              DMR Media is a five-star luxury real estate marketing agency, ranked #1 in the United States on SEMrush in
+              our category—we run organic SEO and Google Ads (PPC) as one system: shared intent maps, message match from
+              query to landing, and reporting tied to pipeline, not vanity charts.
             </p>
             <div className="mt-9 flex flex-col items-stretch gap-3 sm:items-start">
               <button
@@ -211,23 +218,30 @@ export default function RealEstateLeadGenerationPageContent() {
               >
                 Apply now
               </button>
-              <Link
-                href="/calendar"
-                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/75 underline-offset-4 transition-colors hover:text-white/95 hover:underline sm:self-start"
-              >
-                Or book time on our calendar
-              </Link>
               <motion.a
                 href="#after-hero"
                 aria-label="Scroll to client logos and page content"
                 className="inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
                 animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
                 transition={
-                  reduceMotion ? undefined : { duration: 2.6, repeat: Infinity, ease: 'easeInOut' as const }
+                  reduceMotion
+                    ? undefined
+                    : { duration: 2.6, repeat: Infinity, ease: 'easeInOut' as const }
                 }
               >
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                  />
                 </svg>
               </motion.a>
             </div>
@@ -239,10 +253,7 @@ export default function RealEstateLeadGenerationPageContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.7, ease: heroEase, delay: reduceMotion ? 0 : 0.08 }}
           >
-            <SeoHeroCaseStudyShowcase
-              slides={LEAD_GEN_HERO_SLIDES}
-              ariaLabel="Lead generation case study demos"
-            />
+            <SeoHeroCaseStudyShowcase slides={GOOGLE_GENERAL_HERO_SLIDES} />
           </motion.div>
         </div>
         <button
@@ -259,6 +270,7 @@ export default function RealEstateLeadGenerationPageContent() {
         <ClientLogosSlider />
       </section>
 
+      {/* Stakes: internal + external + philosophical (StoryBrand problem) */}
       <section
         className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]"
         id="stakes"
@@ -268,11 +280,12 @@ export default function RealEstateLeadGenerationPageContent() {
             <div className="mx-auto max-w-3xl text-center">
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Why this page exists</p>
               <h2 className="mt-3 font-serif text-3xl font-light leading-tight tracking-tight text-[var(--color-off-black)] md:text-4xl">
-                Is your funnel filling the CRM—or filling a dashboard?
+                Is your Google growth earning shelf space and intent—or leaking trust?
               </h2>
               <SectionRule align="center" />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                Three patterns we see when teams already win offline, but lose the invisible first conversation online.
+                Three patterns we see when teams win offline but lose the first digital moment—across organic results and
+                paid search.
               </p>
             </div>
           </SeoReveal>
@@ -292,9 +305,9 @@ export default function RealEstateLeadGenerationPageContent() {
 
       <div id="proof" className="scroll-mt-24">
         <SeoCaseStudiesHorizontalScroll
-          eyebrow="Pipeline proof"
-          title="Systems that produced qualified conversations"
-          description="Case studies include channel mix, timelines, and CRM outcomes—not cherry-picked screenshots alone. Swipe for more, then apply when you are ready for the same rigor in your market."
+          eyebrow="Luxury markets"
+          title="Documented lifts across SEO, PPC, and pipeline"
+          description="From Sonoma to Lake Geneva: timelines include organic, Google Ads, and full channel mix—plus CRM outcomes, not cherry-picked screenshots alone."
         />
         <VideoTestimonials />
       </div>
@@ -302,9 +315,10 @@ export default function RealEstateLeadGenerationPageContent() {
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="If the stakes feel familiar, the next step is a short application. We show up with your market researched so the first call is about fit and leverage—not a generic pitch."
+        hint="If one of these sounds familiar, the next step is a short application; we show up with your market already researched."
       />
 
+      {/* Guide + plan: authority + empathy */}
       <section
         className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]"
         id="guide"
@@ -314,19 +328,19 @@ export default function RealEstateLeadGenerationPageContent() {
             <div>
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">How we work</p>
               <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-                We do not sell “lead packages.” We install an acquisition spine.
+                We do not sell disconnected SEO and Ads tickets. We install one luxury growth engine.
               </h2>
               <SectionRule />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                You need a guide who connects demand, capture, and CRM in one narrative: where intent shows up, where
-                clicks leak, and what your team needs on the phone inside five minutes. DMR ships weekly, reports in
-                language leadership can defend, and optimizes to booked conversations—not vanity volume.
+                You need a five-star partner who runs organic and PPC as one narrative: weekly shipping, technical honesty,
+                and reporting tied to GCI—not vanity charts. DMR is ranked #1 among U.S. real estate marketing agencies on
+                SEMrush, built for teams who already close at a high level but deserve to own both sides of Google demand.
               </p>
               <ul className="mt-8 space-y-4 border-l-2 border-[var(--color-off-black)]/15 pl-5">
                 {[
-                  'Clarity: written priorities before we scale spend or content',
-                  'Cadence: execution that compounds instead of quarterly theater',
-                  'Proof: qualified leads, speed-to-lead, and pipeline tied to one definition of “success”',
+                  'Clarity: one intent map for SEO + PPC your leadership can defend',
+                  'Cadence: organic and paid iteration weekly—not quarterly theater',
+                  'Proof: SEMrush U.S. leadership plus Search, Ads, and CRM outcomes you can repeat',
                 ].map((line) => (
                   <li key={line} className="font-serif text-[var(--color-off-black)]">
                     {line}
@@ -376,19 +390,20 @@ export default function RealEstateLeadGenerationPageContent() {
         </div>
       </section>
 
-      <SeoWebsiteExamplesHorizontalScroll variant="ads" sectionId="capture-examples" />
+      <SeoWebsiteExamplesHorizontalScroll variant="ads" />
 
+      {/* Framework */}
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="framework">
         <div className="container-max">
           <SeoReveal>
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Execution model</p>
             <h2 className="mt-3 max-w-3xl font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              Three layers. One accountable team.
+              Three pillars. One accountable team.
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
-              Demand, capture, and pipeline wired together—so every dollar and every page reinforces the reputation you
-              want in the market.
+              Category visibility, disciplined PPC, and organic systems—so paid and earned search tell the same luxury
+              story and every dollar votes for the reputation you want in the market.
             </p>
           </SeoReveal>
           <div className="mt-14 grid gap-8 md:grid-cols-3 md:gap-10">
@@ -412,42 +427,35 @@ export default function RealEstateLeadGenerationPageContent() {
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="Want an audit before you scale? Apply anyway—we use your answers to prep routing, leakage, and channel notes for a serious first conversation."
+        hint="Prefer we audit before you commit? Apply anyway; we use your application to prep a serious first conversation."
       />
 
-      <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]" id="documented-outcomes">
+      <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]" id="agency-authority">
         <div className="container-max">
           <SeoReveal>
-            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Documented outcomes</p>
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Authority you can verify</p>
             <h2 className="mt-3 max-w-3xl font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              We ship systems clients can measure—not theory from a slide deck
+              #1 on SEMrush nationally. Five-star service in the field.
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
-              The same demand, capture, and pipeline discipline we describe here is what we run in flagship engagements—with
-              timelines and channel mix spelled out in each case study.
+              Benchmarks meet bedside manner: the same organic, paid, and editorial cadence we sell is what we run on our
+              own footprint every week—then we bring that standard to luxury teams who expect white-glove partnership.
             </p>
           </SeoReveal>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {programProof.map((item) => (
-              <article key={item.label} className="rounded-lg border border-[var(--color-ink-200)] bg-white p-6">
-                <p className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">{item.label}</p>
+            {agencyProof.map((item) => (
+              <article key={item.term} className="rounded-lg border border-[var(--color-ink-200)] bg-white p-6">
+                <p className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">{item.term}</p>
                 <p className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)]">{item.result}</p>
                 <p className="mt-3 font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">{item.note}</p>
               </article>
             ))}
           </div>
-          <div className="mt-10 text-center">
-            <Link
-              href="/case-studies"
-              className="inline-flex items-center font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-opacity hover:opacity-60"
-            >
-              Read full case studies
-            </Link>
-          </div>
         </div>
       </section>
 
+      {/* Process */}
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="process">
         <div className="container-max">
           <SeoReveal>
@@ -457,8 +465,8 @@ export default function RealEstateLeadGenerationPageContent() {
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm text-[var(--color-ink-300)]">
-              Clear steps reduce anxiety and increase follow-through. Here is how we move you from diagnosis to compounding
-              pipeline without mystery milestones.
+              Clear steps reduce anxiety (and increase follow-through). Here is how we guide you from diagnosis to compounding
+              results across organic and PPC.
             </p>
           </SeoReveal>
           <div className="relative mt-12 md:pl-3">
@@ -491,11 +499,12 @@ export default function RealEstateLeadGenerationPageContent() {
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Social proof</p>
             <h2 className="mt-3 font-serif text-3xl font-light text-[var(--color-off-black)] md:text-4xl">What clients say</h2>
             <p className="mt-3 max-w-2xl font-serif text-sm text-[var(--color-ink-300)]">
-              Teams who wanted partnership over vendor theater—pipeline, responsiveness, and trust in their own words.
+              Consensus from teams who value partnership over vendor theater: liking, authority, and social proof in their
+              own words.
             </p>
           </SeoReveal>
         </div>
-        <Testimonials omitHeading showStarRating visibleIds={[3, 'sandy-reavill', 'jorge-elizondo']} />
+        <Testimonials omitHeading showStarRating />
       </section>
 
       <section className="border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]">
@@ -503,9 +512,9 @@ export default function RealEstateLeadGenerationPageContent() {
           <SeoReveal>
             <div className="rounded-xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] md:p-10">
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Ecosystem</p>
-              <h2 className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)] md:text-3xl">How lead generation fits your stack</h2>
+              <h2 className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)] md:text-3xl">How this fits your full stack</h2>
               <p className="mt-5 font-serif text-[15px] leading-[1.85] text-[var(--color-ink-300)]">
-                Inbound sits on top of{' '}
+                This landing covers the Google side together: deep-dive{' '}
                 <Link href="/seo-optimization" className="underline underline-offset-2 hover:opacity-70">
                   SEO optimization
                 </Link>{' '}
@@ -513,29 +522,30 @@ export default function RealEstateLeadGenerationPageContent() {
                 <Link href="/google-ads-management" className="underline underline-offset-2 hover:opacity-70">
                   Google Ads management
                 </Link>
-                , measured through{' '}
+                . Layer full-funnel{' '}
+                <Link href="/real-estate-lead-generation" className="underline underline-offset-2 hover:opacity-70">
+                  lead generation
+                </Link>
+                , transparent{' '}
                 <Link href="/analytics-reporting" className="underline underline-offset-2 hover:opacity-70">
                   analytics and reporting
                 </Link>
-                . Listing pushes pair with{' '}
-                <Link href="/property-marketing" className="underline underline-offset-2 hover:opacity-70">
-                  property marketing
-                </Link>
-                , onsite experience with{' '}
+                , flagship{' '}
                 <Link href="/website-and-seo" className="underline underline-offset-2 hover:opacity-70">
                   website design
                 </Link>
-                , and presales GTM with{' '}
-                <Link href="/luxury-development-marketing" className="underline underline-offset-2 hover:opacity-70">
-                  luxury development marketing
-                </Link>
-                .
+                , and{' '}
+                <Link href="/seo-consulting" className="underline underline-offset-2 hover:opacity-70">
+                  SEO consulting
+                </Link>{' '}
+                when you need strategy before full execution.
               </p>
             </div>
           </SeoReveal>
         </div>
       </section>
 
+      {/* FAQ */}
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="faq">
         <div className="container-max max-w-3xl">
           <SeoReveal>
@@ -546,7 +556,7 @@ export default function RealEstateLeadGenerationPageContent() {
             <SectionRule />
           </SeoReveal>
           <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-1 md:px-2">
-            {faqRenderItems.map((item) => (
+            {FAQ_ITEMS.map((item) => (
               <details
                 key={item.question}
                 className="group border-0 px-3 py-1 transition-colors [&[open]]:bg-white/90 md:px-4"
@@ -569,20 +579,22 @@ export default function RealEstateLeadGenerationPageContent() {
         </div>
       </section>
 
+      {/* Final CTA: scarcity of attention, not fake inventory */}
       <section
-        id="leadgen-apply-cta"
+        id="google-general-apply-cta"
         className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]"
       >
         <div className="container-max mx-auto max-w-2xl text-center">
           <SeoReveal>
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Next step</p>
             <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              Own the first conversation—then the appointment.
+              Stop renting your reputation to the SERP. Own the story.
             </h2>
             <SectionRule align="center" />
             <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-              A short application is the smallest commitment that lets us arrive prepared: your markets, your competitors,
-              and the gaps costing you GCI. No spam. No pressure. Just a direct conversation about fit.
+              A short application is the smallest commitment that lets us come prepared: your market, your competitors, and
+              the gaps costing you GCI across organic and paid search. No spam. No pressure. Just a direct conversation about
+              fit.
             </p>
           </SeoReveal>
           <motion.button
@@ -593,14 +605,6 @@ export default function RealEstateLeadGenerationPageContent() {
           >
             Apply
           </motion.button>
-          <p className="mt-5">
-            <Link
-              href="/calendar"
-              className="font-serif text-xs uppercase tracking-[0.14em] text-[var(--color-ink-400)] underline-offset-2 transition-opacity hover:opacity-70 hover:underline"
-            >
-              Prefer to book directly? Open the calendar
-            </Link>
-          </p>
           <p className="mt-6 font-serif text-xs text-[var(--color-ink-400)]">
             UTM parameters from your visit are attached when you submit so we can honor the campaign that brought you here.
           </p>

@@ -11,6 +11,7 @@ import ClientLogosSlider from '@/components/ClientLogosSlider'
 import VideoTestimonials from '@/components/VideoTestimonials'
 import ServiceStats from '@/components/service/ServiceStats'
 import Testimonials from '@/components/Testimonials'
+import SeoHeroCaseStudyShowcase, { type SeoHeroCaseStudySlide } from '@/components/SeoHeroCaseStudyShowcase'
 import {
   dmrVsAlternatives,
   frameworkPillars,
@@ -21,6 +22,37 @@ import {
 
 const APPLY_FORM = 'google-ads-management-apply'
 const HERO_VIDEO_SRC = '/videos/DMR%20-%20INTRO%204K.mp4'
+
+/** Hero carousel: Google Ads proof (campaign UI, client accounts, inbound lift). */
+const GOOGLE_ADS_HERO_SLIDES: SeoHeroCaseStudySlide[] = [
+  {
+    id: 'eagan-luxury-real-estate',
+    href: '/case-study/eagan-luxury-real-estate',
+    teamName: 'Eagan Luxury Real Estate',
+    region: 'St. Petersburg, FL',
+    highlight: '$11M+ closed volume · Q1 after launch',
+    image: '/images/EaganCaseStudy/SearchAds.png',
+    imageAlt: 'Google Ads campaign performance for Eagan Luxury Real Estate',
+  },
+  {
+    id: 'jade-legendary-real-estate',
+    href: '/case-study/jade-legendary-real-estate',
+    teamName: 'Legendary Real Estate Services',
+    region: 'Lake Geneva, WI',
+    highlight: 'Google Ads + search orchestration',
+    image: '/images/LegendaryRealEstateCaseSTudy/GoogleAdsSCreenshot.png',
+    imageAlt: 'Google Ads results for Legendary Real Estate Services',
+  },
+  {
+    id: 'willow-brook-realty',
+    href: '/case-study/willow-brook-realty',
+    teamName: 'Willow Brook Realty',
+    region: 'Vermont & New Hampshire',
+    highlight: '46 inbound leads in 3 weeks',
+    image: '/images/WillowBrookLeads.png',
+    imageAlt: 'Inbound lead volume after Willow Brook Realty Google Ads and local search launch',
+  },
+]
 
 function VolumeOffIcon({ className }: { className?: string }) {
   return (
@@ -145,30 +177,28 @@ export default function GoogleAdsManagementPageContent() {
             aria-hidden
           />
         </div>
-        <div className="relative z-10 container-max flex min-h-screen items-center justify-center py-20 text-center pointer-events-none">
+        <div className="relative z-10 container-max grid min-h-screen grid-cols-1 items-center gap-12 py-20 lg:grid-cols-2 lg:gap-16 xl:gap-20 pointer-events-none">
           <motion.div
-            className="max-w-4xl pointer-events-auto"
+            className="pointer-events-auto max-w-xl text-left lg:max-w-xl"
             initial={reduceMotion ? false : { opacity: 0.5, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
           >
-            <p className="mb-6 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
+            <p className="mb-5 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
               Google Ads for luxury real estate
             </p>
             <h1
               id="ads-hero-title"
-              className="font-serif text-4xl font-light leading-[1.04] tracking-tight !text-white sm:text-5xl md:text-6xl lg:text-7xl"
+              className="font-serif text-4xl font-light leading-[1.06] tracking-tight !text-white sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl"
             >
               Be the name buyers click when intent is highest.
             </h1>
-            <p className="mx-auto mt-8 max-w-3xl font-serif text-lg leading-relaxed text-white/90 sm:text-xl">
-              Your buyer is not confused. They are deciding. We position you as the guide at that moment: clear promise,
-              disciplined geography, and landing paths that turn spend into conversations your team can feel in the CRM.
+            <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
+              Your buyer is not confused—they are deciding. We position you at that moment with clear promise, disciplined
+              geography, and landing paths that turn ad spend into CRM conversations. Trusted by teams who needed
+              predictable pipeline, not another dashboard subscription.
             </p>
-            <p className="mx-auto mt-4 max-w-3xl font-serif text-sm leading-relaxed text-white/75 sm:text-base">
-              Trusted by teams who needed predictable pipeline, not another dashboard subscription.
-            </p>
-            <div className="mt-10 flex flex-col items-center">
+            <div className="mt-9 flex flex-col items-stretch gap-3 sm:items-start">
               <button
                 type="button"
                 onClick={openApplyModal}
@@ -179,7 +209,7 @@ export default function GoogleAdsManagementPageContent() {
               <motion.a
                 href="#after-hero"
                 aria-label="Scroll to client logos and page content"
-                className="mt-10 inline-flex rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                className="inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
                 animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
                 transition={
                   reduceMotion
@@ -203,6 +233,18 @@ export default function GoogleAdsManagementPageContent() {
                 </svg>
               </motion.a>
             </div>
+          </motion.div>
+
+          <motion.div
+            className="pointer-events-auto flex justify-center lg:justify-end"
+            initial={reduceMotion ? false : { opacity: 0.5, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.7, ease: heroEase, delay: reduceMotion ? 0 : 0.08 }}
+          >
+            <SeoHeroCaseStudyShowcase
+              slides={GOOGLE_ADS_HERO_SLIDES}
+              ariaLabel="Google Ads case study demos"
+            />
           </motion.div>
         </div>
         <button

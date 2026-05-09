@@ -11,6 +11,7 @@ import ClientLogosSlider from '@/components/ClientLogosSlider'
 import VideoTestimonials from '@/components/VideoTestimonials'
 import ServiceStats from '@/components/service/ServiceStats'
 import Testimonials from '@/components/Testimonials'
+import SeoHeroCaseStudyShowcase from '@/components/SeoHeroCaseStudyShowcase'
 import {
   dmrVsAlternatives,
   frameworkPillars,
@@ -162,31 +163,26 @@ export default function SEOOptimizationPageContent() {
             aria-hidden
           />
         </div>
-        <div className="relative z-10 container-max flex min-h-screen items-center justify-center py-20 text-center pointer-events-none">
+        <div className="relative z-10 container-max grid min-h-screen grid-cols-1 items-center gap-12 py-20 lg:grid-cols-2 lg:gap-16 xl:gap-20 pointer-events-none">
           <motion.div
-            className="max-w-4xl pointer-events-auto"
+            className="pointer-events-auto max-w-xl text-left lg:max-w-xl"
             initial={reduceMotion ? false : { opacity: 0.5, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
           >
-            <p className="mb-6 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
+            <p className="mb-5 font-serif text-[11px] uppercase tracking-[0.24em] text-white/80">
               SEO for luxury real estate
             </p>
             <h1
               id="seo-hero-title"
-              className="font-serif text-4xl font-light leading-[1.04] tracking-tight !text-white sm:text-5xl md:text-6xl lg:text-7xl"
+              className="font-serif text-4xl font-light leading-[1.06] tracking-tight !text-white sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl"
             >
               Be the name buyers find before they ever call an agent.
             </h1>
-            <p className="mx-auto mt-8 max-w-3xl font-serif text-lg leading-relaxed text-white/90 sm:text-xl">
-              Your competitors are not “better.” They are easier to find. We build the search engine story that
-              matches how affluent clients actually decide, then we ship the technical and content work so Google
-              recommends you, not a template farm.
+            <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
+              Technical SEO, on-page precision, and content systems so Google recommends you first—not a template farm.
             </p>
-            <p className="mx-auto mt-4 max-w-3xl font-serif text-sm leading-relaxed text-white/75 sm:text-base">
-              Trusted by teams from Sonoma to Lake Geneva, with documented lifts in impressions, clicks, and pipeline.
-            </p>
-            <div className="mt-10 flex flex-col items-center">
+            <div className="mt-9 flex flex-col items-stretch gap-3 sm:items-start">
               <button
                 type="button"
                 onClick={openApplyModal}
@@ -197,7 +193,7 @@ export default function SEOOptimizationPageContent() {
               <motion.a
                 href="#after-hero"
                 aria-label="Scroll to client logos and page content"
-                className="mt-10 inline-flex rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                className="inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
                 animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
                 transition={
                   reduceMotion
@@ -221,6 +217,15 @@ export default function SEOOptimizationPageContent() {
                 </svg>
               </motion.a>
             </div>
+          </motion.div>
+
+          <motion.div
+            className="pointer-events-auto flex justify-center lg:justify-end"
+            initial={reduceMotion ? false : { opacity: 0.5, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.7, ease: heroEase, delay: reduceMotion ? 0 : 0.08 }}
+          >
+            <SeoHeroCaseStudyShowcase />
           </motion.div>
         </div>
         <button
