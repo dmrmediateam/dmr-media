@@ -6,7 +6,7 @@ import { FAQ_ITEMS } from './seo-data'
 const BASE = 'https://www.dmrmedia.org'
 
 export const metadata: Metadata = {
-  title: 'Get 19× More Organic Clicks in 90 Days | Luxury Real Estate SEO | DMR Media',
+  title: 'Real Estate SEO — 19× More Organic Clicks in 90 Days | DMR Media',
   description:
     'Luxury real estate SEO with documented 19× organic-click lifts and 300%+ traffic in 90 days. Free 30-minute audit: if we don\'t find $50K+ in missed opportunity, you owe nothing.',
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     canonical: `${BASE}/seo-optimization`,
   },
   openGraph: {
-    title: 'Get 19× More Organic Clicks in 90 Days | Luxury Real Estate SEO | DMR Media',
+    title: 'Real Estate SEO — 19× More Organic Clicks in 90 Days | DMR Media',
     description:
       'Luxury real estate SEO with documented 19× organic-click lifts and 300%+ traffic in 90 days. Free audit: if we don\'t find $50K+ in missed opportunity, you owe nothing.',
     url: `${BASE}/seo-optimization`,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Get 19× More Organic Clicks in 90 Days | Luxury Real Estate SEO | DMR Media',
+    title: 'Real Estate SEO — 19× More Organic Clicks in 90 Days | DMR Media',
     description:
       'Luxury real estate SEO with documented 19× organic-click lifts and 300%+ traffic in 90 days. Free audit: if we don\'t find $50K+ in missed opportunity, you owe nothing.',
   },

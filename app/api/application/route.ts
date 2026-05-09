@@ -11,6 +11,38 @@ function usesGoogleGeneralWebhook(formName: string) {
   return formName === GOOGLE_GENERAL_FORM_NAME || formName === GOOGLE_GENERAL_MODAL_FORM_NAME
 }
 
+/** POST JSON to Zapier; returns an error response, or null on success / dev skip. */
+async function postApplicationToZapier(
+  webhookUrl: string | undefined,
+  missingEnvError: string,
+  payload: Record<string, unknown>
+): Promise<NextResponse | null> {
+  if (!webhookUrl) {
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(
+        `[api/application] ${missingEnvError}: Zapier webhook skipped (set ZAPIER_WEBHOOK_URL in .env.local for local Zapier testing).`
+      )
+      return null
+    }
+    return NextResponse.json({ error: missingEnvError }, { status: 500 })
+  }
+
+  const webhookResponse = await fetch(webhookUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+    cache: 'no-store',
+  })
+
+  if (!webhookResponse.ok) {
+    return NextResponse.json({ error: 'Failed to submit application' }, { status: 502 })
+  }
+
+  return null
+}
+
 function readAttributionFromJson(body: Record<string, unknown>) {
   const s = (k: string) => (typeof body[k] === 'string' ? (body[k] as string) : '')
   return {
@@ -73,30 +105,12 @@ export async function POST(req: NextRequest) {
       const webhookUrl = useGoogleGeneral
         ? process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL
         : process.env.ZAPIER_WEBHOOK_URL
+      const missingWebhookError = useGoogleGeneral
+        ? 'Missing ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL'
+        : 'Missing ZAPIER_WEBHOOK_URL'
 
-      if (!webhookUrl) {
-        return NextResponse.json(
-          {
-            error: useGoogleGeneral
-              ? 'Missing ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL'
-              : 'Missing ZAPIER_WEBHOOK_URL',
-          },
-          { status: 500 }
-        )
-      }
-
-      const webhookResponse = await fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-        cache: 'no-store',
-      })
-
-      if (!webhookResponse.ok) {
-        return NextResponse.json({ error: 'Failed to submit application' }, { status: 502 })
-      }
+      const zapierError = await postApplicationToZapier(webhookUrl, missingWebhookError, payload)
+      if (zapierError) return zapierError
 
       if (formName === GOOGLE_GENERAL_FORM_NAME) {
         const isUnderTwentyM = payload.annualSalesVolume === 'Under $20M'
@@ -139,33 +153,12 @@ export async function POST(req: NextRequest) {
 
     await sendApplicationFormEmail(payload)
 
-    const webhookUrl = usesGoogleGeneralWebhook(formName)
-      ? process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL
-      : process.env.ZAPIER_WEBHOOK_URL
+    const useGg = usesGoogleGeneralWebhook(formName)
+    const webhookUrl = useGg ? process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL : process.env.ZAPIER_WEBHOOK_URL
+    const missingWebhookError = useGg ? 'Missing ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL' : 'Missing ZAPIER_WEBHOOK_URL'
 
-    if (!webhookUrl) {
-      return NextResponse.json(
-        {
-          error: usesGoogleGeneralWebhook(formName)
-            ? 'Missing ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL'
-            : 'Missing ZAPIER_WEBHOOK_URL',
-        },
-        { status: 500 }
-      )
-    }
-
-    const webhookResponse = await fetch(webhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-      cache: 'no-store',
-    })
-
-    if (!webhookResponse.ok) {
-      return NextResponse.json({ error: 'Failed to submit application' }, { status: 502 })
-    }
+    const zapierError = await postApplicationToZapier(webhookUrl, missingWebhookError, payload)
+    if (zapierError) return zapierError
 
     let redirectPath = DEFAULT_THANK_YOU_PATH
     if (isGoogleGeneral) {

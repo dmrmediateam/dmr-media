@@ -206,7 +206,7 @@ export default function GoogleAdsManagementPageContent() {
               id="ads-hero-title"
               className="font-serif text-3xl font-light leading-[1.08] tracking-tight !text-white sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
             >
-              Cut Your Cost Per Lead by 65%, While Booking 1.8× More Appointments.
+              Real Estate Google Ads that cut costs by 65% & booked 1.8× more appointments
             </h1>
             <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
               Intent-led campaigns, disciplined geography, and landing paths that turn ad spend into qualified CRM conversations, not dashboard noise. Documented client averages: 65% lower CPL, 1.8× appointments booked, 3× qualified pipeline.

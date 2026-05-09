@@ -192,7 +192,7 @@ export default function SEOOptimizationPageContent() {
               id="seo-hero-title"
               className="font-serif text-3xl font-light leading-[1.08] tracking-tight !text-white sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
             >
-              Get 19× More Organic Clicks in 90 Days, Without Paying Per Click.
+              Real Estate SEO that generated 19× more organic clicks in 90 days
             </h1>
             <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
               Technical SEO, on-page precision, and content systems built for luxury real estate, so Google recommends you first, not a template farm. Documented client lifts include 19× daily organic clicks and 300%+ traffic in the first 90 days.

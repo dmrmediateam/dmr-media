@@ -117,23 +117,23 @@ function ApplyCtaBand({
   return (
     <aside
       className={`${bg} border-b border-[var(--color-ink-200)] py-10 md:py-14 ${className}`}
-      aria-label="Book a strategy call or get a free lead audit"
+      aria-label="Get a free lead audit or book a strategy call"
     >
       <div className="container-max mx-auto flex max-w-xl flex-col items-center gap-4 px-4 text-center">
         <p className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
-        <Link
-          href={primaryHref}
-          className={`inline-flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
-        >
-          {primaryLabel}
-        </Link>
         <button
           type="button"
           onClick={openApplyModal}
-          className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
+          className={`inline-flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
         >
           {secondaryLabel}
         </button>
+        <Link
+          href={primaryHref}
+          className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
+        >
+          {primaryLabel}
+        </Link>
         <p className="font-serif text-[11px] leading-snug text-[var(--color-ink-400)]/85">
           30-day pilot guarantee. If we don&apos;t deliver 10+ qualified leads in your first month, your setup fee is on us.
         </p>
@@ -211,25 +211,25 @@ export default function RealEstateLeadGenerationPageContent() {
               id="leadgen-hero-title"
               className="font-serif text-3xl font-light leading-[1.08] tracking-tight !text-white sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
             >
-              46 Qualified Leads in 3 Weeks. 3× Pipeline in 90 Days. Exclusive to Your Brand.
+              Real Estate Lead Generation that generated 46 qualified buyers & sellers in 3 weeks.
             </h1>
             <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
               Most agencies need 60–90 days to launch. Our flagship system delivered 46 qualified inbound leads in three weeks, then tripled pipeline by day 90. SEO, Google Ads, landing capture, and CRM velocity from one team. Your brand, your buyers, never resold.
             </p>
             <div className="mt-7 flex flex-col items-stretch gap-3 sm:items-start">
-              <Link
-                href="/calendar"
-                className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm bg-white px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] shadow-[0_4px_24px_rgba(0,0,0,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/95 hover:shadow-[0_8px_32px_rgba(0,0,0,0.22)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] motion-reduce:hover:translate-y-0 sm:w-auto sm:min-w-[12rem]"
-              >
-                Book 15-min strategy call
-              </Link>
               <button
                 type="button"
                 onClick={openApplyModal}
-                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline sm:self-start"
+                className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm bg-white px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] shadow-[0_4px_24px_rgba(0,0,0,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/95 hover:shadow-[0_8px_32px_rgba(0,0,0,0.22)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] motion-reduce:hover:translate-y-0 sm:w-auto sm:min-w-[12rem]"
               >
                 Or get my free lead audit
               </button>
+              <Link
+                href="/calendar"
+                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline sm:self-start"
+              >
+                Book 15-min strategy call
+              </Link>
               <p className="mt-1 max-w-md font-serif text-[12px] leading-snug text-white/70">
                 30-day pilot guarantee. If we don&apos;t deliver 10+ qualified leads in your first month, your setup fee is on us.
               </p>
@@ -602,20 +602,20 @@ export default function RealEstateLeadGenerationPageContent() {
           </SeoReveal>
           <div className="mt-10 flex flex-col items-center gap-4">
             <motion.div whileTap={reduceMotion ? undefined : { scale: 0.98 }}>
-              <Link
-                href="/calendar"
+              <button
+                type="button"
+                onClick={openApplyModal}
                 className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
               >
-                Book 15-min strategy call
-              </Link>
+                Or get my free lead audit
+              </button>
             </motion.div>
-            <button
-              type="button"
-              onClick={openApplyModal}
+            <Link
+              href="/calendar"
               className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
             >
-              Or get my free lead audit
-            </button>
+              Book 15-min strategy call
+            </Link>
           </div>
           <p className="mt-6 font-serif text-xs text-[var(--color-ink-400)]">
             UTM parameters from your visit are attached when you submit so we can honor the campaign that brought you here.

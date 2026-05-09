@@ -5,14 +5,14 @@ import { FAQ_ITEMS } from './google-general-landing-data'
 const BASE = 'https://www.dmrmedia.org'
 
 export const metadata: Metadata = {
-  title: '#1 U.S. Real Estate Agency on SEMrush · 3× Pipeline · 65% Lower CPL | DMR Media',
+  title: '#1 Rated U.S. Real Estate Marketing Agency on SEMrush | DMR Media',
   description:
     '#1 U.S. real estate marketing agency on SEMrush. SEO + Google Ads as one engine: 3× pipeline, 65% lower CPL, 19× organic clicks. Free integrated audit: if we don\'t find $30K+ in missed opportunity, you owe nothing.',
   alternates: {
     canonical: `${BASE}/landing/google-general`,
   },
   openGraph: {
-    title: '#1 U.S. Real Estate Agency on SEMrush · 3× Pipeline · 65% Lower CPL | DMR Media',
+    title: '#1 Rated U.S. Real Estate Marketing Agency on SEMrush | DMR Media',
     description:
       '#1 U.S. real estate marketing agency on SEMrush. SEO + Google Ads as one engine: 3× pipeline, 65% lower CPL, 19× organic clicks. Free integrated audit.',
     url: `${BASE}/landing/google-general`,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '#1 U.S. Real Estate Agency on SEMrush · 3× Pipeline · 65% Lower CPL | DMR Media',
+    title: '#1 Rated U.S. Real Estate Marketing Agency on SEMrush | DMR Media',
     description:
       '#1 U.S. real estate marketing agency on SEMrush. SEO + Google Ads as one engine: 3× pipeline, 65% lower CPL, 19× organic clicks. Free integrated audit.',
   },

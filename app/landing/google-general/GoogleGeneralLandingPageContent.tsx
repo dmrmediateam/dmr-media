@@ -218,7 +218,7 @@ export default function GoogleGeneralLandingPageContent() {
               id="google-landing-hero-title"
               className="font-serif text-[1.625rem] font-light leading-[1.1] tracking-tight !text-white sm:text-[2rem] md:text-[2.125rem] lg:text-[2.625rem] xl:text-5xl"
             >
-              #1 U.S. Real Estate Marketing Agency on SEMrush. 3× Pipeline. 65% Lower CPL. One Integrated System.
+              #1 Rated U.S. Real Estate Marketing Agency on SEMrush
             </h1>
             <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
               SEO and Google Ads run as one engine, not two vendors fighting in your CRM. Organic compounds your authority while paid captures buyers naming neighborhoods today. Documented client averages: 3× pipeline, 65% lower CPL, 19× organic clicks.

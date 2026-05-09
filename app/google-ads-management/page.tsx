@@ -6,7 +6,7 @@ import { FAQ_ITEMS } from './google-ads-data'
 const BASE = 'https://www.dmrmedia.org'
 
 export const metadata: Metadata = {
-  title: 'Cut Cost Per Lead by 65% | Luxury Real Estate Google Ads | DMR Media',
+  title: 'Real Estate Google Ads — 65% Lower Costs, 1.8× More Appointments | DMR Media',
   description:
     'Documented client averages: 65% lower CPL, 1.8× more booked appointments, 3× qualified pipeline. Free Google Ads audit: if we don\'t find $30K+ in wasted spend, you owe nothing.',
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     canonical: `${BASE}/google-ads-management`,
   },
   openGraph: {
-    title: 'Cut Cost Per Lead by 65% | Luxury Real Estate Google Ads | DMR Media',
+    title: 'Real Estate Google Ads — 65% Lower Costs, 1.8× More Appointments | DMR Media',
     description:
       'Documented averages: 65% lower CPL, 1.8× more appointments, 3× pipeline. Free Google Ads audit: if we don\'t find $30K+ in wasted spend, you owe nothing.',
     url: `${BASE}/google-ads-management`,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cut Cost Per Lead by 65% | Luxury Real Estate Google Ads | DMR Media',
+    title: 'Real Estate Google Ads — 65% Lower Costs, 1.8× More Appointments | DMR Media',
     description:
       'Documented averages: 65% lower CPL, 1.8× more appointments, 3× pipeline. Free Google Ads audit: if we don\'t find $30K+ in wasted spend, you owe nothing.',
   },

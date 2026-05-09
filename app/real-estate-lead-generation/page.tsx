@@ -6,7 +6,7 @@ import { FAQ_ITEMS } from './lead-generation-data'
 const BASE = 'https://www.dmrmedia.org'
 
 export const metadata: Metadata = {
-  title: '46 Qualified Leads in 3 Weeks | Luxury Real Estate Lead Generation | DMR Media',
+  title: 'Real Estate Lead Generation — 46 Qualified Buyers & Sellers in 3 Weeks | DMR Media',
   description:
     'Documented: 46 qualified inbound leads in 3 weeks, 3× pipeline in 90 days, exclusive to your brand. 30-day pilot guarantee: 10+ qualified leads or your setup fee is on us.',
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     canonical: `${BASE}/real-estate-lead-generation`,
   },
   openGraph: {
-    title: '46 Qualified Leads in 3 Weeks | Luxury Real Estate Lead Generation | DMR Media',
+    title: 'Real Estate Lead Generation — 46 Qualified Buyers & Sellers in 3 Weeks | DMR Media',
     description:
       'Documented: 46 qualified inbound leads in 3 weeks, 3× pipeline in 90 days, exclusive to your brand. 30-day pilot guarantee: 10+ qualified leads or setup fee is on us.',
     url: `${BASE}/real-estate-lead-generation`,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '46 Qualified Leads in 3 Weeks | Luxury Real Estate Lead Generation | DMR Media',
+    title: 'Real Estate Lead Generation — 46 Qualified Buyers & Sellers in 3 Weeks | DMR Media',
     description:
       'Documented: 46 qualified inbound leads in 3 weeks, 3× pipeline in 90 days, exclusive to your brand. 30-day pilot guarantee: 10+ qualified leads or setup fee is on us.',
   },
