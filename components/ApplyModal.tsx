@@ -14,6 +14,8 @@ import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking'
 
 const TOTAL_STEPS = 2
 const DEFAULT_APPLY_FORM_NAME = 'google-general-strategy-call'
+const APPLY_MODAL_THANK_YOU_PATH = '/landing/thank-you-g'
+const APPLY_MODAL_DQ_THANK_YOU_PATH = '/landing/thank-you-g-dq'
 
 const initialFormData = {
   firstName: '',
@@ -221,20 +223,7 @@ export default function ApplyModal() {
 
       const data = (await response.json().catch(() => ({}))) as {
         ok?: boolean
-        redirectPath?: string
         error?: string
-      }
-
-      if (response.ok && data.ok && typeof data.redirectPath === 'string') {
-        submissionCompleteRef.current = true
-        trackConversion('Lead', {
-          form_name: formName,
-          submission_page: submissionPage,
-          ...utm,
-        })
-        close()
-        router.push(data.redirectPath)
-        return
       }
 
       if (response.ok && data.ok) {
@@ -244,10 +233,12 @@ export default function ApplyModal() {
           submission_page: submissionPage,
           ...utm,
         })
-        setSubmitMessage("Thank you! We'll be in touch shortly.")
-        setFormData(initialFormData)
-        setStep(0)
-        setTimeout(() => close(), 2000)
+        close()
+        const thankYouPath =
+          formData.annualSalesVolume === 'Under $20M'
+            ? APPLY_MODAL_DQ_THANK_YOU_PATH
+            : APPLY_MODAL_THANK_YOU_PATH
+        router.push(thankYouPath)
         return
       }
 
