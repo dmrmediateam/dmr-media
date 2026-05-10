@@ -106,7 +106,7 @@ function ApplyCtaBand({
   className = '',
   primaryHref = '/calendar',
   primaryLabel = 'Book 15-min strategy call',
-  secondaryLabel = 'Or get my free lead audit',
+  secondaryLabel = 'Get my free lead audit',
 }: {
   hint: string
   surface: 'base' | 'white'
@@ -123,12 +123,14 @@ function ApplyCtaBand({
       className={`${bg} border-b border-[var(--color-ink-200)] py-10 md:py-14 ${className}`}
       aria-label="Get a free lead audit or book a strategy call"
     >
-      <div className="container-max mx-auto flex max-w-xl flex-col items-center gap-4 px-4 text-center">
-        <p className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
+      <div className="container-max mx-auto flex max-w-xl flex-col items-center gap-4 px-4 text-center max-lg:gap-5">
+        <p className="text-pretty font-serif text-[0.875rem] leading-relaxed text-[var(--color-ink-400)] sm:text-[0.9375rem]">
+          {hint}
+        </p>
         <button
           type="button"
           onClick={openApplyModal}
-          className={`inline-flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
+          className={`inline-flex min-h-[48px] w-full max-w-xs touch-manipulation items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
         >
           {secondaryLabel}
         </button>
@@ -177,9 +179,9 @@ export default function RealEstateLeadGenerationPageContent() {
   }))
 
   return (
-    <div className="min-h-screen bg-white [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
+    <div className="min-h-screen bg-white [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.24)] lg:[--seo-section-y:theme(spacing.28)]">
       <section
-        className="relative min-h-screen overflow-hidden border-b border-[var(--color-ink-200)] scroll-mt-6"
+        className="relative min-h-[100svh] overflow-hidden border-b border-[var(--color-ink-200)] scroll-mt-6 lg:min-h-screen"
         id="top"
         aria-labelledby="leadgen-hero-title"
       >
@@ -201,9 +203,9 @@ export default function RealEstateLeadGenerationPageContent() {
             aria-hidden
           />
         </div>
-        <div className="relative z-10 container-max grid min-h-screen grid-cols-1 items-center gap-12 py-20 lg:grid-cols-2 lg:gap-16 xl:gap-20 pointer-events-none">
+        <div className="relative z-10 container-max pointer-events-none grid min-h-[inherit] grid-cols-1 items-start gap-8 py-14 sm:gap-10 sm:py-16 max-lg:pb-8 lg:min-h-screen lg:grid-cols-2 lg:items-center lg:gap-16 lg:py-20 xl:gap-20">
           <motion.div
-            className="pointer-events-auto max-w-xl text-left lg:max-w-xl"
+            className="pointer-events-auto max-w-xl text-left max-lg:mx-auto max-lg:w-full lg:mx-0 lg:max-w-xl"
             initial={reduceMotion ? false : { opacity: 0.5, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
@@ -213,20 +215,20 @@ export default function RealEstateLeadGenerationPageContent() {
             </p>
             <h1
               id="leadgen-hero-title"
-              className="font-serif text-3xl font-light leading-[1.08] tracking-tight !text-white sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
+              className="text-pretty font-serif text-3xl font-light leading-[1.08] tracking-tight !text-white sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
             >
               Real Estate Lead Generation that generated 46 qualified buyers & sellers in 3 weeks.
             </h1>
-            <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
+            <p className="mt-5 max-w-xl text-pretty font-serif text-[0.9375rem] leading-relaxed !text-white sm:mt-6 sm:text-lg lg:mt-6">
               Most agencies need 60–90 days to launch. Our flagship system delivered 46 qualified inbound leads in three weeks, then tripled pipeline by day 90. SEO, Google Ads, landing capture, and CRM velocity from one team. Your brand, your buyers, never resold.
             </p>
-            <div className="mt-7 flex flex-col items-stretch gap-3 sm:items-start">
+            <div className="mt-6 flex flex-col items-stretch gap-3 sm:mt-7 sm:items-start">
               <button
                 type="button"
                 onClick={openApplyModal}
-                className={SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME}
+                className={`${SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME} touch-manipulation`}
               >
-                Or get my free lead audit
+                Get my free lead audit
               </button>
               <Link
                 href="/calendar"
@@ -254,7 +256,7 @@ export default function RealEstateLeadGenerationPageContent() {
           </motion.div>
 
           <motion.div
-            className="pointer-events-auto flex justify-center lg:justify-end"
+            className="pointer-events-auto flex w-full justify-center max-lg:pt-4 lg:justify-end lg:pt-0"
             initial={reduceMotion ? false : { opacity: 0.5, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.7, ease: heroEase, delay: reduceMotion ? 0 : 0.08 }}
@@ -268,7 +270,7 @@ export default function RealEstateLeadGenerationPageContent() {
         <button
           type="button"
           onClick={toggleHeroMute}
-          className="absolute bottom-5 right-5 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-all duration-200 hover:scale-105 hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50 motion-reduce:hover:scale-100"
+          className="absolute bottom-6 right-4 z-20 flex h-12 w-12 touch-manipulation items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-all duration-200 hover:scale-105 hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50 motion-reduce:hover:scale-100 max-lg:bottom-[max(1.25rem,env(safe-area-inset-bottom,0px))] max-lg:right-[max(1rem,env(safe-area-inset-right,0px))] lg:bottom-5 lg:right-5 lg:h-11 lg:w-11"
           aria-label={isHeroMuted ? 'Unmute hero video' : 'Mute hero video'}
         >
           {isHeroMuted ? <VolumeOffIcon className="h-5 w-5" /> : <VolumeOnIcon className="h-5 w-5" />}
@@ -296,10 +298,10 @@ export default function RealEstateLeadGenerationPageContent() {
               </p>
             </div>
           </SeoReveal>
-          <div className="mt-14 grid gap-6 md:grid-cols-3 md:gap-8">
+          <div className="mt-12 grid gap-5 sm:mt-14 sm:gap-6 sm:max-lg:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-8">
             {stakesThree.map((s, i) => (
               <SeoReveal key={s.title} delay={i * 0.06} className="h-full">
-                <article className="group flex h-full flex-col rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/12 hover:shadow-md motion-reduce:hover:translate-y-0">
+                <article className="group flex h-full flex-col rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-5 shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/12 hover:shadow-md motion-reduce:hover:translate-y-0 sm:p-6 lg:p-6">
                   <p className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">{s.title}</p>
                   <h3 className="mt-2 font-serif text-xl font-light text-[var(--color-off-black)]">{s.subtitle}</h3>
                   <p className="mt-4 font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">{s.body}</p>
@@ -329,7 +331,7 @@ export default function RealEstateLeadGenerationPageContent() {
         className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]"
         id="guide"
       >
-        <div className="container-max grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div className="container-max grid gap-8 sm:gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
           <SeoReveal>
             <div>
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">How we work</p>
@@ -411,14 +413,14 @@ export default function RealEstateLeadGenerationPageContent() {
               want in the market.
             </p>
           </SeoReveal>
-          <div className="mt-14 grid gap-8 md:grid-cols-3 md:gap-10">
+          <div className="mt-12 grid gap-7 sm:mt-14 sm:gap-8 sm:max-lg:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-10">
             {frameworkPillars.map((p, i) => (
               <SeoReveal key={p.title} delay={i * 0.07}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)] shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md motion-reduce:hover:translate-y-0">
                   <div className="relative aspect-[4/3] w-full border-b border-[var(--color-ink-200)] bg-white transition-colors group-hover:bg-[#fafafa]">
-                    <Image src={p.image} alt={p.imageAlt} fill className="object-contain object-center p-3" sizes="(max-width: 768px) 100vw, 33vw" />
+                    <Image src={p.image} alt={p.imageAlt} fill className="object-contain object-center p-3" sizes="(max-width: 1023px) 90vw, 33vw" />
                   </div>
-                  <div className="flex flex-1 flex-col p-6">
+                  <div className="flex flex-1 flex-col p-5 sm:p-6 lg:p-6">
                     <h3 className="font-serif text-xl font-light text-[var(--color-off-black)]">{p.title}</h3>
                     <p className="mt-3 font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">{p.body}</p>
                   </div>
@@ -448,9 +450,9 @@ export default function RealEstateLeadGenerationPageContent() {
               timelines and channel mix spelled out in each case study.
             </p>
           </SeoReveal>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-5 sm:gap-6 sm:max-lg:grid-cols-2 lg:grid-cols-3">
             {programProof.map((item) => (
-              <article key={item.label} className="rounded-lg border border-[var(--color-ink-200)] bg-white p-6">
+              <article key={item.label} className="rounded-lg border border-[var(--color-ink-200)] bg-white p-5 sm:p-6 lg:p-6">
                 <p className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">{item.label}</p>
                 <p className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)]">{item.result}</p>
                 <p className="mt-3 font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">{item.note}</p>
@@ -524,7 +526,7 @@ export default function RealEstateLeadGenerationPageContent() {
             <div className="rounded-xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] md:p-10">
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Ecosystem</p>
               <h2 className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)] md:text-3xl">How lead generation fits your stack</h2>
-              <p className="mt-5 font-serif text-[15px] leading-[1.85] text-[var(--color-ink-300)]">
+              <p className="mt-5 text-pretty font-serif text-[0.9375rem] leading-[1.82] text-[var(--color-ink-300)] sm:text-[15px] sm:leading-[1.85]">
                 Inbound sits on top of{' '}
                 <Link href="/seo-optimization" className="underline underline-offset-2 hover:opacity-70">
                   SEO optimization
@@ -571,7 +573,7 @@ export default function RealEstateLeadGenerationPageContent() {
                 key={item.question}
                 className="group border-0 px-3 py-1 transition-colors [&[open]]:bg-white/90 md:px-4"
               >
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 rounded-md py-4 pr-1 font-serif text-lg font-light text-[var(--color-off-black)] outline-none marker:content-none [&::-webkit-details-marker]:hidden hover:bg-white/60 focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-reduce:transition-none">
+                <summary className="flex min-h-[48px] cursor-pointer list-none items-start justify-between gap-3 rounded-md py-3 pr-1 font-serif text-base font-light leading-snug text-[var(--color-off-black)] outline-none marker:content-none [&::-webkit-details-marker]:hidden hover:bg-white/60 focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-reduce:transition-none touch-manipulation sm:gap-4 sm:py-4 sm:text-lg lg:text-lg">
                   <span className="text-pretty">{item.question}</span>
                   <span
                     className="mt-1.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[var(--color-ink-200)] bg-white text-[10px] text-[var(--color-ink-400)] transition-transform duration-300 group-open:rotate-180"
@@ -609,9 +611,9 @@ export default function RealEstateLeadGenerationPageContent() {
               <button
                 type="button"
                 onClick={openApplyModal}
-                className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
+                className="inline-flex min-h-[52px] w-full max-w-xs touch-manipulation items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
               >
-                Or get my free lead audit
+                Get my free lead audit
               </button>
             </motion.div>
             <Link
@@ -626,7 +628,7 @@ export default function RealEstateLeadGenerationPageContent() {
           </p>
         </div>
       </section>
-      <SeoLandingStickyPrimaryCta onApply={openApplyModal}>Or get my free lead audit</SeoLandingStickyPrimaryCta>
+      <SeoLandingStickyPrimaryCta onApply={openApplyModal}>Get my free lead audit</SeoLandingStickyPrimaryCta>
     </div>
   )
 }

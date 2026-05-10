@@ -14,7 +14,10 @@ type StickyProps = {
 /** Fixed bottom-right duplicate of the hero primary CTA so the offer stays visible while scrolling. */
 export function SeoLandingStickyPrimaryCta({ onApply, children }: StickyProps) {
   return (
-    <div className="pointer-events-none fixed bottom-6 right-4 z-[80] sm:bottom-8 sm:right-6" role="presentation">
+    <div
+      className="pointer-events-none fixed bottom-[max(1.5rem,calc(0.5rem+env(safe-area-inset-bottom,0px)))] right-4 z-[80] sm:bottom-[max(2rem,calc(0.5rem+env(safe-area-inset-bottom,0px)))] sm:right-6 lg:bottom-8 lg:right-6"
+      role="presentation"
+    >
       <button
         type="button"
         onClick={onApply}
