@@ -18,6 +18,7 @@ import {
   applyFormInputClass as inputClass,
   applyFormLabelClass as labelClass,
 } from '@/components/applyFormPrimitives'
+import { ANNUAL_SALES_VOLUME_OPTIONS, isGoogleGeneralDisqualifiedVolume } from '@/lib/application-form'
 
 const TOTAL_STEPS = 2
 const DEFAULT_APPLY_FORM_NAME = 'google-general-strategy-call'
@@ -229,10 +230,9 @@ export default function ApplyModal() {
           ...utm,
         })
         close()
-        const thankYouPath =
-          formData.annualSalesVolume === 'Under $20M'
-            ? APPLY_MODAL_DQ_THANK_YOU_PATH
-            : APPLY_MODAL_THANK_YOU_PATH
+        const thankYouPath = isGoogleGeneralDisqualifiedVolume(formData.annualSalesVolume)
+          ? APPLY_MODAL_DQ_THANK_YOU_PATH
+          : APPLY_MODAL_THANK_YOU_PATH
         router.push(thankYouPath)
         return
       }
@@ -414,11 +414,9 @@ export default function ApplyModal() {
                       <option value="" disabled>
                         Select one
                       </option>
-                      <option>Under $20M</option>
-                      <option>$20M-$40M</option>
-                      <option>$40M-$75M</option>
-                      <option>$75M-$150M</option>
-                      <option>$150M+</option>
+                      {ANNUAL_SALES_VOLUME_OPTIONS.map((label) => (
+                        <option key={label}>{label}</option>
+                      ))}
                     </select>
                   </div>
                   <div>

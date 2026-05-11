@@ -9,6 +9,7 @@ import {
   applyFormLabelClass,
   applyFormPanelClass,
 } from '@/components/applyFormPrimitives'
+import { ANNUAL_SALES_VOLUME_OPTIONS } from '@/lib/application-form'
 
 const FORM_NAME = 'calendar-application'
 const THANK_YOU_PATH = '/landing/thank-you'
@@ -27,6 +28,7 @@ const initialForm = {
   phone: '',
   profileType: '',
   website: '',
+  annualSalesVolume: '',
   notes: '',
 }
 
@@ -83,6 +85,7 @@ export default function CalendarPageContent() {
           phone: form.phone.trim(),
           profileType: form.profileType,
           website: form.website.trim(),
+          annualSalesVolume: form.annualSalesVolume,
           notes: form.notes.trim(),
           bookingReason: bookingReasons,
           submissionPage,
@@ -273,6 +276,28 @@ export default function CalendarPageContent() {
                         autoComplete="url"
                         className={applyFormInputClass}
                       />
+                    </div>
+                    <div>
+                      <label htmlFor="calendar-annualSalesVolume" className={applyFormLabelClass}>
+                        Annual sales volume
+                      </label>
+                      <select
+                        id="calendar-annualSalesVolume"
+                        name="annualSalesVolume"
+                        value={form.annualSalesVolume}
+                        onChange={handleFieldChange}
+                        required
+                        className={`${applyFormInputClass} cursor-pointer`}
+                      >
+                        <option value="" disabled>
+                          Select one
+                        </option>
+                        {ANNUAL_SALES_VOLUME_OPTIONS.map((label) => (
+                          <option key={label} value={label}>
+                            {label}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   </div>
 

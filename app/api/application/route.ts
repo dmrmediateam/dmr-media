@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { isGoogleGeneralDisqualifiedVolume } from '@/lib/application-form'
 import { sendApplicationFormEmail } from '@/lib/email'
 
 const DEFAULT_THANK_YOU_PATH = '/landing/thank-you'
@@ -103,8 +104,8 @@ export async function POST(req: NextRequest) {
       if (zapierError) return zapierError
 
       if (formName === GOOGLE_GENERAL_FORM_NAME) {
-        const isUnderTwentyM = payload.annualSalesVolume === 'Under $20M'
-        const redirectPath = isUnderTwentyM
+        const isDisqualifiedVolume = isGoogleGeneralDisqualifiedVolume(payload.annualSalesVolume)
+        const redirectPath = isDisqualifiedVolume
           ? GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH
           : GOOGLE_GENERAL_THANK_YOU_PATH
         return NextResponse.json({ ok: true, redirectPath })
@@ -117,7 +118,7 @@ export async function POST(req: NextRequest) {
     const formName = formData.get('formName')?.toString() ?? 'calendar-application'
     const isGoogleGeneral = formName === GOOGLE_GENERAL_FORM_NAME
     const annualSalesVolume = formData.get('annualSalesVolume')?.toString() ?? ''
-    const isUnderTwentyM = annualSalesVolume === 'Under $20M'
+    const isDisqualifiedVolume = isGoogleGeneralDisqualifiedVolume(annualSalesVolume)
     const firstName = formData.get('firstName')?.toString().trim() ?? ''
     const lastName = formData.get('lastName')?.toString().trim() ?? ''
     const fullName = [firstName, lastName].filter(Boolean).join(' ')
@@ -149,7 +150,7 @@ export async function POST(req: NextRequest) {
 
     let redirectPath = DEFAULT_THANK_YOU_PATH
     if (isGoogleGeneral) {
-      redirectPath = isUnderTwentyM
+      redirectPath = isDisqualifiedVolume
         ? GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH
         : GOOGLE_GENERAL_THANK_YOU_PATH
     }
