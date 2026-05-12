@@ -23,7 +23,7 @@ Next.js App Router pages and routes:
 - `/blog/[slug]` - Individual blog post pages with schema markup
 - `/case-studies` - All case studies listing
 - `/case-study/[id]` - Individual case study pages (retired slugs may 301 to `/case-studies`; see `next.config.js` redirects)
-- Core marketing services (canonical URLs only; see **Service metro URLs** below): `/seo-optimization`, `/seo-consulting`, `/google-ads-management`, `/real-estate-lead-generation`, `/luxury-development-marketing`, `/websites-for-new-developments`, `/website-and-seo`, `/single-property-websites`, `/luxury-condo-websites`, `/property-marketing`, `/analytics-reporting`, and other static routes listed in `lib/content-registry.ts` (`contentRegistry`)
+- Core marketing services (canonical URLs only; see **Service metro URLs** below): `/seo-optimization`, `/seo-consulting`, `/google-ads-management`, `/chatgpt-ads-real-estate`, `/real-estate-lead-generation`, `/luxury-development-marketing`, `/websites-for-new-developments`, `/website-and-seo`, `/single-property-websites`, `/luxury-condo-websites`, `/property-marketing`, `/analytics-reporting`, and other static routes listed in `lib/content-registry.ts` (`contentRegistry`)
 - `/landing/*` - Landing pages for lead generation (thank-you, qualification-result, apply, etc.)
 - `/calendar` - Strategy call application form
 - `/contact` - Contact form page
@@ -36,7 +36,7 @@ Next.js App Router pages and routes:
 
 ### Service metro URLs (301 to parent)
 Metro-specific pages under certain services were removed to avoid thin duplicate content. Any URL of the form `/{service}/{location}` **301 redirects** to `/{service}` via `next.config.js` `redirects()`. **Indexable** URLs are the **parent** service pages only, for these services:
-`/seo-optimization`, `/google-ads-management`, `/luxury-condo-websites`, `/single-property-websites`, `/websites-for-new-developments`, `/property-marketing`, `/analytics-reporting`, `/luxury-development-marketing`, `/real-estate-lead-generation`.
+`/seo-optimization`, `/google-ads-management`, `/chatgpt-ads-real-estate`, `/luxury-condo-websites`, `/single-property-websites`, `/websites-for-new-developments`, `/property-marketing`, `/analytics-reporting`, `/luxury-development-marketing`, `/real-estate-lead-generation`.
 
 ### `/components`
 React components:

@@ -183,6 +183,23 @@ export const contentRegistry: ContentEntry[] = [
     changeFrequency: 'weekly',
   },
   {
+    slug: '/chatgpt-ads-real-estate',
+    title: 'ChatGPT Ads for Real Estate (BETA) | DMR Media',
+    description:
+      'ChatGPT Ads pilot for luxury real estate: gradual global rollout with the U.S. in the first wave, small test cohort with DMR, no onboarding fee and no monthly retainer. Apply while capacity lasts.',
+    publishDate: '2026-05-11',
+    modifiedDate: '2026-05-11',
+    category: 'Paid Media',
+    tags: [
+      'ChatGPT ads real estate',
+      'OpenAI ads beta real estate',
+      'AI advertising luxury real estate',
+      'ChatGPT marketing for agents',
+    ],
+    priority: 0.78,
+    changeFrequency: 'weekly',
+  },
+  {
     slug: '/real-estate-lead-generation',
     title: 'Real Estate Lead Generation | DMR Media',
     description:

@@ -10,6 +10,7 @@ import { contentRegistry } from '@/lib/content-registry';
 const REDIRECT_ONLY_SERVICE_PREFIXES = new Set([
   'seo-optimization',
   'google-ads-management',
+  'chatgpt-ads-real-estate',
   'luxury-condo-websites',
   'single-property-websites',
   'websites-for-new-developments',

@@ -160,6 +160,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/chatgpt-ads-real-estate/:location',
+        destination: '/chatgpt-ads-real-estate',
+        permanent: true,
+      },
+      {
         source: '/luxury-condo-websites/:location',
         destination: '/luxury-condo-websites',
         permanent: true,

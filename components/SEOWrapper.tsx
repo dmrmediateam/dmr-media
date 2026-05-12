@@ -152,6 +152,7 @@ export default function SEOWrapper({
         'Luxury Condo Websites',
         'New Development Websites',
         'Lead Generation',
+        'Paid Media',
       ].includes(entry.category)
     ) {
       resolvedType = 'service'

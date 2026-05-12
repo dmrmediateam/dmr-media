@@ -137,6 +137,11 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/chatgpt-ads-real-estate" className="hover:opacity-60 transition-opacity">
+                    ChatGPT Ads (beta)
+                  </Link>
+                </li>
+                <li>
                   <Link href="/property-marketing" className="hover:opacity-60 transition-opacity">
                     Property Marketing
                   </Link>
