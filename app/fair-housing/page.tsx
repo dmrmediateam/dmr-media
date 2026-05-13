@@ -90,7 +90,7 @@ export default function FairHousingPage() {
                 </p>
                 <p className="mt-3">
                   <strong>Email:</strong> team@dmrmedia.org<br />
-                  <strong>Phone:</strong> +1 (920) 940-4049
+                  <strong>Phone:</strong> +1 920-249-5210
                 </p>
               </section>
             </div>

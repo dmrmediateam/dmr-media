@@ -139,7 +139,7 @@ dmr-media/
 ## 📧 Contact & Support
 
 - **Email**: team@dmrmedia.org
-- **Phone**: +1 (920) 940-4049
+- **Phone**: +1 920-249-5210
 - **LinkedIn**: [DMR Media Company](https://www.linkedin.com/company/90571937/)
 - **Instagram**: [@andrewrohmtcm](https://www.instagram.com/andrewrohmtcm/)
 - **YouTube**: [@AndrewRohmcm](https://www.youtube.com/@AndrewRohmcm)

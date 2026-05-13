@@ -159,8 +159,8 @@ const ContactForm = () => {
                 <a href="mailto:team@dmrmedia.org" className="block hover:text-[var(--color-trust)] transition-colors">
                   team@dmrmedia.org
                 </a>
-                <a href="tel:+19209404049" className="block hover:text-[var(--color-trust)] transition-colors">
-                  +1 (920) 940-4049
+                <a href="tel:+19202495210" className="block hover:text-[var(--color-trust)] transition-colors">
+                  +1 920-249-5210
                 </a>
               </div>
             </div>

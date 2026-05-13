@@ -39,8 +39,8 @@ const Footer = () => {
               <a href="mailto:team@dmrmedia.org" className="block hover:opacity-60 transition-opacity">
                 team@dmrmedia.org
               </a>
-              <a href="tel:+19209404049" className="block hover:opacity-60 transition-opacity" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                +1 (920) 940-4049
+              <a href="tel:+19202495210" className="block hover:opacity-60 transition-opacity" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                +1 920-249-5210
               </a>
               <p className="block leading-relaxed" style={{ fontFamily: "'Instrument Serif', serif" }}>
                 100 W College Ave, Office No. 326<br />

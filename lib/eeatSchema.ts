@@ -72,7 +72,7 @@ export function buildOrganizationSchema(baseUrl: string) {
     contactPoint: {
       '@type': 'ContactPoint',
       email: 'team@dmrmedia.org',
-      telephone: '+1-920-940-4049',
+      telephone: '+1-920-249-5210',
       contactType: 'customer support',
       areaServed: 'US',
       availableLanguage: 'English',

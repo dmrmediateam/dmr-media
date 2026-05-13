@@ -241,10 +241,10 @@ export default function StrategyCallConfirmationPage() {
               team@dmrmedia.org
             </a>
             <a
-              href="tel:+19209404049"
+              href="tel:+19202495210"
               className="text-[var(--color-off-black)] border-b border-[var(--color-off-black)] pb-0.5 hover:text-[var(--color-ink-300)] hover:border-[var(--color-ink-300)] transition-colors"
             >
-              +1 (920) 940-4049
+              +1 920-249-5210
             </a>
           </div>
         </div>
