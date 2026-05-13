@@ -6,6 +6,7 @@ import VideoTestimonials from '@/components/VideoTestimonials';
 import Testimonials from '@/components/Testimonials';
 import HomeBlogSection from '@/components/HomeBlogSection';
 import { getAllBlogPosts } from '@/data/blogPosts';
+import '@/app/styles/homepage-luxury.css';
 
 export default async function Home() {
   const blogPosts = await getAllBlogPosts();
@@ -13,7 +14,7 @@ export default async function Home() {
   const featuredPosts = validPosts.slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-[var(--surface-base)] [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
+    <main className="dmr-home min-h-screen [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
       <Hero />
       <ClientLogosSlider />
       <CaseStudies />
@@ -21,6 +22,6 @@ export default async function Home() {
       <VideoTestimonials />
       <HomeBlogSection posts={featuredPosts} layoutVariant="seo" />
       <Testimonials showStarRating />
-    </div>
+    </main>
   );
 }

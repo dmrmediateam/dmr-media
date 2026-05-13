@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, useLayoutEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 const HERO_VIDEO_SRC =
   process.env.NEXT_PUBLIC_HERO_VIDEO_URL?.trim() ||
@@ -27,35 +27,40 @@ function VolumeOnIcon({ className }: { className?: string }) {
   );
 }
 
+const easeOut = [0.22, 1, 0.36, 1] as const;
+
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const h1Ref = useRef<HTMLHeadingElement>(null);
   const [soundOn, setSoundOn] = useState(false);
-  const [centerOffset, setCenterOffset] = useState(0);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     videoRef.current?.play().catch(() => {});
   }, [soundOn]);
 
-  useLayoutEffect(() => {
-    const handleResize = () => {
-      if (h1Ref.current) {
-        const rect = h1Ref.current.getBoundingClientRect();
-        const h1Center = rect.left + rect.width / 2;
-        const viewportCenter = window.innerWidth / 2;
-        setCenterOffset(viewportCenter - h1Center);
-      }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   const toggleSound = () => setSoundOn((p) => !p);
 
+  const itemVariants = {
+    hidden: reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: reduceMotion ? { duration: 0 } : { duration: 0.58, ease: easeOut },
+    },
+  };
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: reduceMotion ? 0 : 0.1,
+        delayChildren: reduceMotion ? 0 : 0.06,
+      },
+    },
+  };
+
   return (
-    <section className="hero-section">
+    <section className="hero-section" aria-label="Introduction">
       <div className="hero-video-container">
         <video
           ref={videoRef}
@@ -66,7 +71,7 @@ const Hero = () => {
           playsInline
           preload="metadata"
         />
-        <div className="hero-overlay" />
+        <div className="hero-overlay" aria-hidden />
         <button
           type="button"
           className="hero-sound-toggle"
@@ -78,71 +83,21 @@ const Hero = () => {
       </div>
 
       <div className="hero-text-container">
-        <h1 ref={h1Ref} className="hero-heading">
-          <motion.span
-            className="hero-text-mobile hero-mobile-content"
-            style={{
-              fontFamily: "'Instrument Serif', serif",
-              color: '#FAFAF9',
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          >
-            Distinguished Marketing for Real Estate
-          </motion.span>
+        <motion.div
+          className="dmr-home-hero__content"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
+          <motion.p className="dmr-home-hero__eyebrow" variants={itemVariants}>
+            Luxury real estate · SEO · paid search · web
+          </motion.p>
 
-          <span className="hero-desktop-content">
-            <motion.span
-              className="hero-letter-large"
-              initial={{ opacity: 0, x: centerOffset + 80, scale: 1.2 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0 }}
-            >
-              D
-            </motion.span>
-            <motion.span
-              className="hero-text-normal"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut', delay: 1.2 }}
-            >
-              istinguished{' '}
-            </motion.span>
-            <motion.span
-              className="hero-letter-large"
-              initial={{ opacity: 0, x: centerOffset, scale: 1.2 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
-            >
-              M
-            </motion.span>
-            <motion.span
-              className="hero-text-normal"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut', delay: 1.3 }}
-            >
-              arketing for{' '}
-            </motion.span>
-            <motion.span
-              className="hero-letter-large"
-              initial={{ opacity: 0, x: centerOffset - 80, scale: 1.2 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
-            >
-              R
-            </motion.span>
-            <motion.span
-              className="hero-text-normal"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut', delay: 1.4 }}
-            >
-              eal Estate
-            </motion.span>
-          </span>
-        </h1>
+          <motion.h1 className="dmr-home-hero__heading" variants={itemVariants}>
+            Distinguished marketing for{' '}
+            <span className="dmr-home-hero__heading-accent">real estate</span>
+          </motion.h1>
+        </motion.div>
       </div>
     </section>
   );

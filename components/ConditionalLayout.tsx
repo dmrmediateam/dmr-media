@@ -9,9 +9,9 @@ export default function ConditionalLayout({ children }: { children: React.ReactN
     <>
       <Navbar />
       <ApplyModal />
-      <main className="min-h-screen">
+      <div className="min-h-screen">
         {children}
-      </main>
+      </div>
       <Footer />
     </>
   )
