@@ -9,6 +9,8 @@ const THANK_YOU_NOINDEX_HEADERS = [
 /** Post-checkout / post-form thank-you URLs — not for indexing or caching by crawlers. */
 const thankYouHeaderRules = [
   '/landing/thank-you',
+  '/landing/thank-you-q',
+  '/landing/thank-you-dq',
   '/landing/thank-you-g',
   '/landing/thank-you-g-dq',
   '/landing/thank-you-feb-2026',
@@ -34,6 +36,13 @@ const nextConfig = {
   serverExternalPackages: ['@sanity/client'],
   async headers() {
     return [
+      {
+        source: '/videos/:path*.mov',
+        headers: [
+          { key: 'Content-Type', value: 'video/quicktime' },
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
       {
         source: '/videos/:path*',
         headers: [

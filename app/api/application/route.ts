@@ -4,8 +4,8 @@ import { sendApplicationFormEmail } from '@/lib/email'
 
 const DEFAULT_THANK_YOU_PATH = '/landing/thank-you'
 const GOOGLE_GENERAL_FORM_NAME = 'google-general-strategy-call'
-const GOOGLE_GENERAL_THANK_YOU_PATH = '/landing/thank-you-g'
-const GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH = '/landing/thank-you-g-dq'
+const GOOGLE_GENERAL_THANK_YOU_PATH = '/landing/thank-you-q'
+const GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH = '/landing/thank-you-dq'
 
 const ZAPIER_MISSING_ERROR = 'Missing ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL'
 

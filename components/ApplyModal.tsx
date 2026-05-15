@@ -22,8 +22,8 @@ import { ANNUAL_SALES_VOLUME_OPTIONS, isGoogleGeneralDisqualifiedVolume } from '
 
 const TOTAL_STEPS = 2
 const DEFAULT_APPLY_FORM_NAME = 'google-general-strategy-call'
-const APPLY_MODAL_THANK_YOU_PATH = '/landing/thank-you-g'
-const APPLY_MODAL_DQ_THANK_YOU_PATH = '/landing/thank-you-g-dq'
+const APPLY_MODAL_THANK_YOU_PATH = '/landing/thank-you-q'
+const APPLY_MODAL_DQ_THANK_YOU_PATH = '/landing/thank-you-dq'
 
 const initialFormData = {
   firstName: '',
