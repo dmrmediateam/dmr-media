@@ -40,13 +40,13 @@ const WEBSITE_SAMPLES = [
     imageRight: false,
   },
   {
-    id: 'cheryl-towey',
-    subheading: 'Premier Garden State Realtor',
-    name: 'Cheryl Towey, Weichert',
+    id: 'florio-team',
+    subheading: 'Ranked #35 of 20,000+ Central Florida Realtors',
+    name: 'The Florio Team | RE/MAX Town & Country',
     description:
-      'Cheryl Towey is a dedicated real estate professional with over 15 years of experience serving New Jersey\'s most desirable communities. With 250+ happy families served and 100% client satisfaction, she specializes in Hackettstown, Andover, Byram, Blairstown, Chester, and Washington—guiding buyers and sellers with professionalism, integrity, and care.',
-    url: 'https://www.realestatebycherylnj.com/',
-    image: '/images/ClientWebsites/screencapture-realestatebycherylnj-2026-03-04-03_35_34.png',
+      'Dominick Florio leads The Florio Team at RE/MAX Town & Country Realty—Central Florida\'s award-winning home team with 600+ closings, 200+ sales annually, and top-producer recognition across Orange, Seminole, Lake, Volusia, and Osceola Counties. Dual-licensed in real estate and mortgages, Dominick coordinates complex buy-and-sell moves from offices in Winter Park, Winter Springs, and Lake Mary—with coverage in outlets including The Real Deal.',
+    url: 'https://florio-team.vercel.app/',
+    image: '/images/ClientWebsiteImages/screencapture-florio-team-vercel-app-2026-05-16-15_01_22.png',
     imageRight: true,
   },
   {
