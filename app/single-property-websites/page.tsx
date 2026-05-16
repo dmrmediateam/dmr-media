@@ -160,7 +160,7 @@ const LISTING_EXAMPLES = [
     price: '$1.05M',
     description:
       'Architecture-forward half-duplex with rooftop views—site structure mirrors the vertical flow of the home and highlights no-HOA positioning for Denver buyers.',
-    href: 'https://www.obsidiandenver.com/3227-w-20th-ave-denver-co-80211',
+    href: 'https://obsidian-denver.vercel.app/3227-w-20th-ave-denver-co-80211',
     image: '/images/ClientWebsiteImages/screencapture-obsidiandenver-3227-w-20th-ave-denver-co-80211-2026-03-29-19_50_09.png',
     metrics: ['Neighborhood-specific copy', 'Schema-ready listing blocks', 'Paid-ready landing alignment'],
     imageRight: false,

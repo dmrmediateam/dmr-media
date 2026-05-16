@@ -78,7 +78,7 @@ const PROPERTY_WEBSITES = [
     name: 'Obsidian Denver',
     description:
       '3227 W 20th Ave — a $1.05M modern half-duplex in Denver\'s Sloan\'s Lake neighborhood. Three levels of considered design with rooftop city views, chef\'s kitchen, and no HOA. A dedicated property site that puts the architecture front and center for serious buyers.',
-    url: 'https://www.obsidiandenver.com/3227-w-20th-ave-denver-co-80211',
+    url: 'https://obsidian-denver.vercel.app/3227-w-20th-ave-denver-co-80211',
     image: '/images/ClientWebsiteImages/screencapture-obsidiandenver-3227-w-20th-ave-denver-co-80211-2026-03-29-19_50_09.png',
     imageRight: true,
   },
