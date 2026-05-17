@@ -24,6 +24,9 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
+const DMR_PHONE_DISPLAY = '+1 920-249-5210';
+const DMR_PHONE_HREF = 'tel:+19202495210';
+
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -95,7 +98,10 @@ const Navbar = () => {
                   DMR
                 </Link>
 
-                <div className="site-nav__actions">
+                <div className="site-nav__actions gap-3 sm:gap-4 md:gap-5">
+                  <a href={DMR_PHONE_HREF} className="site-nav__phone">
+                    {DMR_PHONE_DISPLAY}
+                  </a>
                   <button
                     type="button"
                     className="site-nav__apply"
@@ -199,6 +205,11 @@ const Navbar = () => {
 
             <div className="site-nav__footer">
               <div className="site-nav__footer-inner">
+                <p className="site-nav__meta-label">Phone</p>
+                <a href={DMR_PHONE_HREF} className="site-nav__meta-value">
+                  {DMR_PHONE_DISPLAY}
+                </a>
+
                 <p className="site-nav__meta-label">Email</p>
                 <a href="mailto:team@dmrmedia.org" className="site-nav__meta-value">
                   team@dmrmedia.org
