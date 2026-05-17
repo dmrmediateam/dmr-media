@@ -2,12 +2,12 @@
 
 import ApplyModal from '@/components/ApplyModal'
 import ChannelLandingPageContent from '@/components/landing/ChannelLandingPageContent'
-import { googleGeneralLandingConfig } from './google-general-landing-config'
+import { chatgptAdsLandingConfig } from './chatgpt-ads-landing-config'
 
-export default function GoogleGeneralLandingPage() {
+export default function ChatgptAdsLandingPage() {
   return (
     <>
-      <ChannelLandingPageContent config={googleGeneralLandingConfig} />
+      <ChannelLandingPageContent config={chatgptAdsLandingConfig} />
       <ApplyModal />
     </>
   )

@@ -2,12 +2,12 @@
 
 import ApplyModal from '@/components/ApplyModal'
 import ChannelLandingPageContent from '@/components/landing/ChannelLandingPageContent'
-import { googleGeneralLandingConfig } from './google-general-landing-config'
+import { googleAdsLandingConfig } from './google-ads-landing-config'
 
-export default function GoogleGeneralLandingPage() {
+export default function GoogleAdsLandingPage() {
   return (
     <>
-      <ChannelLandingPageContent config={googleGeneralLandingConfig} />
+      <ChannelLandingPageContent config={googleAdsLandingConfig} />
       <ApplyModal />
     </>
   )

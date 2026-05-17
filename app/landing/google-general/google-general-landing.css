@@ -1,0 +1,212 @@
+/**
+ * Google General landing — Instrument Serif for display, Inter for UI & body.
+ * Higher-contrast tokens for small type on off-white.
+ */
+.google-general-landing {
+  --gg-text-ui: rgba(25, 25, 25, 0.92);
+  --gg-text-body: rgba(35, 35, 35, 0.9);
+  --gg-text-muted: rgba(55, 55, 55, 0.78);
+}
+
+/* Eyebrows, labels, meta */
+.google-general-landing .gg-eyebrow {
+  font-family: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gg-text-muted);
+}
+
+@media (min-width: 640px) {
+  .google-general-landing .gg-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+  }
+}
+
+.google-general-landing .gg-eyebrow--strong {
+  color: var(--gg-text-ui);
+}
+
+/* Body copy */
+.google-general-landing .gg-body {
+  font-family: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--gg-text-body);
+}
+
+.google-general-landing .gg-body-lg {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+@media (min-width: 640px) {
+  .google-general-landing .gg-body-lg {
+    font-size: 1.125rem;
+  }
+}
+
+.google-general-landing .gg-body-sm {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+/* Display headings stay serif */
+.google-general-landing .gg-display {
+  font-family: var(--font-heading, 'Instrument Serif', serif);
+  font-weight: 400;
+  color: var(--color-off-black);
+}
+
+/* Hero left column — compact to align with form height on desktop */
+.google-general-landing .gg-hero-copy .gg-hero-badge {
+  margin-bottom: 1rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+}
+
+@media (min-width: 640px) {
+  .google-general-landing .gg-hero-copy .gg-hero-badge {
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+  }
+}
+
+.google-general-landing .gg-hero-copy .gg-hero-title {
+  font-size: clamp(2.125rem, 5.5vw, 3rem);
+  line-height: 1.06;
+}
+
+@media (min-width: 1024px) {
+  .google-general-landing .gg-hero-copy .gg-hero-title {
+    font-size: 2.875rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .google-general-landing .gg-hero-copy .gg-hero-title {
+    font-size: 3.125rem;
+  }
+}
+
+.google-general-landing .gg-hero-copy .gg-hero-rule > div {
+  margin-top: 1rem;
+}
+
+.google-general-landing .gg-hero-copy .gg-hero-intro {
+  margin-top: 1.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .google-general-landing .gg-hero-copy .gg-hero-intro {
+    font-size: 0.875rem;
+  }
+}
+
+.google-general-landing .gg-hero-copy .gg-hero-partners {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+}
+
+.google-general-landing .gg-hero-copy .gg-hero-partners .gg-eyebrow {
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+}
+
+.google-general-landing .gg-hero-copy .gg-hero-stats {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.google-general-landing .gg-hero-copy .gg-hero-stat {
+  font-family: var(--font-heading, 'Instrument Serif', serif);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--color-off-black);
+}
+
+@media (min-width: 640px) {
+  .google-general-landing .gg-hero-copy .gg-hero-stat {
+    font-size: 1rem;
+  }
+}
+
+.google-general-landing .gg-hero-copy .gg-hero-stat-bullet {
+  margin-top: 0.4rem;
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+/* Hero form */
+.google-general-landing .google-general-form label {
+  font-family: var(--font-inter, ui-sans-serif, system-ui, sans-serif) !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  color: var(--gg-text-ui) !important;
+}
+
+.google-general-landing .google-general-form input,
+.google-general-landing .google-general-form select {
+  font-family: var(--font-inter, ui-sans-serif, system-ui, sans-serif) !important;
+  font-weight: 400 !important;
+  color: var(--color-off-black) !important;
+}
+
+.google-general-landing .google-general-form input::placeholder {
+  color: var(--gg-text-muted) !important;
+  opacity: 1;
+}
+
+.google-general-landing .google-general-form button {
+  font-family: var(--font-inter, ui-sans-serif, system-ui, sans-serif) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+}
+
+.google-general-landing .google-general-form .gg-form-footnote {
+  font-family: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--gg-text-muted);
+}
+
+/* Landing header chrome */
+.google-general-landing .site-nav__phone {
+  font-family: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
+  font-weight: 500;
+  color: var(--gg-text-ui);
+}
+
+.google-general-landing .site-nav__apply {
+  font-family: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
+  font-weight: 500;
+}
+
+/* Testimonials embedded on this page */
+.google-general-landing #reviews blockquote {
+  font-family: var(--font-inter, ui-sans-serif, system-ui, sans-serif) !important;
+  font-weight: 400;
+  color: var(--gg-text-body) !important;
+}
+
+.google-general-landing #reviews article > div:last-child p:last-child {
+  font-family: var(--font-inter, ui-sans-serif, system-ui, sans-serif) !important;
+  font-weight: 500;
+  color: var(--gg-text-muted) !important;
+}
+
+.google-general-landing #reviews .gg-review-location {
+  color: #ffffff !important;
+}

@@ -116,6 +116,43 @@
   gap: 0.625rem;
 }
 
+.site-nav__phone {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-heading, 'Instrument Serif', serif);
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--color-off-black);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .site-nav__phone {
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (min-width: 768px) {
+  .site-nav__phone {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+.site-nav__phone:hover {
+  opacity: 0.72;
+}
+
+.site-nav__phone:focus-visible {
+  outline: 2px solid var(--color-off-black);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 .site-nav__apply {
   display: inline-flex;
   align-items: center;
