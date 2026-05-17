@@ -56,29 +56,29 @@ export const stakesThree = [
 
 export const dmrVsAlternatives = [
   {
-    label: 'Luxury fit',
-    dmr: 'Five-star partnership cadence with luxury tone preserved across organic and paid',
-    other: 'Volume-first vendors and ticket queues',
+    label: 'Who you work with',
+    dmr: 'One team owns SEO and Google Ads with a luxury-real-estate playbook',
+    other: 'Separate SEO and PPC vendors with different goals and handoffs',
   },
   {
     label: 'Strategy',
-    dmr: 'Shared intent maps for SEO + PPC tied to markets, inventory, and GCI goals',
-    other: 'Silos: SEO agency here, PPC shop there, no shared definitions',
+    dmr: 'One shared keyword and intent map tied to your markets and GCI',
+    other: 'Conflicting plans, duplicate spend, and missed search terms',
+  },
+  {
+    label: 'Reporting',
+    dmr: 'One dashboard your leadership can defend—organic and paid in one view',
+    other: 'Two reports, two definitions of a “lead,” and blame between vendors',
+  },
+  {
+    label: 'Speed',
+    dmr: 'Weekly shipping on both channels from one accountable team',
+    other: 'Quarterly check-ins and slow ticket queues',
   },
   {
     label: 'Proof',
-    dmr: 'SEMrush U.S. category leadership plus documented client lifts in Search and Ads',
-    other: 'Screenshots without business context',
-  },
-  {
-    label: 'Execution',
-    dmr: 'Organic + paid shipped weekly from one accountable team',
-    other: 'Quarterly reports, little shipping',
-  },
-  {
-    label: 'Integration',
-    dmr: 'SEO + PPC + flagship site work aligned in one narrative',
-    other: 'Fragmented agencies with conflicting incentives',
+    dmr: '#1 on SEMrush U.S. plus documented pipeline, CPL, and organic lifts',
+    other: 'Screenshots without revenue context',
   },
 ] as const
 

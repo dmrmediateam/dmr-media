@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -10,11 +10,8 @@ import SeoWebsiteExamplesHorizontalScroll from '@/components/SeoWebsiteExamplesH
 import ClientLogosSlider from '@/components/ClientLogosSlider'
 import VideoTestimonials from '@/components/VideoTestimonials'
 import Testimonials from '@/components/Testimonials'
-import SeoHeroCaseStudyShowcase, { type SeoHeroCaseStudySlide } from '@/components/SeoHeroCaseStudyShowcase'
-import {
-  SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME,
-  SeoLandingStickyPrimaryCta,
-} from '@/components/SeoLandingHeroPrimaryCta'
+import GoogleGeneralHeroProof, { type GoogleGeneralHeroProofSlide } from '@/components/landing/GoogleGeneralHeroProof'
+import GoogleGeneralIntegrationComparison from '@/components/landing/GoogleGeneralIntegrationComparison'
 import {
   agencyProof,
   dmrVsAlternatives,
@@ -25,13 +22,14 @@ import {
 } from './google-general-landing-data'
 
 const APPLY_FORM = 'google-general-modal'
-const HERO_VIDEO_SRC = '/videos/DMR%20-%20INTRO%204K.mp4'
+
+const HERO_PRIMARY_CTA_CLASSNAME =
+  'inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto sm:min-w-[12rem]'
 
 /** Hero carousel: Legendary Google Ads first for this SEO + PPC landing. */
-const GOOGLE_GENERAL_HERO_SLIDES: SeoHeroCaseStudySlide[] = [
+const GOOGLE_GENERAL_HERO_SLIDES: GoogleGeneralHeroProofSlide[] = [
   {
     id: 'jade-legendary-real-estate',
-    href: '/case-study/jade-legendary-real-estate',
     teamName: 'Legendary Real Estate Services',
     region: 'Lake Geneva, WI',
     highlight: '3× inbound pipeline · Google Ads + organic',
@@ -40,7 +38,6 @@ const GOOGLE_GENERAL_HERO_SLIDES: SeoHeroCaseStudySlide[] = [
   },
   {
     id: 'marquis-farwell-group',
-    href: '/case-study/marquis-farwell-group',
     teamName: 'Marquis + Farwell Group',
     region: 'Sonoma County, CA',
     highlight: '19× daily organic clicks',
@@ -49,7 +46,6 @@ const GOOGLE_GENERAL_HERO_SLIDES: SeoHeroCaseStudySlide[] = [
   },
   {
     id: 'eagan-luxury-real-estate',
-    href: '/case-study/eagan-luxury-real-estate',
     teamName: 'Eagan Luxury Real Estate',
     region: 'St. Petersburg, FL',
     highlight: '$11M+ closed volume, Q1 2026',
@@ -58,92 +54,31 @@ const GOOGLE_GENERAL_HERO_SLIDES: SeoHeroCaseStudySlide[] = [
   },
 ]
 
-function VolumeOffIcon({ className }: { className?: string }) {
+function GoogleGeneralLandingHeader() {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-      <line x1="23" y1="9" x2="17" y2="15" />
-      <line x1="17" y1="9" x2="23" y2="15" />
-    </svg>
-  )
-}
-
-function VolumeOnIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-    </svg>
+    <nav className="site-nav site-nav--elevated" aria-label="Landing">
+      <div className="site-nav__bar">
+        <div className="site-nav__bar-inner">
+          <div className="site-nav__row">
+            <div className="site-nav__row-track">
+              <Link href="/" className="site-nav__logo">
+                DMR
+              </Link>
+              <div className="site-nav__actions">
+                <button type="button" className="site-nav__apply" onClick={openApplyModal}>
+                  Apply
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
   )
 }
 
 function openApplyModal() {
   window.dispatchEvent(new CustomEvent('openApplyModal', { detail: { formName: APPLY_FORM } }))
-}
-
-function ApplyCtaBand({
-  hint,
-  surface,
-  className = '',
-  primaryLabel = 'Get my free integrated audit',
-  secondaryHref = '/calendar',
-  secondaryLabel = 'Or book a strategy call',
-}: {
-  hint: string
-  surface: 'base' | 'white'
-  className?: string
-  primaryLabel?: string
-  secondaryHref?: string
-  secondaryLabel?: string
-}) {
-  const bg = surface === 'white' ? 'bg-white' : 'bg-[var(--surface-base)]'
-  const ring =
-    surface === 'white' ? 'focus-visible:ring-offset-white' : 'focus-visible:ring-offset-[var(--surface-base)]'
-  return (
-    <aside
-      className={`${bg} border-b border-[var(--color-ink-200)] py-10 md:py-14 ${className}`}
-      aria-label="Get a free integrated SEO and Google Ads audit or book a call"
-    >
-      <div className="container-max mx-auto flex max-w-xl flex-col items-center gap-4 px-4 text-center">
-        <p className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
-        <button
-          type="button"
-          onClick={openApplyModal}
-          className={`inline-flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
-        >
-          {primaryLabel}
-        </button>
-        <Link
-          href={secondaryHref}
-          className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
-        >
-          {secondaryLabel}
-        </Link>
-        <p className="font-serif text-[11px] leading-snug text-[var(--color-ink-400)]/85">
-          Free integrated audit. If we don&apos;t identify at least $30K in annual missed opportunity across SEO + Google Ads, you owe nothing.
-        </p>
-      </div>
-    </aside>
-  )
 }
 
 function SectionRule({ align = 'left' }: { align?: 'left' | 'center' }) {
@@ -156,8 +91,6 @@ function SectionRule({ align = 'left' }: { align?: 'left' | 'center' }) {
 }
 
 export default function GoogleGeneralLandingPageContent() {
-  const heroVideoRef = useRef<HTMLVideoElement>(null)
-  const [isHeroMuted, setIsHeroMuted] = useState(true)
   const reduceMotion = useReducedMotion()
 
   useEffect(() => {
@@ -171,125 +104,45 @@ export default function GoogleGeneralLandingPageContent() {
     }
   }, [])
 
-  const toggleHeroMute = () => {
-    const video = heroVideoRef.current
-    if (!video) return
-    const nextMuted = !video.muted
-    video.muted = nextMuted
-    setIsHeroMuted(nextMuted)
-    void video.play().catch(() => {})
-  }
-
-  const heroEase = [0.25, 0.1, 0.25, 1] as const
-
   return (
     <div className="min-h-screen bg-white [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
-      {/* Hero: organic + PPC positioning (layout mirrors /seo-optimization) */}
+      <GoogleGeneralLandingHeader />
+
       <section
-        className="relative min-h-screen overflow-hidden border-b border-[var(--color-ink-200)] scroll-mt-6"
+        className="border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] scroll-mt-6"
         id="top"
         aria-labelledby="google-landing-hero-title"
       >
-        <div className="absolute inset-0 z-0">
-          <video
-            ref={heroVideoRef}
-            className="absolute inset-0 z-0 h-full w-full object-cover"
-            src={HERO_VIDEO_SRC}
-            autoPlay
-            muted={isHeroMuted}
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-0 z-[1]"
-            style={{ backgroundColor: 'rgba(15, 15, 15, 0.72)' }}
-            aria-hidden
-          />
-        </div>
-        <div className="relative z-10 container-max grid min-h-screen grid-cols-1 items-center gap-12 py-20 lg:grid-cols-2 lg:gap-16 xl:gap-20 pointer-events-none">
-          <motion.div
-            className="pointer-events-auto max-w-xl text-left lg:max-w-xl"
-            initial={reduceMotion ? false : { opacity: 0.5, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
-          >
-            <p className="mb-5 max-w-xl font-serif text-[10px] uppercase leading-relaxed tracking-[0.14em] text-white/80 sm:text-[11px] sm:tracking-[0.16em]">
-              #1 U.S. real estate agency on SEMrush · 24+ luxury teams · 5★ partner
-            </p>
-            <h1
-              id="google-landing-hero-title"
-              className="font-serif text-[1.625rem] font-light leading-[1.1] tracking-tight !text-white sm:text-[2rem] md:text-[2.125rem] lg:text-[2.625rem] xl:text-5xl"
-            >
-              #1 Rated U.S. Real Estate Marketing Agency on SEMrush
-            </h1>
-            <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
-              SEO and Google Ads run as one engine, not two vendors fighting in your CRM. Organic compounds your authority while paid captures buyers naming neighborhoods today. Documented client averages: 3× pipeline, 65% lower CPL, 19× organic clicks.
-            </p>
-            <div className="mt-7 flex flex-col items-stretch gap-3 sm:items-start">
+        <div className="container-max px-4 pb-14 pt-24 sm:px-6 sm:pb-16 sm:pt-28 md:pb-20 lg:pb-24">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-16">
+            <div className="max-w-xl lg:max-w-2xl">
+              <p className="font-serif text-[10px] uppercase leading-relaxed tracking-[0.14em] text-[var(--color-ink-400)] sm:text-[11px] sm:tracking-[0.16em]">
+                #1 U.S. real estate agency on SEMrush · 24+ luxury teams · 5★ partner
+              </p>
+              <h1
+                id="google-landing-hero-title"
+                className="mt-4 font-serif text-4xl font-light leading-[1.08] tracking-tight text-[var(--color-off-black)] sm:mt-5 sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem]"
+              >
+                See how we <em className="italic">Tripled</em> this Clients Pipeline in{' '}
+                <em className="italic">3 weeks</em> without Corny Video Ads
+              </h1>
+              <p className="mt-5 font-serif text-base leading-relaxed text-[var(--color-ink-300)] sm:text-lg">
+                SEO and Google Ads run as one engine, not two vendors fighting in your CRM. Organic compounds your
+                authority while paid captures buyers naming neighborhoods today. Documented client averages: 3× pipeline,
+                65% lower CPL, 19× organic clicks.
+              </p>
               <button
                 type="button"
                 onClick={openApplyModal}
-                className={SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME}
+                className={`mt-8 ${HERO_PRIMARY_CTA_CLASSNAME}`}
               >
                 Get my free integrated audit
               </button>
-              <Link
-                href="/calendar"
-                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline sm:self-start"
-              >
-                Or book a strategy call
-              </Link>
-              <p className="mt-1 max-w-md font-serif text-[12px] leading-snug text-white/70">
-                Free integrated audit. If we don&apos;t identify at least $30K in annual missed opportunity across SEO + Google Ads, you owe nothing.
-              </p>
-              <motion.a
-                href="#after-hero"
-                aria-label="Scroll to client logos and page content"
-                className="mt-2 inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
-                animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : { duration: 2.6, repeat: Infinity, ease: 'easeInOut' as const }
-                }
-              >
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                  />
-                </svg>
-              </motion.a>
             </div>
-          </motion.div>
 
-          <motion.div
-            className="pointer-events-auto flex justify-center lg:justify-end"
-            initial={reduceMotion ? false : { opacity: 0.5, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.7, ease: heroEase, delay: reduceMotion ? 0 : 0.08 }}
-          >
-            <SeoHeroCaseStudyShowcase slides={GOOGLE_GENERAL_HERO_SLIDES} />
-          </motion.div>
+            <GoogleGeneralHeroProof slides={GOOGLE_GENERAL_HERO_SLIDES} className="mx-auto lg:ml-auto" />
+          </div>
         </div>
-        <button
-          type="button"
-          onClick={toggleHeroMute}
-          className="absolute bottom-5 right-5 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-all duration-200 hover:scale-105 hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50 motion-reduce:hover:scale-100"
-          aria-label={isHeroMuted ? 'Unmute hero video' : 'Mute hero video'}
-        >
-          {isHeroMuted ? <VolumeOffIcon className="h-5 w-5" /> : <VolumeOnIcon className="h-5 w-5" />}
-        </button>
       </section>
 
       <section id="after-hero" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white" aria-label="Client logos">
@@ -338,83 +191,36 @@ export default function GoogleGeneralLandingPageContent() {
         <VideoTestimonials />
       </div>
 
-      <ApplyCtaBand
-        surface="white"
-        className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="See where SEO and PPC are leaving money on the table. Free integrated audit: your top organic gaps, your wasted ad spend, and the unified plan that compounds them."
-      />
-
       {/* Guide + plan: authority + empathy */}
       <section
         className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]"
         id="guide"
       >
-        <div className="container-max grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div className="container-max">
           <SeoReveal>
-            <div>
-              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Why integration wins</p>
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
+                Why integration wins
+              </p>
               <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
                 Two vendors fight in your CRM. One integrated team compounds.
               </h2>
-              <SectionRule />
+              <SectionRule align="center" />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                When SEO and Google Ads come from separate shops, intent leaks at every handoff: different keywords, different landing logic, different definitions of a qualified lead. We close that gap with one engine: shared intent maps, message match from query to landing, and reporting your leadership can defend. That&apos;s how you compound a 3× pipeline lift on top of a 65% lower CPL.
+                When SEO and Google Ads live in separate shops, intent leaks at every handoff—different keywords,
+                landing pages, and definitions of a qualified lead. One team, one engine, and reporting leadership can
+                defend: that is how you compound a 3× pipeline lift on top of a 65% lower CPL.
               </p>
-              <ul className="mt-8 space-y-4 border-l-2 border-[var(--color-off-black)]/15 pl-5">
-                {[
-                  'One intent map for SEO + PPC: no duplicate spend, no missed terms',
-                  'Weekly iteration on both channels, not quarterly theater from siloed agencies',
-                  '#1 on SEMrush U.S. plus 24+ luxury teams running the same integrated playbook',
-                ].map((line) => (
-                  <li key={line} className="font-serif text-[var(--color-off-black)]">
-                    {line}
-                  </li>
-                ))}
-              </ul>
             </div>
           </SeoReveal>
-          <SeoReveal delay={0.08}>
-            <div className="rounded-xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_12px_40px_-12px_rgba(15,15,15,0.12)] sm:p-8">
-              <p className="text-center font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">
-                DMR vs. typical alternatives
-              </p>
-              <div className="mt-6 overflow-x-auto rounded-lg">
-                <table className="w-full min-w-[520px] text-left text-sm font-serif">
-                  <thead>
-                    <tr className="border-b border-[var(--color-ink-200)] bg-[var(--surface-base)]/80">
-                      <th className="px-3 py-3 pr-4 text-xs font-normal uppercase tracking-[0.12em] text-[var(--color-ink-400)]">
-                        Dimension
-                      </th>
-                      <th className="px-3 py-3 pr-4 text-xs font-normal uppercase tracking-[0.12em] text-[var(--color-off-black)]">
-                        DMR
-                      </th>
-                      <th className="px-3 py-3 text-xs font-normal uppercase tracking-[0.12em] text-[var(--color-ink-400)]">
-                        Others
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-[var(--color-ink-300)]">
-                    {dmrVsAlternatives.map((row) => (
-                      <tr
-                        key={row.label}
-                        className="border-b border-[var(--color-ink-200)] transition-colors last:border-0 hover:bg-[var(--surface-base)]/50"
-                      >
-                        <th scope="row" className="px-3 py-3 align-top text-xs uppercase tracking-[0.14em] text-[var(--color-ink-400)]">
-                          {row.label}
-                        </th>
-                        <td className="px-3 py-3 align-top text-[var(--color-off-black)]">{row.dmr}</td>
-                        <td className="px-3 py-3 align-top">{row.other}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+
+          <SeoReveal delay={0.06}>
+            <GoogleGeneralIntegrationComparison rows={dmrVsAlternatives} />
           </SeoReveal>
         </div>
       </section>
 
-      <SeoWebsiteExamplesHorizontalScroll variant="ads" />
+            <SeoWebsiteExamplesHorizontalScroll variant="ads" />
 
       {/* Framework */}
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="framework">
@@ -447,12 +253,6 @@ export default function GoogleGeneralLandingPageContent() {
           </div>
         </div>
       </section>
-
-      <ApplyCtaBand
-        surface="white"
-        className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="Two minutes now. We arrive with both sides of Google audited and a unified plan drafted, no decoder ring required."
-      />
 
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]" id="agency-authority">
         <div className="container-max">
@@ -628,21 +428,12 @@ export default function GoogleGeneralLandingPageContent() {
             >
               Get my free integrated audit
             </motion.button>
-            <Link
-              href="/calendar"
-              className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
-            >
-              Or book a strategy call
-            </Link>
           </div>
           <p className="mt-6 font-serif text-xs text-[var(--color-ink-400)]">
             UTM parameters from your visit are attached when you submit so we can honor the campaign that brought you here.
           </p>
         </div>
       </section>
-      <SeoLandingStickyPrimaryCta onApply={openApplyModal}>
-        Get my free integrated audit
-      </SeoLandingStickyPrimaryCta>
     </div>
   )
 }
