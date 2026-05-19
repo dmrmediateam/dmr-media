@@ -81,6 +81,21 @@
   line-height: 1.06;
 }
 
+/* Segment spans inherit serif from h1 (globals set span → Inter) */
+.google-general-landing .gg-hero-copy .gg-hero-title span,
+.google-general-landing .gg-hero-copy .gg-hero-title em {
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+.google-general-landing .gg-hero-copy .gg-hero-title em {
+  font-style: italic;
+}
+
 @media (min-width: 1024px) {
   .google-general-landing .gg-hero-copy .gg-hero-title {
     font-size: 2.875rem;
@@ -205,6 +220,11 @@
   font-family: var(--font-inter, ui-sans-serif, system-ui, sans-serif) !important;
   font-weight: 500;
   color: var(--gg-text-muted) !important;
+}
+
+/* Timeline — week labels + steps */
+.google-general-landing .gg-timeline__step:last-child {
+  padding-bottom: 0;
 }
 
 .google-general-landing #reviews .gg-review-location {

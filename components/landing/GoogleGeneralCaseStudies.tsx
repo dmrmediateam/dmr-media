@@ -9,6 +9,8 @@ const FEATURED_COUNT = 3
 
 type Props = {
   studies: readonly ChannelLandingCaseStudy[]
+  eyebrow?: string
+  title?: string
 }
 
 function caseStudyHref(id: string) {
@@ -19,7 +21,11 @@ function SectionRule() {
   return <div className="mt-6 h-px w-full max-w-[4.5rem] bg-[var(--color-off-black)]/20" aria-hidden />
 }
 
-export default function GoogleGeneralCaseStudies({ studies }: Props) {
+export default function GoogleGeneralCaseStudies({
+  studies,
+  eyebrow = 'Proof',
+  title = 'Case studies from luxury markets',
+}: Props) {
   const featured = studies.slice(0, FEATURED_COUNT)
 
   return (
@@ -32,12 +38,12 @@ export default function GoogleGeneralCaseStudies({ studies }: Props) {
         <SeoReveal>
           <div className="flex items-center justify-between gap-4 sm:gap-6">
             <div className="min-w-0 flex-1">
-              <p className="gg-eyebrow">Proof</p>
+              <p className="gg-eyebrow">{eyebrow}</p>
               <h2
                 id="case-studies-heading"
                 className="gg-display mt-3 max-w-2xl text-3xl font-light tracking-tight md:text-4xl"
               >
-                Case studies from luxury markets
+                {title}
               </h2>
             </div>
 

@@ -23,7 +23,7 @@ const testimonials = [
     name: 'Samantha Marquis',
     teamName: 'Marquis + Farwell Team',
     location: 'Sonoma, California',
-    text: 'We interviewed several SEO firms and always walked away unsure. With DMR it was different from the start—their depth, willingness to share tips immediately, and calm communication made a daunting topic feel manageable. We never feel silly asking questions, and the process so far has been exceptional.',
+    text: 'We interviewed several SEO firms and always walked away unsure. With DMR it was different from the start: their depth, willingness to share tips immediately, and calm communication made a daunting topic feel manageable. We never feel silly asking questions, and the process so far has been exceptional.',
     image: '/images/Cities/Sonoma.jpg',
   },
   {
@@ -47,7 +47,7 @@ const testimonials = [
     name: 'Sandy Reavill',
     teamName: 'Willowbrook Realty',
     location: 'Woodstock, Vermont',
-    text: 'Andrew and Max are outstanding—fast, reliable, and practical. Traffic is up materially and the team is responsive and expert. We recommend DMR Media to anyone serious about growing online.',
+    text: 'Andrew and Max are outstanding: fast, reliable, and practical. Traffic is up materially and the team is responsive and expert. We recommend DMR Media to anyone serious about growing online.',
     image: '/images/Cities/NewHampshire.jpg',
   },
   {
@@ -106,7 +106,15 @@ function ReviewCard({ testimonial }: { testimonial: (typeof testimonials)[number
   )
 }
 
-export default function GoogleGeneralReviewsScroll() {
+type Props = {
+  eyebrow?: string
+  title?: string
+}
+
+export default function GoogleGeneralReviewsScroll({
+  eyebrow = 'Reviews',
+  title = 'What luxury teams say',
+}: Props) {
   const { scrollerRef, atStart, atEnd, scrollByCard } = useSeoHorizontalCardScroll()
 
   return (
@@ -115,10 +123,8 @@ export default function GoogleGeneralReviewsScroll() {
         <SeoReveal>
           <div className="flex items-center justify-between gap-4 sm:gap-6">
             <div className="min-w-0 flex-1">
-              <p className="gg-eyebrow">Reviews</p>
-              <h2 className="gg-display mt-3 text-3xl font-light tracking-tight md:text-4xl">
-                What luxury teams say
-              </h2>
+              <p className="gg-eyebrow">{eyebrow}</p>
+              <h2 className="gg-display mt-3 text-3xl font-light tracking-tight md:text-4xl">{title}</h2>
             </div>
 
             <SeoCarouselArrows

@@ -7,6 +7,9 @@ import ClientLogosSlider from '@/components/ClientLogosSlider'
 import GoogleGeneralReviewsScroll from '@/components/landing/GoogleGeneralReviewsScroll'
 import GoogleGeneralCaseStudies from '@/components/landing/GoogleGeneralCaseStudies'
 import GoogleGeneralHeroForm from '@/components/landing/GoogleGeneralHeroForm'
+import ChannelLandingObjectionSection from '@/components/landing/ChannelLandingObjectionSection'
+import ChannelLandingByTheNumbersSection from '@/components/landing/ChannelLandingByTheNumbersSection'
+import ChannelLandingTimelineSection from '@/components/landing/ChannelLandingTimelineSection'
 import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 
 const DMR_PHONE_DISPLAY = '+1 920-249-5210'
@@ -58,13 +61,21 @@ type Props = {
 export default function ChannelLandingPageContent({ config }: Props) {
   const {
     formName,
+    heroTitleSegments,
+    heroTitle,
     heroTitleEmphasis,
     heroIntro,
     marketingCoreHeading,
     marketingCorePillars,
+    partnerStatsEyebrow,
     partnerStats,
     caseStudies,
     faqItems,
+    objectionSection,
+    timelineSection,
+    byTheNumbersSection,
+    reviewsSection,
+    caseStudiesSection,
   } = config
 
   useEffect(() => {
@@ -101,7 +112,24 @@ export default function ChannelLandingPageContent({ config }: Props) {
                 id="channel-landing-hero-title"
                 className="gg-display gg-hero-title font-light tracking-tight"
               >
-                The Last Real Estate Marketing <em className="italic">{heroTitleEmphasis}</em> You&apos;ll Ever Need.
+                {heroTitleSegments ? (
+                  heroTitleSegments.map((segment, i) =>
+                    segment.italic ? (
+                      <em key={i} className="italic">
+                        {segment.text}
+                      </em>
+                    ) : (
+                      <span key={i}>{segment.text}</span>
+                    )
+                  )
+                ) : heroTitle ? (
+                  heroTitle
+                ) : (
+                  <>
+                    The Last Real Estate Marketing <em className="italic">{heroTitleEmphasis}</em> You&apos;ll Ever
+                    Need.
+                  </>
+                )}
               </h1>
 
               <div className="gg-hero-rule">
@@ -114,7 +142,7 @@ export default function ChannelLandingPageContent({ config }: Props) {
                 className="gg-hero-partners border-t border-[var(--color-ink-200)]"
                 aria-labelledby="partner-results-heading"
               >
-                <p className="gg-eyebrow">Our Partner&apos;s have</p>
+                <p className="gg-eyebrow">{partnerStatsEyebrow ?? 'Our partners have'}</p>
                 <h2 id="partner-results-heading" className="sr-only">
                   Partner results
                 </h2>
@@ -140,6 +168,19 @@ export default function ChannelLandingPageContent({ config }: Props) {
       <section id="client-logos" className="scroll-mt-24" aria-label="Client logos">
         <ClientLogosSlider />
       </section>
+
+      {objectionSection ? <ChannelLandingObjectionSection section={objectionSection} /> : null}
+
+      {timelineSection ? (
+        <ChannelLandingTimelineSection section={timelineSection} />
+      ) : null}
+
+      {byTheNumbersSection ? <ChannelLandingByTheNumbersSection section={byTheNumbersSection} /> : null}
+
+      <GoogleGeneralReviewsScroll
+        eyebrow={reviewsSection?.eyebrow}
+        title={reviewsSection?.title}
+      />
 
       <section
         id="marketing-core"
@@ -180,9 +221,11 @@ export default function ChannelLandingPageContent({ config }: Props) {
         </div>
       </section>
 
-      <GoogleGeneralReviewsScroll />
-
-      <GoogleGeneralCaseStudies studies={[...caseStudies]} />
+      <GoogleGeneralCaseStudies
+        studies={[...caseStudies]}
+        eyebrow={caseStudiesSection?.eyebrow}
+        title={caseStudiesSection?.title}
+      />
 
       <section
         id="faq"

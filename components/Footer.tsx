@@ -181,6 +181,9 @@ const Footer = () => {
               <Link href="/fair-housing" className="hover:opacity-60 transition-opacity">
                 Commitment to Fair Housing
               </Link>
+              <Link href="/our-guarentee" className="hover:opacity-60 transition-opacity">
+                Our Guarantee
+              </Link>
             </div>
             <div className="flex flex-col gap-2">
               <a

@@ -307,7 +307,7 @@ export default function GoogleGeneralHeroForm({
         </div>
 
         <p className="gg-form-footnote text-center">
-          No spam. No pressure—just a direct conversation about fit.
+          No spam. No pressure, just a direct conversation about fit.
         </p>
       </form>
     </div>
