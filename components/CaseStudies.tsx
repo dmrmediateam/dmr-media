@@ -23,14 +23,14 @@ const SMALL_STUDIES = [
     image: '/images/Cities/LakeGeneva.jpg',
   },
   {
-    id: 'marquis-farwell-group',
-    title: 'Marquis + Farwell Group',
-    client: 'Marquis & Farwell',
-    comment: 'Luxury Realtor in Sonoma',
-    result: '19x Daily Clicks',
+    id: 'hitchcock-properties',
+    title: 'Hitchcock Properties',
+    client: 'Hitchcock Properties',
+    comment: 'Panama City Beach, FL',
+    result: '88% Lower CPL',
     description:
-      'Transformed organic visibility in Sonoma County, growing from 2 clicks per day to 38 — generating qualified buyer leads directly from search.',
-    image: '/images/Cities/Sonoma.jpg',
+      'Cut cost-per-lead from $86.36 to $10.46 with niche Google Search and P-Max for vacation rental buyers. 28+ high-intent leads per week and 1,323% estimated ROAS.',
+    image: '/images/case-studies/hitchcock-properties/panama-city-beach.jpg',
   },
 ];
 

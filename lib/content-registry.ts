@@ -380,6 +380,18 @@ export const contentRegistry: ContentEntry[] = [
     changeFrequency: 'monthly',
   },
   {
+    slug: '/case-study/hitchcock-properties',
+    title: 'Hitchcock Properties — 88% Lower CPL for Vacation Rental Leads | DMR Media',
+    description:
+      'Brenton Hitchcock cut cost-per-lead from $86.36 to $10.46 with niche Google Search and P-Max for vacation rental buyers in Panama City Beach.',
+    publishDate: '2026-03-01',
+    modifiedDate: '2026-03-19',
+    category: 'Case Study',
+    tags: ['Google Ads', 'vacation rentals', 'Performance Max', 'Panama City Beach'],
+    priority: 0.75,
+    changeFrequency: 'monthly',
+  },
+  {
     slug: '/case-study/michael-seo-transformation',
     title: 'Michael SEO Transformation — 21x Search Impressions | DMR Media',
     description:

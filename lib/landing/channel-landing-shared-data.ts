@@ -17,8 +17,8 @@ export const channelLandingCaseStudies: ChannelLandingCaseStudy[] = [
     metric: '3× inbound pipeline',
     summary:
       'Tripled the inbound pipeline in 90 days with shared intent across Google Ads and organic—42 content assets rebuilt and automation that kept velocity high.',
-    image: '/images/LegendaryRealEstateCaseSTudy/GoogleAdsSCreenshot.png',
-    imageAlt: 'Google Ads campaign performance for Legendary Real Estate Services',
+    image: '/images/Cities/LakeGeneva.jpg',
+    imageAlt: 'Lake Geneva, Wisconsin — Legendary Real Estate Services market',
     outcomes: [
       '3× pipeline lift in weeks, not quarters',
       'Google Ads + organic under one playbook',
@@ -33,8 +33,8 @@ export const channelLandingCaseStudies: ChannelLandingCaseStudy[] = [
     metric: '$11M+ closed volume',
     summary:
       'Built brand and search from zero: organic visibility, Google Ads, and follow-up aligned to luxury inventory. $11M+ closed volume within three months of launch.',
-    image: '/images/EaganCaseStudy/GoogleSearchConsole.png',
-    imageAlt: 'Organic visibility growth for Eagan Luxury Real Estate',
+    image: '/images/Cities/Stpet.jpg',
+    imageAlt: 'St. Petersburg, Florida — Eagan Luxury Real Estate market',
     outcomes: [
       '$11M+ volume within 3 months',
       '0 to 812 daily impressions',
@@ -42,19 +42,19 @@ export const channelLandingCaseStudies: ChannelLandingCaseStudy[] = [
     ],
   },
   {
-    id: 'marquis-farwell-group',
-    title: 'Marquis + Farwell Group',
-    region: 'Sonoma County, CA',
-    badge: 'Luxury Realtor in Sonoma',
-    metric: '19× daily organic clicks',
+    id: 'hitchcock-properties',
+    title: 'Hitchcock Properties',
+    region: 'Panama City Beach, FL',
+    badge: 'Panama City Beach, FL',
+    metric: '$10.46 cost per lead',
     summary:
-      'Transformed organic visibility in Sonoma County—from 2 clicks per day to 38—generating qualified buyer leads directly from search.',
-    image: '/images/MarquisFarwellGoogleSearchConsole.png',
-    imageAlt: 'Google Search Console growth for Marquis + Farwell',
+      'Replaced generic Sierra PPC with niche Google Search and P-Max. CPL fell from $86.36 to $10.46 with 28+ vacation rental leads per week in three weeks.',
+    image: '/images/case-studies/hitchcock-properties/panama-city-beach.jpg',
+    imageAlt: 'Panama City Beach, Florida — Hitchcock Properties',
     outcomes: [
-      '19× daily organic traffic',
-      'Neighborhood authority at scale',
-      'Qualified buyers from search intent',
+      '88% lower cost per lead',
+      '1,323% estimated ROAS',
+      '30%+ lead-to-conversation rate',
     ],
   },
   {

@@ -57,6 +57,16 @@ const caseStudies = [
       'Transformed organic visibility in Sonoma County, growing from 2 clicks per day to 38 clicks per day while generating qualified buyer leads directly from search—all without relying on portals or paid leads.',
     tags: ['Local SEO', 'Google Business Profile', 'Organic Growth'],
   },
+  {
+    id: 'hitchcock-properties',
+    title: 'Hitchcock Properties',
+    eyebrow: 'Vacation Rental PPC',
+    result: '88% Lower CPL',
+    image: '/images/case-studies/hitchcock-properties/panama-city-beach.jpg',
+    description:
+      'Replaced Sierra Interactive PPC with niche Google Search and P-Max. CPL from $86.36 to $10.46, 28+ high-intent vacation rental leads per week, and 1,323% estimated ROAS in three weeks.',
+    tags: ['Google Ads', 'Performance Max', 'Vacation Rentals', 'Panama City Beach'],
+  },
 ]
 
 const trustSignals = [
