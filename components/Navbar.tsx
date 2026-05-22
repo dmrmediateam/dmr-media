@@ -67,12 +67,8 @@ const Navbar = () => {
 
   useEffect(() => {
     if (!isMenuOpen) return;
-    document.body.style.overflow = 'hidden';
     const t = window.setTimeout(() => closeBtnRef.current?.focus(), 0);
-    return () => {
-      window.clearTimeout(t);
-      document.body.style.overflow = '';
-    };
+    return () => window.clearTimeout(t);
   }, [isMenuOpen]);
 
   useEffect(() => {
@@ -149,6 +145,7 @@ const Navbar = () => {
         <div className="site-nav__drawer-scroll">
           <div className="site-nav__drawer-inner">
             <div className="site-nav__drawer-top">
+              <span className="site-nav__drawer-brand">Menu</span>
               <button
                 ref={closeBtnRef}
                 type="button"
