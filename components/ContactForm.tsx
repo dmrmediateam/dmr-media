@@ -1,51 +1,95 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useRef, useState, type ChangeEvent, type KeyboardEvent } from 'react';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
+import {
+  applyFormBtnGhostClass,
+  applyFormBtnPrimaryClass,
+  applyFormInputClass,
+  applyFormLabelClass,
+  applyFormPanelClass,
+} from '@/components/applyFormPrimitives';
 
-const inputClasses =
-  'w-full px-0 py-3.5 text-base border-b-2 border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300 placeholder:text-[var(--color-ink-400)]';
+const STEPS = [
+  { field: 'name',    label: 'Your name',    type: 'text',     placeholder: 'John Smith',                  autoComplete: 'name'  },
+  { field: 'email',   label: 'Email address', type: 'email',    placeholder: 'you@company.com',             autoComplete: 'email' },
+  { field: 'phone',   label: 'Phone number',  type: 'tel',      placeholder: '(920) 555-0123',              autoComplete: 'tel'   },
+  { field: 'message', label: 'Your message',  type: 'textarea', placeholder: 'Tell us about your goals…',   autoComplete: 'off'   },
+] as const;
 
-const textareaClasses =
-  'w-full px-0 py-3.5 text-base border-b-2 border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] transition-colors duration-300 placeholder:text-[var(--color-ink-400)] resize-none min-h-[120px]';
+type Field = typeof STEPS[number]['field'];
 
-const labelClasses = 'block text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] mb-2 font-serif font-medium';
+const TOTAL = STEPS.length;
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
+  const [step, setStep] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [formData, setFormData] = useState<Record<Field, string>>({
+    name: '', email: '', phone: '', message: '',
   });
-
+  const [stepError, setStepError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
+
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.01 });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const current = STEPS[step];
+  const progressPercent = ((step + 1) / TOTAL) * 100;
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setStepError('');
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const validate = () => {
+    const val = formData[current.field].trim();
+    if (!val) {
+      setStepError(`Please enter your ${current.label.toLowerCase()}.`);
+      return false;
+    }
+    if (current.type === 'email') {
+      const el = document.getElementById('cf-input') as HTMLInputElement | null;
+      if (el && !el.checkValidity()) {
+        setStepError('Please enter a valid email address.');
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const advance = () => {
+    if (!validate()) return;
+    setDirection(1);
+    setStep((s) => Math.min(s + 1, TOTAL - 1));
+  };
+
+  const goBack = () => {
+    setStepError('');
+    setDirection(-1);
+    setStep((s) => Math.max(0, s - 1));
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
+    if (e.key !== 'Enter') return;
+    if (current.type === 'textarea') return;
+    if ((e.target as HTMLElement).closest('button')) return;
+    e.preventDefault();
+    if (step < TOTAL - 1) advance();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validate()) return;
     setIsSubmitting(true);
 
-    // Get stored UTM parameters
     const utmParams = getStoredUTMParams();
 
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
           utm_source: utmParams.utm_source,
@@ -61,68 +105,28 @@ const ContactForm = () => {
       });
 
       const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Failed to send message');
 
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message');
-      }
-
-      // Success!
       setIsSubmitting(false);
       setIsSubmitted(true);
-      
-      // Track conversion
       trackConversion('Lead', { form_type: 'contact' });
-      
-      // Reset form after showing success message
+
       setTimeout(() => {
         setIsSubmitted(false);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          message: '',
-        });
+        setFormData({ name: '', email: '', phone: '', message: '' });
+        setStep(0);
       }, 3000);
-
     } catch (error) {
-      console.error('Form submission error:', error);
       setIsSubmitting(false);
-      // Show error to user
-      alert(error instanceof Error ? error.message : 'Failed to send message. Please try again or contact us directly.');
+      setStepError(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
     }
   };
 
-  if (isSubmitted) {
-    return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="py-32 bg-[var(--surface-base)]"
-      >
-        <div className="container-max flex justify-center">
-          <div className="max-w-md text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-            >
-              <div className="w-14 h-14 bg-[var(--color-trust)] flex items-center justify-center mx-auto mb-5">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-serif font-light text-[var(--color-off-black)] mb-3">
-                Thank you.
-              </h3>
-              <p className="text-[15px] text-[var(--color-ink-300)] leading-relaxed font-serif">
-                We received your message and will reply within one business day.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </motion.div>
-    );
-  }
+  const variants = {
+    enter: (dir: number) => ({ opacity: 0, x: dir * 24 }),
+    center: { opacity: 1, x: 0 },
+    exit: (dir: number) => ({ opacity: 0, x: dir * -24 }),
+  };
 
   return (
     <section ref={sectionRef} className="py-20 md:py-28 bg-[var(--surface-base)]">
@@ -137,14 +141,15 @@ const ContactForm = () => {
             Let's Work Together
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.1] tracking-tight">
-            Tell us what you’re building. We’ll make the market notice.
+            Tell us what you're building. We'll make the market notice.
           </h2>
           <p className="mt-5 text-[15px] md:text-base text-[var(--color-ink-300)] max-w-xl leading-[1.65] font-serif">
-            Share a few details about your goals and we’ll design a calm, measurable plan around them.
+            Share a few details about your goals and we'll design a calm, measurable plan around them.
           </p>
         </motion.div>
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-16">
+          {/* Left column — contact info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -152,9 +157,7 @@ const ContactForm = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-xl font-serif font-light text-[var(--color-off-black)]">
-                Contact
-              </h3>
+              <h3 className="text-xl font-serif font-light text-[var(--color-off-black)]">Contact</h3>
               <div className="mt-5 space-y-2 text-[15px] text-[var(--color-ink-300)] font-serif">
                 <a href="mailto:team@dmrmedia.org" className="block hover:text-[var(--color-trust)] transition-colors">
                   team@dmrmedia.org
@@ -194,84 +197,135 @@ const ContactForm = () => {
             </div>
           </motion.div>
 
+          {/* Right column — form */}
           <motion.div
-            initial={{ opacity: 1, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.15, duration: 0.5 }}
-            className="border border-[var(--color-ink-200)] bg-white p-8 md:p-10 relative z-10"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className={labelClasses}>
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className={inputClasses}
-                  placeholder="John Smith"
-                />
+            {isSubmitted ? (
+              <div className={`${applyFormPanelClass} p-8 md:p-10 flex flex-col items-center justify-center text-center min-h-[300px]`}>
+                <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+                  <div className="w-12 h-12 rounded-full bg-[var(--color-trust)] flex items-center justify-center mx-auto mb-5">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-2">Thank you.</h3>
+                  <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
+                    We received your message and will reply within one business day.
+                  </p>
+                </motion.div>
               </div>
+            ) : (
+              <div className={`${applyFormPanelClass} p-8 md:p-10`}>
+                {/* Progress header — sits above the form */}
+                <div className="flex items-center gap-4 mb-5">
+                  <p className={`${applyFormLabelClass} mb-0 shrink-0`}>
+                    Takes 30 seconds
+                  </p>
+                  <div className="flex-1 h-1 rounded-full bg-[var(--color-ink-200)] overflow-hidden">
+                    <motion.div
+                      className="h-full rounded-full bg-[var(--color-off-black)]"
+                      animate={{ width: `${progressPercent}%` }}
+                      transition={{ duration: 0.35, ease: 'easeOut' }}
+                    />
+                  </div>
+                </div>
 
-              <div>
-                <label htmlFor="email" className={labelClasses}>
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={inputClasses}
-                  placeholder="you@company.com"
-                />
+                <form
+                  onKeyDown={handleKeyDown}
+                  onSubmit={step === TOTAL - 1 ? handleSubmit : (e) => e.preventDefault()}
+                  aria-label="Contact form"
+                  className="space-y-5"
+                >
+                  <div className="h-px w-full bg-[var(--color-ink-200)]" aria-hidden />
+
+                  {/* Animated step */}
+                  <div className="overflow-hidden" style={{ minHeight: current.type === 'textarea' ? 220 : 90 }}>
+                    <AnimatePresence mode="wait" custom={direction}>
+                      <motion.div
+                        key={step}
+                        custom={direction}
+                        variants={variants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{ duration: 0.22, ease: 'easeOut' }}
+                        className="space-y-2"
+                      >
+                        <label htmlFor="cf-input" className={applyFormLabelClass}>
+                          {current.label} *
+                        </label>
+
+                        {current.type === 'textarea' ? (
+                          <textarea
+                            id="cf-input"
+                            name={current.field}
+                            required
+                            autoFocus
+                            rows={5}
+                            value={formData[current.field]}
+                            onChange={handleChange}
+                            placeholder={current.placeholder}
+                            className="w-full min-h-[120px] rounded-lg border border-[var(--color-ink-200)] bg-white px-3 py-2.5 font-serif text-base leading-normal text-[var(--color-off-black)] placeholder:text-[var(--color-ink-400)]/80 shadow-[0_1px_0_rgba(15,15,15,0.03)] transition-colors focus:border-[var(--color-off-black)] focus:outline-none focus:ring-1 focus:ring-[var(--color-off-black)]/15 resize-none"
+                          />
+                        ) : (
+                          <input
+                            id="cf-input"
+                            name={current.field}
+                            type={current.type}
+                            required
+                            autoFocus
+                            autoComplete={current.autoComplete}
+                            value={formData[current.field]}
+                            onChange={handleChange}
+                            placeholder={current.placeholder}
+                            className={applyFormInputClass}
+                          />
+                        )}
+
+                        {stepError && (
+                          <p role="alert" className="font-serif text-sm text-red-900">{stepError}</p>
+                        )}
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Navigation */}
+                  <div className={`flex flex-col-reverse gap-3 border-t border-[var(--color-ink-200)] pt-5 sm:flex-row sm:items-center ${step > 0 ? 'sm:justify-between' : 'sm:justify-end'}`}>
+                    {step > 0 && (
+                      <button type="button" onClick={goBack} disabled={isSubmitting} className={applyFormBtnGhostClass}>
+                        Back
+                      </button>
+                    )}
+                    <div className="flex w-full sm:w-auto sm:justify-end">
+                      {step < TOTAL - 1 ? (
+                        <button
+                          type="button"
+                          onClick={advance}
+                          className={`${applyFormBtnPrimaryClass} w-full sm:min-w-[10rem] sm:w-auto`}
+                        >
+                          Next
+                        </button>
+                      ) : (
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className={`${applyFormBtnPrimaryClass} w-full sm:min-w-[12rem] sm:w-auto`}
+                        >
+                          {isSubmitting ? 'Sending…' : 'Send Message'}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                  <p className="font-serif text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink-300)] text-center sm:text-left">
+                    No spam. We reply within one business day.
+                  </p>
+                </form>
               </div>
-
-              <div>
-                <label htmlFor="phone" className={labelClasses}>
-                  Phone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className={inputClasses}
-                  placeholder="(920) 555-0123"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className={labelClasses}>
-                  Your Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className={textareaClasses}
-                  placeholder="Tell us about your goals and how we can help..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 bg-[var(--color-trust)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-90 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer relative z-10"
-              >
-                {isSubmitting ? 'Sending…' : 'Send Message'}
-              </button>
-            </form>
+            )}
           </motion.div>
         </div>
       </div>

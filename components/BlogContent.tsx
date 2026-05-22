@@ -4,6 +4,8 @@ import { PortableText } from '@portabletext/react'
 import NewsletterSignup from './NewsletterSignup'
 import { useMemo } from 'react'
 import { urlFor } from '@/lib/sanity'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 interface BlogContentProps {
   body: any[]
@@ -142,6 +144,85 @@ export default function BlogContent({ body }: BlogContentProps) {
               className="w-full h-auto rounded-sm"
             />
           </figure>
+        )
+      },
+      markdown: ({ value }: { value: { content?: string } }) => {
+        if (!value?.content) return null
+        return (
+          <div className="my-6">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                table: ({ children }) => (
+                  <div className="my-6 w-full overflow-x-auto">
+                    <table className="w-full border-collapse font-serif text-sm">{children}</table>
+                  </div>
+                ),
+                thead: ({ children }) => <thead>{children}</thead>,
+                tbody: ({ children }) => <tbody>{children}</tbody>,
+                tr: ({ children }) => <tr className="even:bg-[var(--color-ink-200)]/20">{children}</tr>,
+                th: ({ children }) => (
+                  <th className="border border-[var(--color-ink-200)] bg-[var(--color-off-black)] px-4 py-2.5 text-left text-[11px] uppercase tracking-[0.14em] text-white">
+                    {children}
+                  </th>
+                ),
+                td: ({ children }) => (
+                  <td className="border border-[var(--color-ink-200)] px-4 py-2.5 text-[var(--color-ink-300)] leading-snug">
+                    {children}
+                  </td>
+                ),
+                p: ({ children }) => (
+                  <p className="text-[var(--color-ink-300)] text-base leading-relaxed mb-4 font-serif">{children}</p>
+                ),
+                strong: ({ children }) => <strong className="font-semibold text-[var(--color-off-black)]">{children}</strong>,
+                em: ({ children }) => <em>{children}</em>,
+                ul: ({ children }) => <ul className="list-disc list-inside mb-6 space-y-2 font-serif">{children}</ul>,
+                ol: ({ children }) => <ol className="list-decimal list-inside mb-6 space-y-2 font-serif">{children}</ol>,
+                li: ({ children }) => <li className="text-[var(--color-ink-300)] font-serif">{children}</li>,
+              }}
+            >
+              {value.content}
+            </ReactMarkdown>
+          </div>
+        )
+      },
+      table: ({ value }: { value: { rows?: { _key: string; cells?: string[] }[] } }) => {
+        const rows = value?.rows ?? []
+        if (rows.length === 0) return null
+        const [headerRow, ...bodyRows] = rows
+        return (
+          <div className="my-8 w-full overflow-x-auto">
+            <table className="w-full border-collapse font-serif text-sm">
+              {headerRow?.cells && headerRow.cells.length > 0 && (
+                <thead>
+                  <tr>
+                    {headerRow.cells.map((cell, i) => (
+                      <th
+                        key={i}
+                        className="border border-[var(--color-ink-200)] bg-[var(--color-off-black)] px-4 py-2.5 text-left text-[11px] uppercase tracking-[0.14em] text-white"
+                      >
+                        {cell}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+              )}
+              <tbody>
+                {bodyRows.map((row, ri) => (
+                  <tr key={row._key ?? ri} className={ri % 2 === 0 ? 'bg-white' : 'bg-[var(--color-ink-200)]/20'}>
+                    {(row.cells ?? []).map((cell, ci) => (
+                      <td
+                        key={ci}
+                        className="border border-[var(--color-ink-200)] px-4 py-2.5 text-[var(--color-ink-300)] leading-snug"
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )
       },
       newsletterSignup: () => <NewsletterSignup />,
