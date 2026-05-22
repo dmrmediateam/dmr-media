@@ -97,6 +97,33 @@ export function initUTMTracking(): void {
 }
 
 /**
+ * OpenAI Ads pixel — fires on successful application form submissions.
+ */
+export function trackOpenAiLeadCreated(additionalData: Record<string, unknown> = {}): void {
+  if (typeof window === 'undefined') return
+
+  try {
+    const oaiq = (window as Window & { oaiq?: (...args: unknown[]) => void }).oaiq
+    oaiq?.('measure', 'lead_created', {
+      type: 'customer_action',
+      amount: 0,
+      currency: 'USD',
+      ...additionalData,
+    })
+  } catch {
+    // Silently fail if oaiq is not available
+  }
+}
+
+/**
+ * Track application form conversions (Meta, GA, OpenAI Ads).
+ */
+export function trackApplicationConversion(additionalData: Record<string, unknown> = {}): void {
+  trackConversion('Lead', additionalData)
+  trackOpenAiLeadCreated(additionalData)
+}
+
+/**
  * Track conversion event with UTM parameters
  */
 export function trackConversion(eventName: string = 'Lead', additionalData: Record<string, any> = {}): void {

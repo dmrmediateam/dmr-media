@@ -10,7 +10,7 @@ import {
   type FormEvent,
   type KeyboardEvent as ReactKeyboardEvent,
 } from 'react'
-import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking'
+import { getStoredUTMParams, trackApplicationConversion } from '@/lib/utmTracking'
 import {
   applyFormBtnGhostClass as btnGhost,
   applyFormBtnPrimaryClass as btnPrimary,
@@ -224,7 +224,7 @@ export default function ApplyModal() {
 
       if (response.ok && data.ok) {
         submissionCompleteRef.current = true
-        trackConversion('Lead', {
+        trackApplicationConversion({
           form_name: formName,
           submission_page: submissionPage,
           ...utm,

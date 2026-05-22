@@ -11,7 +11,7 @@ import {
 } from '@/components/applyFormPrimitives'
 import GoogleGeneralBulletSelect from '@/components/landing/GoogleGeneralBulletSelect'
 import { ANNUAL_SALES_VOLUME_OPTIONS, isGoogleGeneralDisqualifiedVolume } from '@/lib/application-form'
-import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking'
+import { getStoredUTMParams, trackApplicationConversion } from '@/lib/utmTracking'
 
 const TOTAL_STEPS = 3
 const DEFAULT_FORM_NAME = 'google-general-modal'
@@ -145,7 +145,7 @@ export default function GoogleGeneralHeroForm({
       const data = (await response.json().catch(() => ({}))) as { ok?: boolean; error?: string }
 
       if (response.ok && data.ok) {
-        trackConversion('Lead', {
+        trackApplicationConversion({
           form_name: formName,
           submission_page: submissionPage,
           ...utm,

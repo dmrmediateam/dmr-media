@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useRef, useState, type ChangeEvent, type FormEvent } from 'react'
-import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking'
+import { getStoredUTMParams, trackApplicationConversion } from '@/lib/utmTracking'
 import {
   applyFormBtnPrimaryClass,
   applyFormInputClass,
@@ -99,7 +99,7 @@ export default function CalendarPageContent() {
       }
 
       if (response.ok && data.ok) {
-        trackConversion('Lead', {
+        trackApplicationConversion({
           form_name: FORM_NAME,
           submission_page: submissionPage,
           ...utm,
