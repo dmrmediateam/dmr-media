@@ -87,6 +87,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             `,
           }}
         />
+        {/* OpenAI Ads pixel */}
+        <Script
+          id="openai-ads-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(w, d, s, u) {
+                if (w.oaiq) return;
+                var q = function() {
+                  q.q.push(arguments);
+                };
+                q.q = [];
+                w.oaiq = q;
+                var j = d.createElement(s);
+                j.async = 1;
+                j.src = u;
+                var f = d.getElementsByTagName(s)[0];
+                f.parentNode.insertBefore(j, f);
+              }(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+
+              oaiq("init", {
+                pixelId: "YMJrvTgnD8Dwizwi78V9VJ",
+                debug: true
+              });
+
+              oaiq("measure", "registration_completed", {
+                type: "customer_action",
+                amount: 0,
+                currency: "USD"
+              });
+            `,
+          }}
+        />
       </head>
       <body className={`${instrumentSerif.className} ${inter.variable}`}>
         {/* Google Tag Manager (noscript) */}
