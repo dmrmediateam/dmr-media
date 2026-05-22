@@ -77,15 +77,31 @@ export type ChannelLandingHeroTitleSegment = {
   italic?: boolean
 }
 
+export type ChannelLandingHeroProofMetric = {
+  value: string
+  label: string
+}
+
 export type ChannelLandingConfig = {
   path: `/landing/${string}`
   formName: string
+  /** Conversion-focused hero (form-first mobile, proof metrics, sticky form). */
+  heroLayout?: 'default' | 'conversion'
+  /** Serif subhead below H1 on conversion hero. */
+  heroSubhead?: string
+  /** Scannable proof chips below intro on conversion hero. */
+  heroProofMetrics?: readonly ChannelLandingHeroProofMetric[]
   /** Rich H1 segments (use for multiple italic words). Takes precedence over heroTitle. */
   heroTitleSegments?: readonly ChannelLandingHeroTitleSegment[]
   /** Full H1 when set; otherwise the default “Last Real Estate Marketing Partner…” template is used. */
   heroTitle?: string
   heroTitleEmphasis: string
+  /** Plain intro when heroIntroSegments is not set. */
   heroIntro: string
+  /** Single intro block with optional italic segments. */
+  heroIntroSegments?: readonly ChannelLandingHeroTitleSegment[]
+  /** Multi-paragraph intro; takes precedence over heroIntroSegments and heroIntro. */
+  heroIntroParagraphs?: readonly (readonly ChannelLandingHeroTitleSegment[])[]
   marketingCoreHeading: string
   marketingCorePillars: readonly ChannelLandingPillar[]
   partnerStatsEyebrow?: string

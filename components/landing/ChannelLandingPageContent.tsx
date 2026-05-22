@@ -6,6 +6,7 @@ import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
 import ClientLogosSlider from '@/components/ClientLogosSlider'
 import GoogleGeneralReviewsScroll from '@/components/landing/GoogleGeneralReviewsScroll'
 import GoogleGeneralCaseStudies from '@/components/landing/GoogleGeneralCaseStudies'
+import GoogleGeneralHero from '@/components/landing/GoogleGeneralHero'
 import GoogleGeneralHeroForm from '@/components/landing/GoogleGeneralHeroForm'
 import ChannelLandingObjectionSection from '@/components/landing/ChannelLandingObjectionSection'
 import ChannelLandingByTheNumbersSection from '@/components/landing/ChannelLandingByTheNumbersSection'
@@ -65,6 +66,8 @@ export default function ChannelLandingPageContent({ config }: Props) {
     heroTitle,
     heroTitleEmphasis,
     heroIntro,
+    heroIntroSegments,
+    heroIntroParagraphs,
     marketingCoreHeading,
     marketingCorePillars,
     partnerStatsEyebrow,
@@ -76,6 +79,7 @@ export default function ChannelLandingPageContent({ config }: Props) {
     byTheNumbersSection,
     reviewsSection,
     caseStudiesSection,
+    heroLayout,
   } = config
 
   useEffect(() => {
@@ -93,77 +97,111 @@ export default function ChannelLandingPageContent({ config }: Props) {
     <div className="google-general-landing min-h-screen bg-[var(--surface-base)] text-[var(--color-off-black)]">
       <ChannelLandingHeader />
 
-      <section
-        id="top"
-        className="scroll-mt-6 border-b border-[var(--color-ink-200)]"
-        aria-labelledby="channel-landing-hero-title"
-      >
-        <div className="container-max px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 lg:pb-24">
-          <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-stretch lg:gap-16 xl:gap-20">
-            <div className="gg-hero-copy max-w-xl lg:max-w-none lg:flex lg:flex-col lg:justify-center lg:py-1">
-              <p className="gg-eyebrow gg-eyebrow--strong gg-hero-badge inline-flex max-w-full items-center gap-x-2">
-                <span className="tracking-[0.05em] text-[var(--color-off-black)]" aria-hidden>
-                  ★★★★★
-                </span>
-                <span>5-stars on Trustpilot &amp; Google</span>
-              </p>
+      {heroLayout === 'conversion' ? (
+        <GoogleGeneralHero config={config} />
+      ) : (
+        <section
+          id="top"
+          className="scroll-mt-6 border-b border-[var(--color-ink-200)]"
+          aria-labelledby="channel-landing-hero-title"
+        >
+          <div className="container-max px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 lg:pb-24">
+            <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-stretch lg:gap-16 xl:gap-20">
+              <div className="gg-hero-copy max-w-xl lg:max-w-none lg:flex lg:flex-col lg:justify-center lg:py-1">
+                <p className="gg-hero-badge inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1">
+                  <span className="gg-hero-badge-stars tracking-[0.06em]" aria-hidden>
+                    ★★★★★
+                  </span>
+                  <span>5 stars on Trustpilot &amp; Google</span>
+                </p>
 
-              <h1
-                id="channel-landing-hero-title"
-                className="gg-display gg-hero-title font-light tracking-tight"
-              >
-                {heroTitleSegments ? (
-                  heroTitleSegments.map((segment, i) =>
-                    segment.italic ? (
-                      <em key={i} className="italic">
-                        {segment.text}
-                      </em>
-                    ) : (
-                      <span key={i}>{segment.text}</span>
+                <h1
+                  id="channel-landing-hero-title"
+                  className="gg-display gg-hero-title font-light tracking-tight"
+                >
+                  {heroTitleSegments ? (
+                    heroTitleSegments.map((segment, i) =>
+                      segment.italic ? (
+                        <em key={i} className="italic">
+                          {segment.text}
+                        </em>
+                      ) : (
+                        <span key={i}>{segment.text}</span>
+                      )
                     )
-                  )
-                ) : heroTitle ? (
-                  heroTitle
+                  ) : heroTitle ? (
+                    heroTitle
+                  ) : (
+                    <>
+                      The Last Real Estate Marketing <em className="italic">{heroTitleEmphasis}</em> You&apos;ll Ever
+                      Need.
+                    </>
+                  )}
+                </h1>
+
+                <div className="gg-hero-rule">
+                  <SectionRule />
+                </div>
+
+                {heroIntroParagraphs ? (
+                  <div className="gg-body gg-hero-intro space-y-4">
+                    {heroIntroParagraphs.map((paragraph, pi) => (
+                      <p key={pi}>
+                        {paragraph.map((segment, i) =>
+                          segment.italic ? (
+                            <em key={i} className="italic">
+                              {segment.text}
+                            </em>
+                          ) : (
+                            <span key={i}>{segment.text}</span>
+                          )
+                        )}
+                      </p>
+                    ))}
+                  </div>
+                ) : heroIntroSegments ? (
+                  <p className="gg-body gg-hero-intro">
+                    {heroIntroSegments.map((segment, i) =>
+                      segment.italic ? (
+                        <em key={i} className="italic">
+                          {segment.text}
+                        </em>
+                      ) : (
+                        <span key={i}>{segment.text}</span>
+                      )
+                    )}
+                  </p>
                 ) : (
-                  <>
-                    The Last Real Estate Marketing <em className="italic">{heroTitleEmphasis}</em> You&apos;ll Ever
-                    Need.
-                  </>
+                  <p className="gg-body gg-hero-intro">{heroIntro}</p>
                 )}
-              </h1>
 
-              <div className="gg-hero-rule">
-                <SectionRule />
+                <div
+                  className="gg-hero-partners border-t border-[var(--color-ink-200)]"
+                  aria-labelledby="partner-results-heading"
+                >
+                  <p className="gg-eyebrow">{partnerStatsEyebrow ?? 'Our partners have'}</p>
+                  <h2 id="partner-results-heading" className="sr-only">
+                    Partner results
+                  </h2>
+                  <ul className="gg-hero-stats list-none p-0">
+                    {partnerStats.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span
+                          className="gg-hero-stat-bullet shrink-0 rounded-full bg-[var(--color-off-black)]"
+                          aria-hidden
+                        />
+                        <p className="gg-hero-stat">{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
-              <p className="gg-body gg-hero-intro">{heroIntro}</p>
-
-              <div
-                className="gg-hero-partners border-t border-[var(--color-ink-200)]"
-                aria-labelledby="partner-results-heading"
-              >
-                <p className="gg-eyebrow">{partnerStatsEyebrow ?? 'Our partners have'}</p>
-                <h2 id="partner-results-heading" className="sr-only">
-                  Partner results
-                </h2>
-                <ul className="gg-hero-stats list-none p-0">
-                  {partnerStats.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <span
-                        className="gg-hero-stat-bullet shrink-0 rounded-full bg-[var(--color-off-black)]"
-                        aria-hidden
-                      />
-                      <p className="gg-hero-stat">{item}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <GoogleGeneralHeroForm formName={formName} />
             </div>
-
-            <GoogleGeneralHeroForm formName={formName} />
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section id="client-logos" className="scroll-mt-24" aria-label="Client logos">
         <ClientLogosSlider />
@@ -171,11 +209,11 @@ export default function ChannelLandingPageContent({ config }: Props) {
 
       {objectionSection ? <ChannelLandingObjectionSection section={objectionSection} /> : null}
 
+      {byTheNumbersSection ? <ChannelLandingByTheNumbersSection section={byTheNumbersSection} /> : null}
+
       {timelineSection ? (
         <ChannelLandingTimelineSection section={timelineSection} />
       ) : null}
-
-      {byTheNumbersSection ? <ChannelLandingByTheNumbersSection section={byTheNumbersSection} /> : null}
 
       <GoogleGeneralReviewsScroll
         eyebrow={reviewsSection?.eyebrow}

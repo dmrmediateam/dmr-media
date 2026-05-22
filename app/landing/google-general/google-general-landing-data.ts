@@ -54,11 +54,5 @@ export const marketingCorePillars = [
   },
 ] as const
 
-export const googleGeneralPartnerStats = [
-  "Tripled Legendary RE's Pipeline in 3 weeks",
-  'Debi Eagan did $11m in Volume within 3 months',
-  'Hitchcock Properties: $10.46 vacation rental leads',
-] as const
-
 export type { ChannelLandingCaseStudy as GoogleGeneralCaseStudy } from '@/lib/landing/channel-landing-types'
 export { channelLandingCaseStudies as caseStudies } from '@/lib/landing/channel-landing-shared-data'

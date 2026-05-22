@@ -35,26 +35,70 @@ export function useSeoHorizontalCardScroll() {
     const items = scroller?.querySelectorAll<HTMLLIElement>(':scope > ul > li')
     if (!scroller || !items?.length) return 0
     const ul = items[0].parentElement as HTMLElement
-    const slop = 16
-    let idx = 0
+    const scrollCenter = scroller.scrollLeft + scroller.clientWidth / 2
+    let closest = 0
+    let minDistance = Infinity
     for (let i = 0; i < items.length; i++) {
-      const leftEdge = items[i].offsetLeft + ul.offsetLeft
-      if (leftEdge <= scroller.scrollLeft + slop) idx = i
+      const cardCenter = items[i].offsetLeft + ul.offsetLeft + items[i].offsetWidth / 2
+      const distance = Math.abs(cardCenter - scrollCenter)
+      if (distance < minDistance) {
+        minDistance = distance
+        closest = i
+      }
     }
-    return idx
+    return closest
+  }, [])
+
+  const scrollToIndex = useCallback((index: number, behavior: ScrollBehavior = 'smooth') => {
+    const scroller = scrollerRef.current
+    const items = scroller?.querySelectorAll<HTMLLIElement>(':scope > ul > li')
+    if (!scroller || !items?.length) return
+    const i = Math.min(Math.max(0, index), items.length - 1)
+    const ul = items[0].parentElement as HTMLElement
+    const left = items[i].offsetLeft + ul.offsetLeft
+    scroller.scrollTo({ left, behavior })
   }, [])
 
   const scrollByCard = useCallback(
-    (direction: 1 | -1) => {
+    (direction: 1 | -1, wrap = false) => {
       const scroller = scrollerRef.current
       const items = scroller?.querySelectorAll<HTMLLIElement>(':scope > ul > li')
       if (!scroller || !items?.length) return
       const idx = activeIndex()
-      const next = Math.min(Math.max(0, idx + direction), items.length - 1)
-      items[next].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' })
+      const count = items.length
+      const next = wrap
+        ? (idx + direction + count) % count
+        : Math.min(Math.max(0, idx + direction), count - 1)
+      const loopingBack = wrap && direction === 1 && idx === count - 1 && next === 0
+      const loopingForward = wrap && direction === -1 && idx === 0 && next === count - 1
+      scrollToIndex(next, loopingBack || loopingForward ? 'instant' : 'smooth')
+      return next
     },
-    [activeIndex],
+    [activeIndex, scrollToIndex],
   )
 
-  return { scrollerRef, atStart, atEnd, scrollByCard }
+  const scrollToNext = useCallback(
+    (wrap = false) => {
+      return scrollByCard(1, wrap)
+    },
+    [scrollByCard],
+  )
+
+  const scrollToPrev = useCallback(
+    (wrap = false) => {
+      return scrollByCard(-1, wrap)
+    },
+    [scrollByCard],
+  )
+
+  return {
+    scrollerRef,
+    atStart,
+    atEnd,
+    scrollByCard,
+    scrollToNext,
+    scrollToPrev,
+    scrollToIndex,
+    activeIndex,
+  }
 }

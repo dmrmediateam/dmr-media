@@ -9,20 +9,23 @@ import {
   applyFormLabelClass,
   applyFormPanelClass,
 } from '@/components/applyFormPrimitives'
+import GoogleGeneralBulletSelect from '@/components/landing/GoogleGeneralBulletSelect'
 import { ANNUAL_SALES_VOLUME_OPTIONS, isGoogleGeneralDisqualifiedVolume } from '@/lib/application-form'
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking'
 
-const TOTAL_STEPS = 2
+const TOTAL_STEPS = 3
 const DEFAULT_FORM_NAME = 'google-general-modal'
 const THANK_YOU_PATH = '/landing/thank-you-q'
 const DQ_THANK_YOU_PATH = '/landing/thank-you-dq'
 
+const TEAM_SIZE_OPTIONS = ['Solo', '2-4', '5-10', '10-20', '20+'] as const
+
+const STEP_LABELS = ['Team size', 'Annual volume', 'Your details'] as const
+
 const initialFormData = {
-  firstName: '',
-  lastName: '',
+  fullName: '',
   email: '',
   phone: '',
-  market: '',
   annualSalesVolume: '',
   teamSize: '',
 }
@@ -32,30 +35,58 @@ type FormDataState = typeof initialFormData
 type GoogleGeneralHeroFormProps = {
   id?: string
   formName?: string
+  variant?: 'default' | 'conversion'
+}
+
+function splitFullName(fullName: string) {
+  const trimmed = fullName.trim()
+  const parts = trimmed.split(/\s+/)
+  const firstName = parts[0] ?? ''
+  const lastName = parts.slice(1).join(' ')
+  return { firstName, lastName, name: trimmed }
 }
 
 export default function GoogleGeneralHeroForm({
   id = 'hero-form',
   formName = DEFAULT_FORM_NAME,
+  variant = 'default',
 }: GoogleGeneralHeroFormProps) {
+  const isConversion = variant === 'conversion'
   const router = useRouter()
   const [step, setStep] = useState(0)
   const [formData, setFormData] = useState<FormDataState>(initialFormData)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
+  const [stepError, setStepError] = useState('')
   const stepPanelRef = useRef<HTMLDivElement>(null)
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const progressPercent = ((step + 1) / TOTAL_STEPS) * 100
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+  const handleBulletSelect = (field: 'teamSize' | 'annualSalesVolume', value: string) => {
+    setStepError('')
+    setSubmitMessage('')
+    setFormData((prev) => ({ ...prev, [field]: value }))
+    setStep((s) => Math.min(s + 1, TOTAL_STEPS - 1))
+  }
+
   const validateCurrentStep = () => {
+    if (step === 0 && !formData.teamSize) {
+      setStepError('Please select a team size.')
+      return false
+    }
+    if (step === 1 && !formData.annualSalesVolume) {
+      setStepError('Please select your annual sales volume.')
+      return false
+    }
+
     const root = stepPanelRef.current
     if (!root) return true
-    const fields = root.querySelectorAll<HTMLInputElement | HTMLSelectElement>(
-      'input[required], select[required]'
-    )
+    const fields = root.querySelectorAll<HTMLInputElement>('input[required]')
     let valid = true
     fields.forEach((el) => {
       if (!valid) return
@@ -64,16 +95,13 @@ export default function GoogleGeneralHeroForm({
         valid = false
       }
     })
+    if (!valid) setStepError('')
     return valid
-  }
-
-  const goNext = () => {
-    if (!validateCurrentStep()) return
-    setStep((s) => Math.min(s + 1, TOTAL_STEPS - 1))
   }
 
   const goBack = () => {
     setSubmitMessage('')
+    setStepError('')
     setStep((s) => Math.max(0, s - 1))
   }
 
@@ -82,7 +110,6 @@ export default function GoogleGeneralHeroForm({
     if (step >= TOTAL_STEPS - 1) return
     if ((e.target as HTMLElement).closest('button')) return
     e.preventDefault()
-    goNext()
   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -95,13 +122,20 @@ export default function GoogleGeneralHeroForm({
     const utm = getStoredUTMParams()
     const submissionPage =
       typeof window !== 'undefined' ? `${window.location.pathname}${window.location.search}` : ''
+    const { firstName, lastName, name } = splitFullName(formData.fullName)
 
     try {
       const response = await fetch('/api/application', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...formData,
+          firstName,
+          lastName,
+          name,
+          email: formData.email,
+          phone: formData.phone,
+          annualSalesVolume: formData.annualSalesVolume,
+          teamSize: formData.teamSize,
           formName,
           submissionPage,
           ...utm,
@@ -134,54 +168,94 @@ export default function GoogleGeneralHeroForm({
   return (
     <div
       id={id}
-      className={`google-general-form ${applyFormPanelClass} scroll-mt-28 p-7 sm:p-9 md:p-10`}
+      className={`google-general-form ${applyFormPanelClass} scroll-mt-28 ${
+        isConversion ? 'gg-form-conversion p-6 sm:p-8' : 'p-7 sm:p-9 md:p-10'
+      }`}
     >
-      <p className="gg-eyebrow">Book your strategy review</p>
+      {isConversion ? (
+        <header className="gg-form-header">
+          <h2 className="gg-form-header__title">Book your strategy review</h2>
+          <p className="gg-form-header__sub">Takes about 60 seconds</p>
+        </header>
+      ) : (
+        <p className="gg-eyebrow">Book your strategy review</p>
+      )}
 
       <form
         onKeyDown={handleFormKeyDown}
         onSubmit={step === TOTAL_STEPS - 1 ? handleSubmit : (e) => e.preventDefault()}
-        className="mt-6 space-y-5"
+        className={isConversion ? 'mt-5 space-y-5' : 'mt-6 space-y-5'}
+        aria-label="Strategy review application"
       >
-        <div className="h-px w-full bg-[var(--color-ink-200)]" aria-hidden />
-        <p className="gg-eyebrow">Step {step + 1} of {TOTAL_STEPS}</p>
+        {isConversion ? (
+          <div
+            className="gg-form-progress-wrap"
+            role="progressbar"
+            aria-valuemin={1}
+            aria-valuemax={TOTAL_STEPS}
+            aria-valuenow={step + 1}
+            aria-label={`Step ${step + 1} of ${TOTAL_STEPS}: ${STEP_LABELS[step]}`}
+          >
+            <div className="gg-form-progress-track">
+              <div className="gg-form-progress-fill" style={{ width: `${progressPercent}%` }} />
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="h-px w-full bg-[var(--color-ink-200)]" aria-hidden />
+            <p className="gg-eyebrow">
+              Step {step + 1} of {TOTAL_STEPS}
+            </p>
+          </>
+        )}
 
-        <div ref={stepPanelRef} className="space-y-5">
+        <div ref={stepPanelRef} className="space-y-5" aria-live="polite" aria-atomic="true">
           {step === 0 ? (
+            <GoogleGeneralBulletSelect
+              name="teamSize"
+              label="How large is your team?"
+              value={formData.teamSize}
+              options={TEAM_SIZE_OPTIONS}
+              onChange={(value) => handleBulletSelect('teamSize', value)}
+              error={stepError || undefined}
+              legendClassName={isConversion ? 'gg-form-question' : undefined}
+            />
+          ) : null}
+
+          {step === 1 ? (
+            <GoogleGeneralBulletSelect
+              name="annualSalesVolume"
+              label="What is your annual sales volume?"
+              value={formData.annualSalesVolume}
+              options={ANNUAL_SALES_VOLUME_OPTIONS}
+              onChange={(value) => handleBulletSelect('annualSalesVolume', value)}
+              error={stepError || undefined}
+              legendClassName={isConversion ? 'gg-form-question' : undefined}
+            />
+          ) : null}
+
+          {step === 2 ? (
             <>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="gg-firstName" className={applyFormLabelClass}>
-                    First name
-                  </label>
-                  <input
-                    id="gg-firstName"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                    autoComplete="given-name"
-                    className={applyFormInputClass}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="gg-lastName" className={applyFormLabelClass}>
-                    Last name
-                  </label>
-                  <input
-                    id="gg-lastName"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                    autoComplete="family-name"
-                    className={applyFormInputClass}
-                  />
-                </div>
+              {isConversion ? (
+                <p className="gg-form-question mb-1">Where should we send your strategy review?</p>
+              ) : null}
+              <div>
+                <label htmlFor="gg-fullName" className={applyFormLabelClass}>
+                  Full name
+                </label>
+                <input
+                  id="gg-fullName"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  required
+                  autoComplete="name"
+                  className={applyFormInputClass}
+                />
               </div>
               <div>
                 <label htmlFor="gg-email" className={applyFormLabelClass}>
-                  Business email
+                  Email
                 </label>
                 <input
                   id="gg-email"
@@ -211,67 +285,6 @@ export default function GoogleGeneralHeroForm({
               </div>
             </>
           ) : null}
-
-          {step === 1 ? (
-            <>
-              <div>
-                <label htmlFor="gg-market" className={applyFormLabelClass}>
-                  Market / city
-                </label>
-                <input
-                  id="gg-market"
-                  name="market"
-                  value={formData.market}
-                  onChange={handleChange}
-                  required
-                  autoComplete="address-level2"
-                  className={applyFormInputClass}
-                />
-              </div>
-              <div>
-                <label htmlFor="gg-annualSalesVolume" className={applyFormLabelClass}>
-                  Annual sales volume
-                </label>
-                <select
-                  id="gg-annualSalesVolume"
-                  name="annualSalesVolume"
-                  value={formData.annualSalesVolume}
-                  onChange={handleChange}
-                  required
-                  className={`${applyFormInputClass} cursor-pointer`}
-                >
-                  <option value="" disabled>
-                    Select one
-                  </option>
-                  {ANNUAL_SALES_VOLUME_OPTIONS.map((label) => (
-                    <option key={label}>{label}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label htmlFor="gg-teamSize" className={applyFormLabelClass}>
-                  Team size
-                </label>
-                <select
-                  id="gg-teamSize"
-                  name="teamSize"
-                  value={formData.teamSize}
-                  onChange={handleChange}
-                  required
-                  className={`${applyFormInputClass} cursor-pointer`}
-                >
-                  <option value="" disabled>
-                    Select one
-                  </option>
-                  <option>Solo</option>
-                  <option>2-4</option>
-                  <option>5-10</option>
-                  <option>10-20</option>
-                  <option>20+</option>
-                </select>
-              </div>
-            </>
-          ) : null}
         </div>
 
         {submitMessage ? (
@@ -284,7 +297,7 @@ export default function GoogleGeneralHeroForm({
         ) : null}
 
         <div
-          className={`flex flex-col-reverse gap-3 border-t border-[var(--color-ink-200)] pt-6 sm:flex-row sm:items-center ${
+          className={`flex flex-col-reverse gap-3 border-t border-[var(--color-ink-200)] pt-5 sm:flex-row sm:items-center ${
             step > 0 ? 'sm:justify-between' : 'sm:justify-end'
           }`}
         >
@@ -294,20 +307,26 @@ export default function GoogleGeneralHeroForm({
             </button>
           ) : null}
           <div className="flex w-full sm:w-auto sm:justify-end">
-            {step < TOTAL_STEPS - 1 ? (
-              <button type="button" onClick={goNext} className={`${applyFormBtnPrimaryClass} w-full sm:w-auto`}>
-                Continue
+            {step === TOTAL_STEPS - 1 ? (
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`${applyFormBtnPrimaryClass} w-full sm:min-w-[14rem] sm:w-auto`}
+              >
+                {isSubmitting
+                  ? 'Sending…'
+                  : isConversion
+                    ? 'Book my strategy review'
+                    : 'Submit application'}
               </button>
-            ) : (
-              <button type="submit" disabled={isSubmitting} className={`${applyFormBtnPrimaryClass} w-full sm:w-auto`}>
-                {isSubmitting ? 'Sending…' : 'Submit application'}
-              </button>
-            )}
+            ) : null}
           </div>
         </div>
 
-        <p className="gg-form-footnote text-center">
-          No spam. No pressure, just a direct conversation about fit.
+        <p className="gg-form-footnote text-center sm:text-left">
+          {isConversion
+            ? 'No spam. 30-day qualified-lead guarantee.'
+            : 'No spam. No pressure, just a direct conversation about fit.'}
         </p>
       </form>
     </div>

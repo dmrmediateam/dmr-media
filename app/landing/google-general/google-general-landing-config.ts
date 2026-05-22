@@ -1,10 +1,6 @@
 import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 import { channelLandingCaseStudies } from '@/lib/landing/channel-landing-shared-data'
-import {
-  FAQ_ITEMS,
-  googleGeneralPartnerStats,
-  marketingCorePillars,
-} from './google-general-landing-data'
+import { FAQ_ITEMS, marketingCorePillars } from './google-general-landing-data'
 import {
   googleGeneralByTheNumbersSection,
   googleGeneralTimelineSection,
@@ -13,20 +9,31 @@ import {
 export const googleGeneralLandingConfig: ChannelLandingConfig = {
   path: '/landing/google-general',
   formName: 'google-general-modal',
+  heroLayout: 'conversion',
   heroTitleSegments: [
-    { text: 'We ' },
-    { text: "3x'd", italic: true },
-    { text: " Legendary RE's Leads in " },
-    { text: '3 weeks', italic: true },
-    { text: '. See what we can do for you' },
+    { text: 'Real Estate Agents & Teams get ' },
+    { text: '88%', italic: true },
+    { text: ' cheaper leads after ' },
+    { text: '4 weeks', italic: true },
   ],
-  heroTitleEmphasis: "3x'd",
-  heroIntro:
-    'Have you been burned by a real estate marketing company before? We get it. Most vendors take $2k/m or 15% of ad spend and you are left wondering where the money went, maybe some "SEO traffic" and a few junk forms. Whether you are a solo agent, a growing team, or a brokerage, we built a 30-day guarantee around qualified leads: name, phone, email, and real buy/sell intent. If we do not hit that bar in 30 days, we work for FREE until we do.',
+  heroTitleEmphasis: '88%',
+  heroIntro: '',
+  heroIntroParagraphs: [
+    [
+      { text: "You've gotten " },
+      { text: '2,000 calls ', italic: true },
+      {
+        text: 'from "lead providers"; Google Ads pitches, META Ads, mailers. Here\'s the difference with us: you found us using the exact same system we\'ll build for your business. And it\'s why our clients generate leads at ',
+      },
+      { text: '88% cheaper', italic: true },
+      {
+        text: ' than the competition, tens of thousands of dollars that stay in your pocket instead of getting burned on bad traffic.',
+      },
+    ],
+  ],
   marketingCoreHeading: 'The marketing system built for real estate teams.',
   marketingCorePillars,
-  partnerStatsEyebrow: "Our Partner's have",
-  partnerStats: googleGeneralPartnerStats,
+  partnerStats: [],
   caseStudies: channelLandingCaseStudies,
   faqItems: FAQ_ITEMS,
   timelineSection: googleGeneralTimelineSection,
