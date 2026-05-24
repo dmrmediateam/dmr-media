@@ -10,3 +10,8 @@ export const ANNUAL_SALES_VOLUME_OPTIONS = [
 export function isGoogleGeneralDisqualifiedVolume(annualSalesVolume: string): boolean {
   return annualSalesVolume === 'sub $5m' || annualSalesVolume === '$5m to $20m'
 }
+
+/** Google General funnel: tiers at ~$20M+ are qualified for the General signup conversion. */
+export function isGoogleGeneralQualifiedVolume(annualSalesVolume: string): boolean {
+  return annualSalesVolume === '$20m to $40m' || annualSalesVolume === '$40m+'
+}

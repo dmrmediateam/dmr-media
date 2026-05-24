@@ -10,8 +10,8 @@ import {
   applyFormPanelClass,
 } from '@/components/applyFormPrimitives'
 import GoogleGeneralBulletSelect from '@/components/landing/GoogleGeneralBulletSelect'
-import { ANNUAL_SALES_VOLUME_OPTIONS, isGoogleGeneralDisqualifiedVolume } from '@/lib/application-form'
-import { getStoredUTMParams, trackApplicationConversion } from '@/lib/utmTracking'
+import { ANNUAL_SALES_VOLUME_OPTIONS, isGoogleGeneralDisqualifiedVolume, isGoogleGeneralQualifiedVolume } from '@/lib/application-form'
+import { getStoredUTMParams, trackApplicationConversion, trackGoogleGeneralQualifiedSignup } from '@/lib/utmTracking'
 
 const TOTAL_STEPS = 3
 const DEFAULT_FORM_NAME = 'google-general-modal'
@@ -153,7 +153,11 @@ export default function GoogleGeneralHeroForm({
         const thankYouPath = isGoogleGeneralDisqualifiedVolume(formData.annualSalesVolume)
           ? DQ_THANK_YOU_PATH
           : THANK_YOU_PATH
-        router.push(thankYouPath)
+        if (isGoogleGeneralQualifiedVolume(formData.annualSalesVolume)) {
+          trackGoogleGeneralQualifiedSignup(() => router.push(thankYouPath))
+        } else {
+          router.push(thankYouPath)
+        }
         return
       }
 

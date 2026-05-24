@@ -10,7 +10,7 @@ import {
   type FormEvent,
   type KeyboardEvent as ReactKeyboardEvent,
 } from 'react'
-import { getStoredUTMParams, trackApplicationConversion } from '@/lib/utmTracking'
+import { getStoredUTMParams, trackApplicationConversion, trackGoogleGeneralQualifiedSignup } from '@/lib/utmTracking'
 import {
   applyFormBtnGhostClass as btnGhost,
   applyFormBtnPrimaryClass as btnPrimary,
@@ -18,12 +18,13 @@ import {
   applyFormInputClass as inputClass,
   applyFormLabelClass as labelClass,
 } from '@/components/applyFormPrimitives'
-import { ANNUAL_SALES_VOLUME_OPTIONS, isGoogleGeneralDisqualifiedVolume } from '@/lib/application-form'
+import { ANNUAL_SALES_VOLUME_OPTIONS, isGoogleGeneralDisqualifiedVolume, isGoogleGeneralQualifiedVolume } from '@/lib/application-form'
 
 const TOTAL_STEPS = 2
 const DEFAULT_APPLY_FORM_NAME = 'google-general-strategy-call'
 const APPLY_MODAL_THANK_YOU_PATH = '/landing/thank-you-q'
 const APPLY_MODAL_DQ_THANK_YOU_PATH = '/landing/thank-you-dq'
+const GOOGLE_GENERAL_LANDING_PATH = '/landing/google-general'
 
 const initialFormData = {
   firstName: '',
@@ -233,7 +234,14 @@ export default function ApplyModal() {
         const thankYouPath = isGoogleGeneralDisqualifiedVolume(formData.annualSalesVolume)
           ? APPLY_MODAL_DQ_THANK_YOU_PATH
           : APPLY_MODAL_THANK_YOU_PATH
-        router.push(thankYouPath)
+        const isGoogleGeneralLanding =
+          pathname === GOOGLE_GENERAL_LANDING_PATH ||
+          pathname?.startsWith(`${GOOGLE_GENERAL_LANDING_PATH}/`)
+        if (isGoogleGeneralLanding && isGoogleGeneralQualifiedVolume(formData.annualSalesVolume)) {
+          trackGoogleGeneralQualifiedSignup(() => router.push(thankYouPath))
+        } else {
+          router.push(thankYouPath)
+        }
         return
       }
 

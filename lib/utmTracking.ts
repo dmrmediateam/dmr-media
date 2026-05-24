@@ -97,6 +97,43 @@ export function initUTMTracking(): void {
 }
 
 /**
+ * Google Ads — Sign Up (General Qualified) for $20M+ annual volume on /landing/google-general.
+ */
+export const GOOGLE_GENERAL_QUALIFIED_CONVERSION = 'AW-16882640022/R3WcCKiWvbIcEJbJovI-'
+
+export function trackGoogleGeneralQualifiedSignup(onComplete?: () => void): void {
+  if (typeof window === 'undefined') {
+    onComplete?.()
+    return
+  }
+
+  const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag
+  if (!gtag) {
+    onComplete?.()
+    return
+  }
+
+  let completed = false
+  const finish = () => {
+    if (completed) return
+    completed = true
+    onComplete?.()
+  }
+
+  try {
+    gtag('event', 'conversion', {
+      send_to: GOOGLE_GENERAL_QUALIFIED_CONVERSION,
+      value: 100.0,
+      currency: 'USD',
+      event_callback: finish,
+    })
+    window.setTimeout(finish, 1000)
+  } catch {
+    finish()
+  }
+}
+
+/**
  * OpenAI Ads pixel — fires on successful application form submissions.
  */
 export function trackOpenAiLeadCreated(additionalData: Record<string, unknown> = {}): void {
