@@ -10,25 +10,20 @@ export const googleGeneralLandingConfig: ChannelLandingConfig = {
   path: '/landing/google-general',
   formName: 'google-general-modal',
   heroLayout: 'conversion',
-  heroTitleSegments: [
-    { text: 'Real Estate Agents & Teams get ' },
-    { text: '88%', italic: true },
-    { text: ' cheaper leads after ' },
-    { text: '4 weeks', italic: true },
-  ],
-  heroTitleEmphasis: '88%',
+  heroTitle: 'The Luxury Real Estate Marketing Agency That Practices What It Preaches.',
+  heroTitleEmphasis: '',
   heroIntro: '',
   heroIntroParagraphs: [
     [
-      { text: "You've gotten " },
-      { text: '2,000 calls ', italic: true },
       {
-        text: 'from "lead providers"; Google Ads pitches, META Ads, mailers. Here\'s the difference with us: you found us using the exact same system we\'ll build for your business. And it\'s why our clients generate leads at ',
+        text: 'You\'ve gotten 2,000 calls from "lead providers"; Google Ads pitches, META Ads, mailers. Here\'s the difference with us: you found us using the exact same system we\'ll build for your business. And it\'s why our clients generate leads at ',
       },
       { text: '88% cheaper', italic: true },
       {
-        text: ' than the competition, tens of thousands of dollars that stay in your pocket instead of getting burned on bad traffic.',
+        text: ' than the competition. And why our clients on average ',
       },
+      { text: '3x their pipeline within 3 weeks', italic: true },
+      { text: ' of working with us.' },
     ],
   ],
   marketingCoreHeading: 'The marketing system built for real estate teams.',

@@ -95,10 +95,20 @@ export default function GoogleGeneralHero({ config }: Props) {
         <div className="gg-hero-grid grid items-start gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center lg:gap-16 xl:gap-20">
           <div className="gg-hero-copy flex flex-col justify-center lg:max-w-xl xl:max-w-none">
             <p className="gg-hero-trust-line">
-              <span className="gg-hero-badge-stars" aria-hidden>
-                ★★★★★
-              </span>{' '}
-              5 stars on Trustpilot &amp; Google
+              <span className="gg-hero-trust-copy">
+                <span className="gg-hero-badge-stars" aria-hidden>
+                  ★★★★★
+                </span>
+                5 stars on Trustpilot &amp; Google
+              </span>
+              <img
+                src="/images/landing/google-general/client-headshots.png?v=20260525"
+                alt=""
+                width={194}
+                height={109}
+                className="gg-hero-trust-headshots"
+                decoding="async"
+              />
             </p>
 
             <h1
