@@ -10,24 +10,31 @@ import {
   applyFormPanelClass,
 } from '@/components/applyFormPrimitives'
 import GoogleGeneralBulletSelect from '@/components/landing/GoogleGeneralBulletSelect'
-import { ANNUAL_SALES_VOLUME_OPTIONS, isGoogleGeneralDisqualifiedVolume, isGoogleGeneralQualifiedVolume } from '@/lib/application-form'
+import {
+  ANNUAL_SALES_VOLUME_OPTIONS,
+  GOOGLE_GENERAL_BIGGEST_CHALLENGE_OPTIONS,
+  isGoogleGeneralDisqualifiedVolume,
+  isGoogleGeneralQualifiedVolume,
+} from '@/lib/application-form'
 import { getStoredUTMParams, trackApplicationConversion, trackGoogleGeneralQualifiedSignup } from '@/lib/utmTracking'
 
-const TOTAL_STEPS = 3
+const TOTAL_STEPS = 4
 const DEFAULT_FORM_NAME = 'google-general-modal'
 const THANK_YOU_PATH = '/landing/thank-you-q'
 const DQ_THANK_YOU_PATH = '/landing/thank-you-dq'
 
 const TEAM_SIZE_OPTIONS = ['Solo', '2-4', '5-10', '10-20', '20+'] as const
 
-const STEP_LABELS = ['Team size', 'Annual volume', 'Your details'] as const
+const STEP_LABELS = ['Team size', 'Annual volume', 'Biggest challenge', 'Your details'] as const
 
 const initialFormData = {
   fullName: '',
   email: '',
   phone: '',
+  website: '',
   annualSalesVolume: '',
   teamSize: '',
+  biggestChallenge: '',
 }
 
 type FormDataState = typeof initialFormData
@@ -67,7 +74,7 @@ export default function GoogleGeneralHeroForm({
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleBulletSelect = (field: 'teamSize' | 'annualSalesVolume', value: string) => {
+  const handleBulletSelect = (field: 'teamSize' | 'annualSalesVolume' | 'biggestChallenge', value: string) => {
     setStepError('')
     setSubmitMessage('')
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -81,6 +88,10 @@ export default function GoogleGeneralHeroForm({
     }
     if (step === 1 && !formData.annualSalesVolume) {
       setStepError('Please select your annual sales volume.')
+      return false
+    }
+    if (step === 2 && !formData.biggestChallenge) {
+      setStepError('Please select your biggest challenge.')
       return false
     }
 
@@ -136,6 +147,8 @@ export default function GoogleGeneralHeroForm({
           phone: formData.phone,
           annualSalesVolume: formData.annualSalesVolume,
           teamSize: formData.teamSize,
+          biggestChallenge: formData.biggestChallenge,
+          website: formData.website.trim(),
           formName,
           submissionPage,
           ...utm,
@@ -239,6 +252,18 @@ export default function GoogleGeneralHeroForm({
           ) : null}
 
           {step === 2 ? (
+            <GoogleGeneralBulletSelect
+              name="biggestChallenge"
+              label="What's your biggest challenge right now?"
+              value={formData.biggestChallenge}
+              options={GOOGLE_GENERAL_BIGGEST_CHALLENGE_OPTIONS}
+              onChange={(value) => handleBulletSelect('biggestChallenge', value)}
+              error={stepError || undefined}
+              legendClassName={isConversion ? 'gg-form-question' : undefined}
+            />
+          ) : null}
+
+          {step === 3 ? (
             <>
               {isConversion ? (
                 <p className="gg-form-question mb-1">Where should we send your strategy review?</p>
@@ -284,6 +309,21 @@ export default function GoogleGeneralHeroForm({
                   onChange={handleChange}
                   required
                   autoComplete="tel"
+                  className={applyFormInputClass}
+                />
+              </div>
+              <div>
+                <label htmlFor="gg-website" className={applyFormLabelClass}>
+                  Website <span className="font-normal text-[var(--color-ink-300)]">(optional)</span>
+                </label>
+                <input
+                  id="gg-website"
+                  type="url"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  autoComplete="url"
+                  placeholder="https://"
                   className={applyFormInputClass}
                 />
               </div>

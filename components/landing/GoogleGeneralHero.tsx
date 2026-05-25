@@ -92,8 +92,8 @@ export default function GoogleGeneralHero({ config }: Props) {
       aria-labelledby="channel-landing-hero-title"
     >
       <div className="container-max px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 lg:pb-24">
-        <div className="gg-hero-grid grid items-start gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:gap-16 xl:gap-20">
-          <div className="gg-hero-copy lg:max-w-xl lg:pt-1 xl:max-w-none">
+        <div className="gg-hero-grid grid items-start gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center lg:gap-16 xl:gap-20">
+          <div className="gg-hero-copy flex flex-col justify-center lg:max-w-xl xl:max-w-none">
             <p className="gg-hero-trust-line">
               <span className="gg-hero-badge-stars" aria-hidden>
                 ★★★★★

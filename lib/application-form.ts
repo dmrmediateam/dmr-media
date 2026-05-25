@@ -15,3 +15,11 @@ export function isGoogleGeneralDisqualifiedVolume(annualSalesVolume: string): bo
 export function isGoogleGeneralQualifiedVolume(annualSalesVolume: string): boolean {
   return annualSalesVolume === '$20m to $40m' || annualSalesVolume === '$40m+'
 }
+
+/** Biggest challenge options (google-general hero form). */
+export const GOOGLE_GENERAL_BIGGEST_CHALLENGE_OPTIONS = [
+  'Lead Flow/Consistency',
+  'Finding Buyers',
+  'Getting Listings',
+  'Lead Cost',
+] as const
