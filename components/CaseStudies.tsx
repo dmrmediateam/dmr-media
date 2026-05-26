@@ -62,7 +62,7 @@ export default function CaseStudies({ hideHeading = false }: { hideHeading?: boo
                   fill
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 767px) 100vw, 33vw"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent" />
                 <div className="absolute left-6 top-6 z-10">
@@ -104,7 +104,7 @@ export default function CaseStudies({ hideHeading = false }: { hideHeading?: boo
                   fill
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                   loading="lazy"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 1023px) 100vw, 50vw"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent" />
                 <div className="absolute left-6 top-6 z-10">

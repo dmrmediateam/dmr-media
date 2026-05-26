@@ -43,6 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${instrumentSerif.variable} ${inter.variable}`}>
       <head>
+        <link rel="preconnect" href="https://universe-static.elfsightcdn.com" crossOrigin="" />
         {/* Google Tag Manager */}
         <Script
           id="google-tag-manager"
@@ -189,7 +190,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           {children}
         </ConditionalLayout>
         {/* Elfsight All-in-One Reviews | DMR Widget (global) */}
-        <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
+        <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
         <div className={ELFSIGHT_REVIEWS_APP_CLASS} data-elfsight-app-lazy />
       </body>
     </html>

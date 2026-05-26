@@ -40,6 +40,12 @@
     "topojson-client": "^3.1.0",
     "zod": "^4.3.6"
   },
+  "browserslist": [
+    "chrome >= 100",
+    "firefox >= 100",
+    "safari >= 15",
+    "edge >= 100"
+  ],
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.10",
