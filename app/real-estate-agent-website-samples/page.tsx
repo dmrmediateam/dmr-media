@@ -7,6 +7,21 @@ import { buildRealEstatePortfolioSamplesGraph } from '@/lib/real-estate-portfoli
 
 const BASE_URL = 'https://www.dmrmedia.org';
 
+type WebsiteSample = {
+  id: string
+  subheading: string
+  name: string
+  description: string
+  url: string
+  image: string
+  imageRight: boolean
+  awardBadge?: {
+    src: string
+    alt: string
+    href?: string
+  }
+}
+
 export const metadata: Metadata = {
   ...metadataFromRegistry('/real-estate-agent-website-samples'),
   keywords: [
@@ -18,7 +33,7 @@ export const metadata: Metadata = {
   ],
 };
 
-const WEBSITE_SAMPLES = [
+const WEBSITE_SAMPLES: WebsiteSample[] = [
   {
     id: 'legendary-real-estate',
     subheading: 'Wisconsin Realtor of Year 2025',
@@ -48,6 +63,11 @@ const WEBSITE_SAMPLES = [
     url: 'https://florio-team.vercel.app/',
     image: '/images/ClientWebsiteImages/screencapture-florio-team-vercel-app-2026-05-16-15_01_22.png',
     imageRight: true,
+    awardBadge: {
+      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-florio-team.png',
+      alt: 'DesignRush.com Design Awards Nominee',
+      href: 'https://www.designrush.com/best-designs/websites/the-florio-team-website-design',
+    },
   },
   {
     id: 'valoria-homes',
@@ -151,7 +171,7 @@ export default function RealEstateAgentWebsiteSamplesPage() {
           {WEBSITE_SAMPLES.map((sample) => (
             <article
               key={sample.id}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch mb-24 md:mb-32 last:mb-0"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch overflow-visible mb-24 md:mb-32 last:mb-0"
             >
               <div
                 className={`flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20 xl:px-28 py-16 lg:py-24 order-2 ${
@@ -176,22 +196,54 @@ export default function RealEstateAgentWebsiteSamplesPage() {
                   Visit site
                 </a>
               </div>
-              <a
-                href={sample.url}
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                className={`relative min-h-[320px] sm:min-h-[400px] lg:min-h-[480px] overflow-hidden bg-[var(--color-ink-200)] order-1 m-6 sm:m-10 lg:m-12 ${
+              <div
+                className={`relative order-1 m-6 sm:m-10 lg:m-12 ${
                   sample.imageRight ? 'lg:order-2' : 'lg:order-1'
                 }`}
               >
-                <Image
-                  src={sample.image}
-                  alt={`${sample.name} — real estate agent website example`}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </a>
+                <a
+                  href={sample.url}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="relative block min-h-[320px] sm:min-h-[400px] lg:min-h-[480px] overflow-hidden bg-[var(--color-ink-200)]"
+                >
+                  <Image
+                    src={sample.image}
+                    alt={`${sample.name} — real estate agent website example`}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </a>
+                {sample.awardBadge ? (
+                  sample.awardBadge.href ? (
+                    <a
+                      href={sample.awardBadge.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute -left-5 -top-5 z-20 block transition-opacity hover:opacity-90 sm:-left-8 sm:-top-8 lg:-left-11 lg:-top-9"
+                    >
+                      <Image
+                        src={sample.awardBadge.src}
+                        alt={sample.awardBadge.alt}
+                        width={351}
+                        height={424}
+                        className="h-24 w-auto drop-shadow-[0_12px_32px_rgba(15,15,15,0.28)] sm:h-[7.33rem] lg:h-[8.67rem]"
+                      />
+                    </a>
+                  ) : (
+                    <div className="pointer-events-none absolute -left-5 -top-5 z-20 sm:-left-8 sm:-top-8 lg:-left-11 lg:-top-9">
+                      <Image
+                        src={sample.awardBadge.src}
+                        alt={sample.awardBadge.alt}
+                        width={351}
+                        height={424}
+                        className="h-24 w-auto drop-shadow-[0_12px_32px_rgba(15,15,15,0.28)] sm:h-[7.33rem] lg:h-[8.67rem]"
+                      />
+                    </div>
+                  )
+                ) : null}
+              </div>
             </article>
           ))}
           </div>
@@ -207,7 +259,7 @@ export default function RealEstateAgentWebsiteSamplesPage() {
           {PROPERTY_WEBSITES.map((sample) => (
             <article
               key={sample.id}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch mb-24 md:mb-32 last:mb-0"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch overflow-visible mb-24 md:mb-32 last:mb-0"
             >
               <div
                 className={`flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20 xl:px-28 py-16 lg:py-24 order-2 ${
