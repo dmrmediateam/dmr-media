@@ -12,7 +12,7 @@ import {
 import { ANNUAL_SALES_VOLUME_OPTIONS } from '@/lib/application-form'
 
 const FORM_NAME = 'calendar-application'
-const THANK_YOU_PATH = '/landing/thank-you'
+const THANK_YOU_PATH = '/landing/thank-you-q'
 
 const BOOKING_REASON_OPTIONS = [
   { value: 'just-looking', label: 'Just looking' },
