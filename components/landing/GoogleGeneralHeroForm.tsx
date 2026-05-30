@@ -43,6 +43,12 @@ type GoogleGeneralHeroFormProps = {
   id?: string
   formName?: string
   variant?: 'default' | 'conversion'
+  /** Skip outer panel border/shadow when nested inside ApplyModal. */
+  embedded?: boolean
+  /** When set, parent handles navigation after a successful submit. */
+  onSuccess?: (thankYouPath: string) => void
+  /** Optional id for the conversion header title (modal accessibility). */
+  headerTitleId?: string
 }
 
 function splitFullName(fullName: string) {
@@ -57,6 +63,9 @@ export default function GoogleGeneralHeroForm({
   id = 'hero-form',
   formName = DEFAULT_FORM_NAME,
   variant = 'default',
+  embedded = false,
+  onSuccess,
+  headerTitleId,
 }: GoogleGeneralHeroFormProps) {
   const isConversion = variant === 'conversion'
   const router = useRouter()
@@ -166,10 +175,17 @@ export default function GoogleGeneralHeroForm({
         const thankYouPath = isGoogleGeneralDisqualifiedVolume(formData.annualSalesVolume)
           ? DQ_THANK_YOU_PATH
           : THANK_YOU_PATH
-        if (isGoogleGeneralQualifiedVolume(formData.annualSalesVolume)) {
-          trackGoogleGeneralQualifiedSignup(() => router.push(thankYouPath))
-        } else {
+        const navigate = () => {
+          if (onSuccess) {
+            onSuccess(thankYouPath)
+            return
+          }
           router.push(thankYouPath)
+        }
+        if (isGoogleGeneralQualifiedVolume(formData.annualSalesVolume)) {
+          trackGoogleGeneralQualifiedSignup(navigate)
+        } else {
+          navigate()
         }
         return
       }
@@ -185,13 +201,19 @@ export default function GoogleGeneralHeroForm({
   return (
     <div
       id={id}
-      className={`google-general-form ${applyFormPanelClass} scroll-mt-28 ${
-        isConversion ? 'gg-form-conversion p-6 sm:p-8' : 'p-7 sm:p-9 md:p-10'
+      className={`google-general-form ${embedded ? '' : applyFormPanelClass} ${embedded ? '' : 'scroll-mt-28'} ${
+        isConversion
+          ? embedded
+            ? 'gg-form-conversion'
+            : 'gg-form-conversion p-6 sm:p-8'
+          : embedded
+            ? ''
+            : 'p-7 sm:p-9 md:p-10'
       }`}
     >
       {isConversion ? (
         <header className="gg-form-header">
-          <h2 className="gg-form-header__title">Book your strategy review</h2>
+          <h2 id={headerTitleId} className="gg-form-header__title">Book your strategy review</h2>
           <p className="gg-form-header__sub">Takes about 60 seconds</p>
         </header>
       ) : (
