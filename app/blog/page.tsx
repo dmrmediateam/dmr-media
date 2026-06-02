@@ -1,17 +1,18 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { getAllBlogPosts } from '@/data/blogPosts'
 import SEOWrapper from '@/components/SEOWrapper'
-import { metadataFromRegistry } from '@/lib/content-registry'
+import BlogPostGrid from '@/components/blog/BlogPostGrid'
+import BlogSectionHeader from '@/components/blog/BlogSectionHeader'
+import { getAllBlogPosts } from '@/data/blogPosts'
 import { buildOrganizationSchema } from '@/lib/eeatSchema'
+import { metadataFromRegistry } from '@/lib/content-registry'
+import '@/app/landing/google-general/google-general-landing.css'
+import '@/app/styles/homepage-luxury.css'
 
 export const metadata = metadataFromRegistry('/blog')
 
-export const revalidate = 60 // Revalidate every 60 seconds
+export const revalidate = 60
 
 export default async function BlogPage() {
   const posts = await getAllBlogPosts()
-  // Filter out posts without valid slugs
   const validPosts = posts.filter((post) => post.slug?.current)
 
   const rawBase = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmrmedia.org'
@@ -33,80 +34,47 @@ export default async function BlogPage() {
         }}
       />
       <SEOWrapper slug="/blog">
-    <div className="min-h-screen bg-white">
-      <section className="py-14 md:py-20 border-b border-[var(--color-ink-200)]">
-        <div className="container-max">
-          <div className="max-w-3xl">
-            <span className="uppercase tracking-[0.2em] text-xs text-[var(--color-ink-300)] font-serif mb-6 block">Insights</span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)] leading-[1.1] tracking-tight mb-8">
-              Field notes for market makers.
-            </h1>
-            <p className="text-base text-[var(--color-ink-300)] leading-relaxed font-serif max-w-xl">
-              What we're seeing across luxury real estate—SEO intel, campaign architecture, and conversion systems engineered for discerning buyers.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="latest" className="py-14 md:py-20">
-        <div className="container-max">
-          {validPosts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {validPosts.map((post) => {
-                const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })
-
-                return (
-                  <Link
-                    key={post._id}
-                    href={`/blog/${post.slug?.current || ''}`}
-                    className="group border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300 flex flex-col"
-                  >
-                    <div className="relative h-64 overflow-hidden mb-4 bg-[var(--color-ink-200)]">
-                      {post.mainImage?.asset?.url ? (
-                        <Image
-                          src={post.mainImage.asset.url}
-                          alt={post.mainImage.alt || post.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-[var(--color-ink-400)] text-sm font-serif">
-                          No image
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-3">
-                      <div className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] font-serif">
-                        {formattedDate}
-                      </div>
-                      <h2 className="text-xl font-serif font-light text-[var(--color-off-black)] leading-snug">
-                        {post.title}
-                      </h2>
-                      <p className="text-sm text-[var(--color-ink-300)] leading-relaxed font-serif">
-                        {post.description}
-                      </p>
-                      <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif mt-2">
-                        Read article
-                      </span>
-                    </div>
-                  </Link>
-                )
-              })}
+        <main className="dmr-home google-general-landing min-h-screen bg-[var(--surface-base)] [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
+          <section
+            className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]"
+            aria-labelledby="blog-index-heading"
+          >
+            <div className="container-max px-4 sm:px-6">
+              <BlogSectionHeader
+                eyebrow="Insights"
+                title="Field notes for market makers."
+                titleAs="h1"
+                titleId="blog-index-heading"
+                intro={
+                  <p>
+                    What we&apos;re seeing across luxury real estate: SEO intel, campaign architecture, and
+                    conversion systems engineered for discerning buyers.
+                  </p>
+                }
+              />
             </div>
-          ) : (
-            <div className="border-b border-[var(--color-ink-200)] pb-12 pt-12 text-center">
-              <p className="text-sm text-[var(--color-ink-300)] font-serif">Marketing insights and strategies coming soon.</p>
+          </section>
+
+          <section
+            id="latest"
+            className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]"
+            aria-label="All blog articles"
+          >
+            <div className="container-max px-4 sm:px-6">
+              {validPosts.length > 0 ? (
+                <>
+                  <p className="gg-eyebrow mb-10 md:mb-12">
+                    {validPosts.length} {validPosts.length === 1 ? 'article' : 'articles'}
+                  </p>
+                  <BlogPostGrid posts={validPosts} />
+                </>
+              ) : (
+                <BlogPostGrid posts={[]} />
+              )}
             </div>
-          )}
-        </div>
-      </section>
-    </div>
-    </SEOWrapper>
+          </section>
+        </main>
+      </SEOWrapper>
     </>
   )
 }

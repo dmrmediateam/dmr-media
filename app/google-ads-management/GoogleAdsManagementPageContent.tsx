@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import type { ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -11,90 +11,17 @@ import ClientLogosSlider from '@/components/ClientLogosSlider'
 import VideoTestimonials from '@/components/VideoTestimonials'
 import ServiceStats from '@/components/service/ServiceStats'
 import Testimonials from '@/components/Testimonials'
-import SeoHeroCaseStudyShowcase, { type SeoHeroCaseStudySlide } from '@/components/SeoHeroCaseStudyShowcase'
+import { SeoLandingStickyPrimaryCta } from '@/components/SeoLandingHeroPrimaryCta'
 import {
-  SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME,
-  SeoLandingStickyPrimaryCta,
-} from '@/components/SeoLandingHeroPrimaryCta'
-import {
+  adsProof,
   dmrVsAlternatives,
   frameworkPillars,
   processPhases,
+  serviceStats,
   stakesThree,
-  FAQ_ITEMS,
 } from './google-ads-data'
 
 const APPLY_FORM = 'google-ads-management-apply'
-const HERO_VIDEO_SRC = '/videos/DMR%20-%20INTRO%204K.mp4'
-
-/** Hero carousel: Google Ads proof (campaign UI, client accounts, inbound lift). */
-const GOOGLE_ADS_HERO_SLIDES: SeoHeroCaseStudySlide[] = [
-  {
-    id: 'eagan-luxury-real-estate',
-    href: '/case-study/eagan-luxury-real-estate',
-    teamName: 'Eagan Luxury Real Estate',
-    region: 'St. Petersburg, FL',
-    highlight: '$11M+ closed volume · Q1 after launch',
-    image: '/images/EaganCaseStudy/SearchAds.png',
-    imageAlt: 'Google Ads campaign performance for Eagan Luxury Real Estate',
-  },
-  {
-    id: 'jade-legendary-real-estate',
-    href: '/case-study/jade-legendary-real-estate',
-    teamName: 'Legendary Real Estate Services',
-    region: 'Lake Geneva, WI',
-    highlight: 'Google Ads + search orchestration',
-    image: '/images/LegendaryRealEstateCaseSTudy/GoogleAdsSCreenshot.png',
-    imageAlt: 'Google Ads results for Legendary Real Estate Services',
-  },
-  {
-    id: 'willow-brook-realty',
-    href: '/case-study/willow-brook-realty',
-    teamName: 'Willow Brook Realty',
-    region: 'Vermont & New Hampshire',
-    highlight: '46 inbound leads in 3 weeks',
-    image: '/images/WillowBrookLeads.png',
-    imageAlt: 'Inbound lead volume after Willow Brook Realty Google Ads and local search launch',
-  },
-]
-
-function VolumeOffIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-      <line x1="23" y1="9" x2="17" y2="15" />
-      <line x1="17" y1="9" x2="23" y2="15" />
-    </svg>
-  )
-}
-
-function VolumeOnIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-    </svg>
-  )
-}
 
 function openApplyModal() {
   window.dispatchEvent(new CustomEvent('openApplyModal', { detail: { formName: APPLY_FORM } }))
@@ -104,9 +31,9 @@ function ApplyCtaBand({
   hint,
   surface,
   className = '',
-  primaryLabel = 'Get my free account audit',
+  primaryLabel = 'Get my free Google Ads audit',
   secondaryHref = '/calendar',
-  secondaryLabel = 'Or book a strategy call',
+  secondaryLabel = 'Or schedule a 15-minute call',
 }: {
   hint: string
   surface: 'base' | 'white'
@@ -121,7 +48,7 @@ function ApplyCtaBand({
   return (
     <aside
       className={`${bg} border-b border-[var(--color-ink-200)] py-10 md:py-14 ${className}`}
-      aria-label="Get a free Google Ads account audit or book a call"
+      aria-label="Get a free Google Ads audit or book a call"
     >
       <div className="container-max mx-auto flex max-w-xl flex-col items-center gap-4 px-4 text-center">
         <p className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
@@ -139,7 +66,7 @@ function ApplyCtaBand({
           {secondaryLabel}
         </Link>
         <p className="font-serif text-[11px] leading-snug text-[var(--color-ink-400)]/85">
-          Free audit. If we don&apos;t find at least $30K in annual wasted spend or missed pipeline, you owe nothing.
+          Free 30-minute audit. If we don&apos;t identify at least $30K in annual wasted spend or missed pipeline, you owe nothing.
         </p>
       </div>
     </aside>
@@ -156,131 +83,49 @@ function SectionRule({ align = 'left' }: { align?: 'left' | 'center' }) {
 }
 
 export default function GoogleAdsManagementPageContent() {
-  const heroVideoRef = useRef<HTMLVideoElement>(null)
-  const [isHeroMuted, setIsHeroMuted] = useState(true)
   const reduceMotion = useReducedMotion()
-
-  const toggleHeroMute = () => {
-    const video = heroVideoRef.current
-    if (!video) return
-    const nextMuted = !video.muted
-    video.muted = nextMuted
-    setIsHeroMuted(nextMuted)
-    void video.play().catch(() => {})
-  }
-
-  const heroEase = [0.25, 0.1, 0.25, 1] as const
 
   return (
     <div className="min-h-screen bg-white [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
       <section
-        className="relative min-h-screen overflow-hidden border-b border-[var(--color-ink-200)] scroll-mt-6"
+        className="scroll-mt-6 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] pt-28 pb-16 sm:pt-32 sm:pb-20 md:pb-24"
         id="top"
-        aria-labelledby="ads-hero-title"
+        aria-labelledby="google-ads-hero-title"
       >
-        <div className="absolute inset-0 z-0">
-          <video
-            ref={heroVideoRef}
-            className="absolute inset-0 z-0 h-full w-full object-cover"
-            src={HERO_VIDEO_SRC}
-            autoPlay
-            muted={isHeroMuted}
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-0 z-[1]"
-            style={{ backgroundColor: 'rgba(15, 15, 15, 0.72)' }}
-            aria-hidden
-          />
-        </div>
-        <div className="relative z-10 container-max grid min-h-screen grid-cols-1 items-center gap-12 py-20 lg:grid-cols-2 lg:gap-16 xl:gap-20 pointer-events-none">
-          <motion.div
-            className="pointer-events-auto max-w-xl text-left lg:max-w-xl"
-            initial={reduceMotion ? false : { opacity: 0.5, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
-          >
-            <p className="mb-5 max-w-xl font-serif text-[10px] uppercase leading-relaxed tracking-[0.14em] text-white/80 sm:text-[11px] sm:tracking-[0.16em]">
-              #1 U.S. real estate agency on SEMrush · 24+ luxury teams · 5★ partner
-            </p>
+        <div className="container-max max-w-3xl px-4 sm:px-6">
+          <SeoReveal>
             <h1
-              id="ads-hero-title"
-              className="font-serif text-3xl font-light leading-[1.08] tracking-tight !text-white sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
+              id="google-ads-hero-title"
+              className="font-serif text-[clamp(2.25rem,5.5vw,3.5rem)] font-light leading-[1.08] tracking-tight text-[var(--color-off-black)]"
             >
-              Real Estate Google Ads that cut costs by 65% & booked 1.8× more appointments
+              Google Ads for Real Estate
             </h1>
-            <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
-              Intent-led campaigns, disciplined geography, and landing paths that turn ad spend into qualified CRM conversations, not dashboard noise. Documented client averages: 65% lower CPL, 1.8× appointments booked, 3× qualified pipeline.
+            <SectionRule />
+            <p className="mt-8 max-w-xl font-serif text-base leading-relaxed text-[var(--color-ink-300)] sm:text-lg">
+              Search, Maps, and Performance Max for agents, teams, and brokerages. Intent-led campaigns, landing paths
+              your CRM can work, and reporting tied to qualified conversations.
             </p>
-            <div className="mt-7 flex flex-col items-stretch gap-3 sm:items-start">
+            <div className="mt-10 flex flex-col items-start gap-4">
               <button
                 type="button"
                 onClick={openApplyModal}
-                className={SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME}
+                className="inline-flex min-h-[48px] items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0"
               >
-                Get my free account audit
+                Get my free Google Ads audit
               </button>
               <Link
                 href="/calendar"
-                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline sm:self-start"
+                className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
               >
-                Or book a strategy call
+                Or book a 15-minute strategy call
               </Link>
-              <p className="mt-1 max-w-md font-serif text-[12px] leading-snug text-white/70">
-                Free audit. If we don&apos;t find at least $30K in annual wasted spend or missed pipeline, you owe nothing.
-              </p>
-              <motion.a
-                href="#after-hero"
-                aria-label="Scroll to client logos and page content"
-                className="mt-2 inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
-                animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : { duration: 2.6, repeat: Infinity, ease: 'easeInOut' as const }
-                }
-              >
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                  />
-                </svg>
-              </motion.a>
             </div>
-          </motion.div>
-
-          <motion.div
-            className="pointer-events-auto flex justify-center lg:justify-end"
-            initial={reduceMotion ? false : { opacity: 0.5, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.7, ease: heroEase, delay: reduceMotion ? 0 : 0.08 }}
-          >
-            <SeoHeroCaseStudyShowcase
-              slides={GOOGLE_ADS_HERO_SLIDES}
-              ariaLabel="Google Ads case study demos"
-            />
-          </motion.div>
+            <p className="mt-6 max-w-lg font-serif text-sm leading-relaxed text-[var(--color-ink-400)]">
+              Free 30-minute audit. If we don&apos;t identify at least $30K in annual wasted spend or missed pipeline,
+              you owe nothing.
+            </p>
+          </SeoReveal>
         </div>
-        <button
-          type="button"
-          onClick={toggleHeroMute}
-          className="absolute bottom-5 right-5 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-all duration-200 hover:scale-105 hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50 motion-reduce:hover:scale-100"
-          aria-label={isHeroMuted ? 'Unmute hero video' : 'Mute hero video'}
-        >
-          {isHeroMuted ? <VolumeOffIcon className="h-5 w-5" /> : <VolumeOnIcon className="h-5 w-5" />}
-        </button>
       </section>
 
       <section id="after-hero" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white" aria-label="Client logos">
@@ -294,14 +139,13 @@ export default function GoogleAdsManagementPageContent() {
         <div className="container-max">
           <SeoReveal>
             <div className="mx-auto max-w-3xl text-center">
-              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">The stakes</p>
+              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Why this page exists</p>
               <h2 className="mt-3 font-serif text-3xl font-light leading-tight tracking-tight text-[var(--color-off-black)] md:text-4xl">
-                Is your paid media buying conversations, or buying noise?
+                Is your ad spend buying conversations, or funding Google&apos;s auction?
               </h2>
               <SectionRule align="center" />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                Three patterns we see when teams win trust in person, but lose the first digital moment where budgets get
-                decided.
+                Three patterns we see in teams already closing offline, but bleeding margin on paid search.
               </p>
             </div>
           </SeoReveal>
@@ -320,14 +164,23 @@ export default function GoogleAdsManagementPageContent() {
       </section>
 
       <div id="proof" className="scroll-mt-24">
-        <SeoCaseStudiesHorizontalScroll />
+        <SeoCaseStudiesHorizontalScroll
+          eyebrow="Client results"
+          title="Google Ads outcomes for real estate teams"
+          description={
+            <p>
+              Documented CPL drops, stronger appointment volume, and pipeline teams can trace to names and sources.
+            </p>
+          }
+          ariaLabel="Google Ads case studies"
+        />
         <VideoTestimonials />
       </div>
 
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="See exactly where your account is leaking budget. Free audit: wasted spend, broken match types, weak landing continuity, and the 5 fastest CPL fixes for your market."
+        hint="See exactly where your account is wasting budget. Free 30-minute audit: match types, negatives, and landing gaps ranked by GCI impact."
       />
 
       <section
@@ -337,21 +190,21 @@ export default function GoogleAdsManagementPageContent() {
         <div className="container-max grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           <SeoReveal>
             <div>
-              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Meet your guide</p>
+              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">How we work</p>
               <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-                We do not sell “Google Ads packages.” We install a demand system.
+                We do not sell “ad packages.” We install a demand engine.
               </h2>
               <SectionRule />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                You need a guide who has seen luxury markets at full throttle: where bids lie, where negatives save
-                margin, and where creative either earns the click or trains the wrong buyer. DMR combines execution speed
-                with reporting your leadership can repeat without a decoder ring.
+                You need a guide who manages live accounts every week: honest audits, message match, and reporting tied to
+                qualified conversations, not platform vanity metrics. DMR runs Google Ads for luxury teams and uses the
+                same stack on our own business.
               </p>
               <ul className="mt-8 space-y-4 border-l-2 border-[var(--color-off-black)]/15 pl-5">
                 {[
-                  'Agreement: success defined as qualified conversations, not raw volume',
-                  'Cadence: weekly iteration so accounts improve while competitors coast',
-                  'Proof: CPL trends, search themes, and CRM outcomes in one narrative',
+                  'Clarity: a prioritized rebuild you can defend to leadership',
+                  'Cadence: weekly optimization instead of quarterly “reports”',
+                  'Proof: CPL, CPA, and pipeline tied to CRM outcomes',
                 ].map((line) => (
                   <li key={line} className="font-serif text-[var(--color-off-black)]">
                     {line}
@@ -406,14 +259,14 @@ export default function GoogleAdsManagementPageContent() {
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="framework">
         <div className="container-max">
           <SeoReveal>
-            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">The plan, simplified</p>
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Execution model</p>
             <h2 className="mt-3 max-w-3xl font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
               Three pillars. One accountable team.
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
-              Intent architecture, message match, and closed-loop measurement, so every dollar votes for the reputation you
-              want in the market.
+              Intent architecture, landing precision, and closed-loop measurement so every dollar learns from qualified
+              outcomes.
             </p>
           </SeoReveal>
           <div className="mt-14 grid gap-8 md:grid-cols-3 md:gap-10">
@@ -437,46 +290,50 @@ export default function GoogleAdsManagementPageContent() {
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="Two minutes now saves a quarter of guessing. We arrive with your account audited, waste quantified, and the rebuild plan already drafted."
+        hint="Two minutes now saves months of wasted spend. We arrive with your account, competitors, and biggest fixes already mapped."
       />
 
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="stats">
         <div className="container-max">
-          <ServiceStats
-            embedded
-            heading="Benchmarks teams actually feel"
-            stats={[
-              {
-                value: '3×',
-                label: 'Qualified conversations',
-                description: 'Typical lift when accounts are rebuilt around luxury intent and clean routing.',
-              },
-              {
-                value: '65%',
-                label: 'Lower CPL',
-                description: 'Improvement patterns versus prior agency setups in documented engagements.',
-              },
-              {
-                value: '1.8×',
-                label: 'Booked appointments',
-                description: 'Attributed lift when retargeting and nurture reinforce core Search.',
-              },
-            ]}
-          />
+          <ServiceStats embedded heading="Benchmarks teams actually feel" stats={[...serviceStats]} />
+        </div>
+      </section>
+
+      <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]" id="dmr-ads-proof">
+        <div className="container-max">
+          <SeoReveal>
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">We do it ourselves</p>
+            <h2 className="mt-3 max-w-3xl font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
+              We run ads for DMR first, then apply the same system to clients
+            </h2>
+            <SectionRule />
+            <p className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
+              This is not theory from a slide deck. The same Search, landing, and conversion discipline we sell is what we
+              use to grow our own pipeline every week.
+            </p>
+          </SeoReveal>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {adsProof.map((item) => (
+              <article key={item.term} className="rounded-lg border border-[var(--color-ink-200)] bg-white p-6">
+                <p className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">{item.term}</p>
+                <p className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)]">{item.result}</p>
+                <p className="mt-3 font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">{item.note}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="process">
         <div className="container-max">
           <SeoReveal>
-            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">The process</p>
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Cadence</p>
             <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
               A plan you can repeat
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm text-[var(--color-ink-300)]">
-              Clarity reduces anxiety and increases follow-through. Here is how we move you from diagnosis to compounding
-              results without mystery milestones.
+              Clear steps reduce anxiety and wasted spend. Here is how we guide you from audit to compounding results.
             </p>
           </SeoReveal>
           <div className="relative mt-12 md:pl-3">
@@ -509,8 +366,7 @@ export default function GoogleAdsManagementPageContent() {
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Social proof</p>
             <h2 className="mt-3 font-serif text-3xl font-light text-[var(--color-off-black)] md:text-4xl">What clients say</h2>
             <p className="mt-3 max-w-2xl font-serif text-sm text-[var(--color-ink-300)]">
-              Consensus from teams who wanted partnership, not vendor theater: liking, authority, and proof in their own
-              words.
+              Teams who value partnership over vendor theater, in their own words.
             </p>
           </SeoReveal>
         </div>
@@ -524,11 +380,11 @@ export default function GoogleAdsManagementPageContent() {
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Ecosystem</p>
               <h2 className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)] md:text-3xl">How Google Ads fits your stack</h2>
               <p className="mt-5 font-serif text-[15px] leading-[1.85] text-[var(--color-ink-300)]">
-                Pair paid demand with{' '}
+                Pair paid search with{' '}
                 <Link href="/seo-optimization" className="underline underline-offset-2 hover:opacity-70">
                   SEO optimization
-                </Link>{' '}
-                so you earn shelf space while spend captures intent now, full-funnel{' '}
+                </Link>
+                , full-funnel{' '}
                 <Link href="/real-estate-lead-generation" className="underline underline-offset-2 hover:opacity-70">
                   lead generation
                 </Link>
@@ -537,14 +393,14 @@ export default function GoogleAdsManagementPageContent() {
                   analytics and reporting
                 </Link>
                 , flagship{' '}
-                <Link href="/website-and-seo" className="underline underline-offset-2 hover:opacity-70">
+                <Link href="/real-estate-website-design" className="underline underline-offset-2 hover:opacity-70">
                   website design
                 </Link>
                 , and{' '}
                 <Link href="/property-marketing" className="underline underline-offset-2 hover:opacity-70">
                   property marketing
                 </Link>{' '}
-                when listings need their own campaigns.
+                for listing launches.
               </p>
             </div>
           </SeoReveal>
@@ -560,43 +416,81 @@ export default function GoogleAdsManagementPageContent() {
             </h2>
             <SectionRule />
           </SeoReveal>
-          <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-1 md:px-2">
-            {FAQ_ITEMS.map((item) => (
-              <details
-                key={item.question}
-                className="group border-0 px-3 py-1 transition-colors [&[open]]:bg-white/90 md:px-4"
-              >
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 rounded-md py-4 pr-1 font-serif text-lg font-light text-[var(--color-off-black)] outline-none marker:content-none [&::-webkit-details-marker]:hidden hover:bg-white/60 focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-reduce:transition-none">
-                  <span className="text-pretty">{item.question}</span>
-                  <span
-                    className="mt-1.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[var(--color-ink-200)] bg-white text-[10px] text-[var(--color-ink-400)] transition-transform duration-300 group-open:rotate-180"
-                    aria-hidden
+          {(() => {
+            const faqRenderItems: ReadonlyArray<{ question: string; answer: ReactNode }> = [
+              {
+                question: 'How quickly will Google Ads produce leads?',
+                answer:
+                  'Search and Maps can move within days of launch. Lead quality and cost per lead usually stabilize over the first few weeks as conversion data accumulates. We report weekly on CPL, search themes, and qualified conversations so you always know what the spend is doing.',
+              },
+              {
+                question: 'How do you prevent wasted ad spend?',
+                answer:
+                  'Intent layers on keywords, disciplined geography, placement exclusions, conversion-based bidding once signals exist, weekly search term reviews, and CRM feedback loops. We optimize for qualified conversations, not vanity clicks or form fills your team ignores.',
+              },
+              {
+                question: 'Can you manage Google Ads in multiple markets?',
+                answer:
+                  'Yes. Accounts use geo-segmented campaigns, shared brand assets where it helps, and market-specific negatives and copy so budgets do not bleed across metros. Reporting breaks out performance by region.',
+              },
+              {
+                question: 'Do we need new landing pages?',
+                answer: (
+                  <>
+                    Often we improve message match on existing pages first. When the site caps conversion, we pair ads with{' '}
+                    <Link href="/real-estate-website-design" className="underline underline-offset-2 hover:opacity-70">
+                      website design
+                    </Link>{' '}
+                    or listing-specific landings so Quality Score and conversion rate defend CPL as you scale.
+                  </>
+                ),
+              },
+              {
+                question: 'How is pricing scoped?',
+                answer:
+                  'After your audit we align scope to market competition, campaign count, landing needs, and your growth target, then we put deliverables in writing. No opaque packages, no surprise invoices for basic optimization.',
+              },
+            ]
+            return (
+              <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-1 md:px-2">
+                {faqRenderItems.map((item) => (
+                  <details
+                    key={item.question}
+                    className="group border-0 px-3 py-1 transition-colors [&[open]]:bg-white/90 md:px-4"
                   >
-                    ▼
-                  </span>
-                </summary>
-                <p className="border-t border-transparent pb-5 pl-0.5 pr-2 pt-3 font-serif text-sm leading-relaxed text-[var(--color-ink-300)] group-open:border-[var(--color-ink-200)]/60 motion-reduce:transition-none">
-                  {item.answer}
-                </p>
-              </details>
-            ))}
-          </div>
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-4 rounded-md py-4 pr-1 font-serif text-lg font-light text-[var(--color-off-black)] outline-none marker:content-none [&::-webkit-details-marker]:hidden hover:bg-white/60 focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-reduce:transition-none">
+                      <span className="text-pretty">{item.question}</span>
+                      <span
+                        className="mt-1.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[var(--color-ink-200)] bg-white text-[10px] text-[var(--color-ink-400)] transition-transform duration-300 group-open:rotate-180"
+                        aria-hidden
+                      >
+                        ▼
+                      </span>
+                    </summary>
+                    <div className="border-t border-transparent pb-5 pl-0.5 pr-2 pt-3 font-serif text-sm leading-relaxed text-[var(--color-ink-300)] group-open:border-[var(--color-ink-200)]/60 motion-reduce:transition-none">
+                      {item.answer}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            )
+          })()}
         </div>
       </section>
 
       <section
-        id="ads-apply-cta"
+        id="google-ads-apply-cta"
         className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]"
       >
         <div className="container-max mx-auto max-w-2xl text-center">
           <SeoReveal>
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Your next 90 days</p>
             <h2 className="mt-3 font-serif text-2xl font-light tracking-tight text-[var(--color-off-black)] sm:text-3xl md:text-4xl">
-              65% lower CPL. 1.8× more appointments. Or you owe nothing for the audit.
+              88% lower CPL in weeks, or you owe nothing for the audit.
             </h2>
             <SectionRule align="center" />
             <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-              Two minutes. We arrive with your account audited, your wasted spend quantified, and the 5 fastest CPL fixes mapped to your market. If we can&apos;t find at least $30K in annual wasted spend or missed pipeline, the audit is on us.
+              Two minutes. We arrive prepared with your account, your competitors, and the top paid gaps costing you GCI today. If we can&apos;t identify at least $30K in annual wasted spend or missed pipeline, the audit is on us.
             </p>
           </SeoReveal>
           <div className="mt-10 flex flex-col items-center gap-4">
@@ -606,13 +500,13 @@ export default function GoogleAdsManagementPageContent() {
               whileTap={reduceMotion ? undefined : { scale: 0.98 }}
               className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
             >
-              Get my free account audit
+              Get my free Google Ads audit
             </motion.button>
             <Link
               href="/calendar"
               className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
             >
-              Or book a strategy call
+              Or book a 15-minute strategy call
             </Link>
           </div>
           <p className="mt-6 font-serif text-xs text-[var(--color-ink-400)]">
@@ -620,7 +514,7 @@ export default function GoogleAdsManagementPageContent() {
           </p>
         </div>
       </section>
-      <SeoLandingStickyPrimaryCta onApply={openApplyModal}>Get my free account audit</SeoLandingStickyPrimaryCta>
+      <SeoLandingStickyPrimaryCta onApply={openApplyModal}>Get my free Google Ads audit</SeoLandingStickyPrimaryCta>
     </div>
   )
 }

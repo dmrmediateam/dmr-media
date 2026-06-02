@@ -7,6 +7,7 @@ import Testimonials from '@/components/Testimonials';
 import HomeBlogSection from '@/components/HomeBlogSection';
 import { getAllBlogPosts } from '@/data/blogPosts';
 import '@/app/styles/homepage-luxury.css';
+import '@/app/landing/google-general/google-general-landing.css';
 
 export default async function Home() {
   const blogPosts = await getAllBlogPosts();
