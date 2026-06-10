@@ -104,6 +104,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       image: post.author.image,
       bio: post.author.bio,
       slug: post.author.slug,
+      teamProfileSlug: post.author.teamProfileSlug,
+      linkedin: post.author.linkedin,
+      twitter: post.author.twitter,
     },
     baseUrl
   )
@@ -216,7 +219,17 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                   className="h-9 w-9 border border-white/30 object-cover"
                 />
               )}
-              <span style={{ color: '#FFFFFF' }}>{post.author.name}</span>
+              {post.author.teamProfileSlug ? (
+                <Link 
+                  href={`/about-us/${post.author.teamProfileSlug}`}
+                  className="hover:underline transition-all"
+                  style={{ color: '#FFFFFF' }}
+                >
+                  {post.author.name}
+                </Link>
+              ) : (
+                <span style={{ color: '#FFFFFF' }}>{post.author.name}</span>
+              )}
               <span className="text-white/50">•</span>
               <span style={{ color: '#FFFFFF' }}>{formattedDate}</span>
               <span className="text-white/50">•</span>
@@ -276,12 +289,22 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                       {post.author.bio}
                     </p>
                   )}
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)]"
-                  >
-                    Work With Us
-                  </Link>
+                  <div className="flex flex-wrap gap-4">
+                    {post.author.teamProfileSlug && (
+                      <Link
+                        href={`/about-us/${post.author.teamProfileSlug}`}
+                        className="inline-flex items-center justify-center px-8 py-3 border border-[var(--color-off-black)] text-[var(--color-off-black)] uppercase tracking-[0.12em] text-xs font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-all duration-300"
+                      >
+                        View Profile
+                      </Link>
+                    )}
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)]"
+                    >
+                      Work With Us
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

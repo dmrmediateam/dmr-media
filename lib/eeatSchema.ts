@@ -11,6 +11,9 @@ export interface AuthorForSchema {
   image?: string
   bio?: string
   slug?: string
+  teamProfileSlug?: string
+  linkedin?: string
+  twitter?: string
 }
 
 /**
@@ -48,6 +51,8 @@ const AUTHOR_SAME_AS: Record<string, string[]> = {
 
 /**
  * Build Person schema for article authors (EEAT)
+ * Prioritizes data from Sanity (teamProfileSlug, linkedin, twitter)
+ * Falls back to AUTHOR_SAME_AS for legacy mappings
  */
 export function buildPersonSchema(author: AuthorForSchema, baseUrl: string) {
   const slug = author.slug || author.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
@@ -61,9 +66,32 @@ export function buildPersonSchema(author: AuthorForSchema, baseUrl: string) {
     ...(author.bio && { description: author.bio }),
   }
 
-  const sameAs = AUTHOR_SAME_AS[author.name] || []
-  if (sameAs.length > 0) {
-    schema.sameAs = sameAs
+  // Build sameAs array from Sanity fields (preferred) or fallback to AUTHOR_SAME_AS
+  const sameAsUrls: string[] = []
+  
+  // Add team profile URL if teamProfileSlug is set in Sanity
+  if (author.teamProfileSlug) {
+    sameAsUrls.push(`${baseUrl}/about-us/${author.teamProfileSlug}`)
+  }
+  
+  // Add LinkedIn if set in Sanity
+  if (author.linkedin) {
+    sameAsUrls.push(author.linkedin)
+  }
+  
+  // Add Twitter if set in Sanity
+  if (author.twitter) {
+    sameAsUrls.push(author.twitter)
+  }
+  
+  // Fallback: if no Sanity data, use legacy AUTHOR_SAME_AS mapping
+  if (sameAsUrls.length === 0) {
+    const fallbackUrls = AUTHOR_SAME_AS[author.name] || []
+    sameAsUrls.push(...fallbackUrls)
+  }
+
+  if (sameAsUrls.length > 0) {
+    schema.sameAs = sameAsUrls
   }
 
   return schema

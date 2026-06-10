@@ -438,6 +438,16 @@ For posts citing external real estate professionals:
 - [ ] Audit all existing blog posts — confirm `dateModified` is current
 - [ ] Audit all existing blog posts — add YouTube video embeds where possible
 
+### Sanity Schema
+- [x] Update Author schema with `teamProfileSlug`, `linkedin`, `twitter` fields — *June 10*
+- [x] Deploy updated Author schema to Sanity Studio — *June 10*
+- [x] Wire Sanity author fields into blog post queries — *June 10*
+- [x] Update `buildPersonSchema()` to use Sanity fields (prioritize over hardcoded `AUTHOR_SAME_AS`) — *June 10*
+- [x] Add author profile links to blog post bylines (hero + author card) — *June 10*
+- [ ] Add `videoEmbed`, `videoDuration`, `videoThumbnail` fields to Post schema
+- [ ] Add `isHowTo` boolean and `howToSteps` array to Post schema
+- [ ] Update authors in Sanity Studio with team profile slugs (andrew-rohm, max-de, nako-a, sj, collins, alex)
+
 ### Fixes
 - [ ] Audit all pages importing `MeetAgent.tsx` — remove from any non-client pages
 - [ ] Update `components/MeetAgent.tsx` or rename to reflect correct use case
