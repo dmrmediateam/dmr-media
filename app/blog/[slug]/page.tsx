@@ -7,6 +7,9 @@ import type { Metadata } from 'next'
 import BlogContent from '@/components/BlogContent'
 import BlogFAQ from '@/components/BlogFAQ'
 import BlogNavBar, { type NavHeading } from '@/components/BlogNavBar'
+import TableOfContents from '@/components/blog/TableOfContents'
+import RelatedPosts from '@/components/blog/RelatedPosts'
+import { extractHeadings } from '@/lib/extractHeadings'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 60
@@ -79,6 +82,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       console.warn(`Blog post not found for slug: ${slug}`)
       notFound()
     }
+
+    // Fetch all posts for related posts component
+    const allPosts = await getAllBlogPosts()
 
     const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -160,7 +166,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     '@graph': graphItems,
   }
 
-  // Extract h2 + h3 headings for the sticky nav (same slugify logic as BlogContent)
+  // Extract h2 + h3 headings for Table of Contents
+  const tocHeadings = extractHeadings(post.body)
+
+  // Also for the old BlogNavBar (keeping for compatibility)
   const navHeadings: NavHeading[] = (post.body ?? [])
     .filter((block: any) => block._type === 'block' && (block.style === 'h2' || block.style === 'h3'))
     .map((block: any) => {
@@ -173,6 +182,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   // Append the hardcoded FAQ section heading when FAQ items exist
   if (post.faq && post.faq.length > 0) {
     navHeadings.push({ id: 'frequently-asked-questions', text: 'Frequently Asked Questions' });
+    tocHeadings.push({ id: 'frequently-asked-questions', text: 'Frequently Asked Questions', level: 2 });
   }
 
   return (
@@ -319,16 +329,25 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             </div>
             </div>{/* end main content */}
 
-            {/* ── Right sidebar ToC ── */}
-            {navHeadings.length > 0 && (
-              <aside className="hidden xl:block w-52 shrink-0 self-stretch">
-                <BlogNavBar headings={navHeadings} />
+            {/* ── Right sidebar: Table of Contents ── */}
+            {tocHeadings.length > 0 && (
+              <aside className="hidden xl:block w-64 shrink-0">
+                <TableOfContents headings={tocHeadings} />
               </aside>
             )}
 
           </div>{/* end flex row */}
         </div>
       </article>
+
+      {/* ── Related Posts ── */}
+      <RelatedPosts
+        currentPostSlug={post.slug.current}
+        currentCategory={post.category}
+        currentTags={post.tags}
+        allPosts={allPosts}
+        maxPosts={3}
+      />
 
     </div>
     </>

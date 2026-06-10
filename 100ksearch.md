@@ -427,7 +427,16 @@ For posts citing external real estate professionals:
 - [ ] `/luxury-real-estate-marketing` — new pillar page
 - [ ] Expand `/real-estate-lead-generation` into full page
 
-### Components to Build
+### Components
+- [x] Build RelatedPosts component for blog pages — *June 10*
+- [x] Build TableOfContents component with scroll spy — *June 10*
+- [x] Wire RelatedPosts into blog post template (shows 3 related by category + tags) — *June 10*
+- [x] Wire TableOfContents into blog post template (sticky right sidebar on desktop) — *June 10*
+- [ ] Build AuthorCard component (if needed beyond current implementation)
+- [ ] Add "Jump to top" button for long articles
+- [ ] Add social share buttons to blog posts
+
+### Schema & Structured Data to Build
 - [ ] `components/blog/RelatedPosts.tsx` — related articles on blog post pages
 - [ ] `components/blog/AuthorCard.tsx` — reusable author bio card
 
