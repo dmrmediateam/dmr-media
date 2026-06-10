@@ -30,6 +30,7 @@ const DMR_PHONE_HREF = 'tel:+19202495210';
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
+  { href: '/about-us', label: 'Team' },
   { href: '/blog', label: 'Blog' },
   { href: '/services', label: 'Services' },
   { href: '/contact', label: 'Contact' },

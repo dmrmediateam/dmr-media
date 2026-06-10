@@ -4,7 +4,7 @@ import Stripe from 'stripe';
 // Lazy-initialized so the module can be imported at build time without the key
 function getStripe() {
   return new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2025-11-17.clover',
+    apiVersion: '2026-02-25.clover',
   });
 }
 

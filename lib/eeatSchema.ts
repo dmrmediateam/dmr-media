@@ -15,12 +15,35 @@ export interface AuthorForSchema {
 
 /**
  * Optional sameAs URLs per author (LinkedIn, Twitter, etc.)
- * Add entries as authors are added. Can be moved to Sanity later.
+ * Keyed by the exact name string used in Sanity author records.
+ * Profile pages: https://www.dmrmedia.org/about-us/[slug]
  */
 const AUTHOR_SAME_AS: Record<string, string[]> = {
-  'Andrew J Rohm': ['https://www.linkedin.com/in/andrewrohm'],
-  'Andrew Rohm': ['https://www.linkedin.com/in/andrewrohm'],
-  // Add more authors as needed: 'Author Name': ['https://linkedin.com/in/...', 'https://twitter.com/...'],
+  'Andrew J Rohm': [
+    'https://www.linkedin.com/in/andrewrohm',
+    'https://www.dmrmedia.org/about-us/andrew-rohm',
+  ],
+  'Andrew Rohm': [
+    'https://www.linkedin.com/in/andrewrohm',
+    'https://www.dmrmedia.org/about-us/andrew-rohm',
+  ],
+  'Max D.': [
+    'https://www.linkedin.com/in/maxdeleonardis',
+    'https://www.dmrmedia.org/about-us/max-de',
+  ],
+  'Max De': [
+    'https://www.linkedin.com/in/maxdeleonardis',
+    'https://www.dmrmedia.org/about-us/max-de',
+  ],
+  'Max Deleonardis': [
+    'https://www.linkedin.com/in/maxdeleonardis',
+    'https://www.dmrmedia.org/about-us/max-de',
+  ],
+  'Nako A.': ['https://www.dmrmedia.org/about-us/nako-a'],
+  'Nako': ['https://www.dmrmedia.org/about-us/nako-a'],
+  'SJ': ['https://www.dmrmedia.org/about-us/sj'],
+  'Collins': ['https://www.dmrmedia.org/about-us/collins'],
+  'Alex': ['https://www.dmrmedia.org/about-us/alex'],
 }
 
 /**
@@ -99,4 +122,125 @@ export function buildBlogEeatGraph(
   const includeOrg = options?.includeOrganization !== false
 
   return includeOrg ? [organization, person] : [person]
+}
+
+/**
+ * VideoObject schema — attach to blog posts that embed a YouTube video.
+ * Unlocks Google Video search as a separate impression surface.
+ * https://schema.org/VideoObject
+ */
+export function buildVideoObjectSchema(options: {
+  name: string
+  description: string
+  thumbnailUrl: string
+  uploadDate: string
+  embedUrl: string
+  contentUrl?: string
+  duration?: string // ISO 8601 e.g. "PT5M30S"
+}) {
+  return {
+    '@type': 'VideoObject',
+    name: options.name,
+    description: options.description,
+    thumbnailUrl: options.thumbnailUrl,
+    uploadDate: options.uploadDate,
+    embedUrl: options.embedUrl,
+    ...(options.contentUrl && { contentUrl: options.contentUrl }),
+    ...(options.duration && { duration: options.duration }),
+  }
+}
+
+/**
+ * HowTo schema — for tutorial/step-by-step guide posts.
+ * Enables HowTo rich results with high SERP CTR.
+ * https://schema.org/HowTo
+ */
+export function buildHowToSchema(options: {
+  name: string
+  description: string
+  steps: Array<{ name: string; text: string; image?: string }>
+  totalTime?: string // ISO 8601 e.g. "PT30M"
+  estimatedCost?: string
+}) {
+  return {
+    '@type': 'HowTo',
+    name: options.name,
+    description: options.description,
+    ...(options.totalTime && { totalTime: options.totalTime }),
+    ...(options.estimatedCost && {
+      estimatedCost: { '@type': 'MonetaryAmount', value: options.estimatedCost },
+    }),
+    step: options.steps.map((step, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: step.name,
+      text: step.text,
+      ...(step.image && {
+        image: { '@type': 'ImageObject', url: step.image },
+      }),
+    })),
+  }
+}
+
+/**
+ * AggregateRating schema — for Trustpilot / Google review data.
+ * Shows star ratings directly in SERPs on pages where attached.
+ * https://schema.org/AggregateRating
+ */
+export function buildAggregateRatingSchema(options: {
+  ratingValue: number
+  reviewCount: number
+  bestRating?: number
+  worstRating?: number
+}) {
+  return {
+    '@type': 'AggregateRating',
+    ratingValue: options.ratingValue,
+    reviewCount: options.reviewCount,
+    bestRating: options.bestRating ?? 5,
+    worstRating: options.worstRating ?? 1,
+  }
+}
+
+/**
+ * LocalBusiness schema — extends Organization with physical location signals.
+ * Adds geo, openingHours, priceRange for local search trust and ranking.
+ * https://schema.org/LocalBusiness
+ */
+export function buildLocalBusinessSchema(baseUrl: string) {
+  return {
+    '@type': ['Organization', 'LocalBusiness'],
+    '@id': `${baseUrl}/#localbusiness`,
+    name: 'DMR Media',
+    url: baseUrl,
+    telephone: '+1-920-249-5210',
+    email: 'team@dmrmedia.org',
+    image: `${baseUrl}/images/logo.png`,
+    priceRange: '$$$',
+    description:
+      'Luxury real estate marketing agency. Specialized SEO, Google Ads, and digital strategy for premium agents and brokerages.',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '100 W College Ave, Office No. 326',
+      addressLocality: 'Appleton',
+      addressRegion: 'WI',
+      postalCode: '54911',
+      addressCountry: 'US',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 44.2619,
+      longitude: -88.4154,
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'United States',
+    },
+    sameAs: [
+      'https://www.linkedin.com/company/dmr-media',
+      'https://www.trustpilot.com/review/dmrmedia.org',
+      'https://agencies.semrush.com/dmr-media/',
+      'https://www.instagram.com/dmrmedia',
+    ],
+  }
 }

@@ -400,25 +400,36 @@ For posts citing external real estate professionals:
 ## 8. Technical Checklist
 
 ### Schema
-- [ ] Add `buildVideoObjectSchema()` to `lib/eeatSchema.ts`
-- [ ] Add `buildHowToSchema()` to `lib/eeatSchema.ts`
-- [ ] Add `buildAggregateRatingSchema()` to `lib/eeatSchema.ts`
-- [ ] Add `buildLocalBusinessSchema()` to `lib/eeatSchema.ts`
-- [ ] Wire `VideoObject` into `app/blog/[slug]/page.tsx` `@graph`
+- [x] Add `buildVideoObjectSchema()` to `lib/eeatSchema.ts` ✅ June 9
+- [x] Add `buildHowToSchema()` to `lib/eeatSchema.ts` ✅ June 9
+- [x] Add `buildAggregateRatingSchema()` to `lib/eeatSchema.ts` ✅ June 9
+- [x] Add `buildLocalBusinessSchema()` to `lib/eeatSchema.ts` ✅ June 9
+- [ ] Wire `VideoObject` into `app/blog/[slug]/page.tsx` `@graph` (when post has `videoEmbed` field in Sanity)
 - [ ] Wire `HowTo` into `app/blog/[slug]/page.tsx` `@graph` (when `isHowTo` = true)
 - [ ] Add `AggregateRating` to homepage and contact page schemas
 - [ ] Add `ItemList` to `/case-studies` page
-- [ ] Complete `AUTHOR_SAME_AS` for all authors in `lib/eeatSchema.ts`
+- [x] Complete `AUTHOR_SAME_AS` for all authors in `lib/eeatSchema.ts` ✅ June 9 (Andrew, Max, Nako, SJ, Collins, Alex)
 
 ### Pages to Build
-- [ ] `/team` — author index page
-- [ ] `/team/[slug]` — individual author profile pages
+- [x] `/about-us` — team index page ✅ June 9
+- [x] `/about-us/andrew-rohm` — CEO profile ✅ June 9
+- [x] `/about-us/max-de` — CMO profile ✅ June 9
+- [x] `/about-us/nako-a` — Web Developer profile ✅ June 9
+- [x] `/about-us/sj` — Admin & Operations profile ✅ June 9
+- [x] `/about-us/collins` — Google Ads Specialist profile ✅ June 9
+- [x] `/about-us/alex` — Sales profile ✅ June 9
+- [x] Team data file `data/team.ts` — single source of truth ✅ June 9
+- [x] `TeamProfileContent.tsx` — shared profile layout component ✅ June 9
+- [x] All 8 pages added to `lib/content-registry.ts` ✅ June 9
+- [x] "Team" link added to `Navbar.tsx` ✅ June 9
+- [x] Team teaser section added to `/about` page ✅ June 9
+- [x] `/public/images/team/` folder created for profile photos ✅ June 9
 - [ ] `/luxury-real-estate-marketing` — new pillar page
 - [ ] Expand `/real-estate-lead-generation` into full page
 
 ### Components to Build
 - [ ] `components/blog/RelatedPosts.tsx` — related articles on blog post pages
-- [ ] `components/blog/AuthorCard.tsx` — reusable author bio card (extract from current inline code)
+- [ ] `components/blog/AuthorCard.tsx` — reusable author bio card
 
 ### Content in Sanity
 - [ ] Add `videoEmbed`, `videoDuration`, `videoThumbnail` fields to Sanity blog schema
@@ -431,6 +442,15 @@ For posts citing external real estate professionals:
 - [ ] Audit all pages importing `MeetAgent.tsx` — remove from any non-client pages
 - [ ] Update `components/MeetAgent.tsx` or rename to reflect correct use case
 - [ ] Verify `dateModified` is being updated in Sanity when posts are refreshed
+
+### Photos Needed
+- [ ] Upload team headshots to `/public/images/team/`:
+  - `andrew-rohm.jpg`
+  - `max-de.jpg`
+  - `nako-a.jpg`
+  - `sj.jpg`
+  - `collins.jpg`
+  - `alex.jpg`
 
 ### Tracking
 - [ ] Set up Google Search Console filtered view for "Impressions by Search Type" (Web, Video, Image)

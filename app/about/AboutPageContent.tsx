@@ -301,6 +301,41 @@ export default function AboutPageContent({ posts }: { posts: Post[] }) {
         sectionClassName=""
       />
 
+      {/* ── Team Teaser ── */}
+      <section
+        id="team"
+        className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]"
+        aria-labelledby="about-team-heading"
+      >
+        <div className="container-max">
+          <SeoReveal>
+            <div className="max-w-2xl">
+              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
+                The people
+              </p>
+              <h2
+                id="about-team-heading"
+                className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl"
+              >
+                Meet the team
+              </h2>
+              <SectionRule />
+              <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
+                DMR Media is a small, senior team — no account managers, no handoffs to juniors. The
+                specialists working your campaigns are the same people on the strategy call. CEO, CMO,
+                developers, and paid media specialists, all under one roof.
+              </p>
+              <Link
+                href="/about-us"
+                className="mt-8 inline-flex items-center gap-2 font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-off-black)] hover:opacity-60 transition-opacity"
+              >
+                Meet the full team →
+              </Link>
+            </div>
+          </SeoReveal>
+        </div>
+      </section>
+
       <section
         id="about-apply-cta"
         className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]"
