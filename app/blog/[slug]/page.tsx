@@ -104,9 +104,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
   // EEAT: Organization & Person schemas for credibility
   const organizationSchema = buildOrganizationSchema(baseUrl)
-  const personSchema = buildPersonSchema(
+  
+  // Safely handle author data (might be null/undefined)
+  const personSchema = post.author ? buildPersonSchema(
     {
-      name: post.author.name,
+      name: post.author.name || 'DMR Media Team',
       image: post.author.image,
       bio: post.author.bio,
       slug: post.author.slug,
@@ -115,7 +117,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       twitter: post.author.twitter,
     },
     baseUrl
-  )
+  ) : null
 
   const articleSchema = {
     '@type': 'BlogPosting',
@@ -125,7 +127,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     image: post.mainImage.asset.url,
     datePublished: post.publishedAt,
     dateModified: dateModified,
-    author: { '@id': (personSchema as { '@id': string })['@id'] },
+    ...(personSchema && { author: { '@id': (personSchema as { '@id': string })['@id'] } }),
     publisher: { '@id': (organizationSchema as { '@id': string })['@id'] },
     mainEntityOfPage: {
       '@type': 'WebPage',
@@ -141,7 +143,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   // Single @graph with all schemas (Article, Organization, Person)
   const graphItems: object[] = [
     organizationSchema,
-    personSchema,
+    ...(personSchema ? [personSchema] : []),
     articleSchema,
   ]
 
