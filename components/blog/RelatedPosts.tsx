@@ -22,14 +22,14 @@ export default function RelatedPosts({
   allPosts,
   maxPosts = 3,
 }: RelatedPostsProps) {
-  // Score and filter related posts
+  // Score and filter related posts — guard every property access defensively
   const scoredPosts = allPosts
-    .filter((post) => post.slug.current !== currentPostSlug)
+    .filter((post) => post?.slug?.current && post.slug.current !== currentPostSlug)
     .map((post) => {
       let score = 0
 
       // Same category = +10 points
-      if (post.category === currentCategory) {
+      if (post.category && post.category === currentCategory) {
         score += 10
       }
 
@@ -73,16 +73,18 @@ export default function RelatedPosts({
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {scoredPosts.map(({ post }) => {
-            const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-            })
+            const formattedDate = post.publishedAt
+              ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })
+              : ''
 
             return (
               <Link
                 key={post._id}
-                href={`/blog/${post.slug.current}`}
+                href={`/blog/${post.slug?.current ?? ''}`}
                 className="group block border border-[var(--color-ink-200)] bg-white hover:border-[var(--color-off-black)]/30 hover:shadow-[0_8px_32px_-8px_rgba(15,15,15,0.12)] transition-all duration-300"
               >
                 {/* Image */}
@@ -90,7 +92,7 @@ export default function RelatedPosts({
                   <div className="relative aspect-[16/9] overflow-hidden bg-[var(--color-ink-200)]">
                     <Image
                       src={post.mainImage.asset.url}
-                      alt={post.mainImage.alt || post.title}
+                      alt={post.mainImage?.alt || post.title || ''}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
                     />
@@ -100,9 +102,11 @@ export default function RelatedPosts({
                 {/* Content */}
                 <div className="p-6">
                   {/* Category Badge */}
-                  <span className="inline-block px-3 py-1 font-serif text-[10px] uppercase tracking-[0.14em] text-[var(--color-ink-400)] bg-[var(--color-ink-200)]/50 mb-4">
-                    {post.category}
-                  </span>
+                  {post.category && (
+                    <span className="inline-block px-3 py-1 font-serif text-[10px] uppercase tracking-[0.14em] text-[var(--color-ink-400)] bg-[var(--color-ink-200)]/50 mb-4">
+                      {post.category}
+                    </span>
+                  )}
 
                   {/* Title */}
                   <h3 className="font-serif text-xl font-light text-[var(--color-off-black)] mb-3 line-clamp-2 group-hover:text-[var(--color-off-black)]/70 transition-colors">
@@ -110,15 +114,17 @@ export default function RelatedPosts({
                   </h3>
 
                   {/* Description */}
-                  <p className="font-serif text-sm leading-relaxed text-[var(--color-ink-300)] mb-4 line-clamp-3">
-                    {post.description}
-                  </p>
+                  {post.description && (
+                    <p className="font-serif text-sm leading-relaxed text-[var(--color-ink-300)] mb-4 line-clamp-3">
+                      {post.description}
+                    </p>
+                  )}
 
                   {/* Meta */}
                   <div className="flex items-center gap-3 text-xs text-[var(--color-ink-400)] font-serif">
-                    <span>{formattedDate}</span>
-                    <span>•</span>
-                    <span>{post.readTime}</span>
+                    {formattedDate && <span>{formattedDate}</span>}
+                    {formattedDate && post.readTime && <span>•</span>}
+                    {post.readTime && <span>{post.readTime}</span>}
                   </div>
 
                   {/* Read More */}
