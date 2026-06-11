@@ -18,12 +18,17 @@ interface RelatedPostsProps {
 export default function RelatedPosts({
   currentPostSlug,
   currentCategory,
-  currentTags = [],
+  currentTags,
   allPosts,
   maxPosts = 3,
 }: RelatedPostsProps) {
+  // Normalize inputs — JS default params only apply to `undefined`, NOT `null`.
+  // Sanity/GROQ returns `null` for empty fields, so we must guard explicitly.
+  const safeTags = Array.isArray(currentTags) ? currentTags : []
+  const safePosts = Array.isArray(allPosts) ? allPosts : []
+
   // Score and filter related posts — guard every property access defensively
-  const scoredPosts = allPosts
+  const scoredPosts = safePosts
     .filter((post) => post?.slug?.current && post.slug.current !== currentPostSlug)
     .map((post) => {
       let score = 0
@@ -34,8 +39,8 @@ export default function RelatedPosts({
       }
 
       // Tag overlap = +5 points per matching tag
-      if (post.tags && currentTags.length > 0) {
-        const matchingTags = post.tags.filter((tag) => currentTags.includes(tag))
+      if (Array.isArray(post.tags) && safeTags.length > 0) {
+        const matchingTags = post.tags.filter((tag) => safeTags.includes(tag))
         score += matchingTags.length * 5
       }
 
