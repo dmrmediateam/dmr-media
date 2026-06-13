@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getAllBlogPosts } from '@/data/blogPosts';
+import { getAllAuthorSlugs } from '@/data/authors';
 import { listMls } from '@/data/mlsRegistry';
 import { contentRegistry } from '@/lib/content-registry';
 
@@ -83,9 +84,26 @@ export async function GET() {
     console.error('Failed to append blog posts to sitemap:', error);
   }
 
+  try {
+    const authorSlugs = await getAllAuthorSlugs();
+    authorSlugs.forEach((slug) => {
+      urls.push({
+        loc: `${baseUrl}/about/${slug}`,
+        priority: 0.65,
+        changefreq: 'monthly',
+        lastmod: today,
+      });
+    });
+  } catch (error) {
+    console.error('Failed to append author profiles to sitemap:', error);
+  }
+
   const filteredUrls = urls.filter(
     (entry) =>
-      !entry.loc.includes('/brokerages') && !isRemovedServiceLocationUrl(entry.loc, baseUrl),
+      !entry.loc.includes('/brokerages') &&
+      !entry.loc.includes('/directory') &&
+      !entry.loc.includes('/about-us') &&
+      !isRemovedServiceLocationUrl(entry.loc, baseUrl),
   );
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

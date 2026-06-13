@@ -26,6 +26,10 @@ export interface BlogPost {
     name: string;
     image?: string;
     bio?: string;
+    shortDescription?: string;
+    title?: string;
+    role?: string;
+    skills?: string[];
     slug?: string;
     teamProfileSlug?: string;
     linkedin?: string;
@@ -300,6 +304,10 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       name,
       "image": image.asset->url,
       bio,
+      shortDescription,
+      title,
+      role,
+      skills,
       "slug": slug.current,
       teamProfileSlug,
       linkedin,
@@ -375,6 +383,12 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
     "author": author->{
       name,
       "image": image.asset->url,
+      bio,
+      shortDescription,
+      title,
+      role,
+      skills,
+      "slug": slug.current,
       teamProfileSlug,
       linkedin,
       twitter

@@ -6,10 +6,11 @@ import { buildOrganizationSchema, buildPersonSchema } from '@/lib/eeatSchema'
 import type { Metadata } from 'next'
 import BlogContent from '@/components/BlogContent'
 import BlogFAQ from '@/components/BlogFAQ'
-import BlogNavBar, { type NavHeading } from '@/components/BlogNavBar'
+import BlogAuthorCard from '@/components/blog/BlogAuthorCard'
 import TableOfContents from '@/components/blog/TableOfContents'
 import RelatedPosts from '@/components/blog/RelatedPosts'
 import { extractHeadings } from '@/lib/extractHeadings'
+import '@/app/landing/google-general/google-general-landing.css'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 60
@@ -111,8 +112,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       name: post.author.name || 'DMR Media Team',
       image: post.author.image,
       bio: post.author.bio,
-      slug: post.author.slug,
-      teamProfileSlug: post.author.teamProfileSlug,
+      shortDescription: post.author.shortDescription,
+      title: post.author.title,
+      skills: post.author.skills,
+      slug: post.author.slug || post.author.teamProfileSlug,
       linkedin: post.author.linkedin,
       twitter: post.author.twitter,
     },
@@ -171,20 +174,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   // Extract h2 + h3 headings for Table of Contents
   const tocHeadings = extractHeadings(post.body)
 
-  // Also for the old BlogNavBar (keeping for compatibility)
-  const navHeadings: NavHeading[] = (post.body ?? [])
-    .filter((block: any) => block._type === 'block' && (block.style === 'h2' || block.style === 'h3'))
-    .map((block: any) => {
-      const text: string = (block.children ?? []).map((c: any) => c.text ?? '').join('');
-      const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
-      return { id, text };
-    })
-    .filter((h: NavHeading) => h.id && h.text);
-
-  // Append the hardcoded FAQ section heading when FAQ items exist
   if (post.faq && post.faq.length > 0) {
-    navHeadings.push({ id: 'frequently-asked-questions', text: 'Frequently Asked Questions' });
-    tocHeadings.push({ id: 'frequently-asked-questions', text: 'Frequently Asked Questions', level: 2 });
+    tocHeadings.push({ id: 'frequently-asked-questions', text: 'Frequently Asked Questions', level: 2 })
   }
 
   return (
@@ -231,9 +222,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                   className="h-9 w-9 border border-white/30 object-cover"
                 />
               )}
-              {post.author.teamProfileSlug ? (
+              {post.author.slug || post.author.teamProfileSlug ? (
                 <Link 
-                  href={`/about-us/${post.author.teamProfileSlug}`}
+                  href={`/about/${post.author.slug || post.author.teamProfileSlug}`}
                   className="hover:underline transition-all"
                   style={{ color: '#FFFFFF' }}
                 >
@@ -251,12 +242,14 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
       </section>
 
-      <article className="py-14 md:py-20">
-        <div className="container-max">
-          <div className="flex gap-16 xl:gap-20">
+      <article className="google-general-landing py-14 md:py-20">
+        <div className="container-max px-4 sm:px-6">
+          <div className="flex gap-12 xl:gap-16">
 
             {/* ── Main content ── */}
-            <div className="flex-1 min-w-0 space-y-8">
+            <div className="min-w-0 flex-1 space-y-10">
+              {tocHeadings.length > 0 ? <TableOfContents headings={tocHeadings} layout="mobile" /> : null}
+
               <BlogContent body={post.body} />
 
             {post.faq && post.faq.length > 0 && (
@@ -264,77 +257,37 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             )}
 
             {post.tags && post.tags.length > 0 && (
-              <div className="border-t border-[var(--color-ink-200)] pt-8">
-                <h3 className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] mb-6 font-serif">
-                  Topics
-                </h3>
-                <div className="flex flex-wrap gap-4">
+              <div className="rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)] px-6 py-8">
+                <p className="gg-eyebrow mb-4">Topics</p>
+                <ul className="flex flex-wrap gap-2" role="list">
                   {post.tags.map((tag) => (
-                    <span
+                    <li
                       key={tag}
-                      className="text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)] font-serif"
+                      className="rounded-sm border border-[var(--color-ink-200)] bg-white px-3 py-1.5 font-serif text-[10px] uppercase tracking-[0.12em] text-[var(--color-ink-400)]"
                     >
                       {tag}
-                    </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             )}
 
-            <div className="border-t border-[var(--color-ink-200)] pt-12">
-              <div className="flex flex-col sm:flex-row items-start gap-8">
-                {post.author.image && (
-                  <Image
-                    src={post.author.image}
-                    alt={post.author.name}
-                    width={96}
-                    height={96}
-                    className="h-24 w-24 border border-[var(--color-ink-200)] object-cover"
-                  />
-                )}
-                <div>
-                  <h3 className="text-xl font-serif font-light text-[var(--color-off-black)] mb-4">
-                    About {post.author.name}
-                  </h3>
-                  {post.author.bio && (
-                    <p className="text-sm text-[var(--color-ink-300)] leading-relaxed mb-6 font-serif">
-                      {post.author.bio}
-                    </p>
-                  )}
-                  <div className="flex flex-wrap gap-4">
-                    {post.author.teamProfileSlug && (
-                      <Link
-                        href={`/about-us/${post.author.teamProfileSlug}`}
-                        className="inline-flex items-center justify-center px-8 py-3 border border-[var(--color-off-black)] text-[var(--color-off-black)] uppercase tracking-[0.12em] text-xs font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-all duration-300"
-                      >
-                        View Profile
-                      </Link>
-                    )}
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)]"
-                    >
-                      Work With Us
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {post.author ? <BlogAuthorCard author={post.author} /> : null}
 
-            <div className="flex justify-center pt-8">
+            <div className="flex justify-center border-t border-[var(--color-ink-200)] pt-8">
               <Link
                 href="/blog"
-                className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif hover:opacity-60 transition-opacity duration-300"
+                className="gg-eyebrow gg-eyebrow--strong inline-flex items-center transition-opacity hover:opacity-70"
               >
                 ← Back to all insights
               </Link>
             </div>
             </div>{/* end main content */}
 
-            {/* ── Right sidebar: Table of Contents ── */}
+            {/* ── Right sidebar: sections ── */}
             {tocHeadings.length > 0 && (
-              <aside className="hidden xl:block w-64 shrink-0">
-                <TableOfContents headings={tocHeadings} />
+              <aside className="hidden w-72 shrink-0 xl:block">
+                <TableOfContents headings={tocHeadings} layout="sidebar" />
               </aside>
             )}
 

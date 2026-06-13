@@ -152,6 +152,17 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      // Team profiles consolidated on /about
+      {
+        source: '/about-us',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/about-us/:slug',
+        destination: '/about/:slug',
+        permanent: true,
+      },
       {
         source: '/case-study/rick-visions-first-realty',
         destination: '/case-studies',

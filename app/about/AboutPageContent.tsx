@@ -8,6 +8,9 @@ import SeoCaseStudiesHorizontalScroll from '@/components/SeoCaseStudiesHorizonta
 import SeoWebsiteExamplesHorizontalScroll from '@/components/SeoWebsiteExamplesHorizontalScroll'
 import ClientLogosSlider from '@/components/ClientLogosSlider'
 import HomeBlogSection from '@/components/HomeBlogSection'
+import TeamMemberCard from '@/components/about/TeamMemberCard'
+import type { TeamAuthor } from '@/data/authors'
+import '@/app/landing/google-general/google-general-landing.css'
 
 const APPLY_FORM = 'about-page-apply'
 const HERO_VIDEO_SRC = '/videos/DMR%20-%20INTRO%204K.mp4'
@@ -107,7 +110,13 @@ interface Post {
   }
 }
 
-export default function AboutPageContent({ posts }: { posts: Post[] }) {
+export default function AboutPageContent({
+  posts,
+  teamAuthors,
+}: {
+  posts: Post[]
+  teamAuthors: TeamAuthor[]
+}) {
   const heroVideoRef = useRef<HTMLVideoElement>(null)
   const [isHeroMuted, setIsHeroMuted] = useState(true)
   const reduceMotion = useReducedMotion()
@@ -301,13 +310,13 @@ export default function AboutPageContent({ posts }: { posts: Post[] }) {
         sectionClassName=""
       />
 
-      {/* ── Team Teaser ── */}
+      {/* ── Team ── */}
       <section
         id="team"
-        className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]"
+        className="google-general-landing scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]"
         aria-labelledby="about-team-heading"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6">
           <SeoReveal>
             <div className="max-w-2xl">
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
@@ -325,14 +334,24 @@ export default function AboutPageContent({ posts }: { posts: Post[] }) {
                 specialists working your campaigns are the same people on the strategy call. CEO, CMO,
                 developers, and paid media specialists, all under one roof.
               </p>
-              <Link
-                href="/about-us"
-                className="mt-8 inline-flex items-center gap-2 font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-off-black)] hover:opacity-60 transition-opacity"
-              >
-                Meet the full team →
-              </Link>
             </div>
           </SeoReveal>
+
+          {teamAuthors.length > 0 ? (
+            <ul
+              className="mt-12 grid list-none grid-cols-1 gap-8 md:mt-14 md:grid-cols-2 md:gap-10 lg:grid-cols-3"
+              role="list"
+            >
+              {teamAuthors.map((author) => (
+                <TeamMemberCard key={author._id} author={author} />
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-10 font-serif text-sm text-[var(--color-ink-400)]">
+              Team profiles are managed in Sanity — add authors with &ldquo;Show on About page&rdquo; enabled to
+              populate this section.
+            </p>
+          )}
         </div>
       </section>
 

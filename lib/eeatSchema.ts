@@ -10,81 +10,89 @@ export interface AuthorForSchema {
   name: string
   image?: string
   bio?: string
+  shortDescription?: string
+  title?: string
+  skills?: string[]
   slug?: string
   teamProfileSlug?: string
   linkedin?: string
   twitter?: string
 }
 
+export interface TeamMemberForSchema {
+  name: string
+  slug: string
+  title?: string
+  role?: string
+  shortDescription?: string
+  image?: string
+  skills?: string[]
+  linkedin?: string
+  twitter?: string
+}
+
+function absoluteImageUrl(baseUrl: string, image?: string) {
+  if (!image) return undefined
+  return image.startsWith('http') ? image : `${baseUrl}${image.startsWith('/') ? '' : '/'}${image}`
+}
+
+function buildAuthorProfileUrl(baseUrl: string, author: Pick<AuthorForSchema, 'slug' | 'teamProfileSlug'>) {
+  const slug = author.slug || author.teamProfileSlug
+  return slug ? `${baseUrl}/about/${slug}` : undefined
+}
+
 /**
  * Optional sameAs URLs per author (LinkedIn, Twitter, etc.)
  * Keyed by the exact name string used in Sanity author records.
- * Profile pages: https://www.dmrmedia.org/about-us/[slug]
  */
 const AUTHOR_SAME_AS: Record<string, string[]> = {
-  'Andrew J Rohm': [
-    'https://www.linkedin.com/in/andrewrohm',
-    'https://www.dmrmedia.org/about-us/andrew-rohm',
-  ],
-  'Andrew Rohm': [
-    'https://www.linkedin.com/in/andrewrohm',
-    'https://www.dmrmedia.org/about-us/andrew-rohm',
-  ],
-  'Max D.': [
-    'https://www.linkedin.com/in/maxdeleonardis',
-    'https://www.dmrmedia.org/about-us/max-de',
-  ],
-  'Max De': [
-    'https://www.linkedin.com/in/maxdeleonardis',
-    'https://www.dmrmedia.org/about-us/max-de',
-  ],
-  'Max Deleonardis': [
-    'https://www.linkedin.com/in/maxdeleonardis',
-    'https://www.dmrmedia.org/about-us/max-de',
-  ],
-  'Nako A.': ['https://www.dmrmedia.org/about-us/nako-a'],
-  'Nako': ['https://www.dmrmedia.org/about-us/nako-a'],
-  'SJ': ['https://www.dmrmedia.org/about-us/sj'],
-  'Collins': ['https://www.dmrmedia.org/about-us/collins'],
-  'Alex': ['https://www.dmrmedia.org/about-us/alex'],
+  'Andrew J Rohm': ['https://www.linkedin.com/in/andrewrohm'],
+  'Andrew Rohm': ['https://www.linkedin.com/in/andrewrohm'],
+  'Max D.': ['https://www.linkedin.com/in/maxdeleonardis'],
+  'Max De': ['https://www.linkedin.com/in/maxdeleonardis'],
+  'Max Deleonardis': ['https://www.linkedin.com/in/maxdeleonardis'],
 }
 
 /**
  * Build Person schema for article authors (EEAT)
- * Prioritizes data from Sanity (teamProfileSlug, linkedin, twitter)
+ * Prioritizes data from Sanity (slug, linkedin, twitter)
  * Falls back to AUTHOR_SAME_AS for legacy mappings
  */
 export function buildPersonSchema(author: AuthorForSchema, baseUrl: string) {
-  const slug = author.slug || author.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
-  const personId = `${baseUrl}/#person-${slug}`
+  const slug =
+    author.slug ||
+    author.teamProfileSlug ||
+    author.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+  const profileUrl = buildAuthorProfileUrl(baseUrl, author)
+  const personId = profileUrl ? `${profileUrl}#person` : `${baseUrl}/#person-${slug}`
 
   const schema: Record<string, unknown> = {
     '@type': 'Person',
     '@id': personId,
     name: author.name,
-    ...(author.image && { image: author.image }),
-    ...(author.bio && { description: author.bio }),
+    ...(author.image && { image: absoluteImageUrl(baseUrl, author.image) }),
+    ...((author.shortDescription || author.bio) && {
+      description: author.shortDescription || author.bio,
+    }),
+    ...(author.title && { jobTitle: author.title }),
+    ...(profileUrl && { url: profileUrl }),
+    ...(author.skills?.length && { knowsAbout: author.skills }),
   }
 
-  // Build sameAs array from Sanity fields (preferred) or fallback to AUTHOR_SAME_AS
   const sameAsUrls: string[] = []
-  
-  // Add team profile URL if teamProfileSlug is set in Sanity
-  if (author.teamProfileSlug) {
-    sameAsUrls.push(`${baseUrl}/about-us/${author.teamProfileSlug}`)
+
+  if (profileUrl) {
+    sameAsUrls.push(profileUrl)
   }
-  
-  // Add LinkedIn if set in Sanity
+
   if (author.linkedin) {
     sameAsUrls.push(author.linkedin)
   }
-  
-  // Add Twitter if set in Sanity
+
   if (author.twitter) {
     sameAsUrls.push(author.twitter)
   }
-  
-  // Fallback: if no Sanity data, use legacy AUTHOR_SAME_AS mapping
+
   if (sameAsUrls.length === 0) {
     const fallbackUrls = AUTHOR_SAME_AS[author.name] || []
     sameAsUrls.push(...fallbackUrls)
@@ -94,7 +102,64 @@ export function buildPersonSchema(author: AuthorForSchema, baseUrl: string) {
     schema.sameAs = sameAsUrls
   }
 
+  schema.worksFor = { '@id': `${baseUrl}/#organization` }
+
   return schema
+}
+
+/**
+ * Full @graph for /about/[slug] team profile pages (EEAT + ProfilePage).
+ */
+export function buildTeamProfileGraph(member: TeamMemberForSchema, baseUrl: string) {
+  const profileUrl = `${baseUrl}/about/${member.slug}`
+  const personId = `${profileUrl}#person`
+  const organization = buildOrganizationSchema(baseUrl)
+  const imageUrl = absoluteImageUrl(baseUrl, member.image)
+
+  const sameAs: string[] = []
+  if (member.linkedin) sameAs.push(member.linkedin)
+  if (member.twitter) sameAs.push(member.twitter)
+
+  const person: Record<string, unknown> = {
+    '@type': 'Person',
+    '@id': personId,
+    name: member.name,
+    ...(member.title || member.role ? { jobTitle: member.title || member.role } : {}),
+    ...(member.shortDescription && { description: member.shortDescription }),
+    url: profileUrl,
+    ...(imageUrl && { image: imageUrl }),
+    ...(sameAs.length > 0 && { sameAs }),
+    ...(member.skills?.length && { knowsAbout: member.skills }),
+    worksFor: { '@id': `${baseUrl}/#organization` },
+  }
+
+  const profilePage = {
+    '@type': 'ProfilePage',
+    '@id': `${profileUrl}#webpage`,
+    url: profileUrl,
+    name: `${member.name} | DMR Media`,
+    description: member.shortDescription,
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${baseUrl}/#website` },
+    about: { '@id': personId },
+    mainEntity: { '@id': personId },
+    publisher: { '@id': `${baseUrl}/#organization` },
+  }
+
+  const breadcrumb = {
+    '@type': 'BreadcrumbList',
+    '@id': `${profileUrl}#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: 'About', item: `${baseUrl}/about` },
+      { '@type': 'ListItem', position: 3, name: member.name, item: profileUrl },
+    ],
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [organization, person, profilePage, breadcrumb],
+  }
 }
 
 /**
