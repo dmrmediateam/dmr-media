@@ -1,5 +1,6 @@
 'use client'
 
+import Script from 'next/script'
 import { useRouter } from 'next/navigation'
 import { useRef, useState, type ChangeEvent, type FormEvent } from 'react'
 import { getStoredUTMParams, trackApplicationConversion } from '@/lib/utmTracking'
@@ -138,25 +139,14 @@ export default function CalendarPageContent() {
               </header>
 
               <div className="mt-12 border-t border-[var(--color-ink-200)] pt-10 sm:mt-14 sm:pt-12 lg:mt-16">
-                <ul className="flex flex-col gap-8 sm:gap-10">
-                  <li className="flex items-start justify-between gap-6 text-left">
-                    <div className="min-w-0 space-y-1 pr-4">
-                      <p className="font-serif text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
-                        SEMrush
-                      </p>
-                      <p className="font-serif text-sm font-light leading-snug text-[var(--color-off-black)]">
-                        Agency partner
-                      </p>
-                    </div>
-                    <img
-                      src="/images/logo.BwihUn5s.svg"
-                      alt=""
-                      className="mt-0.5 h-4 w-auto shrink-0 opacity-50"
-                      width={64}
-                      height={20}
-                    />
-                  </li>
-                </ul>
+                <Script
+                  src="https://elfsightcdn.com/platform.js"
+                  strategy="lazyOnload"
+                />
+                <div
+                  className="elfsight-app-4531b504-6b1f-4f68-9f74-580ee8ce4858"
+                  data-elfsight-app-lazy
+                />
 
                 <blockquote className="mt-12 border-l border-[rgba(15,15,15,0.1)] pl-5 sm:mt-14 sm:pl-6">
                   <p className="font-serif text-sm font-light italic leading-[1.65] text-[var(--color-off-black)] sm:text-[0.9375rem]">

@@ -33,6 +33,8 @@ const ROLE_COLORS: Record<string, string> = {
 
 export default function AboutUsPage() {
   const team = getFeaturedTeam()
+  const andrewMember = team.find((m) => m.slug === 'andrew-rohm')!
+  const restTeam = team.filter((m) => m.slug !== 'andrew-rohm')
   const organizationSchema = buildOrganizationSchema(BASE_URL)
 
   const teamSchema = {
@@ -64,36 +66,56 @@ export default function AboutUsPage() {
 
       <main className="min-h-screen bg-[var(--surface-base)] [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
 
-        {/* ── Hero ── */}
+        {/* ── Team (hero + grid combined) ── */}
         <section
-          className="border-b border-[var(--color-ink-200)] bg-[var(--color-off-black)] py-24 md:py-32"
+          className="border-b border-[var(--color-ink-200)]"
           aria-labelledby="about-us-title"
         >
-          <div className="container-max px-4 sm:px-6 text-center">
-            <p className="mb-5 font-serif text-[11px] uppercase tracking-[0.24em] text-white/60">
-              The Team
-            </p>
-            <h1
-              id="about-us-title"
-              className="font-serif text-4xl font-light leading-[1.06] tracking-tight text-white sm:text-5xl md:text-6xl"
-            >
-              The people behind
-              <br />
-              <span className="italic">DMR Media.</span>
-            </h1>
-            <p className="mx-auto mt-8 max-w-2xl font-serif text-lg leading-relaxed text-white/75">
-              A search-led, creatively driven team built for luxury real estate. We work directly with
-              our clients — no account managers, no ticket queues, no mystery behind who is doing the work.
-            </p>
-            <div className="mt-4 h-[1px] w-14 bg-white/20 mx-auto" aria-hidden />
-          </div>
-        </section>
+          {/* Dark intro */}
+          <div className="bg-[var(--color-off-black)] py-24 md:py-28">
+            <div className="container-max px-4 sm:px-6 text-center">
+              <p className="mb-5 font-serif text-[11px] uppercase tracking-[0.24em] text-white/60">
+                The Team
+              </p>
+              <h1
+                id="about-us-title"
+                className="font-serif text-4xl font-light leading-[1.06] tracking-tight text-white sm:text-5xl md:text-6xl"
+              >
+                The people behind
+                <br />
+                <span className="italic">DMR Media.</span>
+              </h1>
+              <p className="mx-auto mt-8 max-w-2xl font-serif text-lg leading-relaxed text-white/75">
+                A search-led, creatively driven team built for luxury real estate. We work directly with
+                our clients — no account managers, no ticket queues, no mystery behind who is doing the work.
+              </p>
 
-        {/* ── Team Grid ── */}
-        <section
-          className="border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]"
-          aria-labelledby="team-grid-heading"
-        >
+              {/* SEMrush Agency Partner badge */}
+              <div className="mt-10 flex justify-center">
+                <div className="inline-flex items-center gap-3 border border-white/15 bg-white/5 px-5 py-3">
+                  <div
+                    className="flex h-7 w-7 shrink-0 items-center justify-center bg-[#FF642D]"
+                    aria-hidden
+                  >
+                    <span className="font-bold text-sm text-white leading-none">S</span>
+                  </div>
+                  <div className="text-left">
+                    <p className="font-serif text-[9px] uppercase tracking-[0.22em] text-white/50">
+                      Recognized by
+                    </p>
+                    <p className="font-serif text-[11px] uppercase tracking-[0.16em] text-white">
+                      SEMrush Agency Partner
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 h-[1px] w-14 bg-white/20 mx-auto" aria-hidden />
+            </div>
+          </div>
+
+          {/* White grid */}
+          <div className="bg-white py-[var(--seo-section-y)]">
           <div className="container-max px-4 sm:px-6">
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)] mb-2">
               Our People
@@ -105,8 +127,60 @@ export default function AboutUsPage() {
               Built to work like a partner,<br className="hidden sm:block" /> not an agency.
             </h2>
 
+            {/* Andrew — full-width featured card */}
+            <Link
+              href={`/about-us/${andrewMember.slug}`}
+              className="group mb-8 block border border-[var(--color-ink-200)] bg-[var(--surface-base)] hover:border-[var(--color-off-black)]/30 hover:shadow-[0_8px_32px_-8px_rgba(15,15,15,0.12)] transition-all duration-300"
+            >
+              <div className="flex flex-col md:flex-row md:min-h-[400px]">
+                {/* Photo */}
+                <div className="relative aspect-[4/3] md:aspect-auto md:w-5/12 overflow-hidden bg-[var(--color-ink-200)]">
+                  <div className="absolute inset-0 flex items-center justify-center bg-[var(--color-off-black)]/8">
+                    <span className="font-serif text-7xl font-light text-[var(--color-off-black)]/20 select-none">
+                      {andrewMember.name.split(' ').map((n) => n[0]).join('').slice(0, 2)}
+                    </span>
+                  </div>
+                  {andrewMember.image.startsWith('/team/') && (
+                    <Image
+                      src={andrewMember.image}
+                      alt={`${andrewMember.name} — ${andrewMember.role} at DMR Media`}
+                      fill
+                      priority
+                      className="object-cover object-top"
+                      sizes="(max-width: 768px) 100vw, 42vw"
+                    />
+                  )}
+                </div>
+                {/* Info */}
+                <div className="p-8 md:p-12 md:w-7/12 flex flex-col justify-center">
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <p className="font-serif text-3xl md:text-4xl font-light text-[var(--color-off-black)]">
+                      {andrewMember.name}
+                    </p>
+                    <span className={`shrink-0 mt-1.5 inline-block px-3 py-1 font-serif text-[10px] uppercase tracking-[0.14em] ${ROLE_COLORS[andrewMember.role] || 'bg-[var(--color-ink-200)] text-[var(--color-off-black)]'}`}>
+                      {andrewMember.role}
+                    </span>
+                  </div>
+                  <p className="font-serif text-sm leading-relaxed text-[var(--color-ink-300)] line-clamp-5 mb-6">
+                    {andrewMember.shortBio}
+                  </p>
+                  <div className="flex flex-wrap gap-3 mb-8">
+                    {andrewMember.expertise.slice(0, 4).map((skill) => (
+                      <span key={skill} className="font-serif text-[10px] uppercase tracking-[0.12em] text-[var(--color-ink-400)]">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-off-black)] group-hover:opacity-60 transition-opacity">
+                    View profile →
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+            {/* Rest of team */}
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {team.map((member) => (
+              {restTeam.map((member) => (
                 <Link
                   key={member.slug}
                   href={`/about-us/${member.slug}`}
@@ -114,12 +188,22 @@ export default function AboutUsPage() {
                 >
                   {/* Photo */}
                   <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-ink-200)]">
-                    {/* Initials fallback - always visible until photos added */}
+                    {/* Initials fallback — shows for members without a photo yet */}
                     <div className="absolute inset-0 flex items-center justify-center bg-[var(--color-off-black)]/8">
                       <span className="font-serif text-5xl font-light text-[var(--color-off-black)]/20 select-none">
                         {member.name.split(' ').map((n) => n[0]).join('').slice(0, 2)}
                       </span>
                     </div>
+                    {/* Real photo — only rendered when an uploaded image exists */}
+                    {member.image.startsWith('/team/') && (
+                      <Image
+                        src={member.image}
+                        alt={`${member.name} — ${member.role} at DMR Media`}
+                        fill
+                        className="object-cover object-top"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    )}
                   </div>
 
                   {/* Info */}
@@ -159,6 +243,7 @@ export default function AboutUsPage() {
                 </Link>
               ))}
             </div>
+          </div>
           </div>
         </section>
 

@@ -88,9 +88,8 @@
     color: var(--color-ink-300);
   }
   
-  /* Ensure headings stay black and use Instrument Serif */
+  /* Ensure headings use Instrument Serif — color inherits so dark/light sections work correctly */
   h1, h2, h3, h4, h5, h6 {
-    color: var(--color-off-black) !important;
     font-family: 'Instrument Serif', serif !important;
   }
 }
