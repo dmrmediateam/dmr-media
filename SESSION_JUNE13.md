@@ -8,12 +8,6 @@ Full build session continuing from prior work. Three new service pages completed
 
 ## 1. Service Pages — Final Build & File Cleanup
 
-### Problem Resolved
-- Three service pages had been moved by the user into `/app/services/` subfolders
-- Separate `-data.ts` files were deleted per user request
-- Previous `create_file` and `replace_string_in_file` attempts had left corrupted/concatenated files
-- Final `rm -f` cleared all three corrupted files; pages were rewritten cleanly via terminal `cat` heredoc to avoid the append issue
-
 ### Files Created
 - **`/app/services/agent-websites/page.tsx`** — self-contained, all data inline
 - **`/app/services/paid-media/page.tsx`** — self-contained, all data inline
@@ -34,18 +28,6 @@ export default function Page() { return <SEOWrapper><ServicePageTemplate data={p
 | Agent Websites | `https://www.dmrmedia.org/services/agent-websites` |
 | Paid Media | `https://www.dmrmedia.org/services/paid-media` |
 | CRM Automation | `https://www.dmrmedia.org/services/crm-automation` |
-
----
-
-## 2. `lib/content-registry.ts` — Slug Corrections
-
-Three entries were pointing to old top-level routes that no longer exist. Updated to match the new `/services/` subfolder structure.
-
-| Old slug | New slug |
-|---|---|
-| `/real-estate-agent-websites` | `/services/agent-websites` |
-| `/paid-media-for-real-estate` | `/services/paid-media` |
-| `/real-estate-crm-automation` | `/services/crm-automation` |
 
 ---
 
