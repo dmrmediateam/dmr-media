@@ -6,9 +6,9 @@ export const ANNUAL_SALES_VOLUME_OPTIONS = [
   '$40m+',
 ] as const
 
-/** Google General funnel: tiers below ~$20M go to the disqualified thank-you page. */
+/** Google General funnel: only sub $5M volume goes to the disqualified thank-you page. */
 export function isGoogleGeneralDisqualifiedVolume(annualSalesVolume: string): boolean {
-  return annualSalesVolume === 'sub $5m' || annualSalesVolume === '$5m to $20m'
+  return annualSalesVolume === 'sub $5m'
 }
 
 /** Google General funnel: tiers at ~$20M+ are qualified for the General signup conversion. */
