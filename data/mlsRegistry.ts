@@ -57,7 +57,7 @@ const RAW_REGISTRY: z.input<typeof mlsEntrySchema>[] = [
     links: [
       { label: 'Broward, Palm Beaches & St. Lucie Realtors®', url: 'https://rworld.com/' },
       { label: 'iHomeFinder IDX Coverage', url: 'https://www.ihomefinder.com/resources/idx-coverage/realtors-area-palm-beach/' },
-      { label: 'AgentFire Beaches MLS Coverage', url: 'https://agentfire.com/mls-coverage/beaches-mls-matrix-mls/' },
+      { label: 'AgentFire Beaches MLS (FLEX MLS) Coverage', url: 'https://agentfire.com/mls-coverage/beaches-mls-flex-mls/' },
     ],
   },
   {
