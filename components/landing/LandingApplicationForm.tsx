@@ -208,7 +208,7 @@ export default function LandingApplicationForm({
           </div>
           <div>
             <label htmlFor="landing-website" className={applyFormLabelClass}>
-              Website
+              Website <span className="font-normal text-[var(--color-ink-300)]">(optional)</span>
             </label>
             <input
               id="landing-website"
@@ -216,7 +216,6 @@ export default function LandingApplicationForm({
               name="website"
               value={formData.website}
               onChange={handleChange}
-              required
               autoComplete="url"
               placeholder="https://"
               className={applyFormInputClass}
