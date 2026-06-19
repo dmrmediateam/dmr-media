@@ -7,7 +7,7 @@ import ClientLogosSlider from '@/components/ClientLogosSlider'
 import GoogleGeneralReviewsScroll from '@/components/landing/GoogleGeneralReviewsScroll'
 import GoogleGeneralCaseStudies from '@/components/landing/GoogleGeneralCaseStudies'
 import GoogleGeneralHero from '@/components/landing/GoogleGeneralHero'
-import GoogleGeneralHeroForm from '@/components/landing/GoogleGeneralHeroForm'
+import LandingApplicationForm from '@/components/landing/LandingApplicationForm'
 import ChannelLandingObjectionSection from '@/components/landing/ChannelLandingObjectionSection'
 import ChannelLandingByTheNumbersSection from '@/components/landing/ChannelLandingByTheNumbersSection'
 import ChannelLandingTimelineSection from '@/components/landing/ChannelLandingTimelineSection'
@@ -197,7 +197,7 @@ export default function ChannelLandingPageContent({ config }: Props) {
                 </div>
               </div>
 
-              <GoogleGeneralHeroForm formName={formName} />
+              <LandingApplicationForm formName={formName} />
             </div>
           </div>
         </section>

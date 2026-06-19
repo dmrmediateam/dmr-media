@@ -1,15 +1,23 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useState, useEffect, useCallback } from 'react'
 import '@/app/landing/google-general/google-general-landing.css'
 import { applyFormCardClass } from '@/components/applyFormPrimitives'
 import GoogleGeneralHeroForm from '@/components/landing/GoogleGeneralHeroForm'
+import LandingApplicationForm from '@/components/landing/LandingApplicationForm'
 
 const DEFAULT_APPLY_FORM_NAME = 'google-general-modal'
 
+function isLandingApplicationPath(pathname: string | null) {
+  if (!pathname?.startsWith('/landing/')) return false
+  return !pathname.startsWith('/landing/thank-you') && pathname !== '/landing/apply'
+}
+
 export default function ApplyModal() {
   const router = useRouter()
+  const pathname = usePathname()
+  const useLandingForm = isLandingApplicationPath(pathname)
   const [isOpen, setIsOpen] = useState(false)
   const [formName, setFormName] = useState(DEFAULT_APPLY_FORM_NAME)
   const [formKey, setFormKey] = useState(0)
@@ -84,18 +92,33 @@ export default function ApplyModal() {
           </div>
 
           <div className="px-6 pb-7 pt-5">
-            <GoogleGeneralHeroForm
-              key={formKey}
-              id="apply-modal-form"
-              formName={formName}
-              variant="conversion"
-              embedded
-              onSuccess={(thankYouPath) => {
-                close()
-                router.push(thankYouPath)
-              }}
-              headerTitleId="apply-modal-form-title"
-            />
+            {useLandingForm ? (
+              <LandingApplicationForm
+                key={formKey}
+                id="apply-modal-form"
+                formName={formName}
+                variant="conversion"
+                embedded
+                onSuccess={(thankYouPath) => {
+                  close()
+                  router.push(thankYouPath)
+                }}
+                headerTitleId="apply-modal-form-title"
+              />
+            ) : (
+              <GoogleGeneralHeroForm
+                key={formKey}
+                id="apply-modal-form"
+                formName={formName}
+                variant="conversion"
+                embedded
+                onSuccess={(thankYouPath) => {
+                  close()
+                  router.push(thankYouPath)
+                }}
+                headerTitleId="apply-modal-form-title"
+              />
+            )}
           </div>
         </div>
       </div>

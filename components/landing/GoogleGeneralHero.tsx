@@ -1,4 +1,4 @@
-import GoogleGeneralHeroForm from '@/components/landing/GoogleGeneralHeroForm'
+import LandingApplicationForm from '@/components/landing/LandingApplicationForm'
 import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 
 type Props = {
@@ -127,7 +127,7 @@ export default function GoogleGeneralHero({ config }: Props) {
 
           <div className="gg-hero-form-col">
             <div className="gg-hero-form-shell">
-              <GoogleGeneralHeroForm formName={formName} variant="conversion" />
+              <LandingApplicationForm formName={formName} variant="conversion" />
             </div>
           </div>
         </div>
