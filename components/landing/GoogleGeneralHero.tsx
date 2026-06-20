@@ -5,12 +5,15 @@ type Props = {
   config: Pick<
     ChannelLandingConfig,
     | 'formName'
+    | 'formConfig'
     | 'heroTitleSegments'
     | 'heroTitle'
     | 'heroTitleEmphasis'
     | 'heroIntro'
     | 'heroIntroSegments'
     | 'heroIntroParagraphs'
+    | 'partnerStatsEyebrow'
+    | 'partnerStats'
   >
 }
 
@@ -82,8 +85,32 @@ function HeroIntro({ config }: { config: Props['config'] }) {
   return <p className="gg-hero-intro">{heroIntro}</p>
 }
 
+function HeroPartnerStats({
+  partnerStats,
+  partnerStatsEyebrow,
+}: Pick<Props['config'], 'partnerStats' | 'partnerStatsEyebrow'>) {
+  if (!partnerStats.length) return null
+
+  return (
+    <div className="gg-hero-partners border-t border-[var(--color-ink-200)]">
+      {partnerStatsEyebrow ? <p className="gg-eyebrow">{partnerStatsEyebrow}</p> : null}
+      <ul className="gg-hero-stats list-none p-0" aria-label="Client results">
+        {partnerStats.map((item) => (
+          <li key={item} className="flex gap-3">
+            <span
+              className="gg-hero-stat-bullet shrink-0 rounded-full bg-[var(--color-off-black)]"
+              aria-hidden
+            />
+            <p className="gg-hero-stat">{item}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 export default function GoogleGeneralHero({ config }: Props) {
-  const { formName } = config
+  const { formName, formConfig } = config
 
   return (
     <section
@@ -123,11 +150,15 @@ export default function GoogleGeneralHero({ config }: Props) {
             </h1>
 
             <HeroIntro config={config} />
+            <HeroPartnerStats
+              partnerStats={config.partnerStats}
+              partnerStatsEyebrow={config.partnerStatsEyebrow}
+            />
           </div>
 
           <div className="gg-hero-form-col">
             <div className="gg-hero-form-shell">
-              <LandingApplicationForm formName={formName} variant="conversion" />
+              <LandingApplicationForm formName={formName} formConfig={formConfig} variant="conversion" />
             </div>
           </div>
         </div>

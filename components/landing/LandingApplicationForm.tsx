@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useRef, useState, type ChangeEvent, type FormEvent } from 'react'
 import {
   applyFormBtnPrimaryClass,
@@ -8,6 +8,8 @@ import {
   applyFormLabelClass,
   applyFormPanelClass,
 } from '@/components/applyFormPrimitives'
+import type { ChannelLandingFormConfig } from '@/lib/landing/channel-landing-types'
+import { resolveLandingFormConfig } from '@/lib/landing/landing-form-config'
 import { getStoredUTMParams, trackApplicationConversion } from '@/lib/utmTracking'
 
 const DEFAULT_FORM_NAME = 'google-general-modal'
@@ -25,6 +27,7 @@ type FormDataState = typeof initialFormData
 type LandingApplicationFormProps = {
   id?: string
   formName?: string
+  formConfig?: ChannelLandingFormConfig
   variant?: 'default' | 'conversion'
   /** Skip outer panel border/shadow when nested inside ApplyModal. */
   embedded?: boolean
@@ -45,12 +48,18 @@ function splitFullName(fullName: string) {
 export default function LandingApplicationForm({
   id = 'hero-form',
   formName = DEFAULT_FORM_NAME,
+  formConfig,
   variant = 'default',
   embedded = false,
   onSuccess,
   headerTitleId,
 }: LandingApplicationFormProps) {
   const isConversion = variant === 'conversion'
+  const pathname = usePathname()
+  const copy = resolveLandingFormConfig(formConfig, pathname)
+  const isMinimal = copy.fieldSet === 'minimal'
+  const showPhone = copy.fieldSet !== 'minimal'
+  const showWebsite = copy.fieldSet === 'full'
   const router = useRouter()
   const [formData, setFormData] = useState<FormDataState>(initialFormData)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -122,6 +131,9 @@ export default function LandingApplicationForm({
     }
   }
 
+  const submitLabel = isConversion ? copy.submitLabelConversion : copy.submitLabelDefault
+  const footnote = isConversion ? copy.footnoteConversion : copy.footnoteDefault
+
   return (
     <div
       id={id}
@@ -138,22 +150,22 @@ export default function LandingApplicationForm({
       {isConversion ? (
         <header className="gg-form-header">
           <h2 id={headerTitleId} className="gg-form-header__title">
-            Book your strategy review
+            {copy.title}
           </h2>
-          <p className="gg-form-header__sub">Takes about 60 seconds</p>
+          <p className="gg-form-header__sub">{copy.subtitle}</p>
         </header>
       ) : (
-        <p className="gg-eyebrow">Book your strategy review</p>
+        <p className="gg-eyebrow">{copy.title}</p>
       )}
 
       <form
         ref={formRef}
         onSubmit={handleSubmit}
         className={isConversion ? 'mt-5 space-y-5' : 'mt-6 space-y-5'}
-        aria-label="Strategy review application"
+        aria-label={copy.ariaLabel}
       >
         {isConversion ? (
-          <p className="gg-form-question mb-1">Where should we send your strategy review?</p>
+          <p className="gg-form-question mb-1">{copy.question}</p>
         ) : (
           <>
             <div className="h-px w-full bg-[var(--color-ink-200)]" aria-hidden />
@@ -176,21 +188,23 @@ export default function LandingApplicationForm({
               className={applyFormInputClass}
             />
           </div>
-          <div>
-            <label htmlFor="landing-phone" className={applyFormLabelClass}>
-              Phone
-            </label>
-            <input
-              id="landing-phone"
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-              autoComplete="tel"
-              className={applyFormInputClass}
-            />
-          </div>
+          {!isMinimal ? (
+            <div>
+              <label htmlFor="landing-phone" className={applyFormLabelClass}>
+                Phone
+              </label>
+              <input
+                id="landing-phone"
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required={showPhone}
+                autoComplete="tel"
+                className={applyFormInputClass}
+              />
+            </div>
+          ) : null}
           <div>
             <label htmlFor="landing-email" className={applyFormLabelClass}>
               Email
@@ -206,21 +220,23 @@ export default function LandingApplicationForm({
               className={applyFormInputClass}
             />
           </div>
-          <div>
-            <label htmlFor="landing-website" className={applyFormLabelClass}>
-              Website <span className="font-normal text-[var(--color-ink-300)]">(optional)</span>
-            </label>
-            <input
-              id="landing-website"
-              type="url"
-              name="website"
-              value={formData.website}
-              onChange={handleChange}
-              autoComplete="url"
-              placeholder="https://"
-              className={applyFormInputClass}
-            />
-          </div>
+          {showWebsite ? (
+            <div>
+              <label htmlFor="landing-website" className={applyFormLabelClass}>
+                Website <span className="font-normal text-[var(--color-ink-300)]">(optional)</span>
+              </label>
+              <input
+                id="landing-website"
+                type="url"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
+                autoComplete="url"
+                placeholder="https://"
+                className={applyFormInputClass}
+              />
+            </div>
+          ) : null}
         </div>
 
         {submitMessage ? (
@@ -238,19 +254,11 @@ export default function LandingApplicationForm({
             disabled={isSubmitting}
             className={`${applyFormBtnPrimaryClass} w-full sm:min-w-[14rem] sm:w-auto`}
           >
-            {isSubmitting
-              ? 'Sending…'
-              : isConversion
-                ? 'Book my strategy review'
-                : 'Submit application'}
+            {isSubmitting ? 'Sending…' : submitLabel}
           </button>
         </div>
 
-        <p className="gg-form-footnote text-center sm:text-left">
-          {isConversion
-            ? 'No spam. 30-day qualified-lead guarantee.'
-            : 'No spam. No pressure, just a direct conversation about fit.'}
-        </p>
+        <p className="gg-form-footnote text-center sm:text-left">{footnote}</p>
       </form>
     </div>
   )

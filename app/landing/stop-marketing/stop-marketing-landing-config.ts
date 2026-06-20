@@ -15,6 +15,17 @@ const stopMarketingTimelineSection = {
 export const stopMarketingLandingConfig: ChannelLandingConfig = {
   path: '/landing/stop-marketing',
   formName: 'stop-marketing-modal',
+  headerApplyLabel: 'Get audit',
+  clientLogosRepeat: 1,
+  formConfig: {
+    title: 'Get your free marketing audit',
+    subtitle: 'See if we can take this off your plate',
+    question: 'Where should we send it?',
+    submitLabel: 'Send me the audit',
+    footnote: 'No spam. No sales call unless you want one.',
+    ariaLabel: 'Free marketing audit request',
+    fieldSet: 'compact',
+  },
   heroLayout: 'conversion',
   heroTitle: 'Stop Marketing Yourself. Let a Trusted Marketing Agency Do It For You.',
   heroTitleEmphasis: '',
@@ -24,7 +35,8 @@ export const stopMarketingLandingConfig: ChannelLandingConfig = {
       {
         text: 'You became an agent to serve clients, not to become a full-time marketer. Yet most teams we talk to are stuck posting, tweaking ads, and chasing vendors while listings slip through the cracks. ',
       },
-      { text: 'That ends here.', italic: true },
+      { text: 'That ends here. ' },
+      { text: 'We guarantee you get qualified leads within 30 days.', italic: true },
     ],
     [
       {
@@ -42,7 +54,11 @@ export const stopMarketingLandingConfig: ChannelLandingConfig = {
   ],
   marketingCoreHeading: 'Your marketing system, without you running it.',
   marketingCorePillars,
-  partnerStats: [],
+  partnerStats: [
+    'Hitchcock Properties got 88% reduction in lead costs in 28 days',
+    'Debi Eagan has sold $20M+ in volume year to date',
+    "Legendary Real Estate 3×'d their leads in 30 days",
+  ],
   caseStudies: channelLandingCaseStudies,
   faqItems: FAQ_ITEMS,
   timelineSection: stopMarketingTimelineSection,

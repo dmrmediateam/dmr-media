@@ -27,9 +27,9 @@ export const FAQ_ITEMS = [
       'Yes. Scope scales to how you operate. The system is the same; the build adjusts to your markets, price points, and lead volume.',
   },
   {
-    question: 'What happens on the strategy review?',
+    question: 'What happens after I request the audit?',
     answer:
-      'We learn how you sell today, where DIY marketing is costing you time and budget, and whether our model fits. If it does, you leave with a concrete plan, not a generic pitch deck.',
+      'We review how you market today, where DIY is costing you time, and email a short audit with what we would change first. If it looks like a fit, you can book a call — only if you want to.',
   },
 ] as const
 

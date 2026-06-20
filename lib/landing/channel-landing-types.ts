@@ -82,9 +82,27 @@ export type ChannelLandingHeroProofMetric = {
   label: string
 }
 
+export type ChannelLandingFormFieldSet = 'full' | 'compact' | 'minimal'
+
+export type ChannelLandingFormConfig = {
+  title?: string
+  subtitle?: string
+  question?: string
+  submitLabel?: string
+  footnote?: string
+  ariaLabel?: string
+  fieldSet?: ChannelLandingFormFieldSet
+}
+
 export type ChannelLandingConfig = {
   path: `/landing/${string}`
   formName: string
+  /** Lower-friction form copy and fields for cold traffic. */
+  formConfig?: ChannelLandingFormConfig
+  /** Nav CTA that scrolls to the hero form. */
+  headerApplyLabel?: string
+  /** Client logo marquee repeats (default 3). Use 1 for a single static row. */
+  clientLogosRepeat?: number
   /** Conversion-focused hero (form-first mobile, proof metrics, sticky form). */
   heroLayout?: 'default' | 'conversion'
   /** Serif subhead below H1 on conversion hero. */

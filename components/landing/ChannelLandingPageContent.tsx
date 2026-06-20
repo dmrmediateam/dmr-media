@@ -16,7 +16,7 @@ import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 const DMR_PHONE_DISPLAY = '+1 920-249-5210'
 const DMR_PHONE_HREF = 'tel:+19202495210'
 
-function ChannelLandingHeader() {
+function ChannelLandingHeader({ applyLabel = 'Apply' }: { applyLabel?: string }) {
   const scrollToForm = () => {
     document.getElementById('hero-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
@@ -35,7 +35,7 @@ function ChannelLandingHeader() {
                   {DMR_PHONE_DISPLAY}
                 </a>
                 <button type="button" className="site-nav__apply" onClick={scrollToForm}>
-                  Apply
+                  {applyLabel}
                 </button>
               </div>
             </div>
@@ -62,6 +62,9 @@ type Props = {
 export default function ChannelLandingPageContent({ config }: Props) {
   const {
     formName,
+    formConfig,
+    headerApplyLabel,
+    clientLogosRepeat,
     heroTitleSegments,
     heroTitle,
     heroTitleEmphasis,
@@ -95,7 +98,7 @@ export default function ChannelLandingPageContent({ config }: Props) {
 
   return (
     <div className="google-general-landing min-h-screen bg-[var(--surface-base)] text-[var(--color-off-black)]">
-      <ChannelLandingHeader />
+      <ChannelLandingHeader applyLabel={headerApplyLabel} />
 
       {heroLayout === 'conversion' ? (
         <GoogleGeneralHero config={config} />
@@ -197,14 +200,14 @@ export default function ChannelLandingPageContent({ config }: Props) {
                 </div>
               </div>
 
-              <LandingApplicationForm formName={formName} />
+              <LandingApplicationForm formName={formName} formConfig={formConfig} />
             </div>
           </div>
         </section>
       )}
 
       <section id="client-logos" className="scroll-mt-24" aria-label="Client logos">
-        <ClientLogosSlider />
+        <ClientLogosSlider repeatCount={clientLogosRepeat} />
       </section>
 
       {objectionSection ? <ChannelLandingObjectionSection section={objectionSection} /> : null}
