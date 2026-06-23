@@ -1,4 +1,5 @@
 import type { ChannelLandingFormConfig } from '@/lib/landing/channel-landing-types'
+import { caseStudiesLandingConfig } from '@/app/landing/case-studies/case-studies-landing-config'
 import { stopMarketingLandingConfig } from '@/app/landing/stop-marketing/stop-marketing-landing-config'
 
 export type ResolvedLandingFormConfig = {
@@ -27,6 +28,7 @@ const DEFAULT_LANDING_FORM_CONFIG: ResolvedLandingFormConfig = {
 
 const PATH_FORM_CONFIG: Partial<Record<string, ChannelLandingFormConfig>> = {
   [stopMarketingLandingConfig.path]: stopMarketingLandingConfig.formConfig,
+  [caseStudiesLandingConfig.path]: caseStudiesLandingConfig.formConfig,
 }
 
 function mergeFormConfig(overrides?: ChannelLandingFormConfig): ResolvedLandingFormConfig {

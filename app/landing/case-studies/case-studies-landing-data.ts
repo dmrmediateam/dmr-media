@@ -20,7 +20,7 @@ export const FAQ_ITEMS = [
   {
     question: 'Are these results typical for every market?',
     answer:
-      'Markets differ, but the playbook is consistent: intent mapping, disciplined Google Ads, SEO visibility, and follow-up your agents can run. We scope honestly after your strategy review and never promise volume we cannot defend with data.',
+      'Markets differ, but the playbook is consistent: intent mapping, disciplined Google Ads, SEO visibility, and follow-up your agents can run. We scope honestly after you request your audit and never promise volume we cannot defend with data.',
   },
   {
     question: 'How did Legendary Real Estate 3× their inbound pipeline?',
@@ -41,6 +41,11 @@ export const FAQ_ITEMS = [
     question: 'How is pricing scoped?',
     answer:
       'After we understand your market, volume, and goals, we align scope and put deliverables in writing. No opaque packages or surprise invoices for basic execution.',
+  },
+  {
+    question: 'What happens after I request the audit?',
+    answer:
+      'We review how you market today, where gaps show up against teams like Legendary, Hitchcock, and Eagan, and email a short audit with what we would change first. If it looks like a fit, you can book a call — only if you want to.',
   },
   {
     question: 'What makes DMR different from a typical lead-gen agency?',
