@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import SeoCarouselArrows from '@/components/SeoCarouselArrows'
 import SeoWebsiteExampleCard from '@/components/SeoWebsiteExampleCard'
+import { websiteExamplesForPropertyMarketing } from '@/app/property-marketing/property-marketing-data'
 import { websiteExamplesForSeo } from '@/app/seo-optimization/seo-data'
 import { useSeoHorizontalCardScroll } from '@/components/useSeoHorizontalCardScroll'
 
@@ -48,22 +49,48 @@ const INTRO = {
       </>
     ),
   },
+  propertyMarketing: {
+    kicker: 'Developments & condos',
+    title: 'Sites and campaigns built for presale, phases, and luxury inventory.',
+    body: (
+      <>
+        New construction, tower releases, and boutique condos need more than a listing link. See how we pair cinematic
+        sites with paid bursts for developments and trophy inventory. Explore{' '}
+        <Link href="/websites-for-new-developments" className="underline underline-offset-2 hover:opacity-70">
+          new development websites
+        </Link>{' '}
+        and{' '}
+        <Link href="/luxury-condo-websites" className="underline underline-offset-2 hover:opacity-70">
+          luxury condo websites
+        </Link>
+        .
+      </>
+    ),
+  },
 } as const
+
+type WebsiteExample = (typeof websiteExamplesForSeo)[number]
 
 type SeoWebsiteExamplesHorizontalScrollProps = {
   /** Defaults to SEO page copy. */
   variant?: keyof typeof INTRO
   /** Override section id (default: websites) */
   sectionId?: string
+  /** Override carousel items (e.g. property-marketing portfolio). */
+  examples?: readonly WebsiteExample[]
 }
 
 /** Horizontal portfolio strip; matches case-study carousel UX. */
 export default function SeoWebsiteExamplesHorizontalScroll({
   variant = 'seo',
   sectionId = 'websites',
+  examples,
 }: SeoWebsiteExamplesHorizontalScrollProps) {
   const { scrollerRef, atStart, atEnd, scrollByCard } = useSeoHorizontalCardScroll()
   const intro = INTRO[variant]
+  const items =
+    examples ??
+    (variant === 'propertyMarketing' ? websiteExamplesForPropertyMarketing : websiteExamplesForSeo)
 
   return (
     <section
@@ -87,7 +114,7 @@ export default function SeoWebsiteExamplesHorizontalScroll({
             className="-mx-4 overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth px-4 pb-2 [scrollbar-width:thin] md:-mx-6 md:px-6 lg:-mx-8 lg:px-8"
           >
             <ul className="flex w-max snap-x snap-mandatory gap-5 md:gap-6" role="list">
-              {websiteExamplesForSeo.map((site) => (
+              {items.map((site) => (
                 <SeoWebsiteExampleCard key={site.id} site={site} />
               ))}
             </ul>

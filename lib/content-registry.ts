@@ -298,9 +298,9 @@ export const contentRegistry: ContentEntry[] = [
   },
   {
     slug: '/property-marketing',
-    title: 'Luxury Property Marketing | DMR Media',
+    title: 'New Development & Condo Property Marketing | DMR Media',
     description:
-      'Luxury property marketing for exceptional listings. Dedicated single-property websites and Google Ads campaigns designed to close luxury listings faster.',
+      'Property marketing for new developments, luxury condos, and trophy listings. Dedicated sites, 30-day Google Ads bursts with media included, and launch email copy.',
     publishDate: '2024-06-15',
     modifiedDate: '2026-04-28',
     category: 'Property Marketing',
