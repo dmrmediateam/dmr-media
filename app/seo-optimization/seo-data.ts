@@ -72,7 +72,15 @@ export const websiteExamplesForSeo = [
   },
 ] as const
 
-export type SeoWebsiteExampleForCarousel = (typeof websiteExamplesForSeo)[number]
+export type SeoWebsiteExampleForCarousel = {
+  id: string
+  subheading: string
+  name: string
+  description: string
+  url: string
+  image: string
+  imageRight: boolean
+}
 
 export const stakesThree = [
   {

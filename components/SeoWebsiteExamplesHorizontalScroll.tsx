@@ -4,7 +4,10 @@ import Link from 'next/link'
 import SeoCarouselArrows from '@/components/SeoCarouselArrows'
 import SeoWebsiteExampleCard from '@/components/SeoWebsiteExampleCard'
 import { websiteExamplesForPropertyMarketing } from '@/app/property-marketing/property-marketing-data'
-import { websiteExamplesForSeo } from '@/app/seo-optimization/seo-data'
+import {
+  type SeoWebsiteExampleForCarousel,
+  websiteExamplesForSeo,
+} from '@/app/seo-optimization/seo-data'
 import { useSeoHorizontalCardScroll } from '@/components/useSeoHorizontalCardScroll'
 
 const INTRO = {
@@ -69,15 +72,13 @@ const INTRO = {
   },
 } as const
 
-type WebsiteExample = (typeof websiteExamplesForSeo)[number]
-
 type SeoWebsiteExamplesHorizontalScrollProps = {
   /** Defaults to SEO page copy. */
   variant?: keyof typeof INTRO
   /** Override section id (default: websites) */
   sectionId?: string
   /** Override carousel items (e.g. property-marketing portfolio). */
-  examples?: readonly WebsiteExample[]
+  examples?: readonly SeoWebsiteExampleForCarousel[]
 }
 
 /** Horizontal portfolio strip; matches case-study carousel UX. */
