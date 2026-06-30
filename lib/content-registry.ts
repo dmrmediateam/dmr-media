@@ -387,6 +387,18 @@ export const contentRegistry: ContentEntry[] = [
 
   // ─── Case Study Pages ───────────────────────────────────────────────────────
   {
+    slug: '/case-study/vignette-realty',
+    title: 'Vignette Realty — 71% Lower Cost Per Lead in 30 Days | DMR Media',
+    description:
+      'DMR Media rebuilt Vignette Realty’s Google Ads from Smart campaigns to intent-based Search and Demand Gen. Cost per conversion fell from $317 to $93 while qualified leads rose 50% at 27% lower spend.',
+    publishDate: '2026-06-29',
+    modifiedDate: '2026-06-29',
+    category: 'Case Study',
+    tags: ['Google Ads', 'Demand Gen', 'Western North Carolina', 'AI lead nurture'],
+    priority: 0.75,
+    changeFrequency: 'monthly',
+  },
+  {
     slug: '/case-study/willow-brook-realty',
     title: 'Willow Brook Realty — 46 Leads & 2 Clients in 3 Weeks | DMR Media',
     description:

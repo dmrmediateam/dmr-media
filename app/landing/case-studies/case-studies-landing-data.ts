@@ -9,11 +9,11 @@ function caseStudyById(id: string): ChannelLandingCaseStudy {
   return study
 }
 
-/** Legendary → Hitchcock → Eagan (featured order for this landing). */
+/** Vignette → Legendary → Hitchcock (featured order for this landing). */
 export const authorityCaseStudies: ChannelLandingCaseStudy[] = [
+  caseStudyById('vignette-realty'),
   caseStudyById('jade-legendary-real-estate'),
   caseStudyById('hitchcock-properties'),
-  caseStudyById('eagan-luxury-real-estate'),
 ]
 
 export const FAQ_ITEMS = [

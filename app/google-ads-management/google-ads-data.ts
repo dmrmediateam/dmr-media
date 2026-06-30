@@ -32,6 +32,15 @@ export const FAQ_ITEMS = [
 
 export const heroCaseStudySlides: SeoHeroCaseStudySlide[] = [
   {
+    id: 'vignette-realty',
+    href: '/case-study/vignette-realty',
+    teamName: 'Vignette Realty',
+    region: 'Franklin, NC',
+    highlight: '71% lower cost per conversion',
+    image: '/images/case-studies/vignette-realty/google-ads-june-dmr.png',
+    imageAlt: 'Google Ads dashboard showing improved conversion metrics for Vignette Realty',
+  },
+  {
     id: 'hitchcock-properties',
     href: '/case-study/hitchcock-properties',
     teamName: 'Hitchcock Properties',

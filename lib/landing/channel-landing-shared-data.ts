@@ -42,6 +42,22 @@ export const channelLandingCaseStudies: ChannelLandingCaseStudy[] = [
     ],
   },
   {
+    id: 'vignette-realty',
+    title: 'Vignette Realty',
+    region: 'Franklin, NC',
+    badge: 'Western North Carolina',
+    metric: '$93 cost per conversion',
+    summary:
+      'Replaced Luxury Presence Smart campaigns with custom creative, Demand Gen, Search, and AI lead nurture. Cost per conversion fell from $317 to $93 with 50% more qualified handoffs.',
+    image: '/images/case-studies/vignette-realty/pearsons-falls-wnc.jpg',
+    imageAlt: 'Pearson’s Falls, Western North Carolina — Vignette Realty market',
+    outcomes: [
+      '71% lower cost per conversion',
+      '48 leads at 27% less spend',
+      '8.11% buyer search conversion rate',
+    ],
+  },
+  {
     id: 'hitchcock-properties',
     title: 'Hitchcock Properties',
     region: 'Panama City Beach, FL',

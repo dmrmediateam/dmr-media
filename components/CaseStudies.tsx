@@ -3,24 +3,14 @@ import Image from 'next/image';
 
 const SMALL_STUDIES = [
   {
-    id: 'willow-brook-realty',
-    title: 'Willow Brook Realty',
-    client: 'Willow Brook',
-    comment: 'Vermont Realtor of the Year',
-    result: '2 Clients / 3 Weeks',
+    id: 'vignette-realty',
+    title: 'Vignette Realty',
+    client: 'Vignette Realty',
+    comment: 'Franklin, North Carolina',
+    result: '71% Lower CPL',
     description:
-      'From zero visibility to 46 leads and 2 new clients in 3 weeks. Built a complete inbound foundation with local SEO, Google Business Profile optimization, and targeted ads across Vermont and New Hampshire.',
-    image: '/images/Cities/NewHampshire.jpg',
-  },
-  {
-    id: 'jade-legendary-real-estate',
-    title: 'Legendary Real Estate Services',
-    client: 'Legendary Real Estate',
-    comment: 'Wisconsin Realtor of the Year',
-    result: '3x Lead Generation',
-    description:
-      'Tripled the inbound pipeline in 90 days. 42 content assets rebuilt, 12-hour automation velocity, and a ranking system built to own the Geneva Lakes luxury market.',
-    image: '/images/Cities/LakeGeneva.jpg',
+      'Cut cost per conversion from $317 to $93 by replacing Smart campaigns with custom creative, Demand Gen, intent-based Search, and AI lead nurture. 50% more qualified handoffs at 27% lower spend.',
+    image: '/images/case-studies/vignette-realty/pearsons-falls-wnc.jpg',
   },
   {
     id: 'hitchcock-properties',
@@ -31,6 +21,16 @@ const SMALL_STUDIES = [
     description:
       'Cut cost-per-lead from $86.36 to $10.46 with niche Google Search and P-Max for vacation rental buyers. 28+ high-intent leads per week and 1,323% estimated ROAS.',
     image: '/images/case-studies/hitchcock-properties/panama-city-beach.jpg',
+  },
+  {
+    id: 'jade-legendary-real-estate',
+    title: 'Legendary Real Estate Services',
+    client: 'Legendary Real Estate',
+    comment: 'Wisconsin Realtor of the Year',
+    result: '3x Lead Generation',
+    description:
+      'Tripled the inbound pipeline in 90 days. 42 content assets rebuilt, 12-hour automation velocity, and a ranking system built to own the Geneva Lakes luxury market.',
+    image: '/images/Cities/LakeGeneva.jpg',
   },
 ];
 

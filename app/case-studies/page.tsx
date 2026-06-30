@@ -8,6 +8,16 @@ export const metadata = metadataFromRegistry('/case-studies')
 
 const caseStudies = [
   {
+    id: 'vignette-realty',
+    title: 'Vignette Realty',
+    eyebrow: 'Google Ads Rebuild',
+    result: '71% Lower CPL',
+    image: '/images/case-studies/vignette-realty/pearsons-falls-wnc.jpg',
+    description:
+      'Replaced Luxury Presence Smart campaigns with custom creative, Demand Gen, intent-based Search, and AI lead nurture. Cost per conversion from $317 to $93 with 50% more qualified handoffs at 27% lower spend.',
+    tags: ['Google Ads', 'Demand Gen', 'AI Lead Nurture', 'Western North Carolina'],
+  },
+  {
     id: 'willow-brook-realty',
     title: 'Willow Brook Realty',
     eyebrow: 'Inbound Foundation',
