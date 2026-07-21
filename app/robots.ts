@@ -7,6 +7,8 @@ const THANK_YOU_DISALLOW = [
   '/thank-you',
   '/thank-you-q',
   '/thank-you-dq',
+  // Paid-traffic Google Ads landing page — not for organic search.
+  '/landing/website-development',
 ] as const
 
 export default function robots(): MetadataRoute.Robots {
