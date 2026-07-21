@@ -223,7 +223,7 @@ export default function LandingApplicationForm({
           {showWebsite ? (
             <div>
               <label htmlFor="landing-website" className={applyFormLabelClass}>
-                Website <span className="font-normal text-[var(--color-ink-300)]">(optional)</span>
+                Current Website <span className="font-normal text-[var(--color-ink-300)]">(optional)</span>
               </label>
               <input
                 id="landing-website"

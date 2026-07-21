@@ -10,6 +10,10 @@ type ShowcaseSample = {
   description: string
   image: string
   imageRight: boolean
+  awardBadge?: {
+    src: string
+    alt: string
+  }
 }
 
 const AGENT_WEBSITES: ShowcaseSample[] = [
@@ -39,6 +43,10 @@ const AGENT_WEBSITES: ShowcaseSample[] = [
       'An award-winning team doing 200+ sales a year needed a site that converts at that pace. A DesignRush Design Awards nominee, built around proof, process, and a clear path to contact.',
     image: '/images/ClientWebsiteImages/screencapture-florio-team-vercel-app-2026-05-16-15_01_22.png',
     imageRight: true,
+    awardBadge: {
+      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-florio-team.png',
+      alt: 'DesignRush.com Design Awards Nominee',
+    },
   },
   {
     id: 'valoria-homes',
@@ -98,7 +106,7 @@ function ShowcaseRow({ sample, index }: { sample: ShowcaseSample; index: number 
             Get a site like this →
           </button>
         </div>
-        <div className={sample.imageRight ? 'lg:order-2' : 'lg:order-1'}>
+        <div className={`relative ${sample.imageRight ? 'lg:order-2' : 'lg:order-1'}`}>
           <div className="relative min-h-[300px] w-full overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_12px_40px_-16px_rgba(15,15,15,0.12)] sm:min-h-[380px] lg:min-h-[440px]">
             <Image
               src={sample.image}
@@ -108,6 +116,17 @@ function ShowcaseRow({ sample, index }: { sample: ShowcaseSample; index: number 
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
+          {sample.awardBadge ? (
+            <div className="pointer-events-none absolute -left-4 -top-4 z-10 sm:-left-6 sm:-top-6">
+              <Image
+                src={sample.awardBadge.src}
+                alt={sample.awardBadge.alt}
+                width={351}
+                height={424}
+                className="h-24 w-auto drop-shadow-[0_12px_32px_rgba(15,15,15,0.28)] sm:h-28 lg:h-32"
+              />
+            </div>
+          ) : null}
         </div>
       </article>
     </SeoReveal>
