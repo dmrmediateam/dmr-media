@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, type ReactNode } from 'react'
 import Link from 'next/link'
 import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
 import ClientLogosSlider from '@/components/ClientLogosSlider'
@@ -57,9 +57,11 @@ function SectionRule({ align = 'left' }: { align?: 'left' | 'center' }) {
 
 type Props = {
   config: ChannelLandingConfig
+  /** Optional page-specific section (e.g. design showcase) rendered after the client logos. */
+  showcase?: ReactNode
 }
 
-export default function ChannelLandingPageContent({ config }: Props) {
+export default function ChannelLandingPageContent({ config, showcase }: Props) {
   const {
     formName,
     formConfig,
@@ -209,6 +211,8 @@ export default function ChannelLandingPageContent({ config }: Props) {
       <section id="client-logos" className="scroll-mt-24" aria-label="Client logos">
         <ClientLogosSlider repeatCount={clientLogosRepeat} />
       </section>
+
+      {showcase ?? null}
 
       {objectionSection ? <ChannelLandingObjectionSection section={objectionSection} /> : null}
 
