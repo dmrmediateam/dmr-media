@@ -134,6 +134,44 @@ export function trackGoogleGeneralQualifiedSignup(onComplete?: () => void): void
 }
 
 /**
+ * Google Ads — "Submit lead form (1)" conversion. Fires on every successful
+ * lead form submission across the site (see trackConversion for 'Lead' events).
+ */
+export const GOOGLE_ADS_LEAD_FORM_CONVERSION = 'AW-16882640022/R6v8CITK-dMcEJbJovI-'
+
+export function trackGoogleAdsLeadFormConversion(onComplete?: () => void): void {
+  if (typeof window === 'undefined') {
+    onComplete?.()
+    return
+  }
+
+  const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag
+  if (!gtag) {
+    onComplete?.()
+    return
+  }
+
+  let completed = false
+  const finish = () => {
+    if (completed) return
+    completed = true
+    onComplete?.()
+  }
+
+  try {
+    gtag('event', 'conversion', {
+      send_to: GOOGLE_ADS_LEAD_FORM_CONVERSION,
+      value: 1.0,
+      currency: 'USD',
+      event_callback: finish,
+    })
+    window.setTimeout(finish, 1000)
+  } catch {
+    finish()
+  }
+}
+
+/**
  * OpenAI Ads pixel — fires on successful application form submissions.
  */
 export function trackOpenAiLeadCreated(additionalData: Record<string, unknown> = {}): void {
@@ -190,5 +228,10 @@ export function trackConversion(eventName: string = 'Lead', additionalData: Reco
     } catch (e) {
       // Silently fail if gtag is not available
     }
+  }
+
+  // Fire the Google Ads "Submit lead form" conversion on every lead submission
+  if (eventName === 'Lead') {
+    trackGoogleAdsLeadFormConversion()
   }
 }
