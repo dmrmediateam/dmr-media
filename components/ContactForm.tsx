@@ -3,6 +3,7 @@
 import { useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
+import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot';
 import {
   applyFormBtnPrimaryClass,
   applyFormInputClass,
@@ -41,6 +42,9 @@ const ContactForm = () => {
       return;
     }
 
+    // Read honeypot values before the first state change / await.
+    const honeypot = readHoneypot(form);
+
     setIsSubmitting(true);
     setSubmitMessage('');
 
@@ -52,6 +56,7 @@ const ContactForm = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          ...honeypot,
           utm_source: utmParams.utm_source,
           utm_medium: utmParams.utm_medium,
           utm_campaign: utmParams.utm_campaign,
@@ -68,7 +73,9 @@ const ContactForm = () => {
       if (!response.ok) throw new Error(data.error || 'Failed to send message');
 
       setIsSubmitted(true);
-      trackConversion('Lead', { form_type: 'contact' });
+      // Skip the conversion pixel on a spam-filtered submission so it never
+      // inflates Google Ads data. The visitor still sees the success state.
+      if (!data.filtered) trackConversion('Lead', { form_type: 'contact' });
 
       setTimeout(() => {
         setIsSubmitted(false);
@@ -171,6 +178,7 @@ const ContactForm = () => {
             ) : (
               <div className={`${applyFormPanelClass} p-8 md:p-10`}>
                 <form ref={formRef} onSubmit={handleSubmit} aria-label="Contact form" className="space-y-5">
+                  <FormHoneypot idSuffix="contact" />
                   <div className="h-px w-full bg-[var(--color-ink-200)]" aria-hidden />
 
                   <div>

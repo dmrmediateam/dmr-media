@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { DEFAULT_HONEYPOT_FIELDS, isSpam } from '@/lib/spam-filter';
 
 /**
  * Landing Page Registration API Route
@@ -14,10 +15,33 @@ export async function POST(request: Request) {
     // Parse request body
     const body = await request.json();
 
-    // Validate required fields
     const source = body.source || 'add-listings-landing';
     const isFeb2026 = source === 'feb-2026-landing';
-    
+
+    // SPAM CHECK — runs before validation so a filtered post is indistinguishable
+    // from a real one. `website` IS a decoy on this endpoint (no form that posts
+    // here collects a real website), which is why it is added to the defaults.
+    const spamReasons = isSpam(body, {
+      honeypotFields: [...DEFAULT_HONEYPOT_FIELDS, 'website'],
+    });
+    if (spamReasons.length > 0) {
+      console.warn('[LandingRegistration] blocked likely spam', { reasons: spamReasons, ip, source });
+      return NextResponse.json(
+        {
+          success: true,
+          message: "Application submitted successfully! We'll review your application and send you access details shortly.",
+          filtered: true,
+          ...(isFeb2026 && {
+            qualified: true,
+            averageSalePriceInt: 0,
+            homesSold2025Int: 0,
+          }),
+        },
+        { status: 200 }
+      );
+    }
+
+    // Validate required fields
     if (!body.name || !body.email || !body.phone) {
       return NextResponse.json(
         { error: 'Missing required fields: name, email, and phone are required' },

@@ -11,6 +11,7 @@ import {
   applyFormPanelClass,
 } from '@/components/applyFormPrimitives'
 import { ANNUAL_SALES_VOLUME_OPTIONS } from '@/lib/application-form'
+import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot'
 
 const FORM_NAME = 'calendar-application'
 const THANK_YOU_PATH = '/landing/thank-you-q'
@@ -68,6 +69,9 @@ export default function CalendarPageContent() {
       return
     }
 
+    // Read honeypot values before the first state change / await.
+    const honeypot = readHoneypot(el)
+
     setIsSubmitting(true)
     setSubmitMessage('')
 
@@ -88,6 +92,7 @@ export default function CalendarPageContent() {
           website: form.website.trim(),
           annualSalesVolume: form.annualSalesVolume,
           notes: form.notes.trim(),
+          ...honeypot,
           bookingReason: bookingReasons,
           submissionPage,
           ...utm,
@@ -97,14 +102,18 @@ export default function CalendarPageContent() {
       const data = (await response.json().catch(() => ({}))) as {
         ok?: boolean
         error?: string
+        filtered?: boolean
       }
 
       if (response.ok && data.ok) {
-        trackApplicationConversion({
-          form_name: FORM_NAME,
-          submission_page: submissionPage,
-          ...utm,
-        })
+        // Skip the conversion pixel on a spam-filtered submission.
+        if (!data.filtered) {
+          trackApplicationConversion({
+            form_name: FORM_NAME,
+            submission_page: submissionPage,
+            ...utm,
+          })
+        }
         router.push(THANK_YOU_PATH)
         return
       }
@@ -170,6 +179,7 @@ export default function CalendarPageContent() {
               </p>
               <div className={applyFormPanelClass}>
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 p-6 sm:p-8">
+                  <FormHoneypot idSuffix="calendar" />
                   <p className="font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
                     Takes about two minutes. We&apos;ll come to the call with your market, rankings, and biggest gaps
                     already mapped.

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { isSpam } from '@/lib/spam-filter';
 
 /**
  * Qualification Form API Route
@@ -9,6 +10,21 @@ export async function POST(request: Request) {
   try {
     // Parse request body
     const body = await request.json();
+
+    // SPAM CHECK — runs before validation so a filtered post is indistinguishable
+    // from a real one. `websiteUrl` is a real field here and is never a decoy.
+    const spamReasons = isSpam(body);
+    if (spamReasons.length > 0) {
+      console.warn('[QualificationForm] blocked likely spam', { reasons: spamReasons });
+      return NextResponse.json(
+        {
+          success: true,
+          message: 'Thank you for your application! We\'ll review your information and get back to you soon.',
+          filtered: true,
+        },
+        { status: 200 }
+      );
+    }
 
     // Validate required fields
     if (!body.closingsLast12Months || !body.isFullTime || !body.activeMarket || !body.listingSituation || !body.isDecisionMaker || !body.leadResponseTime) {

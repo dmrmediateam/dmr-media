@@ -9,6 +9,7 @@ import ReviewsAggregate from '@/components/ReviewsAggregate';
 import getStripe from '@/lib/stripe';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 import { ELFSIGHT_CHATBOT_SELECTOR } from '@/lib/elfsight-widgets';
+import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot';
 
 function AddListingsLandingContent() {
   const router = useRouter();
@@ -75,10 +76,14 @@ function AddListingsLandingContent() {
   const videoId = 'UGy2ppmSeYc';
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&rel=0&modestbranding=1`;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Read honeypot values before the first state change / await.
+    const honeypot = readHoneypot(e.currentTarget);
+
     setIsSubmitting(true);
-    
+
     try {
       // Create a Checkout Session
       const response = await fetch('/api/checkout_sessions', {
@@ -107,9 +112,9 @@ function AddListingsLandingContent() {
         // Get stored UTM parameters
         const utmParams = getStoredUTMParams();
         
-        // Track conversion
-        trackConversion('Lead', { form_type: 'add_listings_landing' });
-        
+        // Conversion is tracked after the response below, so a spam-filtered
+        // submission never fires the pixel.
+
         // Submit to registration API
         const regResponse = await fetch('/api/landing-registration', {
           method: 'POST',
@@ -118,6 +123,7 @@ function AddListingsLandingContent() {
             name: formData.name,
             email: formData.email,
             phone: formData.phone,
+            ...honeypot,
             source: 'add-listings-landing',
             utm_source: utmParams.utm_source,
             utm_medium: utmParams.utm_medium,
@@ -135,6 +141,11 @@ function AddListingsLandingContent() {
 
         if (!regResponse.ok) {
           throw new Error(regResult.error || 'Registration failed');
+        }
+
+        // Skip the conversion pixel on a spam-filtered submission.
+        if (!regResult.filtered) {
+          trackConversion('Lead', { form_type: 'add_listings_landing' });
         }
 
         // Redirect to thank-you page with email, name, and phone
@@ -946,6 +957,7 @@ function AddListingsLandingContent() {
               
               <div className="relative z-10">
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  <FormHoneypot idSuffix="addlistings" />
                   <div>
                     <label htmlFor="name" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                       Name

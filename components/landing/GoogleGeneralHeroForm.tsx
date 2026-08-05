@@ -17,6 +17,7 @@ import {
   isGoogleGeneralQualifiedVolume,
 } from '@/lib/application-form'
 import { getStoredUTMParams, trackApplicationConversion, trackGoogleGeneralQualifiedSignup } from '@/lib/utmTracking'
+import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot'
 
 const TOTAL_STEPS = 4
 const DEFAULT_FORM_NAME = 'google-general-modal'
@@ -136,6 +137,9 @@ export default function GoogleGeneralHeroForm({
     e.preventDefault()
     if (!validateCurrentStep()) return
 
+    // Read honeypot values before the first state change / await.
+    const honeypot = readHoneypot(e.currentTarget)
+
     setIsSubmitting(true)
     setSubmitMessage('')
 
@@ -158,20 +162,28 @@ export default function GoogleGeneralHeroForm({
           teamSize: formData.teamSize,
           biggestChallenge: formData.biggestChallenge,
           website: formData.website.trim(),
+          ...honeypot,
           formName,
           submissionPage,
           ...utm,
         }),
       })
 
-      const data = (await response.json().catch(() => ({}))) as { ok?: boolean; error?: string }
+      const data = (await response.json().catch(() => ({}))) as {
+        ok?: boolean
+        error?: string
+        filtered?: boolean
+      }
 
       if (response.ok && data.ok) {
-        trackApplicationConversion({
-          form_name: formName,
-          submission_page: submissionPage,
-          ...utm,
-        })
+        // Skip the conversion pixel on a spam-filtered submission.
+        if (!data.filtered) {
+          trackApplicationConversion({
+            form_name: formName,
+            submission_page: submissionPage,
+            ...utm,
+          })
+        }
         const thankYouPath = isGoogleGeneralDisqualifiedVolume(formData.annualSalesVolume)
           ? DQ_THANK_YOU_PATH
           : THANK_YOU_PATH
@@ -182,7 +194,9 @@ export default function GoogleGeneralHeroForm({
           }
           router.push(thankYouPath)
         }
-        if (isGoogleGeneralQualifiedVolume(formData.annualSalesVolume)) {
+        // trackGoogleGeneralQualifiedSignup also drives navigation, so on a
+        // filtered submission navigate directly rather than skipping the call.
+        if (!data.filtered && isGoogleGeneralQualifiedVolume(formData.annualSalesVolume)) {
           trackGoogleGeneralQualifiedSignup(navigate)
         } else {
           navigate()
@@ -226,6 +240,8 @@ export default function GoogleGeneralHeroForm({
         className={isConversion ? 'mt-5 space-y-5' : 'mt-6 space-y-5'}
         aria-label="Strategy review application"
       >
+        {/* Outside the step panels so it exists on every step, not just the last. */}
+        <FormHoneypot idSuffix={id} />
         {isConversion ? (
           <div
             className="gg-form-progress-wrap"

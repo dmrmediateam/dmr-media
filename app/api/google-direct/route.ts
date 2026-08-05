@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { isSpam } from '@/lib/spam-filter';
 
 /**
  * Google Direct Landing Page Form API Route
@@ -9,6 +10,22 @@ export async function POST(request: Request) {
   try {
     // Parse request body
     const body = await request.json();
+
+    // SPAM CHECK — runs before validation so a filtered post is indistinguishable
+    // from a real one. NOTE: `website` is a REQUIRED real field here, so it is
+    // never treated as a decoy on this endpoint.
+    const spamReasons = isSpam(body);
+    if (spamReasons.length > 0) {
+      console.warn('[GoogleDirect] blocked likely spam', { reasons: spamReasons });
+      return NextResponse.json(
+        {
+          success: true,
+          message: 'Form submitted successfully!',
+          filtered: true,
+        },
+        { status: 200 }
+      );
+    }
 
     // Validate required fields
     if (!body.name || !body.email || !body.phone || !body.website || !body.transactions2025) {

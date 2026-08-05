@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { sendHomeValuationEmail, type HomeValuationData } from '@/lib/email';
+import { isSpam } from '@/lib/spam-filter';
 // import { sendHomeValuationToZapier } from '@/lib/zapier'; // UNCOMMENT to enable Zapier
 
 /**
@@ -10,6 +11,22 @@ export async function POST(request: Request) {
   try {
     // Parse request body
     const body: HomeValuationData = await request.json();
+
+    // SPAM CHECK — runs before validation so a filtered post is indistinguishable
+    // from a real one. `address` is deliberately not scanned: street numbers and
+    // MLS numbers trip digit heuristics.
+    const spamReasons = isSpam(body as unknown as Record<string, unknown>);
+    if (spamReasons.length > 0) {
+      console.warn('[HomeValuation] blocked likely spam', { reasons: spamReasons });
+      return NextResponse.json(
+        {
+          success: true,
+          message: 'Thank you for your home valuation request. Cheryl will contact you within 24 hours with a comprehensive market analysis.',
+          filtered: true,
+        },
+        { status: 200 }
+      );
+    }
 
     // Validate required fields
     const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'address', 'city', 'state', 'zipCode', 'propertyType'];

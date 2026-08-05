@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import GrowthPartnerPromoCard from '@/components/GrowthPartnerPromoCard'
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking'
+import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot'
 
 const VSL_VIDEO_ID = 'Cty5rQPwksM'
 
@@ -18,9 +19,14 @@ export default function NewsletterSignup() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (formData.website) return
+
+    // Read honeypot values before the first state change / await. No early
+    // return on a hit: the request goes through and the server drops it
+    // silently, so the bot sees a normal flow and we get a log line.
+    const honeypot = readHoneypot(e.currentTarget)
+
     setIsSubmitting(true)
 
     const utmParams = getStoredUTMParams()
@@ -34,6 +40,7 @@ export default function NewsletterSignup() {
           email: formData.email.trim().toLowerCase(),
           phone: formData.phone.trim(),
           website: formData.website,
+          ...honeypot,
           source: 'google-direct-landing',
           utm_source: utmParams.utm_source,
           utm_medium: utmParams.utm_medium,
@@ -53,7 +60,8 @@ export default function NewsletterSignup() {
         throw new Error(data.error || 'Failed to submit')
       }
 
-      trackConversion('Lead', { form_type: 'google_direct_landing' })
+      // Skip the conversion pixel on a spam-filtered submission.
+      if (!data.filtered) trackConversion('Lead', { form_type: 'google_direct_landing' })
       setIsSubmitted(true)
       setIsSubmitting(false)
 
@@ -157,6 +165,7 @@ export default function NewsletterSignup() {
 
                     {/* Form - Centered */}
                     <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto space-y-5">
+                      <FormHoneypot idSuffix="newsletter" />
                       <div className="absolute -left-[9999px] w-1 h-1 overflow-hidden" aria-hidden="true">
                         <label htmlFor="newsletter-website">Website</label>
                         <input

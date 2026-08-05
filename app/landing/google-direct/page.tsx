@@ -8,6 +8,7 @@ import Image from 'next/image';
 import ClientLogosSlider from '@/components/ClientLogosSlider';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 import { ELFSIGHT_LANDING_HIDE_SELECTORS } from '@/lib/elfsight-widgets';
+import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot';
 
 const SCROLL_REVIEWS = [
   {
@@ -47,9 +48,14 @@ export default function GoogleDirectLandingPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const embedRef = useRef<HTMLDivElement>(null);
 
-  const handleFormSubmit = async (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (formData.website) return;
+
+    // Read honeypot values before the first state change / await. No early
+    // return on a hit: the request goes through and the server drops it
+    // silently, so the bot sees a normal flow and we get a log line.
+    const honeypot = readHoneypot(e.currentTarget);
+
     setIsSubmitting(true);
     const utmParams = getStoredUTMParams();
     try {
@@ -61,6 +67,7 @@ export default function GoogleDirectLandingPage() {
           email: formData.email.trim(),
           phone: formData.phone.trim(),
           website: formData.website,
+          ...honeypot,
           source: 'google-direct-landing',
           utm_source: utmParams.utm_source,
           utm_medium: utmParams.utm_medium,
@@ -75,7 +82,8 @@ export default function GoogleDirectLandingPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to submit');
-      trackConversion('Lead', { form_type: 'google_direct_landing' });
+      // Skip the conversion pixel on a spam-filtered submission.
+      if (!data.filtered) trackConversion('Lead', { form_type: 'google_direct_landing' });
       router.push(
         `/landing/thank-you?session_id=free_registration&email=${encodeURIComponent(formData.email)}&name=${encodeURIComponent(formData.name)}&phone=${encodeURIComponent(formData.phone)}`
       );
@@ -217,6 +225,7 @@ export default function GoogleDirectLandingPage() {
                 className="w-full"
               >
                 <form onSubmit={handleFormSubmit} className="relative bg-white p-8 md:p-10 space-y-6 rounded-lg border-2 border-[var(--color-trust)] shadow-[0_8px_32px_rgba(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.04)] ring-4 ring-[var(--color-trust)]/20">
+                  <FormHoneypot idSuffix="google-direct" />
                   <div className="absolute -left-[9999px] w-1 h-1 overflow-hidden" aria-hidden="true">
                     <label htmlFor="website">Website</label>
                     <input

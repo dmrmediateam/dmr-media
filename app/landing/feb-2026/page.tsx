@@ -9,6 +9,7 @@ import ReviewsAggregate from '@/components/ReviewsAggregate';
 import getStripe from '@/lib/stripe';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 import { ELFSIGHT_LANDING_HIDE_SELECTORS } from '@/lib/elfsight-widgets';
+import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot';
 
 function Feb2026LandingContent() {
   const router = useRouter();
@@ -123,10 +124,14 @@ function Feb2026LandingContent() {
   const videoId = 'UGy2ppmSeYc';
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&rel=0&modestbranding=1`;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Read honeypot values before the first state change / await.
+    const honeypot = readHoneypot(e.currentTarget);
+
     setIsSubmitting(true);
-    
+
     try {
       // Create a Checkout Session
       const response = await fetch('/api/checkout_sessions', {
@@ -155,9 +160,9 @@ function Feb2026LandingContent() {
         // Get stored UTM parameters
         const utmParams = getStoredUTMParams();
         
-        // Track conversion
-        trackConversion('Lead', { form_type: 'feb_2026_landing' });
-        
+        // Conversion is tracked after the response below, so a spam-filtered
+        // submission never fires the pixel.
+
         // Submit to registration API with UTM parameters
         const regResponse = await fetch('/api/landing-registration', {
           method: 'POST',
@@ -168,6 +173,7 @@ function Feb2026LandingContent() {
             phone: formData.phone,
             averageSalePrice: formData.averageSalePrice,
             homesSold2025: formData.homesSold2025,
+            ...honeypot,
             source: 'feb-2026-landing',
             eventDate: 'February 11th, 2026',
             utm_source: utmParams.utm_source,
@@ -186,6 +192,11 @@ function Feb2026LandingContent() {
 
         if (!regResponse.ok) {
           throw new Error(regResult.error || 'Application failed');
+        }
+
+        // Skip the conversion pixel on a spam-filtered submission.
+        if (!regResult.filtered) {
+          trackConversion('Lead', { form_type: 'feb_2026_landing' });
         }
 
         // Redirect to feb-2026 thank-you page with qualification status, email, and name
@@ -1000,6 +1011,7 @@ function Feb2026LandingContent() {
               
               <div className="relative z-10">
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  <FormHoneypot idSuffix="feb-2026" />
                   <div>
                     <label htmlFor="name" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">
                       Name

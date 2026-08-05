@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import ReviewsAggregate from '@/components/ReviewsAggregate';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
 import { ELFSIGHT_CHATBOT_SELECTOR } from '@/lib/elfsight-widgets';
+import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot';
 
 function ApplyContent() {
   const router = useRouter();
@@ -51,10 +52,14 @@ function ApplyContent() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Read honeypot values before the first state change / await.
+    const honeypot = readHoneypot(e.currentTarget);
+
     setIsSubmitting(true);
-    
+
     // Get stored UTM parameters
     const utmParams = getStoredUTMParams();
     
@@ -65,6 +70,7 @@ function ApplyContent() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          ...honeypot,
           utm_source: utmParams.utm_source,
           utm_medium: utmParams.utm_medium,
           utm_campaign: utmParams.utm_campaign,
@@ -102,7 +108,8 @@ function ApplyContent() {
         router.push('/landing/qualification-result?status=maybe');
       } else {
         // Track conversion
-        trackConversion('Lead', { form_type: 'strategy_call_apply' });
+        // Skip the conversion pixel on a spam-filtered submission.
+        if (!result.filtered) trackConversion('Lead', { form_type: 'strategy_call_apply' });
         
         // Qualified
         router.push('/landing/qualification-result?status=qualified');
@@ -183,6 +190,7 @@ function ApplyContent() {
               
               <div className="relative z-10">
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  <FormHoneypot idSuffix="apply" />
                   {/* Email Field */}
                   <div>
                     <label htmlFor="email" className="block text-base uppercase tracking-[0.3em] text-[var(--color-ink-300)] mb-2">

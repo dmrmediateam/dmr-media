@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { sendContactFormToZapier } from '@/lib/zapier';
 import { sendContactFormEmail, type ContactFormData } from '@/lib/email';
+import { isSpam } from '@/lib/spam-filter';
 
 /**
  * Contact Form API Route
@@ -10,6 +11,26 @@ export async function POST(request: Request) {
   try {
     // Parse request body
     const body: ContactFormData = await request.json();
+
+    // SPAM CHECK — must run before validation. If it ran after, a spam post
+    // missing a required field would get a 400, which is a distinguishable
+    // response the bot can tune against. On a hit, return the exact success
+    // payload and do no work: no email, no Zapier, no analytics.
+    const spamReasons = isSpam(body as unknown as Record<string, unknown>);
+    if (spamReasons.length > 0) {
+      console.warn('[Contact] blocked likely spam', { reasons: spamReasons });
+      return NextResponse.json(
+        {
+          success: true,
+          message: 'Thank you for your message. We will get back to you soon!',
+          channels: { email: true, zapier: true },
+          // Tells the client to skip the Google Ads conversion pixel so filtered
+          // spam never inflates conversion data. The UI still shows success.
+          filtered: true,
+        },
+        { status: 200 }
+      );
+    }
 
     // Validate required fields
     if (!body.name || !body.email || !body.message) {

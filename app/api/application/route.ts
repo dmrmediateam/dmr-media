@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isGoogleGeneralDisqualifiedVolume } from '@/lib/application-form'
 import { sendApplicationFormEmail } from '@/lib/email'
+import { isSpam } from '@/lib/spam-filter'
 
 const DEFAULT_THANK_YOU_PATH = '/landing/thank-you'
 const GOOGLE_GENERAL_FORM_NAME = 'google-general-strategy-call'
@@ -63,6 +64,29 @@ export async function POST(req: NextRequest) {
 
     if (contentType.includes('application/json')) {
       const body = (await req.json()) as Record<string, unknown>
+
+      // SPAM CHECK — first thing in the JSON branch, before any field handling.
+      // `website` is a REAL field on this form, so it is never a decoy here;
+      // only the default decoys (company / fax) apply.
+      const spamReasons = isSpam(body)
+      if (spamReasons.length > 0) {
+        console.warn('[Application] blocked likely spam (json)', { reasons: spamReasons })
+        const jsonFormName =
+          typeof body.formName === 'string' ? body.formName.trim() : 'calendar-application'
+        if (jsonFormName === GOOGLE_GENERAL_FORM_NAME) {
+          const volume =
+            typeof body.annualSalesVolume === 'string' ? body.annualSalesVolume : ''
+          return NextResponse.json({
+            ok: true,
+            redirectPath: isGoogleGeneralDisqualifiedVolume(volume)
+              ? GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH
+              : GOOGLE_GENERAL_THANK_YOU_PATH,
+            filtered: true,
+          })
+        }
+        return NextResponse.json({ ok: true, filtered: true })
+      }
+
       const formName =
         typeof body.formName === 'string' && body.formName.trim()
           ? body.formName.trim()
@@ -119,6 +143,23 @@ export async function POST(req: NextRequest) {
     const isGoogleGeneral = formName === GOOGLE_GENERAL_FORM_NAME
     const annualSalesVolume = formData.get('annualSalesVolume')?.toString() ?? ''
     const isDisqualifiedVolume = isGoogleGeneralDisqualifiedVolume(annualSalesVolume)
+
+    // SPAM CHECK — native form-POST branch. Redirects to the same thank-you page
+    // a real submission would reach, so a bot sees no difference.
+    const formEntries = Object.fromEntries(
+      Array.from(formData.entries()).map(([key, value]) => [key, value.toString()])
+    )
+    const formSpamReasons = isSpam(formEntries)
+    if (formSpamReasons.length > 0) {
+      console.warn('[Application] blocked likely spam (formdata)', { reasons: formSpamReasons })
+      const silentPath = isGoogleGeneral
+        ? isDisqualifiedVolume
+          ? GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH
+          : GOOGLE_GENERAL_THANK_YOU_PATH
+        : DEFAULT_THANK_YOU_PATH
+      return NextResponse.redirect(new URL(silentPath, req.url), 303)
+    }
+
     const firstName = formData.get('firstName')?.toString().trim() ?? ''
     const lastName = formData.get('lastName')?.toString().trim() ?? ''
     const fullName = [firstName, lastName].filter(Boolean).join(' ')

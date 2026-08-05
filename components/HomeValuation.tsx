@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking';
+import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot';
 
 export default function HomeValuation() {
   const [formData, setFormData] = useState({
@@ -33,8 +34,13 @@ export default function HomeValuation() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Read honeypot values before the first state change / await — React
+    // pools synthetic events and currentTarget becomes null afterwards.
+    const honeypot = readHoneypot(e.currentTarget);
+
     setIsSubmitting(true);
 
     // Get stored UTM parameters
@@ -48,6 +54,7 @@ export default function HomeValuation() {
         },
         body: JSON.stringify({
           ...formData,
+          ...honeypot,
           utm_source: utmParams.utm_source,
           utm_medium: utmParams.utm_medium,
           utm_campaign: utmParams.utm_campaign,
@@ -71,7 +78,8 @@ export default function HomeValuation() {
       setIsSubmitted(true);
       
       // Track conversion
-      trackConversion('Lead', { form_type: 'home_valuation' });
+      // Skip the conversion pixel on a spam-filtered submission.
+      if (!data.filtered) trackConversion('Lead', { form_type: 'home_valuation' });
       
       // Reset form after 5 seconds
       setTimeout(() => {
@@ -206,6 +214,7 @@ export default function HomeValuation() {
             <h3 className="text-xl font-serif font-light text-black mb-6">Property Information</h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
+              <FormHoneypot idSuffix="home-valuation" />
               {/* Personal Information */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>

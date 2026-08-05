@@ -11,6 +11,7 @@ import {
 import type { ChannelLandingFormConfig } from '@/lib/landing/channel-landing-types'
 import { resolveLandingFormConfig } from '@/lib/landing/landing-form-config'
 import { getStoredUTMParams, trackApplicationConversion } from '@/lib/utmTracking'
+import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot'
 
 const DEFAULT_FORM_NAME = 'google-general-modal'
 const THANK_YOU_PATH = '/landing/thank-you-q'
@@ -79,6 +80,9 @@ export default function LandingApplicationForm({
       return
     }
 
+    // Read honeypot values before the first state change / await.
+    const honeypot = readHoneypot(form)
+
     setIsSubmitting(true)
     setSubmitMessage('')
 
@@ -98,20 +102,28 @@ export default function LandingApplicationForm({
           email: formData.email.trim(),
           phone: formData.phone.trim(),
           website: formData.website.trim(),
+          ...honeypot,
           formName,
           submissionPage,
           ...utm,
         }),
       })
 
-      const data = (await response.json().catch(() => ({}))) as { ok?: boolean; error?: string }
+      const data = (await response.json().catch(() => ({}))) as {
+        ok?: boolean
+        error?: string
+        filtered?: boolean
+      }
 
       if (response.ok && data.ok) {
-        trackApplicationConversion({
-          form_name: formName,
-          submission_page: submissionPage,
-          ...utm,
-        })
+        // Skip the conversion pixel on a spam-filtered submission.
+        if (!data.filtered) {
+          trackApplicationConversion({
+            form_name: formName,
+            submission_page: submissionPage,
+            ...utm,
+          })
+        }
         const navigate = () => {
           if (onSuccess) {
             onSuccess(THANK_YOU_PATH)
@@ -164,6 +176,8 @@ export default function LandingApplicationForm({
         className={isConversion ? 'mt-5 space-y-5' : 'mt-6 space-y-5'}
         aria-label={copy.ariaLabel}
       >
+        {/* idSuffix uses the instance `id` — this form can render twice on a page. */}
+        <FormHoneypot idSuffix={id} />
         {isConversion ? (
           <p className="gg-form-question mb-1">{copy.question}</p>
         ) : (
