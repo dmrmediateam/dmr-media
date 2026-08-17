@@ -1,6 +1,5 @@
 'use client'
 
-import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -11,11 +10,7 @@ import ClientLogosSlider from '@/components/ClientLogosSlider'
 import VideoTestimonials from '@/components/VideoTestimonials'
 import ServiceStats from '@/components/service/ServiceStats'
 import Testimonials from '@/components/Testimonials'
-import SeoHeroCaseStudyShowcase, { type SeoHeroCaseStudySlide } from '@/components/SeoHeroCaseStudyShowcase'
-import {
-  SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME,
-  SeoLandingStickyPrimaryCta,
-} from '@/components/SeoLandingHeroPrimaryCta'
+import { SeoLandingStickyPrimaryCta } from '@/components/SeoLandingHeroPrimaryCta'
 import {
   dmrVsAlternatives,
   frameworkPillars,
@@ -25,76 +20,6 @@ import {
 } from './chatgpt-ads-data'
 
 const APPLY_FORM = 'chatgpt-ads-real-estate-apply'
-const HERO_VIDEO_SRC = '/videos/DMR%20-%20INTRO%204K.mp4'
-
-/** Hero carousel: documented paid + pipeline outcomes (same execution standards as the beta). */
-const CHATGPT_ADS_HERO_SLIDES: SeoHeroCaseStudySlide[] = [
-  {
-    id: 'eagan-luxury-real-estate',
-    href: '/case-study/eagan-luxury-real-estate',
-    teamName: 'Eagan Luxury Real Estate',
-    region: 'St. Petersburg, FL',
-    highlight: '$11M+ closed volume · Q1 after launch',
-    image: '/images/EaganCaseStudy/SearchAds.png',
-    imageAlt: 'Paid search campaign performance for Eagan Luxury Real Estate',
-  },
-  {
-    id: 'jade-legendary-real-estate',
-    href: '/case-study/jade-legendary-real-estate',
-    teamName: 'Legendary Real Estate Services',
-    region: 'Lake Geneva, WI',
-    highlight: 'Paid media + search orchestration',
-    image: '/images/LegendaryRealEstateCaseSTudy/GoogleAdsSCreenshot.png',
-    imageAlt: 'Paid media results for Legendary Real Estate Services',
-  },
-  {
-    id: 'willow-brook-realty',
-    href: '/case-study/willow-brook-realty',
-    teamName: 'Willow Brook Realty',
-    region: 'Vermont & New Hampshire',
-    highlight: '46 inbound leads in 3 weeks',
-    image: '/images/WillowBrookLeads.png',
-    imageAlt: 'Inbound lead volume after Willow Brook Realty paid search and local launch',
-  },
-]
-
-function VolumeOffIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-      <line x1="23" y1="9" x2="17" y2="15" />
-      <line x1="17" y1="9" x2="23" y2="15" />
-    </svg>
-  )
-}
-
-function VolumeOnIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-    </svg>
-  )
-}
 
 function openApplyModal() {
   window.dispatchEvent(new CustomEvent('openApplyModal', { detail: { formName: APPLY_FORM } }))
@@ -104,7 +29,7 @@ function ApplyCtaBand({
   hint,
   surface,
   className = '',
-  primaryLabel = 'Apply for beta access',
+  primaryLabel = 'Apply to run ChatGPT Ads',
   secondaryHref = '/calendar',
   secondaryLabel = 'Or book a strategy call',
 }: {
@@ -121,7 +46,7 @@ function ApplyCtaBand({
   return (
     <aside
       className={`${bg} border-b border-[var(--color-ink-200)] py-10 md:py-14 ${className}`}
-      aria-label="Apply for ChatGPT Ads beta access or book a strategy call"
+      aria-label="Apply to run ChatGPT Ads or book a strategy call"
     >
       <div className="container-max mx-auto flex max-w-xl flex-col items-center gap-4 px-4 text-center">
         <p className="font-serif text-[0.9375rem] leading-relaxed text-[var(--color-ink-400)]">{hint}</p>
@@ -139,8 +64,8 @@ function ApplyCtaBand({
           {secondaryLabel}
         </Link>
         <p className="font-serif text-[11px] leading-snug text-[var(--color-ink-400)]/85">
-          No onboarding fee and no monthly retainer for this test cohort. Apply to see if your team fits the current
-          window—we reply either way.
+          No onboarding fee and no monthly retainer for our founding real estate cohort. Apply to see if your team fits
+          the current window—we reply either way.
         </p>
       </div>
     </aside>
@@ -157,135 +82,99 @@ function SectionRule({ align = 'left' }: { align?: 'left' | 'center' }) {
 }
 
 export default function ChatgptAdsRealEstatePageContent() {
-  const heroVideoRef = useRef<HTMLVideoElement>(null)
-  const [isHeroMuted, setIsHeroMuted] = useState(true)
   const reduceMotion = useReducedMotion()
-
-  const toggleHeroMute = () => {
-    const video = heroVideoRef.current
-    if (!video) return
-    const nextMuted = !video.muted
-    video.muted = nextMuted
-    setIsHeroMuted(nextMuted)
-    void video.play().catch(() => {})
-  }
-
-  const heroEase = [0.25, 0.1, 0.25, 1] as const
 
   return (
     <div className="min-h-screen bg-white [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
       <section
-        className="relative min-h-screen overflow-hidden border-b border-[var(--color-ink-200)] scroll-mt-6"
+        className="scroll-mt-6 overflow-hidden border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] pt-28 sm:pt-32"
         id="top"
         aria-labelledby="chatgpt-ads-hero-title"
       >
-        <div className="absolute inset-0 z-0">
-          <video
-            ref={heroVideoRef}
-            className="absolute inset-0 z-0 h-full w-full object-cover"
-            src={HERO_VIDEO_SRC}
-            autoPlay
-            muted={isHeroMuted}
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-0 z-[1]"
-            style={{ backgroundColor: 'rgba(15, 15, 15, 0.72)' }}
-            aria-hidden
-          />
-        </div>
-        <div className="relative z-10 container-max grid min-h-screen grid-cols-1 items-center gap-12 py-20 lg:grid-cols-2 lg:gap-16 xl:gap-20 pointer-events-none">
-          <motion.div
-            className="pointer-events-auto max-w-xl text-left lg:max-w-xl"
-            initial={reduceMotion ? false : { opacity: 0.5, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
-          >
-            <p className="mb-5 max-w-xl font-serif text-[10px] uppercase leading-relaxed tracking-[0.14em] text-white/80 sm:text-[11px] sm:tracking-[0.16em]">
-              BETA · Rolling out worldwide—the U.S. among the first markets · #1 U.S. real estate agency on SEMrush
-            </p>
-            <h1
-              id="chatgpt-ads-hero-title"
-              className="font-serif text-3xl font-light leading-[1.08] tracking-tight !text-white sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
-            >
-              ChatGPT Ads for Real Estate (BETA) the new wave of PPC advertising
-            </h1>
-            <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
-              ChatGPT Ads are being released slowly around the world. The United States and a handful of other countries
-              are in the first wave of access. DMR is running a focused test with a handful of luxury real estate teams so
-              we can make the channel work properly for listings, brands, and your CRM—not generic prompts. There is no
-              onboarding fee and no monthly retainer for this cohort; apply to see whether your team fits what we are
-              learning week to week.
-            </p>
-            <div className="mt-7 flex flex-col items-stretch gap-3 sm:items-start">
-              <button
-                type="button"
-                onClick={openApplyModal}
-                className={SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME}
-              >
-                Apply for beta access
-              </button>
-              <Link
-                href="/calendar"
-                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline sm:self-start"
-              >
-                Or book a strategy call
-              </Link>
-              <p className="mt-1 max-w-md font-serif text-[12px] leading-snug text-white/70">
-                Limited test cohort—we review fit, markets, and creative load before the pilot goes live.
+        <div className="container-max px-4 sm:px-6">
+          <SeoReveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
+                Fully launched — out of beta · #1 U.S. real estate agency on SEMrush
               </p>
-              <motion.a
-                href="#after-hero"
-                aria-label="Scroll to client logos and page content"
-                className="mt-2 inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
-                animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : { duration: 2.6, repeat: Infinity, ease: 'easeInOut' as const }
-                }
+              <h1
+                id="chatgpt-ads-hero-title"
+                className="mt-6 font-serif text-[clamp(2.5rem,6vw,4rem)] font-light leading-[1.06] tracking-tight text-[var(--color-off-black)]"
               >
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden
+                ChatGPT Ads
+                <br />
+                for Real Estate
+              </h1>
+              <p className="mx-auto mt-7 max-w-2xl font-serif text-base leading-relaxed text-[var(--color-ink-300)] sm:text-lg">
+                ChatGPT Ads are out of beta and fully live. Buyers already ask ChatGPT for neighborhoods, agents, and
+                short lists — now your brand can be the answer. DMR runs the channel for luxury real estate teams with
+                the same discipline as our search programs: creative, landing paths, and CRM handoffs tied to qualified
+                conversations, not generic prompts.
+              </p>
+              <div className="mt-9 flex flex-col items-center gap-4">
+                <button
+                  type="button"
+                  onClick={openApplyModal}
+                  className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-6px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-6px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                  />
-                </svg>
-              </motion.a>
+                  Apply to run ChatGPT Ads
+                </button>
+                <Link
+                  href="/calendar"
+                  className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
+                >
+                  Or book a strategy call
+                </Link>
+                <p className="max-w-md font-serif text-sm leading-relaxed text-[var(--color-ink-400)]">
+                  No onboarding fee and no monthly retainer for our founding real estate cohort — we review fit,
+                  markets, and creative load before anything goes live.
+                </p>
+              </div>
             </div>
-          </motion.div>
+          </SeoReveal>
 
-          <motion.div
-            className="pointer-events-auto flex justify-center lg:justify-end"
-            initial={reduceMotion ? false : { opacity: 0.5, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.7, ease: heroEase, delay: reduceMotion ? 0 : 0.08 }}
-          >
-            <SeoHeroCaseStudyShowcase
-              slides={CHATGPT_ADS_HERO_SLIDES}
-              ariaLabel="Documented paid media and pipeline outcomes"
-            />
-          </motion.div>
+          <SeoReveal delay={0.12}>
+            <div className="relative mx-auto mt-14 max-w-5xl sm:mt-16">
+              {/* Soft halo behind the dashboard, in DMR ink tones */}
+              <div
+                className="pointer-events-none absolute -inset-x-16 -top-16 bottom-0 bg-[radial-gradient(ellipse_at_top,rgba(15,15,15,0.10),transparent_65%)]"
+                aria-hidden
+              />
+              <figure className="relative overflow-hidden rounded-t-xl border border-b-0 border-[var(--color-ink-200)] bg-white p-1.5 pb-0 shadow-[0_-12px_60px_-24px_rgba(15,15,15,0.3)] sm:p-2 sm:pb-0">
+                <Image
+                  src="/images/chatgpt-ads/chatgpt-ads-manager-campaigns.png"
+                  alt="ChatGPT Ads Manager showing live real estate campaigns in a DMR-managed account"
+                  width={3024}
+                  height={1516}
+                  priority
+                  className="w-full rounded-t-lg"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                />
+                <figcaption className="sr-only">
+                  ChatGPT Ads Manager — live real estate campaigns managed by DMR Media
+                </figcaption>
+              </figure>
+              <p
+                className="absolute -left-2 top-6 hidden rounded-lg border border-[var(--color-ink-200)] bg-white/95 px-4 py-3 font-serif shadow-[0_12px_32px_-12px_rgba(15,15,15,0.25)] backdrop-blur-sm md:block lg:-left-10"
+                aria-hidden
+              >
+                <span className="block text-2xl font-light text-[var(--color-off-black)]">Live</span>
+                <span className="mt-0.5 block text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
+                  Real campaigns · ChatGPT Ads
+                </span>
+              </p>
+              <p
+                className="absolute -right-2 top-24 hidden rounded-lg border border-[var(--color-ink-200)] bg-white/95 px-4 py-3 font-serif shadow-[0_12px_32px_-12px_rgba(15,15,15,0.25)] backdrop-blur-sm md:block lg:-right-10"
+                aria-hidden
+              >
+                <span className="block text-2xl font-light text-[var(--color-off-black)]">$11M+</span>
+                <span className="mt-0.5 block text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
+                  Closed volume · Eagan
+                </span>
+              </p>
+            </div>
+          </SeoReveal>
         </div>
-        <button
-          type="button"
-          onClick={toggleHeroMute}
-          className="absolute bottom-5 right-5 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-all duration-200 hover:scale-105 hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50 motion-reduce:hover:scale-100"
-          aria-label={isHeroMuted ? 'Unmute hero video' : 'Mute hero video'}
-        >
-          {isHeroMuted ? <VolumeOffIcon className="h-5 w-5" /> : <VolumeOnIcon className="h-5 w-5" />}
-        </button>
       </section>
 
       <section id="after-hero" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white" aria-label="Client logos">
@@ -305,8 +194,8 @@ export default function ChatgptAdsRealEstatePageContent() {
               </h2>
               <SectionRule align="center" />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                Three patterns we see when teams want conversational reach without betting the brand on unfinished product
-                surfaces.
+                Three patterns we see when teams want conversational reach while the channel is young and the
+                benchmarks are still being set.
               </p>
             </div>
           </SeoReveal>
@@ -344,18 +233,19 @@ export default function ChatgptAdsRealEstatePageContent() {
             <div>
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Meet your guide</p>
               <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-                We do not sell “AI hype.” We run a controlled beta with adult supervision.
+                We do not sell “AI hype.” We run the newest ad channel with adult supervision.
               </h2>
               <SectionRule />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                You need a partner who will tell you what is stable in ChatGPT placements today, what is still moving
-                weekly, and how that fits next to search and site work. DMR combines creative discipline with reporting your
-                leadership can defend—even when the platform changelog outruns the blog posts.
+                ChatGPT Ads are fully launched, but the channel is still young — you need a partner who will tell you
+                what is stable today, what is still moving, and how it fits next to search and site work. DMR combines
+                creative discipline with reporting your leadership can defend—even when the platform changelog outruns
+                the blog posts.
               </p>
               <ul className="mt-8 space-y-4 border-l-2 border-[var(--color-off-black)]/15 pl-5">
                 {[
-                  'Agreement: written pilot scope and definitions of success before the test goes live',
-                  'Cadence: tight reviews while inventory is volatile; no “set and forget” in beta',
+                  'Agreement: written pilot scope and definitions of success before campaigns go live',
+                  'Cadence: tight reviews while the auction is young; no “set and forget” on a new channel',
                   'Proof: clear split between platform noise and conversations your CRM recognizes',
                 ].map((line) => (
                   <li key={line} className="font-serif text-[var(--color-off-black)]">
@@ -413,12 +303,12 @@ export default function ChatgptAdsRealEstatePageContent() {
           <SeoReveal>
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">The plan, simplified</p>
             <h2 className="mt-3 max-w-3xl font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              Three pillars—built for a channel still leaving beta.
+              Three pillars—built for a brand-new channel.
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
-              Placement discipline, message match, and measurement that still works when the UI changes—so the pilot reads
-              as premium, not experimental clutter.
+              Placement discipline, message match, and measurement that still works when the UI changes—so your
+              campaigns read as premium, not experimental clutter.
             </p>
           </SeoReveal>
           <div className="mt-14 grid gap-8 md:grid-cols-3 md:gap-10">
@@ -442,32 +332,32 @@ export default function ChatgptAdsRealEstatePageContent() {
       <ApplyCtaBand
         surface="white"
         className="shadow-[inset_0_1px_0_rgba(15,15,15,0.04)]"
-        hint="Two minutes on the application tells us if your market, listings, and risk tolerance match the current beta. No obligation—we decline politely when timing is wrong."
+        hint="Two minutes on the application tells us if your market, listings, and goals match the current cohort. No obligation—we decline politely when timing is wrong."
       />
 
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="stats">
         <div className="container-max">
           <ServiceStats
             embedded
-            heading="What this test includes"
+            heading="Why move now"
             stats={[
               {
-                value: 'First wave',
-                label: 'U.S. & select markets',
+                value: 'Live',
+                label: 'Out of beta',
                 description:
-                  'ChatGPT Ads are rolling out gradually worldwide. The United States and a few other countries are among the first to receive access.',
+                  'ChatGPT Ads are fully launched. The channel is real inventory now—no waitlists, no experimental caveats, just a young auction with early-mover pricing.',
               },
               {
-                value: 'Handful',
-                label: 'Of real estate teams',
+                value: 'First',
+                label: 'Mover advantage',
                 description:
-                  'We are running a focused test with a small set of luxury teams so we can tune creative, routing, and reporting for how you actually sell.',
+                  'Few real estate teams are on the channel yet. The accounts that build creative, data, and account history now set the benchmarks everyone else will chase.',
               },
               {
                 value: 'None',
                 label: 'Onboarding or retainer',
                 description:
-                  'No onboarding fee and no monthly retainer for this cohort—we are building the real estate playbook together while the product matures.',
+                  'No onboarding fee and no monthly retainer for our founding cohort—we are building the real estate playbook together as the channel scales.',
               },
             ]}
           />
@@ -604,13 +494,14 @@ export default function ChatgptAdsRealEstatePageContent() {
           <SeoReveal>
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Your next step</p>
             <h2 className="mt-3 font-serif text-2xl font-light tracking-tight text-[var(--color-off-black)] sm:text-3xl md:text-4xl">
-              Apply if you want in on the first wave of ChatGPT Ads for real estate.
+              ChatGPT Ads are live. The teams that move first set the benchmarks.
             </h2>
             <SectionRule align="center" />
             <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-              Access is still limited as OpenAI expands geography and formats. We are keeping this test small on purpose
-              so we can move fast with a handful of teams. There is no onboarding fee and no monthly retainer for this
-              cohort—submit an application and we will tell you plainly if the timing, market, and workflow are a match.
+              The channel is fully launched and the auction is still young. We are keeping our roster small on purpose
+              so we can move fast with a handful of teams. There is no onboarding fee and no monthly retainer for our
+              founding cohort—submit an application and we will tell you plainly if the timing, market, and workflow
+              are a match.
             </p>
           </SeoReveal>
           <div className="mt-10 flex flex-col items-center gap-4">
@@ -620,7 +511,7 @@ export default function ChatgptAdsRealEstatePageContent() {
               whileTap={reduceMotion ? undefined : { scale: 0.98 }}
               className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
             >
-              Apply for beta access
+              Apply to run ChatGPT Ads
             </motion.button>
             <Link
               href="/calendar"
@@ -634,7 +525,7 @@ export default function ChatgptAdsRealEstatePageContent() {
           </p>
         </div>
       </section>
-      <SeoLandingStickyPrimaryCta onApply={openApplyModal}>Apply for beta access</SeoLandingStickyPrimaryCta>
+      <SeoLandingStickyPrimaryCta onApply={openApplyModal}>Apply to run ChatGPT Ads</SeoLandingStickyPrimaryCta>
     </div>
   )
 }

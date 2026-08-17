@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, type ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -10,11 +10,7 @@ import SeoWebsiteExamplesHorizontalScroll from '@/components/SeoWebsiteExamplesH
 import ClientLogosSlider from '@/components/ClientLogosSlider'
 import VideoTestimonials from '@/components/VideoTestimonials'
 import Testimonials from '@/components/Testimonials'
-import SeoHeroCaseStudyShowcase, { type SeoHeroCaseStudySlide } from '@/components/SeoHeroCaseStudyShowcase'
-import {
-  SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME,
-  SeoLandingStickyPrimaryCta,
-} from '@/components/SeoLandingHeroPrimaryCta'
+import { SeoLandingStickyPrimaryCta } from '@/components/SeoLandingHeroPrimaryCta'
 import {
   dmrVsAlternatives,
   frameworkPillars,
@@ -25,76 +21,6 @@ import {
 } from './lead-generation-data'
 
 const APPLY_FORM = 'real-estate-lead-generation-apply'
-const HERO_VIDEO_SRC = '/videos/DMR%20-%20INTRO%204K.mp4'
-
-/** Hero carousel: lead-gen proof (inbound volume, CRM pipeline, paid demand). */
-const LEAD_GEN_HERO_SLIDES: SeoHeroCaseStudySlide[] = [
-  {
-    id: 'willow-brook-realty',
-    href: '/case-study/willow-brook-realty',
-    teamName: 'Willow Brook Realty',
-    region: 'Vermont & New Hampshire',
-    highlight: '46 inbound leads in 3 weeks',
-    image: '/images/WillowBrookLeads.png',
-    imageAlt: 'Inbound lead volume after Willow Brook Realty system launch',
-  },
-  {
-    id: 'jade-legendary-real-estate',
-    href: '/case-study/jade-legendary-real-estate',
-    teamName: 'Legendary Real Estate Services',
-    region: 'Lake Geneva, WI',
-    highlight: '3× qualified pipeline in 90 days',
-    image: '/images/JadeCRM.png',
-    imageAlt: 'CRM pipeline and lead context for Legendary Real Estate Services',
-  },
-  {
-    id: 'eagan-luxury-real-estate',
-    href: '/case-study/eagan-luxury-real-estate',
-    teamName: 'Eagan Luxury Real Estate',
-    region: 'St. Petersburg, FL',
-    highlight: '$11M+ closed volume, Q1 2026',
-    image: '/images/EaganCaseStudy/SearchAds.png',
-    imageAlt: 'Google Ads performance supporting Eagan Luxury inbound demand',
-  },
-]
-
-function VolumeOffIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-      <line x1="23" y1="9" x2="17" y2="15" />
-      <line x1="17" y1="9" x2="23" y2="15" />
-    </svg>
-  )
-}
-
-function VolumeOnIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-    </svg>
-  )
-}
 
 function openApplyModal() {
   window.dispatchEvent(new CustomEvent('openApplyModal', { detail: { formName: APPLY_FORM } }))
@@ -158,20 +84,7 @@ function SectionRule({ align = 'left' }: { align?: 'left' | 'center' }) {
 }
 
 export default function RealEstateLeadGenerationPageContent() {
-  const heroVideoRef = useRef<HTMLVideoElement>(null)
-  const [isHeroMuted, setIsHeroMuted] = useState(true)
   const reduceMotion = useReducedMotion()
-
-  const toggleHeroMute = () => {
-    const video = heroVideoRef.current
-    if (!video) return
-    const nextMuted = !video.muted
-    video.muted = nextMuted
-    setIsHeroMuted(nextMuted)
-    void video.play().catch(() => {})
-  }
-
-  const heroEase = [0.25, 0.1, 0.25, 1] as const
 
   const faqRenderItems: ReadonlyArray<{ question: string; answer: ReactNode }> = FAQ_ITEMS.map((item) => ({
     question: item.question,
@@ -181,100 +94,91 @@ export default function RealEstateLeadGenerationPageContent() {
   return (
     <div className="min-h-screen bg-white [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.24)] lg:[--seo-section-y:theme(spacing.28)]">
       <section
-        className="relative min-h-[100svh] overflow-hidden border-b border-[var(--color-ink-200)] scroll-mt-6 lg:min-h-screen"
+        className="scroll-mt-6 overflow-hidden border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] pt-28 sm:pt-32"
         id="top"
         aria-labelledby="leadgen-hero-title"
       >
-        <div className="absolute inset-0 z-0">
-          <video
-            ref={heroVideoRef}
-            className="absolute inset-0 z-0 h-full w-full object-cover"
-            src={HERO_VIDEO_SRC}
-            autoPlay
-            muted={isHeroMuted}
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-0 z-[1]"
-            style={{ backgroundColor: 'rgba(15, 15, 15, 0.72)' }}
-            aria-hidden
-          />
-        </div>
-        <div className="relative z-10 container-max pointer-events-none grid min-h-[inherit] grid-cols-1 items-start gap-8 py-14 sm:gap-10 sm:py-16 max-lg:pb-8 lg:min-h-screen lg:grid-cols-2 lg:items-center lg:gap-16 lg:py-20 xl:gap-20">
-          <motion.div
-            className="pointer-events-auto max-w-xl text-left max-lg:mx-auto max-lg:w-full lg:mx-0 lg:max-w-xl"
-            initial={reduceMotion ? false : { opacity: 0.5, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
-          >
-            <p className="mb-5 max-w-xl font-serif text-[10px] uppercase leading-relaxed tracking-[0.14em] text-white/80 sm:text-[11px] sm:tracking-[0.16em]">
-              #1 U.S. real estate agency on SEMrush · 24+ luxury teams · 5★ partner
-            </p>
-            <h1
-              id="leadgen-hero-title"
-              className="text-pretty font-serif text-3xl font-light leading-[1.08] tracking-tight !text-white sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
-            >
-              Real Estate Lead Generation that generated 46 qualified buyers & sellers in 3 weeks.
-            </h1>
-            <p className="mt-5 max-w-xl text-pretty font-serif text-[0.9375rem] leading-relaxed !text-white sm:mt-6 sm:text-lg lg:mt-6">
-              Most agencies need 60–90 days to launch. Our flagship system delivered 46 qualified inbound leads in three weeks, then tripled pipeline by day 90. SEO, Google Ads, landing capture, and CRM velocity from one team. Your brand, your buyers, never resold.
-            </p>
-            <div className="mt-6 flex flex-col items-stretch gap-3 sm:mt-7 sm:items-start">
-              <button
-                type="button"
-                onClick={openApplyModal}
-                className={`${SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME} touch-manipulation`}
-              >
-                Get my free lead audit
-              </button>
-              <Link
-                href="/calendar"
-                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline sm:self-start"
-              >
-                Book 15-min strategy call
-              </Link>
-              <p className="mt-1 max-w-md font-serif text-[12px] leading-snug text-white/70">
-                30-day pilot guarantee. If we don&apos;t deliver 10+ qualified leads in your first month, your setup fee is on us.
+        <div className="container-max px-4 sm:px-6">
+          <SeoReveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
+                #1 U.S. real estate agency on SEMrush · 24+ luxury teams · 5★ partner
               </p>
-              <motion.a
-                href="#after-hero"
-                aria-label="Scroll to client logos and page content"
-                className="mt-2 inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
-                animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
-                transition={
-                  reduceMotion ? undefined : { duration: 2.6, repeat: Infinity, ease: 'easeInOut' as const }
-                }
+              <h1
+                id="leadgen-hero-title"
+                className="mt-6 text-pretty font-serif text-[clamp(2.25rem,5.5vw,3.75rem)] font-light leading-[1.08] tracking-tight text-[var(--color-off-black)]"
               >
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </motion.a>
+                Real Estate Lead Generation that generated 46 qualified buyers &amp; sellers in 3 weeks.
+              </h1>
+              <p className="mx-auto mt-7 max-w-2xl text-pretty font-serif text-base leading-relaxed text-[var(--color-ink-300)] sm:text-lg">
+                Most agencies need 60–90 days to launch. Our flagship system delivered 46 qualified inbound leads in
+                three weeks, then tripled pipeline by day 90. SEO, Google Ads, landing capture, and CRM velocity from
+                one team. Your brand, your buyers, never resold.
+              </p>
+              <div className="mt-9 flex flex-col items-center gap-4">
+                <button
+                  type="button"
+                  onClick={openApplyModal}
+                  className="inline-flex min-h-[52px] touch-manipulation items-center justify-center rounded-full border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-6px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-6px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0"
+                >
+                  Get my free lead audit
+                </button>
+                <Link
+                  href="/calendar"
+                  className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
+                >
+                  Book 15-min strategy call
+                </Link>
+                <p className="max-w-md font-serif text-sm leading-relaxed text-[var(--color-ink-400)]">
+                  30-day pilot guarantee. If we don&apos;t deliver 10+ qualified leads in your first month, your setup
+                  fee is on us.
+                </p>
+              </div>
             </div>
-          </motion.div>
+          </SeoReveal>
 
-          <motion.div
-            className="pointer-events-auto flex w-full justify-center max-lg:pt-4 lg:justify-end lg:pt-0"
-            initial={reduceMotion ? false : { opacity: 0.5, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.7, ease: heroEase, delay: reduceMotion ? 0 : 0.08 }}
-          >
-            <SeoHeroCaseStudyShowcase
-              slides={LEAD_GEN_HERO_SLIDES}
-              ariaLabel="Lead generation case study demos"
-            />
-          </motion.div>
+          <SeoReveal delay={0.12}>
+            <div className="relative mx-auto mt-14 max-w-5xl sm:mt-16">
+              {/* Soft halo behind the dashboard, in DMR ink tones */}
+              <div
+                className="pointer-events-none absolute -inset-x-16 -top-16 bottom-0 bg-[radial-gradient(ellipse_at_top,rgba(15,15,15,0.10),transparent_65%)]"
+                aria-hidden
+              />
+              <figure className="relative overflow-hidden rounded-t-xl border border-b-0 border-[var(--color-ink-200)] bg-white p-1.5 pb-0 shadow-[0_-12px_60px_-24px_rgba(15,15,15,0.3)] sm:p-2 sm:pb-0">
+                <Image
+                  src="/images/WillowBrookLeads.png"
+                  alt="Inbound lead volume dashboard after Willow Brook Realty's DMR lead generation launch"
+                  width={2432}
+                  height={994}
+                  priority
+                  className="w-full rounded-t-lg"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                />
+                <figcaption className="sr-only">
+                  Willow Brook Realty — inbound lead generation managed by DMR Media
+                </figcaption>
+              </figure>
+              <p
+                className="absolute -left-2 top-6 hidden rounded-lg border border-[var(--color-ink-200)] bg-white/95 px-4 py-3 font-serif shadow-[0_12px_32px_-12px_rgba(15,15,15,0.25)] backdrop-blur-sm md:block lg:-left-10"
+                aria-hidden
+              >
+                <span className="block text-2xl font-light text-[var(--color-off-black)]">46</span>
+                <span className="mt-0.5 block text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
+                  Leads in 3 weeks · Willow Brook
+                </span>
+              </p>
+              <p
+                className="absolute -right-2 top-24 hidden rounded-lg border border-[var(--color-ink-200)] bg-white/95 px-4 py-3 font-serif shadow-[0_12px_32px_-12px_rgba(15,15,15,0.25)] backdrop-blur-sm md:block lg:-right-10"
+                aria-hidden
+              >
+                <span className="block text-2xl font-light text-[var(--color-off-black)]">3×</span>
+                <span className="mt-0.5 block text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
+                  Pipeline by day 90
+                </span>
+              </p>
+            </div>
+          </SeoReveal>
         </div>
-        <button
-          type="button"
-          onClick={toggleHeroMute}
-          className="absolute bottom-6 right-4 z-20 flex h-12 w-12 touch-manipulation items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-all duration-200 hover:scale-105 hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50 motion-reduce:hover:scale-100 max-lg:bottom-[max(1.25rem,env(safe-area-inset-bottom,0px))] max-lg:right-[max(1rem,env(safe-area-inset-right,0px))] lg:bottom-5 lg:right-5 lg:h-11 lg:w-11"
-          aria-label={isHeroMuted ? 'Unmute hero video' : 'Mute hero video'}
-        >
-          {isHeroMuted ? <VolumeOffIcon className="h-5 w-5" /> : <VolumeOnIcon className="h-5 w-5" />}
-        </button>
       </section>
 
       <section id="after-hero" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white" aria-label="Client logos">

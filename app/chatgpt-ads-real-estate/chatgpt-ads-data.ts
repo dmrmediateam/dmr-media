@@ -2,29 +2,29 @@
 
 export const FAQ_ITEMS = [
   {
-    question: 'What is the ChatGPT Ads beta?',
+    question: 'What are ChatGPT Ads?',
     answer:
-      'ChatGPT Ads are rolling out gradually around the world—not every market or format is live at once. The United States and a handful of other countries are in the first wave of access. DMR is running a small, hands-on test with a handful of luxury real estate teams so we can adapt creative, landing paths, and CRM handoffs to how you actually sell, while the product continues to evolve.',
+      'ChatGPT Ads are paid placements inside ChatGPT conversations—the channel is out of beta and fully launched. When buyers ask about neighborhoods, agents, or short lists, your brand can appear as part of the answer. DMR builds and manages the channel for luxury real estate teams: creative, landing paths, and CRM handoffs adapted to how you actually sell, not generic prompts.',
+  },
+  {
+    question: 'Is ChatGPT Ads still in beta?',
+    answer:
+      'No. ChatGPT Ads have moved out of beta and are fully live. The auction is still young, which is exactly the opportunity: fewer real estate advertisers, early-mover pricing, and the chance to build creative and account history before the channel gets crowded the way Google did.',
   },
   {
     question: 'Are there onboarding fees or a monthly retainer?',
     answer:
-      'For this test cohort, no. There is no onboarding fee and no monthly retainer while we build the real estate playbook with a limited number of teams. We stay focused on execution, routing, and reporting as access expands in your market.',
+      'For our founding real estate cohort, no. There is no onboarding fee and no monthly retainer while we build the real estate playbook with a limited number of teams. We stay focused on execution, routing, and reporting as the channel scales in your market.',
   },
   {
     question: 'Why is there an application step?',
     answer:
-      'We are intentionally keeping the cohort small while placements, APIs, and measurement mature. Applications help us match pacing, creative load, and CRM expectations so every pilot gets senior attention—not a queue behind generic onboarding.',
-  },
-  {
-    question: 'Is ChatGPT Ads fully released everywhere?',
-    answer:
-      'No. Capabilities are still expanding market by market. That can mean format changes, reporting gaps, or pacing quirks depending on where you operate. We set expectations up front, document what we can prove today, and pair pilots with search and site foundations so you are never dependent on a single immature line item.',
+      'We are intentionally keeping the roster small while the channel is young. Applications help us match pacing, creative load, and CRM expectations so every account gets senior attention—not a queue behind generic onboarding.',
   },
   {
     question: 'How does this work alongside Google Ads?',
     answer:
-      'ChatGPT placements can complement high-intent search, not replace it. In this test we treat ChatGPT as incremental demand and narrative reach while Google Ads and SEO continue to carry provable conversion volume. One team wires creative, UTMs, and CRM so leadership still sees one story.',
+      'ChatGPT placements complement high-intent search, not replace it. We treat ChatGPT as incremental demand and narrative reach while Google Ads and SEO continue to carry provable conversion volume. One team wires creative, UTMs, and CRM so leadership still sees one story.',
   },
 ] as const
 
@@ -37,9 +37,9 @@ export const stakesThree = [
   },
   {
     title: 'Internal',
-    subtitle: 'The beta anxiety',
+    subtitle: 'The hype anxiety',
     body:
-      'Your team does not need another half-baked channel sold as “the future.” You need a partner who will say what is stable, what is experimental, and what should wait until measurement catches up—without embarrassing the brand.',
+      'Your team does not need another channel sold as “the future” with nothing behind it. You need a partner who will say what is stable, what is still maturing, and what should wait until measurement catches up—without embarrassing the brand.',
   },
   {
     title: 'Philosophical',
@@ -52,12 +52,12 @@ export const stakesThree = [
 export const dmrVsAlternatives = [
   {
     label: 'Scope',
-    dmr: 'Invite-only beta with written guardrails on spend, creative, and what “success” means week to week',
+    dmr: 'Founding cohort with written guardrails on spend, creative, and what “success” means week to week',
     other: 'Generic “AI ads” packages with unclear inventory and no accountability when APIs move',
   },
   {
     label: 'Engagement',
-    dmr: 'No onboarding fee and no monthly retainer for this real estate test cohort—we are learning alongside a handful of teams',
+    dmr: 'No onboarding fee and no monthly retainer for our founding real estate cohort—we build the playbook alongside a handful of teams',
     other: 'Setup fees, retainers, and long contracts before the channel is proven in your category',
   },
   {
@@ -67,7 +67,7 @@ export const dmrVsAlternatives = [
   },
   {
     label: 'Proof',
-    dmr: 'Reporting that separates beta noise from real conversations; CRM hooks where supported',
+    dmr: 'Reporting that separates platform noise from real conversations; CRM hooks where supported',
     other: 'Vanity impressions with no path to booked appointments',
   },
   {
@@ -115,7 +115,7 @@ export const frameworkPillars = [
   },
   {
     title: 'Measurement discipline',
-    body: 'UTMs, CRM tagging, and weekly summaries that separate beta quirks from real signal—paired with your existing Google Ads and SEO reporting.',
+    body: 'UTMs, CRM tagging, and weekly summaries that separate early-channel quirks from real signal—paired with your existing Google Ads and SEO reporting.',
     image: '/images/EaganCaseStudy/GoogleSearchConsole.png',
     imageAlt: 'Performance trends illustrating accountable measurement over time',
   },

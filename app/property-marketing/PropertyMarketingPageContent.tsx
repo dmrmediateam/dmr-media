@@ -1,6 +1,5 @@
 'use client'
 
-import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -11,42 +10,16 @@ import ClientLogosSlider from '@/components/ClientLogosSlider'
 import VideoTestimonials from '@/components/VideoTestimonials'
 import ServiceStats from '@/components/service/ServiceStats'
 import Testimonials from '@/components/Testimonials'
-import SeoHeroCaseStudyShowcase from '@/components/SeoHeroCaseStudyShowcase'
-import {
-  SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME,
-  SeoLandingStickyPrimaryCta,
-} from '@/components/SeoLandingHeroPrimaryCta'
+import { SeoLandingStickyPrimaryCta } from '@/components/SeoLandingHeroPrimaryCta'
 import {
   dmrVsAlternatives,
   FAQ_ITEMS,
   frameworkPillars,
-  heroCaseStudySlides,
   processPhases,
   stakesThree,
 } from './property-marketing-data'
 
 const APPLY_FORM = 'property-marketing-apply'
-const HERO_VIDEO_SRC = '/videos/DMR%20-%20INTRO%204K.mp4'
-
-function VolumeOffIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-      <line x1="23" y1="9" x2="17" y2="15" />
-      <line x1="17" y1="9" x2="23" y2="15" />
-    </svg>
-  )
-}
-
-function VolumeOnIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-    </svg>
-  )
-}
 
 function openApplyModal() {
   window.dispatchEvent(new CustomEvent('openApplyModal', { detail: { formName: APPLY_FORM } }))
@@ -104,98 +77,95 @@ function SectionRule({ align = 'left' }: { align?: 'left' | 'center' }) {
 }
 
 export default function PropertyMarketingPageContent() {
-  const heroVideoRef = useRef<HTMLVideoElement>(null)
-  const [isHeroMuted, setIsHeroMuted] = useState(true)
   const reduceMotion = useReducedMotion()
-
-  const toggleHeroMute = () => {
-    const video = heroVideoRef.current
-    if (!video) return
-    const nextMuted = !video.muted
-    video.muted = nextMuted
-    setIsHeroMuted(nextMuted)
-    void video.play().catch(() => {})
-  }
-
-  const heroEase = [0.25, 0.1, 0.25, 1] as const
 
   return (
     <div className="min-h-screen bg-white [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
       <section
-        className="relative min-h-screen overflow-hidden border-b border-[var(--color-ink-200)] scroll-mt-6"
+        className="scroll-mt-6 overflow-hidden border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] pt-28 sm:pt-32"
         id="top"
         aria-labelledby="property-marketing-hero-title"
       >
-        <div className="absolute inset-0 z-0">
-          <video
-            ref={heroVideoRef}
-            className="absolute inset-0 z-0 h-full w-full object-cover"
-            src={HERO_VIDEO_SRC}
-            autoPlay
-            muted={isHeroMuted}
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden
-          />
-          <div className="pointer-events-none absolute inset-0 z-[1] bg-[#0f0f0f]/72" aria-hidden />
-        </div>
-        <div className="relative z-10 container-max grid min-h-screen grid-cols-1 items-center gap-12 py-20 lg:grid-cols-2 lg:gap-16 xl:gap-20 pointer-events-none">
-          <motion.div
-            className="pointer-events-auto max-w-xl text-left lg:max-w-xl"
-            initial={reduceMotion ? false : { opacity: 0.5, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
-          >
-            <p className="mb-5 max-w-xl font-serif text-[10px] uppercase leading-relaxed tracking-[0.14em] text-white/80 sm:text-[11px] sm:tracking-[0.16em]">
-              New developments · luxury condos · trophy listings
-            </p>
-            <h1
-              id="property-marketing-hero-title"
-              className="font-serif text-3xl font-light leading-[1.08] tracking-tight !text-white sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
-            >
-              Property marketing for new developments, condos, and exceptional listings
-            </h1>
-            <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
-              We build dedicated development and condo sites, run 30-day Google Ads bursts with media included, and ship
-              launch email copy so presale buyers and luxury shoppers tour faster, not someday.
-            </p>
-            <div className="mt-7 flex flex-col items-stretch gap-3 sm:items-start">
-              <button type="button" onClick={openApplyModal} className={SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME}>
-                Start my property marketing plan
-              </button>
-              <Link
-                href="/calendar"
-                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline sm:self-start"
+        <div className="container-max px-4 sm:px-6">
+          <SeoReveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
+                New developments · luxury condos · trophy listings
+              </p>
+              <h1
+                id="property-marketing-hero-title"
+                className="mt-6 font-serif text-[clamp(2.25rem,5.5vw,3.75rem)] font-light leading-[1.08] tracking-tight text-[var(--color-off-black)]"
               >
-                Or book a 15-minute strategy call
-              </Link>
-              <p className="mt-1 max-w-md font-serif text-[12px] leading-snug text-white/70">
-                Current DMR clients: $2,500 pay-at-close per listing. Google Ads spend covered in the flat fee.
+                Property marketing for new developments, condos, and exceptional listings
+              </h1>
+              <p className="mx-auto mt-7 max-w-2xl font-serif text-base leading-relaxed text-[var(--color-ink-300)] sm:text-lg">
+                We build dedicated development and condo sites, run 30-day Google Ads bursts with media included, and
+                ship launch email copy so presale buyers and luxury shoppers tour faster, not someday.
+              </p>
+              <div className="mt-9 flex flex-col items-center gap-4">
+                <button
+                  type="button"
+                  onClick={openApplyModal}
+                  className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-6px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-6px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0"
+                >
+                  Start my property marketing plan
+                </button>
+                <Link
+                  href="/calendar"
+                  className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
+                >
+                  Or book a 15-minute strategy call
+                </Link>
+                <p className="max-w-md font-serif text-sm leading-relaxed text-[var(--color-ink-400)]">
+                  Current DMR clients: $2,500 pay-at-close per listing. Google Ads spend covered in the flat fee.
+                </p>
+              </div>
+            </div>
+          </SeoReveal>
+
+          <SeoReveal delay={0.12}>
+            <div className="relative mx-auto mt-14 max-w-5xl sm:mt-16">
+              {/* Soft halo behind the site preview, in DMR ink tones */}
+              <div
+                className="pointer-events-none absolute -inset-x-16 -top-16 bottom-0 bg-[radial-gradient(ellipse_at_top,rgba(15,15,15,0.10),transparent_65%)]"
+                aria-hidden
+              />
+              <figure className="relative overflow-hidden rounded-t-xl border border-b-0 border-[var(--color-ink-200)] bg-white p-1.5 pb-0 shadow-[0_-12px_60px_-24px_rgba(15,15,15,0.3)] sm:p-2 sm:pb-0">
+                <div className="relative aspect-[2/1] w-full overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/images/ClientWebsiteImages/screencapture-ocean-breeze-one-vercel-app-2026-03-29-19_49_50.png"
+                    alt="Ocean Breeze — dedicated single-property website for a $6.5M waterfront estate, built by DMR Media"
+                    fill
+                    priority
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 1024px"
+                  />
+                </div>
+                <figcaption className="sr-only">
+                  Ocean Breeze, Turks &amp; Caicos — property launch site by DMR Media
+                </figcaption>
+              </figure>
+              <p
+                className="absolute -left-2 top-6 hidden rounded-lg border border-[var(--color-ink-200)] bg-white/95 px-4 py-3 font-serif shadow-[0_12px_32px_-12px_rgba(15,15,15,0.25)] backdrop-blur-sm md:block lg:-left-10"
+                aria-hidden
+              >
+                <span className="block text-2xl font-light text-[var(--color-off-black)]">$6.5M</span>
+                <span className="mt-0.5 block text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
+                  Listing site · Ocean Breeze
+                </span>
+              </p>
+              <p
+                className="absolute -right-2 top-24 hidden rounded-lg border border-[var(--color-ink-200)] bg-white/95 px-4 py-3 font-serif shadow-[0_12px_32px_-12px_rgba(15,15,15,0.25)] backdrop-blur-sm md:block lg:-right-10"
+                aria-hidden
+              >
+                <span className="block text-2xl font-light text-[var(--color-off-black)]">30 days</span>
+                <span className="mt-0.5 block text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
+                  Ads burst · Media included
+                </span>
               </p>
             </div>
-          </motion.div>
-
-          <motion.div
-            className="pointer-events-auto flex justify-center lg:justify-end"
-            initial={reduceMotion ? false : { opacity: 0.5, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.7, ease: heroEase, delay: reduceMotion ? 0 : 0.08 }}
-          >
-            <SeoHeroCaseStudyShowcase
-              slides={[...heroCaseStudySlides]}
-              ariaLabel="Property marketing website examples"
-            />
-          </motion.div>
+          </SeoReveal>
         </div>
-        <button
-          type="button"
-          onClick={toggleHeroMute}
-          className="absolute bottom-5 right-5 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-all duration-200 hover:scale-105 hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50 motion-reduce:hover:scale-100"
-          aria-label={isHeroMuted ? 'Unmute hero video' : 'Mute hero video'}
-        >
-          {isHeroMuted ? <VolumeOffIcon className="h-5 w-5" /> : <VolumeOnIcon className="h-5 w-5" />}
-        </button>
       </section>
 
       <section id="after-hero" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white" aria-label="Client logos">

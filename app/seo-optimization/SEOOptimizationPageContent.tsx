@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, type ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -11,11 +11,7 @@ import ClientLogosSlider from '@/components/ClientLogosSlider'
 import VideoTestimonials from '@/components/VideoTestimonials'
 import ServiceStats from '@/components/service/ServiceStats'
 import Testimonials from '@/components/Testimonials'
-import SeoHeroCaseStudyShowcase from '@/components/SeoHeroCaseStudyShowcase'
-import {
-  SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME,
-  SeoLandingStickyPrimaryCta,
-} from '@/components/SeoLandingHeroPrimaryCta'
+import { SeoLandingStickyPrimaryCta } from '@/components/SeoLandingHeroPrimaryCta'
 import {
   dmrVsAlternatives,
   frameworkPillars,
@@ -24,45 +20,6 @@ import {
 } from './seo-data'
 
 const APPLY_FORM = 'seo-optimization-apply'
-const HERO_VIDEO_SRC = '/videos/DMR%20-%20INTRO%204K.mp4'
-
-function VolumeOffIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-      <line x1="23" y1="9" x2="17" y2="15" />
-      <line x1="17" y1="9" x2="23" y2="15" />
-    </svg>
-  )
-}
-
-function VolumeOnIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-    </svg>
-  )
-}
 
 function openApplyModal() {
   window.dispatchEvent(new CustomEvent('openApplyModal', { detail: { formName: APPLY_FORM } }))
@@ -124,20 +81,8 @@ function SectionRule({ align = 'left' }: { align?: 'left' | 'center' }) {
 }
 
 export default function SEOOptimizationPageContent() {
-  const heroVideoRef = useRef<HTMLVideoElement>(null)
-  const [isHeroMuted, setIsHeroMuted] = useState(true)
   const reduceMotion = useReducedMotion()
 
-  const toggleHeroMute = () => {
-    const video = heroVideoRef.current
-    if (!video) return
-    const nextMuted = !video.muted
-    video.muted = nextMuted
-    setIsHeroMuted(nextMuted)
-    void video.play().catch(() => {})
-  }
-
-  const heroEase = [0.25, 0.1, 0.25, 1] as const
   const rankingProof = [
     {
       term: 'Luxury real estate SEO',
@@ -158,112 +103,92 @@ export default function SEOOptimizationPageContent() {
 
   return (
     <div className="min-h-screen bg-white [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
-      {/* Hero: full-bleed video + scrim (aligned with /landing/google-general) */}
       <section
-        className="relative min-h-screen overflow-hidden border-b border-[var(--color-ink-200)] scroll-mt-6"
+        className="scroll-mt-6 overflow-hidden border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] pt-28 sm:pt-32"
         id="top"
         aria-labelledby="seo-hero-title"
       >
-        <div className="absolute inset-0 z-0">
-          <video
-            ref={heroVideoRef}
-            className="absolute inset-0 z-0 h-full w-full object-cover"
-            src={HERO_VIDEO_SRC}
-            autoPlay
-            muted={isHeroMuted}
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-0 z-[1]"
-            style={{ backgroundColor: 'rgba(15, 15, 15, 0.72)' }}
-            aria-hidden
-          />
-        </div>
-        <div className="relative z-10 container-max grid min-h-screen grid-cols-1 items-center gap-12 py-20 lg:grid-cols-2 lg:gap-16 xl:gap-20 pointer-events-none">
-          <motion.div
-            className="pointer-events-auto max-w-xl text-left lg:max-w-xl"
-            initial={reduceMotion ? false : { opacity: 0.5, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.65, ease: heroEase }}
-          >
-            <p className="mb-5 max-w-xl font-serif text-[10px] uppercase leading-relaxed tracking-[0.14em] text-white/80 sm:text-[11px] sm:tracking-[0.16em]">
-              #1 U.S. real estate agency on SEMrush · 24+ luxury teams · 5★ partner
-            </p>
-            <h1
-              id="seo-hero-title"
-              className="font-serif text-3xl font-light leading-[1.08] tracking-tight !text-white sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
-            >
-              Real Estate SEO that generated 19× more organic clicks in 90 days
-            </h1>
-            <p className="mt-6 max-w-xl font-serif text-base leading-relaxed !text-white sm:text-lg">
-              Technical SEO, on-page precision, and content systems built for luxury real estate, so Google recommends you first, not a template farm. Documented client lifts include 19× daily organic clicks and 300%+ traffic in the first 90 days.
-            </p>
-            <div className="mt-7 flex flex-col items-stretch gap-3 sm:items-start">
-              <button
-                type="button"
-                onClick={openApplyModal}
-                className={SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME}
-              >
-                Get my free SEO audit
-              </button>
-              <Link
-                href="/calendar"
-                className="font-serif text-[11px] uppercase tracking-[0.18em] text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline sm:self-start"
-              >
-                Or book a 15-minute strategy call
-              </Link>
-              <p className="mt-1 max-w-md font-serif text-[12px] leading-snug text-white/70">
-                Free 30-minute audit. If we don&apos;t identify at least $50K in annual missed organic opportunity, you owe nothing.
+        <div className="container-max px-4 sm:px-6">
+          <SeoReveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
+                #1 U.S. real estate agency on SEMrush · 24+ luxury teams · 5★ partner
               </p>
-              <motion.a
-                href="#after-hero"
-                aria-label="Scroll to client logos and page content"
-                className="mt-2 inline-flex self-start rounded-sm p-1 text-white/35 outline-none transition-colors hover:text-white/55 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
-                animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : { duration: 2.6, repeat: Infinity, ease: 'easeInOut' as const }
-                }
+              <h1
+                id="seo-hero-title"
+                className="mt-6 font-serif text-[clamp(2.25rem,5.5vw,3.75rem)] font-light leading-[1.08] tracking-tight text-[var(--color-off-black)]"
               >
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden
+                Real Estate SEO that generated 19× more organic clicks in 90 days
+              </h1>
+              <p className="mx-auto mt-7 max-w-2xl font-serif text-base leading-relaxed text-[var(--color-ink-300)] sm:text-lg">
+                Technical SEO, on-page precision, and content systems built for luxury real estate, so Google
+                recommends you first, not a template farm. Documented client lifts include 19× daily organic clicks and
+                300%+ traffic in the first 90 days.
+              </p>
+              <div className="mt-9 flex flex-col items-center gap-4">
+                <button
+                  type="button"
+                  onClick={openApplyModal}
+                  className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-6px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-6px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                  />
-                </svg>
-              </motion.a>
+                  Get my free SEO audit
+                </button>
+                <Link
+                  href="/calendar"
+                  className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
+                >
+                  Or book a 15-minute strategy call
+                </Link>
+                <p className="max-w-md font-serif text-sm leading-relaxed text-[var(--color-ink-400)]">
+                  Free 30-minute audit. If we don&apos;t identify at least $50K in annual missed organic opportunity,
+                  you owe nothing.
+                </p>
+              </div>
             </div>
-          </motion.div>
+          </SeoReveal>
 
-          <motion.div
-            className="pointer-events-auto flex justify-center lg:justify-end"
-            initial={reduceMotion ? false : { opacity: 0.5, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.7, ease: heroEase, delay: reduceMotion ? 0 : 0.08 }}
-          >
-            <SeoHeroCaseStudyShowcase />
-          </motion.div>
+          <SeoReveal delay={0.12}>
+            <div className="relative mx-auto mt-14 max-w-5xl sm:mt-16">
+              {/* Soft halo behind the dashboard, in DMR ink tones */}
+              <div
+                className="pointer-events-none absolute -inset-x-16 -top-16 bottom-0 bg-[radial-gradient(ellipse_at_top,rgba(15,15,15,0.10),transparent_65%)]"
+                aria-hidden
+              />
+              <figure className="relative overflow-hidden rounded-t-xl border border-b-0 border-[var(--color-ink-200)] bg-white p-1.5 pb-0 shadow-[0_-12px_60px_-24px_rgba(15,15,15,0.3)] sm:p-2 sm:pb-0">
+                <Image
+                  src="/images/LegendaryRealEstateCaseSTudy/SEMRUSHTraffic.png"
+                  alt="SEMrush organic traffic growth for a DMR-managed real estate SEO client"
+                  width={2298}
+                  height={1388}
+                  priority
+                  className="w-full rounded-t-lg"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                />
+                <figcaption className="sr-only">
+                  Legendary Real Estate Services — organic growth managed by DMR Media
+                </figcaption>
+              </figure>
+              <p
+                className="absolute -left-2 top-6 hidden rounded-lg border border-[var(--color-ink-200)] bg-white/95 px-4 py-3 font-serif shadow-[0_12px_32px_-12px_rgba(15,15,15,0.25)] backdrop-blur-sm md:block lg:-left-10"
+                aria-hidden
+              >
+                <span className="block text-2xl font-light text-[var(--color-off-black)]">19×</span>
+                <span className="mt-0.5 block text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
+                  Organic clicks · Legendary
+                </span>
+              </p>
+              <p
+                className="absolute -right-2 top-24 hidden rounded-lg border border-[var(--color-ink-200)] bg-white/95 px-4 py-3 font-serif shadow-[0_12px_32px_-12px_rgba(15,15,15,0.25)] backdrop-blur-sm md:block lg:-right-10"
+                aria-hidden
+              >
+                <span className="block text-2xl font-light text-[var(--color-off-black)]">300%+</span>
+                <span className="mt-0.5 block text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
+                  Traffic in 90 days
+                </span>
+              </p>
+            </div>
+          </SeoReveal>
         </div>
-        <button
-          type="button"
-          onClick={toggleHeroMute}
-          className="absolute bottom-5 right-5 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/55 text-[#fafaf9] transition-all duration-200 hover:scale-105 hover:bg-black/72 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50 motion-reduce:hover:scale-100"
-          aria-label={isHeroMuted ? 'Unmute hero video' : 'Mute hero video'}
-        >
-          {isHeroMuted ? <VolumeOffIcon className="h-5 w-5" /> : <VolumeOnIcon className="h-5 w-5" />}
-        </button>
       </section>
 
       <section id="after-hero" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white" aria-label="Client logos">

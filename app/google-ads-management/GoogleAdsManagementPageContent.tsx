@@ -1,6 +1,5 @@
 'use client'
 
-import type { ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -15,7 +14,9 @@ import { SeoLandingStickyPrimaryCta } from '@/components/SeoLandingHeroPrimaryCt
 import {
   adsProof,
   dmrVsAlternatives,
+  FAQ_ITEMS,
   frameworkPillars,
+  ppcDeliverables,
   processPhases,
   serviceStats,
   stakesThree,
@@ -88,42 +89,91 @@ export default function GoogleAdsManagementPageContent() {
   return (
     <div className="min-h-screen bg-white [--seo-section-y:theme(spacing.20)] md:[--seo-section-y:theme(spacing.28)]">
       <section
-        className="scroll-mt-6 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] pt-28 pb-16 sm:pt-32 sm:pb-20 md:pb-24"
+        className="scroll-mt-6 overflow-hidden border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] pt-28 sm:pt-32"
         id="top"
         aria-labelledby="google-ads-hero-title"
       >
-        <div className="container-max max-w-3xl px-4 sm:px-6">
+        <div className="container-max px-4 sm:px-6">
           <SeoReveal>
-            <h1
-              id="google-ads-hero-title"
-              className="font-serif text-[clamp(2.25rem,5.5vw,3.5rem)] font-light leading-[1.08] tracking-tight text-[var(--color-off-black)]"
-            >
-              Google Ads for Real Estate
-            </h1>
-            <SectionRule />
-            <p className="mt-8 max-w-xl font-serif text-base leading-relaxed text-[var(--color-ink-300)] sm:text-lg">
-              Search, Maps, and Performance Max for agents, teams, and brokerages. Intent-led campaigns, landing paths
-              your CRM can work, and reporting tied to qualified conversations.
-            </p>
-            <div className="mt-10 flex flex-col items-start gap-4">
-              <button
-                type="button"
-                onClick={openApplyModal}
-                className="inline-flex min-h-[48px] items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0"
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
+                ★★★★★ 5-stars on Trustpilot &amp; Google
+              </p>
+              <h1
+                id="google-ads-hero-title"
+                className="mt-6 font-serif text-[clamp(2.5rem,6vw,4rem)] font-light leading-[1.06] tracking-tight text-[var(--color-off-black)]"
               >
-                Get my free Google Ads audit
-              </button>
-              <Link
-                href="/calendar"
-                className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
-              >
-                Or book a 15-minute strategy call
-              </Link>
+                PPC Management
+                <br />
+                for Real Estate
+              </h1>
+              <p className="mx-auto mt-7 max-w-2xl font-serif text-base leading-relaxed text-[var(--color-ink-300)] sm:text-lg">
+                Pay-per-click campaigns across Google Ads Search, Maps, and Performance Max for agents, teams, and
+                brokerages. Intent-led PPC, landing paths your CRM can work, and reporting tied to qualified
+                conversations.
+              </p>
+              <div className="mt-9 flex flex-col items-center gap-4">
+                <button
+                  type="button"
+                  onClick={openApplyModal}
+                  className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-6px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-6px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0"
+                >
+                  Get my free Google Ads audit
+                </button>
+                <Link
+                  href="/calendar"
+                  className="font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] underline-offset-4 transition-colors hover:text-[var(--color-off-black)] hover:underline"
+                >
+                  Or book a 15-minute strategy call
+                </Link>
+                <p className="max-w-md font-serif text-sm leading-relaxed text-[var(--color-ink-400)]">
+                  Free 30-minute audit. If we don&apos;t identify at least $30K in annual wasted spend or missed
+                  pipeline, you owe nothing.
+                </p>
+              </div>
             </div>
-            <p className="mt-6 max-w-lg font-serif text-sm leading-relaxed text-[var(--color-ink-400)]">
-              Free 30-minute audit. If we don&apos;t identify at least $30K in annual wasted spend or missed pipeline,
-              you owe nothing.
-            </p>
+          </SeoReveal>
+
+          <SeoReveal delay={0.12}>
+            <div className="relative mx-auto mt-14 max-w-5xl sm:mt-16">
+              {/* Soft halo behind the dashboard, in DMR ink tones */}
+              <div
+                className="pointer-events-none absolute -inset-x-16 -top-16 bottom-0 bg-[radial-gradient(ellipse_at_top,rgba(15,15,15,0.10),transparent_65%)]"
+                aria-hidden
+              />
+              <figure className="relative overflow-hidden rounded-t-xl border border-b-0 border-[var(--color-ink-200)] bg-white p-1.5 pb-0 shadow-[0_-12px_60px_-24px_rgba(15,15,15,0.3)] sm:p-2 sm:pb-0">
+                <Image
+                  src="/images/case-studies/hitchcock-properties/google-ads-dashboard.png"
+                  alt="Live Google Ads dashboard from a DMR-managed real estate PPC account showing an 88% lower cost per lead"
+                  width={2538}
+                  height={1346}
+                  priority
+                  className="w-full rounded-t-lg"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                />
+                <figcaption className="sr-only">
+                  Hitchcock Properties — Google Ads account managed by DMR Media
+                </figcaption>
+              </figure>
+              <p
+                className="absolute -left-2 top-6 hidden rounded-lg border border-[var(--color-ink-200)] bg-white/95 px-4 py-3 font-serif shadow-[0_12px_32px_-12px_rgba(15,15,15,0.25)] backdrop-blur-sm md:block lg:-left-10"
+                aria-hidden
+              >
+                <span className="block text-2xl font-light text-[var(--color-off-black)]">88%</span>
+                <span className="mt-0.5 block text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
+                  Lower CPL · Hitchcock
+                </span>
+              </p>
+              <p
+                className="absolute -right-2 top-24 hidden rounded-lg border border-[var(--color-ink-200)] bg-white/95 px-4 py-3 font-serif shadow-[0_12px_32px_-12px_rgba(15,15,15,0.25)] backdrop-blur-sm md:block lg:-right-10"
+                aria-hidden
+              >
+                <span className="block text-2xl font-light text-[var(--color-off-black)]">71%</span>
+                <span className="mt-0.5 block text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
+                  Lower cost/conv · Vignette
+                </span>
+              </p>
+            </div>
           </SeoReveal>
         </div>
       </section>
@@ -141,11 +191,12 @@ export default function GoogleAdsManagementPageContent() {
             <div className="mx-auto max-w-3xl text-center">
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Why this page exists</p>
               <h2 className="mt-3 font-serif text-3xl font-light leading-tight tracking-tight text-[var(--color-off-black)] md:text-4xl">
-                Is your ad spend buying conversations, or funding Google&apos;s auction?
+                Is your PPC budget buying conversations, or funding Google&apos;s auction?
               </h2>
               <SectionRule align="center" />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                Three patterns we see in teams already closing offline, but bleeding margin on paid search.
+                Real estate is one of the most competitive pay-per-click categories in paid search. Three patterns we
+                see in teams already closing offline, but bleeding margin on PPC.
               </p>
             </div>
           </SeoReveal>
@@ -163,10 +214,45 @@ export default function GoogleAdsManagementPageContent() {
         </div>
       </section>
 
+      <section
+        className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]"
+        id="whats-included"
+      >
+        <div className="container-max">
+          <SeoReveal>
+            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Scope of work</p>
+            <h2 className="mt-3 max-w-3xl font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
+              What real estate PPC management includes
+            </h2>
+            <SectionRule />
+            <p className="mt-8 max-w-2xl font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
+              PPC management is not &quot;boosting posts.&quot; It is the weekly discipline of keyword intent, geography,
+              negatives, message match, bidding, and measurement — run so every dollar of pay-per-click spend learns
+              from qualified outcomes. Here is the standing scope on every DMR account.
+            </p>
+          </SeoReveal>
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {ppcDeliverables.map((item, i) => (
+              <SeoReveal key={item.title} delay={(i % 4) * 0.05} className="h-full">
+                <article className="flex h-full flex-col rounded-lg border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/12 hover:shadow-md motion-reduce:hover:translate-y-0">
+                  <p className="font-serif text-xs uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
+                    {String(i + 1).padStart(2, '0')}
+                  </p>
+                  <h3 className="mt-3 font-serif text-lg font-light leading-snug text-[var(--color-off-black)]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">{item.body}</p>
+                </article>
+              </SeoReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <div id="proof" className="scroll-mt-24">
         <SeoCaseStudiesHorizontalScroll
           eyebrow="Client results"
-          title="Google Ads outcomes for real estate teams"
+          title="Real estate PPC results teams can trace"
           description={
             <p>
               Documented CPL drops, stronger appointment volume, and pipeline teams can trace to names and sources.
@@ -196,9 +282,9 @@ export default function GoogleAdsManagementPageContent() {
               </h2>
               <SectionRule />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
-                You need a guide who manages live accounts every week: honest audits, message match, and reporting tied to
-                qualified conversations, not platform vanity metrics. DMR runs Google Ads for luxury teams and uses the
-                same stack on our own business.
+                You need a PPC manager who runs live accounts every week: honest audits, message match, and reporting
+                tied to qualified conversations, not platform vanity metrics. DMR manages pay-per-click for luxury real
+                estate teams and uses the same stack on our own business.
               </p>
               <ul className="mt-8 space-y-4 border-l-2 border-[var(--color-off-black)]/15 pl-5">
                 {[
@@ -261,12 +347,12 @@ export default function GoogleAdsManagementPageContent() {
           <SeoReveal>
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Execution model</p>
             <h2 className="mt-3 max-w-3xl font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              Three pillars. One accountable team.
+              The PPC framework: three pillars, one accountable team.
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
-              Intent architecture, landing precision, and closed-loop measurement so every dollar learns from qualified
-              outcomes.
+              Intent architecture, landing precision, and closed-loop measurement so every pay-per-click dollar learns
+              from qualified outcomes.
             </p>
           </SeoReveal>
           <div className="mt-14 grid gap-8 md:grid-cols-3 md:gap-10">
@@ -329,11 +415,12 @@ export default function GoogleAdsManagementPageContent() {
           <SeoReveal>
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Cadence</p>
             <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              A plan you can repeat
+              Our PPC management process
             </h2>
             <SectionRule />
             <p className="mt-6 max-w-2xl font-serif text-sm text-[var(--color-ink-300)]">
-              Clear steps reduce anxiety and wasted spend. Here is how we guide you from audit to compounding results.
+              Clear steps reduce anxiety and wasted spend. Here is how we guide you from PPC audit to compounding
+              results.
             </p>
           </SeoReveal>
           <div className="relative mt-12 md:pl-3">
@@ -378,7 +465,7 @@ export default function GoogleAdsManagementPageContent() {
           <SeoReveal>
             <div className="rounded-xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] md:p-10">
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Ecosystem</p>
-              <h2 className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)] md:text-3xl">How Google Ads fits your stack</h2>
+              <h2 className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)] md:text-3xl">How PPC fits your marketing stack</h2>
               <p className="mt-5 font-serif text-[15px] leading-[1.85] text-[var(--color-ink-300)]">
                 Pair paid search with{' '}
                 <Link href="/seo-optimization" className="underline underline-offset-2 hover:opacity-70">
@@ -412,48 +499,14 @@ export default function GoogleAdsManagementPageContent() {
           <SeoReveal>
             <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Due diligence</p>
             <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              Questions, answered plainly
+              Real estate PPC questions, answered plainly
             </h2>
             <SectionRule />
           </SeoReveal>
           {(() => {
-            const faqRenderItems: ReadonlyArray<{ question: string; answer: ReactNode }> = [
-              {
-                question: 'How quickly will Google Ads produce leads?',
-                answer:
-                  'Search and Maps can move within days of launch. Lead quality and cost per lead usually stabilize over the first few weeks as conversion data accumulates. We report weekly on CPL, search themes, and qualified conversations so you always know what the spend is doing.',
-              },
-              {
-                question: 'How do you prevent wasted ad spend?',
-                answer:
-                  'Intent layers on keywords, disciplined geography, placement exclusions, conversion-based bidding once signals exist, weekly search term reviews, and CRM feedback loops. We optimize for qualified conversations, not vanity clicks or form fills your team ignores.',
-              },
-              {
-                question: 'Can you manage Google Ads in multiple markets?',
-                answer:
-                  'Yes. Accounts use geo-segmented campaigns, shared brand assets where it helps, and market-specific negatives and copy so budgets do not bleed across metros. Reporting breaks out performance by region.',
-              },
-              {
-                question: 'Do we need new landing pages?',
-                answer: (
-                  <>
-                    Often we improve message match on existing pages first. When the site caps conversion, we pair ads with{' '}
-                    <Link href="/real-estate-website-design" className="underline underline-offset-2 hover:opacity-70">
-                      website design
-                    </Link>{' '}
-                    or listing-specific landings so Quality Score and conversion rate defend CPL as you scale.
-                  </>
-                ),
-              },
-              {
-                question: 'How is pricing scoped?',
-                answer:
-                  'After your audit we align scope to market competition, campaign count, landing needs, and your growth target, then we put deliverables in writing. No opaque packages, no surprise invoices for basic optimization.',
-              },
-            ]
             return (
               <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-1 md:px-2">
-                {faqRenderItems.map((item) => (
+                {FAQ_ITEMS.map((item) => (
                   <details
                     key={item.question}
                     className="group border-0 px-3 py-1 transition-colors [&[open]]:bg-white/90 md:px-4"

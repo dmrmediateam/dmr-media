@@ -4,29 +4,80 @@ import type { SeoHeroCaseStudySlide } from '@/components/SeoHeroCaseStudyShowcas
 
 export const FAQ_ITEMS = [
   {
-    question: 'How much does Google Ads cost for real estate?',
+    question: 'What is PPC management for real estate?',
     answer:
-      'You pay Google directly for clicks. We set daily budgets from market depth and conversation targets. Our management fee covers strategy, build, optimization, landing support, and reporting. Scope is agreed after we map your markets, inventory, and goals.',
+      'PPC (pay-per-click) management is the ongoing strategy, build, and optimization of your paid search program: keyword research and intent mapping, hyper-local geo-targeting, negative keywords, ad copy and extensions, landing pages, bid and budget management, remarketing, and conversion tracking. For real estate that means campaigns across Google Ads Search, Maps, and Performance Max tuned to how buyers and sellers actually search your markets, with reporting tied to qualified conversations instead of raw clicks.',
   },
   {
-    question: 'How quickly will Google Ads produce leads?',
+    question: 'How much does PPC management for real estate cost?',
+    answer:
+      'Two parts: ad spend you pay Google directly for clicks, and a management fee that covers strategy, build, optimization, landing support, and reporting. Real estate click costs vary widely by market and intent, which is why disciplined management matters more than raw budget. Documented client rebuilds have cut cost per lead by as much as 88 percent, from $86.36 to $10.46. Scope is agreed after we map your markets, inventory, and goals.',
+  },
+  {
+    question: 'Is PPC worth it for real estate agents?',
+    answer:
+      'When it is managed around intent, yes. Unlike portal leads you rent from Zillow or Realtor.com, PPC puts your brand in front of buyers and sellers at the moment they search, and every lead lands in your CRM as a contact you own. The teams we manage have documented 3x pipeline lifts and 28-plus qualified leads per week after restructures. PPC underperforms when campaigns chase clicks instead of qualified conversations, which is exactly what management is for.',
+  },
+  {
+    question: 'How quickly will real estate PPC produce leads?',
     answer:
       'Search and Maps can move within days of launch. Lead quality and cost per lead usually stabilize over the first few weeks as conversion data accumulates. Retargeting and nurture are built to compound over 60 to 90 days.',
   },
   {
-    question: 'Can you manage Google Ads in multiple markets?',
-    answer:
-      'Yes. Accounts use geo-segmented campaigns, shared brand assets where it helps, and market-specific negatives and copy so budgets do not bleed across metros. Reporting breaks out performance by region.',
-  },
-  {
-    question: 'How do you prevent wasted ad spend?',
+    question: 'How do you prevent wasted PPC spend?',
     answer:
       'Intent layers on keywords, disciplined geography, placement exclusions, conversion-based bidding once signals exist, weekly search term reviews, and CRM feedback loops. We prioritize qualified conversations, not vanity clicks.',
   },
   {
-    question: 'How is pricing scoped?',
+    question: 'Can you manage PPC campaigns in multiple markets?',
+    answer:
+      'Yes. Accounts use geo-segmented campaigns, shared brand assets where it helps, and market-specific negatives and copy so budgets do not bleed across metros. Reporting breaks out performance by region.',
+  },
+  {
+    question: 'Do you manage Facebook ads too, or just Google?',
+    answer:
+      'Google Ads is the core of our PPC management because search captures active intent: someone typing "homes for sale in your market" is closer to a transaction than someone scrolling a feed. Where paid social fits a goal, such as listing launches or retargeting, we advise on the mix, but we optimize the budget toward the channel producing qualified conversations at the best cost.',
+  },
+  {
+    question: 'How is PPC management pricing scoped?',
     answer:
       'After your account audit we align scope to market competition, campaign count, landing needs, and your growth target, then we put deliverables in writing. No opaque packages, no surprise invoices for basic optimization.',
+  },
+] as const
+
+/** What DMR's PPC management includes — rendered as the deliverables grid. */
+export const ppcDeliverables = [
+  {
+    title: 'Keyword research & intent mapping',
+    body: 'Buyer, seller, luxury, relocation, and investment queries mapped to your inventory and GCI goals — not a keyword dump from last year\'s playbook.',
+  },
+  {
+    title: 'Hyper-local geo-targeting',
+    body: 'Budgets focused on the neighborhoods, zip codes, and price bands where you actually work, with bid adjustments where your margin lives.',
+  },
+  {
+    title: 'Negative keywords & search-term reviews',
+    body: 'Weekly reviews that cut rentals, jobs, DIY, and out-of-market queries before they burn budget. Discipline is where PPC margin is won.',
+  },
+  {
+    title: 'Ad copy, extensions & message match',
+    body: 'Ads, sitelinks, and calls that keep the promise the click was sold — protecting Quality Score, click cost, and conversion rate together.',
+  },
+  {
+    title: 'Landing page strategy',
+    body: 'Message-matched paths on your existing site, or purpose-built landing pages when the site caps conversion. The ad and the page work as one unit.',
+  },
+  {
+    title: 'Bid & budget management',
+    body: 'Conversion-based bidding once signals exist, seasonal pacing, and budget shifts toward the campaigns producing qualified conversations.',
+  },
+  {
+    title: 'Remarketing for long sales cycles',
+    body: 'Real estate decisions take months. Retargeting and nurture keep you in front of serious prospects between first search and signed agreement.',
+  },
+  {
+    title: 'Tracking, CRM feedback & reporting',
+    body: 'Calls, forms, and offline outcomes fed back into bidding, with weekly reporting on CPL, search themes, and pipeline your team can trace to names.',
   },
 ] as const
 
