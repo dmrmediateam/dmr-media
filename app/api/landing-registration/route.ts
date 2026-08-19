@@ -150,17 +150,24 @@ export async function POST(request: Request) {
 
     // Determine which webhook URL to use based on source
     const isGoogleDirect = source === 'google-direct-landing';
+    // Paid Ads webinar leads (qualified and DQ) go to their own Zap. The env var
+    // overrides the default so the URL can be rotated without a deploy.
+    const PAID_ADS_WEBINAR_WEBHOOK_DEFAULT = 'https://hooks.zapier.com/hooks/catch/21968997/4ti640x/';
     const zapierWebhookUrl = isFeb2026
       ? process.env.ZAPIER_FEB_WEBINAR_WEBHOOK_URL
-      : isGoogleDirect
-        ? process.env.ZAPIER_GOOGLE_DIRECT_WEBHOOK_URL
-        : process.env.ZAPIER_LANDING_WEBHOOK_URL;
-    
+      : isWebinar
+        ? (process.env.ZAPIER_PAID_ADS_WEBINAR_WEBHOOK_URL || PAID_ADS_WEBINAR_WEBHOOK_DEFAULT)
+        : isGoogleDirect
+          ? process.env.ZAPIER_GOOGLE_DIRECT_WEBHOOK_URL
+          : process.env.ZAPIER_LANDING_WEBHOOK_URL;
+
     const webhookEnvName = isFeb2026
       ? 'ZAPIER_FEB_WEBINAR_WEBHOOK_URL'
-      : isGoogleDirect
-        ? 'ZAPIER_GOOGLE_DIRECT_WEBHOOK_URL'
-        : 'ZAPIER_LANDING_WEBHOOK_URL';
+      : isWebinar
+        ? 'ZAPIER_PAID_ADS_WEBINAR_WEBHOOK_URL'
+        : isGoogleDirect
+          ? 'ZAPIER_GOOGLE_DIRECT_WEBHOOK_URL'
+          : 'ZAPIER_LANDING_WEBHOOK_URL';
     
     console.log('Webhook Configuration:', {
       isFeb2026,
@@ -187,6 +194,16 @@ export async function POST(request: Request) {
           ...(sanitizedData.averageSalePrice && { averageSalePrice: sanitizedData.averageSalePrice }),
           ...(sanitizedData.homesSold2025 && { homesSold2025: sanitizedData.homesSold2025 }),
         }),
+        // Paid Ads webinar qualification fields
+        ...(isWebinar && {
+          annualVolume: sanitizedData.annualVolume,
+          teamSize: sanitizedData.teamSize,
+          painPoint: sanitizedData.painPoint,
+          qualified: sanitizedData.qualified,
+        }),
+        ...(sanitizedData.currentWebsite && { currentWebsite: sanitizedData.currentWebsite }),
+        source: sanitizedData.source,
+        eventDate: sanitizedData.eventDate,
         // Include UTM parameters if present
         ...(sanitizedData.utm_source && { utm_source: sanitizedData.utm_source }),
         ...(sanitizedData.utm_medium && { utm_medium: sanitizedData.utm_medium }),
