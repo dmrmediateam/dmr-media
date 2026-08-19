@@ -59,9 +59,11 @@ type Props = {
   config: ChannelLandingConfig
   /** Optional page-specific section (e.g. design showcase) rendered after the client logos. */
   showcase?: ReactNode
+  /** Optional custom hero that replaces the built-in hero layouts entirely. */
+  hero?: ReactNode
 }
 
-export default function ChannelLandingPageContent({ config, showcase }: Props) {
+export default function ChannelLandingPageContent({ config, showcase, hero }: Props) {
   const {
     formName,
     formConfig,
@@ -102,7 +104,9 @@ export default function ChannelLandingPageContent({ config, showcase }: Props) {
     <div className="google-general-landing min-h-screen bg-[var(--surface-base)] text-[var(--color-off-black)]">
       <ChannelLandingHeader applyLabel={headerApplyLabel} />
 
-      {heroLayout === 'conversion' ? (
+      {hero ? (
+        hero
+      ) : heroLayout === 'conversion' ? (
         <GoogleGeneralHero config={config} />
       ) : (
         <section

@@ -36,6 +36,7 @@ export async function POST(request: Request) {
             averageSalePriceInt: 0,
             homesSold2025Int: 0,
           }),
+          ...(source === 'paid-ads-webinar-landing' && { qualified: true }),
         },
         { status: 200 }
       );
@@ -109,9 +110,16 @@ export async function POST(request: Request) {
     const homesSold2025Int = isFeb2026 ? (parseInt(body.homesSold2025?.trim() || '0', 10) || 0) : 0;
 
     // Qualification logic for feb-2026: $350k+ average home price & 12+ listings in 2025
-    const isQualified = isFeb2026 
+    // Qualification logic for paid-ads-webinar: $20M+ annual sales volume
+    // (volume options are "Under $5M", "$5M – $20M", "$20M – $50M", "$50M+")
+    const isWebinar = source === 'paid-ads-webinar-landing';
+    const annualVolume = body.annualVolume?.trim() || '';
+    const webinarQualified = annualVolume.startsWith('$20M') || annualVolume.startsWith('$50M');
+    const isQualified = isFeb2026
       ? (averageSalePriceInt >= 350000 && homesSold2025Int >= 12)
-      : true; // Other landing pages don't have qualification
+      : isWebinar
+        ? webinarQualified
+        : true; // Other landing pages don't have qualification
 
     const sanitizedData = {
       name: body.name.trim().substring(0, 100),
@@ -122,6 +130,13 @@ export async function POST(request: Request) {
       averageSalePriceInt, // Integer version for webhook
       homesSold2025Int, // Integer version for webhook
       qualified: isQualified,
+      // Real (non-decoy) optional field: the registrant's current website.
+      // Named `currentWebsite` because `website` is a spam decoy on this endpoint.
+      currentWebsite: body.currentWebsite?.trim().substring(0, 200) || '',
+      // Webinar qualification-friction fields (paid-ads-webinar-landing).
+      annualVolume: body.annualVolume?.trim().substring(0, 100) || '',
+      teamSize: body.teamSize?.trim().substring(0, 100) || '',
+      painPoint: body.painPoint?.trim().substring(0, 200) || '',
       source,
       eventDate,
       timestamp: new Date().toISOString(),
@@ -226,6 +241,7 @@ export async function POST(request: Request) {
           averageSalePriceInt: sanitizedData.averageSalePriceInt,
           homesSold2025Int: sanitizedData.homesSold2025Int,
         }),
+        ...(isWebinar && { qualified: sanitizedData.qualified }),
       },
       { status: 200 }
     );
