@@ -101,16 +101,15 @@ export default function WebinarRegistrationForm() {
 
       // Route by qualification: $20M+ annual volume is qualified, the rest DQ.
       // (Filtered submissions come back qualified so they stay indistinguishable.)
+      const params = `email=${encodeURIComponent(formData.email)}&name=${encodeURIComponent(
+        formData.fullName
+      )}&phone=${encodeURIComponent(formData.phone)}`
       if (data.qualified === false) {
-        router.push('/landing/thank-you-dq')
+        router.push(`/landing/thank-you-webinar-dq?${params}`)
         return
       }
 
-      router.push(
-        `/landing/thank-you?session_id=free_registration&email=${encodeURIComponent(
-          formData.email
-        )}&name=${encodeURIComponent(formData.fullName)}&phone=${encodeURIComponent(formData.phone)}`
-      )
+      router.push(`/landing/thank-you-webinar?${params}`)
     } catch (err) {
       setIsSubmitting(false)
       setSubmitMessage(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
