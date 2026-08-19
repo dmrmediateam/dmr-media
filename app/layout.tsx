@@ -8,6 +8,7 @@ import { ELFSIGHT_REVIEWS_APP_CLASS } from '@/lib/elfsight-widgets'
 import { buildOrganizationSchema } from '@/lib/eeatSchema'
 import ScrollProgressBar from '@/components/ScrollProgressBar'
 import UTMTracker from '@/components/UTMTracker'
+import CookieConsent from '@/components/CookieConsent'
 
 const instrumentSerif = Instrument_Serif({ 
   subsets: ['latin'],
@@ -189,6 +190,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <ConditionalLayout>
           {children}
         </ConditionalLayout>
+        <CookieConsent />
         {/* Elfsight All-in-One Reviews | DMR Widget (global) */}
         <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
         <div className={ELFSIGHT_REVIEWS_APP_CLASS} data-elfsight-app-lazy />
