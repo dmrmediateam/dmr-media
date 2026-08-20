@@ -9,16 +9,12 @@ import {
   applyFormPanelClass,
 } from '@/components/applyFormPrimitives'
 import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot'
+import { WEBINAR_VOLUME_OPTIONS } from '@/lib/landing/webinar-qualification'
 import { getStoredUTMParams, trackConversion } from '@/lib/utmTracking'
 
 const EVENT_DATE = 'September 16th, 2026'
 
-const VOLUME_OPTIONS = [
-  'Under $5M',
-  '$5M – $20M',
-  '$20M – $50M',
-  '$50M+',
-] as const
+const VOLUME_OPTIONS = WEBINAR_VOLUME_OPTIONS
 
 const TEAM_SIZE_OPTIONS = [
   'Solo agent',
@@ -99,8 +95,9 @@ export default function WebinarRegistrationForm() {
         trackConversion('Lead', { form_type: 'paid_ads_webinar_landing' })
       }
 
-      // Route by qualification: $20M+ annual volume is qualified, the rest DQ.
-      // (Filtered submissions come back qualified so they stay indistinguishable.)
+      // Route by qualification: $5M+ annual volume is qualified; sub-$5M goes
+      // to the DQ page. (Filtered submissions come back qualified so spam stays
+      // indistinguishable from a real signup.)
       const params = `email=${encodeURIComponent(formData.email)}&name=${encodeURIComponent(
         formData.fullName
       )}&phone=${encodeURIComponent(formData.phone)}`

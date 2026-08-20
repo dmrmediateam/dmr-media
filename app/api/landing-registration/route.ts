@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { DEFAULT_HONEYPOT_FIELDS, isSpam } from '@/lib/spam-filter';
+import { isQualifiedWebinarVolume } from '@/lib/landing/webinar-qualification';
 
 /**
  * Landing Page Registration API Route
@@ -110,15 +111,14 @@ export async function POST(request: Request) {
     const homesSold2025Int = isFeb2026 ? (parseInt(body.homesSold2025?.trim() || '0', 10) || 0) : 0;
 
     // Qualification logic for feb-2026: $350k+ average home price & 12+ listings in 2025
-    // Qualification logic for paid-ads-webinar: $20M+ annual sales volume
-    // (volume options are "Under $5M", "$5M – $20M", "$20M – $50M", "$50M+")
+    // Qualification logic for paid-ads-webinar: $5M+ annual sales volume.
+    // The rule and the option labels live in lib/landing/webinar-qualification
+    // so the form and this route can never disagree about what qualifies.
     const isWebinar = source === 'paid-ads-webinar-landing';
-    const annualVolume = body.annualVolume?.trim() || '';
-    const webinarQualified = annualVolume.startsWith('$20M') || annualVolume.startsWith('$50M');
     const isQualified = isFeb2026
       ? (averageSalePriceInt >= 350000 && homesSold2025Int >= 12)
       : isWebinar
-        ? webinarQualified
+        ? isQualifiedWebinarVolume(body.annualVolume)
         : true; // Other landing pages don't have qualification
 
     const sanitizedData = {
