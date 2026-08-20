@@ -37,11 +37,6 @@ export default function WebinarLuxuryHero() {
             — and build an online book of business you own, not rent.
           </p>
 
-          <p className="mx-auto mt-4 max-w-2xl font-serif text-sm leading-relaxed text-[var(--color-ink-400)]">
-            Attend live and unlock a <strong className="font-medium text-[var(--color-off-black)]">FREE website</strong>{' '}
-            — the same award-nominated standard we build for luxury teams. *Additional purchase required.
-          </p>
-
           <p className="mt-6 inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-serif text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
             <span className="tracking-[0.06em] text-[var(--color-off-black)]" aria-hidden>
               ★★★★★
