@@ -8,6 +8,6 @@ export const metadata: Metadata = {
   description: 'Webinar registration confirmed — check your email for how to add it to your calendar.',
 }
 
-export default function ThankYouWebinarDqLayout({ children }: { children: ReactNode }) {
+export default function WebinarDqLayout({ children }: { children: ReactNode }) {
   return children
 }

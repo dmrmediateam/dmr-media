@@ -10,6 +10,9 @@ const THANK_YOU_DISALLOW = [
   // Paid-traffic Google Ads landing pages — not for organic search.
   '/landing/website-development',
   '/landing/paid-ads-webinar',
+  // Post-registration page. Listed explicitly: it does NOT start with
+  // "/landing/thank-you", so the prefix rule above does not cover it.
+  '/landing/webinar-dq',
 ] as const
 
 export default function robots(): MetadataRoute.Robots {

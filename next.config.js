@@ -15,6 +15,10 @@ const thankYouHeaderRules = [
   '/landing/thank-you-g-dq',
   '/landing/thank-you-feb-2026',
   '/landing/thank-you-booking',
+  '/landing/thank-you-webinar',
+  // Post-registration page for the webinar DQ path. Named without the
+  // "thank-you-" prefix, so it must be listed here explicitly.
+  '/landing/webinar-dq',
   '/thank-you',
   '/thank-you-q',
   '/thank-you-dq',
@@ -222,6 +226,12 @@ const nextConfig = {
       {
         source: '/real-estate-seo-consultant',
         destination: '/seo-consulting',
+        permanent: true,
+      },
+      // Webinar DQ page renamed from /landing/thank-you-webinar-dq.
+      {
+        source: '/landing/thank-you-webinar-dq',
+        destination: '/landing/webinar-dq',
         permanent: true,
       },
     ]

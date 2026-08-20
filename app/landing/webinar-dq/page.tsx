@@ -23,7 +23,7 @@ const STEPS = [
   },
 ] as const;
 
-function ThankYouWebinarDqContent() {
+function WebinarDqContent() {
   const searchParams = useSearchParams();
   const name = searchParams.get('name') || '';
   const email = searchParams.get('email') || '';
@@ -135,7 +135,7 @@ function ThankYouWebinarDqContent() {
   );
 }
 
-export default function ThankYouWebinarDqPage() {
+export default function WebinarDqPage() {
   return (
     <Suspense
       fallback={
@@ -144,7 +144,7 @@ export default function ThankYouWebinarDqPage() {
         </div>
       }
     >
-      <ThankYouWebinarDqContent />
+      <WebinarDqContent />
     </Suspense>
   );
 }

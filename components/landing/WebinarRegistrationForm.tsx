@@ -105,7 +105,7 @@ export default function WebinarRegistrationForm() {
         formData.fullName
       )}&phone=${encodeURIComponent(formData.phone)}`
       if (data.qualified === false) {
-        router.push(`/landing/thank-you-webinar-dq?${params}`)
+        router.push(`/landing/webinar-dq?${params}`)
         return
       }
 
