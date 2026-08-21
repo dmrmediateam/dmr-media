@@ -60,7 +60,7 @@ export default function WebinarFreeWebsiteSection() {
             <div className="lg:order-2">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_12px_40px_-16px_rgba(15,15,15,0.12)]">
                 <Image
-                  src="/images/webinar/luxury-template-carole-tierney.png"
+                  src="/images/webinar/luxury-template-home.png"
                   alt="Sample of the free luxury real estate agent website offered to webinar attendees"
                   fill
                   className="object-cover object-top"
