@@ -19,12 +19,27 @@ export async function POST(request: Request) {
     const source = body.source || 'add-listings-landing';
     const isFeb2026 = source === 'feb-2026-landing';
 
+    // TEMPORARY — spam filtering is OFF for the Paid Ads webinar form while we
+    // verify webhook delivery. A filtered post is dropped silently (no webhook,
+    // no analytics) and still returns success, which is indistinguishable from a
+    // broken webhook, so it cannot stay on while debugging that. It also means a
+    // browser autofilling the `company` decoy would silently eat a real lead.
+    // TO RE-ENABLE: delete this Set and the ternary guard below.
+    const SPAM_CHECK_DISABLED_SOURCES = new Set(['paid-ads-webinar-landing']);
+    const spamCheckDisabled = SPAM_CHECK_DISABLED_SOURCES.has(source);
+
     // SPAM CHECK — runs before validation so a filtered post is indistinguishable
     // from a real one. `website` IS a decoy on this endpoint (no form that posts
     // here collects a real website), which is why it is added to the defaults.
-    const spamReasons = isSpam(body, {
-      honeypotFields: [...DEFAULT_HONEYPOT_FIELDS, 'website'],
-    });
+    const spamReasons = spamCheckDisabled
+      ? []
+      : isSpam(body, {
+          honeypotFields: [...DEFAULT_HONEYPOT_FIELDS, 'website'],
+        });
+
+    if (spamCheckDisabled) {
+      console.warn('[LandingRegistration] spam filter DISABLED for source', { source, ip });
+    }
     if (spamReasons.length > 0) {
       console.warn('[LandingRegistration] blocked likely spam', { reasons: spamReasons, ip, source });
       return NextResponse.json(
