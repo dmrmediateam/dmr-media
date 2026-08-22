@@ -8,35 +8,40 @@ export const jadeLegendaryData: CaseStudyData = {
   status: 'Ongoing',
   seo: {
     title:
-      'Legendary Real Estate — $9.22 Inquiry Cost, SEO-Led Growth & a Year-Two Site Relaunch | DMR Media',
+      'Legendary Real Estate — 1,400+ Organic Visits/Mo & ~28 Inbound Leads From SEO | DMR Media',
     description:
-      'How Legendary Real Estate compounding SEO, Google Business Profile, Performance Max, and retargeting—without cold top-of-funnel spend—produced qualified “work with us” inquiries at $9.22 and a full website redesign one year in.',
+      'How a repeatable SEO engine—two DR 30+ local backlinks a month, three blog posts a week, and three “homes for sale” core pages—took Legendary Real Estate to 1,400+ monthly organic visits and roughly 28 inbound leads a month in a little over a year.',
     canonical: 'https://www.dmrmedia.org/case-study/jade-legendary-real-estate',
     ogImage: '/images/ClientWebsiteImages/LegendaryRealEstate-Website.png',
     datePublished: '2025-04-01',
-    dateModified: '2026-05-08',
+    dateModified: '2026-08-22',
   },
   hero: {
     imageAlt:
       'Legendary Real Estate Services homepage — Lake Geneva Wisconsin luxury positioning',
     subtitle:
-      'Legendary did not need louder marketing. They needed a guide with a plan: own intent in search, earn trust before the first click, then capture hand-raisers with surgical paid media. Alongside partner Chris—Wisconsin Realtor of the Year—we rebuilt the spine of their system, relaunched the website at the one-year mark, and proved the model with inquiries from people explicitly asking to work with them.',
+      'Legendary did not need louder marketing. They needed a guide with a plan: own intent in search, earn trust before the first click, then capture hand-raisers with surgical paid media. Alongside partner Chris—Wisconsin Realtor of the Year—we installed a repeatable SEO engine and ran it every week. A little over a year later it produces 1,400+ organic visits a month and roughly 28 inbound leads—traffic they own instead of rent.',
   },
   metrics: [
+    {
+      number: '1,400+',
+      label: 'Organic visits / mo',
+      context: 'Up 54% year over year, from a standing start',
+    },
+    {
+      number: '~28',
+      label: 'Inbound leads / mo',
+      context: 'Organic traffic converts at roughly 2%',
+    },
+    {
+      number: '731',
+      label: 'Keywords ranking',
+      context: '+31% — organic positions, not bought placements',
+    },
     {
       number: '$9.22',
       label: 'Cost per inquiry',
       context: '“Work with us” leads via P-Max + retargeting',
-    },
-    {
-      number: '3×',
-      label: 'Qualified pipeline',
-      context: 'Inbound lift inside 90 days of the rebuild',
-    },
-    {
-      number: '400+',
-      label: 'Organic visits / mo',
-      context: 'Site + SEO + Google Business Profile (US)',
     },
   ],
   reviews: [
@@ -78,6 +83,32 @@ export const jadeLegendaryData: CaseStudyData = {
       ],
     },
     {
+      id: 'the-seo-engine',
+      eyebrow: 'The plan',
+      headline: 'Three moves, run every week, for a little over a year',
+      body: [
+        `Most agents treat SEO as a mystery. It is not. It is a small number of correct moves, repeated past the point most people quit. For Legendary the entire organic engine comes down to <strong>three</strong>: earn local authority, publish at a cadence competitors will not match, and build the pages that capture people ready to transact.`,
+        `Run together, those three compounded into <strong>1,400+ organic visits per month</strong>—up <strong>54% year over year</strong> across <strong>731 ranking keywords</strong>. At Legendary&rsquo;s measured <strong>2% traffic-to-lead rate</strong>, that traffic hands them roughly <strong>28 inbound inquiries every month</strong> from people who found them on purpose. No ad spend keeps that number alive. Stop paying for ads and ad leads stop the same day; this keeps producing.`,
+      ],
+      phases: [
+        {
+          label: 'Pillar 01',
+          name: 'Two DR 30+ local backlinks a month',
+          body: 'Authority is the price of admission—Google will not rank a domain it does not trust. Rather than chase volume, we earn two genuinely local links a month from DR 30+ sources tied to the Lake Geneva market. Slow on any single month, decisive over a year: the domain now sits at a 21 authority score with 210 referring domains behind it.',
+        },
+        {
+          label: 'Pillar 02',
+          name: 'Three blog posts every week',
+          body: 'Three posts a week, without exception. That cadence is what most teams promise in January and abandon by March, and it is exactly why it works: every post answers a real question a Lake Geneva buyer or seller is already typing, builds the topical depth Google rewards, and gives AI assistants something concrete to cite when someone asks them who to trust in this market.',
+        },
+        {
+          label: 'Pillar 03',
+          name: 'Three core “homes for sale” pages',
+          body: 'Blogs earn the audience; core pages convert it. We built three transactional “Homes for sale in {city}” pages aimed at the highest-intent searches in the market—the searches people run when they are ready to move, not researching. These carry the commercial weight of the site and turn the traffic the other two pillars generate into inquiries.',
+        },
+      ],
+    },
+    {
       id: 'how-we-did-it',
       eyebrow: 'Process',
       headline: 'Diagnose, rebuild, then compound',
@@ -105,9 +136,11 @@ export const jadeLegendaryData: CaseStudyData = {
       eyebrow: 'Proof',
       headline: 'Numbers buyers respect',
       body: [
-        `Over time, blended Performance Max and retargeting produced <strong>$9.22 cost per inquiry</strong> for people asking to work with Legendary—the kind of lead where the sales conversation starts warm, not skeptical.`,
-        `Organic visibility followed the longer arc you want from authority: steady growth in tracked organic visits as the domain earned keywords, backlinks, and AI-mode visibility—not a sugar high from rented reach. Paid search stayed <strong>down-funnel by design</strong>; discovery stayed owned by the website and Google Business Profile.`,
-        `Today Jade receives a clear weekly signal on what is ranking, what is earning clicks, and which conversations are tied to revenue. The transformation is not “more noise.” It is a guide-led system: story, search, local proof, and capture—all pointing the same direction.`,
+        `A little over a year in, the engine produces <strong>1,400+ organic visits a month</strong>—<strong>up 54% year over year</strong>—across <strong>731 ranking keywords</strong> (+31%). At the measured <strong>2% conversion rate</strong>, that is roughly <strong>28 inbound leads every month</strong> arriving without a dollar of media behind them. Legendary now holds a <strong>28% share</strong> of the traffic in their tracked competitive set.`,
+        `The authority underneath those numbers is the part competitors cannot shortcut: <strong>210 referring domains</strong>, <strong>589 backlinks</strong>, and an authority score that climbed to <strong>21</strong>—two deliberate local links a month, stacked for a year.`,
+        `That authority is now paying a dividend nobody was planning for in 2024: <strong>AI search</strong>. Legendary is cited on <strong>68 pages</strong> across every major AI surface—<strong>Google&rsquo;s AI Mode, ChatGPT, Gemini, and AI Overviews</strong>. When a buyer asks an assistant who to trust in Lake Geneva, Legendary is in the answer. The same three pillars that earned Google rankings are what make the brand quotable to AI.`,
+        `On the paid side, blended Performance Max and retargeting produced <strong>$9.22 cost per inquiry</strong> for people explicitly asking to work with Legendary—capture, not discovery. Discovery stayed owned by the website, the content, and the Google Business Profile.`,
+        `That is the difference worth naming. Ad leads stop the day the card stops. This compounds: the posts published last spring still rank, the links earned last summer still carry weight, and the core pages built once still convert every month. Jade gets a clear weekly signal on what is ranking, what is earning clicks, and which conversations are tied to revenue—and a pipeline that keeps producing whether or not anyone is watching the ad account.`,
       ],
       screenshots: [
         {
@@ -116,9 +149,9 @@ export const jadeLegendaryData: CaseStudyData = {
           caption: 'Performance Max + conversion-focused bidding: cost per “work with us” inquiry in band with $9.22 CPL.',
         },
         {
-          src: '/images/LegendaryRealEstateCaseSTudy/SEMRUSHTraffic.png',
-          alt: 'SEMrush domain overview — organic traffic growth for legendaryrealestateservices.com',
-          caption: 'Organic compounding: visibility and visits driven primarily by site + SEO + GBP, not paid discovery.',
+          src: '/images/LegendaryRealEstateCaseSTudy/semrush-2026-08.png',
+          alt: 'SEMrush domain overview for legendaryrealestateservices.com — 1.4K monthly organic traffic, up 54%, with 731 organic keywords and a 21 authority score',
+          caption: '1.4K monthly organic visits (+54%), 731 keywords (+31%), 210 referring domains, and a 28% traffic share — with paid traffic at zero. The climb on the right is a year of three pillars compounding.',
         },
       ],
     },
