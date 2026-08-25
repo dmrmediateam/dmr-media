@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { DEFAULT_HONEYPOT_FIELDS, isSpam } from '@/lib/spam-filter';
 import { isQualifiedWebinarVolume } from '@/lib/landing/webinar-qualification';
+import { sendWebinarRegistrationEmail } from '@/lib/email';
 
 /**
  * Landing Page Registration API Route
@@ -257,6 +258,36 @@ export async function POST(request: Request) {
           stack: zapierError.stack,
         });
         // Don't fail the request if Zapier fails
+      }
+    }
+
+    // EMAIL NOTIFICATION — webinar registrations also go to a human inbox, so a
+    // misconfigured or paused Zap can never silently swallow a lead. Non-blocking
+    // by design: a SendGrid outage must not cost us the registration.
+    if (isWebinar) {
+      try {
+        await sendWebinarRegistrationEmail({
+          name: sanitizedData.name,
+          email: sanitizedData.email,
+          phone: sanitizedData.phone,
+          annualVolume: sanitizedData.annualVolume,
+          teamSize: sanitizedData.teamSize,
+          qualified: sanitizedData.qualified,
+          eventDate: sanitizedData.eventDate,
+          submittedAt: sanitizedData.timestamp,
+          utm_source: sanitizedData.utm_source,
+          utm_medium: sanitizedData.utm_medium,
+          utm_campaign: sanitizedData.utm_campaign,
+          utm_term: sanitizedData.utm_term,
+          utm_content: sanitizedData.utm_content,
+          gclid: body.gclid?.trim().substring(0, 200) || '',
+          fbclid: body.fbclid?.trim().substring(0, 200) || '',
+          landing_page: body.landing_page?.trim().substring(0, 200) || '',
+          first_visit: body.first_visit?.trim().substring(0, 200) || '',
+        });
+        console.log('Webinar registration email sent.');
+      } catch (emailError: any) {
+        console.error('Webinar registration email failed (non-blocking):', emailError?.message);
       }
     }
 

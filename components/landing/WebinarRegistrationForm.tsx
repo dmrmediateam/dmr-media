@@ -23,26 +23,17 @@ const TEAM_SIZE_OPTIONS = [
   '16+ agents',
 ] as const
 
-const PAIN_POINT_OPTIONS = [
-  'Portal leads are too expensive',
-  'My ads get clicks but no clients',
-  'No consistent, predictable pipeline',
-  'I can’t scale my team past referrals',
-  'I’m not running ads yet',
-] as const
-
 const initialFormData = {
   fullName: '',
   phone: '',
   email: '',
   annualVolume: '',
   teamSize: '',
-  painPoint: '',
 }
 
 const selectClass = `${applyFormInputClass} appearance-none bg-[url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23767671' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E")] bg-[position:right_0.9rem_center] bg-no-repeat pr-9`
 
-/** Webinar registration form with qualification friction (volume, team size, pain point). */
+/** Webinar registration form with qualification friction (annual volume, team size). */
 export default function WebinarRegistrationForm() {
   const router = useRouter()
   const [formData, setFormData] = useState(initialFormData)
@@ -72,7 +63,6 @@ export default function WebinarRegistrationForm() {
           email: formData.email.trim(),
           annualVolume: formData.annualVolume,
           teamSize: formData.teamSize,
-          painPoint: formData.painPoint,
           ...honeypot,
           source: 'paid-ads-webinar-landing',
           eventDate: EVENT_DATE,
@@ -220,29 +210,6 @@ export default function WebinarRegistrationForm() {
               ))}
             </select>
           </div>
-        </div>
-
-        <div>
-          <label htmlFor="webinar-painPoint" className={applyFormLabelClass}>
-            Your biggest marketing pain point
-          </label>
-          <select
-            id="webinar-painPoint"
-            name="painPoint"
-            value={formData.painPoint}
-            onChange={handleChange}
-            required
-            className={selectClass}
-          >
-            <option value="" disabled>
-              Select…
-            </option>
-            {PAIN_POINT_OPTIONS.map((opt) => (
-              <option key={opt} value={opt}>
-                {opt}
-              </option>
-            ))}
-          </select>
         </div>
 
         {submitMessage ? (

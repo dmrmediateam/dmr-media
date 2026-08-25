@@ -86,6 +86,158 @@ export interface ApplicationFormEmailData {
   first_visit?: string;
 }
 
+export interface WebinarRegistrationEmailData {
+  name: string;
+  email: string;
+  phone: string;
+  annualVolume?: string;
+  teamSize?: string;
+  /** Result of the $5M+ volume rule — drives the subject line prefix. */
+  qualified: boolean;
+  eventDate: string;
+  submittedAt: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  gclid?: string;
+  fbclid?: string;
+  landing_page?: string;
+  first_visit?: string;
+}
+
+/**
+ * Send Paid Ads Webinar Registration Email.
+ *
+ * Delivery path that does not depend on the Zapier webhook — if that Zap is off
+ * or misconfigured, the registration still reaches a human inbox.
+ */
+export async function sendWebinarRegistrationEmail(data: WebinarRegistrationEmailData) {
+  const {
+    name,
+    email,
+    phone,
+    annualVolume,
+    teamSize,
+    qualified,
+    eventDate,
+    submittedAt,
+    utm_source,
+    utm_medium,
+    utm_campaign,
+    utm_term,
+    utm_content,
+    gclid,
+    fbclid,
+    landing_page,
+    first_visit,
+  } = data;
+
+  // Front-load qualification so the inbox is triageable at a glance.
+  const flag = qualified ? '[QUALIFIED]' : '[DQ]';
+  const qualifiedLabel = qualified
+    ? 'Qualified — $5M+ annual volume'
+    : 'Not qualified — under $5M annual volume';
+
+  const emailContent = {
+    to: process.env.WEBINAR_FORM_EMAIL || 'team@dmrmedia.org',
+    from: {
+      email: process.env.SENDGRID_FROM_EMAIL || 'noreply@sendgrid.net',
+      name: process.env.SENDGRID_FROM_NAME || 'DMR Media',
+    },
+    replyTo: email,
+    subject: `${flag} Webinar registration - ${name || 'Unknown'}`,
+    html: `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 700px; margin: 0 auto; padding: 20px; }
+            .header { background: #0f0f0f; color: #fff; padding: 24px; border-radius: 8px 8px 0 0; }
+            .content { background: #fff; border: 1px solid #e5e5e5; border-top: none; padding: 24px; }
+            .badge { display: inline-block; margin-top: 12px; padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; background: ${qualified ? '#e8f5ec' : '#fdecec'}; color: ${qualified ? '#1c6b3a' : '#98252b'}; }
+            .section-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin: 22px 0 10px; }
+            .field { margin-bottom: 10px; }
+            .label { font-weight: 600; color: #444; margin-right: 6px; }
+            .value { color: #111; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h2 style="margin:0;">New Webinar Registration</h2>
+              <p style="margin:8px 0 0 0; opacity:.85;">Scaling with Paid Ads &middot; ${eventDate}</p>
+              <div class="badge">${qualifiedLabel}</div>
+            </div>
+            <div class="content">
+              <div class="section-title">Contact</div>
+              <div class="field"><span class="label">Name:</span><span class="value">${name || 'Not provided'}</span></div>
+              <div class="field"><span class="label">Email:</span><span class="value"><a href="mailto:${email}" style="color:#b89649;text-decoration:none;">${email || 'Not provided'}</a></span></div>
+              <div class="field"><span class="label">Phone:</span><span class="value"><a href="tel:${phone}" style="color:#b89649;text-decoration:none;">${phone || 'Not provided'}</a></span></div>
+
+              <div class="section-title">Qualification</div>
+              <div class="field"><span class="label">Annual sales volume:</span><span class="value">${annualVolume || 'Not provided'}</span></div>
+              <div class="field"><span class="label">Team size:</span><span class="value">${teamSize || 'Not provided'}</span></div>
+              <div class="field"><span class="label">Status:</span><span class="value">${qualifiedLabel}</span></div>
+
+              <div class="section-title">Attribution</div>
+              <div class="field"><span class="label">UTM source:</span><span class="value">${utm_source || '—'}</span></div>
+              <div class="field"><span class="label">UTM medium:</span><span class="value">${utm_medium || '—'}</span></div>
+              <div class="field"><span class="label">UTM campaign:</span><span class="value">${utm_campaign || '—'}</span></div>
+              <div class="field"><span class="label">UTM term:</span><span class="value">${utm_term || '—'}</span></div>
+              <div class="field"><span class="label">UTM content:</span><span class="value">${utm_content || '—'}</span></div>
+              <div class="field"><span class="label">gclid:</span><span class="value">${gclid || '—'}</span></div>
+              <div class="field"><span class="label">fbclid:</span><span class="value">${fbclid || '—'}</span></div>
+              <div class="field"><span class="label">First-touch landing:</span><span class="value">${landing_page || '—'}</span></div>
+              <div class="field"><span class="label">First visit:</span><span class="value">${first_visit || '—'}</span></div>
+
+              <div class="section-title">Submitted</div>
+              <div class="field"><span class="value">${new Date(submittedAt).toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' })}</span></div>
+            </div>
+          </div>
+        </body>
+      </html>
+    `,
+    text: `
+New Webinar Registration - Scaling with Paid Ads (${eventDate})
+${qualifiedLabel}
+
+CONTACT
+Name: ${name || 'Not provided'}
+Email: ${email || 'Not provided'}
+Phone: ${phone || 'Not provided'}
+
+QUALIFICATION
+Annual sales volume: ${annualVolume || 'Not provided'}
+Team size: ${teamSize || 'Not provided'}
+Status: ${qualifiedLabel}
+
+ATTRIBUTION
+UTM source: ${utm_source || '—'}
+UTM medium: ${utm_medium || '—'}
+UTM campaign: ${utm_campaign || '—'}
+UTM term: ${utm_term || '—'}
+UTM content: ${utm_content || '—'}
+gclid: ${gclid || '—'}
+fbclid: ${fbclid || '—'}
+First-touch landing: ${landing_page || '—'}
+First visit: ${first_visit || '—'}
+
+Submitted: ${new Date(submittedAt).toLocaleString()}
+    `,
+  };
+
+  try {
+    await initSendGrid().send(emailContent);
+    return { success: true };
+  } catch (error: any) {
+    console.error('SendGrid Error (webinar registration):', error.response?.body || error);
+    throw new Error('Failed to send webinar registration email');
+  }
+}
+
 /**
  * Send Contact Form Email
  */
