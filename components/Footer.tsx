@@ -200,7 +200,7 @@ const Footer = () => {
                 />
               </a>
               <p className="text-[10px] text-[var(--color-ink-300)]">
-                Top ranked real estate marketing agency in wisconsin*
+                Top ranked real estate marketing agency in the United States*
               </p>
             </div>
           </div>
