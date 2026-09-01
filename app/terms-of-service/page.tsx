@@ -49,6 +49,13 @@ export default function TermsOfServicePage() {
                   Specific engagements are governed by a signed proposal, statement of work, or service agreement (an
                   &ldquo;Order&rdquo;). If an Order conflicts with these Terms, the Order controls for that engagement.
                 </p>
+                <p className="mt-3">
+                  If you purchased a subscription or service through Stripe (checkout, invoice, or free trial), the
+                  program-specific{' '}
+                  <Link href="/stripe/terms-of-service" className="text-[var(--color-trust)] hover:underline">Service Terms</Link>{' '}
+                  also apply to your purchase and control over these Terms for that program, including its billing
+                  cycle, commitment term, trial conversion, and website ownership provisions.
+                </p>
               </section>
 
               <section>
