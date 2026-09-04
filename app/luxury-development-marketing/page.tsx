@@ -116,7 +116,7 @@ const CASE_STUDIES = [
     title: 'Eagan Luxury — Tampa Bay',
     description:
       'Consolidation, technical SEO, and paid demand after multiple community sites diluted authority—maps to how we stabilize digital before phased inventory accelerates.',
-    image: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
+    image: '/images/screencapture-eaganluxury-2026-09-04.png',
     imageRight: true,
   },
   {
@@ -195,7 +195,7 @@ export default function LuxuryDevelopmentMarketingPage() {
                 </div>
                 <div className="relative aspect-[16/10] max-h-[400px] rounded-sm overflow-hidden border border-[var(--color-ink-200)] shadow-md bg-[var(--color-ink-200)]">
                   <Image
-                    src="/images/screencapture-eaganluxury-2025-12-17-21_25_49.png"
+                    src="/images/screencapture-eaganluxury-2026-09-04.png"
                     alt="Luxury development marketing campaign overview — flagship website and brand presence"
                     fill
                     className="object-cover object-top"

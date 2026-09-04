@@ -32,7 +32,7 @@ const caseStudies = [
     title: 'Eagan Luxury Real Estate',
     eyebrow: 'Website Consolidation',
     result: 'Ongoing',
-    image: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
+    image: '/images/screencapture-eaganluxury-2026-09-04.png',
     description:
       'Consolidated multiple fragmented websites into a single, powerful brand presence—launched December 17th with 0 measurable ranking loss and 10% keyword increase. Currently redirecting legacy sites and running retargeting campaigns.',
     tags: ['Website Build', 'SEO Preservation', '301 Redirects', 'Ongoing'],

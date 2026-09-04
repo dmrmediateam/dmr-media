@@ -32,7 +32,7 @@ const AGENT_WEBSITES: ShowcaseSample[] = [
     name: 'Eagan Luxury',
     description:
       'Gallery-grade presentation for the coast’s most luxurious waterfront residences. Curated enclave collections and bespoke property marketing that matches the caliber of a $5M shoreline listing.',
-    image: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
+    image: '/images/screencapture-eaganluxury-2026-09-04.png',
     imageRight: false,
   },
   {

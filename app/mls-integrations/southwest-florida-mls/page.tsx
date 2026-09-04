@@ -409,7 +409,7 @@ export default function SouthwestFloridaMlsPage() {
               </div>
               <div className="relative aspect-[16/9] overflow-hidden mb-6">
                 <img
-                  src="/images/screencapture-eaganluxury-2025-12-17-21_25_49.png"
+                  src="/images/screencapture-eaganluxury-2026-09-04.png"
                   alt="Eagan Luxury Real Estate website homepage"
                   className="w-full h-full object-cover"
                 />

@@ -11,7 +11,7 @@ export const eaganLuxuryData: CaseStudyData = {
     description:
       'From zero organic traffic to $11,075,000 in closed sales volume in Q1 2026. DMR Media built the brand, dominated organic search, and layered in Google Ads for Eagan Luxury Real Estate in St. Petersburg, FL.',
     canonical: 'https://www.dmrmedia.org/case-study/eagan-luxury-real-estate',
-    ogImage: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
+    ogImage: '/images/screencapture-eaganluxury-2026-09-04.png',
     datePublished: '2024-12-17',
     dateModified: '2026-03-25',
   },

@@ -47,7 +47,7 @@ export const websiteExamplesForSeo = [
     description:
       'Coastal luxury collective with organic + paid systems behind the brand, built to win high-intent waterfront searches.',
     url: 'https://www.eaganluxury.com/',
-    image: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
+    image: '/images/screencapture-eaganluxury-2026-09-04.png',
     imageRight: false,
   },
   {

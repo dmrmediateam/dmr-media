@@ -35,7 +35,7 @@ export default function EaganLuxuryCaseStudy() {
       <section className="border-t border-[var(--color-ink-200)] bg-white">
         <div className="container-max py-16 md:py-20">
           <Image
-            src="/images/screencapture-eaganluxury-2025-12-17-21_25_49.png"
+            src="/images/screencapture-eaganluxury-2026-09-04.png"
             alt="Eagan Luxury Real Estate — eaganluxury.com, St. Petersburg Florida"
             width={1920}
             height={1080}

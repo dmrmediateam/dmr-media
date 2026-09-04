@@ -182,7 +182,7 @@ export const frameworkPillars = [
   {
     title: 'Landing path precision',
     body: 'Headlines, extensions, and on-site experiences that keep the promise made in the ad so Quality Score and conversion rate defend CPL.',
-    image: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
+    image: '/images/screencapture-eaganluxury-2026-09-04.png',
     imageAlt: 'Luxury real estate landing experience',
   },
   {

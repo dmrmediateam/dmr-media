@@ -365,7 +365,7 @@ export default function StellarMlsPage() {
               </div>
               <div className="relative aspect-[16/9] overflow-hidden mb-6">
                 <Image
-                  src="/images/screencapture-eaganluxury-2025-12-17-21_25_49.png"
+                  src="/images/screencapture-eaganluxury-2026-09-04.png"
                   alt="Eagan Luxury Real Estate website homepage"
                   fill
                   className="object-cover"

@@ -90,7 +90,7 @@ const CASE_STUDIES = [
     title: 'Eagan Luxury — Tampa Bay, FL',
     description:
       'Greater Pinellas waterfront and high-end inventory where condominiums sit beside estate homes—brand, listings, and demand unified for buyers who start on search.',
-    image: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
+    image: '/images/screencapture-eaganluxury-2026-09-04.png',
     imageRight: true,
   },
   {
@@ -239,7 +239,7 @@ export default function LuxuryCondoWebsitesPage() {
                   </div>
                   <div className="col-span-2 relative aspect-[9/16] max-h-[420px] rounded-sm overflow-hidden border border-[var(--color-ink-200)] shadow-sm bg-[var(--color-ink-200)]">
                     <Image
-                      src="/images/screencapture-eaganluxury-2025-12-17-21_25_49.png"
+                      src="/images/screencapture-eaganluxury-2026-09-04.png"
                       alt="Luxury condo website experience on mobile"
                       fill
                       className="object-cover object-top"
@@ -323,7 +323,7 @@ export default function LuxuryCondoWebsitesPage() {
                   </figure>
                   <figure className="relative aspect-[2/1] border border-[var(--color-off-black)] overflow-hidden bg-[var(--color-ink-200)]">
                     <Image
-                      src="/images/screencapture-eaganluxury-2025-12-17-21_25_49.png"
+                      src="/images/screencapture-eaganluxury-2026-09-04.png"
                       alt="Optimized luxury condo and coastal brokerage website"
                       fill
                       className="object-cover object-top"

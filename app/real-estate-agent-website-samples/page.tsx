@@ -51,7 +51,7 @@ const WEBSITE_SAMPLES: WebsiteSample[] = [
     description:
       'Deborah Eagan and William Breaden represent the coast\'s most luxurious residences from St. Petersburg to the Gulf Beaches. With $252M in sales since 2013, 38 curated enclaves, and 13 years in the county, their waterfront collective delivers gallery-grade marketing and bespoke negotiations for every shoreline property.',
     url: 'https://www.eaganluxury.com/',
-    image: '/images/screencapture-eaganluxury-2025-12-17-21_25_49.png',
+    image: '/images/screencapture-eaganluxury-2026-09-04.png',
     imageRight: false,
   },
   {
