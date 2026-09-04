@@ -55,18 +55,17 @@ const WEBSITE_SAMPLES: WebsiteSample[] = [
     imageRight: false,
   },
   {
-    id: 'florio-team',
-    subheading: 'Ranked #35 of 20,000+ Central Florida Realtors',
-    name: 'The Florio Team | RE/MAX Town & Country',
+    id: 'carole-tierney',
+    subheading: 'Naples Waterfront & Golf Community Luxury',
+    name: 'Carole Tierney | Coldwell Banker Realty',
     description:
-      'Dominick Florio leads The Florio Team at RE/MAX Town & Country Realty—Central Florida\'s award-winning home team with 600+ closings, 200+ sales annually, and top-producer recognition across Orange, Seminole, Lake, Volusia, and Osceola Counties. Dual-licensed in real estate and mortgages, Dominick coordinates complex buy-and-sell moves from offices in Winter Park, Winter Springs, and Lake Mary—with coverage in outlets including The Real Deal.',
-    url: 'https://florio-team.vercel.app/',
-    image: '/images/ClientWebsiteImages/screencapture-florio-team-vercel-app-2026-05-16-15_01_22.png',
+      'Carole Tierney is a Luxury Property Specialist (CLHMS, CNHS) with Coldwell Banker Realty in Naples, Florida, marketing waterfront and golf-community homes for the buyer who expects exceptional. Her career began in 1984 in project sales and development, rising to Director of Resort Sales over a portfolio of 160 resorts — four decades of luxury experience behind every listing. The site was nominated for a DesignRush Design Award in September 2026.',
+    url: 'https://www.caroletierney.com/',
+    image: '/images/ClientWebsiteImages/screencapture-caroletierney-2026-09-04.png',
     imageRight: true,
     awardBadge: {
-      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-florio-team.png',
+      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png',
       alt: 'DesignRush.com Design Awards Nominee',
-      href: 'https://www.designrush.com/best-designs/websites/the-florio-team-website-design',
     },
   },
   {

@@ -71,18 +71,18 @@ export default function WebinarFreeWebsiteSection() {
           </article>
         </SeoReveal>
 
-        {/* Florio Team — award-nominated proof */}
+        {/* Carole Tierney — award-nominated proof */}
         <SeoReveal delay={0.05}>
           <article className="mt-16 grid items-center gap-8 border-t border-[var(--color-ink-200)] pt-14 lg:grid-cols-2 lg:gap-14 xl:gap-20 md:mt-20">
             <div className="flex flex-col justify-center lg:order-2">
               <p className="gg-eyebrow">DesignRush Design Awards Nominee</p>
               <h3 className="gg-display mt-3 text-2xl font-light tracking-tight md:text-[1.75rem]">
-                The Florio Team | RE/MAX Town &amp; Country
+                Carole Tierney | Coldwell Banker Realty
               </h3>
               <p className="gg-body gg-body-lg mt-4 max-w-xl">
-                The same team building your free website built this one — for a Central Florida team ranked #35 of
-                20,000+ Realtors, doing 200+ sales a year. It was nominated for a DesignRush Design Award. That’s the
-                standard your site is held to, free or not.
+                The same team building your free website built this one — for a Naples luxury specialist marketing
+                waterfront and golf-community homes after four decades in the business. It was nominated for a
+                DesignRush Design Award in September 2026. That’s the standard your site is held to, free or not.
               </p>
               <button
                 type="button"
@@ -95,8 +95,8 @@ export default function WebinarFreeWebsiteSection() {
             <div className="relative lg:order-1">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_12px_40px_-16px_rgba(15,15,15,0.12)]">
                 <Image
-                  src="/images/ClientWebsiteImages/screencapture-florio-team-vercel-app-2026-05-16-15_01_22.png"
-                  alt="The Florio Team website by DMR Media — DesignRush Design Awards nominee"
+                  src="/images/ClientWebsiteImages/screencapture-caroletierney-2026-09-04.png"
+                  alt="The Carole Tierney website by DMR Media — DesignRush Design Awards nominee"
                   fill
                   className="object-cover object-top"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -104,7 +104,7 @@ export default function WebinarFreeWebsiteSection() {
               </div>
               <div className="pointer-events-none absolute -left-4 -top-4 z-10 sm:-left-6 sm:-top-6">
                 <Image
-                  src="/images/ClientWebsiteImages/designrush-design-awards-nominee-florio-team.png"
+                  src="/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png"
                   alt="DesignRush.com Design Awards Nominee"
                   width={351}
                   height={424}

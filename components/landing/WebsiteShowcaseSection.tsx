@@ -36,15 +36,15 @@ const AGENT_WEBSITES: ShowcaseSample[] = [
     imageRight: false,
   },
   {
-    id: 'florio-team',
-    subheading: 'Ranked #35 of 20,000+ Central Florida Realtors',
-    name: 'The Florio Team | RE/MAX Town & Country',
+    id: 'carole-tierney',
+    subheading: 'Four Decades in Naples Luxury Real Estate',
+    name: 'Carole Tierney | Coldwell Banker Realty',
     description:
-      'An award-winning team doing 200+ sales a year needed a site that converts at that pace. A DesignRush Design Awards nominee, built around proof, process, and a clear path to contact.',
-    image: '/images/ClientWebsiteImages/screencapture-florio-team-vercel-app-2026-05-16-15_01_22.png',
+      'Waterfront and golf-community luxury in Naples — exceptional homes, precisely marketed. A DesignRush Design Awards nominee (September 2026), with the editorial restraint a four-decade luxury career has earned.',
+    image: '/images/ClientWebsiteImages/screencapture-caroletierney-2026-09-04.png',
     imageRight: true,
     awardBadge: {
-      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-florio-team.png',
+      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png',
       alt: 'DesignRush.com Design Awards Nominee',
     },
   },

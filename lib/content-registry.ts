@@ -496,9 +496,9 @@ export const contentRegistry: ContentEntry[] = [
     slug: '/real-estate-agent-website-samples',
     title: 'Real Estate Agent Website Examples | DMR Media Design Portfolio',
     description:
-      'Real estate agent website examples from award-winning designs. Legendary Real Estate, Eagan Luxury, The Florio Team, Valoria Homes—custom sites built for top agents, teams, and brokers.',
+      'Real estate agent website examples from award-winning designs. Legendary Real Estate, Eagan Luxury, Carole Tierney, Valoria Homes—custom sites built for top agents, teams, and brokers.',
     publishDate: '2026-03-01',
-    modifiedDate: '2026-04-27',
+    modifiedDate: '2026-09-04',
     category: 'Portfolio',
     tags: ['real estate agent website examples', 'real estate website examples', 'real estate website design', 'luxury real estate websites', 'agent websites'],
     priority: 0.7,
