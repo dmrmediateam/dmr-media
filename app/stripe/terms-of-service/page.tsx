@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = 'August 28, 2026';
+const LAST_UPDATED = 'September 6, 2026';
 
 export default function StripeTermsOfServicePage() {
   return (
@@ -86,14 +86,21 @@ export default function StripeTermsOfServicePage() {
                     websites provided under this program.
                   </li>
                   <li>
+                    <strong>Monthly lead report.</strong> Each month we send a report of the leads generated through
+                    your campaigns along with estimated earnings from those leads. Estimated earnings are good-faith
+                    projections based on your market and lead volume — they are estimates for planning purposes, not a
+                    guarantee of income.
+                  </li>
+                  <li>
                     <strong>Team email access.</strong> Direct access to the DMR Media team via email at{' '}
                     <a href="mailto:team@dmrmedia.org" className="text-[var(--color-trust)] hover:underline">team@dmrmedia.org</a>{' '}
                     for questions, requests, and support during business hours.
                   </li>
                 </ul>
                 <p className="mt-3">
-                  Advertising spend is <strong>not</strong> included. Media budgets are paid by you directly to Google
-                  and are set, funded, and controlled through your own advertising account.
+                  Advertising spend is separate from the subscription fee and is <strong>billed through DMR Media</strong>{' '}
+                  as described in Section 5. Your media budget is agreed with you before campaigns launch and is spent
+                  on your behalf in the advertising platforms.
                 </p>
 
                 <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">3. Free Trial</h3>
@@ -143,7 +150,31 @@ export default function StripeTermsOfServicePage() {
                   </li>
                 </ul>
 
-                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">5. Price Changes</h3>
+                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">5. Ad Spend Billing &amp; Payment Surcharges</h3>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>
+                    <strong>Ad spend is billed through DMR Media.</strong> We invoice or charge your advertising budget
+                    (in advance or as spent, as shown on your invoices) and fund the advertising platforms on your
+                    behalf. Ad spend is separate from, and in addition to, your subscription or management fee.
+                  </li>
+                  <li>
+                    <strong>Payment processing surcharge on ad spend.</strong> To cover payment processor costs, ad
+                    spend payments carry a surcharge of <strong>3.1% when paid by credit card</strong> and{' '}
+                    <strong>1% when paid by ACH bank transfer</strong>. The surcharge applies to ad spend payments
+                    only, is itemized on your invoice, does not exceed our cost of payment acceptance, and is applied
+                    where permitted by law. Paying by ACH is the cheaper option.
+                  </li>
+                  <li>
+                    <strong>Unspent budget</strong> carries forward to the next period or is refunded at the end of the
+                    engagement, less amounts already committed to the platforms.
+                  </li>
+                  <li>
+                    <strong>Reporting.</strong> Your monthly lead report (Section 2) accompanies this billing so you
+                    can see spend, leads generated, and estimated earnings side by side.
+                  </li>
+                </ul>
+
+                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">6. Price Changes</h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
                     Your rate is <strong>locked for the duration of your one-year commitment</strong>.
@@ -160,10 +191,10 @@ export default function StripeTermsOfServicePage() {
                   </li>
                 </ul>
 
-                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">6. Your Responsibilities</h3>
+                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">7. Your Responsibilities</h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Provide administrator access to your Google Ads account (and website/CRM access where applicable).</li>
-                  <li>Maintain a funded advertising budget paid directly to Google.</li>
+                  <li>Maintain your agreed advertising budget — billed through DMR Media per Section 5.</li>
                   <li>Provide timely feedback, approvals, and the information we need to launch and manage campaigns.</li>
                   <li>Respond to leads promptly and comply with all laws applicable to your profession, including fair housing and advertising rules.</li>
                 </ul>
@@ -180,7 +211,7 @@ export default function StripeTermsOfServicePage() {
                   from it.
                 </p>
 
-                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">7. Packages and Fees</h3>
+                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">8. Packages and Fees</h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
                     <strong>Option A — Google Ads Management:</strong> $2,000.00 USD per month, plus ten percent (10%)
@@ -198,9 +229,16 @@ export default function StripeTermsOfServicePage() {
                   </li>
                   <li>
                     <strong>Ad Spend</strong> means the total actual spend across campaigns we manage for you
-                    (including Google Ads and Local Service Ads). Ad Spend is paid by you directly to the advertising
-                    platform; the 10% fee is paid to DMR Media and is invoiced with the following monthly fee based on
-                    platform-reported spend.
+                    (including Google Ads and Local Service Ads). The 10% fee is paid to DMR Media and is invoiced
+                    with the following monthly fee based on platform-reported spend. Where your agreement has DMR
+                    Media billing ad spend on your behalf, the payment-processing surcharges in Section 5 (3.1%
+                    credit card / 1% ACH) apply to those ad spend payments; otherwise Ad Spend is paid by you
+                    directly to the advertising platform.
+                  </li>
+                  <li>
+                    <strong>Monthly lead report.</strong> Clients whose ad spend is billed through DMR Media receive a
+                    monthly report of leads generated and estimated earnings from those leads (estimates, not a
+                    guarantee of income).
                   </li>
                   <li>
                     <strong>Reporting</strong> (bi-weekly Loom updates and end-of-month reports) is available upon
@@ -208,7 +246,7 @@ export default function StripeTermsOfServicePage() {
                   </li>
                 </ul>
 
-                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">8. Minimum Commitment and Termination</h3>
+                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">9. Minimum Commitment and Termination</h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
                     <strong>Every traditional SEO and Google Ads engagement carries a minimum initial term of three
@@ -233,7 +271,7 @@ export default function StripeTermsOfServicePage() {
                   </li>
                 </ul>
 
-                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">9. Additional Agreement Terms</h3>
+                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">10. Additional Agreement Terms</h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
                     <strong>Client responsibilities:</strong> Google Ads administrator access, Google Business Profile
@@ -274,7 +312,7 @@ export default function StripeTermsOfServicePage() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-serif font-light text-off-black mb-4">10. Contact</h2>
+                <h2 className="text-2xl font-serif font-light text-off-black mb-4">11. Contact</h2>
                 <p>Questions about an invoice, subscription, or these Service Terms:</p>
                 <p className="mt-3">
                   <strong>DMR Media Specialists, LLC</strong><br />
