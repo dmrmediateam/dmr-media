@@ -3,14 +3,14 @@ import Image from 'next/image';
 
 const SMALL_STUDIES = [
   {
-    id: 'vignette-realty',
-    title: 'Vignette Realty',
-    client: 'Vignette Realty',
-    comment: 'Franklin, North Carolina',
-    result: '71% Lower CPL',
+    id: 'eagan-luxury-real-estate',
+    title: 'Eagan Luxury Real Estate',
+    client: 'Eagan Luxury Real Estate',
+    comment: '#1 Realtor in Dolphin Cay, FL',
+    result: '$11,075,000 Closed Volume — Q1 2026',
     description:
-      'Cut cost per conversion from $317 to $93 by replacing Smart campaigns with custom creative, Demand Gen, intent-based Search, and AI lead nurture. 50% more qualified handoffs at 27% lower spend.',
-    image: '/images/case-studies/vignette-realty/pearsons-falls-wnc.jpg',
+      'Starting from zero organic traffic, we built the brand, dominated search, and layered in Google Ads. Eagan Luxury closed $11,075,000 in Q1 2026 — the quarter immediately after launch. Daily impressions: 0 to 812. Cost per home valuation lead: $36.93.',
+    image: '/images/Cities/Stpet.jpg',
   },
   {
     id: 'hitchcock-properties',
@@ -48,7 +48,7 @@ export default function CaseStudies({ hideHeading = false }: { hideHeading?: boo
         ) : null}
 
         {/* Small Cards Grid — same chrome as /seo-optimization pillar cards */}
-        <div className="mb-20 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
           {SMALL_STUDIES.map((study) => (
             <Link
               key={study.id}
@@ -88,61 +88,6 @@ export default function CaseStudies({ hideHeading = false }: { hideHeading?: boo
               </div>
             </Link>
           ))}
-        </div>
-
-        {/* Large Featured Card — Eagan Luxury */}
-        <div className="mb-20">
-          <Link
-            href="/case-study/eagan-luxury-real-estate"
-            className="group block overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md motion-reduce:hover:translate-y-0"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-0">
-              <div className="relative aspect-[4/3] overflow-hidden border-b border-[var(--color-ink-200)] lg:aspect-auto lg:min-h-[320px] lg:border-b-0 lg:border-r">
-                <Image
-                  src="/images/Cities/Stpet.jpg"
-                  alt="Eagan Luxury Real Estate — St. Petersburg, Florida"
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                  loading="lazy"
-                  sizes="(max-width: 1023px) 100vw, 50vw"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent" />
-                <div className="absolute left-6 top-6 z-10">
-                  <span className="text-sm font-medium uppercase tracking-[0.2em] text-[#FAFAF9] [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] font-serif">
-                    #1 Realtor in Dolphin Cay, FL
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex flex-col justify-center gap-8 p-6 sm:p-8 lg:p-10">
-                <div className="font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-ink-300)]">
-                  $11,075,000 Closed Volume — Q1 2026
-                </div>
-
-                <div>
-                  <h3 className="mb-4 font-serif text-3xl font-light leading-snug text-[var(--color-off-black)] lg:text-4xl">
-                    Eagan Luxury Real Estate
-                  </h3>
-                  <p className="font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
-                    Starting from zero organic traffic, we built the brand, dominated search, and layered in Google Ads. Eagan Luxury closed $11,075,000 in Q1 2026 — the quarter immediately after launch. Daily impressions: 0 to 812. Cost per home valuation lead: $36.93.
-                  </p>
-                </div>
-
-                <div className="border-t border-[var(--color-ink-200)] pt-8">
-                  <blockquote className="font-serif text-sm italic leading-relaxed text-[var(--color-ink-300)]">
-                    &ldquo;Andrew was great to work with on setting up new Real Estate website and getting everything linked and functional. He was always willing to listen and help guide us through the process to get what we considered to be the best outcome. We highly recommend him.&rdquo;
-                  </blockquote>
-                  <p className="mt-3 font-serif text-xs uppercase tracking-[0.15em] text-[var(--color-off-black)]">
-                    — William Breaden, Eagan Luxury Real Estate
-                  </p>
-                </div>
-
-                <span className="font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)]">
-                  View full story
-                </span>
-              </div>
-            </div>
-          </Link>
         </div>
 
         <div className="mt-10 text-center">
