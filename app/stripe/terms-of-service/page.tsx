@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = 'September 6, 2026';
+const LAST_UPDATED = 'September 15, 2026';
 
 export default function StripeTermsOfServicePage() {
   return (
@@ -113,7 +113,7 @@ export default function StripeTermsOfServicePage() {
                   </li>
                   <li>
                     <strong>If you complete the trial without canceling, your subscription automatically converts into
-                    the one-year commitment described in Section 4</strong>, and billing begins on the first day after
+                    the six-month commitment described in Section 4</strong>, and billing begins on the first day after
                     the trial ends using the payment method on file with Stripe.
                   </li>
                 </ul>
@@ -126,18 +126,26 @@ export default function StripeTermsOfServicePage() {
                   </li>
                   <li>
                     <strong>Commitment term.</strong> Upon completion of the free trial, you are committing to{' '}
-                    <strong>one (1) year of service</strong> — thirteen (13) consecutive four-week billing periods —
-                    beginning on your first billing date.
+                    <strong>six (6) months of service</strong>, beginning on your first billing date and billed in
+                    four-week cycles throughout.
                   </li>
                   <li>
-                    <strong>Early cancellation.</strong> Because pricing reflects the full one-year commitment, the
-                    commitment is not cancelable for convenience during the year. If you stop payment or cancel during
+                    <strong>Cancellation — 30 days written notice.</strong> You may cancel by emailing{' '}
+                    <a href="mailto:team@dmrmedia.org" className="text-[var(--color-trust)] hover:underline">team@dmrmedia.org</a>{' '}
+                    with at least <strong>thirty (30) days written notice</strong>. Cancellation takes effect no
+                    earlier than the end of the six-month commitment — to end service at the six-month mark, send your
+                    notice at least thirty days before the term ends.
+                  </li>
+                  <li>
+                    <strong>Early cancellation.</strong> Because pricing reflects the six-month commitment, the
+                    commitment is not cancelable for convenience before it ends. If you stop payment or cancel during
                     the commitment term without DMR Media&apos;s uncured material breach, the remaining billing periods
                     of the commitment become due, except where we agree otherwise in writing.
                   </li>
                   <li>
-                    <strong>Renewal.</strong> After the one-year commitment, the subscription continues on a rolling
-                    four-week basis and either party may cancel with fourteen (14) days written notice to{' '}
+                    <strong>Renewal.</strong> After the six-month commitment, the subscription continues on a rolling
+                    four-week basis and either party may cancel at any time with the same thirty (30) days written
+                    notice to{' '}
                     <a href="mailto:team@dmrmedia.org" className="text-[var(--color-trust)] hover:underline">team@dmrmedia.org</a>.
                   </li>
                   <li>
@@ -177,7 +185,7 @@ export default function StripeTermsOfServicePage() {
                 <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">6. Price Changes</h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
-                    Your rate is <strong>locked for the duration of your one-year commitment</strong>.
+                    Your rate is <strong>locked for the duration of your six-month commitment</strong>.
                   </li>
                   <li>
                     DMR Media may increase the subscription fee by <strong>up to fifty percent (50%)</strong> per
