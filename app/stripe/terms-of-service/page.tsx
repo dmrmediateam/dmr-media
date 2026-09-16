@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = 'September 15, 2026';
+const LAST_UPDATED = 'September 16, 2026';
 
 export default function StripeTermsOfServicePage() {
   return (
@@ -46,7 +46,7 @@ export default function StripeTermsOfServicePage() {
                   which are incorporated by reference and apply to every engagement.
                 </p>
                 <p className="mt-3">
-                  By starting a free trial, completing a Stripe checkout, paying an invoice, or otherwise purchasing one
+                  By completing a Stripe checkout, paying an invoice, or otherwise purchasing one
                   of the programs described below, you agree to these Service Terms on behalf of yourself and, where
                   applicable, the company or team you represent. If you have signed a separate services agreement with
                   DMR Media, the signed agreement controls where it conflicts with this page.
@@ -55,33 +55,40 @@ export default function StripeTermsOfServicePage() {
 
               <section>
                 <h2 className="text-2xl font-serif font-light text-off-black mb-4">
-                  Part I — Google Ads Simple (Subscription)
+                  Part I — Google Ads / Lead Generation Program (Subscription)
                 </h2>
+                <p className="mb-3">
+                  <strong>Who this program is for.</strong> The Online Lead System program is built for real estate
+                  agents and teams whose average home price is <strong>above $500,000</strong>. The 14-Day Lead
+                  Guarantee in Section 3 is offered on that basis.
+                </p>
 
                 <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">2. What&apos;s Included</h3>
-                <p className="mb-3">The Google Ads Simple program includes, for the duration of your subscription:</p>
+                <p className="mb-3">The program includes, for the duration of your subscription:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
-                    <strong>Managed Google Ads.</strong> Setup and ongoing management of Google Ads campaigns for your
-                    market.
+                    <strong>The Online Lead System.</strong> Setup and ongoing management of Google Ads lead-generation
+                    campaigns for your market, built to deliver qualified buyer and seller leads into your CRM.
                   </li>
                   <li>
-                    <strong>One (1) batch of Performance Max ads.</strong> A single build of Performance Max ad assets
-                    (copy and creative) deployed to your ad account. Additional Performance Max batches, refreshes, or
-                    redesigns are not included unless separately purchased.
+                    <strong>Our exact follow-up scripts &amp; cadence.</strong> You receive our copy-and-paste
+                    follow-up scripts and the follow-up cadence we use, for your team to run on every lead the system
+                    generates.
                   </li>
                   <li>
-                    <strong>Website (only if purchased).</strong> If your checkout or invoice includes a website
-                    product, DMR Media will build and operate a website for your use on the IDX Broker platform. If you
-                    did not purchase a website, no website design, development, or hosting is included in this program.
+                    <strong>Luxury Website (purchased at the tier on your invoice).</strong> DMR Media builds and
+                    operates a website for your use at one of the tiers in Section 4. Every website we build connects
+                    to the MLS via IDX.
                   </li>
                   <li>
-                    <strong>Website ownership.</strong> Any website provided under this program is{' '}
-                    <strong>owned by DMR Media, not by you</strong>. It is built on IDX Broker and licensed for your
-                    use while your subscription remains active and in good standing. On cancellation or expiration of
-                    the subscription, DMR Media may take the website offline and retains all rights to its design,
-                    code, templates, and configuration. Your brand assets, listings, photos, and content you supplied
-                    remain yours, and your domain name remains yours if registered in your name. This ownership
+                    <strong>Website ownership.</strong> The website is built and operated by DMR Media and licensed
+                    for your use while your subscription is active and in good standing.{' '}
+                    <strong>After twelve (12) months of active paid service, ownership of the website design
+                    transfers to you.</strong> Before that transfer, DMR Media retains all rights to the design, code,
+                    templates, and configuration, and may take the website offline if the subscription is cancelled or
+                    lapses. Your brand assets, listings, photos, and content you supplied remain yours at all times,
+                    and your domain name remains yours if registered in your name. Third-party services the site
+                    depends on (such as IDX/MLS feeds and hosting) remain subject to their own licenses and fees. This
                     provision supersedes the deliverable-ownership language in our general Terms of Service for
                     websites provided under this program.
                   </li>
@@ -103,47 +110,75 @@ export default function StripeTermsOfServicePage() {
                   on your behalf in the advertising platforms.
                 </p>
 
-                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">3. Free Trial</h3>
+                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">3. The 14-Day Lead Guarantee</h3>
+                <p className="mb-3">
+                  <strong>Our promise:</strong> we will build you an Online Lead System — including our exact follow-up
+                  scripts and cadence — with a Luxury Website that gets qualified buyer and seller leads into your CRM
+                  within <strong>fourteen (14) days</strong> of your campaigns going live (the &ldquo;Guarantee
+                  Window&rdquo;). If we don&apos;t deliver on that promise, we will refund what you paid us for those
+                  fourteen days, as follows:
+                </p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>Your subscription begins with a <strong>fourteen (14) day free trial</strong>.</li>
                   <li>
-                    You may cancel at any time <strong>before the trial ends</strong> by emailing{' '}
-                    <a href="mailto:team@dmrmedia.org" className="text-[var(--color-trust)] hover:underline">team@dmrmedia.org</a>,
-                    and you will not be charged.
+                    <strong>What the refund includes.</strong> Your management fee, your onboarding/website fee, and
+                    the ad spend billed during the Guarantee Window (subject to the cap below).
                   </li>
                   <li>
-                    <strong>If you complete the trial without canceling, your subscription automatically converts into
-                    the six-month commitment described in Section 4</strong>, and billing begins on the first day after
-                    the trial ends using the payment method on file with Stripe.
+                    <strong>Ad spend cap.</strong> Refunded ad spend is capped at <strong>$2,000</strong> across the
+                    fourteen (14) days. Ad spend above that amount is not refundable.
+                  </li>
+                  <li>
+                    <strong>Follow-up condition.</strong> The guarantee applies only if your team followed up on at
+                    least <strong>90% of leads within one (1) hour during business hours</strong>, using the follow-up
+                    scripts we provide. Lead delivery and follow-up timing are measured in your CRM.
+                  </li>
+                  <li>
+                    <strong>Claiming the refund.</strong> Email{' '}
+                    <a href="mailto:team@dmrmedia.org" className="text-[var(--color-trust)] hover:underline">team@dmrmedia.org</a>{' '}
+                    within fourteen (14) days after the Guarantee Window ends. Once a qualifying refund is issued, the
+                    engagement ends and the remaining commitment in Section 4 is waived.
+                  </li>
+                  <li>
+                    <strong>One guarantee per client.</strong> The guarantee applies once, to your first fourteen days
+                    on the program, and assumes you provided the access, budget, and approvals described in Section 7
+                    on time.
                   </li>
                 </ul>
 
-                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">4. Billing and Commitment</h3>
+                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">4. Fees, Billing and Commitment</h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
-                    <strong>Billing cycle.</strong> You are billed <strong>every four (4) weeks</strong>, in advance,
-                    automatically through Stripe, at the rate shown at checkout or on your invoice.
+                    <strong>Website fee (one-time, per the tier on your invoice):</strong>{' '}
+                    Custom Website — <strong>$5,500</strong>; Semi-Custom Website (custom home page) —{' '}
+                    <strong>$3,500</strong>; Fully-Templated Website — <strong>$2,500</strong>. Every tier connects to
+                    the MLS via IDX.
                   </li>
                   <li>
-                    <strong>Commitment term.</strong> Upon completion of the free trial, you are committing to{' '}
-                    <strong>six (6) months of service</strong>, beginning on your first billing date and billed in
-                    four-week cycles throughout.
+                    <strong>Retainer:</strong> <strong>$650 per four (4) weeks</strong>, billed in advance,
+                    automatically through Stripe, beginning on your first billing date.
+                  </li>
+                  <li>
+                    <strong>Commitment term.</strong> You are committing to <strong>twenty-four (24) weeks of
+                    service</strong> — six consecutive four-week billing periods — beginning on your first billing
+                    date.
                   </li>
                   <li>
                     <strong>Cancellation — 30 days written notice.</strong> You may cancel by emailing{' '}
                     <a href="mailto:team@dmrmedia.org" className="text-[var(--color-trust)] hover:underline">team@dmrmedia.org</a>{' '}
                     with at least <strong>thirty (30) days written notice</strong>. Cancellation takes effect no
-                    earlier than the end of the six-month commitment — to end service at the six-month mark, send your
-                    notice at least thirty days before the term ends.
+                    earlier than the end of the 24-week commitment — to end service exactly at the 24-week mark, send
+                    your notice at least thirty days before the term ends.
                   </li>
                   <li>
-                    <strong>Early cancellation.</strong> Because pricing reflects the six-month commitment, the
+                    <strong>Early cancellation.</strong> Because pricing reflects the 24-week commitment, the
                     commitment is not cancelable for convenience before it ends. If you stop payment or cancel during
                     the commitment term without DMR Media&apos;s uncured material breach, the remaining billing periods
-                    of the commitment become due, except where we agree otherwise in writing.
+                    of the commitment become due, except where we agree otherwise in writing. The only exception is a
+                    qualifying refund under the 14-Day Lead Guarantee (Section 3), which ends the engagement and
+                    waives the remaining commitment.
                   </li>
                   <li>
-                    <strong>Renewal.</strong> After the six-month commitment, the subscription continues on a rolling
+                    <strong>Renewal.</strong> After the 24-week commitment, the subscription continues on a rolling
                     four-week basis and either party may cancel at any time with the same thirty (30) days written
                     notice to{' '}
                     <a href="mailto:team@dmrmedia.org" className="text-[var(--color-trust)] hover:underline">team@dmrmedia.org</a>.
@@ -185,7 +220,7 @@ export default function StripeTermsOfServicePage() {
                 <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">6. Price Changes</h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
-                    Your rate is <strong>locked for the duration of your six-month commitment</strong>.
+                    Your rate is <strong>locked for the duration of your 24-week commitment</strong>.
                   </li>
                   <li>
                     DMR Media may increase the subscription fee by <strong>up to fifty percent (50%)</strong> per
@@ -204,7 +239,12 @@ export default function StripeTermsOfServicePage() {
                   <li>Provide administrator access to your Google Ads account (and website/CRM access where applicable).</li>
                   <li>Maintain your agreed advertising budget — billed through DMR Media per Section 5.</li>
                   <li>Provide timely feedback, approvals, and the information we need to launch and manage campaigns.</li>
-                  <li>Respond to leads promptly and comply with all laws applicable to your profession, including fair housing and advertising rules.</li>
+                  <li>
+                    Follow up on leads promptly — the program (and the Section 3 guarantee) is built around your team
+                    following up on at least 90% of leads within one hour during business hours, using the scripts we
+                    provide.
+                  </li>
+                  <li>Comply with all laws applicable to your profession, including fair housing and advertising rules.</li>
                 </ul>
               </section>
 
