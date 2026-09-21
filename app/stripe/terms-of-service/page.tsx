@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = 'September 16, 2026';
+const LAST_UPDATED = 'September 21, 2026';
 
 export default function StripeTermsOfServicePage() {
   return (
@@ -149,9 +149,9 @@ export default function StripeTermsOfServicePage() {
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
                     <strong>Website fee (one-time, per the tier on your invoice):</strong>{' '}
-                    Custom Website — <strong>$5,500</strong>; Semi-Custom Website (custom home page) —{' '}
-                    <strong>$3,500</strong>; Fully-Templated Website — <strong>$2,500</strong>. Every tier connects to
-                    the MLS via IDX.
+                    Custom Website — <strong>$8,500</strong>; Semi-Custom Website (custom home page, meet-the-team and
+                    about pages) — <strong>$3,500</strong>; Fully-Templated Website — <strong>$2,500</strong>. Every
+                    tier connects to the MLS via IDX.
                   </li>
                   <li>
                     <strong>Retainer:</strong> <strong>$650 per four (4) weeks</strong>, billed in advance,

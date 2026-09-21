@@ -4,7 +4,7 @@ import '../google-general/google-general-landing.css'
 import { channelLandingMetadata } from '@/lib/landing/channel-landing-metadata'
 import { websiteDevelopmentLandingConfig } from './website-development-landing-config'
 
-/** Paid-traffic Google Ads landing page — not for search or general crawling. */
+/** Paid-traffic Google Ads landing page, not for search or general crawling. */
 export const metadata: Metadata = {
   ...channelLandingMetadata(websiteDevelopmentLandingConfig),
   robots: {

@@ -176,7 +176,7 @@ export default function LandingApplicationForm({
         className={isConversion ? 'mt-5 space-y-5' : 'mt-6 space-y-5'}
         aria-label={copy.ariaLabel}
       >
-        {/* idSuffix uses the instance `id` — this form can render twice on a page. */}
+        {/* idSuffix uses the instance `id`; this form can render twice on a page. */}
         <FormHoneypot idSuffix={id} />
         {isConversion ? (
           <p className="gg-form-question mb-1">{copy.question}</p>

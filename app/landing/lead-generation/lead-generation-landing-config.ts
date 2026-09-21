@@ -1,9 +1,9 @@
 import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 import { channelLandingCaseStudies } from '@/lib/landing/channel-landing-shared-data'
 
-export const googleAdsLandingConfig: ChannelLandingConfig = {
-  path: '/landing/google-ads',
-  formName: 'landing-google-ads-modal',
+export const leadGenerationLandingConfig: ChannelLandingConfig = {
+  path: '/landing/lead-generation',
+  formName: 'lead-generation-landing',
   headerApplyLabel: 'Claim the guarantee',
   heroLayout: 'conversion',
   formConfig: {
@@ -12,11 +12,11 @@ export const googleAdsLandingConfig: ChannelLandingConfig = {
     question: 'Where should we send your plan, pricing, and the guarantee terms?',
     submitLabel: 'Get my plan & pricing',
     footnote: 'No spam. A concrete plan for your market, usually same day.',
-    ariaLabel: 'Google Ads guarantee request',
+    ariaLabel: 'Lead generation guarantee request',
     fieldSet: 'full',
   },
   heroTitleSegments: [
-    { text: 'We Build You a Google Ads System That Generates Qualified Leads in 2 Weeks, ' },
+    { text: 'We Build You an Online Advertising System That Generates Qualified Leads in 2 Weeks, ' },
     { text: 'or We Refund You Everything', italic: true },
     { text: '.' },
   ],
@@ -25,7 +25,7 @@ export const googleAdsLandingConfig: ChannelLandingConfig = {
   heroIntroParagraphs: [
     [
       {
-        text: 'Unlike other agencies, we put our money where our mouth is. You get campaigns built for luxury price points, our exact follow-up scripts and cadence, and a system that puts ',
+        text: 'Unlike other agencies, we put our money where our mouth is. You get an online advertising system built for luxury price points, our exact follow-up scripts and cadence, and campaigns that put ',
       },
       { text: 'qualified buyer and seller leads in your CRM within 14 days', italic: true },
       {
@@ -41,7 +41,7 @@ export const googleAdsLandingConfig: ChannelLandingConfig = {
     'Our exact copy-and-paste follow-up scripts & cadence',
     'Your account, your data, your leads, never rented',
   ],
-  marketingCoreHeading: 'What a Google Ads system should actually do for a top producer.',
+  marketingCoreHeading: 'What an online advertising system should actually do for a top producer.',
   marketingCorePillars: [
     {
       number: '01',
@@ -133,7 +133,7 @@ export const googleAdsLandingConfig: ChannelLandingConfig = {
         'A real buyer or seller inquiry with working contact details, delivered into your CRM, not a click, not an impression, not a bot form-fill. You see every lead alongside the spend that produced it.',
     },
     {
-      question: 'Who owns the ad account and the leads?',
+      question: 'Who owns the ad accounts and the leads?',
       answer:
         'You do. Campaigns run in your Google Ads account, every lead lands in your CRM, and the data stays yours. We build and manage the system; nothing is held hostage.',
     },
@@ -159,11 +159,11 @@ export const googleAdsLandingConfig: ChannelLandingConfig = {
     },
   ],
   metadata: {
-    title: 'Google Ads That Generate Leads in 2 Weeks, Guaranteed | DMR Media',
+    title: 'Lead Generation That Delivers in 2 Weeks, Guaranteed | DMR Media',
     description:
-      'We build you a Google Ads system that generates qualified leads in 2 weeks, or we refund you everything. Built for luxury agents and teams.',
+      'We build you an online advertising system that generates qualified leads in 2 weeks, or we refund you everything. Built for luxury agents and teams.',
     openGraphTitle: 'Qualified Leads in 2 Weeks, or We Refund You | DMR Media',
     openGraphDescription:
-      'A Google Ads system with our exact follow-up scripts, qualified buyer & seller leads in your CRM in 14 days, or we refund you.',
+      'An online advertising system with our exact follow-up scripts, qualified buyer & seller leads in your CRM in 14 days, or we refund you.',
   },
 }

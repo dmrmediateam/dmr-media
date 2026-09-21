@@ -41,7 +41,7 @@ export default function NotFound() {
                 Need help finding something?
               </h2>
               <p className="text-sm sm:text-base font-serif text-[var(--color-ink-300)] leading-relaxed">
-                Our team can guide you—SEO, paid media, analytics, or full-funnel acquisition for luxury real estate.
+                Our team can guide you: SEO, paid media, analytics, or full-funnel acquisition for luxury real estate.
               </p>
             </div>
             <Link

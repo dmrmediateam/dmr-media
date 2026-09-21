@@ -19,7 +19,7 @@ export default function LandingCaseStudies() {
       location: 'St. Petersburg, Florida',
       result: 'Ongoing',
       description:
-        'Consolidated multiple fragmented websites into a single, powerful brand presence—launched December 17th with 0 measurable ranking loss and 10% keyword increase.',
+        'Consolidated multiple fragmented websites into a single, powerful brand presence, launched December 17th with 0 measurable ranking loss and 10% keyword increase.',
       image: '/images/Cities/Stpet.jpg',
     },
     {

@@ -22,7 +22,7 @@ const AGENT_WEBSITES: ShowcaseSample[] = [
     subheading: 'Wisconsin Realtor of the Year 2025',
     name: 'Legendary Real Estate Services',
     description:
-      'A boutique Lake Geneva team that positions itself as the Ritz-Carlton of real estate. Their site reads the same way — editorial, unhurried, and unmistakably premium. Sellers arrive at the listing appointment already convinced.',
+      'A boutique Lake Geneva team that positions itself as the Ritz-Carlton of real estate. Their site reads the same way: editorial, unhurried, and unmistakably premium. Sellers arrive at the listing appointment already convinced.',
     image: '/images/ClientWebsites/screencapture-legendaryrealestateservices-2026-03-04-03_34_49.png',
     imageRight: true,
   },
@@ -40,7 +40,7 @@ const AGENT_WEBSITES: ShowcaseSample[] = [
     subheading: 'Four Decades in Naples Luxury Real Estate',
     name: 'Carole Tierney | Coldwell Banker Realty',
     description:
-      'Waterfront and golf-community luxury in Naples — exceptional homes, precisely marketed. A DesignRush Design Awards nominee (September 2026), with the editorial restraint a four-decade luxury career has earned.',
+      'Waterfront and golf-community luxury in Naples: exceptional homes, precisely marketed. A DesignRush Design Awards nominee (September 2026), with the editorial restraint a four-decade luxury career has earned.',
     image: '/images/ClientWebsiteImages/screencapture-caroletierney-2026-09-04.png',
     imageRight: true,
     awardBadge: {
@@ -65,7 +65,7 @@ const PROPERTY_WEBSITES: ShowcaseSample[] = [
     subheading: '$6.5M Waterfront Estate · Turks & Caicos',
     name: 'Ocean Breeze',
     description:
-      'A dedicated single-property site for a newly built Chalk Sound estate — private dock, rooftop infinity pool, uninterrupted turquoise views. When the listing is one of one, its marketing should be too.',
+      'A dedicated single-property site for a newly built Chalk Sound estate: private dock, rooftop infinity pool, uninterrupted turquoise views. When the listing is one of one, its marketing should be too.',
     image: '/images/ClientWebsiteImages/screencapture-ocean-breeze-one-vercel-app-2026-03-29-19_49_50.png',
     imageRight: false,
   },
@@ -74,7 +74,7 @@ const PROPERTY_WEBSITES: ShowcaseSample[] = [
     subheading: '$1.05M Modern Home · Sloan’s Lake, Denver',
     name: 'Obsidian Denver',
     description:
-      'A single-listing site that puts the architecture front and center — three levels of considered design with rooftop city views. The kind of presentation that wins the next listing from the current one.',
+      'A single-listing site that puts the architecture front and center: three levels of considered design with rooftop city views. The kind of presentation that wins the next listing from the current one.',
     image: '/images/ClientWebsiteImages/screencapture-obsidiandenver-3227-w-20th-ave-denver-co-80211-2026-03-29-19_50_09.png',
     imageRight: true,
   },
@@ -110,7 +110,7 @@ function ShowcaseRow({ sample, index }: { sample: ShowcaseSample; index: number 
           <div className="relative min-h-[300px] w-full overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_12px_40px_-16px_rgba(15,15,15,0.12)] sm:min-h-[380px] lg:min-h-[440px]">
             <Image
               src={sample.image}
-              alt={`${sample.name} — real estate website designed by DMR Media`}
+              alt={`${sample.name}, real estate website designed by DMR Media`}
               fill
               className="object-cover object-top"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -169,7 +169,7 @@ export default function WebsiteShowcaseSection() {
             <p className="gg-eyebrow gg-eyebrow--strong">Single-property websites</p>
             <p className="gg-body mt-3 max-w-2xl">
               For signature listings, we build dedicated property sites that give a $1M–$6.5M home its own
-              address on the internet — and give you a listing presentation no competing agent can match.
+              address on the internet, and give you a listing presentation no competing agent can match.
             </p>
           </SeoReveal>
           <div className="mt-8">

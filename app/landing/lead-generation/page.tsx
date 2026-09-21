@@ -3,13 +3,13 @@
 import ApplyModal from '@/components/ApplyModal'
 import ChannelLandingPageContent from '@/components/landing/ChannelLandingPageContent'
 import WebsiteShowcaseSection from '@/components/landing/WebsiteShowcaseSection'
-import { googleAdsLandingConfig } from './google-ads-landing-config'
+import { leadGenerationLandingConfig } from './lead-generation-landing-config'
 
-export default function GoogleAdsLandingPage() {
+export default function LeadGenerationLandingPage() {
   return (
     <>
       <ChannelLandingPageContent
-        config={googleAdsLandingConfig}
+        config={leadGenerationLandingConfig}
         showcase={<WebsiteShowcaseSection />}
       />
       <ApplyModal />

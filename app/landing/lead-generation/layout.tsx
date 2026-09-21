@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import '../google-general/google-general-landing.css'
 import { channelLandingMetadata } from '@/lib/landing/channel-landing-metadata'
-import { googleAdsLandingConfig } from './google-ads-landing-config'
+import { leadGenerationLandingConfig } from './lead-generation-landing-config'
 
 /** Paid-traffic Google Ads landing page, not for search or general crawling. */
 export const metadata: Metadata = {
-  ...channelLandingMetadata(googleAdsLandingConfig),
+  ...channelLandingMetadata(leadGenerationLandingConfig),
   robots: {
     index: false,
     follow: false,
@@ -22,6 +22,6 @@ export const metadata: Metadata = {
   },
 }
 
-export default function GoogleAdsLandingLayout({ children }: { children: ReactNode }) {
+export default function LeadGenerationLandingLayout({ children }: { children: ReactNode }) {
   return children
 }
