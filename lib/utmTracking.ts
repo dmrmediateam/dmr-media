@@ -172,6 +172,36 @@ export function trackGoogleAdsLeadFormConversion(onComplete?: () => void): void 
 }
 
 /**
+ * Google Ads — "/Landing Page Conversion" page-load conversion. Fires once when a
+ * qualified applicant lands on /landing/thank-you-q (see GoogleAdsLandingPageConversion).
+ * Pushes straight to the dataLayer so the hit is queued even if gtag.js hasn't loaded yet.
+ */
+export const GOOGLE_ADS_LANDING_PAGE_CONVERSION = 'AW-16882640022/BtZqCK2wqoAdEJbJovI-'
+
+export function trackGoogleAdsLandingPageConversion(): void {
+  if (typeof window === 'undefined') return
+
+  try {
+    const w = window as Window & { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void }
+    w.dataLayer = w.dataLayer || []
+    // gtag() is just a dataLayer.push of its arguments; queue the same shape ourselves so the
+    // hit survives even when this runs before the inline gtag bootstrap has executed.
+    const gtag =
+      w.gtag ||
+      function (...args: unknown[]) {
+        w.dataLayer!.push(args)
+      }
+    gtag('event', 'conversion', {
+      send_to: GOOGLE_ADS_LANDING_PAGE_CONVERSION,
+      value: 1.0,
+      currency: 'USD',
+    })
+  } catch {
+    // Silently fail — tracking must never break the page
+  }
+}
+
+/**
  * OpenAI Ads pixel — fires on successful application form submissions.
  */
 export function trackOpenAiLeadCreated(additionalData: Record<string, unknown> = {}): void {
