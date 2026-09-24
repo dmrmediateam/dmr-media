@@ -4,6 +4,7 @@ import CaseStudies from '@/components/CaseStudies';
 import TopWebsites from '@/components/TopWebsites';
 import DMRWaySection from '@/components/DMRWaySection';
 import VideoTestimonials from '@/components/VideoTestimonials';
+import HomeDevelopments from '@/components/home/HomeDevelopments';
 import Testimonials from '@/components/Testimonials';
 import HomeBlogSection from '@/components/HomeBlogSection';
 import { getAllBlogPosts } from '@/data/blogPosts';
@@ -23,6 +24,7 @@ export default async function Home() {
       <TopWebsites />
       <DMRWaySection />
       <VideoTestimonials />
+      <HomeDevelopments />
       <HomeBlogSection posts={featuredPosts} layoutVariant="seo" />
       <Testimonials showStarRating />
     </main>

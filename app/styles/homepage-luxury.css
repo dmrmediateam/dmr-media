@@ -72,6 +72,10 @@
   background-color: var(--home-surface-mist);
 }
 
+.dmr-home > section:nth-child(9) {
+  background-color: var(--home-surface-paper);
+}
+
 /* -----------------------------------------------------------------------------
  * 3. Hero — full-viewport film, readable type, explicit actions
  * ----------------------------------------------------------------------------- */

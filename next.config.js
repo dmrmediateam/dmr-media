@@ -33,6 +33,8 @@ const nextConfig = {
       { protocol: 'https', hostname: 'cdn.sanity.io', pathname: '/**' },
       { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**' },
       { protocol: 'https', hostname: 'via.placeholder.com', pathname: '/**' },
+      // Real video frames for the video testimonials (components/VideoTestimonials.tsx)
+      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
     ],
   },
   // Use Next.js built-in externalization (works consistently in dev + prod)

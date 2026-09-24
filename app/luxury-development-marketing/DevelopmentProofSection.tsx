@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
 
-type DevelopmentProof = {
+export type DevelopmentProof = {
   name: string
   services: string
   image: string
@@ -16,7 +16,7 @@ type DevelopmentProof = {
   source: string
 }
 
-const DEVELOPMENTS: DevelopmentProof[] = [
+export const DEVELOPMENTS: DevelopmentProof[] = [
   {
     name: 'Black Coast Estates',
     services: 'SEO & Paid Ads',
