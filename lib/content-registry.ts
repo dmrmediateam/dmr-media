@@ -42,9 +42,9 @@ export const contentRegistry: ContentEntry[] = [
     slug: '/services',
     title: 'Marketing Services for Luxury Real Estate | DMR Media',
     description:
-      'Full-service digital marketing for luxury real estate agents: SEO, Google Ads, property marketing, and analytics reporting.',
+      'Websites, Google Ads, lead generation, and development marketing for luxury real estate. Qualified leads in your CRM within 2 weeks, or we refund you everything.',
     publishDate: '2024-06-01',
-    modifiedDate: '2026-01-10',
+    modifiedDate: '2026-09-25',
     category: 'Services',
     tags: ['real estate services', 'digital marketing', 'luxury real estate'],
     priority: 0.9,
