@@ -22,6 +22,8 @@ export const googleAdsLandingConfig: ChannelLandingConfig = {
   ],
   heroTitleEmphasis: '',
   heroIntro: '',
+  heroIntroShort:
+    'Unlike other agencies, we put our money where our mouth is: qualified buyer and seller leads in your CRM within 14 days, or we refund your fee and your ad spend.',
   heroIntroParagraphs: [
     [
       {

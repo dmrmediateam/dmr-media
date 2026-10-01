@@ -199,6 +199,7 @@ export default function LandingApplicationForm({
               onChange={handleChange}
               required
               autoComplete="name"
+              enterKeyHint="next"
               className={applyFormInputClass}
             />
           </div>
@@ -215,6 +216,8 @@ export default function LandingApplicationForm({
                 onChange={handleChange}
                 required={showPhone}
                 autoComplete="tel"
+                inputMode="tel"
+                enterKeyHint="next"
                 className={applyFormInputClass}
               />
             </div>
@@ -231,6 +234,8 @@ export default function LandingApplicationForm({
               onChange={handleChange}
               required
               autoComplete="email"
+              inputMode="email"
+              enterKeyHint={showWebsite ? 'next' : 'send'}
               className={applyFormInputClass}
             />
           </div>

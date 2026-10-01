@@ -11,6 +11,7 @@ import LandingApplicationForm from '@/components/landing/LandingApplicationForm'
 import ChannelLandingObjectionSection from '@/components/landing/ChannelLandingObjectionSection'
 import ChannelLandingByTheNumbersSection from '@/components/landing/ChannelLandingByTheNumbersSection'
 import ChannelLandingTimelineSection from '@/components/landing/ChannelLandingTimelineSection'
+import LandingStickyCta from '@/components/landing/LandingStickyCta'
 import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 
 const DMR_PHONE_DISPLAY = '+1 920-249-5210'
@@ -31,10 +32,19 @@ function ChannelLandingHeader({ applyLabel = 'Apply' }: { applyLabel?: string })
                 DMR
               </Link>
               <div className="site-nav__actions gap-3 sm:gap-4 md:gap-5">
-                <a href={DMR_PHONE_HREF} className="site-nav__phone">
+                <a href={DMR_PHONE_HREF} className="site-nav__phone hidden sm:inline">
                   {DMR_PHONE_DISPLAY}
                 </a>
-                <button type="button" className="site-nav__apply" onClick={scrollToForm}>
+                <a
+                  href={DMR_PHONE_HREF}
+                  className="gg-nav-call inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-off-black)]/14 text-[var(--color-off-black)] sm:hidden"
+                  aria-label={`Call DMR Media at ${DMR_PHONE_DISPLAY}`}
+                >
+                  <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </a>
+                <button type="button" className="site-nav__apply whitespace-nowrap" onClick={scrollToForm}>
                   {applyLabel}
                 </button>
               </div>
@@ -308,7 +318,7 @@ export default function ChannelLandingPageContent({ config, showcase, hero }: Pr
         </div>
       </section>
 
-      <footer className="bg-white py-10">
+      <footer className="bg-white pb-32 pt-10 lg:pb-10">
         <div className="container-max flex flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
           <Link href="/" className="font-serif text-sm tracking-[0.2em] text-[var(--color-off-black)]">
             DMR MEDIA
@@ -316,6 +326,8 @@ export default function ChannelLandingPageContent({ config, showcase, hero }: Pr
           <p className="gg-eyebrow !text-xs">Distinguished Marketing for Real Estate</p>
         </div>
       </footer>
+
+      <LandingStickyCta label={headerApplyLabel ?? 'Apply now'} hint={formConfig?.footnote} />
     </div>
   )
 }

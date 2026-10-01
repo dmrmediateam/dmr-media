@@ -12,6 +12,7 @@ type Props = {
     | 'heroIntro'
     | 'heroIntroSegments'
     | 'heroIntroParagraphs'
+    | 'heroIntroShort'
     | 'partnerStatsEyebrow'
     | 'partnerStats'
   >
@@ -88,11 +89,12 @@ function HeroIntro({ config }: { config: Props['config'] }) {
 function HeroPartnerStats({
   partnerStats,
   partnerStatsEyebrow,
-}: Pick<Props['config'], 'partnerStats' | 'partnerStatsEyebrow'>) {
+  className = '',
+}: Pick<Props['config'], 'partnerStats' | 'partnerStatsEyebrow'> & { className?: string }) {
   if (!partnerStats.length) return null
 
   return (
-    <div className="gg-hero-partners border-t border-[var(--color-ink-200)]">
+    <div className={`gg-hero-partners border-t border-[var(--color-ink-200)] ${className}`}>
       {partnerStatsEyebrow ? <p className="gg-eyebrow">{partnerStatsEyebrow}</p> : null}
       <ul className="gg-hero-stats list-none p-0" aria-label="Client results">
         {partnerStats.map((item) => (
@@ -118,8 +120,8 @@ export default function GoogleGeneralHero({ config }: Props) {
       className="gg-hero-conversion scroll-mt-6 border-b border-[var(--color-ink-200)]"
       aria-labelledby="channel-landing-hero-title"
     >
-      <div className="container-max px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 lg:pb-24">
-        <div className="gg-hero-grid grid items-start gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center lg:gap-16 xl:gap-20">
+      <div className="container-max px-4 pb-12 pt-20 sm:px-6 sm:pb-20 sm:pt-28 lg:pb-24">
+        <div className="gg-hero-grid grid items-start gap-8 sm:gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center lg:gap-16 xl:gap-20">
           <div className="gg-hero-copy flex flex-col justify-center lg:max-w-xl xl:max-w-none">
             <p className="gg-hero-trust-line">
               <span className="gg-hero-trust-copy">
@@ -149,10 +151,20 @@ export default function GoogleGeneralHero({ config }: Props) {
               />
             </h1>
 
-            <HeroIntro config={config} />
+            {config.heroIntroShort ? (
+              <>
+                <p className="gg-hero-intro lg:hidden">{config.heroIntroShort}</p>
+                <div className="hidden lg:block">
+                  <HeroIntro config={config} />
+                </div>
+              </>
+            ) : (
+              <HeroIntro config={config} />
+            )}
             <HeroPartnerStats
               partnerStats={config.partnerStats}
               partnerStatsEyebrow={config.partnerStatsEyebrow}
+              className="hidden lg:block"
             />
           </div>
 
@@ -161,6 +173,12 @@ export default function GoogleGeneralHero({ config }: Props) {
               <LandingApplicationForm formName={formName} formConfig={formConfig} variant="conversion" />
             </div>
           </div>
+
+          <HeroPartnerStats
+            partnerStats={config.partnerStats}
+            partnerStatsEyebrow={config.partnerStatsEyebrow}
+            className="lg:hidden"
+          />
         </div>
       </div>
     </section>

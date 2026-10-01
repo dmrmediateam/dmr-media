@@ -22,6 +22,8 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
   ],
   heroTitleEmphasis: '',
   heroIntro: '',
+  heroIntroShort:
+    'An award-nominated luxury website plus our exact follow-up scripts. Qualified leads in your CRM within 14 days, or we refund you everything.',
   heroIntroParagraphs: [
     [
       {

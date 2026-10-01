@@ -120,6 +120,8 @@ export type ChannelLandingConfig = {
   heroIntroSegments?: readonly ChannelLandingHeroTitleSegment[]
   /** Multi-paragraph intro; takes precedence over heroIntroSegments and heroIntro. */
   heroIntroParagraphs?: readonly (readonly ChannelLandingHeroTitleSegment[])[]
+  /** One-to-two sentence intro shown below 1024px so the form lands near the fold on phones. */
+  heroIntroShort?: string
   marketingCoreHeading: string
   marketingCorePillars: readonly ChannelLandingPillar[]
   partnerStatsEyebrow?: string

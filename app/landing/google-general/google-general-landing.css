@@ -624,3 +624,52 @@
   color: var(--color-off-black) !important;
 }
 
+
+/* —— Mobile conversion pass —— */
+.google-general-landing .gg-sticky-cta {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 639px) {
+  .google-general-landing .site-nav__phone {
+    display: none;
+  }
+
+  .google-general-landing .site-nav__apply {
+    padding: 0 0.875rem;
+    letter-spacing: 0.14em;
+  }
+
+  .google-general-landing .gg-hero-conversion .gg-hero-title {
+    font-size: 1.875rem;
+    line-height: 1.12;
+    max-width: none;
+  }
+
+  .google-general-landing .gg-hero-conversion .gg-hero-intro {
+    margin-top: 1rem;
+    font-size: 0.9875rem;
+    line-height: 1.6;
+  }
+
+  .google-general-landing .gg-hero-trust-line {
+    flex-wrap: nowrap;
+    margin-bottom: 0.875rem;
+    font-size: 0.8125rem;
+  }
+
+  .google-general-landing .gg-hero-trust-headshots {
+    height: 2.125rem;
+  }
+
+  .google-general-landing .gg-hero-conversion .gg-hero-form-shell {
+    padding: 0.5rem;
+  }
+}
+
+/* The floating Google-rating badge sits on top of the sticky CTA on phones; the hero already carries the rating. */
+@media (max-width: 1023px) {
+  body:has(.google-general-landing) .elfsight-app-fd62bab9-bad0-4e83-bc4d-4627560b7520 {
+    display: none !important;
+  }
+}
