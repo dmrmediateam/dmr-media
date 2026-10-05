@@ -186,19 +186,36 @@ const Footer = () => {
               </Link>
             </div>
             <div className="flex flex-col gap-2">
-              <a
-                href="https://agencies.semrush.com/dmr-media/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="DMR Media - SEMrush Agency Partner"
-                className="inline-flex items-center gap-2 hover:opacity-60 transition-opacity"
-              >
-                <img
-                  src="/images/logo.BwihUn5s.svg"
-                  alt="SEMrush Agency Partner"
-                  className="h-6 w-auto"
-                />
-              </a>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+                <a
+                  href="https://agencies.semrush.com/dmr-media/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="DMR Media - SEMrush Agency Partner"
+                  className="inline-flex items-center gap-2 hover:opacity-60 transition-opacity"
+                >
+                  <img
+                    src="/images/logo.BwihUn5s.svg"
+                    alt="SEMrush Agency Partner"
+                    className="h-6 w-auto"
+                  />
+                </a>
+                <a
+                  href="https://www.lister.ai/agencies/top-10-real-estate-marketing-agencies"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="DMR Media on Lister's Top 10 Real Estate Marketing Agencies"
+                  className="inline-flex items-center gap-1.5 hover:opacity-60 transition-opacity"
+                >
+                  <img src="/images/lister-icon.png" alt="" className="h-6 w-6 rounded-[5px]" />
+                  <span
+                    className="text-[17px] font-semibold tracking-tight text-[var(--color-off-black)]"
+                    style={{ fontFamily: 'var(--font-inter, ui-sans-serif, system-ui, sans-serif)' }}
+                  >
+                    Lister
+                  </span>
+                </a>
+              </div>
               <p className="text-[10px] text-[var(--color-ink-300)]">
                 Top ranked real estate marketing agency in the United States*
               </p>
