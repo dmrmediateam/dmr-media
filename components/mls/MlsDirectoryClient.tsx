@@ -1,133 +1,72 @@
-'use client';
+'use client'
 
-import { useState, useRef } from 'react';
-import UsServiceMap from './UsServiceMap';
-import MlsCard from './MlsCard';
-import {
-  searchMls,
-  getAllVendorsInRegistry,
-  type MlsEntry,
-} from '@/data/mlsRegistry';
+import { useMemo, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import UsServiceMap from './UsServiceMap'
+import MlsCard from './MlsCard'
+import { getState, searchMls } from '@/data/mlsRegistry'
 
-function sortResults(entries: MlsEntry[], selectedState: string | null) {
-  const sorted = [...entries];
-  if (selectedState) {
-    sorted.sort((a, b) => {
-      const aInState = a.states.some(
-        (s) => s.toUpperCase() === selectedState
-      );
-      const bInState = b.states.some(
-        (s) => s.toUpperCase() === selectedState
-      );
-      if (aInState && !bInState) return -1;
-      if (!aInState && bInState) return 1;
-      return a.name.localeCompare(b.name);
-    });
-  } else {
-    sorted.sort((a, b) => a.name.localeCompare(b.name));
-  }
-  return sorted;
-}
+const MAX_RESULTS = 30
 
 export default function MlsDirectoryClient() {
-  const [query, setQuery] = useState('');
-  const [selectedState, setSelectedState] = useState<string | null>(null);
-  const [selectedVendor, setSelectedVendor] = useState<string | null>(null);
-  const resultsRef = useRef<HTMLDivElement>(null);
+  const router = useRouter()
+  const [query, setQuery] = useState('')
+  const trimmed = query.trim()
 
-  const results = searchMls({
-    query: query.trim() || undefined,
-    state: selectedState ?? undefined,
-    vendor: selectedVendor ?? undefined,
-  });
+  const results = useMemo(() => (trimmed.length >= 2 ? searchMls({ query: trimmed }) : []), [trimmed])
 
-  const sortedResults = sortResults(results, selectedState);
-  const vendors = getAllVendorsInRegistry();
-
-  const handleStateSelect = (state: string | null) => {
-    setSelectedState(state);
-    setTimeout(() => {
-      resultsRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  };
+  const goToState = (code: string | null) => {
+    if (!code) return
+    const state = getState(code)
+    if (state) router.push(`/mls-integrations/state/${state.slug}`)
+  }
 
   return (
-    <div className="space-y-20">
-      {/* Map */}
-      <section>
-        <h2 className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif mb-6">
-          Filter by state
-        </h2>
-        <UsServiceMap
-          selectedState={selectedState}
-          onSelectState={handleStateSelect}
-        />
-        {(selectedState || query || selectedVendor) && (
-          <div className="flex justify-center mt-6">
-            <button
-              type="button"
-              onClick={() => {
-                setSelectedState(null);
-                setQuery('');
-                setSelectedVendor(null);
-              }}
-              className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif hover:opacity-60 transition-opacity"
-            >
-              Clear filters
-            </button>
-          </div>
-        )}
-      </section>
-
-      {/* Search & filters */}
-      <section className="flex flex-col sm:flex-row gap-4">
+    <div className="space-y-14">
+      <div>
+        <label htmlFor="mls-search" className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
+          Find your MLS
+        </label>
         <input
+          id="mls-search"
           type="search"
-          placeholder="Search by name, slug, or vendor..."
+          inputMode="search"
+          autoComplete="off"
+          placeholder="Search by MLS name, acronym, or state, e.g. CRMLS or Texas"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="flex-1 px-0 py-4 border-b-2 border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif placeholder:text-[var(--color-off-black)] placeholder:opacity-60 focus:outline-none focus:border-[var(--color-off-black)] transition-colors"
+          className="mt-3 w-full rounded-full border border-[var(--color-ink-200)] bg-white px-6 py-4 font-serif text-base text-[var(--color-off-black)] shadow-[0_1px_0_rgba(15,15,15,0.04)] placeholder:text-[var(--color-ink-400)] focus:border-[var(--color-off-black)]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/15"
         />
-        <select
-          value={selectedVendor ?? ''}
-          onChange={(e) =>
-            setSelectedVendor(e.target.value ? e.target.value : null)
-          }
-          className="px-0 py-4 border-b-2 border-[var(--color-ink-200)] bg-transparent text-[var(--color-off-black)] font-serif focus:outline-none focus:border-[var(--color-off-black)] min-w-[200px] transition-colors"
-        >
-          <option value="">All vendors</option>
-          {vendors.map((v) => (
-            <option key={v} value={v}>
-              {v}
-            </option>
-          ))}
-        </select>
-      </section>
 
-      {/* Results */}
-      <section ref={resultsRef}>
-        {selectedState && results.length === 0 ? (
-          <p className="text-[var(--color-off-black)] font-serif">
-            No MLS entries found for {selectedState}.
-          </p>
-        ) : sortedResults.length === 0 ? (
-          <p className="text-[var(--color-off-black)] font-serif">
-            No MLS entries match your filters.
-          </p>
-        ) : (
-          <>
-            <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif mb-8">
-              {sortedResults.length} MLS
-              {sortedResults.length !== 1 ? ' entries' : ' entry'} found
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-              {sortedResults.map((entry) => (
-                <MlsCard key={entry.slug} entry={entry} />
-              ))}
-            </div>
-          </>
+        {trimmed.length >= 2 && (
+          <div className="mt-8" aria-live="polite">
+            {results.length === 0 ? (
+              <p className="font-serif text-sm text-[var(--color-ink-300)]">
+                No MLS matches &ldquo;{trimmed}&rdquo;. Try the acronym, or browse by state below.
+              </p>
+            ) : (
+              <>
+                <p className="font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">
+                  {results.length} {results.length === 1 ? 'match' : 'matches'}
+                  {results.length > MAX_RESULTS ? `, showing the first ${MAX_RESULTS}` : ''}
+                </p>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {results.slice(0, MAX_RESULTS).map((entry) => (
+                    <MlsCard key={entry.slug} entry={entry} />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
         )}
-      </section>
+      </div>
+
+      <div className="hidden md:block">
+        <p className="mb-4 text-center font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
+          Or click a state
+        </p>
+        <UsServiceMap selectedState={null} onSelectState={goToState} />
+      </div>
     </div>
-  );
+  )
 }

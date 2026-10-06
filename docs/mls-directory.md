@@ -8,36 +8,24 @@
 - All MLS content must be read from the registry via helpers: `getMlsBySlug`, `listMls`, `searchMls`.
 - If validation fails, the app fails at module init (build/dev). Fix the registry.
 
-## How to Add a New MLS Entry
+## How MLS data is sourced
 
-1. Open `data/mlsRegistry.ts`.
-2. Add a new object to the `RAW_REGISTRY` array.
-3. Ensure all required fields are present and valid (see below).
-4. Run `npm run build` to verify validation passes.
-5. The new MLS will automatically appear at `/mls-integrations` and `/mls-integrations/[slug]`.
+DMR integrates every MLS through **IDX Broker**. The raw list in `data/idxBrokerMls.ts` was pulled from
+https://www.idxbroker.com/idx_mls_coverage (2026-10-06): names, acronyms, and states. `data/mlsRegistry.ts`
+wraps it with state metadata and helpers (`getMlsBySlug`, `listMls`, `listMlsByState`, `getStateBySlug`).
 
-## Slug Rules
+Pages are fully templated:
 
-- **Format**: Lowercase, URL-safe. Regex: `/^[a-z0-9-]+$/`
-- **Examples**: `stellar-mls`, `south-central-wisconsin-mls`, `my-mls`
-- **Invalid**: `MRED` (uppercase), `my_mls` (underscore), `my mls` (space)
-- **Uniqueness**: No duplicate slugs. Validation throws at module init if duplicates exist.
+- `/mls-integrations`: hub with search, state grid, FAQ.
+- `/mls-integrations/state/[state]`: one hub per state or territory, linking every MLS in it.
+- `/mls-integrations/[slug]`: one page per MLS, built from `lib/mls-page-content.ts`.
 
-## Required Fields
+## How to Add or Refresh MLS Entries
 
-| Field       | Type     | Description                                              |
-| ----------- | -------- | -------------------------------------------------------- |
-| `name`      | string   | Display name of the MLS                                  |
-| `slug`      | string   | URL shorthand; must match `/^[a-z0-9-]+$/`               |
-| `states`    | string[] | 2-letter state abbreviations, e.g. `["WI", "FL"]`         |
-| `idxVendors`| string[] | IDX vendors; empty array defaults to `["Unknown"]`      |
-| `cost`      | string   | Cost description, e.g. `"$500/mo"`, `"Varies"`, `"Contact MLS"` |
-
-## Optional Fields
-
-- `notes` (string)
-- `coverage` (string)
-- `links` (array of `{ label: string, url: string }`)
+1. Re-pull the IDX Broker coverage page and regenerate `data/idxBrokerMls.ts`.
+2. Keep the 19 legacy slugs (e.g. `stellar-mls`, `metro-mls`, `mlsni`) as overrides so indexed URLs never change.
+3. Optional per-MLS fields: `keyword` (search phrase paired with "IDX"), `coverage`, `notes`.
+4. Run `npx tsc --noEmit`; the registry throws at import on duplicate slugs or unknown state codes.
 
 ## Map Filtering
 

@@ -507,13 +507,13 @@ export const contentRegistry: ContentEntry[] = [
 
   {
     slug: '/mls-integrations',
-    title: 'MLS Integrations | DMR Media',
+    title: 'MLS IDX Integration for Real Estate Websites | DMR Media',
     description:
-      'Browse MLS integrations supported by DMR Media. Filter by state, search by name or IDX vendor, and open detail pages for each MLS.',
+      'IDX websites for realtors in every state. DMR connects 600+ MLSs through IDX Broker on custom real estate websites with a 14-day qualified-lead guarantee.',
     publishDate: '2026-04-01',
-    modifiedDate: '2026-04-11',
+    modifiedDate: '2026-10-06',
     category: 'MLS',
-    tags: ['MLS integrations', 'IDX', 'iHomeFinder', 'Showcase IDX', 'real estate MLS'],
+    tags: ['MLS IDX integration', 'IDX website for realtors', 'IDX Broker', 'real estate website with IDX', 'real estate MLS'],
     priority: 0.65,
     changeFrequency: 'monthly',
   },

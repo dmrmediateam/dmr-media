@@ -91,6 +91,17 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Rebranded MLSs: the legacy page now lives under the MLS's current name.
+      {
+        source: '/mls-integrations/hudson-mls',
+        destination: '/mls-integrations/onekey-mls-okmls',
+        permanent: true,
+      },
+      {
+        source: '/mls-integrations/triangle-mls-tmls',
+        destination: '/mls-integrations/doorify-mls-dmls',
+        permanent: true,
+      },
       {
         source: '/dmr-media-specialists-landing.html',
         destination: '/cake',

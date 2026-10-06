@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getAllBlogPosts } from '@/data/blogPosts';
 import { getAllAuthorSlugs } from '@/data/authors';
-import { listMls } from '@/data/mlsRegistry';
+import { listIndexableMls, listStatesWithCoverage } from '@/data/mlsRegistry';
 import { contentRegistry } from '@/lib/content-registry';
 
 /**
@@ -58,8 +58,16 @@ export async function GET() {
 
   const urls: UrlEntry[] = [...staticUrls];
 
-  // MLS detail pages — single source of truth: data/mlsRegistry.ts (see docs/mls-directory.md)
-  for (const mls of listMls()) {
+  // MLS state hubs and detail pages — single source of truth: data/mlsRegistry.ts (see docs/mls-directory.md)
+  for (const state of listStatesWithCoverage()) {
+    urls.push({
+      loc: `${baseUrl}/mls-integrations/state/${state.slug}`,
+      priority: 0.6,
+      changefreq: 'monthly',
+      lastmod: today,
+    });
+  }
+  for (const mls of listIndexableMls()) {
     urls.push({
       loc: `${baseUrl}/mls-integrations/${mls.slug}`,
       priority: 0.55,
