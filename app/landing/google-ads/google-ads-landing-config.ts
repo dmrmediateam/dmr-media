@@ -142,7 +142,7 @@ export const googleAdsLandingConfig: ChannelLandingConfig = {
     {
       question: 'Do I need a website for this to work?',
       answer:
-        'You need a landing experience built to convert, and it\'s part of the system. Every website tier connects to the MLS via IDX, and ownership of the website design transfers to you after 12 months of working with us.',
+        'You need a landing experience built to convert, and it\'s part of the system. Every website tier connects to the MLS via IDX, and ownership of the website design transfers to you after 6 months of working with us.',
     },
     {
       question: 'What does it cost?',

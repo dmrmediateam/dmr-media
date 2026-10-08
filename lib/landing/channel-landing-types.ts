@@ -40,6 +40,10 @@ export type ChannelLandingObjectionSection = {
   eyebrow: string
   title: string
   intro: string
+  /** Label above each answer; defaults to "How we fix it". */
+  fixLabel?: string
+  /** "list" (default) stacks problem/fix rows; "cards" shows a two-column card grid. */
+  layout?: 'list' | 'cards'
   items: readonly ChannelLandingObjectionItem[]
 }
 

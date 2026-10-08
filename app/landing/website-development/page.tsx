@@ -2,7 +2,7 @@
 
 import ApplyModal from '@/components/ApplyModal'
 import ChannelLandingPageContent from '@/components/landing/ChannelLandingPageContent'
-import WebsiteShowcaseSection from '@/components/landing/WebsiteShowcaseSection'
+import WebsiteDevShowcase from './WebsiteDevShowcase'
 import { websiteDevelopmentLandingConfig } from './website-development-landing-config'
 
 export default function WebsiteDevelopmentLandingPage() {
@@ -10,7 +10,7 @@ export default function WebsiteDevelopmentLandingPage() {
     <>
       <ChannelLandingPageContent
         config={websiteDevelopmentLandingConfig}
-        showcase={<WebsiteShowcaseSection />}
+        showcase={<WebsiteDevShowcase />}
       />
       <ApplyModal />
     </>

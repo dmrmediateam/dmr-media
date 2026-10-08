@@ -40,9 +40,61 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
   partnerStatsEyebrow: 'What you get',
   partnerStats: [
     'Qualified leads in your CRM in 14 days, or we refund you',
-    'Custom-designed from scratch, never a template',
+    'Templated, semi-custom, or fully custom, all connected to your MLS',
     'DesignRush Design Awards-nominated builds',
   ],
+  objectionSection: {
+    eyebrow: 'Before you switch websites',
+    title: 'The questions agents ask us before they replace their website',
+    intro:
+      'These come straight from our sales calls. They are fair questions, so here are straight answers.',
+    fixLabel: 'Our answer',
+    layout: 'cards',
+    items: [
+      {
+        title: '“Websites are overrated. Everyone uses Zillow.”',
+        problem: 'Plenty of referral-heavy agents treat a website as a digital business card.',
+        fix: 'Zillow hands your buyer to whoever pays most. When a referral or a sign call looks you up, your website is what they judge, and it’s where Google, ChatGPT, and your ads send people who want to talk to you, not three other agents.',
+      },
+      {
+        title: '“I can get a website cheaper.”',
+        problem: 'A brokerage site, a page-builder template, or a friend who builds sites will cost less up front.',
+        fix: 'Every build is tied to an outcome: qualified buyer and seller leads in your CRM within 14 days, or we refund your website fee and your ad spend. A cheaper site that never produces a lead costs more.',
+      },
+      {
+        title: '“My brokerage or CRM already gives me a site.”',
+        problem:
+          'Brokerage and CRM sites are templates you rent. Leave the brokerage or the platform and the site, and its rankings, stay behind.',
+        fix: 'Your DMR site lives on your own domain, connects to your MLS through IDX, and its design transfers to you after 6 months, so the traffic you build follows your career.',
+      },
+      {
+        title: '“Is it a one-time build or a monthly fee?”',
+        problem: 'Most website quotes bury the ongoing cost until after you sign.',
+        fix: 'Both, in writing before you start: a one-time build fee for the tier you choose, plus a monthly retainer that covers hosting, your MLS/IDX feed, updates, and campaign management. Ad spend is separate and stays in your control.',
+      },
+      {
+        title: '“What happens to my current site?”',
+        problem: 'Agents worry a switch means a dark website, lost listings, or lost rankings.',
+        fix: 'We handle the move from your current site, including your domain and your IDX feed, and you approve the new site on a live preview link before anything changes.',
+      },
+      {
+        title: '“Will it work with my MLS?”',
+        problem: 'Not every website vendor supports every MLS feed.',
+        fix: 'We connect through IDX Broker, which covers more than 600 MLSs across all 50 states. Your listings, sold homes, and saved searches live on your site.',
+      },
+      {
+        title: '“How much work is this for me?”',
+        problem: 'Most agents don’t have time to write pages or learn a website builder.',
+        fix: 'Very little. We write the first draft of your copy, build on live preview links, and you approve before launch. After launch, send us a change and we make it.',
+      },
+      {
+        title: '“I’ve been burned by a website company before.”',
+        problem:
+          'Bundled platforms with lagging listing feeds, recycled ads, and sites that never produced a single lead.',
+        fix: 'That’s why the guarantee exists. If qualified leads aren’t in your CRM within 14 days of launch, you get your website fee and ad spend back. Every result on this page names the client, so you can check it yourself.',
+      },
+    ],
+  },
   marketingCoreHeading: 'What a website should actually do for a top producer.',
   marketingCorePillars: [
     {
@@ -61,54 +113,36 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
       number: '03',
       title: 'Turn search traffic into inquiries you own',
       body:
-        'Beautiful isn\'t enough. Every site ships with IDX/MLS-ready layouts, home-valuation capture, and clear paths to contact, engineered so the affluent buyer or seller who finds you becomes a name in your CRM, not a stat in a portal\'s.',
+        'Beautiful isn\'t enough. Every site ships with IDX/MLS home search, listing registration, home-valuation capture, and clear paths to contact, so the buyer or seller who finds you becomes a name in your CRM, not a stat in a portal\'s.',
     },
     {
       number: '04',
       title: 'Built to rank, managed for you',
       body:
-        'SEO foundations, sub-second performance, and clean tracking from day one, the same standards behind our #1-rated search work. We handle design, build, launch, and ongoing updates so the site stays sharp while you sell.',
+        'SEO foundations, fast pages, and clean tracking from day one, the same standards behind our #1-rated search work. We handle design, build, launch, and ongoing updates so the site stays sharp while you sell.',
     },
   ],
   caseStudies: channelLandingCaseStudies,
-  byTheNumbersSection: {
-    eyebrow: 'By the numbers',
-    title: 'Proof you can measure',
-    stats: [
-      {
-        value: '5-stars',
-        label: 'from top agents, teams & brokers since 2022',
-      },
-      {
-        value: '100%',
-        label: 'custom-designed, never a recycled template',
-      },
-      {
-        value: '#1',
-        label: 'Rated RE Agency by SEMRush for PPC & SEO',
-      },
-    ],
-  },
   timelineSection: {
-    eyebrow: 'From kickoff to launch',
+    eyebrow: 'From kickoff to leads',
     title: 'A concrete build plan, not a vague timeline',
     intro:
-      'You shouldn\'t wonder where your website is or what you\'re paying for. Here\'s how a build runs week by week, so launch day is a checkpoint, not a surprise.',
+      'You shouldn\'t wonder where your website is or what you\'re paying for. Here\'s how a build runs, so launch day is a checkpoint, not a surprise.',
     weeks: [
       {
-        label: 'Week 1',
+        label: 'Step 1',
         title: 'Discovery & design direction',
         body:
-          'We study your brand, market, price point, and the agents you compete against. You approve a design direction built around your positioning, before a single page is built.',
+          'We study your brand, market, price point, and the agents you compete against, then write your first draft of copy. You approve a design direction before a single page is built.',
       },
       {
-        label: 'Week 2',
+        label: 'Step 2',
         title: 'Build, launch & ads live',
         body:
-          'Custom page design, IDX/MLS integration, valuation tools, and lead capture assembled on live preview links, then launched with your campaigns switched on. You get our exact copy-and-paste follow-up scripts, and the guarantee clock starts the day your ads go live.',
+          'Page design, IDX/MLS integration, valuation tools, and lead capture come together on live preview links, then launch with your campaigns switched on. You get our exact copy-and-paste follow-up scripts, and the guarantee clock starts the day your ads go live.',
       },
       {
-        label: 'Weeks 3-4',
+        label: 'Step 3',
         title: 'The guarantee window',
         body:
           'Qualified buyer and seller leads land in your CRM within 14 days of launch, or we refund your website fee and your ad spend. The full guarantee terms, including the follow-up conditions, are published in our service terms.',
@@ -125,29 +159,34 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
   },
   faqItems: [
     {
-      question: 'Do you use templates?',
+      question: 'How much does a real estate website cost with DMR?',
       answer:
-        'No. Every site is designed from scratch around your brand, your market, and your inventory. That\'s why our builds get nominated for design awards, and why your site won\'t look like the agent\'s down the street.',
+        'It depends on the build you choose: templated, semi-custom (custom home page plus meet-the-team and about pages), or fully custom. Each is paired with a monthly retainer that covers hosting, your MLS/IDX feed, updates, and campaign management, and ad spend is separate. Request a quote and we send exact pricing and examples for your market, usually the same day.',
+    },
+    {
+      question: 'Is it a template or a custom design?',
+      answer:
+        'You choose. The templated build styles a proven layout to your brand, the semi-custom build adds a custom home page plus meet-the-team and about pages, and the fully custom build is designed from scratch. On every build, the IDX listing pages follow your MLS\'s display rules.',
     },
     {
       question: 'How long does a build take?',
       answer:
-        'Most agent and team websites launch in about four weeks from kickoff. Dedicated single-property sites move faster, typically one to two weeks, timed to your listing launch.',
+        'Templated sites can launch in about a week. Semi-custom and fully custom agent and team sites typically launch in about four weeks from kickoff. Dedicated single-property sites usually take one to two weeks, timed to your listing launch.',
     },
     {
-      question: 'Can you integrate IDX / MLS listings?',
+      question: 'What is an IDX website?',
       answer:
-        'Yes. We build IDX/MLS-ready layouts so your active inventory, sold portfolio, and saved searches live natively on your site, presented at the same standard as the rest of your brand.',
+        'IDX (Internet Data Exchange) puts live MLS listings on your own website, so buyers search homes with you and register on your site instead of a portal. Every DMR build includes it.',
     },
     {
-      question: 'Do you build single-property websites?',
+      question: 'Will it work with my MLS?',
       answer:
-        'Yes, dedicated sites for signature listings, like the $6.5M Ocean Breeze estate in Turks & Caicos. They give the property its own address on the internet and give you a listing presentation no competing agent can match.',
+        'We connect through IDX Broker, which covers more than 600 MLSs across all 50 states. Your active listings, sold homes, and saved searches live natively on your site.',
     },
     {
-      question: 'Will my website actually generate business?',
+      question: 'Can I edit the website myself?',
       answer:
-        'That\'s the point of the design. Valuation capture, clear contact paths, and SEO foundations are built in from day one, and because we\'re also a search marketing agency, your site is built to rank and to convert the traffic it earns.',
+        'You don\'t have to. Updates are part of the retainer: send us the change and we make it, so you never have to learn a page builder.',
     },
     {
       question: 'How does the 2-week guarantee work?',
@@ -157,12 +196,12 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
     {
       question: 'Who owns the website?',
       answer:
-        'Your domain, your content, and your leads are yours from day one, and ownership of the website design transfers to you after 12 months of working with us. Every site connects to the MLS via IDX, and we manage and maintain it for you throughout.',
+        'Your domain, your content, and your leads are yours from day one, and ownership of the website design transfers to you after 6 months of working with us. Every site connects to the MLS via IDX, and we manage and maintain it for you throughout.',
     },
     {
-      question: 'What does it cost?',
+      question: 'Do you build single-property websites?',
       answer:
-        'Three builds: a fully-templated website at $2,500, a semi-custom website (custom home page plus meet-the-team and about pages) at $3,500, or a fully custom website at $8,500, each paired with a $650-per-4-weeks retainer, and every tier connects to the MLS via IDX.',
+        'Yes, dedicated sites for signature listings, like the $6.5M Ocean Breeze estate in Turks & Caicos. They give the property its own address on the internet and give you a listing presentation no competing agent can match.',
     },
   ],
   metadata: {

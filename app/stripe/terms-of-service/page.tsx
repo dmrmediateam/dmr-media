@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = 'September 21, 2026';
+const LAST_UPDATED = 'October 8, 2026';
 
 export default function StripeTermsOfServicePage() {
   return (
@@ -83,7 +83,7 @@ export default function StripeTermsOfServicePage() {
                   <li>
                     <strong>Website ownership.</strong> The website is built and operated by DMR Media and licensed
                     for your use while your subscription is active and in good standing.{' '}
-                    <strong>After twelve (12) months of active paid service, ownership of the website design
+                    <strong>After six (6) months of active paid service, ownership of the website design
                     transfers to you.</strong> Before that transfer, DMR Media retains all rights to the design, code,
                     templates, and configuration, and may take the website offline if the subscription is cancelled or
                     lapses. Your brand assets, listings, photos, and content you supplied remain yours at all times,
@@ -143,6 +143,10 @@ export default function StripeTermsOfServicePage() {
                     on the program, and assumes you provided the access, budget, and approvals described in Section 7
                     on time.
                   </li>
+                  <li>
+                    <strong>Not included in the Website-Only Plan.</strong> The guarantee applies only to the full
+                    program with live advertising campaigns. It does not apply to the Website-Only Plan in Section 4A.
+                  </li>
                 </ul>
 
                 <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">4. Fees, Billing and Commitment</h3>
@@ -190,6 +194,56 @@ export default function StripeTermsOfServicePage() {
                   <li>
                     <strong>Refunds</strong> are not provided for billing periods that have begun, except where required
                     by law or expressly agreed in writing.
+                  </li>
+                </ul>
+
+                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">4A. Website-Only Plan (No Advertising)</h3>
+                <p className="mb-3">
+                  The Website-Only Plan is for clients who want the website without the Online Lead System. If your
+                  invoice shows the Website-Only Plan, this Section 4A applies in place of the retainer and commitment
+                  in Section 4.
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>
+                    <strong>Website fee:</strong> the one-time website fee for the tier on your invoice, as listed in
+                    Section 4.
+                  </li>
+                  <li>
+                    <strong>Monthly fee:</strong> <strong>$250 per month</strong>, billed in advance, automatically
+                    through Stripe, beginning on your first billing date.
+                  </li>
+                  <li>
+                    <strong>What&apos;s included:</strong> the Luxury Website, hosting, the MLS/IDX connection, website
+                    updates on request, and team email access as described in Section 2. Third-party fees (such as
+                    IDX/MLS feeds) remain subject to their own terms.
+                  </li>
+                  <li>
+                    <strong>What&apos;s not included:</strong> Google Ads or any other advertising, campaign management,
+                    the follow-up scripts and cadence, and the monthly lead report.
+                  </li>
+                  <li>
+                    <strong>No lead guarantee.</strong> The 14-Day Lead Guarantee in Section 3 does not apply to the
+                    Website-Only Plan, and no refund of the website fee or monthly fee is available under it.
+                  </li>
+                  <li>
+                    <strong>Commitment term.</strong> You are committing to <strong>six (6) months of service</strong>{' '}
+                    beginning on your first billing date. The early cancellation, failed payment, and refund terms in
+                    Section 4 apply to this commitment, without the Section 3 exception.
+                  </li>
+                  <li>
+                    <strong>Ownership.</strong> The website ownership terms in Section 2 apply: after six (6) months of
+                    active paid service, ownership of the website design transfers to you.
+                  </li>
+                  <li>
+                    <strong>Cancellation and renewal.</strong> After the six-month commitment, the plan continues
+                    month to month and either party may cancel with thirty (30) days written notice to{' '}
+                    <a href="mailto:team@dmrmedia.org" className="text-[var(--color-trust)] hover:underline">team@dmrmedia.org</a>.
+                    Section 6 (Price Changes) applies to the monthly fee after the commitment ends.
+                  </li>
+                  <li>
+                    <strong>Adding advertising later.</strong> You may move to the full program at any time. The
+                    Section 4 retainer and commitment then apply from your first billing date on the full program, and
+                    the 14-Day Lead Guarantee covers your first fourteen days of live campaigns.
                   </li>
                 </ul>
 

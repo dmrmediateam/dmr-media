@@ -111,6 +111,33 @@ function HeroPartnerStats({
   )
 }
 
+/** Phones: the proof points sit below the form, so they get their own card instead of the hero-column styling. */
+function MobilePartnerStats({
+  partnerStats,
+  partnerStatsEyebrow,
+}: Pick<Props['config'], 'partnerStats' | 'partnerStatsEyebrow'>) {
+  if (!partnerStats.length) return null
+
+  return (
+    <div className="rounded-2xl border border-[var(--color-ink-200)] bg-white px-5 py-4 shadow-[0_1px_0_rgba(15,15,15,0.04)] lg:hidden">
+      {partnerStatsEyebrow ? <p className="gg-eyebrow !text-[11px]">{partnerStatsEyebrow}</p> : null}
+      <ul className="mt-2 list-none divide-y divide-[var(--color-ink-200)] p-0" aria-label="Client results">
+        {partnerStats.map((item) => (
+          <li key={item} className="flex items-start gap-3 py-3">
+            <span
+              className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-off-black)] text-[10px] leading-none !text-white"
+              aria-hidden
+            >
+              ✓
+            </span>
+            <span className="font-sans text-[15px] leading-snug !text-[var(--color-off-black)]">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 export default function GoogleGeneralHero({ config }: Props) {
   const { formName, formConfig } = config
 
@@ -174,11 +201,7 @@ export default function GoogleGeneralHero({ config }: Props) {
             </div>
           </div>
 
-          <HeroPartnerStats
-            partnerStats={config.partnerStats}
-            partnerStatsEyebrow={config.partnerStatsEyebrow}
-            className="lg:hidden"
-          />
+          <MobilePartnerStats partnerStats={config.partnerStats} partnerStatsEyebrow={config.partnerStatsEyebrow} />
         </div>
       </div>
     </section>

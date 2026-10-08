@@ -25,7 +25,7 @@ type Service = {
 const PROGRAM_INCLUDES = [
   {
     title: 'A website built to convert',
-    body: 'Templated, semi-custom, or fully custom, every tier connected to the MLS via IDX. The design is yours after 12 months.',
+    body: 'Templated, semi-custom, or fully custom, every tier connected to the MLS via IDX. The design is yours after 6 months.',
   },
   {
     title: 'Google Ads engineered for your price point',

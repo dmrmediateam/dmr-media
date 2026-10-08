@@ -669,7 +669,8 @@
 
 /* The floating Google-rating badge sits on top of the sticky CTA on phones; the hero already carries the rating. */
 @media (max-width: 1023px) {
-  body:has(.google-general-landing) .elfsight-app-fd62bab9-bad0-4e83-bc4d-4627560b7520 {
+  body:has(.google-general-landing) .elfsight-app-fd62bab9-bad0-4e83-bc4d-4627560b7520,
+  body:has(.google-general-landing) #__EAAPS_PORTAL {
     display: none !important;
   }
 }

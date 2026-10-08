@@ -7,6 +7,18 @@ import { SeoReveal } from '@/app/seo-optimization/SeoReveal';
 
 const TOP_WEBSITES = [
   {
+    id: 'alexa-devaney',
+    name: 'AlexaDevaney.com',
+    subline: 'DesignRush Design Awards Nominee · October 2026',
+    domain: 'alexadevaney.com',
+    href: 'https://www.alexadevaney.com/',
+    image: '/images/ClientWebsiteImages/screencapture-alexadevaney-2026-10-08.jpg',
+    awardBadge: {
+      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png',
+      alt: 'DesignRush.com Design Awards Nominee',
+    },
+  },
+  {
     id: 'carole-tierney',
     name: 'CaroleTierney.com',
     subline: 'DesignRush Design Awards Nominee · September 2026',
@@ -36,7 +48,7 @@ const TOP_WEBSITES = [
   },
 ];
 
-/** Homepage showcase: flagship website designs in a browser-framed carousel (Carole, the award nominee, first). */
+/** Homepage showcase: flagship website designs in a browser-framed carousel (newest award nominees first). */
 export default function TopWebsites() {
   const [active, setActive] = useState(0);
   const site = TOP_WEBSITES[active];

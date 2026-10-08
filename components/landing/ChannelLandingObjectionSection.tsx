@@ -31,6 +31,22 @@ export default function ChannelLandingObjectionSection({ section }: Props) {
           <p className="gg-body gg-body-lg mt-6 max-w-2xl">{section.intro}</p>
         </SeoReveal>
 
+        {section.layout === 'cards' ? (
+          <ul className="mt-14 grid gap-5 md:grid-cols-2" role="list">
+            {section.items.map((item, i) => (
+              <SeoReveal key={item.title} delay={(i % 2) * 0.06} className="h-full">
+                <li className="flex h-full list-none flex-col rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-shadow duration-300 hover:shadow-[0_18px_44px_-24px_rgba(15,15,15,0.25)] md:p-8">
+                  <h3 className="gg-display text-2xl font-light">{item.title}</h3>
+                  <p className="gg-body gg-body-sm mt-3 text-[var(--gg-text-muted)]">{item.problem}</p>
+                  <div className="mt-5 border-t border-[var(--color-ink-200)] pt-5">
+                    <p className="gg-eyebrow gg-eyebrow--strong">{section.fixLabel ?? 'How we fix it'}</p>
+                    <p className="gg-body mt-2">{item.fix}</p>
+                  </div>
+                </li>
+              </SeoReveal>
+            ))}
+          </ul>
+        ) : (
         <ul className="mt-14 space-y-0" role="list">
           {section.items.map((item, i) => (
             <SeoReveal key={item.title} delay={i * 0.06}>
@@ -41,7 +57,7 @@ export default function ChannelLandingObjectionSection({ section }: Props) {
                     <p className="gg-body mt-3 max-w-xl text-[var(--gg-text-muted)]">{item.problem}</p>
                   </div>
                   <div className="border-l-0 border-[var(--color-ink-200)] pl-0 lg:border-l lg:pl-10">
-                    <p className="gg-eyebrow gg-eyebrow--strong">How we fix it</p>
+                    <p className="gg-eyebrow gg-eyebrow--strong">{section.fixLabel ?? 'How we fix it'}</p>
                     <p className="gg-body mt-3 max-w-xl">{item.fix}</p>
                   </div>
                 </article>
@@ -49,6 +65,7 @@ export default function ChannelLandingObjectionSection({ section }: Props) {
             </SeoReveal>
           ))}
         </ul>
+        )}
       </div>
     </section>
   )

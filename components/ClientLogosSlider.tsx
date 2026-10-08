@@ -17,7 +17,11 @@ const ClientLogosSlider = ({ repeatCount = 3 }: ClientLogosSliderProps) => {
     '/images/ClientLogos/Untitled design (67).png',
     '/images/ClientLogos/Untitled design (72).png',
     '/images/ClientLogos/Untitled design (92).png',
+    '/images/ClientLogos/oppenheim-group.png',
   ];
+
+  /** Very wide wordmarks need a shorter box to sit at the same visual weight as the rest. */
+  const wideLogos = ['/images/ClientLogos/oppenheim-group.png'];
 
   const smallerLogos = [
     '/images/ClientLogos/Untitled design (71).png',
@@ -28,15 +32,17 @@ const ClientLogosSlider = ({ repeatCount = 3 }: ClientLogosSliderProps) => {
 
   const renderLogo = (logo: string, index: number) => {
     const isSmaller = smallerLogos.includes(logo);
+    const isWide = wideLogos.includes(logo);
+    const heightClass = isWide ? 'h-6 md:h-8' : isSmaller ? 'h-12 md:h-14' : 'h-16 md:h-20';
     return (
       <div
         key={`${logo}-${index}`}
-        className={`flex-shrink-0 flex items-center justify-center ${isSmaller ? 'h-12 md:h-14' : 'h-16 md:h-20'}`}
+        className={`flex-shrink-0 flex items-center justify-center ${heightClass}`}
         style={{ opacity: 0.8 }}
       >
         <Image
           src={logo}
-          alt="Client logo"
+          alt={isWide ? 'The Oppenheim Group Real Estate' : 'Client logo'}
           width={200}
           height={80}
           className="h-full w-auto object-contain"

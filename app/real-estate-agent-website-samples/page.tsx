@@ -35,6 +35,20 @@ export const metadata: Metadata = {
 
 const WEBSITE_SAMPLES: WebsiteSample[] = [
   {
+    id: 'alexa-devaney',
+    subheading: 'North County San Diego · The Oppenheim Group',
+    name: 'Alexa Devaney | The Oppenheim Group',
+    description:
+      'Alexa Devaney has sold homes across North County San Diego for more than ten years and is raising her family in the same neighborhoods she represents, from Encinitas and Carlsbad to Oceanside and Fallbrook. Her site pairs The Oppenheim Group brand with a family-first story, live home search, and community guides. It was nominated for a DesignRush Design Award in October 2026.',
+    url: 'https://www.alexadevaney.com/',
+    image: '/images/ClientWebsiteImages/screencapture-alexadevaney-2026-10-08.jpg',
+    imageRight: false,
+    awardBadge: {
+      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png',
+      alt: 'DesignRush.com Design Awards Nominee',
+    },
+  },
+  {
     id: 'legendary-real-estate',
     subheading: 'Wisconsin Realtor of Year 2025',
     name: 'Legendary Real Estate Services',

@@ -18,6 +18,19 @@ type ShowcaseSample = {
 
 const AGENT_WEBSITES: ShowcaseSample[] = [
   {
+    id: 'alexa-devaney',
+    subheading: 'DesignRush Design Awards Nominee · October 2026',
+    name: 'Alexa Devaney | The Oppenheim Group',
+    description:
+      'A family-first agent brand for North County San Diego under The Oppenheim Group. Cinematic coastal imagery, live home search, and community guides for Encinitas, Carlsbad, Oceanside, and Fallbrook.',
+    image: '/images/ClientWebsiteImages/screencapture-alexadevaney-2026-10-08.jpg',
+    imageRight: false,
+    awardBadge: {
+      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png',
+      alt: 'DesignRush.com Design Awards Nominee',
+    },
+  },
+  {
     id: 'legendary-real-estate',
     subheading: 'Wisconsin Realtor of the Year 2025',
     name: 'Legendary Real Estate Services',
