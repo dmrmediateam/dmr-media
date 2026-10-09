@@ -71,9 +71,11 @@ type Props = {
   showcase?: ReactNode
   /** Optional custom hero that replaces the built-in hero layouts entirely. */
   hero?: ReactNode
+  /** Replaces every section after the client logos (see ConversionLandingBody). */
+  body?: ReactNode
 }
 
-export default function ChannelLandingPageContent({ config, showcase, hero }: Props) {
+export default function ChannelLandingPageContent({ config, showcase, hero, body }: Props) {
   const {
     formName,
     formConfig,
@@ -226,99 +228,103 @@ export default function ChannelLandingPageContent({ config, showcase, hero }: Pr
         <ClientLogosSlider repeatCount={clientLogosRepeat} />
       </section>
 
-      {showcase ?? null}
+      {body ?? (
+        <>
+          {showcase ?? null}
 
-      {objectionSection ? <ChannelLandingObjectionSection section={objectionSection} /> : null}
+          {objectionSection ? <ChannelLandingObjectionSection section={objectionSection} /> : null}
 
-      {byTheNumbersSection ? <ChannelLandingByTheNumbersSection section={byTheNumbersSection} /> : null}
+          {byTheNumbersSection ? <ChannelLandingByTheNumbersSection section={byTheNumbersSection} /> : null}
 
-      {timelineSection ? (
-        <ChannelLandingTimelineSection section={timelineSection} />
-      ) : null}
+          {timelineSection ? (
+            <ChannelLandingTimelineSection section={timelineSection} />
+          ) : null}
 
-      <GoogleGeneralReviewsScroll
-        eyebrow={reviewsSection?.eyebrow}
-        title={reviewsSection?.title}
-      />
+          <GoogleGeneralReviewsScroll
+            eyebrow={reviewsSection?.eyebrow}
+            title={reviewsSection?.title}
+          />
 
-      <section
-        id="marketing-core"
-        className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-20 md:py-28"
-        aria-labelledby="marketing-core-heading"
-      >
-        <div className="container-max px-4 sm:px-6">
-          <SeoReveal>
-            <h2
-              id="marketing-core-heading"
-              className="gg-display max-w-2xl text-3xl font-light tracking-tight md:text-4xl lg:text-[2.75rem]"
-            >
-              {marketingCoreHeading}
-            </h2>
-            <SectionRule />
-          </SeoReveal>
-
-          <ol className="mt-14 space-y-0">
-            {marketingCorePillars.map((pillar, i) => (
-              <SeoReveal key={pillar.number} delay={i * 0.07}>
-                <li className="list-none border-t border-[var(--color-ink-200)] py-10 first:border-t-0 first:pt-0 md:py-12">
-                  <article className="grid gap-6 md:grid-cols-[4.5rem_minmax(0,1fr)] md:gap-10 lg:gap-14">
-                    <p
-                      className="font-serif text-4xl font-light tabular-nums text-[var(--color-ink-200)] md:text-5xl"
-                      aria-hidden
-                    >
-                      {pillar.number}
-                    </p>
-                    <div>
-                      <h3 className="gg-display text-2xl font-light md:text-[1.75rem]">{pillar.title}</h3>
-                      <p className="gg-body gg-body-lg mt-4 max-w-2xl">{pillar.body}</p>
-                    </div>
-                  </article>
-                </li>
+          <section
+            id="marketing-core"
+            className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-20 md:py-28"
+            aria-labelledby="marketing-core-heading"
+          >
+            <div className="container-max px-4 sm:px-6">
+              <SeoReveal>
+                <h2
+                  id="marketing-core-heading"
+                  className="gg-display max-w-2xl text-3xl font-light tracking-tight md:text-4xl lg:text-[2.75rem]"
+                >
+                  {marketingCoreHeading}
+                </h2>
+                <SectionRule />
               </SeoReveal>
-            ))}
-          </ol>
-        </div>
-      </section>
 
-      <GoogleGeneralCaseStudies
-        studies={[...caseStudies]}
-        eyebrow={caseStudiesSection?.eyebrow}
-        title={caseStudiesSection?.title}
-      />
+              <ol className="mt-14 space-y-0">
+                {marketingCorePillars.map((pillar, i) => (
+                  <SeoReveal key={pillar.number} delay={i * 0.07}>
+                    <li className="list-none border-t border-[var(--color-ink-200)] py-10 first:border-t-0 first:pt-0 md:py-12">
+                      <article className="grid gap-6 md:grid-cols-[4.5rem_minmax(0,1fr)] md:gap-10 lg:gap-14">
+                        <p
+                          className="font-serif text-4xl font-light tabular-nums text-[var(--color-ink-200)] md:text-5xl"
+                          aria-hidden
+                        >
+                          {pillar.number}
+                        </p>
+                        <div>
+                          <h3 className="gg-display text-2xl font-light md:text-[1.75rem]">{pillar.title}</h3>
+                          <p className="gg-body gg-body-lg mt-4 max-w-2xl">{pillar.body}</p>
+                        </div>
+                      </article>
+                    </li>
+                  </SeoReveal>
+                ))}
+              </ol>
+            </div>
+          </section>
 
-      <section
-        id="faq"
-        className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-20 md:py-28"
-      >
-        <div className="container-max max-w-3xl px-4 sm:px-6">
-          <SeoReveal>
-            <p className="gg-eyebrow">FAQ</p>
-            <h2 className="gg-display mt-3 text-3xl font-light tracking-tight md:text-4xl">
-              Questions, answered plainly
-            </h2>
-            <SectionRule />
-          </SeoReveal>
+          <GoogleGeneralCaseStudies
+            studies={[...caseStudies]}
+            eyebrow={caseStudiesSection?.eyebrow}
+            title={caseStudiesSection?.title}
+          />
 
-          <div className="mt-12 divide-y divide-[var(--color-ink-200)]">
-            {faqItems.map((item) => (
-              <details key={item.question} className="group py-1">
-                <summary className="gg-display flex cursor-pointer list-none items-start justify-between gap-4 py-5 text-lg font-light outline-none marker:content-none [&::-webkit-details-marker]:hidden">
-                  <span className="text-pretty">{item.question}</span>
-                  <span
-                    className="gg-eyebrow mt-1.5 shrink-0 !text-base !tracking-normal transition-transform duration-300 group-open:rotate-45"
-                    aria-hidden
-                  >
-                    +
-                  </span>
-                </summary>
-                <p className="gg-body gg-body-sm pb-6">{item.answer}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
+          <section
+            id="faq"
+            className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-20 md:py-28"
+          >
+            <div className="container-max max-w-3xl px-4 sm:px-6">
+              <SeoReveal>
+                <p className="gg-eyebrow">FAQ</p>
+                <h2 className="gg-display mt-3 text-3xl font-light tracking-tight md:text-4xl">
+                  Questions, answered plainly
+                </h2>
+                <SectionRule />
+              </SeoReveal>
 
-      <footer className="bg-white pb-32 pt-10 lg:pb-10">
+              <div className="mt-12 divide-y divide-[var(--color-ink-200)]">
+                {faqItems.map((item) => (
+                  <details key={item.question} className="group py-1">
+                    <summary className="gg-display flex cursor-pointer list-none items-start justify-between gap-4 py-5 text-lg font-light outline-none marker:content-none [&::-webkit-details-marker]:hidden">
+                      <span className="text-pretty">{item.question}</span>
+                      <span
+                        className="gg-eyebrow mt-1.5 shrink-0 !text-base !tracking-normal transition-transform duration-300 group-open:rotate-45"
+                        aria-hidden
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="gg-body gg-body-sm pb-6">{item.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+
+      <footer className="border-t border-[var(--color-ink-200)] bg-white pb-32 pt-10 lg:pb-10">
         <div className="container-max flex flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
           <Link href="/" className="font-serif text-sm tracking-[0.2em] text-[var(--color-off-black)]">
             DMR MEDIA

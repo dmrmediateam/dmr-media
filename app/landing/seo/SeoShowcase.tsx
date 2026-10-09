@@ -69,7 +69,7 @@ export default function SeoShowcase() {
         <FeatureHeading
           eyebrow="Technical & local SEO"
           title="Rank where buyers and sellers actually search"
-          body="Neighborhood pages, a tuned Google Business Profile, and a technically clean site, so you win the local searches the portals can’t."
+          body="Win the local searches the portals can’t."
         />
         <SeoReveal delay={0.08}>
           <Stage className="mt-10 md:mt-12">
@@ -101,7 +101,7 @@ export default function SeoShowcase() {
         <FeatureHeading
           eyebrow="AEO · AI search"
           title="Get named #1 when buyers ask AI who to call"
-          body="Clear answers, structured data, and local facts on your pages, so Google AI Overviews, ChatGPT, and Perplexity recommend you by name."
+          body="Google AI, ChatGPT, and Perplexity recommend you by name."
         />
         <SeoReveal delay={0.08}>
           <Stage className="mt-10 !bg-white md:mt-12">
@@ -144,7 +144,7 @@ export default function SeoShowcase() {
         <FeatureHeading
           eyebrow="Lead capture"
           title="Traffic that turns into leads in your CRM"
-          body="Every page ends in a reason to reach out: home search, valuation requests, and contact forms that route straight to your CRM."
+          body="Home search, valuations, and contact forms that route to your CRM."
         />
         <SeoReveal delay={0.08}>
           <Stage className="mt-10 md:mt-12">

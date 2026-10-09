@@ -2,7 +2,8 @@
 
 import ApplyModal from '@/components/ApplyModal'
 import ChannelLandingPageContent from '@/components/landing/ChannelLandingPageContent'
-import WebsiteShowcaseSection from '@/components/landing/WebsiteShowcaseSection'
+import ConversionLandingBody from '@/components/landing/conversion/ConversionLandingBody'
+import GoogleAdsShowcase from './GoogleAdsShowcase'
 import { googleAdsLandingConfig } from './google-ads-landing-config'
 
 export default function GoogleAdsLandingPage() {
@@ -10,7 +11,7 @@ export default function GoogleAdsLandingPage() {
     <>
       <ChannelLandingPageContent
         config={googleAdsLandingConfig}
-        showcase={<WebsiteShowcaseSection />}
+        body={<ConversionLandingBody config={googleAdsLandingConfig} showcase={<GoogleAdsShowcase />} />}
       />
       <ApplyModal />
     </>

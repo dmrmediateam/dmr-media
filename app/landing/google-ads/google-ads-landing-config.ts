@@ -1,6 +1,12 @@
 import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 import { channelLandingCaseStudies } from '@/lib/landing/channel-landing-shared-data'
 
+const ADS_CASE_STUDY_ORDER = ['hitchcock-properties', 'vignette-realty', 'eagan-luxury-real-estate']
+
+const adsCaseStudies = ADS_CASE_STUDY_ORDER.map((id) => channelLandingCaseStudies.find((c) => c.id === id)).filter(
+  (c): c is (typeof channelLandingCaseStudies)[number] => Boolean(c)
+)
+
 export const googleAdsLandingConfig: ChannelLandingConfig = {
   path: '/landing/google-ads',
   formName: 'landing-google-ads-modal',
@@ -37,81 +43,84 @@ export const googleAdsLandingConfig: ChannelLandingConfig = {
       { text: '.' },
     ],
   ],
-  partnerStatsEyebrow: 'What you get',
-  partnerStats: [
-    'Qualified leads in your CRM in 14 days, or we refund you',
-    'Our exact copy-and-paste follow-up scripts & cadence',
-    'Your account, your data, your leads, never rented',
-  ],
+  partnerStats: [],
   marketingCoreHeading: 'What a Google Ads system should actually do for a top producer.',
   marketingCorePillars: [
     {
       number: '01',
-      title: 'Campaigns built for luxury price points',
-      body:
-        'Ads don\'t fail in real estate, setups do. Audience, offer, and landing page, engineered for the buyers and sellers your market actually has. We\'ve cut client cost per lead by as much as 88% by fixing exactly those three things.',
+      title: 'Campaigns built for your price point',
+      short: 'Search and Performance Max aimed at the buyers and sellers your market has.',
+      body: 'Ads don\'t fail in real estate, setups do. Audience, offer, and landing page, engineered for the buyers and sellers your market actually has. We\'ve cut client cost per lead by as much as 88% by fixing exactly those three things.',
+      photo: '/images/case-studies/hitchcock-properties/panama-city-beach.jpg',
+      screen: '/images/landing/google-ads/hitchcock-google-ads-30-days.webp',
+      screenAlt: 'Google Ads account with 41 conversions in 30 days',
     },
     {
       number: '02',
-      title: 'A landing experience that converts the click',
-      body:
-        'Traffic without a page built to convert it is a donation to Google. Your campaigns land on pages designed the way we design award-nominated websites, with valuation capture, clear contact paths, and IDX/MLS-ready layouts.',
+      title: 'Pages that convert the click',
+      short: 'Every ad lands on a page built for one action.',
+      body: 'Traffic without a page built to convert it is a donation to Google. Your campaigns land on pages designed the way we design award-nominated websites, with valuation capture, clear contact paths, and IDX/MLS-ready layouts.',
+      photo: '/images/StockHomes/modern-villa-interior-with-sparkle-floor-2024-10-18-09-40-13-utc.jpg',
+      screen: '/images/seo/carole-tierney-hero.jpg',
+      screenAlt: 'Carole Tierney website home page',
     },
     {
       number: '03',
-      title: 'Our exact follow-up scripts & cadence',
-      body:
-        'Leads don\'t close themselves. You get the same copy-and-paste scripts and follow-up cadence our best-performing clients run, so the lead that lands in your CRM at 9:04 gets a call at 9:12, not a voicemail on Thursday.',
+      title: 'Our follow-up scripts',
+      short: 'Copy-and-paste texts and calls, so every lead hears from you fast.',
+      body: 'Leads don\'t close themselves. You get the same copy-and-paste scripts and follow-up cadence our best-performing clients run, so the lead that lands in your CRM at 9:04 gets a call at 9:12, not a voicemail on Thursday.',
+      photo: '/images/StockHomes/spacious-living-room-with-staircase-in-residence-2025-10-10-15-17-44-utc (1).jpg',
+      screen: '/images/landing/google-ads/hitchcock-google-ppc-lead.webp',
+      screenAlt: 'A Google PPC lead with the agent\'s first text',
     },
     {
       number: '04',
-      title: 'Leads in your CRM, not a portal\'s',
-      body:
-        'Every inquiry lands in your CRM with tracking you can audit: spend, leads, and cost per lead shown plainly. Your account, your data, your pipeline. Stop paying rent on leads a portal sells to three of your competitors.',
+      title: 'Leads in your CRM',
+      short: 'Every lead tagged with its source, and never shared with other agents.',
+      body: 'Every inquiry lands in your CRM with tracking you can audit: spend, leads, and cost per lead shown plainly. Your account, your data, your pipeline. Stop paying rent on leads a portal sells to three of your competitors.',
+      photo: '/images/Cities/Stpet.jpg',
+      screen: '/images/MarquisFarwellLead.png',
+      screenAlt: 'A buyer inquiry delivered to the agent',
     },
   ],
-  caseStudies: channelLandingCaseStudies,
-  byTheNumbersSection: {
-    eyebrow: 'By the numbers',
-    title: 'Proof you can measure',
-    stats: [
-      {
-        value: '5-stars',
-        label: 'from top agents, teams & brokers since 2022',
-      },
-      {
-        value: '88%',
-        label: 'peak reduction in a client\'s cost per lead',
-      },
-      {
-        value: '#1',
-        label: 'Rated RE Agency by SEMRush for PPC & SEO',
-      },
-    ],
+  includedSection: {
+    eyebrow: 'What you get',
+    title: 'What a Google Ads system should actually do for a top producer',
+    intro: 'Built and managed for you, each part aimed at a qualified buyer or seller in your CRM.',
+  },
+  caseStudies: adsCaseStudies,
+  inlineCta: {
+    title: 'Find out what a lead costs in your market',
+    body: 'Expected cost per lead, pricing, and the guarantee terms, usually the same day.',
+    ctaLabel: 'Get my plan & pricing',
+  },
+  finalCta: {
+    eyebrow: 'Ready when you are',
+    title: 'Qualified buyers and sellers in your CRM within 14 days',
+    body: 'Tell us your market. We send your plan, pricing, and the guarantee terms, usually the same day.',
+    ctaLabel: 'Claim the guarantee',
+    reassurance: ['Leads in 14 days or your money back', 'Your ad account and your leads', 'Our exact follow-up scripts included'],
   },
   timelineSection: {
     eyebrow: 'From kickoff to leads',
     title: 'A concrete launch plan, not a vague timeline',
     intro:
-      'You shouldn\'t wonder where your campaigns are or what you\'re paying for. Here\'s how a launch runs week by week, so the first lead is a checkpoint, not a surprise.',
+      'Three steps from kickoff to leads in your CRM.',
     weeks: [
       {
         label: 'Week 1',
         title: 'Kickoff & system build',
-        body:
-          'We study your market, price point, and competition, then build the system around your positioning: campaigns, targeting, tracking, and the landing experience. You approve everything before a dollar of ad spend moves.',
+        body: 'We study your market and build the campaigns, tracking, and landing pages. You approve before any ad spend moves.',
       },
       {
         label: 'Week 2',
         title: 'Launch & scripts handoff',
-        body:
-          'Campaigns go live and you get our exact copy-and-paste follow-up scripts and cadence. The guarantee clock starts the day your ads switch on.',
+        body: 'Campaigns go live and you get our follow-up scripts. The guarantee clock starts that day.',
       },
       {
         label: 'Weeks 3-4',
         title: 'The guarantee window',
-        body:
-          'Qualified buyer and seller leads land in your CRM within 14 days of launch, or we refund your fee and your ad spend. The full guarantee terms, including the follow-up conditions, are published in our service terms.',
+        body: 'Qualified leads in your CRM within 14 days, or we refund your fee and your ad spend.',
       },
     ],
   },
@@ -120,10 +129,42 @@ export const googleAdsLandingConfig: ChannelLandingConfig = {
     title: 'What top producers say',
   },
   caseStudiesSection: {
-    eyebrow: 'Proof',
+    eyebrow: 'Case studies',
     title: 'The results behind the campaigns',
   },
   faqItems: [
+    {
+      question: 'I tried Google Ads before and got junk leads. Why would this be different?',
+      answer: 'We target the searches buyers and sellers use at your price point, send them to a page built for one action, and track every lead to the search that produced it. Hitchcock Properties went from $86.36 to $10.46 per lead after we rebuilt their account.',
+    },
+    {
+      question: 'How do I know Google Ads will pay off?',
+      answer: 'We start with the math for your market: what one closing is worth to you and what you can afford to spend to get it. You see the expected cost per lead before launch, and the guarantee covers your first 14 days.',
+    },
+    {
+      question: 'My last ad company over-promised and disappeared. How are you different?',
+      answer: 'Every result on this page names the client. You get a monthly lead report with spend, leads, and cost per lead, plus direct email access to the team doing the work. If leads aren’t in your CRM in 14 days, you get your money back.',
+    },
+    {
+      question: 'Is this like paying Zillow for leads?',
+      answer: 'You aren’t buying leads. The campaigns run in your own Google Ads account, every inquiry lands in your CRM, and no other agent gets the same lead.',
+    },
+    {
+      question: 'Why hire you over a Google Ads freelancer?',
+      answer: 'We only work with real estate agents, teams, and developers, and the team you meet runs your campaigns. Our ads, landing pages, and follow-up scripts are built for buyers and sellers, not general lead gen.',
+    },
+    {
+      question: 'What if online leads never pick up the phone?',
+      answer: 'You get our exact copy-and-paste follow-up scripts and cadence. Fast follow-up is what turns these leads into conversations, which is why it is the one condition of our guarantee.',
+    },
+    {
+      question: 'Should I do SEO instead of Google Ads?',
+      answer: 'Ads put you in front of buyers and sellers searching this week, while SEO builds in the background. We start most agents on Google Ads and their Google Business Profile, then add SEO once the leads are paying for it.',
+    },
+    {
+      question: 'Is there a long-term contract?',
+      answer: 'The program runs on a 24-week commitment with 30 days written notice to cancel, and the guarantee covers the start. If leads aren’t in your CRM in 14 days, you get your money back and the commitment ends.',
+    },
     {
       question: 'How does the 2-week guarantee work?',
       answer:
@@ -149,16 +190,7 @@ export const googleAdsLandingConfig: ChannelLandingConfig = {
       answer:
         'A $650-per-4-weeks retainer plus your website tier: fully-templated at $2,500, semi-custom (custom home page plus meet-the-team and about pages) at $3,500, or fully custom at $8,500. Ad spend is separate, agreed with you before launch, and stays in your control.',
     },
-    {
-      question: 'What about SEO?',
-      answer:
-        'SEO is part of how we build: clean foundations, fast pages, content that ranks. But this program is judged on leads, not rankings. Ask us about ongoing SEO once your lead system is paying for itself.',
-    },
-    {
-      question: 'Is there a long-term contract?',
-      answer:
-        'The program runs on a 24-week commitment with 30 days written notice to cancel, and the guarantee de-risks the start: if we don\'t deliver leads in the first 14 days, you get your money back per the terms.',
-    },
+
   ],
   metadata: {
     title: 'Google Ads That Generate Leads in 2 Weeks, Guaranteed | DMR Media',

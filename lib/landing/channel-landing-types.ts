@@ -9,6 +9,11 @@ export type ChannelLandingPillar = {
   number: string
   title: string
   body: string
+  /** Visual card (conversion landings): one-line copy, a background photo, and a floating screenshot. */
+  short?: string
+  photo?: string
+  screen?: string
+  screenAlt?: string
 }
 
 export type ChannelLandingCaseStudy = {
@@ -98,6 +103,22 @@ export type ChannelLandingFormConfig = {
   fieldSet?: ChannelLandingFormFieldSet
 }
 
+/** Short CTA band placed between proof sections. */
+export type ChannelLandingInlineCta = {
+  title: string
+  body: string
+  ctaLabel: string
+}
+
+/** Closing section: one last reason to act, the CTA, and the reassurance lines. */
+export type ChannelLandingFinalCta = {
+  eyebrow: string
+  title: string
+  body: string
+  ctaLabel: string
+  reassurance: readonly string[]
+}
+
 export type ChannelLandingConfig = {
   path: `/landing/${string}`
   formName: string
@@ -137,5 +158,9 @@ export type ChannelLandingConfig = {
   byTheNumbersSection?: ChannelLandingByTheNumbersSection
   reviewsSection?: ChannelLandingSectionHeading
   caseStudiesSection?: ChannelLandingSectionHeading
+  /** Section heading for the numbered "what's included" cards. */
+  includedSection?: ChannelLandingSectionHeading & { intro?: string }
+  inlineCta?: ChannelLandingInlineCta
+  finalCta?: ChannelLandingFinalCta
   metadata: ChannelLandingMetadata
 }

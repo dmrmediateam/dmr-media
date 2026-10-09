@@ -62,7 +62,7 @@ export default function WebsiteDevShowcase() {
         <FeatureHeading
           eyebrow="Award-nominated design"
           title="A website that wins the listing before the appointment"
-          body="Sellers compare agents online before they call. Two of our 2026 builds were nominated for DesignRush Design Awards."
+          body="Two of our 2026 builds were nominated for DesignRush Design Awards."
         />
         <SeoReveal delay={0.08}>
           <Stage className="mt-10 md:mt-12">
@@ -103,7 +103,7 @@ export default function WebsiteDevShowcase() {
         <FeatureHeading
           eyebrow="IDX home search & lead capture"
           title="Every listing on your site is a reason to register"
-          body="Your site connects to the MLS through IDX. Buyers who want every photo, saved searches, or alerts register with you, and the lead routes straight to your CRM."
+          body="Buyers register to see every photo, and the lead routes to your CRM."
         />
         <SeoReveal delay={0.08}>
           <Stage className="mt-10 !bg-white md:mt-12">
@@ -135,7 +135,7 @@ export default function WebsiteDevShowcase() {
         <FeatureHeading
           eyebrow="Built to be found"
           title="Found on Google, and named first by AI"
-          body="Every site launches with SEO foundations. Ask Google AI, ChatGPT, or Perplexity for the best realtor in Dolphin Cay, and they name our client first."
+          body="Ask AI for the best realtor in Dolphin Cay, and it names our client first."
         />
         <SeoReveal delay={0.08}>
           <Stage className="mt-10 md:mt-12">
