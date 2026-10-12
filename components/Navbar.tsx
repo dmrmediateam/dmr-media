@@ -82,6 +82,7 @@ const Navbar = () => {
 
   return (
     <nav
+      data-site-nav
       className={`site-nav ${elevatedChrome ? 'site-nav--elevated' : ''}`}
       aria-label="Primary"
     >

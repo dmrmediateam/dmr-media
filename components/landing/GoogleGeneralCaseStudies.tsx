@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
 import type { ChannelLandingCaseStudy } from '@/lib/landing/channel-landing-types'
 
@@ -11,10 +10,6 @@ type Props = {
   studies: readonly ChannelLandingCaseStudy[]
   eyebrow?: string
   title?: string
-}
-
-function caseStudyHref(id: string) {
-  return `/case-study/${id}`
 }
 
 function SectionRule() {
@@ -46,13 +41,6 @@ export default function GoogleGeneralCaseStudies({
                 {title}
               </h2>
             </div>
-
-            <Link
-              href="/case-studies"
-              className="gg-eyebrow gg-eyebrow--strong shrink-0 text-right transition-opacity hover:opacity-70"
-            >
-              View all case studies
-            </Link>
           </div>
           <SectionRule />
         </SeoReveal>
@@ -61,18 +49,15 @@ export default function GoogleGeneralCaseStudies({
           {featured.map((study, i) => (
             <SeoReveal key={study.id} delay={i * 0.05} className="h-full">
               <li className="h-full list-none">
-                <Link
-                  href={caseStudyHref(study.id)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex h-full w-full flex-col overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)] text-left shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/14 hover:shadow-[0_12px_40px_-16px_rgba(15,15,15,0.12)] motion-reduce:hover:translate-y-0"
+                <div
+                  className="group flex h-full w-full flex-col overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)] text-left shadow-[0_1px_0_rgba(15,15,15,0.04)]"
                 >
                   <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-[var(--color-ink-200)] bg-white">
                     <Image
                       src={study.image}
                       alt={study.imageAlt}
                       fill
-                      className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="object-cover object-center"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div
@@ -87,11 +72,8 @@ export default function GoogleGeneralCaseStudies({
                     <p className="gg-eyebrow">{study.metric}</p>
                     <h3 className="gg-display mt-2 text-lg font-light leading-snug">{study.title}</h3>
                     <p className="gg-eyebrow mt-1 !text-xs">{study.region}</p>
-                    <span className="gg-eyebrow gg-eyebrow--strong mt-auto block pt-4 opacity-80 transition-opacity group-hover:opacity-100">
-                      Read case study →
-                    </span>
                   </div>
-                </Link>
+                </div>
               </li>
             </SeoReveal>
           ))}

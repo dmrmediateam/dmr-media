@@ -49,7 +49,34 @@ const TOP_WEBSITES = [
 ];
 
 /** Homepage showcase: flagship website designs in a browser-framed carousel (newest award nominees first). */
-export default function TopWebsites() {
+/** A carousel slide: a link to the live site, or a plain block when `href` is omitted. */
+function SlideWrapper({
+  href,
+  hidden,
+  className,
+  children,
+}: {
+  href?: string;
+  hidden: boolean;
+  className: string;
+  children: React.ReactNode;
+}) {
+  if (!href) {
+    return (
+      <div aria-hidden={hidden} className={className}>
+        {children}
+      </div>
+    );
+  }
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" aria-hidden={hidden} tabIndex={hidden ? -1 : 0} className={className}>
+      {children}
+    </a>
+  );
+}
+
+/** `linkless` (paid landing pages): no links out, the carousel is display only. */
+export default function TopWebsites({ linkless = false }: { linkless?: boolean } = {}) {
   const [active, setActive] = useState(0);
   const site = TOP_WEBSITES[active];
   const prev = () => setActive((a) => (a - 1 + TOP_WEBSITES.length) % TOP_WEBSITES.length);
@@ -77,14 +104,16 @@ export default function TopWebsites() {
               <p className="mt-1 text-sm text-[var(--color-ink-300)]">{site.subline}</p>
             </div>
             <div className="flex items-center gap-6">
-              <a
-                href={site.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] border-b border-[var(--color-off-black)] pb-1 transition-opacity hover:opacity-60 sm:inline-block"
-              >
-                {site.domain} →
-              </a>
+              {linkless ? null : (
+                <a
+                  href={site.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] border-b border-[var(--color-off-black)] pb-1 transition-opacity hover:opacity-60 sm:inline-block"
+                >
+                  {site.domain} →
+                </a>
+              )}
               <div className="flex items-center gap-3">
                 <button
                   type="button"
@@ -115,13 +144,10 @@ export default function TopWebsites() {
               style={{ transform: `translateX(calc(${active} * -1 * (var(--slide-w) + var(--slide-gap))))` }}
             >
               {TOP_WEBSITES.map((s, i) => (
-                <a
+                <SlideWrapper
                   key={s.id}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-hidden={i !== active}
-                  tabIndex={i === active ? 0 : -1}
+                  href={linkless ? undefined : s.href}
+                  hidden={i !== active}
                   className={`group relative w-[var(--slide-w)] shrink-0 ${
                     i === active ? 'opacity-100' : 'opacity-50'
                   } transition-opacity duration-700`}
@@ -161,22 +187,24 @@ export default function TopWebsites() {
                       />
                     </div>
                   ) : null}
-                </a>
+                </SlideWrapper>
               ))}
             </div>
           </div>
         </SeoReveal>
 
-        <SeoReveal delay={0.15}>
-          <div className="mt-12">
-            <Link
-              href="/real-estate-agent-website-samples"
-              className="font-serif text-sm uppercase tracking-[0.2em] text-[var(--color-off-black)] border-b border-[var(--color-off-black)] pb-1 transition-opacity hover:opacity-60"
-            >
-              View all website designs →
-            </Link>
-          </div>
-        </SeoReveal>
+        {linkless ? null : (
+          <SeoReveal delay={0.15}>
+            <div className="mt-12">
+              <Link
+                href="/real-estate-agent-website-samples"
+                className="font-serif text-sm uppercase tracking-[0.2em] text-[var(--color-off-black)] border-b border-[var(--color-off-black)] pb-1 transition-opacity hover:opacity-60"
+              >
+                View all website designs →
+              </Link>
+            </div>
+          </SeoReveal>
+        )}
       </div>
     </section>
   );

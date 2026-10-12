@@ -308,41 +308,6 @@ const ReviewsAggregate = () => {
             ))}
           </div>
 
-          {/* Trustpilot Link & See More Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center mt-12 space-y-6"
-          >
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a
-                href="https://www.trustpilot.com/review/dmrmedia.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[var(--color-trust)] hover:text-[var(--color-off-black)] transition-colors duration-300"
-              >
-                <span className="text-sm uppercase tracking-[0.3em]">Read All Reviews on Trustpilot</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            </div>
-            
-            {/* See More Button */}
-            <motion.a
-              href="/case-studies"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.3em] text-sm font-semibold hover:bg-black transition-colors duration-300"
-            >
-              See More Case Studies
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </motion.a>
-          </motion.div>
         </div>
       </div>
     </section>

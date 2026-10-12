@@ -14,8 +14,8 @@ function QualificationResultContent() {
 
   // Hide header, footer, and AI chatbot for this page
   useEffect(() => {
-    const nav = document.querySelector('nav') as HTMLElement | null;
-    const footer = document.querySelector('footer') as HTMLElement | null;
+    const nav = document.querySelector('nav[data-site-nav]') as HTMLElement | null;
+    const footer = document.querySelector('footer[data-site-footer]') as HTMLElement | null;
     const chatbot = document.querySelector(ELFSIGHT_CHATBOT_SELECTOR) as HTMLElement | null;
     if (nav) nav.style.display = 'none';
     if (footer) footer.style.display = 'none';

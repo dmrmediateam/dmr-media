@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
 import TopWebsites from '@/components/TopWebsites'
 import {
@@ -53,15 +52,8 @@ export default function SeoShowcase() {
 
       {/* Website examples: the homepage carousel */}
       <section id="websites" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)]">
-        <TopWebsites />
-        <div className="pb-14 text-center md:pb-20">
-          <Link
-            href="/real-estate-agent-website-samples"
-            className="gg-eyebrow gg-eyebrow--strong inline-flex min-h-[44px] items-center gap-2 border-b border-[var(--color-off-black)]/40 pb-1 transition-colors hover:border-[var(--color-off-black)]"
-          >
-            See every website we&rsquo;ve built <span aria-hidden>→</span>
-          </Link>
-        </div>
+        <TopWebsites linkless />
+        <div className="pb-14 md:pb-20" aria-hidden />
       </section>
 
       {/* Rankings */}

@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
 import TopWebsites from '@/components/TopWebsites'
 import {
@@ -28,14 +27,12 @@ const NOMINEES = [
     market: 'Coldwell Banker Realty · Naples, FL',
     when: 'DesignRush nominee · September 2026',
     image: '/images/seo/carole-tierney-hero.jpg',
-    href: 'https://www.caroletierney.com/',
   },
   {
     name: 'Alexa Devaney',
     market: 'The Oppenheim Group · North County San Diego',
     when: 'DesignRush nominee · October 2026',
     image: '/images/seo/alexa-devaney-hero.jpg',
-    href: 'https://www.alexadevaney.com/',
   },
 ] as const
 
@@ -46,15 +43,8 @@ export default function WebsiteDevShowcase() {
 
       {/* Website examples: the homepage carousel */}
       <section id="websites" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)]">
-        <TopWebsites />
-        <div className="pb-14 text-center md:pb-20">
-          <Link
-            href="/real-estate-agent-website-samples"
-            className="gg-eyebrow gg-eyebrow--strong inline-flex min-h-[44px] items-center gap-2 border-b border-[var(--color-off-black)]/40 pb-1 transition-colors hover:border-[var(--color-off-black)]"
-          >
-            See every website we&rsquo;ve built <span aria-hidden>→</span>
-          </Link>
-        </div>
+        <TopWebsites linkless />
+        <div className="pb-14 md:pb-20" aria-hidden />
       </section>
 
       {/* Design */}
@@ -68,7 +58,7 @@ export default function WebsiteDevShowcase() {
           <Stage className="mt-10 md:mt-12">
             <div className="grid gap-8 md:grid-cols-2 md:gap-6">
               {NOMINEES.map((n) => (
-                <a key={n.name} href={n.href} target="_blank" rel="noopener noreferrer" className="group block min-w-0">
+                <div key={n.name} className="min-w-0">
                   <div className="relative">
                     <Frame>
                       <Image
@@ -77,7 +67,7 @@ export default function WebsiteDevShowcase() {
                         width={1400}
                         height={868}
                         sizes="(min-width: 768px) 50vw, 100vw"
-                        className="h-auto w-full rounded-lg transition-transform duration-500 group-hover:scale-[1.01] motion-reduce:transition-none"
+                        className="h-auto w-full rounded-lg"
                       />
                     </Frame>
                     <Image
@@ -91,7 +81,7 @@ export default function WebsiteDevShowcase() {
                   <p className="gg-display mt-4 text-xl font-light">{n.name}</p>
                   <p className="font-sans text-xs text-[var(--gg-text-muted)]">{n.market}</p>
                   <p className="gg-eyebrow mt-1 !text-[10px]">{n.when}</p>
-                </a>
+                </div>
               ))}
             </div>
           </Stage>

@@ -47,8 +47,8 @@ export default function ThankYouApplicationPage() {
   const [isMuted, setIsMuted] = useState(true)
 
   useEffect(() => {
-    const nav = document.querySelector('nav') as HTMLElement | null
-    const footer = document.querySelector('footer') as HTMLElement | null
+    const nav = document.querySelector('nav[data-site-nav]') as HTMLElement | null
+    const footer = document.querySelector('footer[data-site-footer]') as HTMLElement | null
     if (nav) nav.style.display = 'none'
     if (footer) footer.style.display = 'none'
     return () => {

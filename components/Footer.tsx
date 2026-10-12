@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t border-[var(--color-ink-200)]">
+    <footer data-site-footer className="bg-white border-t border-[var(--color-ink-200)]">
       <div className="container-max">
         {/* Get Started Section */}
         <div className="py-16 border-b border-[var(--color-ink-200)] flex flex-col md:flex-row md:items-center md:justify-between gap-8">

@@ -70,8 +70,8 @@ export default function GoogleOwnedLeadsLandingPage() {
   }, [currentVideoIndex]);
 
   useEffect(() => {
-    const nav = document.querySelector('nav') as HTMLElement | null;
-    const footer = document.querySelector('footer') as HTMLElement | null;
+    const nav = document.querySelector('nav[data-site-nav]') as HTMLElement | null;
+    const footer = document.querySelector('footer[data-site-footer]') as HTMLElement | null;
     const hideElfsightWidgets = () => {
       ELFSIGHT_LANDING_HIDE_SELECTORS.forEach((selector) => {
         try {

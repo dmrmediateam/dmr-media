@@ -28,9 +28,7 @@ function ChannelLandingHeader({ applyLabel = 'Apply' }: { applyLabel?: string })
         <div className="site-nav__bar-inner">
           <div className="site-nav__row">
             <div className="site-nav__row-track">
-              <Link href="/" className="site-nav__logo">
-                DMR
-              </Link>
+              <span className="site-nav__logo">DMR</span>
               <div className="site-nav__actions gap-3 sm:gap-4 md:gap-5">
                 <a href={DMR_PHONE_HREF} className="site-nav__phone hidden sm:inline">
                   {DMR_PHONE_DISPLAY}
@@ -102,8 +100,8 @@ export default function ChannelLandingPageContent({ config, showcase, hero, body
   } = config
 
   useEffect(() => {
-    const nav = document.querySelector('nav') as HTMLElement | null
-    const footer = document.querySelector('footer') as HTMLElement | null
+    const nav = document.querySelector('nav[data-site-nav]') as HTMLElement | null
+    const footer = document.querySelector('footer[data-site-footer]') as HTMLElement | null
     if (nav) nav.style.display = 'none'
     if (footer) footer.style.display = 'none'
     return () => {
@@ -326,9 +324,7 @@ export default function ChannelLandingPageContent({ config, showcase, hero, body
 
       <footer className="border-t border-[var(--color-ink-200)] bg-white pb-32 pt-10 lg:pb-10">
         <div className="container-max flex flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
-          <Link href="/" className="font-serif text-sm tracking-[0.2em] text-[var(--color-off-black)]">
-            DMR MEDIA
-          </Link>
+          <p className="font-serif text-sm tracking-[0.2em] text-[var(--color-off-black)]">DMR MEDIA</p>
           <p className="gg-eyebrow !text-xs">Distinguished Marketing for Real Estate</p>
         </div>
       </footer>

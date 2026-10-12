@@ -34,7 +34,17 @@ const SMALL_STUDIES = [
   },
 ];
 
-export default function CaseStudies({ hideHeading = false }: { hideHeading?: boolean }) {
+function CardWrapper({ href, className, children }: { href?: string; className: string; children: React.ReactNode }) {
+  if (!href) return <div className={className}>{children}</div>;
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  );
+}
+
+/** `linkless` (paid landing pages): cards are display only, with no links to the case study pages. */
+export default function CaseStudies({ hideHeading = false, linkless = false }: { hideHeading?: boolean; linkless?: boolean }) {
   return (
     <section className={`pb-12 bg-white ${hideHeading ? 'pt-8 md:pt-10' : 'pt-16'}`}>
       <div className="container-max">
@@ -50,9 +60,9 @@ export default function CaseStudies({ hideHeading = false }: { hideHeading?: boo
         {/* Small Cards Grid — same chrome as /seo-optimization pillar cards */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
           {SMALL_STUDIES.map((study) => (
-            <Link
+            <CardWrapper
               key={study.id}
-              href={`/case-study/${study.id}`}
+              href={linkless ? undefined : `/case-study/${study.id}`}
               className="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md motion-reduce:hover:translate-y-0"
             >
               <div className="relative aspect-[3/2] w-full overflow-hidden border-b border-[var(--color-ink-200)]">
@@ -82,22 +92,26 @@ export default function CaseStudies({ hideHeading = false }: { hideHeading?: boo
                 <p className="flex-1 font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">
                   {study.description}
                 </p>
-                <span className="font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)]">
-                  View full story
-                </span>
+                {linkless ? null : (
+                  <span className="font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)]">
+                    View full story
+                  </span>
+                )}
               </div>
-            </Link>
+            </CardWrapper>
           ))}
         </div>
 
-        <div className="mt-10 text-center">
-          <Link
-            href="/case-studies"
-            className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif hover:opacity-60 transition-opacity duration-300"
-          >
-            View all success stories
-          </Link>
-        </div>
+        {linkless ? null : (
+          <div className="mt-10 text-center">
+            <Link
+              href="/case-studies"
+              className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] font-serif hover:opacity-60 transition-opacity duration-300"
+            >
+              View all success stories
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
