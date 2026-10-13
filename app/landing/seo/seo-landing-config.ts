@@ -10,30 +10,30 @@ const seoCaseStudies = SEO_CASE_STUDY_ORDER.map((id) => channelLandingCaseStudie
 export const seoLandingConfig: ChannelLandingConfig = {
   path: '/landing/seo',
   formName: 'landing-seo-modal',
-  headerApplyLabel: 'Free SEO audit',
+  headerApplyLabel: 'Free AI search audit',
   heroLayout: 'conversion',
   formConfig: {
-    title: 'Get your free SEO & AI search audit',
+    title: 'Get your free AI search audit',
     subtitle: 'Takes about 60 seconds',
     question: 'Where should we send your audit?',
     submitLabel: 'Send my free audit',
     footnote: 'No spam. The audit is yours whether or not you hire us.',
-    ariaLabel: 'Free real estate SEO audit request',
+    ariaLabel: 'Free real estate AI search audit request',
     fieldSet: 'full',
   },
   heroTitleSegments: [
-    { text: 'Real Estate SEO & AEO that generated ' },
-    { text: '19× more organic traffic', italic: true },
-    { text: ' in 90 days' },
+    { text: 'AI Is Already Recommending an Agent in Your Area. ' },
+    { text: 'Make It You', italic: true },
+    { text: ', Not Your Competitor.' },
   ],
   heroTitleEmphasis: '',
   heroIntro: '',
   heroIntroShort:
-    'Found on Google, cited by ChatGPT and Google AI Overviews, and turned into leads in your CRM, with reporting you can check yourself.',
+    'Google AI, ChatGPT, and Perplexity all name our client Debi Eagan first for Dolphin Cay. We work to make your name the answer in your area, and send those inquiries to your CRM.',
   heroIntroParagraphs: [
     [
       {
-        text: 'We get your website found on Google and cited by ChatGPT, Google AI Overviews, and Gemini when buyers and sellers search your market. Then we make sure that traffic turns into ',
+        text: 'Google AI, ChatGPT, and Perplexity all name our client Debi Eagan first for Dolphin Cay in St. Petersburg. Buyers and sellers in your area are asking the same tools which agent to call. We build the pages, structured data, and local authority those tools cite, backed by the SEO that gets you found on Google, then make sure that traffic turns into ',
       },
       { text: 'leads in your CRM', italic: true },
       { text: ', with reporting that shows exactly which searches produced them.' },
@@ -47,18 +47,18 @@ export const seoLandingConfig: ChannelLandingConfig = {
     weeks: [
       {
         label: 'Weeks 1-2',
-        title: 'Audit and technical fixes',
-        body: 'We fix speed, indexing, broken pages, and your Google Business Profile.',
+        title: 'AI visibility audit and technical fixes',
+        body: 'We check what ChatGPT, Google AI, Gemini, and Perplexity say about your area today, then fix speed, indexing, and your Google Business Profile.',
       },
       {
         label: 'Weeks 3-8',
-        title: 'Neighborhood and market pages',
-        body: 'We build the neighborhood and market pages your buyers search for, each with a lead form.',
+        title: 'Pages AI tools can quote',
+        body: 'We build neighborhood and market pages with clear answers, local facts, and structured data, each with a lead form.',
       },
       {
         label: 'Weeks 9-12',
-        title: 'Authority, AI citations, and reporting',
-        body: 'We earn local links, structure pages for AI citations, and show you which searches produced leads.',
+        title: 'Authority, citations, and reporting',
+        body: 'We earn local links and mentions, then show you where AI tools cite you and which searches produced leads.',
       },
     ],
   },
@@ -66,29 +66,11 @@ export const seoLandingConfig: ChannelLandingConfig = {
     eyebrow: 'Reviews',
     title: 'What agents say about working with us',
   },
-  marketingCoreHeading: 'What real estate SEO & AEO from DMR includes',
+  marketingCoreHeading: 'What AI search optimization from DMR includes',
   marketingCorePillars: [
     {
       number: '01',
-      title: 'Local SEO & Google Business Profile',
-      short: 'Map pack and “realtor near me” visibility in your market.',
-      body: 'Map pack and “realtor near me” visibility, a review strategy, and accurate business listings across your market.',
-      photo: '/images/Cities/LakeGeneva.jpg',
-      screen: '/images/jade-google-business-profile.png',
-      screenAlt: 'Legendary Real Estate Google Business Profile',
-    },
-    {
-      number: '02',
-      title: 'Neighborhood & community pages',
-      short: 'Pages for the areas you sell, tied to your IDX listings.',
-      body: 'Pages built around the areas you sell, with IDX listings, local market detail, and lead capture. IDX feeds on their own are duplicate content; these pages are written for your market.',
-      photo: '/images/Cities/Sonoma.jpg',
-      screen: '/images/propertyWebsiteImages/screencapture-eaganluxury-listing-1873-oceanview-dr-tierra-verde-fl-33715-2026-03-25-19_45_17.png',
-      screenAlt: 'Eagan Luxury listing page in Tierra Verde',
-    },
-    {
-      number: '03',
-      title: 'AEO: answers AI tools cite',
+      title: 'Answers AI tools cite',
       short: 'ChatGPT and Google AI name you when buyers ask who to call.',
       body: 'Clear answers, structured data, and local facts on your pages, so ChatGPT, Google AI Overviews, and Gemini name you when buyers ask who to call.',
       photo: '/images/Cities/Stpet.jpg',
@@ -96,75 +78,60 @@ export const seoLandingConfig: ChannelLandingConfig = {
       screenAlt: 'ChatGPT naming Eagan Luxury first for Dolphin Cay',
     },
     {
+      number: '02',
+      title: 'Neighborhood & community pages',
+      short: 'Pages for the areas you sell, written so AI can quote them.',
+      body: 'Pages built around the areas you sell, with IDX listings, local market detail, and lead capture. IDX feeds on their own are duplicate content; these pages are written for your market.',
+      photo: '/images/Cities/Sonoma.jpg',
+      screen: '/images/propertyWebsiteImages/screencapture-eaganluxury-listing-1873-oceanview-dr-tierra-verde-fl-33715-2026-03-25-19_45_17.png',
+      screenAlt: 'Eagan Luxury listing page in Tierra Verde',
+    },
+    {
+      number: '03',
+      title: 'Local SEO & Google Business Profile',
+      short: 'Map pack and “realtor near me” visibility in your area.',
+      body: 'Map pack and “realtor near me” visibility, a review strategy, and accurate business listings across your market.',
+      photo: '/images/Cities/LakeGeneva.jpg',
+      screen: '/images/jade-google-business-profile.png',
+      screenAlt: 'Legendary Real Estate Google Business Profile',
+    },
+    {
       number: '04',
-      title: 'Reporting tied to leads',
-      short: 'Search Console in your name, each lead traced to its search.',
-      body: 'Search Console and Analytics in your name, with each lead traced to the search and page that produced it.',
+      title: 'AI visibility reporting',
+      short: 'Where AI tools cite you, and the leads each page brings in.',
+      body: 'AI citation tracking across ChatGPT, Google AI, and Gemini, plus Search Console and Analytics in your name, with each lead traced to the search and page that produced it.',
       photo: '/images/Cities/NewHampshire.jpg',
-      screen: '/images/MarquisFarwellGoogleSearchConsole.png',
-      screenAlt: 'Google Search Console clicks rising over 90 days',
+      screen: '/images/seo/legendary-ai-search-2026-10.png',
+      screenAlt: 'SEMrush AI Search panel showing 64 pages cited across AI tools',
     },
   ],
   includedSection: {
     eyebrow: 'What’s included',
-    title: 'What real estate SEO & AEO from DMR includes',
-    intro: 'Run for you every month, each part tied to the searches and AI answers in your market.',
+    title: 'What AI search optimization from DMR includes',
+    intro: 'Run for you every month, each part tied to the AI answers and searches in your area.',
   },
   caseStudies: seoCaseStudies,
   inlineCta: {
-    title: 'See where you rank, and who AI recommends instead of you',
-    body: 'The searches you’re missing, and who AI names instead of you.',
+    title: 'Find out who AI recommends in your area today',
+    body: 'Your audit shows what ChatGPT, Google AI, and Perplexity say about your market, and who they name instead of you.',
     ctaLabel: 'Get my free audit',
   },
   finalCta: {
-    eyebrow: 'Your market, your search results',
-    title: 'Be the agent Google and AI recommend in your market',
-    body: 'Request your free SEO & AI search audit. It takes about 60 seconds, and the audit is yours whether or not you hire us.',
+    eyebrow: 'Your area, your AI answers',
+    title: 'Be the agent AI recommends in your area',
+    body: 'Request your free AI search audit. It takes about 60 seconds, and the audit is yours whether or not you hire us.',
     ctaLabel: 'Get my free audit',
     reassurance: ['Free, no obligation', 'Your accounts stay in your name', 'Reporting you can check yourself'],
   },
   caseStudiesSection: {
     eyebrow: 'Case studies',
-    title: 'The full SEO case studies',
+    title: 'The full case studies',
   },
   faqItems: [
     {
-      question: 'Can I justify the cost of SEO?',
-      answer: 'We start with the math for your market. At a $750,000 price point and a 2.5% commission, one closing is about $18,750 in GCI. Your audit shows the searches and pages it would take to get there, before you commit to anything.',
-    },
-    {
-      question: 'How do I know your results are real?',
-      answer: 'Every result on this page names the client and comes from their own Search Console or SEMrush dashboard, so you can look them up. On your audit call, ask to speak with a client.',
-    },
-    {
-      question: 'How will I know SEO is working?',
-      answer: 'You get weekly reporting from your own Google Search Console and Analytics, plus the leads each page produced. If a page isn’t earning its keep, we tell you and change it.',
-    },
-    {
-      question: 'Is SEO worth it if most of my business is referrals?',
-      answer: 'Search brings in buyers and sellers who have no one to refer them, and it’s where many referrals look you up before they call. You keep both.',
-    },
-    {
-      question: 'Who owns everything if I leave?',
-      answer: 'Your domain, Google Search Console, Analytics, and Google Business Profile stay in your name. We work inside accounts you own.',
-    },
-    {
-      question: 'Can my website compete with Zillow?',
-      answer: 'We don’t fight them there. We target the neighborhood, community, and “best agent near me” searches where a local expert wins, and where the person searching is closer to hiring someone.',
-    },
-    {
-      question: 'Isn’t AI search killing SEO?',
-      answer: 'That’s why we optimize for both: rankings on Google and citations inside ChatGPT, AI Overviews, and Gemini. That second part is AEO. Our Lake Geneva client has 64 pages cited across those tools today.',
-    },
-    {
-      question: 'How much does real estate SEO cost?',
+      question: 'How do I rank #1 in ChatGPT and Google AI for real estate in my area?',
       answer:
-        'It depends on your market and how much needs to be built. We scope it after the free audit and put the deliverables and price in writing. For context, one closing at a $750,000 price point and a 2.5% commission is about $18,750 in GCI, so the real question is how many closings the work needs to produce.',
-    },
-    {
-      question: 'How long does SEO take for a real estate website?',
-      answer:
-        'Technical fixes and long-tail neighborhood searches often move first, sometimes within weeks. Competitive terms build over months. For the Sonoma County team on this page, daily organic clicks went from about 2 to 38 within 90 days.',
+        'AI tools recommend agents they can find clear, factual information about. We build pages that answer the questions buyers ask about your area, add structured data, and earn mentions across the web. For Dolphin Cay in St. Petersburg, Google AI, ChatGPT, and Perplexity all name our client Debi Eagan first.',
     },
     {
       question: 'What is AEO, and how do realtors show up in ChatGPT?',
@@ -172,28 +139,72 @@ export const seoLandingConfig: ChannelLandingConfig = {
         'AEO (answer engine optimization) means getting your site cited when someone asks ChatGPT, Google AI Overviews, or Gemini a question like “who is the best luxury agent in Lake Geneva.” It comes from clear, factual pages about your market, structured data, and mentions across the web. We do it alongside traditional SEO.',
     },
     {
-      question: 'Do you guarantee #1 rankings?',
+      question: 'Which AI tools do you optimize for?',
       answer:
-        'No. Google itself says no one can guarantee a #1 ranking, so treat anyone who promises one as a red flag. We commit to a written plan, the work in it, and reporting you can verify in your own Search Console.',
+        'ChatGPT, Google AI Overviews, Google AI Mode, Gemini, and Perplexity. Our Lake Geneva client has 64 pages cited across ChatGPT, AI Overviews, AI Mode, and Gemini, measured in SEMrush.',
     },
     {
-      question: 'Will my IDX listings help or hurt my SEO?',
+      question: 'Can you guarantee I’ll rank #1 in AI search?',
       answer:
-        'IDX listings are the same data on hundreds of sites, so on their own they rarely rank. We build unique neighborhood and market pages around your IDX feed, and those pages are what earn rankings.',
+        'No. No one controls what an AI tool says, so treat anyone who guarantees it as a red flag. We commit to a written plan, the work in it, and reporting you can check yourself, and every client result on this page names the client so you can look it up.',
+    },
+    {
+      question: 'Isn’t AI search killing SEO?',
+      answer:
+        'AI tools draw their answers from pages on the web, so SEO still matters. That’s why we optimize for both: rankings on Google and citations inside ChatGPT, AI Overviews, and Gemini.',
+    },
+    {
+      question: 'How do I know your results are real?',
+      answer:
+        'Every result on this page names the client and comes from their own Search Console or SEMrush dashboard, or from a screenshot of the AI answer itself, so you can check it. On your audit call, ask to speak with a client.',
+    },
+    {
+      question: 'How will I know it’s working?',
+      answer:
+        'You get weekly reporting from your own Google Search Console and Analytics, where AI tools cite your pages, and the leads each page produced. If a page isn’t earning its keep, we tell you and change it.',
+    },
+    {
+      question: 'How much does AI search optimization cost?',
+      answer:
+        'It depends on your market and how much needs to be built. We scope it after the free audit and put the deliverables and price in writing. For context, one closing at a $750,000 price point and a 2.5% commission is about $18,750 in GCI, so the real question is how many closings the work needs to produce.',
+    },
+    {
+      question: 'How long does it take?',
+      answer:
+        'Technical fixes and long-tail neighborhood searches often move first, sometimes within weeks. Competitive terms build over months. For the Sonoma County team on this page, daily organic clicks went from about 2 to 38 within 90 days.',
+    },
+    {
+      question: 'Is it worth it if most of my business is referrals?',
+      answer:
+        'Buyers and sellers with no one to refer them ask Google and AI tools instead, and many referrals look you up there before they call. You keep both.',
+    },
+    {
+      question: 'Can my website compete with Zillow?',
+      answer:
+        'We don’t fight them for broad searches. We target the neighborhood, community, and “best agent near me” questions where a local expert wins, and where the person asking is closer to hiring someone.',
+    },
+    {
+      question: 'Who owns everything if I leave?',
+      answer:
+        'Your domain, Google Search Console, Analytics, and Google Business Profile stay in your name. We work inside accounts you own.',
+    },
+    {
+      question: 'Will my IDX listings help or hurt?',
+      answer:
+        'IDX listings are the same data on hundreds of sites, so on their own they rarely rank or get cited. We build unique neighborhood and market pages around your IDX feed, and those pages are what earn rankings and citations.',
     },
     {
       question: 'I already have a website. Do I need a new one?',
       answer:
-        'Usually not. We start with the audit and fix what blocks rankings and leads. We only recommend a rebuild when your current platform limits what can be fixed.',
+        'Usually not. We start with the audit and fix what blocks rankings, citations, and leads. We only recommend a rebuild when your current platform limits what can be fixed.',
     },
-
   ],
   metadata: {
-    title: 'Real Estate SEO & AEO | 19× Organic Traffic in 90 Days | DMR Media',
+    title: 'AI Is Recommending an Agent in Your Area. Make It You | DMR Media',
     description:
-      'Real estate SEO and AEO that gets agents found on Google and cited by ChatGPT and AI Overviews. A Sonoma County team went from 2 to 38 daily organic clicks in 90 days. Free audit.',
-    openGraphTitle: 'Real Estate SEO & AEO that generated 19× more organic traffic in 90 days',
+      'DMR Media helps real estate agents get named first when buyers ask ChatGPT, Google AI, and Perplexity about their area. Get a free AI search audit.',
+    openGraphTitle: 'AI Is Already Recommending an Agent in Your Area. Make It You, Not Your Competitor.',
     openGraphDescription:
-      'Found on Google, cited by AI search, and turned into leads in your CRM, with reporting you can check yourself. Get a free SEO & AI search audit.',
+      'Google AI, ChatGPT, and Perplexity all name our client first for Dolphin Cay. Get a free audit of what AI says about your area.',
   },
 }

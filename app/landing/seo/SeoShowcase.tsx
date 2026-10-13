@@ -15,7 +15,7 @@ import {
 } from '@/components/landing/ShowcaseParts'
 
 const STATS: StatBandItem[] = [
-  { value: '19×', label: 'daily organic clicks in 90 days', detail: 'Sonoma County team' },
+  { value: '3 of 3', label: 'AI assistants name our client first for Dolphin Cay', detail: 'Google AI · ChatGPT · Perplexity' },
   { value: '64', label: 'pages cited in AI answers', detail: 'Lake Geneva luxury team' },
   { value: '$11m+', label: 'closed in quarter 1 of 2026 from SEO' },
   { value: '#1 Rated', label: 'Real Estate Marketing Agency on SEMRush & Lister' },
@@ -50,50 +50,12 @@ export default function SeoShowcase() {
     <>
       <StatBand stats={STATS} />
 
-      {/* Website examples: the homepage carousel */}
-      <section id="websites" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)]">
-        <TopWebsites linkless />
-        <div className="pb-14 md:pb-20" aria-hidden />
-      </section>
-
-      {/* Rankings */}
+      {/* AEO */}
       <FeatureSection id="proof">
         <FeatureHeading
-          eyebrow="Technical & local SEO"
-          title="Rank where buyers and sellers actually search"
-          body="Win the local searches the portals can’t."
-        />
-        <SeoReveal delay={0.08}>
-          <Stage className="mt-10 md:mt-12">
-            <div className="mb-5 flex flex-wrap items-center gap-2 sm:mb-6">
-              <Chip>Google Search Console</Chip>
-              <Chip>Marquis + Farwell Group · Healdsburg, CA</Chip>
-            </div>
-            <Frame pan="min-w-[640px]">
-              <Image
-                src="/images/MarquisFarwellGoogleSearchConsole.png"
-                alt="Google Search Console for Marquis + Farwell Group showing daily clicks rising to 38, October to December 2025"
-                width={2244}
-                height={964}
-                sizes="(min-width: 1280px) 1100px, 640px"
-                className="h-auto w-full rounded-lg"
-              />
-            </Frame>
-            <div className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-3 sm:gap-4">
-              <Tile value="2 → 38" label="daily organic clicks, Oct to Dec 2025" />
-              <Tile value="15.1K" label="search impressions in 90 days" />
-              <Tile value="1031 buyer" label="qualified inquiry straight from search" />
-            </div>
-          </Stage>
-        </SeoReveal>
-      </FeatureSection>
-
-      {/* AEO */}
-      <FeatureSection tone="base">
-        <FeatureHeading
-          eyebrow="AEO · AI search"
-          title="Get named #1 when buyers ask AI who to call"
-          body="Google AI, ChatGPT, and Perplexity recommend you by name."
+          eyebrow="AI search · Dolphin Cay, St. Petersburg"
+          title="Named #1 when buyers ask AI who to call in their area"
+          body="Ask Google AI, ChatGPT, or Perplexity for the best realtor in Dolphin Cay. All three name our client first."
         />
         <SeoReveal delay={0.08}>
           <Stage className="mt-10 !bg-white md:mt-12">
@@ -125,11 +87,83 @@ export default function SeoShowcase() {
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4">
               <Tile value="3 of 3" label="AI assistants name Debi Eagan first for Dolphin Cay" />
-              <Tile value="64" label="pages cited in AI answers for our Lake Geneva client (SEMrush)" />
+              <Tile value="$11m+" label="closed by Eagan Luxury in quarter 1 of 2026" />
             </div>
           </Stage>
         </SeoReveal>
       </FeatureSection>
+
+      {/* AI citations across tools */}
+      <FeatureSection tone="base">
+        <FeatureHeading
+          eyebrow="AI visibility · Lake Geneva, WI"
+          title="Cited by ChatGPT, Google AI Mode, AI Overviews, and Gemini"
+          body="Legendary Real Estate's pages are quoted across four AI tools, measured in SEMrush."
+        />
+        <SeoReveal delay={0.08}>
+          <Stage className="mt-10 !bg-white md:mt-12">
+            <div className="grid items-center gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-10">
+              <div className="min-w-0">
+                <Chip className="mb-4">SEMrush AI Search · Legendary Real Estate</Chip>
+                <Frame>
+                  <Image
+                    src="/images/seo/legendary-ai-search-2026-10.png"
+                    alt="SEMrush AI Search panel for Legendary Real Estate: AI visibility 17, 11 mentions, and 64 cited pages across ChatGPT, Google AI Overview, AI Mode, and Gemini"
+                    width={672}
+                    height={394}
+                    sizes="(min-width: 1024px) 520px, 100vw"
+                    className="h-auto w-full rounded-lg"
+                  />
+                </Frame>
+              </div>
+              <div className="grid min-w-0 gap-3 sm:grid-cols-2 sm:gap-4">
+                <Tile value="64" label="pages cited in AI answers" />
+                <Tile value="34" label="cited in Google AI Mode" />
+                <Tile value="23" label="cited in ChatGPT" />
+                <Tile value="20" label="cited in Gemini" />
+              </div>
+            </div>
+          </Stage>
+        </SeoReveal>
+      </FeatureSection>
+
+      {/* Rankings */}
+      <FeatureSection>
+        <FeatureHeading
+          eyebrow="The foundation · Google search"
+          title="AI tools quote pages that already rank"
+          body="AI answers draw on pages from across the web. We build the local pages Google trusts first."
+        />
+        <SeoReveal delay={0.08}>
+          <Stage className="mt-10 md:mt-12">
+            <div className="mb-5 flex flex-wrap items-center gap-2 sm:mb-6">
+              <Chip>Google Search Console</Chip>
+              <Chip>Marquis + Farwell Group · Healdsburg, CA</Chip>
+            </div>
+            <Frame pan="min-w-[640px]">
+              <Image
+                src="/images/MarquisFarwellGoogleSearchConsole.png"
+                alt="Google Search Console for Marquis + Farwell Group showing daily clicks rising to 38, October to December 2025"
+                width={2244}
+                height={964}
+                sizes="(min-width: 1280px) 1100px, 640px"
+                className="h-auto w-full rounded-lg"
+              />
+            </Frame>
+            <div className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-3 sm:gap-4">
+              <Tile value="2 → 38" label="daily organic clicks, Oct to Dec 2025" />
+              <Tile value="15.1K" label="search impressions in 90 days" />
+              <Tile value="1031 buyer" label="qualified inquiry straight from search" />
+            </div>
+          </Stage>
+        </SeoReveal>
+      </FeatureSection>
+
+      {/* Website examples: the homepage carousel */}
+      <section id="websites" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)]">
+        <TopWebsites linkless />
+        <div className="pb-14 md:pb-20" aria-hidden />
+      </section>
 
       {/* Leads */}
       <FeatureSection>

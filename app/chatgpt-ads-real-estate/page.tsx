@@ -1,60 +1,72 @@
 import type { Metadata } from 'next'
 import SEOWrapper from '@/components/SEOWrapper'
+import {
+  buildChatgptAdsJsonLd,
+  CHATGPT_ADS_DESCRIPTION,
+  CHATGPT_ADS_IMAGE,
+  CHATGPT_ADS_MODIFIED,
+  CHATGPT_ADS_PUBLISHED,
+  CHATGPT_ADS_TITLE,
+} from '@/lib/chatgpt-ads-jsonld'
 import ChatgptAdsRealEstatePageContent from './ChatgptAdsRealEstatePageContent'
 import { FAQ_ITEMS } from './chatgpt-ads-data'
 
 const BASE = 'https://www.dmrmedia.org'
+const URL = `${BASE}/chatgpt-ads-real-estate`
+const OG_IMAGE = {
+  url: CHATGPT_ADS_IMAGE,
+  width: 3024,
+  height: 1516,
+  alt: 'ChatGPT Ads Manager showing live campaigns for real estate agents and teams',
+}
 
 export const metadata: Metadata = {
-  title: 'ChatGPT Ads for Real Estate — Fully Launched | DMR Media',
-  description:
-    'ChatGPT Ads are out of beta and fully live. DMR runs the channel for luxury real estate teams—creative, landing paths, and CRM handoffs tied to qualified conversations. No onboarding fee for our founding cohort.',
+  title: { absolute: CHATGPT_ADS_TITLE },
+  description: CHATGPT_ADS_DESCRIPTION,
   keywords: [
+    'ChatGPT ads for real estate agents',
+    'ChatGPT ads for real estate teams',
     'ChatGPT ads real estate',
     'ChatGPT ads for realtors',
     'OpenAI ads real estate',
-    'AI advertising luxury real estate',
+    'AI advertising for real estate agents',
     'ChatGPT marketing for agents',
   ].join(', '),
   alternates: {
-    canonical: `${BASE}/chatgpt-ads-real-estate`,
+    canonical: URL,
   },
   openGraph: {
-    title: 'ChatGPT Ads for Real Estate — Fully Launched | DMR Media',
+    title: CHATGPT_ADS_TITLE,
     description:
-      'ChatGPT Ads are fully live. Founding real estate cohort with DMR—no onboarding fee, no monthly retainer. Apply to run the newest ad channel.',
-    url: `${BASE}/chatgpt-ads-real-estate`,
+      'ChatGPT Ads are out of beta and live. DMR runs the channel for real estate agents and teams, with no onboarding fee and no monthly retainer for the founding cohort.',
+    url: URL,
     siteName: 'DMR Media',
     type: 'website',
+    locale: 'en_US',
+    images: [OG_IMAGE],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ChatGPT Ads for Real Estate — Fully Launched | DMR Media',
+    title: CHATGPT_ADS_TITLE,
     description:
-      'Out of beta and fully live. DMR runs ChatGPT Ads for luxury real estate teams—no onboarding fee, no monthly retainer for the founding cohort.',
+      'ChatGPT Ads for real estate agents and teams: creative, landing paths, and CRM handoffs tied to qualified conversations.',
+    images: [OG_IMAGE.url],
   },
-}
-
-const faqJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: FAQ_ITEMS.map((item) => ({
-    '@type': 'Question',
-    name: item.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: item.answer,
-    },
-  })),
+  other: {
+    'article:published_time': CHATGPT_ADS_PUBLISHED,
+    'article:modified_time': CHATGPT_ADS_MODIFIED,
+  },
 }
 
 export default function ChatgptAdsRealEstatePage() {
   return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <SEOWrapper slug="/chatgpt-ads-real-estate">
-        <ChatgptAdsRealEstatePageContent />
-      </SEOWrapper>
-    </>
+    <SEOWrapper
+      slug="/chatgpt-ads-real-estate"
+      includePageJsonLd={false}
+      includeBreadcrumbJsonLd={false}
+      pageJsonLd={buildChatgptAdsJsonLd(FAQ_ITEMS)}
+    >
+      <ChatgptAdsRealEstatePageContent />
+    </SEOWrapper>
   )
 }

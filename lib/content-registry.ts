@@ -186,13 +186,15 @@ export const contentRegistry: ContentEntry[] = [
   },
   {
     slug: '/chatgpt-ads-real-estate',
-    title: 'ChatGPT Ads for Real Estate | DMR Media',
+    title: 'ChatGPT Ads for Real Estate Agents & Teams | DMR Media',
     description:
-      'ChatGPT Ads are out of beta and fully live. DMR runs the channel for luxury real estate teams with creative, landing paths, and CRM handoffs tied to qualified conversations. No onboarding fee for the founding cohort.',
+      'ChatGPT Ads for real estate agents and teams, run by DMR Media: creative, landing paths, and CRM handoffs tied to qualified conversations.',
     publishDate: '2026-05-11',
-    modifiedDate: '2026-08-17',
+    modifiedDate: '2026-10-12',
     category: 'Paid Media',
     tags: [
+      'ChatGPT ads for real estate agents',
+      'ChatGPT ads for real estate teams',
       'ChatGPT ads real estate',
       'ChatGPT ads for realtors',
       'OpenAI ads real estate',
