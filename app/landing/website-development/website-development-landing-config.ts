@@ -16,25 +16,19 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
     fieldSet: 'full',
   },
   heroTitleSegments: [
-    { text: 'We Build You a Website That Generates Qualified Leads in 2 Weeks, ' },
-    { text: 'or We Refund You Everything', italic: true },
+    { text: 'Award-Winning Real Estate Websites ' },
+    { text: 'Built to Capture More Leads', italic: true },
     { text: '.' },
   ],
   heroTitleEmphasis: '',
   heroIntro: '',
   heroIntroShort:
-    'An award-nominated luxury website plus our exact follow-up scripts. Qualified leads in your CRM within 14 days, or we refund you everything.',
+    'Our mission is to build beautiful websites that also generate leads. Go with the agency that cares about your success.',
   heroIntroParagraphs: [
     [
-      {
-        text: 'Unlike other agencies, we put our money where our mouth is. You get an award-nominated luxury website, our exact follow-up scripts and cadence, and campaigns that put ',
-      },
-      { text: 'qualified buyer and seller leads in your CRM within 14 days', italic: true },
-      {
-        text: ', or we refund your website fee and your ad spend. If you want buyers and sellers filling your pipeline, go with the team that ',
-      },
-      { text: 'actually makes that happen', italic: true },
-      { text: '.' },
+      { text: 'Our entire mission is not only to build beautiful websites, but to make sure those websites ' },
+      { text: 'actually generate leads', italic: true },
+      { text: '. Go with the agency that cares about your success.' },
     ],
   ],
   partnerStats: [],
@@ -196,10 +190,10 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
     },
   ],
   metadata: {
-    title: 'A Website That Generates Leads in 2 Weeks, Guaranteed | DMR Media',
+    title: 'Award-Winning Real Estate Websites Built to Capture More Leads | DMR Media',
     description:
-      'We build you a website that generates qualified leads in 2 weeks, or we refund you everything. Award-nominated design, IDX/MLS built in.',
-    openGraphTitle: 'Qualified Leads in 2 Weeks, or We Refund You | DMR Media',
+      'Real estate websites built to capture leads: DesignRush-recognized design, IDX/MLS built in, and our follow-up scripts. Results in 14 days, guaranteed.',
+    openGraphTitle: 'Award-Winning Real Estate Websites Built to Capture More Leads',
     openGraphDescription:
       'Award-nominated luxury websites with our exact follow-up scripts, qualified buyer & seller leads in your CRM in 14 days, or we refund you.',
   },

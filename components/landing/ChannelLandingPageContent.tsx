@@ -71,9 +71,11 @@ type Props = {
   hero?: ReactNode
   /** Replaces every section after the client logos (see ConversionLandingBody). */
   body?: ReactNode
+  /** Visual rendered inside the conversion hero (e.g. a website mockup). */
+  heroVisual?: ReactNode
 }
 
-export default function ChannelLandingPageContent({ config, showcase, hero, body }: Props) {
+export default function ChannelLandingPageContent({ config, showcase, hero, body, heroVisual }: Props) {
   const {
     formName,
     formConfig,
@@ -117,7 +119,7 @@ export default function ChannelLandingPageContent({ config, showcase, hero, body
       {hero ? (
         hero
       ) : heroLayout === 'conversion' ? (
-        <GoogleGeneralHero config={config} />
+        <GoogleGeneralHero config={config} visual={heroVisual} />
       ) : (
         <section
           id="top"

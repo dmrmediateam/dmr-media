@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import LandingApplicationForm from '@/components/landing/LandingApplicationForm'
 import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 
@@ -16,6 +17,8 @@ type Props = {
     | 'partnerStatsEyebrow'
     | 'partnerStats'
   >
+  /** Optional visual under the hero copy: above the form on phones, beside it on desktop. */
+  visual?: ReactNode
 }
 
 function HeroTitle({
@@ -138,7 +141,7 @@ function MobilePartnerStats({
   )
 }
 
-export default function GoogleGeneralHero({ config }: Props) {
+export default function GoogleGeneralHero({ config, visual }: Props) {
   const { formName, formConfig } = config
 
   return (
@@ -149,7 +152,7 @@ export default function GoogleGeneralHero({ config }: Props) {
     >
       <div className="container-max px-4 pb-12 pt-20 sm:px-6 sm:pb-20 sm:pt-28 lg:pb-24">
         <div className="gg-hero-grid grid items-start gap-8 sm:gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center lg:gap-16 xl:gap-20">
-          <div className="gg-hero-copy flex flex-col justify-center lg:max-w-xl xl:max-w-none">
+          <div className="gg-hero-copy flex flex-col justify-center lg:col-start-1 lg:row-start-1 lg:max-w-xl xl:max-w-none">
             <p className="gg-hero-trust-line">
               <span className="gg-hero-trust-copy">
                 <span className="gg-hero-badge-stars" aria-hidden>
@@ -195,7 +198,9 @@ export default function GoogleGeneralHero({ config }: Props) {
             />
           </div>
 
-          <div className="gg-hero-form-col">
+          {visual ? <div className="min-w-0 lg:col-start-1 lg:row-start-2">{visual}</div> : null}
+
+          <div className={`gg-hero-form-col ${visual ? 'lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start' : ''}`}>
             <div className="gg-hero-form-shell">
               <LandingApplicationForm formName={formName} formConfig={formConfig} variant="conversion" />
             </div>

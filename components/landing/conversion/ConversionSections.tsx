@@ -133,7 +133,9 @@ export function IncludedCards({
     >
       <div className="container-max px-4 sm:px-6">
         <SectionHeader id="included-heading" eyebrow={heading.eyebrow} title={heading.title} intro={heading.intro} />
-        <ol className="mt-10 grid list-none gap-4 p-0 sm:grid-cols-2 md:mt-14 lg:grid-cols-4 lg:gap-5">
+        <ol
+          className={`mt-10 grid list-none gap-4 p-0 sm:grid-cols-2 md:mt-14 lg:gap-5 ${pillars.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'}`}
+        >
           {pillars.map((pillar, i) => (
             <SeoReveal key={pillar.number} delay={(i % 4) * 0.06} className="h-full">
               <li className="group relative isolate flex aspect-[4/5] h-full flex-col justify-end overflow-hidden rounded-2xl bg-[var(--color-off-black)] shadow-[0_24px_60px_-36px_rgba(15,15,15,0.5)]">

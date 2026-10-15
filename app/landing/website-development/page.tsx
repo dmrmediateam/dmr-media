@@ -2,8 +2,7 @@
 
 import ApplyModal from '@/components/ApplyModal'
 import ChannelLandingPageContent from '@/components/landing/ChannelLandingPageContent'
-import ConversionLandingBody from '@/components/landing/conversion/ConversionLandingBody'
-import WebsiteDevShowcase from './WebsiteDevShowcase'
+import WebsiteDevBody, { LaptopHero } from './WebsiteDevBody'
 import { websiteDevelopmentLandingConfig } from './website-development-landing-config'
 
 export default function WebsiteDevelopmentLandingPage() {
@@ -11,7 +10,8 @@ export default function WebsiteDevelopmentLandingPage() {
     <>
       <ChannelLandingPageContent
         config={websiteDevelopmentLandingConfig}
-        body={<ConversionLandingBody config={websiteDevelopmentLandingConfig} showcase={<WebsiteDevShowcase />} />}
+        heroVisual={<LaptopHero />}
+        body={<WebsiteDevBody config={websiteDevelopmentLandingConfig} />}
       />
       <ApplyModal />
     </>

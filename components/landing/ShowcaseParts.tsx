@@ -79,7 +79,15 @@ export function FeatureHeading({ eyebrow, title, body }: { eyebrow: string; titl
 
 export type StatBandItem = { value: string; label: string; detail?: string }
 
-export function StatBand({ stats, label = 'Client results' }: { stats: readonly StatBandItem[]; label?: string }) {
+export function StatBand({
+  stats,
+  label = 'Client results',
+  footnote,
+}: {
+  stats: readonly StatBandItem[]
+  label?: string
+  footnote?: string
+}) {
   return (
     <section className="border-b border-[var(--color-ink-200)] bg-white py-12 md:py-20" aria-label={label}>
       <div className="container-max px-4 sm:px-6">
@@ -96,6 +104,9 @@ export function StatBand({ stats, label = 'Client results' }: { stats: readonly 
             </SeoReveal>
           ))}
         </dl>
+        {footnote ? (
+          <p className="gg-body mt-10 text-center !text-xs !leading-relaxed !text-[var(--gg-text-muted)] lg:text-left">{footnote}</p>
+        ) : null}
       </div>
     </section>
   )
