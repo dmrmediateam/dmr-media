@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
+import TopWebsites from '@/components/TopWebsites'
 import VideoTestimonials from '@/components/VideoTestimonials'
 import GoogleGeneralReviewsScroll from '@/components/landing/GoogleGeneralReviewsScroll'
 import {
@@ -35,6 +36,7 @@ const BRAND_BUILDS = [
     brokerage: 'The Oppenheim Group',
     market: 'North County San Diego',
     image: '/images/seo/alexa-devaney-hero.jpg',
+    nominee: true,
     logo: { src: OGROUP_LOGO, width: 1386, height: 175, alt: 'The Oppenheim Group Real Estate', className: 'h-4 sm:h-5' },
   },
   {
@@ -42,7 +44,16 @@ const BRAND_BUILDS = [
     brokerage: 'Coldwell Banker Realty',
     market: 'Naples, FL',
     image: '/images/seo/carole-tierney-hero.jpg',
+    nominee: true,
     logo: { src: '/images/ClientLogos/coldwell-banker.png', width: 600, height: 130, alt: 'Coldwell Banker', className: 'h-7 sm:h-8' },
+  },
+  {
+    name: 'Dominick Florio',
+    brokerage: 'The RE/MAX Collection',
+    market: 'Central Florida',
+    image: '/images/seo/florio-team-hero.jpg',
+    nominee: true,
+    logo: { src: '/images/ClientLogos/remax-collection.png', width: 276, height: 135, alt: 'The RE/MAX Collection', className: 'h-9 sm:h-10' },
   },
 ] as const
 
@@ -142,7 +153,7 @@ export default function WebsiteDevBody({ config }: { config: ChannelLandingConfi
           body="Every site is designed around the agent and the brokerage, then nominated against the best in the industry."
         />
         <SeoReveal delay={0.08}>
-          <div className="mt-10 grid gap-8 md:mt-12 md:grid-cols-2 md:gap-6">
+          <div className="mt-10 grid gap-8 md:mt-12 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
             {BRAND_BUILDS.map((b) => (
               <article key={b.name} className="min-w-0">
                 <div className="relative">
@@ -152,17 +163,19 @@ export default function WebsiteDevBody({ config }: { config: ChannelLandingConfi
                       alt={`${b.name} website home page for ${b.brokerage}, designed by DMR Media`}
                       width={1400}
                       height={868}
-                      sizes="(min-width: 768px) 50vw, 100vw"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       className="h-auto w-full rounded-lg"
                     />
                   </Frame>
-                  <Image
-                    src={DESIGNRUSH_BADGE}
-                    alt="DesignRush.com Design Awards Nominee"
-                    width={351}
-                    height={424}
-                    className="absolute -left-2 -top-3 h-auto w-14 drop-shadow-md sm:w-16"
-                  />
+                  {b.nominee ? (
+                    <Image
+                      src={DESIGNRUSH_BADGE}
+                      alt="DesignRush.com Design Awards Nominee"
+                      width={351}
+                      height={424}
+                      className="absolute -left-2 -top-3 h-auto w-14 drop-shadow-md sm:w-16"
+                    />
+                  ) : null}
                 </div>
                 <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
                   <div>
@@ -287,6 +300,11 @@ export default function WebsiteDevBody({ config }: { config: ChannelLandingConfi
           ))}
         </ul>
       </FeatureSection>
+
+      {/* Website examples: links open each client's live site in a new tab */}
+      <section id="websites" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white pb-6 md:pb-10">
+        <TopWebsites hideIndexLink />
+      </section>
 
       <LandingFaq items={config.faqItems} />
 

@@ -75,8 +75,14 @@ function SlideWrapper({
   );
 }
 
-/** `linkless` (paid landing pages): no links out, the carousel is display only. */
-export default function TopWebsites({ linkless = false }: { linkless?: boolean } = {}) {
+/**
+ * `linkless` (paid landing pages): no links out, the carousel is display only.
+ * `hideIndexLink`: keep the links to each client's live site (new tab) but drop the link to the portfolio page.
+ */
+export default function TopWebsites({
+  linkless = false,
+  hideIndexLink = false,
+}: { linkless?: boolean; hideIndexLink?: boolean } = {}) {
   const [active, setActive] = useState(0);
   const site = TOP_WEBSITES[active];
   const prev = () => setActive((a) => (a - 1 + TOP_WEBSITES.length) % TOP_WEBSITES.length);
@@ -193,7 +199,7 @@ export default function TopWebsites({ linkless = false }: { linkless?: boolean }
           </div>
         </SeoReveal>
 
-        {linkless ? null : (
+        {linkless || hideIndexLink ? null : (
           <SeoReveal delay={0.15}>
             <div className="mt-12">
               <Link
