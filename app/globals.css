@@ -118,23 +118,32 @@
   }
 }
 
-/* Slow Scroll Animation - For Logo Slider */
+/* Slow Scroll Animation - For Logo Slider.
+   The track is w-max and holds N identical copies of the logo set; it moves exactly one copy
+   (--marquee-shift = -100% / N) per loop, so the restart is seamless. */
 @keyframes scroll-slow {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(calc(-100% / 3));
+    transform: translate3d(var(--marquee-shift, -33.3333%), 0, 0);
   }
 }
 
 .scroll-slow-logos {
-  animation: scroll-slow 18s linear infinite;
+  animation: scroll-slow 40s linear infinite;
+  will-change: transform;
 }
 
 @media (max-width: 768px) {
   .scroll-slow-logos {
-    animation-duration: 10s;
+    animation-duration: 28s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-slow-logos {
+    animation: none;
   }
 }
 

@@ -35,14 +35,14 @@ const BRAND_BUILDS = [
     brokerage: 'The Oppenheim Group',
     market: 'North County San Diego',
     image: '/images/seo/alexa-devaney-hero.jpg',
-    logo: { src: OGROUP_LOGO, width: 1386, height: 175, alt: 'The Oppenheim Group Real Estate' },
+    logo: { src: OGROUP_LOGO, width: 1386, height: 175, alt: 'The Oppenheim Group Real Estate', className: 'h-4 sm:h-5' },
   },
   {
     name: 'Carole Tierney',
     brokerage: 'Coldwell Banker Realty',
     market: 'Naples, FL',
     image: '/images/seo/carole-tierney-hero.jpg',
-    logo: null,
+    logo: { src: '/images/ClientLogos/coldwell-banker.png', width: 600, height: 130, alt: 'Coldwell Banker', className: 'h-7 sm:h-8' },
   },
 ] as const
 
@@ -170,7 +170,7 @@ export default function WebsiteDevBody({ config }: { config: ChannelLandingConfi
                     <p className="gg-body !text-xs !text-[var(--gg-text-muted)]">{b.market}</p>
                   </div>
                   {b.logo ? (
-                    <Image src={b.logo.src} alt={b.logo.alt} width={b.logo.width} height={b.logo.height} className="h-4 w-auto sm:h-5" />
+                    <Image src={b.logo.src} alt={b.logo.alt} width={b.logo.width} height={b.logo.height} className={`w-auto ${b.logo.className}`} />
                   ) : (
                     <p className="gg-eyebrow gg-eyebrow--strong">{b.brokerage}</p>
                   )}
