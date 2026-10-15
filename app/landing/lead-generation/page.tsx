@@ -2,7 +2,7 @@
 
 import ApplyModal from '@/components/ApplyModal'
 import ChannelLandingPageContent from '@/components/landing/ChannelLandingPageContent'
-import WebsiteShowcaseSection from '@/components/landing/WebsiteShowcaseSection'
+import LeadGenBody, { LeadsHero } from './LeadGenBody'
 import { leadGenerationLandingConfig } from './lead-generation-landing-config'
 
 export default function LeadGenerationLandingPage() {
@@ -10,7 +10,8 @@ export default function LeadGenerationLandingPage() {
     <>
       <ChannelLandingPageContent
         config={leadGenerationLandingConfig}
-        showcase={<WebsiteShowcaseSection />}
+        heroVisual={<LeadsHero />}
+        body={<LeadGenBody config={leadGenerationLandingConfig} />}
       />
       <ApplyModal />
     </>

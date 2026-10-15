@@ -9,6 +9,8 @@ import {
   FeatureHeading,
   FeatureSection,
   Frame,
+  LaptopFrame,
+  PhotoCardGrid,
   Stage,
   StatBand,
   Tile,
@@ -102,27 +104,11 @@ const WHY_DMR = [
 /** Laptop mockup of Alexa Devaney's site with the DesignRush badge and The Oppenheim Group logo. */
 export function LaptopHero() {
   return (
-    <figure className="relative mx-auto mt-2 w-full max-w-[640px] px-2 pt-6 sm:px-4 lg:mx-0 lg:mt-10">
-      <div className="relative rounded-t-[1.1rem] bg-[#141414] p-[2.2%] pb-[2.8%] shadow-[0_30px_70px_-30px_rgba(15,15,15,0.55)] ring-1 ring-black/10">
-        <span className="absolute left-1/2 top-[0.9%] h-1 w-1 -translate-x-1/2 rounded-full bg-white/25" aria-hidden />
-        <div className="relative aspect-[16/10] overflow-hidden rounded-[0.35rem] bg-white">
-          <Image
-            src="/images/seo/alexa-devaney-hero.jpg"
-            alt="Alexa Devaney website home page for The Oppenheim Group, designed by DMR Media"
-            fill
-            priority
-            sizes="(min-width: 1024px) 560px, 92vw"
-            className="object-cover object-top"
-          />
-        </div>
-      </div>
-      <div
-        className="relative -mx-[6%] h-3 rounded-b-[0.9rem] bg-gradient-to-b from-[#e4e4e2] to-[#b9b9b6] shadow-[0_18px_30px_-18px_rgba(15,15,15,0.5)] sm:h-4"
-        aria-hidden
-      >
-        <span className="absolute left-1/2 top-0 h-1.5 w-[18%] -translate-x-1/2 rounded-b-md bg-[#cfcfcc]" />
-      </div>
-
+    <LaptopFrame
+      src="/images/seo/alexa-devaney-hero.jpg"
+      alt="Alexa Devaney website home page for The Oppenheim Group, designed by DMR Media"
+      caption="Alexa Devaney, The Oppenheim Group, a DesignRush Design Awards nominee built by DMR Media"
+    >
       <Image
         src={DESIGNRUSH_BADGE}
         alt="DesignRush.com Design Awards Nominee"
@@ -133,8 +119,7 @@ export function LaptopHero() {
       <span className="absolute -right-1 top-1 z-10 flex items-center rounded-full border border-[var(--color-ink-200)] bg-white px-3 py-2 shadow-[0_10px_24px_-12px_rgba(15,15,15,0.35)] sm:px-4">
         <Image src={OGROUP_LOGO} alt="The Oppenheim Group Real Estate" width={1386} height={175} className="h-3.5 w-auto sm:h-4" />
       </span>
-      <figcaption className="sr-only">Alexa Devaney, The Oppenheim Group, a DesignRush Design Awards nominee built by DMR Media</figcaption>
-    </figure>
+    </LaptopFrame>
   )
 }
 
@@ -284,21 +269,7 @@ export default function WebsiteDevBody({ config }: { config: ChannelLandingConfi
           title="Built to capture leads from day one"
           body="Three things every build includes."
         />
-        <ul className="mt-10 grid list-none gap-6 p-0 md:mt-12 md:grid-cols-3">
-          {WHY_DMR.map((item, i) => (
-            <SeoReveal key={item.title} delay={i * 0.06} className="h-full">
-              <li className="flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)]">
-                <div className="relative aspect-[4/3]">
-                  <Image src={item.photo} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
-                </div>
-                <div className="p-6">
-                  <h3 className="gg-display text-xl font-light md:text-[1.4rem]">{item.title}</h3>
-                  <p className="gg-body mt-2 !text-[15px] !leading-relaxed">{item.body}</p>
-                </div>
-              </li>
-            </SeoReveal>
-          ))}
-        </ul>
+        <PhotoCardGrid items={WHY_DMR} />
       </FeatureSection>
 
       {/* Website examples: links open each client's live site in a new tab */}

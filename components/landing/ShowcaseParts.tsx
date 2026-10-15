@@ -1,6 +1,7 @@
 'use client'
 
 import type { ReactNode } from 'react'
+import Image from 'next/image'
 import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
 
 /** Light-theme building blocks shared by the /landing showcase sections (SEO, website development). */
@@ -129,5 +130,60 @@ export function FeatureSection({
     >
       <div className="container-max px-4 sm:px-6">{children}</div>
     </section>
+  )
+}
+
+/** Laptop mockup for hero visuals. `children` are absolutely positioned overlays (badges, logos, notifications). */
+export function LaptopFrame({
+  src,
+  alt,
+  caption,
+  children,
+}: {
+  src: string
+  alt: string
+  caption?: string
+  children?: ReactNode
+}) {
+  return (
+    <figure className="relative mx-auto mt-2 w-full max-w-[640px] px-2 pt-6 sm:px-4 lg:mx-0 lg:mt-10">
+      <div className="relative rounded-t-[1.1rem] bg-[#141414] p-[2.2%] pb-[2.8%] shadow-[0_30px_70px_-30px_rgba(15,15,15,0.55)] ring-1 ring-black/10">
+        <span className="absolute left-1/2 top-[0.9%] h-1 w-1 -translate-x-1/2 rounded-full bg-white/25" aria-hidden />
+        <div className="relative aspect-[16/10] overflow-hidden rounded-[0.35rem] bg-white">
+          <Image src={src} alt={alt} fill priority sizes="(min-width: 1024px) 560px, 92vw" className="object-cover object-top" />
+        </div>
+      </div>
+      <div
+        className="relative -mx-[6%] h-3 rounded-b-[0.9rem] bg-gradient-to-b from-[#e4e4e2] to-[#b9b9b6] shadow-[0_18px_30px_-18px_rgba(15,15,15,0.5)] sm:h-4"
+        aria-hidden
+      >
+        <span className="absolute left-1/2 top-0 h-1.5 w-[18%] -translate-x-1/2 rounded-b-md bg-[#cfcfcc]" />
+      </div>
+      {children}
+      {caption ? <figcaption className="sr-only">{caption}</figcaption> : null}
+    </figure>
+  )
+}
+
+export type PhotoCard = { title: string; body: string; photo: string }
+
+/** Simple photo-on-top cards with a title and one line, three across on desktop. */
+export function PhotoCardGrid({ items }: { items: readonly PhotoCard[] }) {
+  return (
+    <ul className="mt-10 grid list-none gap-6 p-0 md:mt-12 md:grid-cols-3">
+      {items.map((item, i) => (
+        <SeoReveal key={item.title} delay={i * 0.06} className="h-full">
+          <li className="flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)]">
+            <div className="relative aspect-[4/3]">
+              <Image src={item.photo} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+            </div>
+            <div className="p-6">
+              <h3 className="gg-display text-xl font-light md:text-[1.4rem]">{item.title}</h3>
+              <p className="gg-body mt-2 !text-[15px] !leading-relaxed">{item.body}</p>
+            </div>
+          </li>
+        </SeoReveal>
+      ))}
+    </ul>
   )
 }

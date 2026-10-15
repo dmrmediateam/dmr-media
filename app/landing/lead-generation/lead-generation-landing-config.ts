@@ -16,33 +16,24 @@ export const leadGenerationLandingConfig: ChannelLandingConfig = {
     fieldSet: 'full',
   },
   heroTitleSegments: [
-    { text: 'We Build You an Online Advertising System That Generates Qualified Leads in 2 Weeks, ' },
-    { text: 'or We Refund You Everything', italic: true },
+    { text: 'Real Estate Lead Generation that Gets Qualified Buyers & Sellers in 2 Weeks, ' },
+    { text: 'or We Refund Everything', italic: true },
     { text: '.' },
   ],
   heroTitleEmphasis: '',
   heroIntro: '',
   heroIntroShort:
-    'Unlike other agencies, we put our money where our mouth is: qualified buyer and seller leads in your CRM within 14 days, or we refund your fee and your ad spend.',
+    'Exclusive buyer and seller leads in your CRM within 14 days, or we refund your fee and your ad spend.',
   heroIntroParagraphs: [
     [
       {
-        text: 'Unlike other agencies, we put our money where our mouth is. You get an online advertising system built for luxury price points, our exact follow-up scripts and cadence, and campaigns that put ',
+        text: 'Stop paying portals for leads they sell to other agents. We build your Google Ads system, hand you our exact follow-up scripts, and put ',
       },
-      { text: 'qualified buyer and seller leads in your CRM within 14 days', italic: true },
-      {
-        text: ', or we refund your fee and your ad spend. If you want buyers and sellers filling your pipeline, go with the team that ',
-      },
-      { text: 'actually makes that happen', italic: true },
-      { text: '.' },
+      { text: 'qualified buyers and sellers in your CRM within 14 days', italic: true },
+      { text: ', or we refund your fee and your ad spend.' },
     ],
   ],
-  partnerStatsEyebrow: 'What you get',
-  partnerStats: [
-    'Qualified leads in your CRM in 14 days, or we refund you',
-    'Our exact copy-and-paste follow-up scripts & cadence',
-    'Your account, your data, your leads, never rented',
-  ],
+  partnerStats: [],
   marketingCoreHeading: 'What an online advertising system should actually do for a top producer.',
   marketingCorePillars: [
     {
@@ -71,49 +62,34 @@ export const leadGenerationLandingConfig: ChannelLandingConfig = {
     },
   ],
   caseStudies: channelLandingCaseStudies,
-  byTheNumbersSection: {
-    eyebrow: 'By the numbers',
-    title: 'Proof you can measure',
-    stats: [
-      {
-        value: '5-stars',
-        label: 'from top agents, teams & brokers since 2022',
-      },
-      {
-        value: '88%',
-        label: 'peak reduction in a client\'s cost per lead',
-      },
-      {
-        value: '#1',
-        label: 'Rated RE Agency by SEMRush for PPC & SEO',
-      },
-    ],
-  },
   timelineSection: {
-    eyebrow: 'From kickoff to leads',
-    title: 'A concrete launch plan, not a vague timeline',
-    intro:
-      'You shouldn\'t wonder where your campaigns are or what you\'re paying for. Here\'s how a launch runs week by week, so the first lead is a checkpoint, not a surprise.',
+    eyebrow: 'The plan',
+    title: 'Three steps to a full pipeline',
+    intro: 'From your first call to qualified leads in your CRM.',
     weeks: [
       {
         label: 'Week 1',
-        title: 'Kickoff & system build',
-        body:
-          'We study your market, price point, and competition, then build the system around your positioning: campaigns, targeting, tracking, and the landing experience. You approve everything before a dollar of ad spend moves.',
+        title: 'Tell us your market',
+        body: 'We study your price point and competition, then build your campaigns, tracking, and landing pages. You approve before any ad spend moves.',
       },
       {
         label: 'Week 2',
-        title: 'Launch & scripts handoff',
-        body:
-          'Campaigns go live and you get our exact copy-and-paste follow-up scripts and cadence. The guarantee clock starts the day your ads switch on.',
+        title: 'Go live with our scripts',
+        body: 'Campaigns launch and you get our exact follow-up scripts and cadence. The guarantee clock starts that day.',
       },
       {
         label: 'Weeks 3-4',
-        title: 'The guarantee window',
-        body:
-          'Qualified buyer and seller leads land in your CRM within 14 days of launch, or we refund your fee and your ad spend. The full guarantee terms, including the follow-up conditions, are published in our service terms.',
+        title: 'Get qualified leads',
+        body: 'Qualified buyers and sellers in your CRM within 14 days, or we refund your fee and your ad spend.',
       },
     ],
+  },
+  finalCta: {
+    eyebrow: 'Ready when you are',
+    title: 'Qualified buyers and sellers in your CRM within 14 days',
+    body: 'Tell us your market. We send your plan, pricing, and the guarantee terms, usually the same day.',
+    ctaLabel: 'Claim the guarantee',
+    reassurance: ['Leads in 14 days or your money back', 'Exclusive leads, never shared', 'Our follow-up scripts included'],
   },
   reviewsSection: {
     eyebrow: 'Reviews',
@@ -124,6 +100,16 @@ export const leadGenerationLandingConfig: ChannelLandingConfig = {
     title: 'The results behind the campaigns',
   },
   faqItems: [
+    {
+      question: 'Are these leads exclusive, or shared with other agents?',
+      answer:
+        'Exclusive. The campaigns run in your own Google Ads account and every inquiry lands in your CRM, so no other agent gets the same lead.',
+    },
+    {
+      question: 'How is this different from buying leads from Zillow or a lead company?',
+      answer:
+        'You aren’t buying leads. Portals sell the same inquiry to several agents and charge you again every month. We build a lead system you own: your ad account, your landing pages, your CRM, and our follow-up scripts.',
+    },
     {
       question: 'How does the 2-week guarantee work?',
       answer:
@@ -161,10 +147,10 @@ export const leadGenerationLandingConfig: ChannelLandingConfig = {
     },
   ],
   metadata: {
-    title: 'Lead Generation That Delivers in 2 Weeks, Guaranteed | DMR Media',
+    title: 'Real Estate Lead Generation: Qualified Leads in 2 Weeks, Guaranteed | DMR Media',
     description:
-      'We build you an online advertising system that generates qualified leads in 2 weeks, or we refund you everything. Built for luxury agents and teams.',
-    openGraphTitle: 'Qualified Leads in 2 Weeks, or We Refund You | DMR Media',
+      'Real estate lead generation that gets qualified buyers and sellers into your CRM in 2 weeks, or we refund everything. Exclusive leads, your own ad account.',
+    openGraphTitle: 'Real Estate Lead Generation that Gets Qualified Buyers & Sellers in 2 Weeks',
     openGraphDescription:
       'An online advertising system with our exact follow-up scripts, qualified buyer & seller leads in your CRM in 14 days, or we refund you.',
   },
