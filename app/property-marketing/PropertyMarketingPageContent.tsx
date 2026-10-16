@@ -60,7 +60,7 @@ function ApplyCtaBand({
           Or schedule a 15-minute call
         </Link>
         <p className="font-serif text-[11px] leading-snug text-[var(--color-ink-400)]/85">
-          New developments, condo launches, and trophy listings. Google Ads spend included in the flat fee.
+          New developments, condo launches, and trophy listings. Google Ads spend included.
         </p>
       </div>
     </aside>
@@ -117,7 +117,7 @@ export default function PropertyMarketingPageContent() {
                   Or book a 15-minute strategy call
                 </Link>
                 <p className="max-w-md font-serif text-sm leading-relaxed text-[var(--color-ink-400)]">
-                  Current DMR clients: $2,500 pay-at-close per listing. Google Ads spend covered in the flat fee.
+                  Google Ads spend is included. We confirm scope and pricing on your strategy call.
                 </p>
               </div>
             </div>
@@ -290,34 +290,6 @@ export default function PropertyMarketingPageContent() {
         </div>
       </section>
 
-      <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]" id="pricing">
-        <div className="container-max">
-          <SeoReveal>
-            <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Pricing</p>
-            <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-              Transparent listing economics
-            </h2>
-            <SectionRule />
-            <p className="mt-6 max-w-2xl font-serif text-sm text-[var(--color-ink-300)]">
-              Development and condo programs are scoped after kickoff. Single-listing campaigns use the tiers below.
-              Google Ads spend for the 30-day burst is always included.
-            </p>
-          </SeoReveal>
-          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-10">
-            <article className="rounded-lg border border-[var(--color-off-black)] bg-white p-8 md:p-10">
-              <p className="font-serif text-[11px] uppercase tracking-[0.25em] text-[var(--color-ink-400)]">Current clients</p>
-              <p className="mt-3 font-serif text-4xl font-light text-[var(--color-off-black)]">$2,500</p>
-              <p className="mt-2 font-serif text-sm text-[var(--color-trust)]">Pay-at-close · 90-day cap</p>
-            </article>
-            <article className="rounded-lg border border-[var(--color-ink-200)] bg-white p-8 md:p-10">
-              <p className="font-serif text-[11px] uppercase tracking-[0.25em] text-[var(--color-ink-400)]">Non-clients</p>
-              <p className="mt-3 font-serif text-4xl font-light text-[var(--color-off-black)]">$3,250</p>
-              <p className="mt-2 font-serif text-sm text-[var(--color-ink-400)]">Upfront before work begins</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <section className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white py-[var(--seo-section-y)]" id="stats">
         <div className="container-max">
           <ServiceStats
@@ -325,7 +297,7 @@ export default function PropertyMarketingPageContent() {
             heading="Benchmarks teams actually feel"
             stats={[
               { value: '250K+', label: 'Campaign impressions', description: 'Typical reach when search, remarketing, and email fire together.' },
-              { value: '30', label: 'Day paid burst', description: 'Coordinated ads with DMR-funded media in the flat fee.' },
+              { value: '30', label: 'Day paid burst', description: 'Coordinated ads with media included.' },
               { value: '5', label: 'Business days', description: 'Typical launch window for single-property campaigns after kickoff.' },
             ]}
           />

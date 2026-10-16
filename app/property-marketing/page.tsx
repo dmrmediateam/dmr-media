@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'New Development & Condo Property Marketing | DMR Media',
     description:
-      'Sites, Google Ads, and launch email for new developments, luxury condos, and exceptional listings. Media included in the flat fee.',
+      'Sites, Google Ads, and launch email for new developments, luxury condos, and exceptional listings. Media included.',
     url: `${BASE}/property-marketing`,
     siteName: 'DMR Media',
     type: 'website',

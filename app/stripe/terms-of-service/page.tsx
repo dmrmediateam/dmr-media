@@ -4,7 +4,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Service Terms — Subscriptions & Agreements | DMR Media',
   description:
-    'Service terms for DMR Media subscription programs and traditional SEO & Google Ads agreements, referenced from Stripe invoices.',
+    'Service terms for DMR Media subscription programs, property marketing campaigns, and traditional SEO & Google Ads agreements, referenced from Stripe invoices.',
   robots: {
     index: false,
     follow: false,
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = 'October 8, 2026';
+const LAST_UPDATED = 'October 16, 2026';
 
 export default function StripeTermsOfServicePage() {
   return (
@@ -27,7 +27,7 @@ export default function StripeTermsOfServicePage() {
               Service Terms
             </h1>
             <p className="text-lg text-[var(--color-ink-300)] mb-4">
-              Subscription Programs &amp; Traditional SEO / Google Ads Agreements
+              Subscription Programs, Property Marketing &amp; Traditional SEO / Google Ads Agreements
             </p>
             <div className="w-24 h-px bg-off-black mb-8"></div>
             <p className="text-sm text-[var(--color-ink-300)] mb-12">Last updated: {LAST_UPDATED}</p>
@@ -414,7 +414,60 @@ export default function StripeTermsOfServicePage() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-serif font-light text-off-black mb-4">11. Contact</h2>
+                <h2 className="text-2xl font-serif font-light text-off-black mb-4">
+                  Part III. Property Marketing (Single-Property Campaigns)
+                </h2>
+                <p className="mb-3">
+                  Property marketing promotes one listing or property with a dedicated campaign. If your invoice shows a
+                  property marketing campaign, this Part III applies to it.
+                </p>
+
+                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">11. Property Marketing Fee, Term and Ad Spend</h3>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>
+                    <strong>Fee:</strong> <strong>$2,850 USD</strong> per property, paid in full in advance through
+                    Stripe before work begins.
+                  </li>
+                  <li>
+                    <strong>Campaign term:</strong> <strong>three (3) months</strong> from the date the campaign goes
+                    live. The campaign does not renew automatically; any extension is billed on a new invoice.
+                  </li>
+                  <li>
+                    <strong>What&apos;s included:</strong> DMR Media sets up and manages{' '}
+                    <strong>Google Ads and Meta (Facebook and Instagram) ads</strong> for the property for the full
+                    campaign term. <strong>$1,000</strong> of the fee is advertising spend that DMR Media places across
+                    those platforms on your behalf. The remaining <strong>$1,850</strong> covers campaign setup, ad
+                    creative, and management, plus any deliverables listed on your invoice or proposal.
+                  </li>
+                  <li>
+                    <strong>Additional ad spend.</strong> If you choose to add advertising budget beyond the included
+                    $1,000, it is billed separately and the payment surcharges in Section 5 apply to those payments.
+                  </li>
+                  <li>
+                    <strong>Ending early.</strong> If the property sells, goes under contract, or is withdrawn before
+                    the term ends, tell us at{' '}
+                    <a href="mailto:team@dmrmedia.org" className="text-[var(--color-trust)] hover:underline">team@dmrmedia.org</a>{' '}
+                    and we stop the campaign. The setup, creative, and management portion of the fee is not refundable
+                    once work has begun. Unspent included ad spend is handled as described for unspent budget in
+                    Section 5.
+                  </li>
+                  <li>
+                    <strong>No guarantee of sale.</strong> The 14-Day Lead Guarantee in Section 3 applies only to the
+                    Part I program and does not apply to property marketing. Campaigns are built to generate interest
+                    and inquiries for the property, but no specific outcome, including a showing, offer, or sale, is
+                    guaranteed.
+                  </li>
+                  <li>
+                    <strong>Your responsibilities.</strong> You confirm you are authorized to market the property and
+                    that you have the rights to the images you send. You provide the property images used in the ad
+                    content, plus the listing details and approvals we need, on time. Campaigns launch
+                    once we have them. Advertising follows applicable fair housing and advertising rules.
+                  </li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-serif font-light text-off-black mb-4">12. Contact</h2>
                 <p>Questions about an invoice, subscription, or these Service Terms:</p>
                 <p className="mt-3">
                   <strong>DMR Media Specialists, LLC</strong><br />

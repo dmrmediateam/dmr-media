@@ -9,12 +9,12 @@ export const FAQ_ITEMS = [
   {
     question: 'What is included in a property marketing campaign?',
     answer:
-      'A custom property or development website, a 30-day Google Ads burst with media covered in the flat fee, listing or launch email copy, lead capture wired to your CRM, and weekly optimization against tours and qualified inquiries.',
+      'A custom property or development website, a 30-day Google Ads burst with media included, listing or launch email copy, lead capture wired to your CRM, and weekly optimization against tours and qualified inquiries.',
   },
   {
     question: 'How does pricing work?',
     answer:
-      'Current DMR clients pay $2,500 per listing on pay-at-close with a 90-day cap. Non-clients pay $3,250 upfront before work begins. Development and condo programs are scoped after kickoff based on phases, unit count, and markets.',
+      'Single-listing campaigns are priced per property, with ad spend included. Development and condo programs are scoped after kickoff based on phases, unit count, and markets. We confirm pricing in writing before work begins.',
   },
   {
     question: 'How fast can you launch?',
@@ -125,7 +125,7 @@ export const stakesThree = [
 export const dmrVsAlternatives = [
   { label: 'Focus', dmr: 'New developments, condos, and trophy listings', other: 'Generic agent brochure sites' },
   { label: 'Delivery', dmr: 'Site + 30-day ads + email in one coordinated launch', other: 'Website only, media sold separately' },
-  { label: 'Media', dmr: 'Google Ads spend included in flat fee', other: 'Client funds ads on top of retainers' },
+  { label: 'Media', dmr: 'Google Ads spend included', other: 'Client funds ads on top of retainers' },
   { label: 'Phasing', dmr: 'URLs and campaigns built for multi-phase releases', other: 'One-page launches that age poorly' },
   { label: 'Proof', dmr: 'Reporting on tours, leads, and CPL weekly', other: 'Impression screenshots without pipeline context' },
 ] as const
