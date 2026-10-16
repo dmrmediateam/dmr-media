@@ -435,13 +435,15 @@ export default function StripeTermsOfServicePage() {
                   <li>
                     <strong>What&apos;s included:</strong> DMR Media sets up and manages{' '}
                     <strong>Google Ads and Meta (Facebook and Instagram) ads</strong> for the property for the full
-                    campaign term. <strong>$1,000</strong> of the fee is advertising spend that DMR Media places across
-                    those platforms on your behalf. The remaining <strong>$1,850</strong> covers campaign setup, ad
-                    creative, and management, plus any deliverables listed on your invoice or proposal.
+                    campaign term. <strong>The first $1,000 of ad spend comes out of the $2,850 fee</strong>; DMR Media
+                    places it across those platforms on your behalf. The remaining <strong>$1,850</strong> covers
+                    campaign setup, ad creative, and management, plus any deliverables listed on your invoice or
+                    proposal.
                   </li>
                   <li>
-                    <strong>Additional ad spend.</strong> If you choose to add advertising budget beyond the included
-                    $1,000, it is billed separately and the payment surcharges in Section 5 apply to those payments.
+                    <strong>Additional ad spend is billed only at your request.</strong> Any spend beyond the first
+                    $1,000 is added only when you request it, and it is billed to you separately. The
+                    payment surcharges in Section 5 apply to those payments.
                   </li>
                   <li>
                     <strong>Ending early.</strong> If the property sells, goes under contract, or is withdrawn before
