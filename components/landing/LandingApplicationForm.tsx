@@ -11,6 +11,7 @@ import {
 import type { ChannelLandingFormConfig } from '@/lib/landing/channel-landing-types'
 import { resolveLandingFormConfig } from '@/lib/landing/landing-form-config'
 import { getStoredUTMParams, trackApplicationConversion } from '@/lib/utmTracking'
+import { saveLandingLeadPrefill } from '@/lib/landing/booking-prefill'
 import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot'
 
 const DEFAULT_FORM_NAME = 'google-general-modal'
@@ -124,6 +125,12 @@ export default function LandingApplicationForm({
             ...utm,
           })
         }
+        saveLandingLeadPrefill({
+          name,
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          website: formData.website.trim(),
+        })
         const navigate = () => {
           if (onSuccess) {
             onSuccess(THANK_YOU_PATH)
