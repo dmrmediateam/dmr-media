@@ -135,8 +135,24 @@ const nextConfig = {
       },
       {
         source: '/blog/real-estate-ads-every-ad-type-agents-need-to-know-in-2026',
-        destination: '/blog/google-ads-for-realtors',
+        destination: '/google-ads-management',
         permanent: true,
+      },
+      // Google Ads blog posts retired in favor of the service page.
+      {
+        source: '/blog/real-estate-pay-per-click-advertising',
+        destination: '/google-ads-management',
+        statusCode: 301,
+      },
+      {
+        source: '/blog/luxury-real-estate-google-ads-explained-for-u-s-agents',
+        destination: '/google-ads-management',
+        statusCode: 301,
+      },
+      {
+        source: '/blog/google-ads-for-realtors',
+        destination: '/google-ads-management',
+        statusCode: 301,
       },
       {
         source: '/blog/the-agents-roi-guide-to-real-estate-photography-pricing-in-2026',

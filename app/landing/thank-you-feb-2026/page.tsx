@@ -109,7 +109,7 @@ function ThankYouFeb2026Content() {
 
                 {/* Blog Post Resource */}
                 <motion.a
-                  href="https://www.dmrmedia.org/blog/google-ads-for-realtors"
+                  href="https://www.dmrmedia.org/google-ads-management"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.02, y: -4 }}
