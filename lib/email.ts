@@ -675,3 +675,78 @@ Submitted: ${new Date(submittedAt).toLocaleString()}
   }
 }
 
+
+export interface FilteredSubmissionEmailData {
+  /** Which form handler blocked it, e.g. "Application". */
+  source: string;
+  /** Spam-filter reasons, e.g. ["honeypot:hp_x7k2"]. */
+  reasons: string[];
+  /** Every non-empty field the visitor's browser sent. */
+  fields: Record<string, string>;
+}
+
+const escapeHtml = (value: string) =>
+  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+/**
+ * A submission the spam filter blocked, sent to the team instead of being
+ * dropped so a real lead caught by a false positive can still be followed up.
+ */
+export async function sendFilteredSubmissionEmail({ source, reasons, fields }: FilteredSubmissionEmailData) {
+  const who =
+    fields.name ||
+    [fields.firstName, fields.lastName].filter(Boolean).join(' ') ||
+    fields.email ||
+    'Unknown';
+  const replyTo = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(fields.email || '') ? fields.email : undefined;
+  const rows = Object.entries(fields);
+  const reasonText = reasons.join(', ');
+
+  const emailContent = {
+    to: process.env.APPLICATION_FORM_EMAIL || 'team@dmrmedia.org',
+    from: {
+      email: process.env.SENDGRID_FROM_EMAIL || 'noreply@sendgrid.net',
+      name: process.env.SENDGRID_FROM_NAME || 'DMR Media',
+    },
+    ...(replyTo && { replyTo }),
+    subject: `[Filtered as spam] ${source} - ${who}`,
+    html: `
+      <!DOCTYPE html>
+      <html>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <div style="max-width: 700px; margin: 0 auto; padding: 20px;">
+            <h2 style="margin: 0 0 8px;">Submission blocked by the spam filter</h2>
+            <p style="margin: 0 0 16px; padding: 10px 12px; background: #fff8e6; border-radius: 6px;">
+              This did <strong>not</strong> go to Close or fire a conversion. If it's a real person, add them by hand.<br />
+              Form handler: <strong>${escapeHtml(source)}</strong> · Reasons: <strong>${escapeHtml(reasonText)}</strong>
+            </p>
+            <table style="border-collapse: collapse; width: 100%;">
+              ${rows
+                .map(
+                  ([key, value]) =>
+                    `<tr><td style="padding: 6px 10px; border-bottom: 1px solid #eee; font-weight: 600; vertical-align: top; white-space: nowrap;">${escapeHtml(key)}</td><td style="padding: 6px 10px; border-bottom: 1px solid #eee; white-space: pre-wrap;">${escapeHtml(value)}</td></tr>`,
+                )
+                .join('')}
+            </table>
+            <p style="margin-top: 16px; color: #666; font-size: 13px;">Received ${new Date().toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short', timeZone: 'America/Chicago' })} (Central)</p>
+          </div>
+        </body>
+      </html>
+    `,
+    text: [
+      'Submission blocked by the spam filter. It did NOT go to Close or fire a conversion.',
+      `Form handler: ${source}`,
+      `Reasons: ${reasonText}`,
+      '',
+      ...rows.map(([key, value]) => `${key}: ${value}`),
+    ].join('\n'),
+  };
+
+  try {
+    await initSendGrid().send(emailContent);
+    return { success: true };
+  } catch (error: any) {
+    console.error('SendGrid Error (filtered submission):', error.response?.body || error);
+    throw new Error('Failed to send filtered submission email');
+  }
+}

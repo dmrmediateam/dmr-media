@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { sendContactFormToZapier } from '@/lib/zapier';
 import { sendContactFormEmail, type ContactFormData } from '@/lib/email';
 import { isSpam } from '@/lib/spam-filter';
+import { reportFilteredSubmission } from '@/lib/filtered-submission';
 
 /**
  * Contact Form API Route
@@ -18,7 +19,7 @@ export async function POST(request: Request) {
     // payload and do no work: no email, no Zapier, no analytics.
     const spamReasons = isSpam(body as unknown as Record<string, unknown>);
     if (spamReasons.length > 0) {
-      console.warn('[Contact] blocked likely spam', { reasons: spamReasons });
+      await reportFilteredSubmission('Contact', spamReasons, body);
       return NextResponse.json(
         {
           success: true,

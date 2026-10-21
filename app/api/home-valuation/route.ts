@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { sendHomeValuationEmail, type HomeValuationData } from '@/lib/email';
 import { isSpam } from '@/lib/spam-filter';
+import { reportFilteredSubmission } from '@/lib/filtered-submission';
 // import { sendHomeValuationToZapier } from '@/lib/zapier'; // UNCOMMENT to enable Zapier
 
 /**
@@ -17,7 +18,7 @@ export async function POST(request: Request) {
     // MLS numbers trip digit heuristics.
     const spamReasons = isSpam(body as unknown as Record<string, unknown>);
     if (spamReasons.length > 0) {
-      console.warn('[HomeValuation] blocked likely spam', { reasons: spamReasons });
+      await reportFilteredSubmission('HomeValuation', spamReasons, body);
       return NextResponse.json(
         {
           success: true,

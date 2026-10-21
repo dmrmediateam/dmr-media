@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { DEFAULT_HONEYPOT_FIELDS, isSpam } from '@/lib/spam-filter';
+import { reportFilteredSubmission } from '@/lib/filtered-submission';
 import { isQualifiedWebinarVolume } from '@/lib/landing/webinar-qualification';
 import { sendWebinarRegistrationEmail } from '@/lib/email';
 
@@ -21,10 +22,9 @@ export async function POST(request: Request) {
     const isFeb2026 = source === 'feb-2026-landing';
 
     // TEMPORARY — spam filtering is OFF for the Paid Ads webinar form while we
-    // verify webhook delivery. A filtered post is dropped silently (no webhook,
-    // no analytics) and still returns success, which is indistinguishable from a
-    // broken webhook, so it cannot stay on while debugging that. It also means a
-    // browser autofilling the `company` decoy would silently eat a real lead.
+    // verify webhook delivery. A filtered post skips the webhook and analytics
+    // (it is emailed to the team instead) and still returns success, which is
+    // hard to tell apart from a broken webhook while debugging that.
     // TO RE-ENABLE: delete this Set and the ternary guard below.
     const SPAM_CHECK_DISABLED_SOURCES = new Set(['paid-ads-webinar-landing']);
     const spamCheckDisabled = SPAM_CHECK_DISABLED_SOURCES.has(source);
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
       console.warn('[LandingRegistration] spam filter DISABLED for source', { source, ip });
     }
     if (spamReasons.length > 0) {
-      console.warn('[LandingRegistration] blocked likely spam', { reasons: spamReasons, ip, source });
+      await reportFilteredSubmission('LandingRegistration', spamReasons, body);
       return NextResponse.json(
         {
           success: true,

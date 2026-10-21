@@ -3,8 +3,9 @@
  *
  * Call `isSpam(body)` at the TOP of every form handler, before any validation.
  * A non-empty result means the submission is likely spam: respond with the
- * handler's normal success-shaped payload and silently drop it (no email, no
- * Zapier, no analytics) so bots get no signal to retune against.
+ * handler's normal success-shaped payload so bots get no signal to retune
+ * against, skip Zapier and analytics, and pass it to `reportFilteredSubmission`
+ * (lib/filtered-submission.ts), which logs it and emails it to the team.
  *
  * ── Tuned for DMR Media (real estate marketing / SEO agency) ──────────────
  * Deliberate omissions, because real customers of THIS business write them:
@@ -25,14 +26,16 @@
 import 'server-only';
 
 /**
- * Decoy field names. Both are unused as real fields anywhere on this site.
+ * Decoy field names (rendered by components/FormHoneypot.tsx). Kept meaningless
+ * on purpose: the old `company` / `fax` names were filled by Chrome autofill,
+ * which dropped real leads as spam. Values in the legacy names are ignored.
  *
  * NOTE: `website` is intentionally NOT here. It is a REAL, sometimes required
  * field on /api/application, /api/google-direct and /api/qualification-form
  * (as `websiteUrl`). The one endpoint where it is genuinely a decoy —
  * /api/landing-registration — passes it explicitly via `honeypotFields`.
  */
-export const DEFAULT_HONEYPOT_FIELDS = ['company', 'fax'] as const;
+export const DEFAULT_HONEYPOT_FIELDS = ['hp_x7k2', 'hp_q9m4'] as const;
 
 /** Free-text fields across every form on the site. Never includes phone/email/address. */
 const DEFAULT_TEXT_FIELDS = [

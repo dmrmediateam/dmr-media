@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { isGoogleGeneralDisqualifiedVolume } from '@/lib/application-form'
 import { sendApplicationFormEmail } from '@/lib/email'
 import { isSpam } from '@/lib/spam-filter'
+import { reportFilteredSubmission } from '@/lib/filtered-submission'
 
 const DEFAULT_THANK_YOU_PATH = '/landing/thank-you'
 const GOOGLE_GENERAL_FORM_NAME = 'google-general-strategy-call'
@@ -26,20 +27,46 @@ async function postApplicationToZapier(
     return NextResponse.json({ error: missingEnvError }, { status: 500 })
   }
 
-  const webhookResponse = await fetch(webhookUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-    cache: 'no-store',
-  })
-
-  if (!webhookResponse.ok) {
+  let webhookResponse: Response
+  try {
+    webhookResponse = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+      cache: 'no-store',
+    })
+  } catch (error) {
+    console.error('[Application] Zapier webhook unreachable', { formName: payload.formName, error })
     return NextResponse.json({ error: 'Failed to submit application' }, { status: 502 })
   }
 
+  if (!webhookResponse.ok) {
+    console.error('[Application] Zapier webhook failed', {
+      status: webhookResponse.status,
+      formName: payload.formName,
+    })
+    return NextResponse.json({ error: 'Failed to submit application' }, { status: 502 })
+  }
+
+  console.info('[Application] lead delivered to Zapier', {
+    formName: payload.formName,
+    submissionPage: payload.submissionPage,
+  })
   return null
+}
+
+/**
+ * The team email is a copy; Zapier (into Close) is the system of record. A
+ * SendGrid failure is logged but must not stop the lead from reaching Close.
+ */
+async function sendApplicationEmailSafely(payload: Parameters<typeof sendApplicationFormEmail>[0]) {
+  try {
+    await sendApplicationFormEmail(payload)
+  } catch (error) {
+    console.error('[Application] team email failed; continuing to Zapier', error)
+  }
 }
 
 function readAttributionFromJson(body: Record<string, unknown>) {
@@ -67,10 +94,10 @@ export async function POST(req: NextRequest) {
 
       // SPAM CHECK — first thing in the JSON branch, before any field handling.
       // `website` is a REAL field on this form, so it is never a decoy here;
-      // only the default decoys (company / fax) apply.
+      // only the default decoys (hp_x7k2 / hp_q9m4) apply.
       const spamReasons = isSpam(body)
       if (spamReasons.length > 0) {
-        console.warn('[Application] blocked likely spam (json)', { reasons: spamReasons })
+        await reportFilteredSubmission('Application', spamReasons, body)
         const jsonFormName =
           typeof body.formName === 'string' ? body.formName.trim() : 'calendar-application'
         if (jsonFormName === GOOGLE_GENERAL_FORM_NAME) {
@@ -121,7 +148,7 @@ export async function POST(req: NextRequest) {
         ...readAttributionFromJson(body),
       }
 
-      await sendApplicationFormEmail(payload)
+      await sendApplicationEmailSafely(payload)
 
       const webhookUrl = process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL
       const zapierError = await postApplicationToZapier(webhookUrl, ZAPIER_MISSING_ERROR, payload)
@@ -151,7 +178,7 @@ export async function POST(req: NextRequest) {
     )
     const formSpamReasons = isSpam(formEntries)
     if (formSpamReasons.length > 0) {
-      console.warn('[Application] blocked likely spam (formdata)', { reasons: formSpamReasons })
+      await reportFilteredSubmission('Application', formSpamReasons, formEntries)
       const silentPath = isGoogleGeneral
         ? isDisqualifiedVolume
           ? GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH
@@ -183,7 +210,7 @@ export async function POST(req: NextRequest) {
       submittedAt: new Date().toISOString(),
     }
 
-    await sendApplicationFormEmail(payload)
+    await sendApplicationEmailSafely(payload)
 
     const webhookUrl = process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL
     const zapierError = await postApplicationToZapier(webhookUrl, ZAPIER_MISSING_ERROR, payload)

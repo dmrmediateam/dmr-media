@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { isSpam } from '@/lib/spam-filter';
+import { reportFilteredSubmission } from '@/lib/filtered-submission';
 
 /**
  * Google Direct Landing Page Form API Route
@@ -16,7 +17,7 @@ export async function POST(request: Request) {
     // never treated as a decoy on this endpoint.
     const spamReasons = isSpam(body);
     if (spamReasons.length > 0) {
-      console.warn('[GoogleDirect] blocked likely spam', { reasons: spamReasons });
+      await reportFilteredSubmission('GoogleDirect', spamReasons, body);
       return NextResponse.json(
         {
           success: true,

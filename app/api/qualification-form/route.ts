@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { isSpam } from '@/lib/spam-filter';
+import { reportFilteredSubmission } from '@/lib/filtered-submission';
 
 /**
  * Qualification Form API Route
@@ -15,7 +16,7 @@ export async function POST(request: Request) {
     // from a real one. `websiteUrl` is a real field here and is never a decoy.
     const spamReasons = isSpam(body);
     if (spamReasons.length > 0) {
-      console.warn('[QualificationForm] blocked likely spam', { reasons: spamReasons });
+      await reportFilteredSubmission('QualificationForm', spamReasons, body);
       return NextResponse.json(
         {
           success: true,

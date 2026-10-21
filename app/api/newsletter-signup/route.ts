@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { isSpam } from '@/lib/spam-filter'
+import { reportFilteredSubmission } from '@/lib/filtered-submission'
 
 /**
  * Newsletter Signup API Route
@@ -15,7 +16,7 @@ export async function POST(request: Request) {
     // from a real one.
     const spamReasons = isSpam(body)
     if (spamReasons.length > 0) {
-      console.warn('[NewsletterSignup] blocked likely spam', { reasons: spamReasons })
+      await reportFilteredSubmission('NewsletterSignup', spamReasons, body)
       return NextResponse.json(
         {
           success: true,
