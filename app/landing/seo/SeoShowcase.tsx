@@ -161,7 +161,7 @@ export default function SeoShowcase() {
 
       {/* Website examples: the homepage carousel */}
       <section id="websites" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)]">
-        <TopWebsites linkless />
+        <TopWebsites hideIndexLink nofollow />
         <div className="pb-14 md:pb-20" aria-hidden />
       </section>
 

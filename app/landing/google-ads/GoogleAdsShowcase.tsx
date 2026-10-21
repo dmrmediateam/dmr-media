@@ -127,7 +127,7 @@ export default function GoogleAdsShowcase() {
 
       {/* Where the ads send people */}
       <section id="websites" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)]">
-        <TopWebsites linkless />
+        <TopWebsites hideIndexLink nofollow />
         <div className="pb-14 md:pb-20" aria-hidden />
       </section>
     </>

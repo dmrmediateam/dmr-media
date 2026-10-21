@@ -138,19 +138,31 @@ export function LaptopFrame({
   src,
   alt,
   caption,
+  href,
   children,
 }: {
   src: string
   alt: string
   caption?: string
+  /** Optional live-site link for the screen (opens in a new tab, rel="nofollow"). */
+  href?: string
   children?: ReactNode
 }) {
+  const screen = (
+    <Image src={src} alt={alt} fill priority sizes="(min-width: 1024px) 560px, 92vw" className="object-cover object-top" />
+  )
   return (
     <figure className="relative mx-auto mt-2 w-full max-w-[640px] px-2 pt-6 sm:px-4 lg:mx-0 lg:mt-10">
       <div className="relative rounded-t-[1.1rem] bg-[#141414] p-[2.2%] pb-[2.8%] shadow-[0_30px_70px_-30px_rgba(15,15,15,0.55)] ring-1 ring-black/10">
         <span className="absolute left-1/2 top-[0.9%] h-1 w-1 -translate-x-1/2 rounded-full bg-white/25" aria-hidden />
         <div className="relative aspect-[16/10] overflow-hidden rounded-[0.35rem] bg-white">
-          <Image src={src} alt={alt} fill priority sizes="(min-width: 1024px) 560px, 92vw" className="object-cover object-top" />
+          {href ? (
+            <a href={href} target="_blank" rel="nofollow noopener noreferrer" className="absolute inset-0 block" aria-label={`${alt} (opens the live site in a new tab)`}>
+              {screen}
+            </a>
+          ) : (
+            screen
+          )}
         </div>
       </div>
       <div

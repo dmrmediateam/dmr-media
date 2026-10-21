@@ -208,7 +208,7 @@ export default function LeadGenBody({ config }: { config: ChannelLandingConfig }
 
       {/* Where the ads send people: links open each client's live site in a new tab */}
       <section id="websites" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] pb-6 md:pb-10">
-        <TopWebsites hideIndexLink />
+        <TopWebsites hideIndexLink nofollow />
       </section>
 
       <LandingFaq items={config.faqItems} />

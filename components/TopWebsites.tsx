@@ -52,11 +52,13 @@ const TOP_WEBSITES = [
 /** A carousel slide: a link to the live site, or a plain block when `href` is omitted. */
 function SlideWrapper({
   href,
+  rel,
   hidden,
   className,
   children,
 }: {
   href?: string;
+  rel: string;
   hidden: boolean;
   className: string;
   children: React.ReactNode;
@@ -69,7 +71,7 @@ function SlideWrapper({
     );
   }
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" aria-hidden={hidden} tabIndex={hidden ? -1 : 0} className={className}>
+    <a href={href} target="_blank" rel={rel} aria-hidden={hidden} tabIndex={hidden ? -1 : 0} className={className}>
       {children}
     </a>
   );
@@ -78,11 +80,14 @@ function SlideWrapper({
 /**
  * `linkless` (paid landing pages): no links out, the carousel is display only.
  * `hideIndexLink`: keep the links to each client's live site (new tab) but drop the link to the portfolio page.
+ * `nofollow`: mark the links to client sites rel="nofollow" (used on paid landing pages).
  */
 export default function TopWebsites({
   linkless = false,
   hideIndexLink = false,
-}: { linkless?: boolean; hideIndexLink?: boolean } = {}) {
+  nofollow = false,
+}: { linkless?: boolean; hideIndexLink?: boolean; nofollow?: boolean } = {}) {
+  const outboundRel = nofollow ? 'nofollow noopener noreferrer' : 'noopener noreferrer';
   const [active, setActive] = useState(0);
   const site = TOP_WEBSITES[active];
   const prev = () => setActive((a) => (a - 1 + TOP_WEBSITES.length) % TOP_WEBSITES.length);
@@ -114,7 +119,7 @@ export default function TopWebsites({
                 <a
                   href={site.href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel={outboundRel}
                   className="hidden font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-off-black)] border-b border-[var(--color-off-black)] pb-1 transition-opacity hover:opacity-60 sm:inline-block"
                 >
                   {site.domain} →
@@ -153,6 +158,7 @@ export default function TopWebsites({
                 <SlideWrapper
                   key={s.id}
                   href={linkless ? undefined : s.href}
+                  rel={outboundRel}
                   hidden={i !== active}
                   className={`group relative w-[var(--slide-w)] shrink-0 ${
                     i === active ? 'opacity-100' : 'opacity-50'

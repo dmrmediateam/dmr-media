@@ -35,6 +35,7 @@ const STATS_FOOTNOTE =
 const BRAND_BUILDS = [
   {
     name: 'Alexa Devaney',
+    href: 'https://www.alexadevaney.com/',
     brokerage: 'The Oppenheim Group',
     market: 'North County San Diego',
     image: '/images/seo/alexa-devaney-hero.jpg',
@@ -43,6 +44,7 @@ const BRAND_BUILDS = [
   },
   {
     name: 'Carole Tierney',
+    href: 'https://www.caroletierney.com/',
     brokerage: 'Coldwell Banker Realty',
     market: 'Naples, FL',
     image: '/images/seo/carole-tierney-hero.jpg',
@@ -51,6 +53,7 @@ const BRAND_BUILDS = [
   },
   {
     name: 'Dominick Florio',
+    href: 'https://www.theflorioteam.com/',
     brokerage: 'The RE/MAX Collection',
     market: 'Central Florida',
     image: '/images/seo/florio-team-hero.jpg',
@@ -105,6 +108,7 @@ const WHY_DMR = [
 export function LaptopHero() {
   return (
     <LaptopFrame
+      href="https://www.alexadevaney.com/"
       src="/images/seo/alexa-devaney-hero.jpg"
       alt="Alexa Devaney website home page for The Oppenheim Group, designed by DMR Media"
       caption="Alexa Devaney, The Oppenheim Group, a DesignRush Design Awards nominee built by DMR Media"
@@ -142,16 +146,24 @@ export default function WebsiteDevBody({ config }: { config: ChannelLandingConfi
             {BRAND_BUILDS.map((b) => (
               <article key={b.name} className="min-w-0">
                 <div className="relative">
-                  <Frame>
-                    <Image
-                      src={b.image}
-                      alt={`${b.name} website home page for ${b.brokerage}, designed by DMR Media`}
-                      width={1400}
-                      height={868}
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="h-auto w-full rounded-lg"
-                    />
-                  </Frame>
+                  <a
+                    href={b.href}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    className="group block"
+                    aria-label={`Visit ${b.name}'s live website (opens in a new tab)`}
+                  >
+                    <Frame>
+                      <Image
+                        src={b.image}
+                        alt={`${b.name} website home page for ${b.brokerage}, designed by DMR Media`}
+                        width={1400}
+                        height={868}
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        className="h-auto w-full rounded-lg transition-transform duration-500 group-hover:scale-[1.01] motion-reduce:transition-none"
+                      />
+                    </Frame>
+                  </a>
                   {b.nominee ? (
                     <Image
                       src={DESIGNRUSH_BADGE}
@@ -166,6 +178,14 @@ export default function WebsiteDevBody({ config }: { config: ChannelLandingConfi
                   <div>
                     <p className="gg-display text-xl font-light">{b.name}</p>
                     <p className="gg-body !text-xs !text-[var(--gg-text-muted)]">{b.market}</p>
+                    <a
+                      href={b.href}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                      className="gg-eyebrow gg-eyebrow--strong mt-2 inline-flex min-h-[32px] items-center gap-1 border-b border-[var(--color-off-black)]/30 transition-colors hover:border-[var(--color-off-black)]"
+                    >
+                      View live site <span aria-hidden>↗</span>
+                    </a>
                   </div>
                   {b.logo ? (
                     <Image src={b.logo.src} alt={b.logo.alt} width={b.logo.width} height={b.logo.height} className={`w-auto ${b.logo.className}`} />
@@ -274,7 +294,7 @@ export default function WebsiteDevBody({ config }: { config: ChannelLandingConfi
 
       {/* Website examples: links open each client's live site in a new tab */}
       <section id="websites" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white pb-6 md:pb-10">
-        <TopWebsites hideIndexLink />
+        <TopWebsites hideIndexLink nofollow />
       </section>
 
       <LandingFaq items={config.faqItems} />
