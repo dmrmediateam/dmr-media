@@ -19,7 +19,7 @@ import {
 import { FinalCtaSection, LandingFaq } from '@/components/landing/conversion/ConversionSections'
 import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 
-const DESIGNRUSH_BADGE = '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png'
+export const DESIGNRUSH_BADGE = '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png'
 const OGROUP_LOGO = '/images/ClientLogos/oppenheim-group.png'
 
 const STATS: StatBandItem[] = [
@@ -32,7 +32,7 @@ const STATS: StatBandItem[] = [
 const STATS_FOOTNOTE =
   '*Qualified leads in your CRM within 14 days of launch, or we refund your website fee and ad spend (up to $2,000). Requires following up on 90% of leads within an hour.'
 
-const BRAND_BUILDS = [
+export const BRAND_BUILDS = [
   {
     name: 'Alexa Devaney',
     href: 'https://www.alexadevaney.com/',
@@ -62,7 +62,7 @@ const BRAND_BUILDS = [
   },
 ] as const
 
-const AI_ANSWERS = [
+export const AI_ANSWERS = [
   {
     tool: 'Google AI Overview',
     image: '/images/seo/eagan-google-ai-overview-dolphin-cay.webp',

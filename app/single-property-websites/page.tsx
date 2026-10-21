@@ -545,7 +545,7 @@ export default function SinglePropertyWebsitesPage() {
                   Google Ads campaigns
                 </Link>
                 , extend creative systems to{' '}
-                <Link href="/luxury-condo-websites" className="underline hover:opacity-70">
+                <Link href="/real-estate-website-design" className="underline hover:opacity-70">
                   luxury property websites
                 </Link>{' '}
                 for towers and boutique buildings, and prove performance in{' '}

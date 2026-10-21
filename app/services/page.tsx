@@ -52,7 +52,7 @@ const websiteServices: Service[] = [
     heading: 'Phased sites engineered for sell-through',
     body: 'Gallery sites, plan libraries, and registration paths built for absorption, not generic brokerage brochureware.',
     note: 'For luxury condos, new developments, and single trophy properties.',
-    href: '/websites-for-new-developments',
+    href: '/real-estate-website-design',
     img: '/images/ClientWebsites/screencapture-valoriahomes-2026-03-04-03_34_12.png',
     alt: 'Valoria Homes development microsite designed by DMR Media',
   },

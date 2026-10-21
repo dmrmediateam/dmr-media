@@ -345,12 +345,8 @@ export default function PropertyMarketingPageContent() {
               <h2 className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)] md:text-3xl">Stack with your development go-to-market</h2>
               <p className="mt-5 font-serif text-[15px] leading-[1.85] text-[var(--color-ink-300)]">
                 Pair campaigns with{' '}
-                <Link href="/websites-for-new-developments" className="underline underline-offset-2 hover:opacity-70">
-                  new development websites
-                </Link>
-                ,{' '}
-                <Link href="/luxury-condo-websites" className="underline underline-offset-2 hover:opacity-70">
-                  luxury condo websites
+                <Link href="/real-estate-website-design" className="underline underline-offset-2 hover:opacity-70">
+                  luxury real estate website design
                 </Link>
                 ,{' '}
                 <Link href="/single-property-websites" className="underline underline-offset-2 hover:opacity-70">

@@ -99,16 +99,6 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/luxury-condo-websites" className="hover:opacity-60 transition-opacity">
-                    Luxury Condo Websites
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/websites-for-new-developments" className="hover:opacity-60 transition-opacity">
-                    Website for New Developments
-                  </Link>
-                </li>
-                <li>
                   <Link href="/real-estate-agent-website-samples" className="hover:opacity-60 transition-opacity">
                     Website Design Portfolio
                   </Link>

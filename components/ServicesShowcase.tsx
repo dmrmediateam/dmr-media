@@ -35,22 +35,10 @@ const services = [
     media: '/images/StockHomes/modern-villa-interior-with-sparkle-floor-2024-10-18-09-40-13-utc.jpg',
   },
   {
-    title: 'Websites for New Developments',
-    copy: 'Phased gallery sites, plan libraries, and capture paths built for sell-through—not generic brochureware.',
-    href: '/websites-for-new-developments',
-    media: '/images/ClientWebsites/screencapture-valoriahomes-2026-03-04-03_34_12.png',
-  },
-  {
     title: 'Single Property Websites',
     copy: 'Microsites engineered for one listing—story, media, speed, and capture without brokerage template noise.',
     href: '/single-property-websites',
     media: '/images/propertyWebsiteImages/screencapture-2100pine-vercel-app-2026-03-25-19_45_27.png',
-  },
-  {
-    title: 'Luxury Condo Websites',
-    copy: 'Tower-ready sites: amenities, floorplans, and neighborhood proof—engineered for search and serious buyers.',
-    href: '/luxury-condo-websites',
-    media: '/images/StockHomes/studio-apartment-interior-with-wooden-furniture-2025-02-09-23-29-43-utc.jpg',
   },
   {
     title: 'Property Marketing',

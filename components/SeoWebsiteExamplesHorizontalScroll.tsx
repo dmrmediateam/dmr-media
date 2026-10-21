@@ -59,12 +59,8 @@ const INTRO = {
       <>
         New construction, tower releases, and boutique condos need more than a listing link. See how we pair cinematic
         sites with paid bursts for developments and trophy inventory. Explore{' '}
-        <Link href="/websites-for-new-developments" className="underline underline-offset-2 hover:opacity-70">
-          new development websites
-        </Link>{' '}
-        and{' '}
-        <Link href="/luxury-condo-websites" className="underline underline-offset-2 hover:opacity-70">
-          luxury condo websites
+        <Link href="/real-estate-website-design" className="underline underline-offset-2 hover:opacity-70">
+          luxury real estate website design
         </Link>
         .
       </>

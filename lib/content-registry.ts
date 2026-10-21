@@ -239,25 +239,6 @@ export const contentRegistry: ContentEntry[] = [
     changeFrequency: 'weekly',
   },
   {
-    slug: '/websites-for-new-developments',
-    title: 'New Development Websites | Presale & Construction | DMR Media',
-    description:
-      'Presale and new construction websites. Phased inventory management, buyer journey optimization, and integrated marketing for luxury developments.',
-    publishDate: '2026-04-18',
-    modifiedDate: '2026-04-28',
-    category: 'New Development Websites',
-    tags: [
-      'new development websites',
-      'presale website design',
-      'new construction website',
-      'development marketing website',
-      'real estate developer website',
-      'housing development website',
-    ],
-    priority: 0.88,
-    changeFrequency: 'weekly',
-  },
-  {
     slug: '/website-and-seo',
     title: 'Website Design & SEO for Real Estate | DMR Media',
     description:
@@ -278,25 +259,6 @@ export const contentRegistry: ContentEntry[] = [
     modifiedDate: '2026-04-28',
     category: 'Single Property Websites',
     tags: ['single property website', 'listing website', 'luxury listing microsite', 'real estate property site'],
-    priority: 0.87,
-    changeFrequency: 'weekly',
-  },
-  {
-    slug: '/luxury-condo-websites',
-    title: 'Luxury Condo Website Design & SEO | DMR Media',
-    description:
-      'Condo websites engineered for luxury buyers. Floorplan optimization, amenity storytelling, and technical SEO for high-rise and boutique buildings.',
-    publishDate: '2026-04-18',
-    modifiedDate: '2026-04-28',
-    category: 'Luxury Condo Websites',
-    tags: [
-      'luxury condo websites',
-      'high-rise website design',
-      'condo website design',
-      'boutique building websites',
-      'luxury condominium marketing',
-      'condo development website',
-    ],
     priority: 0.87,
     changeFrequency: 'weekly',
   },
@@ -476,11 +438,11 @@ export const contentRegistry: ContentEntry[] = [
   },
   {
     slug: '/real-estate-website-design',
-    title: 'Real Estate Website Design | Custom Development for Luxury Teams | DMR Media',
+    title: 'Luxury Real Estate Website Design | DMR Media',
     description:
-      'Custom real estate website design for luxury agents, teams, and brokerages. Not template platforms. SEO-ready architecture, conversion-focused UX, and integrated growth systems.',
+      'Luxury real estate website design for agents, teams, and developments: DesignRush-nominated builds, IDX search, and lead capture that feeds your CRM.',
     publishDate: '2026-04-18',
-    modifiedDate: '2026-06-13',
+    modifiedDate: '2026-10-21',
     category: 'Website Design',
     tags: [
       'real estate website design',

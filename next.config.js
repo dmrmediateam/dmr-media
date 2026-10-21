@@ -218,9 +218,14 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/luxury-condo-websites/:location',
-        destination: '/luxury-condo-websites',
-        permanent: true,
+        source: '/luxury-condo-websites',
+        destination: '/real-estate-website-design',
+        statusCode: 301,
+      },
+      {
+        source: '/luxury-condo-websites/:path*',
+        destination: '/real-estate-website-design',
+        statusCode: 301,
       },
       {
         source: '/single-property-websites/:location',
@@ -228,9 +233,14 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/websites-for-new-developments/:location',
-        destination: '/websites-for-new-developments',
-        permanent: true,
+        source: '/websites-for-new-developments',
+        destination: '/real-estate-website-design',
+        statusCode: 301,
+      },
+      {
+        source: '/websites-for-new-developments/:path*',
+        destination: '/real-estate-website-design',
+        statusCode: 301,
       },
       {
         source: '/property-marketing/:location',

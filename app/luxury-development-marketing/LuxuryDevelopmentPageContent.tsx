@@ -366,7 +366,7 @@ export default function LuxuryDevelopmentPageContent() {
                   SEO optimization
                 </Link>
                 , flagship{' '}
-                <Link href="/websites-for-new-developments" className="underline underline-offset-2 hover:opacity-70">
+                <Link href="/real-estate-website-design" className="underline underline-offset-2 hover:opacity-70">
                   development websites
                 </Link>
                 ,{' '}

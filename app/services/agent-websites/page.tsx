@@ -32,7 +32,7 @@ const pageData: ServicePageData = {
     slides: [
       { id: 'legendary', href: '/case-study/jade-legendary-real-estate', teamName: 'Legendary Real Estate Services', region: 'Lake Geneva, WI', highlight: '920% organic traffic growth', image: '/images/ClientWebsites/screencapture-legendaryrealestateservices-2026-03-04-03_34_49.png', imageAlt: 'Legendary Real Estate Services — custom website by DMR Media' },
       { id: 'cheryl-towey', href: '/real-estate-agent-website-samples', teamName: 'Cheryl Towey Real Estate', region: 'New Jersey', highlight: '5-star rated design since 2022', image: '/images/ClientWebsites/screencapture-realestatebycherylnj-2026-03-04-03_35_34.png', imageAlt: 'Cheryl Towey real estate website — designed by DMR Media' },
-      { id: 'valoria-homes', href: '/websites-for-new-developments', teamName: 'Valoria Homes', region: 'Development Project', highlight: 'Presale capture system', image: '/images/ClientWebsites/screencapture-valoriahomes-2026-03-04-03_34_12.png', imageAlt: 'Valoria Homes development website — designed by DMR Media' },
+      { id: 'valoria-homes', href: '/real-estate-website-design', teamName: 'Valoria Homes', region: 'Development Project', highlight: 'Presale capture system', image: '/images/ClientWebsites/screencapture-valoriahomes-2026-03-04-03_34_12.png', imageAlt: 'Valoria Homes development website — designed by DMR Media' },
     ],
   },
   stakes: {
@@ -102,7 +102,7 @@ const pageData: ServicePageData = {
   relatedServices: [
     { label: 'SEO Optimization', href: '/seo-optimization' },
     { label: 'Real Estate Lead Generation', href: '/real-estate-lead-generation' },
-    { label: 'New Development Websites', href: '/websites-for-new-developments' },
+    { label: 'Luxury Real Estate Website Design', href: '/real-estate-website-design' },
     { label: 'Single Property Websites', href: '/single-property-websites' },
     { label: 'Analytics & Reporting', href: '/analytics-reporting' },
   ],

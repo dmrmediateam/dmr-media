@@ -274,7 +274,7 @@ export default function GoogleAdsManagementPageContent() {
         id="guide"
       >
         <div className="container-max grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <SeoReveal>
+          <SeoReveal className="min-w-0">
             <div>
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">How we work</p>
               <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
@@ -299,7 +299,7 @@ export default function GoogleAdsManagementPageContent() {
               </ul>
             </div>
           </SeoReveal>
-          <SeoReveal delay={0.08}>
+          <SeoReveal delay={0.08} className="min-w-0">
             <div className="rounded-xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_12px_40px_-12px_rgba(15,15,15,0.12)] sm:p-8">
               <p className="text-center font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">
                 DMR vs. typical alternatives
