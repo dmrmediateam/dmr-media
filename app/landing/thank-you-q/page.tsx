@@ -1,12 +1,10 @@
 import ThankYouBookingPage from '@/components/landing/ThankYouBookingPage'
-import GoogleAdsLandingPageConversion from '@/components/landing/GoogleAdsLandingPageConversion'
 
-/** Qualified applicants land here from every /landing form, so the page-load conversion lives here only. */
+/**
+ * Qualified applicants land here from every /landing form. The Google Ads
+ * "Submit lead form (1)" conversion fires on submit (LandingApplicationForm),
+ * so this page fires no conversion of its own, or every lead would count twice.
+ */
 export default function ThankYouQPage() {
-  return (
-    <>
-      <GoogleAdsLandingPageConversion />
-      <ThankYouBookingPage />
-    </>
-  )
+  return <ThankYouBookingPage />
 }
