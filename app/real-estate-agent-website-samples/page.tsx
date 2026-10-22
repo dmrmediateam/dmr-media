@@ -2,6 +2,8 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import ClientLogosSlider from '@/components/ClientLogosSlider';
 import SEOWrapper from '@/components/SEOWrapper';
+import AwardBadgeRow from '@/components/AwardBadgeRow';
+import { ALEXA_DEVANEY_BADGES, DESIGNRUSH_NOMINEE_BADGE, type AwardBadge } from '@/lib/award-badges';
 import { metadataFromRegistry } from '@/lib/content-registry';
 import { buildRealEstatePortfolioSamplesGraph } from '@/lib/real-estate-portfolio-schema';
 
@@ -15,11 +17,7 @@ type WebsiteSample = {
   url: string
   image: string
   imageRight: boolean
-  awardBadge?: {
-    src: string
-    alt: string
-    href?: string
-  }
+  awardBadges?: readonly AwardBadge[]
 }
 
 export const metadata: Metadata = {
@@ -39,14 +37,11 @@ const WEBSITE_SAMPLES: WebsiteSample[] = [
     subheading: 'North County San Diego · The Oppenheim Group',
     name: 'Alexa Devaney | The Oppenheim Group',
     description:
-      'Alexa Devaney has sold homes across North County San Diego for more than ten years and is raising her family in the same neighborhoods she represents, from Encinitas and Carlsbad to Oceanside and Fallbrook. Her site pairs The Oppenheim Group brand with a family-first story, live home search, and community guides. It was nominated for a DesignRush Design Award in October 2026.',
+      'Alexa Devaney has sold homes across North County San Diego for more than ten years and is raising her family in the same neighborhoods she represents, from Encinitas and Carlsbad to Oceanside and Fallbrook. Her site pairs The Oppenheim Group brand with a family-first story, live home search, and community guides. It was nominated for a DesignRush Design Award in October 2026 and is an Awwwards nominee.',
     url: 'https://www.alexadevaney.com/',
     image: '/images/ClientWebsiteImages/screencapture-alexadevaney-2026-10-08.jpg',
     imageRight: false,
-    awardBadge: {
-      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png',
-      alt: 'DesignRush.com Design Awards Nominee',
-    },
+    awardBadges: ALEXA_DEVANEY_BADGES,
   },
   {
     id: 'legendary-real-estate',
@@ -77,10 +72,7 @@ const WEBSITE_SAMPLES: WebsiteSample[] = [
     url: 'https://www.caroletierney.com/',
     image: '/images/ClientWebsiteImages/screencapture-caroletierney-2026-09-04.png',
     imageRight: true,
-    awardBadge: {
-      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png',
-      alt: 'DesignRush.com Design Awards Nominee',
-    },
+    awardBadges: [DESIGNRUSH_NOMINEE_BADGE],
   },
   {
     id: 'valoria-homes',
@@ -228,33 +220,12 @@ export default function RealEstateAgentWebsiteSamplesPage() {
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 </a>
-                {sample.awardBadge ? (
-                  sample.awardBadge.href ? (
-                    <a
-                      href={sample.awardBadge.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="absolute -left-5 -top-5 z-20 block transition-opacity hover:opacity-90 sm:-left-8 sm:-top-8 lg:-left-11 lg:-top-9"
-                    >
-                      <Image
-                        src={sample.awardBadge.src}
-                        alt={sample.awardBadge.alt}
-                        width={351}
-                        height={424}
-                        className="h-24 w-auto drop-shadow-[0_12px_32px_rgba(15,15,15,0.28)] sm:h-[7.33rem] lg:h-[8.67rem]"
-                      />
-                    </a>
-                  ) : (
-                    <div className="pointer-events-none absolute -left-5 -top-5 z-20 sm:-left-8 sm:-top-8 lg:-left-11 lg:-top-9">
-                      <Image
-                        src={sample.awardBadge.src}
-                        alt={sample.awardBadge.alt}
-                        width={351}
-                        height={424}
-                        className="h-24 w-auto drop-shadow-[0_12px_32px_rgba(15,15,15,0.28)] sm:h-[7.33rem] lg:h-[8.67rem]"
-                      />
-                    </div>
-                  )
+                {sample.awardBadges?.length ? (
+                  <AwardBadgeRow
+                    badges={sample.awardBadges}
+                    className="pointer-events-none absolute -left-5 -top-5 z-20 sm:-left-8 sm:-top-8 lg:-left-11 lg:-top-9"
+                    imgClassName="h-24 drop-shadow-[0_12px_32px_rgba(15,15,15,0.28)] sm:h-[7.33rem] lg:h-[8.67rem]"
+                  />
                 ) : null}
               </div>
             </article>

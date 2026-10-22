@@ -17,7 +17,9 @@ import {
   type StatBandItem,
 } from '@/components/landing/ShowcaseParts'
 import { FinalCtaSection, LandingFaq, ProcessSteps } from '@/components/landing/conversion/ConversionSections'
-import { AI_ANSWERS, DESIGNRUSH_BADGE } from '@/app/landing/website-development/WebsiteDevBody'
+import { AI_ANSWERS } from '@/app/landing/website-development/WebsiteDevBody'
+import AwardBadgeRow from '@/components/AwardBadgeRow'
+import { ALEXA_DEVANEY_BADGES, type AwardBadge } from '@/lib/award-badges'
 import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 
 const STATS: StatBandItem[] = [
@@ -36,7 +38,7 @@ type Service = {
   body: string
   chip: string
   image: { src: string; width: number; height: number; alt: string }
-  badge?: boolean
+  badges?: readonly AwardBadge[]
   tiles: readonly { value: string; label: string }[]
 }
 
@@ -53,7 +55,7 @@ const SERVICES: readonly Service[] = [
       height: 868,
       alt: 'Alexa Devaney website home page for The Oppenheim Group, designed by DMR Media',
     },
-    badge: true,
+    badges: ALEXA_DEVANEY_BADGES,
     tiles: [
       { value: '3×', label: 'DesignRush Design Awards nominations' },
       { value: '600+', label: 'MLSs available through IDX' },
@@ -166,13 +168,11 @@ export default function MarketingAgencyBody({ config }: { config: ChannelLanding
                         className="h-auto w-full rounded-lg"
                       />
                     </Frame>
-                    {s.badge ? (
-                      <Image
-                        src={DESIGNRUSH_BADGE}
-                        alt="DesignRush.com Design Awards Nominee"
-                        width={351}
-                        height={424}
-                        className="absolute -left-2 -top-3 h-auto w-14 drop-shadow-md sm:w-16"
+                    {s.badges ? (
+                      <AwardBadgeRow
+                        badges={s.badges}
+                        className="absolute -left-2 -top-3"
+                        imgClassName="h-16 drop-shadow-md sm:h-[4.75rem]"
                       />
                     ) : null}
                   </div>

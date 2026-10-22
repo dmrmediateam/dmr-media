@@ -4,19 +4,18 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SeoReveal } from '@/app/seo-optimization/SeoReveal';
+import AwardBadgeRow from '@/components/AwardBadgeRow';
+import { ALEXA_DEVANEY_BADGES, DESIGNRUSH_NOMINEE_BADGE } from '@/lib/award-badges';
 
 const TOP_WEBSITES = [
   {
     id: 'alexa-devaney',
     name: 'AlexaDevaney.com',
-    subline: 'DesignRush Design Awards Nominee · October 2026',
+    subline: 'DesignRush & Awwwards Nominee · October 2026',
     domain: 'alexadevaney.com',
     href: 'https://www.alexadevaney.com/',
     image: '/images/ClientWebsiteImages/screencapture-alexadevaney-2026-10-08.jpg',
-    awardBadge: {
-      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png',
-      alt: 'DesignRush.com Design Awards Nominee',
-    },
+    awardBadges: ALEXA_DEVANEY_BADGES,
   },
   {
     id: 'carole-tierney',
@@ -25,10 +24,7 @@ const TOP_WEBSITES = [
     domain: 'caroletierney.com',
     href: 'https://www.caroletierney.com/',
     image: '/images/ClientWebsiteImages/screencapture-caroletierney-2026-09-04.png',
-    awardBadge: {
-      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png',
-      alt: 'DesignRush.com Design Awards Nominee',
-    },
+    awardBadges: [DESIGNRUSH_NOMINEE_BADGE],
   },
   {
     id: 'eagan-luxury',
@@ -188,16 +184,12 @@ export default function TopWebsites({
                     </div>
                   </div>
 
-                  {s.awardBadge ? (
-                    <div className="pointer-events-none absolute -left-3 -top-3 z-10 sm:-left-5 sm:-top-5">
-                      <Image
-                        src={s.awardBadge.src}
-                        alt={s.awardBadge.alt}
-                        width={351}
-                        height={424}
-                        className="h-20 w-auto drop-shadow-[0_12px_32px_rgba(15,15,15,0.28)] sm:h-28"
-                      />
-                    </div>
+                  {s.awardBadges?.length ? (
+                    <AwardBadgeRow
+                      badges={s.awardBadges}
+                      className="pointer-events-none absolute -left-3 -top-3 z-10 sm:-left-5 sm:-top-5"
+                      imgClassName="h-20 drop-shadow-[0_12px_32px_rgba(15,15,15,0.28)] sm:h-28"
+                    />
                   ) : null}
                 </SlideWrapper>
               ))}

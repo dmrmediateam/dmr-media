@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
 import TopWebsites from '@/components/TopWebsites'
+import AwardBadgeRow from '@/components/AwardBadgeRow'
+import { ALEXA_DEVANEY_BADGES, DESIGNRUSH_NOMINEE_BADGE } from '@/lib/award-badges'
 import VideoTestimonials from '@/components/VideoTestimonials'
 import GoogleGeneralReviewsScroll from '@/components/landing/GoogleGeneralReviewsScroll'
 import {
@@ -19,7 +21,6 @@ import {
 import { FinalCtaSection, LandingFaq } from '@/components/landing/conversion/ConversionSections'
 import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 
-export const DESIGNRUSH_BADGE = '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png'
 const OGROUP_LOGO = '/images/ClientLogos/oppenheim-group.png'
 
 const STATS: StatBandItem[] = [
@@ -39,7 +40,7 @@ export const BRAND_BUILDS = [
     brokerage: 'The Oppenheim Group',
     market: 'North County San Diego',
     image: '/images/seo/alexa-devaney-hero.jpg',
-    nominee: true,
+    badges: ALEXA_DEVANEY_BADGES,
     logo: { src: OGROUP_LOGO, width: 1386, height: 175, alt: 'The Oppenheim Group Real Estate', className: 'h-4 sm:h-5' },
   },
   {
@@ -48,7 +49,7 @@ export const BRAND_BUILDS = [
     brokerage: 'Coldwell Banker Realty',
     market: 'Naples, FL',
     image: '/images/seo/carole-tierney-hero.jpg',
-    nominee: true,
+    badges: [DESIGNRUSH_NOMINEE_BADGE],
     logo: { src: '/images/ClientLogos/coldwell-banker.png', width: 600, height: 130, alt: 'Coldwell Banker', className: 'h-7 sm:h-8' },
   },
   {
@@ -57,7 +58,7 @@ export const BRAND_BUILDS = [
     brokerage: 'The RE/MAX Collection',
     market: 'Central Florida',
     image: '/images/seo/florio-team-hero.jpg',
-    nominee: true,
+    badges: [DESIGNRUSH_NOMINEE_BADGE],
     logo: { src: '/images/ClientLogos/remax-collection.png', width: 276, height: 135, alt: 'The RE/MAX Collection', className: 'h-9 sm:h-10' },
   },
 ] as const
@@ -104,21 +105,19 @@ const WHY_DMR = [
   },
 ] as const
 
-/** Laptop mockup of Alexa Devaney's site with the DesignRush badge and The Oppenheim Group logo. */
+/** Laptop mockup of Alexa Devaney's site with her DesignRush and Awwwards badges and The Oppenheim Group logo. */
 export function LaptopHero() {
   return (
     <LaptopFrame
       href="https://www.alexadevaney.com/"
       src="/images/seo/alexa-devaney-hero.jpg"
       alt="Alexa Devaney website home page for The Oppenheim Group, designed by DMR Media"
-      caption="Alexa Devaney, The Oppenheim Group, a DesignRush Design Awards nominee built by DMR Media"
+      caption="Alexa Devaney, The Oppenheim Group, a DesignRush Design Awards and Awwwards nominee built by DMR Media"
     >
-      <Image
-        src={DESIGNRUSH_BADGE}
-        alt="DesignRush.com Design Awards Nominee"
-        width={351}
-        height={424}
-        className="absolute -left-1 top-0 z-10 h-auto w-14 drop-shadow-[0_10px_24px_rgba(15,15,15,0.3)] sm:w-[4.5rem]"
+      <AwardBadgeRow
+        badges={ALEXA_DEVANEY_BADGES}
+        className="absolute -left-1 top-0 z-10"
+        imgClassName="h-16 drop-shadow-[0_10px_24px_rgba(15,15,15,0.3)] sm:h-[5.4rem]"
       />
       <span className="absolute -right-1 top-1 z-10 flex items-center rounded-full border border-[var(--color-ink-200)] bg-white px-3 py-2 shadow-[0_10px_24px_-12px_rgba(15,15,15,0.35)] sm:px-4">
         <Image src={OGROUP_LOGO} alt="The Oppenheim Group Real Estate" width={1386} height={175} className="h-3.5 w-auto sm:h-4" />
@@ -164,15 +163,11 @@ export default function WebsiteDevBody({ config }: { config: ChannelLandingConfi
                       />
                     </Frame>
                   </a>
-                  {b.nominee ? (
-                    <Image
-                      src={DESIGNRUSH_BADGE}
-                      alt="DesignRush.com Design Awards Nominee"
-                      width={351}
-                      height={424}
-                      className="absolute -left-2 -top-3 h-auto w-14 drop-shadow-md sm:w-16"
-                    />
-                  ) : null}
+                  <AwardBadgeRow
+                    badges={b.badges}
+                    className="absolute -left-2 -top-3"
+                    imgClassName="h-16 drop-shadow-md sm:h-[4.75rem]"
+                  />
                 </div>
                 <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
                   <div>

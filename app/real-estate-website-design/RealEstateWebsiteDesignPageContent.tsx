@@ -11,7 +11,9 @@ import VideoTestimonials from '@/components/VideoTestimonials'
 import ServiceStats from '@/components/service/ServiceStats'
 import Testimonials from '@/components/Testimonials'
 import { SeoLandingStickyPrimaryCta } from '@/components/SeoLandingHeroPrimaryCta'
-import { AI_ANSWERS, BRAND_BUILDS, DESIGNRUSH_BADGE } from '@/app/landing/website-development/WebsiteDevBody'
+import { AI_ANSWERS, BRAND_BUILDS } from '@/app/landing/website-development/WebsiteDevBody'
+import AwardBadgeRow from '@/components/AwardBadgeRow'
+import { ALEXA_DEVANEY_BADGES } from '@/lib/award-badges'
 import {
   dmrVsAlternatives,
   FAQ_ITEMS,
@@ -149,15 +151,13 @@ export default function RealEstateWebsiteDesignPageContent() {
                   />
                 </a>
                 <figcaption className="sr-only">
-                  Alexa Devaney, The Oppenheim Group, a DesignRush Design Awards nominee built by DMR Media
+                  Alexa Devaney, The Oppenheim Group, a DesignRush Design Awards and Awwwards nominee built by DMR Media
                 </figcaption>
               </figure>
-              <Image
-                src={DESIGNRUSH_BADGE}
-                alt="DesignRush.com Design Awards Nominee"
-                width={351}
-                height={424}
-                className="absolute -left-2 -top-4 z-10 h-auto w-14 drop-shadow-[0_10px_24px_rgba(15,15,15,0.3)] sm:w-[4.5rem] lg:-left-8"
+              <AwardBadgeRow
+                badges={ALEXA_DEVANEY_BADGES}
+                className="absolute -left-2 -top-4 z-10 lg:-left-8"
+                imgClassName="h-16 drop-shadow-[0_10px_24px_rgba(15,15,15,0.3)] sm:h-[5.4rem]"
               />
               <p
                 className="absolute -right-2 top-10 hidden rounded-lg border border-[var(--color-ink-200)] bg-white/95 px-4 py-3 font-serif shadow-[0_12px_32px_-12px_rgba(15,15,15,0.25)] backdrop-blur-sm md:block lg:-right-10"
@@ -251,12 +251,10 @@ export default function RealEstateWebsiteDesignPageContent() {
                         />
                       </ShotFrame>
                     </a>
-                    <Image
-                      src={DESIGNRUSH_BADGE}
-                      alt="DesignRush.com Design Awards Nominee"
-                      width={351}
-                      height={424}
-                      className="absolute -left-2 -top-3 h-auto w-14 drop-shadow-md sm:w-16"
+                    <AwardBadgeRow
+                      badges={b.badges}
+                      className="absolute -left-2 -top-3"
+                      imgClassName="h-16 drop-shadow-md sm:h-[4.75rem]"
                     />
                   </div>
                   <div className="mt-5 flex flex-wrap items-center justify-between gap-3">

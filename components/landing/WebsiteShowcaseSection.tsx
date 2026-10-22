@@ -2,6 +2,8 @@
 
 import Image from 'next/image'
 import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
+import AwardBadgeRow from '@/components/AwardBadgeRow'
+import { ALEXA_DEVANEY_BADGES, DESIGNRUSH_NOMINEE_BADGE, type AwardBadge } from '@/lib/award-badges'
 
 type ShowcaseSample = {
   id: string
@@ -10,25 +12,19 @@ type ShowcaseSample = {
   description: string
   image: string
   imageRight: boolean
-  awardBadge?: {
-    src: string
-    alt: string
-  }
+  awardBadges?: readonly AwardBadge[]
 }
 
 const AGENT_WEBSITES: ShowcaseSample[] = [
   {
     id: 'alexa-devaney',
-    subheading: 'DesignRush Design Awards Nominee · October 2026',
+    subheading: 'DesignRush & Awwwards Nominee · October 2026',
     name: 'Alexa Devaney | The Oppenheim Group',
     description:
       'A family-first agent brand for North County San Diego under The Oppenheim Group. Cinematic coastal imagery, live home search, and community guides for Encinitas, Carlsbad, Oceanside, and Fallbrook.',
     image: '/images/ClientWebsiteImages/screencapture-alexadevaney-2026-10-08.jpg',
     imageRight: false,
-    awardBadge: {
-      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png',
-      alt: 'DesignRush.com Design Awards Nominee',
-    },
+    awardBadges: ALEXA_DEVANEY_BADGES,
   },
   {
     id: 'legendary-real-estate',
@@ -56,10 +52,7 @@ const AGENT_WEBSITES: ShowcaseSample[] = [
       'Waterfront and golf-community luxury in Naples: exceptional homes, precisely marketed. A DesignRush Design Awards nominee (September 2026), with the editorial restraint a four-decade luxury career has earned.',
     image: '/images/ClientWebsiteImages/screencapture-caroletierney-2026-09-04.png',
     imageRight: true,
-    awardBadge: {
-      src: '/images/ClientWebsiteImages/designrush-design-awards-nominee-carole-tierney.png',
-      alt: 'DesignRush.com Design Awards Nominee',
-    },
+    awardBadges: [DESIGNRUSH_NOMINEE_BADGE],
   },
   {
     id: 'valoria-homes',
@@ -129,16 +122,12 @@ function ShowcaseRow({ sample, index }: { sample: ShowcaseSample; index: number 
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
-          {sample.awardBadge ? (
-            <div className="pointer-events-none absolute -left-4 -top-4 z-10 sm:-left-6 sm:-top-6">
-              <Image
-                src={sample.awardBadge.src}
-                alt={sample.awardBadge.alt}
-                width={351}
-                height={424}
-                className="h-24 w-auto drop-shadow-[0_12px_32px_rgba(15,15,15,0.28)] sm:h-28 lg:h-32"
-              />
-            </div>
+          {sample.awardBadges?.length ? (
+            <AwardBadgeRow
+              badges={sample.awardBadges}
+              className="pointer-events-none absolute -left-4 -top-4 z-10 sm:-left-6 sm:-top-6"
+              imgClassName="h-24 drop-shadow-[0_12px_32px_rgba(15,15,15,0.28)] sm:h-28 lg:h-32"
+            />
           ) : null}
         </div>
       </article>
