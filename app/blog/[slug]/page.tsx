@@ -9,6 +9,7 @@ import BlogFAQ from '@/components/BlogFAQ'
 import BlogAuthorCard from '@/components/blog/BlogAuthorCard'
 import TableOfContents from '@/components/blog/TableOfContents'
 import RelatedPosts from '@/components/blog/RelatedPosts'
+import PreferredSourceButton from '@/components/blog/PreferredSourceButton'
 import { extractHeadings } from '@/lib/extractHeadings'
 import '@/app/landing/google-general/google-general-landing.css'
 
@@ -238,6 +239,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               <span className="text-white/50">•</span>
               <span style={{ color: '#FFFFFF' }}>{post.readTime}</span>
             </div>
+            <PreferredSourceButton className="mt-8" />
           </div>
         </div>
       </section>
