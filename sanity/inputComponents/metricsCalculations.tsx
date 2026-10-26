@@ -57,23 +57,22 @@ export const estROIInput = {
       const { value, onChange, document } = props
       const estCloses = Number(document?.estCloses) || 0
       const commission = Number(document?.commission) || 0
-      const packagePrice = Number(document?.packagePrice) || 0
       const adSpend = Number(document?.adSpend) || 0
 
-      // Est. ROI = ((Est. Closes × Commission) / (Package Price + Ad Spend)) × 100
+      // Est. ROI = ((Est. Closes × Commission) / Ad Spend) × 100. The DMR package price
+      // is not part of ROI, matching the client dashboards (lead value ÷ ad spend).
       const calculatedEstROI = useMemo(() => {
-        const totalCost = packagePrice + adSpend
-        return totalCost > 0 && commission > 0 && estCloses > 0
-          ? Math.round(((estCloses * commission) / totalCost) * 100 * 100) / 100
+        return adSpend > 0 && commission > 0 && estCloses > 0
+          ? Math.round(((estCloses * commission) / adSpend) * 100 * 100) / 100
           : 0
-      }, [estCloses, commission, packagePrice, adSpend])
+      }, [estCloses, commission, adSpend])
 
       useEffect(() => {
         // Auto-update when any of the dependent fields change
         if (Math.abs((value || 0) - calculatedEstROI) > 0.01) {
           onChange(PatchEvent.from(set(calculatedEstROI)))
         }
-      }, [estCloses, commission, packagePrice, adSpend, value, onChange, calculatedEstROI])
+      }, [estCloses, commission, adSpend, value, onChange, calculatedEstROI])
 
       return props.renderDefault(props)
     },
