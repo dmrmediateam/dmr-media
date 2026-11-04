@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
 import TopWebsites from '@/components/TopWebsites'
 import AwardBadgeRow from '@/components/AwardBadgeRow'
@@ -18,7 +19,7 @@ import {
   Tile,
   type StatBandItem,
 } from '@/components/landing/ShowcaseParts'
-import { FinalCtaSection, LandingFaq } from '@/components/landing/conversion/ConversionSections'
+import { FinalCtaSection, FormCta, LandingFaq } from '@/components/landing/conversion/ConversionSections'
 import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 
 const OGROUP_LOGO = '/images/ClientLogos/oppenheim-group.png'
@@ -27,11 +28,8 @@ const STATS: StatBandItem[] = [
   { value: '3×', label: 'DesignRush Design Awards' },
   { value: '#1', label: 'Real Estate Marketing Agency', detail: 'SEMrush & Lister' },
   { value: '5/5', label: 'stars on Trustpilot & Google' },
-  { value: '14-Day', label: 'results guarantee*' },
+  { value: '600+', label: 'MLSs available through IDX' },
 ]
-
-const STATS_FOOTNOTE =
-  '*Qualified leads in your CRM within 14 days of launch, or we refund your website fee and ad spend (up to $2,000). Requires following up on 90% of leads within an hour.'
 
 export const BRAND_BUILDS = [
   {
@@ -87,15 +85,21 @@ export const AI_ANSWERS = [
   },
 ] as const
 
+const LEAD_SYSTEM = [
+  'Google Ads campaigns aimed at the buyers and sellers in your market',
+  'Our exact follow-up scripts and cadence, tested across clients',
+  'The 14-Day Lead Guarantee: qualified leads in your CRM within 14 days of your campaigns going live, or we refund your website fee and ad spend',
+] as const
+
 const WHY_DMR = [
   {
-    title: '650+ MLSs integrated',
+    title: '600+ MLSs integrated',
     body: 'Live listings, saved searches, and alerts on your own site.',
     photo: '/images/StockHomes/modern-luxury-house-at-dusk-2025-02-10-06-40-31-utc.jpg',
   },
   {
-    title: 'Leads that actually respond',
-    body: 'Our exact follow-up scripts, tested across clients.',
+    title: 'Lead capture built in',
+    body: 'Listing registration and home-valuation forms that send every lead to your CRM.',
     photo: '/images/StockHomes/spacious-living-room-with-staircase-in-residence-2025-10-10-15-17-44-utc (1).jpg',
   },
   {
@@ -129,7 +133,7 @@ export function LaptopHero() {
 export default function WebsiteDevBody({ config }: { config: ChannelLandingConfig }) {
   return (
     <>
-      <StatBand stats={STATS} footnote={STATS_FOOTNOTE} />
+      <StatBand stats={STATS} />
 
       <GoogleGeneralReviewsScroll eyebrow="Reviews" title="Why we have 5/5 stars on Trustpilot & Google" />
 
@@ -291,6 +295,44 @@ export default function WebsiteDevBody({ config }: { config: ChannelLandingConfi
       <section id="websites" className="scroll-mt-24 border-b border-[var(--color-ink-200)] bg-white pb-6 md:pb-10">
         <TopWebsites hideIndexLink nofollow />
       </section>
+
+      {/* Upsell: the website is the offer; the lead system (and its guarantee) is the add-on. */}
+      <FeatureSection id="add-leads" tone="base">
+        <FeatureHeading
+          eyebrow="Optional add-on"
+          title="Want the leads too? Add our lead system"
+          body="Your website is the foundation. When you're ready, we put buyers and sellers on it."
+        />
+        <SeoReveal delay={0.08}>
+          <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-[var(--color-off-black)] bg-white p-6 shadow-[0_24px_60px_-36px_rgba(15,15,15,0.45)] md:mt-12 md:p-8">
+            <ul className="list-none space-y-4 p-0">
+              {LEAD_SYSTEM.map((line) => (
+                <li key={line} className="flex items-start gap-3">
+                  <span
+                    className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-off-black)] text-[10px] leading-none !text-white"
+                    aria-hidden
+                  >
+                    ✓
+                  </span>
+                  <span className="gg-body !text-[15px] !leading-snug !text-[var(--color-off-black)]">{line}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7 flex flex-col gap-4 border-t border-[var(--color-ink-200)] pt-6 sm:flex-row sm:items-center sm:justify-between">
+              <p className="gg-body max-w-md !text-xs !leading-relaxed !text-[var(--gg-text-muted)]">
+                Ask about it on your quote. Ad spend is separate. The guarantee covers markets with an average home
+                price above $500,000, caps refunded ad spend at $2,000, and requires following up on at least 90% of
+                leads within an hour during business hours.{' '}
+                <Link href="/stripe/terms-of-service" className="underline underline-offset-2 hover:opacity-70">
+                  Full terms
+                </Link>
+                .
+              </p>
+              <FormCta label="Get my quote & examples" className="shrink-0" />
+            </div>
+          </div>
+        </SeoReveal>
+      </FeatureSection>
 
       <LandingFaq items={config.faqItems} />
 

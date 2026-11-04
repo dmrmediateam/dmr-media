@@ -23,12 +23,12 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
   heroTitleEmphasis: '',
   heroIntro: '',
   heroIntroShort:
-    'Our mission is to build beautiful websites that also generate leads. Go with the agency that cares about your success.',
+    'An award-nominated website designed to your brand, with live MLS search and lead capture built in. We design it, build it, and host it for you.',
   heroIntroParagraphs: [
     [
-      { text: 'Our entire mission is not only to build beautiful websites, but to make sure those websites ' },
-      { text: 'actually generate leads', italic: true },
-      { text: '. Go with the agency that cares about your success.' },
+      { text: 'A website designed to your brand and brokerage, with live MLS search and ' },
+      { text: 'lead capture built in', italic: true },
+      { text: '. We design it, build it, and host it for you, so every visitor has a reason to leave their name.' },
     ],
   ],
   partnerStats: [],
@@ -85,15 +85,15 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
   finalCta: {
     eyebrow: 'Ready when you are',
     title: 'Your next listing appointment starts on your website',
-    body: 'Get pricing, timelines, and live examples for your market, usually the same day. Leads in 14 days, or your money back.',
+    body: 'Get pricing, timelines, and live examples for your market, usually the same day.',
     ctaLabel: 'Get my quote & examples',
-    reassurance: ['Leads in 14 days or a full refund', 'Design ownership after 6 months', 'Connected to your MLS'],
+    reassurance: ['Approve it on a live preview before launch', 'Design ownership after 6 months', 'Connected to your MLS'],
   },
   timelineSection: {
     eyebrow: 'From kickoff to leads',
     title: 'A concrete build plan, not a vague timeline',
     intro:
-      'Three steps from kickoff to leads in your CRM.',
+      'Three steps from kickoff to a live website.',
     weeks: [
       {
         label: 'Step 1',
@@ -103,12 +103,12 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
       {
         label: 'Step 2',
         title: 'Build, launch & ads live',
-        body: 'We build on live preview links with IDX and lead capture, then launch with your campaigns on.',
+        body: 'We build on live preview links with IDX search and lead capture. You review every page and approve.',
       },
       {
         label: 'Step 3',
-        title: 'The guarantee window',
-        body: 'Qualified leads in your CRM within 14 days of launch, or we refund your website fee and ad spend.',
+        title: 'Launch & ongoing updates',
+        body: 'We move your domain and launch. After that, send us a change and we make it; hosting and your MLS feed are handled.',
       },
     ],
   },
@@ -127,7 +127,7 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
     },
     {
       question: 'Why not get a cheaper website?',
-      answer: 'Every build is tied to an outcome: qualified buyer and seller leads in your CRM within 14 days, or we refund your website fee and your ad spend. A cheaper site that never produces a lead costs more.',
+      answer: 'A cheap template looks like every other agent in your market and gives visitors no reason to leave their name. Ours are designed to your brand, nominated for design awards, and built with live MLS search and listing registration, so the site earns its keep. A cheaper site that never produces a lead costs more.',
     },
     {
       question: 'My brokerage or CRM already gives me a site. Why pay for one?',
@@ -135,7 +135,7 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
     },
     {
       question: 'Is it a one-time build or a monthly fee?',
-      answer: 'Both, in writing before you start: a one-time build fee for the tier you choose, plus a monthly retainer that covers hosting, your MLS/IDX feed, updates, and campaign management. Ad spend is separate and stays in your control.',
+      answer: 'Both, in writing before you start: a one-time build fee for the tier you choose, plus a monthly fee that covers hosting, your MLS/IDX feed, and updates. Your quote spells out both.',
     },
     {
       question: 'What happens to my current site?',
@@ -151,12 +151,12 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
     },
     {
       question: 'I’ve been burned by a website company before. Why trust you?',
-      answer: 'That’s why the guarantee exists. If qualified leads aren’t in your CRM within 14 days of launch, you get your website fee and ad spend back. Every result on this page names the client, so you can check it yourself.',
+      answer: 'You see the site on live preview links and approve every page before anything goes live, and nothing changes on your current site until you do. Every result on this page names the client, so you can check it yourself.',
     },
     {
       question: 'How much does a real estate website cost with DMR?',
       answer:
-        'It depends on the build you choose: templated, semi-custom (custom home page plus meet-the-team and about pages), or fully custom. Each is paired with a monthly retainer that covers hosting, your MLS/IDX feed, updates, and campaign management, and ad spend is separate. Request a quote and we send exact pricing and examples for your market, usually the same day.',
+        'It depends on the build you choose: templated, semi-custom (custom home page plus meet-the-team and about pages), or fully custom, plus a monthly fee for hosting, your MLS/IDX feed, and updates. Request a quote and we send exact pricing and examples for your market, usually the same day.',
     },
     {
       question: 'Is it a template or a custom design?',
@@ -174,9 +174,9 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
         'IDX (Internet Data Exchange) puts live MLS listings on your own website, so buyers search homes with you and register on your site instead of a portal. Every DMR build includes it.',
     },
     {
-      question: 'How does the 2-week guarantee work?',
+      question: 'Can you also bring me leads?',
       answer:
-        'If qualified buyer and seller leads aren\'t in your CRM within 14 days of your campaigns going live, we refund your website/onboarding fee and your ad spend (ad-spend refunds capped at $2,000 over the 14 days). The one condition: your team follows up on at least 90% of leads within an hour during business hours, using the scripts we hand you. Full terms are published on our service terms page.',
+        'Yes. Add our lead system to your website: Google Ads campaigns aimed at your buyers and sellers, plus the follow-up scripts our clients use. It comes with the 14-Day Lead Guarantee: if qualified leads aren\'t in your CRM within 14 days of your campaigns going live, we refund your website fee and ad spend (refunded ad spend is capped at $2,000). It applies to markets with an average home price above $500,000 and requires following up on at least 90% of leads within an hour during business hours. Ad spend is separate. Full terms are on our service terms page.',
     },
     {
       question: 'Who owns the website?',
@@ -192,9 +192,9 @@ export const websiteDevelopmentLandingConfig: ChannelLandingConfig = {
   metadata: {
     title: 'Award-Winning Real Estate Websites Built to Capture More Leads | DMR Media',
     description:
-      'Real estate websites built to capture leads: DesignRush-recognized design, IDX/MLS built in, and our follow-up scripts. Results in 14 days, guaranteed.',
+      'Award-nominated real estate websites designed to your brand, with IDX/MLS search and lead capture built in. Pricing and live examples, usually same day.',
     openGraphTitle: 'Award-Winning Real Estate Websites Built to Capture More Leads',
     openGraphDescription:
-      'Award-nominated luxury websites with our exact follow-up scripts, qualified buyer & seller leads in your CRM in 14 days, or we refund you.',
+      'Award-nominated luxury websites designed to your brand, with IDX/MLS search and lead capture built in.',
   },
 }

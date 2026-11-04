@@ -24,6 +24,16 @@ const initialFormData = {
   website: '',
 }
 
+
+/**
+ * Agents type their site the short way ("smithrealty.com", "www.smithrealty.com").
+ * The field is plain text so the browser never blocks the submit; add the scheme here.
+ */
+function normalizeWebsite(value: string): string {
+  const v = value.trim()
+  if (!v || v === 'https://' || v === 'http://') return ''
+  return /^https?:\/\//i.test(v) ? v : `https://${v.replace(/^\/+/, '')}`
+}
 type FormDataState = typeof initialFormData
 
 type LandingApplicationFormProps = {
@@ -102,7 +112,7 @@ export default function LandingApplicationForm({
           name,
           email: formData.email.trim(),
           phone: formData.phone.trim(),
-          website: formData.website.trim(),
+          website: normalizeWebsite(formData.website),
           ...honeypot,
           formName,
           submissionPage,
@@ -129,7 +139,7 @@ export default function LandingApplicationForm({
           name,
           email: formData.email.trim(),
           phone: formData.phone.trim(),
-          website: formData.website.trim(),
+          website: normalizeWebsite(formData.website),
         })
         const navigate = () => {
           if (onSuccess) {
@@ -253,12 +263,16 @@ export default function LandingApplicationForm({
               </label>
               <input
                 id="landing-website"
-                type="url"
+                type="text"
+                inputMode="url"
                 name="website"
                 value={formData.website}
                 onChange={handleChange}
                 autoComplete="url"
-                placeholder="https://"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
+                placeholder="yoursite.com"
                 className={applyFormInputClass}
               />
             </div>
