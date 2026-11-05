@@ -4,7 +4,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Service Terms — Subscriptions & Agreements | DMR Media',
   description:
-    'Service terms for DMR Media subscription programs, property marketing campaigns, and traditional SEO & Google Ads agreements, referenced from Stripe invoices.',
+    'Service terms for DMR Media subscription programs, the website development waitlist, property marketing campaigns, and traditional SEO & Google Ads agreements, referenced from Stripe invoices.',
   robots: {
     index: false,
     follow: false,
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = 'October 16, 2026';
+const LAST_UPDATED = 'November 4, 2026';
 
 export default function StripeTermsOfServicePage() {
   return (
@@ -244,6 +244,31 @@ export default function StripeTermsOfServicePage() {
                     <strong>Adding advertising later.</strong> You may move to the full program at any time. The
                     Section 4 retainer and commitment then apply from your first billing date on the full program, and
                     the 14-Day Lead Guarantee covers your first fourteen days of live campaigns.
+                  </li>
+                </ul>
+
+                <h3 className="text-xl font-serif font-light text-off-black mb-3 mt-6">4B. Website Development Waitlist</h3>
+                <p className="mb-3">
+                  The Website Development Waitlist reserves your place in our website build schedule. If you paid for
+                  the Website Development Waitlist through Stripe, this Section 4B applies.
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>
+                    <strong>Waitlist fee:</strong> <strong>$250</strong>, paid once at checkout.
+                  </li>
+                  <li>
+                    <strong>Non-refundable.</strong> The waitlist fee is <strong>non-refundable</strong>, including if
+                    you decide not to start your website build, and is not covered by the 14-Day Lead Guarantee in
+                    Section 3 or any other refund term on this page.
+                  </li>
+                  <li>
+                    <strong>Credited toward your website.</strong> When your build starts, the $250 is credited toward
+                    the one-time website fee for the tier on your invoice (Section 4).
+                  </li>
+                  <li>
+                    <strong>What it is not.</strong> Joining the waitlist does not start a subscription, a commitment
+                    term, or any monthly fee. Those begin only when you start a website plan (Section 4 or 4A) on your
+                    first billing date.
                   </li>
                 </ul>
 

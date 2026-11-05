@@ -17,7 +17,7 @@ import type { ChannelLandingConfig } from '@/lib/landing/channel-landing-types'
 const DMR_PHONE_DISPLAY = '+1 920-249-5210'
 const DMR_PHONE_HREF = 'tel:+19202495210'
 
-function ChannelLandingHeader({ applyLabel = 'Apply' }: { applyLabel?: string }) {
+export function ChannelLandingHeader({ applyLabel = 'Apply' }: { applyLabel?: string }) {
   const scrollToForm = () => {
     document.getElementById('hero-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
