@@ -6,6 +6,15 @@ function initSendGrid() {
   if (!process.env.SENDGRID_API_KEY) {
     throw new Error('SENDGRID_API_KEY is required for sending emails')
   }
+  // Local dev launch config: log instead of emailing the team.
+  if (process.env.NODE_ENV === 'development' && process.env.SENDGRID_API_KEY === 'local-disabled') {
+    return {
+      send: async (msg: { subject?: string }) => {
+        console.info('[email] local submission NOT emailed:', msg.subject)
+        return []
+      },
+    } as unknown as typeof sgMail
+  }
   sgMail.setApiKey(process.env.SENDGRID_API_KEY)
   return sgMail
 }

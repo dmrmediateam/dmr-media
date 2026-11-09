@@ -1,0 +1,91 @@
+'use client'
+
+import Image from 'next/image'
+import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
+import VideoTestimonials from '@/components/VideoTestimonials'
+import GoogleGeneralReviewsScroll from '@/components/landing/GoogleGeneralReviewsScroll'
+import { FinalCtaSection } from '@/components/landing/conversion/ConversionSections'
+import {
+  FeatureHeading,
+  FeatureSection,
+  Frame,
+  Stage,
+  StatBand,
+  Tile,
+  type StatBandItem,
+} from '@/components/landing/ShowcaseParts'
+
+const STATS: StatBandItem[] = [
+  { value: '#1', label: 'Real Estate Marketing Agency', detail: 'SEMrush & Lister' },
+  { value: '$11m+', label: 'closed in Q1 2026 with search & Google Ads', detail: 'Eagan Luxury' },
+  { value: '41', label: 'leads in 30 days on $1,812 of ad spend', detail: 'Hitchcock Properties' },
+  { value: '5/5', label: 'stars on Trustpilot & Google' },
+]
+
+/** Social proof under the quiz, modeled on /landing/marketing-agency. */
+export default function QuizProof() {
+  return (
+    <>
+      <StatBand stats={STATS} />
+
+      <GoogleGeneralReviewsScroll eyebrow="Reviews" title="Why we have 5/5 stars on Trustpilot & Google" />
+
+      {/* One client who moved through every stage */}
+      <FeatureSection id="proof" tone="base">
+        <FeatureHeading
+          eyebrow="Proof · Eagan Luxury, St. Petersburg"
+          title="One client, every channel, $11m+ closed in a quarter"
+          body="Website, Google Ads, and SEO run together by our team. Google Search Console for eaganluxury.com."
+        />
+        <SeoReveal delay={0.08}>
+          <Stage className="mx-auto mt-10 max-w-5xl !bg-white md:mt-12">
+            <Frame pan="min-w-[640px]">
+              <Image
+                src="/images/EaganCaseStudy/GoogleSearchConsole.png"
+                alt="Google Search Console performance for eaganluxury.com showing organic search growth"
+                width={2238}
+                height={830}
+                sizes="(min-width: 1280px) 1000px, 640px"
+                className="h-auto w-full rounded-lg"
+              />
+            </Frame>
+            <div className="mt-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-4">
+                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-4 border-white bg-white shadow-[0_12px_30px_-12px_rgba(15,15,15,0.45)]">
+                  <Image
+                    src="/images/landing/website-development/debi-eagan-headshot.webp"
+                    alt="Debi Eagan of Eagan Luxury in St. Petersburg, FL"
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="gg-display text-xl font-light">Debi Eagan</p>
+                  <p className="gg-body !text-xs !text-[var(--gg-text-muted)]">Eagan Luxury · St. Petersburg, FL</p>
+                </div>
+              </div>
+              <div className="grid gap-3 sm:min-w-[26rem] sm:grid-cols-3">
+                <Tile value="$11m+" label="closed in Q1 2026" />
+                <Tile value="3 of 3" label="AI tools name her first" />
+                <Tile value="22" label="verified Google ads" />
+              </div>
+            </div>
+          </Stage>
+        </SeoReveal>
+      </FeatureSection>
+
+      <VideoTestimonials eyebrow="Client testimonials" title="What our clients are saying" />
+
+      <FinalCtaSection
+        cta={{
+          eyebrow: '60 seconds',
+          title: 'Find out where your next $10M is coming from',
+          body: 'Answer eight quick questions and get a roadmap tailored to your stage, your market, and your answers.',
+          ctaLabel: 'Take the quiz',
+          reassurance: ['Takes about 60 seconds', 'Results on the next page', 'Tailored to your answers'],
+        }}
+      />
+    </>
+  )
+}
