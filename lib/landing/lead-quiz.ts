@@ -131,7 +131,7 @@ export type Stage = {
   slug: StageSlug
   number: 1 | 2 | 3 | 4
   name: string
-  /** Short phase label, e.g. "Early scaling". */
+  /** Short phase label under the stage name, e.g. "Transition to full-time". */
   phase: string
   volume: string
   headline: string
@@ -166,7 +166,7 @@ export const STAGES: Record<StageSlug, Stage> = {
     slug: 'consistency',
     number: 2,
     name: 'Consistency',
-    phase: 'Early scaling',
+    phase: 'Transition to Full-time',
     volume: '$5M to $20M',
     headline: 'Turn good months into a consistent pipeline.',
     summary:
@@ -185,7 +185,7 @@ export const STAGES: Record<StageSlug, Stage> = {
     slug: 'scaling',
     number: 3,
     name: 'Scaling',
-    phase: 'Slow scaling',
+    phase: 'The Agent Swamp',
     volume: '$20M to $40M',
     headline: 'Break out of the agent swamp.',
     summary:
@@ -204,7 +204,7 @@ export const STAGES: Record<StageSlug, Stage> = {
     slug: 'brand-building',
     number: 4,
     name: 'Brand Building',
-    phase: 'Fast scaling',
+    phase: 'Moving out of Production',
     volume: '$40M+',
     headline: 'Build a brand your market knows by name.',
     summary:
@@ -399,5 +399,25 @@ export function readQuizAnswers(): QuizAnswers | null {
     return raw ? (JSON.parse(raw) as QuizAnswers) : null
   } catch {
     return null
+  }
+}
+
+/** Flat, labeled quiz fields for Zapier / the CRM, one per answer plus the result. */
+export function quizFieldsForCrm(a: QuizAnswers) {
+  const stage = STAGES[stageFor(a.volume)]
+  const list = (id: QuestionId, values: string[]) => values.map((v) => labelFor(id, v)).join(', ') || 'None'
+  return {
+    quizStage: stage.number,
+    quizStageName: stage.name,
+    quizRecommendation: stage.recommend.title,
+    quizResultUrl: `https://www.dmrmedia.org/landing/lead-quiz/${stage.slug}`,
+    quizExperience: labelFor('experience', a.experience),
+    quizInvestingIn: list('investing', a.investing),
+    quizSetUp: list('setup', a.setup),
+    quizMostDifficult: labelFor('difficulty', a.difficulty),
+    quizTeamSize: labelFor('team', a.team),
+    quizSalesVolume: labelFor('volume', a.volume),
+    quizPricePoint: labelFor('price', a.price),
+    quizCommitment: a.commitment,
   }
 }

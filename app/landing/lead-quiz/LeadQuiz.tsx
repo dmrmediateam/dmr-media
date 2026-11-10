@@ -1,8 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { useRef, useState, type FormEvent } from 'react'
-import { applyFormBtnPrimaryClass, applyFormInputClass, applyFormLabelClass } from '@/components/applyFormPrimitives'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import FormHoneypot, { readHoneypot } from '@/components/FormHoneypot'
 import { saveLandingLeadPrefill } from '@/lib/landing/booking-prefill'
 import {
@@ -20,6 +20,7 @@ import { getStoredUTMParams, trackApplicationConversion } from '@/lib/utmTrackin
 const FORM_NAME = 'lead-quiz'
 /** Choice questions, then the 1-10 commitment scale, then contact details. */
 const TOTAL_STEPS = QUESTIONS.length + 2
+const GUIDE = { name: 'Andrew Rohm', role: 'Founder, DMR Media', photo: '/images/team/andrew-rohm-avatar.webp' }
 
 type Draft = Omit<QuizAnswers, 'commitment'> & { commitment: number | null }
 
@@ -40,21 +41,52 @@ function splitFullName(fullName: string) {
   return { name, firstName: parts[0] ?? '', lastName: parts.slice(1).join(' ') }
 }
 
+/** Wix-style answer: full-width, outlined, label centered. */
 const optionClass = (selected: boolean) =>
-  `flex min-h-[56px] w-full items-center gap-3 rounded-xl border px-4 py-3 text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 ${
+  `relative flex min-h-[52px] w-full items-center justify-center rounded-xl border px-10 py-2.5 text-center font-sans text-[15px] font-medium leading-snug transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 sm:text-base ${
     selected
-      ? 'border-[var(--color-off-black)] bg-[var(--color-off-black)] !text-white'
-      : 'border-[var(--color-ink-200)] bg-white hover:border-[var(--color-off-black)]/40'
+      ? 'border-[var(--color-off-black)] bg-[var(--color-off-black)]/[0.04] !text-[var(--color-off-black)] shadow-[inset_0_0_0_1px_var(--color-off-black)]'
+      : 'border-[var(--color-ink-200)] bg-white !text-[var(--color-off-black)] hover:border-[var(--color-off-black)]/50 hover:bg-[#fafaf9]'
   }`
 
-export default function LeadQuiz() {
+const inputClass =
+  'block w-full rounded-xl border border-[var(--color-ink-200)] bg-white px-4 py-3.5 font-sans text-base text-[var(--color-off-black)] placeholder:text-[var(--color-ink-300)] focus:border-[var(--color-off-black)] focus:outline-none focus:ring-2 focus:ring-[var(--color-off-black)]/10'
+
+const titleClass = 'font-sans text-[1.35rem] font-semibold leading-snug tracking-tight !text-[var(--color-off-black)] sm:text-2xl'
+
+/** The quiz as a Wix-style popup: a guide avatar over a white card, one question at a time. */
+export default function LeadQuiz({ open, onClose }: { open: boolean; onClose: () => void }) {
   const router = useRouter()
   const formRef = useRef<HTMLFormElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
   const [step, setStep] = useState(0)
   const [draft, setDraft] = useState<Draft>(EMPTY)
   const [contact, setContact] = useState({ fullName: '', email: '', phone: '' })
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
+
+  // Lock page scroll, close on Escape, and move focus into the dialog while it's open.
+  useEffect(() => {
+    if (!open) return
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    cardRef.current?.focus()
+    return () => {
+      document.body.style.overflow = previous
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open, onClose])
+
+  // Each new question starts at the top of the card.
+  useEffect(() => {
+    cardRef.current?.scrollTo({ top: 0 })
+  }, [step])
+
+  if (!open) return null
 
   const next = () => setStep((s) => Math.min(s + 1, TOTAL_STEPS - 1))
   const back = () => setStep((s) => Math.max(s - 1, 0))
@@ -106,6 +138,8 @@ export default function LeadQuiz() {
           annualSalesVolume: labelFor('volume', answers.volume),
           biggestChallenge: labelFor('difficulty', answers.difficulty),
           notes: answersSummary(answers),
+          // Structured answers so the server can email the agent their roadmap.
+          quizAnswers: answers,
           submissionPage,
           ...honeypot,
           ...utm,
@@ -135,149 +169,196 @@ export default function LeadQuiz() {
   const progress = Math.round(((step + 1) / TOTAL_STEPS) * 100)
 
   return (
-    <div
-      id="hero-form"
-      className="scroll-mt-28 rounded-3xl border border-[var(--color-ink-200)] bg-white p-5 shadow-[0_30px_80px_-40px_rgba(15,15,15,0.35)] sm:p-8"
-    >
-      <div className="flex items-center justify-between gap-4">
-        <p className="gg-eyebrow">
-          {isContact ? 'Last step' : `Question ${step + 1} of ${TOTAL_STEPS - 1}`}
-        </p>
-        {step > 0 ? (
-          <button type="button" onClick={back} className="gg-eyebrow underline-offset-4 hover:underline">
-            ← Back
-          </button>
-        ) : null}
-      </div>
-      <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-[var(--color-ink-200)]" aria-hidden>
-        <div className="h-full rounded-full bg-[var(--color-off-black)] transition-all duration-300" style={{ width: `${progress}%` }} />
-      </div>
+    // z-index sits above the review badge and chat widgets so the dialog is the only thing in front.
+    <div className="fixed inset-0 z-[2147483600] flex items-center justify-center bg-[rgba(15,15,15,0.55)] px-4 pb-4 pt-16 backdrop-blur-[2px]" onClick={onClose}>
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="quiz-title"
+        className="relative w-full max-w-[560px] [&_*]:![font-family:var(--font-inter),ui-sans-serif,system-ui,sans-serif]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Guide avatar, overlapping the top of the card */}
+        <div className="pointer-events-none absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2">
+          <div className="relative h-[88px] w-[88px] overflow-hidden rounded-full border-4 border-white shadow-[0_10px_30px_-10px_rgba(15,15,15,0.5)] ring-2 ring-[var(--color-off-black)] ring-offset-2 ring-offset-white sm:h-24 sm:w-24">
+            <Image src={GUIDE.photo} alt={GUIDE.name} fill sizes="96px" className="object-cover" priority />
+          </div>
+        </div>
 
-      {question ? (
-        <fieldset className="mt-7" key={question.id}>
-          <legend className="gg-display text-2xl font-light leading-snug sm:text-3xl">{question.title}</legend>
-          {question.kind === 'multi' ? (
-            <p className="gg-body mt-1 !text-sm !text-[var(--gg-text-muted)]">Pick all that apply.</p>
-          ) : null}
-          <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
-            {question.options.map((o) => {
-              const value = draft[question.id]
-              const selected = Array.isArray(value) ? value.includes(o.value) : value === o.value
-              return (
-                <button
-                  key={o.value}
-                  type="button"
-                  aria-pressed={selected}
-                  onClick={() => choose(question, o.value)}
-                  className={optionClass(selected)}
-                >
-                  <span className="gg-body !text-[15px] font-medium !leading-snug !text-inherit">{o.label}</span>
-                </button>
-              )
-            })}
-          </div>
-          {question.kind === 'multi' ? (
-            <button
-              type="button"
-              onClick={next}
-              disabled={(draft[question.id] as string[]).length === 0}
-              className={`${applyFormBtnPrimaryClass} mt-6 w-full !rounded-full disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:!px-10`}
-            >
-              Next →
-            </button>
-          ) : null}
-        </fieldset>
-      ) : null}
-
-      {isCommitment ? (
-        <fieldset className="mt-7">
-          <legend className="gg-display text-2xl font-light leading-snug sm:text-3xl">{COMMITMENT_QUESTION}</legend>
-          <div className="mt-5 grid grid-cols-5 gap-2 sm:grid-cols-10">
-            {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
-              <button
-                key={n}
-                type="button"
-                aria-pressed={draft.commitment === n}
-                aria-label={`${n} out of 10`}
-                onClick={() => {
-                  setDraft((d) => ({ ...d, commitment: n }))
-                  next()
-                }}
-                className={`${optionClass(draft.commitment === n)} !min-h-[52px] justify-center !px-0`}
-              >
-                <span className="gg-body !text-base font-semibold !text-inherit">{n}</span>
-              </button>
-            ))}
-          </div>
-          <div className="mt-2 flex justify-between">
-            <span className="gg-body !text-xs !text-[var(--gg-text-muted)]">Just looking</span>
-            <span className="gg-body !text-xs !text-[var(--gg-text-muted)]">Ready now</span>
-          </div>
-        </fieldset>
-      ) : null}
-
-      {isContact ? (
-        <form ref={formRef} onSubmit={submit} noValidate className="relative mt-7" aria-label="Where to send your roadmap">
-          <FormHoneypot idSuffix="lead-quiz" />
-          <h2 className="gg-display text-2xl font-light leading-snug sm:text-3xl">
-            Where should we send your personalized real estate sales roadmap?
-          </h2>
-          <div className="mt-5 grid gap-4">
-            <div>
-              <label htmlFor="quiz-name" className={applyFormLabelClass}>Full name</label>
-              <input
-                id="quiz-name"
-                name="fullName"
-                required
-                autoComplete="name"
-                value={contact.fullName}
-                onChange={(e) => setContact((c) => ({ ...c, fullName: e.target.value }))}
-                className={applyFormInputClass}
-              />
-            </div>
-            <div>
-              <label htmlFor="quiz-email" className={applyFormLabelClass}>Email</label>
-              <input
-                id="quiz-email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                value={contact.email}
-                onChange={(e) => setContact((c) => ({ ...c, email: e.target.value }))}
-                className={applyFormInputClass}
-              />
-            </div>
-            <div>
-              <label htmlFor="quiz-phone" className={applyFormLabelClass}>Phone</label>
-              <input
-                id="quiz-phone"
-                name="phone"
-                type="tel"
-                required
-                autoComplete="tel"
-                inputMode="tel"
-                value={contact.phone}
-                onChange={(e) => setContact((c) => ({ ...c, phone: e.target.value }))}
-                className={applyFormInputClass}
-              />
-            </div>
-          </div>
-          {error ? (
-            <p className="gg-body mt-4 !text-sm !text-[#b42318]" role="alert">
-              {error}
-            </p>
-          ) : null}
+        <div
+          ref={cardRef}
+          tabIndex={-1}
+          className="max-h-[calc(100dvh-5rem)] overflow-y-auto rounded-2xl bg-white px-5 pb-6 pt-16 shadow-[0_40px_100px_-30px_rgba(15,15,15,0.6)] outline-none sm:px-10 sm:pb-8 sm:pt-[4.5rem]"
+        >
           <button
-            type="submit"
-            disabled={submitting}
-            className={`${applyFormBtnPrimaryClass} mt-6 w-full !rounded-full disabled:opacity-60`}
+            type="button"
+            onClick={onClose}
+            aria-label="Close the quiz"
+            className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full font-sans text-xl !text-[var(--color-ink-400)] transition-colors hover:bg-[var(--surface-base)] hover:!text-[var(--color-off-black)]"
           >
-            {submitting ? 'Building your roadmap…' : 'See my roadmap →'}
+            ×
           </button>
-          <p className="gg-body mt-3 text-center !text-xs !text-[var(--gg-text-muted)]">No spam. Your results show on the next page.</p>
-        </form>
-      ) : null}
+
+          <p className="text-center font-sans text-xs !text-[var(--gg-text-muted)]">
+            {GUIDE.name} · {GUIDE.role}
+          </p>
+
+          {question ? (
+            <fieldset key={question.id} className="mt-4">
+              <legend id="quiz-title" className={`${titleClass} mx-auto block text-center`}>
+                {question.title}
+              </legend>
+              {question.kind === 'multi' ? (
+                <p className="mt-1.5 text-center font-sans text-sm !text-[var(--gg-text-muted)]">Pick all that apply.</p>
+              ) : null}
+              <div className="mt-6 grid gap-2.5">
+                {question.options.map((o) => {
+                  const value = draft[question.id]
+                  const selected = Array.isArray(value) ? value.includes(o.value) : value === o.value
+                  return (
+                    <button
+                      key={o.value}
+                      type="button"
+                      aria-pressed={selected}
+                      onClick={() => choose(question, o.value)}
+                      className={optionClass(selected)}
+                    >
+                      {question.kind === 'multi' ? (
+                        <span
+                          className={`absolute left-4 flex h-5 w-5 items-center justify-center rounded-md border text-[11px] leading-none ${
+                            selected ? 'border-[var(--color-off-black)] bg-[var(--color-off-black)] !text-white' : 'border-[var(--color-ink-300)]'
+                          }`}
+                          aria-hidden
+                        >
+                          {selected ? '✓' : ''}
+                        </span>
+                      ) : null}
+                      {o.label}
+                    </button>
+                  )
+                })}
+              </div>
+              {question.kind === 'multi' ? (
+                <button
+                  type="button"
+                  onClick={next}
+                  disabled={(draft[question.id] as string[]).length === 0}
+                  className="mt-5 flex min-h-[56px] w-full items-center justify-center rounded-xl bg-[var(--color-off-black)] font-sans text-base font-semibold !text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30"
+                >
+                  Continue
+                </button>
+              ) : null}
+            </fieldset>
+          ) : null}
+
+          {isCommitment ? (
+            <fieldset className="mt-4">
+              <legend id="quiz-title" className={`${titleClass} mx-auto block text-center`}>
+                {COMMITMENT_QUESTION}
+              </legend>
+              <div className="mt-6 grid grid-cols-5 gap-2.5">
+                {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                  <button
+                    key={n}
+                    type="button"
+                    aria-pressed={draft.commitment === n}
+                    aria-label={`${n} out of 10`}
+                    onClick={() => {
+                      setDraft((d) => ({ ...d, commitment: n }))
+                      next()
+                    }}
+                    className={`${optionClass(draft.commitment === n)} !px-0 !text-lg !font-semibold`}
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
+              <div className="mt-2 flex justify-between font-sans text-xs !text-[var(--gg-text-muted)]">
+                <span>Just looking</span>
+                <span>Ready now</span>
+              </div>
+            </fieldset>
+          ) : null}
+
+          {isContact ? (
+            <form ref={formRef} onSubmit={submit} noValidate className="relative mt-4" aria-labelledby="quiz-title">
+              <FormHoneypot idSuffix="lead-quiz" />
+              <h2 id="quiz-title" className={`${titleClass} text-center`}>
+                Where should we send your personalized real estate sales roadmap?
+              </h2>
+              <div className="mt-6 grid gap-3">
+                <label className="block">
+                  <span className="sr-only">Full name</span>
+                  <input
+                    name="fullName"
+                    required
+                    autoComplete="name"
+                    placeholder="Full name"
+                    value={contact.fullName}
+                    onChange={(e) => setContact((c) => ({ ...c, fullName: e.target.value }))}
+                    className={inputClass}
+                  />
+                </label>
+                <label className="block">
+                  <span className="sr-only">Email</span>
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    placeholder="Email"
+                    value={contact.email}
+                    onChange={(e) => setContact((c) => ({ ...c, email: e.target.value }))}
+                    className={inputClass}
+                  />
+                </label>
+                <label className="block">
+                  <span className="sr-only">Phone</span>
+                  <input
+                    name="phone"
+                    type="tel"
+                    required
+                    autoComplete="tel"
+                    inputMode="tel"
+                    placeholder="Phone"
+                    value={contact.phone}
+                    onChange={(e) => setContact((c) => ({ ...c, phone: e.target.value }))}
+                    className={inputClass}
+                  />
+                </label>
+              </div>
+              {error ? (
+                <p className="mt-4 text-center font-sans text-sm !text-[#b42318]" role="alert">
+                  {error}
+                </p>
+              ) : null}
+              <button
+                type="submit"
+                disabled={submitting}
+                className="mt-5 flex min-h-[56px] w-full items-center justify-center rounded-xl bg-[var(--color-off-black)] font-sans text-base font-semibold !text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+              >
+                {submitting ? 'Building your roadmap…' : 'See my roadmap'}
+              </button>
+              <p className="mt-3 text-center font-sans text-xs !text-[var(--gg-text-muted)]">No spam. Your results show on the next page.</p>
+            </form>
+          ) : null}
+
+          {/* Footer: back + progress, like the Wix popup's text links */}
+          <div className="mt-7 flex items-center justify-center gap-6">
+            {step > 0 ? (
+              <button type="button" onClick={back} className="font-sans text-sm font-medium !text-[var(--color-off-black)] underline-offset-4 hover:underline">
+                ← Back
+              </button>
+            ) : null}
+            <span className="font-sans text-sm !text-[var(--gg-text-muted)]">
+              {isContact ? 'Last step' : `${step + 1} of ${TOTAL_STEPS - 1}`}
+            </span>
+          </div>
+          <div className="mx-auto mt-3 h-1 w-full max-w-[220px] overflow-hidden rounded-full bg-[var(--color-ink-200)]" aria-hidden>
+            <div className="h-full rounded-full bg-[var(--color-off-black)] transition-all duration-300" style={{ width: `${progress}%` }} />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

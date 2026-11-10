@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { SeoReveal } from '@/app/seo-optimization/SeoReveal'
 import VideoTestimonials from '@/components/VideoTestimonials'
 import GoogleGeneralReviewsScroll from '@/components/landing/GoogleGeneralReviewsScroll'
-import { FinalCtaSection } from '@/components/landing/conversion/ConversionSections'
 import {
   FeatureHeading,
   FeatureSection,
@@ -23,7 +22,7 @@ const STATS: StatBandItem[] = [
 ]
 
 /** Social proof under the quiz, modeled on /landing/marketing-agency. */
-export default function QuizProof() {
+export default function QuizProof({ onStart }: { onStart: () => void }) {
   return (
     <>
       <StatBand stats={STATS} />
@@ -77,15 +76,23 @@ export default function QuizProof() {
 
       <VideoTestimonials eyebrow="Client testimonials" title="What our clients are saying" />
 
-      <FinalCtaSection
-        cta={{
-          eyebrow: '60 seconds',
-          title: 'Find out where your next $10M is coming from',
-          body: 'Answer eight quick questions and get a roadmap tailored to your stage, your market, and your answers.',
-          ctaLabel: 'Take the quiz',
-          reassurance: ['Takes about 60 seconds', 'Results on the next page', 'Tailored to your answers'],
-        }}
-      />
+      {/* Closing call to action: opens the quiz popup */}
+      <section className="border-t border-[var(--color-ink-200)] bg-[var(--surface-base)] px-4 py-20 text-center sm:px-6 md:py-28">
+        <p className="gg-eyebrow gg-eyebrow--strong">60 seconds</p>
+        <h2 className="gg-display mx-auto mt-4 max-w-3xl text-[2.2rem] font-light leading-[1.08] tracking-tight sm:text-5xl">
+          Find out where your next $10M is coming from
+        </h2>
+        <p className="gg-body gg-body-lg mx-auto mt-5 max-w-xl">
+          Answer eight quick questions and get a roadmap tailored to your stage, your market, and your answers.
+        </p>
+        <button
+          type="button"
+          onClick={onStart}
+          className="mt-9 inline-flex min-h-[60px] w-full max-w-sm items-center justify-center gap-2 rounded-full bg-[var(--color-off-black)] px-10 ![font-family:var(--font-inter),ui-sans-serif,system-ui,sans-serif] text-base font-semibold !text-white shadow-[0_16px_40px_-16px_rgba(15,15,15,0.6)] [&_*]:![font-family:var(--font-inter),ui-sans-serif,system-ui,sans-serif] transition-transform hover:-translate-y-0.5 motion-reduce:transition-none sm:w-auto"
+        >
+          Start the quiz <span aria-hidden className="!text-white">→</span>
+        </button>
+      </section>
     </>
   )
 }

@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isGoogleGeneralDisqualifiedVolume } from '@/lib/application-form'
-import { sendApplicationFormEmail } from '@/lib/email'
+import { sendApplicationFormEmail, sendQuizRoadmapEmail } from '@/lib/email'
+import { buildRoadmapEmail, parseQuizAnswers } from '@/lib/landing/lead-quiz-email'
+import { quizFieldsForCrm, type QuizAnswers } from '@/lib/landing/lead-quiz'
 import { isSpam } from '@/lib/spam-filter'
 import { reportFilteredSubmission } from '@/lib/filtered-submission'
 
 const DEFAULT_THANK_YOU_PATH = '/landing/thank-you'
 const GOOGLE_GENERAL_FORM_NAME = 'google-general-strategy-call'
+const LEAD_QUIZ_FORM_NAME = 'lead-quiz'
 const GOOGLE_GENERAL_THANK_YOU_PATH = '/landing/thank-you-q'
 const GOOGLE_GENERAL_DISQUALIFIED_THANK_YOU_PATH = '/landing/thank-you-dq'
 
@@ -55,6 +58,22 @@ async function postApplicationToZapier(
     submissionPage: payload.submissionPage,
   })
   return null
+}
+
+/**
+ * The lead quiz emails the agent their roadmap once the lead is in Zapier. A
+ * failed email is logged, never turned into a failed submission.
+ */
+async function sendQuizRoadmapSafely(email: string, firstName: string, answers: QuizAnswers | null) {
+  if (!email || !answers) {
+    console.warn('[Application] lead-quiz roadmap email skipped', { hasEmail: Boolean(email), hasAnswers: Boolean(answers) })
+    return
+  }
+  try {
+    await sendQuizRoadmapEmail({ to: email, ...buildRoadmapEmail(firstName, answers) })
+  } catch (error) {
+    console.error('[Application] lead-quiz roadmap email failed', error)
+  }
 }
 
 /**
@@ -150,9 +169,22 @@ export async function POST(req: NextRequest) {
 
       await sendApplicationEmailSafely(payload)
 
-      const webhookUrl = process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL
-      const zapierError = await postApplicationToZapier(webhookUrl, ZAPIER_MISSING_ERROR, payload)
+      // The lead quiz has its own Zap (ZAPIER_LEAD_QUIZ_WEBHOOK_URL). If that isn't set,
+      // quiz leads fall back to the shared Google General Zap rather than failing.
+      const isLeadQuiz = formName === LEAD_QUIZ_FORM_NAME
+      const quizAnswers = isLeadQuiz ? parseQuizAnswers(body.quizAnswers) : null
+      if (isLeadQuiz && !process.env.ZAPIER_LEAD_QUIZ_WEBHOOK_URL) {
+        console.warn('[Application] ZAPIER_LEAD_QUIZ_WEBHOOK_URL not set; lead-quiz lead sent to the Google General Zap')
+      }
+      const webhookUrl =
+        (isLeadQuiz && process.env.ZAPIER_LEAD_QUIZ_WEBHOOK_URL) || process.env.ZAPIER_WEBHOOK_URL_GOOGLE_GENERAL
+      const zapierPayload = quizAnswers ? { ...payload, ...quizFieldsForCrm(quizAnswers) } : payload
+      const zapierError = await postApplicationToZapier(webhookUrl, ZAPIER_MISSING_ERROR, zapierPayload)
       if (zapierError) return zapierError
+
+      if (isLeadQuiz) {
+        await sendQuizRoadmapSafely(payload.email, firstName, quizAnswers)
+      }
 
       if (formName === GOOGLE_GENERAL_FORM_NAME) {
         const isDisqualifiedVolume = isGoogleGeneralDisqualifiedVolume(payload.annualSalesVolume)
