@@ -421,3 +421,26 @@ export function quizFieldsForCrm(a: QuizAnswers) {
     quizCommitment: a.commitment,
   }
 }
+
+/** Rebuilds trusted answers from an untrusted request body; null when anything is off. */
+export function parseQuizAnswers(raw: unknown): QuizAnswers | null {
+  if (!raw || typeof raw !== 'object') return null
+  const r = raw as Record<string, unknown>
+  const allowed = (id: string) => new Set(QUESTIONS.find((q) => q.id === id)?.options.map((o) => o.value) ?? [])
+  const one = (id: string) => (typeof r[id] === 'string' && allowed(id).has(r[id] as string) ? (r[id] as string) : null)
+  const many = (id: string) =>
+    Array.isArray(r[id]) ? (r[id] as unknown[]).filter((v): v is string => typeof v === 'string' && allowed(id).has(v)) : []
+  const commitment = Number(r.commitment)
+  const answers = {
+    experience: one('experience'),
+    investing: many('investing'),
+    setup: many('setup'),
+    difficulty: one('difficulty'),
+    team: one('team'),
+    volume: one('volume'),
+    price: one('price'),
+    commitment: Number.isFinite(commitment) ? Math.min(10, Math.max(1, Math.round(commitment))) : 5,
+  }
+  if (!answers.experience || !answers.difficulty || !answers.team || !answers.volume || !answers.price) return null
+  return answers as QuizAnswers
+}

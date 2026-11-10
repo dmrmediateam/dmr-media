@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isGoogleGeneralDisqualifiedVolume } from '@/lib/application-form'
-import { sendApplicationFormEmail, sendQuizRoadmapEmail } from '@/lib/email'
-import { buildRoadmapEmail, parseQuizAnswers } from '@/lib/landing/lead-quiz-email'
-import { quizFieldsForCrm, type QuizAnswers } from '@/lib/landing/lead-quiz'
+import { sendApplicationFormEmail } from '@/lib/email'
+import { parseQuizAnswers, quizFieldsForCrm } from '@/lib/landing/lead-quiz'
 import { isSpam } from '@/lib/spam-filter'
 import { reportFilteredSubmission } from '@/lib/filtered-submission'
 
@@ -58,22 +57,6 @@ async function postApplicationToZapier(
     submissionPage: payload.submissionPage,
   })
   return null
-}
-
-/**
- * The lead quiz emails the agent their roadmap once the lead is in Zapier. A
- * failed email is logged, never turned into a failed submission.
- */
-async function sendQuizRoadmapSafely(email: string, firstName: string, answers: QuizAnswers | null) {
-  if (!email || !answers) {
-    console.warn('[Application] lead-quiz roadmap email skipped', { hasEmail: Boolean(email), hasAnswers: Boolean(answers) })
-    return
-  }
-  try {
-    await sendQuizRoadmapEmail({ to: email, ...buildRoadmapEmail(firstName, answers) })
-  } catch (error) {
-    console.error('[Application] lead-quiz roadmap email failed', error)
-  }
 }
 
 /**
@@ -181,10 +164,6 @@ export async function POST(req: NextRequest) {
       const zapierPayload = quizAnswers ? { ...payload, ...quizFieldsForCrm(quizAnswers) } : payload
       const zapierError = await postApplicationToZapier(webhookUrl, ZAPIER_MISSING_ERROR, zapierPayload)
       if (zapierError) return zapierError
-
-      if (isLeadQuiz) {
-        await sendQuizRoadmapSafely(payload.email, firstName, quizAnswers)
-      }
 
       if (formName === GOOGLE_GENERAL_FORM_NAME) {
         const isDisqualifiedVolume = isGoogleGeneralDisqualifiedVolume(payload.annualSalesVolume)

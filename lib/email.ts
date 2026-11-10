@@ -759,38 +759,3 @@ export async function sendFilteredSubmissionEmail({ source, reasons, fields }: F
     throw new Error('Failed to send filtered submission email');
   }
 }
-
-/**
- * The lead-quiz roadmap email, sent to the agent who took the quiz (one of
- * four, by stage; copy lives in lib/landing/lead-quiz-email.ts). Plain text,
- * from Andrew by name; replies go to the team inbox.
- */
-export async function sendQuizRoadmapEmail({
-  to,
-  subject,
-  text,
-}: {
-  to: string;
-  subject: string;
-  text: string;
-}) {
-  const emailContent = {
-    to,
-    from: {
-      email: process.env.SENDGRID_FROM_EMAIL || 'noreply@sendgrid.net',
-      name: 'Andrew Rohm | DMR Media',
-    },
-    replyTo: process.env.APPLICATION_FORM_EMAIL || 'team@dmrmedia.org',
-    subject,
-    // Plain text only: it should read like a note from Andrew, not a newsletter.
-    text,
-  };
-
-  try {
-    await initSendGrid().send(emailContent);
-    return { success: true };
-  } catch (error: any) {
-    console.error('SendGrid Error (quiz roadmap):', error.response?.body || error);
-    throw new Error('Failed to send quiz roadmap email');
-  }
-}

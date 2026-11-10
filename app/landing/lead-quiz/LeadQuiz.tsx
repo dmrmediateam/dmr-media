@@ -138,7 +138,7 @@ export default function LeadQuiz({ open, onClose }: { open: boolean; onClose: ()
           annualSalesVolume: labelFor('volume', answers.volume),
           biggestChallenge: labelFor('difficulty', answers.difficulty),
           notes: answersSummary(answers),
-          // Structured answers so the server can email the agent their roadmap.
+          // Structured answers: the server sends them to the quiz Zap as labeled fields (Kit sends the roadmap email).
           quizAnswers: answers,
           submissionPage,
           ...honeypot,
