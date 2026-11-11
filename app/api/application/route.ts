@@ -2,8 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { isGoogleGeneralDisqualifiedVolume } from '@/lib/application-form'
 import { sendApplicationFormEmail } from '@/lib/email'
 import { parseQuizAnswers, quizFieldsForCrm } from '@/lib/landing/lead-quiz'
+import { generateQuizPlan } from '@/lib/landing/lead-quiz-ai'
 import { isSpam } from '@/lib/spam-filter'
 import { reportFilteredSubmission } from '@/lib/filtered-submission'
+
+// The lead quiz waits on its AI plan (capped at 12s), so allow a little headroom.
+export const maxDuration = 30
 
 const DEFAULT_THANK_YOU_PATH = '/landing/thank-you'
 const GOOGLE_GENERAL_FORM_NAME = 'google-general-strategy-call'
@@ -150,6 +154,15 @@ export async function POST(req: NextRequest) {
         ...readAttributionFromJson(body),
       }
 
+      // Lead quiz: write the personalized plan (one cached AI call) while the email and Zapier run.
+      const quizPlanPromise =
+        formName === LEAD_QUIZ_FORM_NAME
+          ? (() => {
+              const answers = parseQuizAnswers(body.quizAnswers)
+              return answers ? generateQuizPlan(answers) : Promise.resolve(null)
+            })()
+          : null
+
       await sendApplicationEmailSafely(payload)
 
       // The lead quiz has its own Zap (ZAPIER_LEAD_QUIZ_WEBHOOK_URL). If that isn't set,
@@ -164,6 +177,10 @@ export async function POST(req: NextRequest) {
       const zapierPayload = quizAnswers ? { ...payload, ...quizFieldsForCrm(quizAnswers) } : payload
       const zapierError = await postApplicationToZapier(webhookUrl, ZAPIER_MISSING_ERROR, zapierPayload)
       if (zapierError) return zapierError
+
+      if (quizPlanPromise) {
+        return NextResponse.json({ ok: true, plan: await quizPlanPromise })
+      }
 
       if (formName === GOOGLE_GENERAL_FORM_NAME) {
         const isDisqualifiedVolume = isGoogleGeneralDisqualifiedVolume(payload.annualSalesVolume)

@@ -386,6 +386,42 @@ export function answersSummary(a: QuizAnswers): string {
   ].join('\n')
 }
 
+/** AI-written plan for one quiz result (see lib/landing/lead-quiz-ai.ts), in Andrew's voice. */
+export type QuizPlan = {
+  /** Tailored stage description for the result header. */
+  description: string
+  /** "Do this" headline, reworded for them (always the stage's main recommendation). */
+  doTitle: string
+  /** Why the "Do this" fits them. */
+  note: string
+  /** "Skip this for now" headline and reason (always the stage's skip item). */
+  skipTitle: string
+  skipBody: string
+  moves: { title: string; body: string }[]
+  callNudge: string
+}
+
+const PLAN_STORAGE_KEY = 'dmr:lead-quiz-plan'
+
+export function saveQuizPlan(plan: QuizPlan | null) {
+  try {
+    if (plan) window.sessionStorage.setItem(PLAN_STORAGE_KEY, JSON.stringify(plan))
+    else window.sessionStorage.removeItem(PLAN_STORAGE_KEY)
+  } catch {
+    // Blocked storage: the result page shows the stage's standard advice.
+  }
+}
+
+export function readQuizPlan(): QuizPlan | null {
+  try {
+    const raw = window.sessionStorage.getItem(PLAN_STORAGE_KEY)
+    const p = raw ? (JSON.parse(raw) as QuizPlan) : null
+    return p && typeof p.description === 'string' && typeof p.note === 'string' && Array.isArray(p.moves) && p.moves.length ? p : null
+  } catch {
+    return null
+  }
+}
+
 const STORAGE_KEY = 'dmr:lead-quiz'
 
 export function saveQuizAnswers(answers: QuizAnswers) {

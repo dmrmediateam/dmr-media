@@ -13,13 +13,15 @@ import {
   STAGES,
   answersSummary,
   readQuizAnswers,
+  readQuizPlan,
   readinessNote,
   stageFor,
   tailoredRecommendations,
   type QuizAnswers,
+  type QuizPlan,
   type StageSlug,
 } from '@/lib/landing/lead-quiz'
-import RoadmapGraphic from '../RoadmapGraphic'
+import RoadmapGraphic, { StageIcon } from '../RoadmapGraphic'
 import SystemClip from '../SystemClip'
 import { useHideSiteChrome } from '../useLandingChrome'
 import StageProof from './StageProof'
@@ -67,47 +69,24 @@ function PrimaryCta({ consult, tone }: { consult: boolean; tone: 'dark' | 'light
   )
 }
 
-/** Half-circle gauge with four segments, the agent's stage lit and a needle on it. */
-function StageGauge({ number }: { number: number }) {
-  const cx = 120
-  const cy = 112
-  const r = 96
-  const point = (deg: number) => {
-    const a = (deg * Math.PI) / 180
-    return `${cx + r * Math.cos(a)} ${cy - r * Math.sin(a)}`
-  }
-  const segments = [0, 1, 2, 3].map((i) => {
-    const start = 180 - i * 45 - 2.5
-    const end = 180 - (i + 1) * 45 + 2.5
-    return `M ${point(start)} A ${r} ${r} 0 0 1 ${point(end)}`
-  })
-  const needleDeg = 180 - (number - 0.5) * 45
-  const needleRad = (needleDeg * Math.PI) / 180
-  const nx = cx + (r - 30) * Math.cos(needleRad)
-  const ny = cy - (r - 30) * Math.sin(needleRad)
-
+/** The agent's stage: its roadmap icon, "Stage N of 4", and a four-step progress bar. */
+function StageMark({ slug, number, phase }: { slug: StageSlug; number: number; phase: string }) {
   return (
-    <svg viewBox="0 0 240 182" className="h-auto w-[220px] sm:w-[260px]" role="img" aria-label={`Stage ${number} of 4`}>
-      {segments.map((d, i) => (
-        <path
-          key={i}
-          d={d}
-          fill="none"
-          strokeWidth="18"
-          stroke="#ffffff"
-          strokeOpacity={i + 1 === number ? 1 : i + 1 < number ? 0.4 : 0.14}
-        />
-      ))}
-      <line x1={cx} y1={cy} x2={nx} y2={ny} stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
-      <circle cx={cx} cy={cy} r="7" fill="#ffffff" />
-      {/* Number sits below the pivot, clear of the needle */}
-      <text x={cx} y={cy + 46} textAnchor="middle" fill="#ffffff" fontSize="34" fontWeight="600" fontFamily="ui-sans-serif, system-ui">
-        {number}
-      </text>
-      <text x={cx} y={cy + 66} textAnchor="middle" fill="#ffffff" fillOpacity="0.6" fontSize="11" fontFamily="ui-sans-serif, system-ui" letterSpacing="2">
-        OF 4
-      </text>
-    </svg>
+    <div className="flex items-center gap-4">
+      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white !text-[var(--color-off-black)] sm:h-16 sm:w-16">
+        <StageIcon slug={slug} className="h-7 w-7 sm:h-8 sm:w-8" />
+      </span>
+      <span className="flex flex-col gap-2">
+        <span className="gg-body !text-xs font-semibold uppercase tracking-[0.18em] !text-white/70">
+          Stage {number} of 4 · {phase}
+        </span>
+        <span className="flex gap-1" aria-hidden>
+          {[1, 2, 3, 4].map((n) => (
+            <span key={n} className={`h-1 w-8 rounded-full ${n === number ? 'bg-white' : n < number ? 'bg-white/45' : 'bg-white/15'}`} />
+          ))}
+        </span>
+      </span>
+    </div>
   )
 }
 
@@ -132,7 +111,7 @@ function SectionHead({ n, title, sub }: { n: number; title: string; sub?: string
 
 /**
  * Quiz result as a personal report, so it reads differently from the quiz page:
- * a dark header with a stage gauge, then numbered sections (where you are, our
+ * a dark report-cover header, then numbered sections (where you are, our
  * recommendation, your next step, alternatives to look into) with a contents
  * rail on desktop, then the video, logos, and proof.
  */
@@ -144,11 +123,15 @@ export default function QuizResult({ slug }: { slug: StageSlug }) {
 
   // Answers live in sessionStorage; undefined until read, null when this page was opened directly.
   const [answers, setAnswers] = useState<QuizAnswers | null | undefined>(undefined)
+  // The AI-written plan saved at submit; null shows the stage's standard advice.
+  const [plan, setPlan] = useState<QuizPlan | null>(null)
   const [firstName, setFirstName] = useState('')
   const [today, setToday] = useState('')
   useEffect(() => {
     const a = readQuizAnswers()
-    setAnswers(a && stageFor(a.volume) === slug ? a : null)
+    const matches = !!a && stageFor(a.volume) === slug
+    setAnswers(matches ? a : null)
+    setPlan(matches ? readQuizPlan() : null)
     setFirstName(readLandingLeadPrefill()?.name?.trim().split(/\s+/)[0] ?? '')
     setToday(new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }))
   }, [slug])
@@ -160,45 +143,53 @@ export default function QuizResult({ slug }: { slug: StageSlug }) {
     <div className="google-general-landing min-h-screen bg-[var(--surface-base)] text-[var(--color-off-black)]">
       <ChannelLandingHeader applyLabel={consult ? 'Book a call' : 'See our websites'} onApply={consult ? scrollToNextStep : undefined} />
 
-      {/* Report header: dark, with the stage gauge */}
-      <header className="bg-[var(--color-off-black)] px-4 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32">
-        <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-14">
-          <div className="flex justify-center lg:justify-start">
-            <StageGauge number={stage.number} />
-          </div>
-          <div className="text-center lg:text-left">
-            <p className="gg-eyebrow !text-white/60">Your real estate sales roadmap · {stage.phase}</p>
-            <h1 className="gg-display mt-3 text-[2.4rem] font-light leading-[1.06] tracking-tight !text-white sm:text-5xl md:text-[3.4rem]">
-              Stage {stage.number}: <em className="italic !text-white">{stage.name}</em>
-            </h1>
-            <p className="gg-body gg-body-lg mx-auto mt-3 max-w-2xl !text-white/75 lg:mx-0">{stage.headline}</p>
-            <p className="gg-body mt-5 !text-sm !text-white/55">
-              {firstName ? `Prepared for ${firstName}` : 'Prepared for you'}
-              {today ? ` · ${today}` : ''}
-              {answers ? ' · Based on your 8 answers' : ''}
-            </p>
-            {answers ? (
-              <p className="gg-body mt-4 inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 !text-sm font-medium !text-white">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-[10px] leading-none !text-[var(--color-off-black)]" aria-hidden>
-                  ✓
-                </span>
-                Additional resources sent to your email
-              </p>
-            ) : null}
-            <div className="mt-7 flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
-              <PrimaryCta consult={consult} tone="light" />
-              <span className="flex items-center gap-2.5">
-                <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-white/80">
-                  <Image src={GUIDE.photo} alt="" fill sizes="36px" className="object-cover" />
-                </span>
-                <span className="gg-body text-left !text-xs !leading-snug !text-white/70">
-                  {consult ? 'A free 30-minute call with' : 'Your roadmap from'}
-                  <br />
-                  {GUIDE.name}, founder of DMR Media
-                </span>
+      {/* Report header (Intercom-style report cover): stage, title, one paragraph, one action, then quiet details */}
+      <header className="bg-[var(--color-off-black)] px-4 pb-10 pt-28 sm:px-6 sm:pt-32">
+        <div className="mx-auto max-w-6xl">
+          <StageMark slug={slug} number={stage.number} phase={stage.phase} />
+          <h1 className="gg-display mt-8 text-[2.75rem] font-light leading-[1.02] tracking-tight !text-white sm:text-6xl md:text-7xl">
+            Stage {stage.number}: <em className="italic !text-white">{stage.name}</em>
+          </h1>
+          <p className="gg-body mt-6 max-w-2xl !text-[17px] !leading-relaxed !text-white/75 sm:!text-lg">{plan?.description || stage.headline}</p>
+          <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5">
+            <PrimaryCta consult={consult} tone="light" />
+            <span className="flex items-center gap-2.5">
+              <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-white/80">
+                <Image src={GUIDE.photo} alt="" fill sizes="36px" className="object-cover" />
               </span>
-            </div>
+              <span className="gg-body text-left !text-xs !leading-snug !text-white/70">
+                {consult ? 'A free 30-minute call with' : 'Your roadmap from'}
+                <br />
+                {GUIDE.name}, founder of DMR Media
+              </span>
+            </span>
           </div>
+
+          {/* Report details */}
+          <dl className="mt-14 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-white/15 pt-5 sm:flex sm:flex-wrap sm:gap-x-12">
+            <div>
+              <dt className="gg-body !text-[10px] font-semibold uppercase tracking-[0.18em] !text-white/45">Prepared for</dt>
+              <dd className="gg-body mt-1 !text-sm !text-white">{firstName || 'You'}</dd>
+            </div>
+            {today ? (
+              <div>
+                <dt className="gg-body !text-[10px] font-semibold uppercase tracking-[0.18em] !text-white/45">Date</dt>
+                <dd className="gg-body mt-1 !text-sm !text-white">{today}</dd>
+              </div>
+            ) : null}
+            {answers ? (
+              <div>
+                <dt className="gg-body !text-[10px] font-semibold uppercase tracking-[0.18em] !text-white/45">Based on</dt>
+                <dd className="gg-body mt-1 !text-sm !text-white">Your 8 answers</dd>
+              </div>
+            ) : null}
+            {answers ? (
+              <div>
+                <dt className="gg-body !text-[10px] font-semibold uppercase tracking-[0.18em] !text-white/45">Resources</dt>
+                <dd className="gg-body mt-1 !text-sm !text-white">✓ Sent to your email</dd>
+              </div>
+            ) : null}
+          </dl>
         </div>
       </header>
 
@@ -211,7 +202,7 @@ export default function QuizResult({ slug }: { slug: StageSlug }) {
               {SECTIONS.map((s, i) => (
                 <li key={s.id}>
                   <a href={`#${s.id}`} className="gg-body block !text-sm !leading-snug !text-[var(--gg-text-muted)] transition-colors hover:!text-[var(--color-off-black)]">
-                    <span className="font-semibold">0{i + 1}</span> {s.id === 'hero-form' && consult ? 'Book a call' : s.label}
+                    <span className="font-semibold">0{i + 1}</span> {s.id === 'hero-form' && consult ? 'Book a call' : s.id === 'recommendation' && plan ? 'Your plan' : s.label}
                   </a>
                 </li>
               ))}
@@ -228,21 +219,57 @@ export default function QuizResult({ slug }: { slug: StageSlug }) {
             </div>
           </section>
 
-          {/* 02 Our recommendation */}
+          {/* 02 Our recommendation: the AI-written plan when we have one, else the stage's standard advice */}
           <section id="recommendation" className="scroll-mt-28">
-            <SectionHead n={2} title="Our recommendation" sub={`What we'd do at Stage ${stage.number}, and what we'd skip.`} />
+            <SectionHead
+              n={2}
+              title={plan ? 'Your plan' : 'Our recommendation'}
+              sub={plan ? `Written for your answers, at Stage ${stage.number}.` : `What we'd do at Stage ${stage.number}, and what we'd skip.`}
+            />
             <div className="mt-8 grid gap-4 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
               <div className="rounded-3xl border border-[var(--color-off-black)] bg-white p-6 sm:p-8">
                 <p className="gg-eyebrow gg-eyebrow--strong">Do this</p>
-                <p className="gg-display mt-3 text-[1.75rem] font-light leading-[1.15] sm:text-[2.1rem]">{stage.recommend.title}</p>
-                <p className="gg-body mt-3 !text-base !leading-relaxed">{stage.recommend.body}</p>
+                <p className="gg-display mt-3 text-[1.75rem] font-light leading-[1.15] sm:text-[2.1rem]">{plan?.doTitle || stage.recommend.title}</p>
+                <p className="gg-body mt-3 !text-base !leading-relaxed">{plan ? plan.note : stage.recommend.body}</p>
+                {plan ? (
+                  <p className="mt-5 flex items-center gap-2.5">
+                    <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full">
+                      <Image src={GUIDE.photo} alt="" fill sizes="32px" className="object-cover" />
+                    </span>
+                    <span className="gg-body !text-sm font-semibold !text-[var(--color-off-black)]">{GUIDE.name}</span>
+                  </p>
+                ) : null}
               </div>
               <div className="rounded-3xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-6 sm:p-8">
                 <p className="gg-eyebrow">Skip this for now</p>
-                <p className="gg-display mt-3 text-xl font-light leading-snug">{stage.avoid.title}</p>
-                <p className="gg-body mt-3 !text-[15px] !leading-relaxed !text-[var(--gg-text-muted)]">{stage.avoid.body}</p>
+                <p className="gg-display mt-3 text-xl font-light leading-snug">{plan?.skipTitle || stage.avoid.title}</p>
+                <p className="gg-body mt-3 !text-[15px] !leading-relaxed !text-[var(--gg-text-muted)]">{plan?.skipBody || stage.avoid.body}</p>
               </div>
             </div>
+            {plan ? (
+              <>
+                <p className="gg-body mt-10 !text-xs font-semibold uppercase tracking-[0.14em] !text-[var(--color-off-black)]">Your next three moves</p>
+                <ol className="mt-3 list-none divide-y divide-[var(--color-ink-200)] rounded-2xl border border-[var(--color-ink-200)] bg-white p-0">
+                  {plan.moves.map((m, i) => (
+                    <li key={m.title} className="flex gap-4 px-5 py-5 sm:px-7">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-off-black)] text-xs font-semibold !text-white" aria-hidden>
+                        {i + 1}
+                      </span>
+                      <div>
+                        <p className="gg-body !text-base font-semibold !leading-snug !text-[var(--color-off-black)]">{m.title}</p>
+                        <p className="gg-body mt-1 !text-[15px] !leading-relaxed">{m.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+                <div className="mt-4 flex flex-col gap-5 rounded-2xl bg-[var(--color-off-black)] px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+                  <p className="gg-body !text-[15px] !leading-relaxed !text-white">{plan.callNudge}</p>
+                  <div className="shrink-0">
+                    <PrimaryCta consult={consult} tone="light" />
+                  </div>
+                </div>
+              </>
+            ) : null}
           </section>
 
           {/* 03 Your next step */}
@@ -264,7 +291,7 @@ export default function QuizResult({ slug }: { slug: StageSlug }) {
                 <div>
                   <p className="gg-body !text-xs font-semibold uppercase tracking-[0.14em] !text-[var(--color-off-black)]">We&apos;ll cover</p>
                   <ul className="mt-3 grid list-none gap-x-6 gap-y-2.5 p-0 sm:grid-cols-2">
-                    {(tailored.length ? tailored.map((t) => t.title) : [stage.recommend.title, 'What to do first in your market', 'What it costs and what to expect']).map((line) => (
+                    {(plan ? [...plan.moves.map((m) => m.title), 'What it costs in your market'] : tailored.length ? tailored.map((t) => t.title) : [stage.recommend.title, 'What to do first in your market', 'What it costs and what to expect']).map((line) => (
                       <li key={line} className="flex items-start gap-2.5">
                         <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-off-black)] text-[10px] leading-none !text-white" aria-hidden>
                           ✓
@@ -282,8 +309,12 @@ export default function QuizResult({ slug }: { slug: StageSlug }) {
             </section>
           ) : (
             <section id="hero-form" className="scroll-mt-28" aria-labelledby="tailored-heading">
-              <SectionHead n={3} title="Your next step" sub="Your roadmap, based on your answers." />
-              {answers ? (
+              <SectionHead
+                n={3}
+                title="Your next step"
+                sub={plan ? 'A website built to turn your sphere and social into listings. See what we build.' : 'Your roadmap, based on your answers.'}
+              />
+              {plan ? null : answers ? (
                 <ol className="mt-8 list-none divide-y divide-[var(--color-ink-200)] rounded-2xl border border-[var(--color-ink-200)] bg-white p-0">
                   {tailored.map((t, i) => (
                     <li key={t.title} className="flex gap-4 px-5 py-5 sm:px-7">

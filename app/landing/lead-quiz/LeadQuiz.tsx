@@ -11,9 +11,11 @@ import {
   answersSummary,
   labelFor,
   saveQuizAnswers,
+  saveQuizPlan,
   stageFor,
   type ChoiceQuestion,
   type QuizAnswers,
+  type QuizPlan,
 } from '@/lib/landing/lead-quiz'
 import { getStoredUTMParams, trackApplicationConversion } from '@/lib/utmTracking'
 
@@ -64,6 +66,11 @@ export default function LeadQuiz({ open, onClose }: { open: boolean; onClose: ()
   const [contact, setContact] = useState({ fullName: '', email: '', phone: '' })
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
+  // Local testing: on localhost, ?test=1 writes the AI plan without sending a lead anywhere.
+  const [testMode, setTestMode] = useState(false)
+  useEffect(() => {
+    setTestMode(process.env.NODE_ENV === 'development' && new URLSearchParams(window.location.search).get('test') === '1')
+  }, [])
 
   // Lock page scroll, close on Escape, and move focus into the dialog while it's open.
   useEffect(() => {
@@ -123,6 +130,26 @@ export default function LeadQuiz({ open, onClose }: { open: boolean; onClose: ()
 
     setSubmitting(true)
     setError('')
+    if (testMode) {
+      try {
+        const res = await fetch('/api/dev/quiz-plan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ quizAnswers: answers }),
+        })
+        const data = (await res.json().catch(() => ({}))) as { plan?: QuizPlan | null; error?: string }
+        if (data.error) console.warn('[lead-quiz test] plan not generated:', data.error)
+        saveQuizAnswers(answers)
+        saveQuizPlan(data.plan ?? null)
+        saveLandingLeadPrefill({ name, email: contact.email.trim(), phone: contact.phone.trim() })
+        router.push(`/landing/lead-quiz/${stage}`)
+      } catch {
+        setError('Test mode: the plan request failed. Check the dev server.')
+      } finally {
+        setSubmitting(false)
+      }
+      return
+    }
     try {
       const response = await fetch('/api/application', {
         method: 'POST',
@@ -145,7 +172,7 @@ export default function LeadQuiz({ open, onClose }: { open: boolean; onClose: ()
           ...utm,
         }),
       })
-      const data = (await response.json().catch(() => ({}))) as { ok?: boolean; error?: string; filtered?: boolean }
+      const data = (await response.json().catch(() => ({}))) as { ok?: boolean; error?: string; filtered?: boolean; plan?: QuizPlan | null }
       if (!response.ok || !data.ok) {
         setError(data.error ?? 'Something went wrong. Please try again.')
         return
@@ -154,6 +181,7 @@ export default function LeadQuiz({ open, onClose }: { open: boolean; onClose: ()
         trackApplicationConversion({ form_name: FORM_NAME, submission_page: submissionPage, quiz_stage: stage, ...utm })
       }
       saveQuizAnswers(answers)
+      saveQuizPlan(data.plan ?? null)
       saveLandingLeadPrefill({ name, email: contact.email.trim(), phone: contact.phone.trim() })
       router.push(`/landing/lead-quiz/${stage}`)
     } catch {
@@ -339,7 +367,13 @@ export default function LeadQuiz({ open, onClose }: { open: boolean; onClose: ()
               >
                 {submitting ? 'Building your roadmap…' : 'See my roadmap'}
               </button>
-              <p className="mt-3 text-center font-sans text-xs !text-[var(--gg-text-muted)]">No spam. Your results show on the next page.</p>
+              {testMode ? (
+                <p className="mt-3 rounded-lg bg-amber-100 px-3 py-2 text-center font-sans text-xs font-semibold !text-amber-900">
+                  Test mode: writes a fresh AI plan. No lead is sent to Zapier, Close, or email.
+                </p>
+              ) : (
+                <p className="mt-3 text-center font-sans text-xs !text-[var(--gg-text-muted)]">No spam. Your results show on the next page.</p>
+              )}
             </form>
           ) : null}
 

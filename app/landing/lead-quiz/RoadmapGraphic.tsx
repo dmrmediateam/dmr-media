@@ -3,7 +3,7 @@ import { STAGES, STAGE_ORDER, type StageSlug } from '@/lib/landing/lead-quiz'
 const STAGE_LIST = STAGE_ORDER.map((slug) => STAGES[slug])
 
 /** Simple line icons, one per stage. */
-function StageIcon({ slug, className = 'h-6 w-6' }: { slug: StageSlug; className?: string }) {
+export function StageIcon({ slug, className = 'h-6 w-6' }: { slug: StageSlug; className?: string }) {
   const common = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.6, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden>
