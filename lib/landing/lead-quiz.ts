@@ -131,7 +131,7 @@ export type Stage = {
   slug: StageSlug
   number: 1 | 2 | 3 | 4
   name: string
-  /** Short phase label under the stage name, e.g. "Transition to full-time". */
+  /** Short phase label under the stage name, e.g. "Doubling down on ONE source". */
   phase: string
   volume: string
   headline: string
@@ -147,9 +147,10 @@ export const STAGES: Record<StageSlug, Stage> = {
     slug: 'foundation',
     number: 1,
     name: 'Foundation',
-    phase: 'New agents',
+    phase: 'Finding what works',
     volume: 'Under $5M',
-    headline: 'Build the foundation your next $10M sits on.',
+    headline:
+      'This is where you need to find a solid foundation to get listings. We recommend you build out your marketing with a website and Facebook. The business will feel inconsistent here because it is. You haven’t found exactly what works just yet.',
     summary:
       'At this stage, every dollar has to work hard. Your next deals come from people who already know you, so the goal is a home base that makes you look established and a simple way to stay in front of your sphere.',
     recommend: {
@@ -166,9 +167,10 @@ export const STAGES: Record<StageSlug, Stage> = {
     slug: 'consistency',
     number: 2,
     name: 'Consistency',
-    phase: 'Transition to Full-time',
+    phase: 'Doubling down on ONE source',
     volume: '$5M to $20M',
-    headline: 'Turn good months into a consistent pipeline.',
+    headline:
+      'Now that you have a marketing source that works, you need to double down on it and make it consistent. We recommend working your current sphere and adding Google Ads. They are consistently profitable when done correctly. This is where you make your business consistent.',
     summary:
       'You have proven you can close. What is missing is a steady flow of new conversations that does not depend on referrals landing at the right time. The fastest way to get it is to show up when buyers and sellers are already searching.',
     recommend: {
@@ -187,7 +189,8 @@ export const STAGES: Record<StageSlug, Stage> = {
     name: 'Scaling',
     phase: 'The Agent Swamp',
     volume: '$20M to $40M',
-    headline: 'Break out of the agent swamp.',
+    headline:
+      'This is where most agents get stuck. They’ve built a business that pays the bills and then some, but can’t seem to scale it. Here’s the issue: you need to learn to take your current marketing sources and scale them. It takes experimentation and testing to find what works. We recommend an organic channel such as SEO/AIO, plus Google Ads, to break out of this cycle.',
     summary:
       'Between $20M and $40M is where good agents stall: busy enough to be stretched, not big enough to dominate. Growth from here comes from owning both paid and organic search in the areas you sell.',
     recommend: {

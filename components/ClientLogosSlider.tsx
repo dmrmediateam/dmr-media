@@ -19,18 +19,20 @@ const ClientLogosSlider = ({ repeatCount = 3 }: ClientLogosSliderProps) => {
     '/images/ClientLogos/Untitled design (92).png',
     '/images/ClientLogos/oppenheim-group.png',
     '/images/ClientLogos/coldwell-banker.png',
+    '/images/ClientLogos/engel-volkers.png',
   ];
 
   const logoAlts: Record<string, string> = {
     '/images/ClientLogos/oppenheim-group.png': 'The Oppenheim Group Real Estate',
     '/images/ClientLogos/coldwell-banker.png': 'Coldwell Banker',
+    '/images/ClientLogos/engel-volkers.png': 'Engel & Völkers',
   };
 
   /** Very wide wordmarks need a shorter box to sit at the same visual weight as the rest. */
   const wideLogos = ['/images/ClientLogos/oppenheim-group.png'];
 
-  /** Two-line wordmarks read larger, so they get a mid-size box. */
-  const mediumLogos = ['/images/ClientLogos/coldwell-banker.png'];
+  /** Two-line marks (wordmark + emblem) read larger, so they get a mid-size box. */
+  const mediumLogos = ['/images/ClientLogos/coldwell-banker.png', '/images/ClientLogos/engel-volkers.png'];
 
   const smallerLogos = [
     '/images/ClientLogos/Untitled design (71).png',
