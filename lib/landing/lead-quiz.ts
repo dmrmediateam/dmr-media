@@ -198,8 +198,8 @@ export const STAGES: Record<StageSlug, Stage> = {
       body: 'Google Ads keeps leads coming this month while SEO builds rankings and AI-search visibility that keep paying without more ad spend. Together they make you the default name in your market.',
     },
     avoid: {
-      title: 'Holding back',
-      body: 'This volume is the agent swamp. Waiting a year to invest is how agents stay here. The ones who break out commit to search now, while competitors are still deciding.',
+      title: 'Buying more leads than you can answer fast',
+      body: 'At this volume the leak is response time and follow-up, not lead count. More leads before you fix that just cost more. Fix the cadence, then scale.',
     },
     offersConsultation: true,
   },

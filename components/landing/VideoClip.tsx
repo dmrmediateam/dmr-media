@@ -4,9 +4,9 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 /**
- * One moment from a YouTube video. Shows the thumbnail until it's clicked, then
- * loads the player and plays only `start` to `end` (seconds), so a long video
- * can back up a page without pulling visitors into the whole thing.
+ * A YouTube video, or one moment of it. Shows the thumbnail until it's clicked,
+ * then loads the player. With `start`/`end` (seconds) it plays only that clip,
+ * so a long video can back up a page without pulling visitors into the whole thing.
  */
 export default function VideoClip({
   videoId,
@@ -16,13 +16,14 @@ export default function VideoClip({
   caption,
 }: {
   videoId: string
-  start: number
+  start?: number
   end?: number
   title: string
   caption?: string
 }) {
   const [playing, setPlaying] = useState(false)
-  const params = new URLSearchParams({ start: String(start), autoplay: '1', rel: '0', modestbranding: '1' })
+  const params = new URLSearchParams({ autoplay: '1', rel: '0', modestbranding: '1' })
+  if (start) params.set('start', String(start))
   if (end) params.set('end', String(end))
 
   return (

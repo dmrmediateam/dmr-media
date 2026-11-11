@@ -13,7 +13,7 @@
 
 import type { StageSlug } from '@/lib/landing/lead-quiz'
 
-export const QUIZ_PLAN_PROMPT_VERSION = 'v3'
+export const QUIZ_PLAN_PROMPT_VERSION = 'v5'
 
 /** What each stage is about and what is in or out of bounds. Keeps the four results distinct. */
 export const STAGE_PLAYBOOKS: Record<StageSlug, string> = {
@@ -22,7 +22,7 @@ The business feels inconsistent because it is: they haven't found what works yet
 DO: a website of their own (credible home base for referrals, sign calls and posts; home-value page; looks like the agent they want to hire), Facebook and Instagram organic to stay in front of their sphere every week (social mentions also help them show up in AI search later), a free Google Business Profile with reviews asked for about a week after every closing, and working the sphere.
 HABITS: treat year one like a business launch. Block lead generation time every day (a few hours, a couple of leads, an appointment), practice scripts daily, load the whole database into a CRM, and track activity so you know whether the problem is lead gen, follow-up or conversion.
 SKIP: heavy paid ads (Google Ads, SEO retainers, cold Facebook or TikTok lead ads). Too expensive to learn on at this volume.
-NEXT STEP: there is no call at this stage. Point them to see the websites we build.`,
+NEXT STEP: see the websites we build. Never mention a call at this stage.`,
   consistency: `Stage 2, Consistency ($5M to $20M, "Doubling down on ONE source").
 They have a source that works. Now double down on it and make it consistent instead of spreading thin.
 DO: keep working the sphere (newsletter twice a month, 3 value emails to 1 ask, review and referral asks after every closing) and add Google Ads: Search plus Performance Max, separate buyer campaigns (homes for sale by area) and seller campaigns (home valuation), conversion tracking on every form, Google retargeting (Performance Max) so leads aren't wasted. No Meta Ads yet. Know your numbers: cost per lead, cost per close, return on ad spend.
@@ -32,7 +32,7 @@ SKIP: SEO for now. It compounds but takes months to pay back. Get cash flowing f
 Most agents get stuck here: the business pays the bills and then some, but won't scale. They have to take the sources that work and scale them, with real testing and experimentation.
 DO: SEO and AI search visibility (community, neighborhood and zip code pages, consistent blogs, quality backlinks, mentions) plus Google Ads with a main and a test campaign so budget moves to what wins. Retargeting runs through Google (Performance Max), not Meta. Follow-up has to keep up with volume (scripts, a set cadence, a final message, then the newsletter). Leverage: hand off what isn't lead generation or listing appointments.
 HABITS: you are the bottleneck when lead response slows, listing prep crowds out prospecting, or deals need constant rescue. Hire for the biggest bottleneck first (usually an assistant or transaction coordinator, then a buyer's agent once buyers pull you off listings). Put the follow-up process and lead routing in place before adding people. Judge every source by cost per appointment and cut what doesn't return.
-SKIP: holding back or waiting a year. That's how agents stay in the swamp.`,
+SKIP: buying more leads than you can answer fast. At this volume the leak is response time and follow-up, not lead count.`,
   'brand-building': `Stage 4, Brand Building ($40M+, "Moving out of Production").
 Growth comes from being the obvious choice before someone ever searches, and from the business running without them in every deal.
 DO: a brand marketing plan where every channel works together: SEO and AI search to own the market long term, Google Ads to capture people searching now, Meta Ads to keep the brand, listings and results in front of people who already know them. Luxury and high price points run on social proof (results, years, reviews, real photography). Systems and leverage so the team converts the leads.
@@ -87,6 +87,6 @@ OUTPUT (JSON, matching the schema)
 - skipTitle: the headline of the "Skip this for now" card. It must stay the stage's skip item from SKIP THIS FOR NOW, reworded for them in 2 to 7 words, without the word "Skip" (the card is already labeled "Skip this for now").
 - skipBody: 1 to 2 sentences on why to skip it for now, tied to their answers.
 - moves: exactly 3, most important first, each specific to their answers and inside their stage's DO and HABITS. Never tell them to skip or delay anything in their stage's DO list. title: imperative, 3 to 7 words. body: 1 to 2 sentences, under 40 words, with the why.
-- callNudge: 1 to 2 sentences that push for the next step for accuracy. For Stages 2 to 4: the exact budget, cost per lead and what to launch first depend on their market and price point, which is what the free 30-minute call is for; low pressure, help first. For Stage 1: point them to see the websites we build, and say they can book a call from there when they're ready. Never say a call isn't offered.
+- callNudge: 1 to 2 sentences that push for the next step for accuracy. For Stages 2 to 4: the exact budget, cost per lead and what to launch first depend on their market and price point, which is what the free 30-minute call is for; low pressure, help first. For Stage 1: point them to see the websites we build. Never mention a call, a meeting or booking anything at Stage 1.
 - Don't copy these instructions' wording into the plan (no "help first", no "stage playbook").
 - Use only the numbers above. Never invent statistics, client names, prices for DMR services, or guarantees. Don't name third-party software or vendors.`

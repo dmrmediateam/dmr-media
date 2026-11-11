@@ -89,7 +89,7 @@ function userMessage(c: Canonical): string {
     '',
     stage.offersConsultation
       ? 'CLOSE: push for the free 30-minute call with me (the calendar is right below this plan).'
-      : 'CLOSE: invite them to see the websites we build (the "See our websites" button below), and to book a call from that page when they are ready.',
+      : 'CLOSE: invite them to see the websites we build (the "See our websites" button). Do not mention a call, a meeting, or booking anything.',
   ].join('\n')
 }
 
@@ -122,7 +122,7 @@ function sentenceCase(title: string): string {
 const STAGE_GUARDS: Record<StageSlug, { doThis: RegExp; skip: RegExp }> = {
   foundation: { doThis: /website|facebook|instagram/i, skip: /paid|ads|advertis|seo/i },
   consistency: { doThis: /google ads|google search|search ads|performance max/i, skip: /seo|search engine optimization/i },
-  scaling: { doThis: /seo|ai search|organic/i, skip: /wait|hold|delay|sidelines|stall/i },
+  scaling: { doThis: /seo|ai search|organic/i, skip: /more leads|lead volume|answer|respond|response|follow/i },
   'brand-building': { doThis: /brand/i, skip: /one channel|single channel|one source|single source|one lead source/i },
 }
 
@@ -149,7 +149,11 @@ function validate(raw: unknown, slug: StageSlug): QuizPlan | null {
     skipTitle: skipOk ? skipTitle : stage.avoid.title,
     skipBody: skipOk ? skipBody : stage.avoid.body,
     moves,
-    callNudge: clean(r.callNudge, 300),
+    // Stage 1 never offers a call, so a nudge that mentions one is replaced.
+    callNudge:
+      slug === 'foundation' && /\b(call|meeting|book|schedule)/i.test(String(r.callNudge ?? ''))
+        ? 'Your next step is a website that looks like the agent people want to hire. See what we build for agents.'
+        : clean(r.callNudge, 300),
   }
   return plan.description && plan.note && plan.moves.length === 3 && plan.callNudge ? plan : null
 }
