@@ -6,7 +6,7 @@ import { generateQuizPlan } from '@/lib/landing/lead-quiz-ai'
 import { isSpam } from '@/lib/spam-filter'
 import { reportFilteredSubmission } from '@/lib/filtered-submission'
 
-// The lead quiz waits on its AI plan (capped at 12s), so allow a little headroom.
+// The lead quiz waits on its AI plan (capped at 15s), so allow a little headroom.
 export const maxDuration = 30
 
 const DEFAULT_THANK_YOU_PATH = '/landing/thank-you'

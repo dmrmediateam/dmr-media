@@ -233,136 +233,6 @@ export function stageFor(volume: string): StageSlug {
   return 'foundation'
 }
 
-/* ── Tailored recommendations ──────────────────────────────── */
-
-export type Tailored = { title: string; body: string }
-
-/** Recommendations tuned to the agent's answers, most important first. */
-export function tailoredRecommendations(a: QuizAnswers): Tailored[] {
-  const stage = stageFor(a.volume)
-  const paid = stage !== 'foundation'
-  const luxury = a.price === '1m-2-5m' || a.price === '2-5m-plus'
-  const out: Tailored[] = []
-
-  // 1. Buyer vs. seller focus, from what they find hardest.
-  if (a.difficulty === 'buyers') {
-    out.push(
-      paid
-        ? { title: 'Lead with buyer campaigns', body: `Community and home-search ads for the neighborhoods you sell${luxury ? ', written for luxury buyers' : ''}, sending every inquiry to your CRM.` }
-        : { title: 'Post for buyers', body: 'Neighborhood tours, new listings, and "what $X buys here" posts give buyers in your sphere a reason to reach out.' },
-    )
-  } else if (a.difficulty === 'sellers') {
-    out.push(
-      paid
-        ? { title: 'Lead with seller campaigns', body: `Home-valuation ads for owners asking "what is my home worth?"${luxury ? ', aimed at the price points you list' : ''}. Sellers are the listings that compound.` }
-        : { title: 'Post for sellers', body: 'Market updates, recent sales, and a home-value offer turn your sphere into listing appointments.' },
-    )
-  } else if (a.difficulty === 'connecting') {
-    out.push({
-      title: 'Fix speed to lead first',
-      body: 'More leads will not help if they go cold. Our follow-up scripts and cadence get every new lead a reply within the hour, by text and call.',
-    })
-  } else {
-    out.push({
-      title: paid ? 'Split campaigns between buyers and sellers' : 'Mix buyer and seller content',
-      body: paid
-        ? 'Run buyer and seller campaigns side by side, then move budget to whichever brings cheaper, better leads in your market.'
-        : 'Alternate buyer and seller posts each week and watch which gets your sphere talking.',
-    })
-  }
-
-  // 2. Gaps in what they have set up.
-  const none = a.setup.includes('none') || a.setup.length === 0
-  if (none || !a.setup.includes('website')) {
-    out.push({
-      title: 'Get your own website live first',
-      body: paid
-        ? 'Ads and SEO need a home of your own to send people to. Without it, you are paying for clicks that land on a portal or a brokerage page.'
-        : 'Your website is the first thing a referral looks up. It should look like the agent they want to hire.',
-    })
-  }
-  if (none || !a.setup.includes('gbp')) {
-    out.push({
-      title: 'Claim your Google Business Profile',
-      body: 'It is free, it shows up on Google Maps, and reviews there are often the first thing a seller sees about you.',
-    })
-  }
-  if ((none || !a.setup.includes('social')) && (stage === 'foundation' || stage === 'brand-building')) {
-    out.push({
-      title: 'Set up Facebook & Instagram',
-      body: stage === 'foundation'
-        ? 'This is where your organic nurture runs. A consistent profile is the cheapest way to stay top of mind.'
-        : 'Meta Ads need a credible profile behind them. Set it up before campaigns go live.',
-    })
-  }
-
-  // 3. Where their money goes today.
-  if (a.investing.includes('portals')) {
-    out.push({
-      title: 'Move budget from portals to leads you own',
-      body: 'Zillow and Realtor.com share the same buyer with several agents. Shift that spend into a system where every lead is exclusive to you.',
-    })
-  }
-  if (a.investing.includes('online-ads') && paid) {
-    out.push({
-      title: 'Audit your current ads before adding more',
-      body: 'We will review your existing campaigns first. Most accounts we audit are paying for searches that will never become clients.',
-    })
-  }
-  if (a.investing.includes('seo') && stage === 'consistency') {
-    out.push({
-      title: 'Keep your SEO, but lead with ads',
-      body: 'Do not cancel what you have started. Just let Google Ads carry the pipeline while SEO keeps building in the background.',
-    })
-  }
-  if (a.investing.includes('mailers')) {
-    out.push({
-      title: 'Make your mailers trackable',
-      body: 'Point mailers and billboards to a landing page with a home-value offer, so you finally know which ones bring in sellers.',
-    })
-  }
-  if (a.investing.includes('referrals') && stage === 'foundation') {
-    out.push({
-      title: 'Keep working your sphere',
-      body: 'Referrals are your best leads right now. Organic social keeps that sphere warm between calls.',
-    })
-  }
-
-  // 4. Team, price point, experience, readiness.
-  if (a.team === '5-10' || a.team === '10-plus') {
-    out.push({
-      title: 'Route leads by agent',
-      body: 'With a team your size, every lead should go to the right agent automatically, with one shared follow-up cadence so none slip.',
-    })
-  } else if (a.team === 'solo' && paid) {
-    out.push({
-      title: 'Start with one channel you can answer yourself',
-      body: 'As a solo agent, more leads than you can call back in an hour costs money. Start focused and scale as you add help.',
-    })
-  }
-  if (a.price === 'sub-500k' && paid) {
-    out.push({
-      title: 'Win on speed and volume',
-      body: 'At your price point, the agent who calls back first usually wins. Keep cost per lead low and response time under an hour.',
-    })
-  }
-  if (a.experience === 'under-2') {
-    out.push({
-      title: 'Borrow credibility while you build it',
-      body: 'Feature your brokerage, your early wins, and client reviews prominently. Buyers and sellers are looking for reasons to trust you.',
-    })
-  }
-
-  return out.slice(0, 6)
-}
-
-/** Readiness line shown above the next step. */
-export function readinessNote(commitment: number): string {
-  if (commitment >= 8) return 'You said you are ready to change this now. Let’s move on it this month.'
-  if (commitment >= 5) return 'You are leaning in. Start with the first recommendation and build from there.'
-  return 'No rush. Bookmark this roadmap and start with the first step when you are ready.'
-}
-
 /* ── Labels and storage ─────────────────────────────────────── */
 
 export function labelFor(id: QuestionId, value: string): string {
@@ -388,17 +258,42 @@ export function answersSummary(a: QuizAnswers): string {
 
 /** AI-written plan for one quiz result (see lib/landing/lead-quiz-ai.ts), in Andrew's voice. */
 export type QuizPlan = {
-  /** Tailored stage description for the result header. */
-  description: string
-  /** "Do this" headline, reworded for them (always the stage's main recommendation). */
-  doTitle: string
-  /** Why the "Do this" fits them. */
-  note: string
-  /** "Skip this for now" headline and reason (always the stage's skip item). */
-  skipTitle: string
-  skipBody: string
-  moves: { title: string; body: string }[]
-  callNudge: string
+  /** Where you are: a brief read of their situation from their answers. */
+  whereYouAre: string
+  /** What to do next: a short, high-level recommendation. */
+  whatToDo: string
+  /** What not to do at this stage. */
+  whatNotToDo: string
+  /** Four steps, in order. */
+  steps: { title: string; body: string }[]
+}
+
+/** Standard four steps per stage, shown when there's no AI plan (page opened directly, or the AI call failed). */
+export const STAGE_STEPS: Record<StageSlug, { title: string; body: string }[]> = {
+  foundation: [
+    { title: 'Get your own website live', body: 'A credible home base with a home-value page, so every referral and post has somewhere to land.' },
+    { title: 'Claim your Google Business Profile', body: 'It is free and shows you on Google Maps. Ask every past client for a review.' },
+    { title: 'Post on Facebook and Instagram weekly', body: 'Stay in front of your sphere between deals with listings, market updates, and local tips.' },
+    { title: 'Block lead generation time every day', body: 'Talk to your sphere daily and track where every appointment comes from.' },
+  ],
+  consistency: [
+    { title: 'Know your numbers', body: 'Write down your average price, close rate, and what a closing costs you today.' },
+    { title: 'Launch Google Search campaigns', body: 'Separate buyer and seller campaigns, with conversion tracking on every form.' },
+    { title: 'Set a follow-up cadence', body: 'Call new leads within minutes, then give value three times for every ask.' },
+    { title: 'Double down on what books appointments', body: 'Review cost per appointment weekly and move budget to what works.' },
+  ],
+  scaling: [
+    { title: 'Fix response time and follow-up', body: 'Measure how fast new leads hear from you, and set one cadence for everyone.' },
+    { title: 'Build community and zip code pages', body: 'SEO and AI search visibility that keeps paying without more ad spend.' },
+    { title: 'Run a main and a test Google Ads campaign', body: 'Test new angles with a small share of budget and move money to what wins.' },
+    { title: 'Hire for your biggest bottleneck', body: 'Usually an assistant or transaction coordinator first, so you stay on listings.' },
+  ],
+  'brand-building': [
+    { title: 'Make every channel tell one story', body: 'Your results, years, reviews, and real photography, everywhere you show up.' },
+    { title: 'Own your market with SEO and AI search', body: 'Community pages and mentions that keep you first for years.' },
+    { title: 'Capture and stay known with paid', body: 'Google Ads for people searching now, Meta Ads for people who already know you.' },
+    { title: 'Run the team on systems', body: 'Lead routing, one shared follow-up cadence, and weekly scorecards for every agent.' },
+  ],
 }
 
 const PLAN_STORAGE_KEY = 'dmr:lead-quiz-plan'
@@ -416,7 +311,7 @@ export function readQuizPlan(): QuizPlan | null {
   try {
     const raw = window.sessionStorage.getItem(PLAN_STORAGE_KEY)
     const p = raw ? (JSON.parse(raw) as QuizPlan) : null
-    return p && typeof p.description === 'string' && typeof p.note === 'string' && Array.isArray(p.moves) && p.moves.length ? p : null
+    return p && typeof p.whatToDo === 'string' && typeof p.whatNotToDo === 'string' && Array.isArray(p.steps) && p.steps.length ? p : null
   } catch {
     return null
   }

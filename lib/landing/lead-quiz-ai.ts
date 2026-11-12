@@ -19,32 +19,29 @@ import { QUIZ_PLAN_SYSTEM_PROMPT, QUIZ_PLAN_PROMPT_VERSION } from '@/lib/landing
  */
 
 const MODEL = process.env.GEMINI_QUIZ_MODEL || 'gemini-3.5-flash'
-const TIMEOUT_MS = 12000
+const TIMEOUT_MS = 15000
 
 /** Gemini responseJsonSchema (JSON Schema subset). */
 const PLAN_SCHEMA = {
   type: 'object',
-  required: ['description', 'doTitle', 'note', 'skipTitle', 'skipBody', 'moves', 'callNudge'],
+  required: ['whereYouAre', 'whatToDo', 'whatNotToDo', 'steps'],
   properties: {
-    description: { type: 'string', description: 'Their stage description, rewritten for them. 2 to 3 sentences.' },
-    doTitle: { type: 'string', description: 'Headline of the Do this card: the stage recommendation, reworded for them. 3 to 8 words.' },
-    note: { type: 'string', description: 'Under the Do this headline: 2 sentences on why it fits them.' },
-    skipTitle: { type: 'string', description: 'Headline of the Skip this for now card: the stage skip item. 2 to 7 words.' },
-    skipBody: { type: 'string', description: '1 to 2 sentences on why to skip it for now, tied to their answers.' },
-    moves: {
+    whereYouAre: { type: 'string', description: 'Where they are: 2 to 3 sentences built from at least four of their specific answers, phrased as things they told you.' },
+    whatToDo: { type: 'string', description: 'What to do next: 2 to 3 sentences, high level, tied to their answers.' },
+    whatNotToDo: { type: 'string', description: 'What not to do at their stage: 1 to 2 sentences.' },
+    steps: {
       type: 'array',
-      minItems: 3,
-      maxItems: 3,
+      minItems: 4,
+      maxItems: 4,
       items: {
         type: 'object',
         required: ['title', 'body'],
         properties: {
           title: { type: 'string', description: 'Imperative, 3 to 7 words.' },
-          body: { type: 'string', description: '1 to 2 sentences.' },
+          body: { type: 'string', description: '1 to 2 sentences, under 35 words.' },
         },
       },
     },
-    callNudge: { type: 'string', description: '1 to 2 sentences: what only a call can pin down for them.' },
   },
 } as const
 
@@ -73,9 +70,6 @@ function userMessage(c: Canonical): string {
   const list = (id: QuestionId, values: string[]) => values.map((v) => labelFor(id, v)).join(', ') || 'None'
   return [
     `STAGE: ${stage.number}, ${stage.name} ("${stage.phase}")`,
-    `STAGE DESCRIPTION (rewrite this for them, keep its core message): ${stage.headline}`,
-    `DO THIS (the stage's main recommendation; reword it for them, never change it): ${stage.recommend.title}`,
-    `SKIP THIS FOR NOW (the stage's skip item; reword it for them, never change it): ${stage.avoid.title}`,
     '',
     'QUIZ ANSWERS:',
     `- Years in real estate: ${labelFor('experience', c.experience)}`,
@@ -86,10 +80,6 @@ function userMessage(c: Canonical): string {
     `- Annual sales volume: ${labelFor('volume', c.volume)}`,
     `- Average price point: ${labelFor('price', c.price)}`,
     `- Readiness to change now: ${c.commitment}`,
-    '',
-    stage.offersConsultation
-      ? 'CLOSE: push for the free 30-minute call with me (the calendar is right below this plan).'
-      : 'CLOSE: invite them to see the websites we build (the "See our websites" button). Do not mention a call, a meeting, or booking anything.',
   ].join('\n')
 }
 
@@ -115,47 +105,38 @@ function sentenceCase(title: string): string {
 }
 
 /**
- * Guards that keep the four stages distinct: the Do this headline must still name
- * the stage's main channel, and the skip must still be the stage's skip item.
- * A miss falls back to the standard text for that card only.
+ * Guards that keep the four stages distinct: "what to do" must still name the
+ * stage's main channel, and "what not to do" must still be the stage's skip item.
+ * A miss falls back to the standard text for that part only.
  */
 const STAGE_GUARDS: Record<StageSlug, { doThis: RegExp; skip: RegExp }> = {
-  foundation: { doThis: /website|facebook|instagram/i, skip: /paid|ads|advertis|seo/i },
-  consistency: { doThis: /google ads|google search|search ads|performance max/i, skip: /seo|search engine optimization/i },
-  scaling: { doThis: /seo|ai search|organic/i, skip: /more leads|lead volume|answer|respond|response|follow/i },
-  'brand-building': { doThis: /brand/i, skip: /one channel|single channel|one source|single source|one lead source/i },
+  foundation: { doThis: /website|facebook|instagram|business profile|review|sphere/i, skip: /paid|ads|advertis|seo/i },
+  consistency: { doThis: /google ads|google search|search ads|performance max|sphere/i, skip: /seo|search engine optimization/i },
+  scaling: { doThis: /seo|ai search|organic|google ads|follow-up|follow up|response time|cadence/i, skip: /more leads|lead volume|answer|respond|response|follow/i },
+  'brand-building': { doThis: /brand|seo|google|meta/i, skip: /one channel|single channel|one source|single source|one lead source/i },
 }
 
 function validate(raw: unknown, slug: StageSlug): QuizPlan | null {
   if (!raw || typeof raw !== 'object') return null
   const r = raw as Record<string, unknown>
-  const moves = Array.isArray(r.moves)
-    ? r.moves
-        .slice(0, 3)
-        .map((m) => ({ title: sentenceCase(clean((m as Record<string, unknown>)?.title, 80)), body: clean((m as Record<string, unknown>)?.body, 320) }))
+  const steps = Array.isArray(r.steps)
+    ? r.steps
+        .slice(0, 4)
+        .map((m) => ({ title: sentenceCase(clean((m as Record<string, unknown>)?.title, 80)), body: clean((m as Record<string, unknown>)?.body, 300) }))
         .filter((m) => m.title && m.body)
     : []
+  if (steps.length !== 4) return null
   const stage = STAGES[slug]
   const guard = STAGE_GUARDS[slug]
-  const doTitle = sentenceCase(clean(r.doTitle, 90))
-  // The card is already labeled "Skip this for now", so drop a leading "Skip".
-  const skipTitle = sentenceCase(clean(r.skipTitle, 90).replace(/^skip\s+/i, '')).replace(/^./, (c) => c.toUpperCase())
-  const skipBody = clean(r.skipBody, 320)
-  const skipOk = guard.skip.test(`${skipTitle} ${skipBody}`) && skipTitle && skipBody
-  const plan: QuizPlan = {
-    description: clean(r.description, 520),
-    doTitle: doTitle && guard.doThis.test(doTitle) ? doTitle : stage.recommend.title,
-    note: clean(r.note, 520),
-    skipTitle: skipOk ? skipTitle : stage.avoid.title,
-    skipBody: skipOk ? skipBody : stage.avoid.body,
-    moves,
-    // Stage 1 never offers a call, so a nudge that mentions one is replaced.
-    callNudge:
-      slug === 'foundation' && /\b(call|meeting|book|schedule)/i.test(String(r.callNudge ?? ''))
-        ? 'Your next step is a website that looks like the agent people want to hire. See what we build for agents.'
-        : clean(r.callNudge, 300),
+  const whereYouAre = clean(r.whereYouAre, 600)
+  const whatToDo = clean(r.whatToDo, 560)
+  const whatNotToDo = clean(r.whatNotToDo, 360)
+  return {
+    whereYouAre: whereYouAre || stage.summary,
+    whatToDo: whatToDo && guard.doThis.test(whatToDo) ? whatToDo : stage.recommend.body,
+    whatNotToDo: whatNotToDo && guard.skip.test(whatNotToDo) ? whatNotToDo : `${stage.avoid.title}. ${stage.avoid.body}`,
+    steps,
   }
-  return plan.description && plan.note && plan.moves.length === 3 && plan.callNudge ? plan : null
 }
 
 /** Uncached call; exported for the prompt test script only. */
