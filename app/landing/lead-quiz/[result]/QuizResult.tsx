@@ -151,33 +151,34 @@ export default function QuizResult({ slug }: { slug: StageSlug }) {
       <section id="book" className="scroll-mt-20 bg-[var(--color-off-black)] px-4 py-16 sm:px-6 sm:py-20">
         <div className={`mx-auto ${consult ? 'max-w-4xl' : 'max-w-2xl'}`}>
           <div className="mx-auto max-w-2xl">
-            {answers ? (
-              <p className="gg-body !text-lg !text-white/70">You said you were {answers.commitment}/10 committed to making the change.</p>
-            ) : null}
-            <h2 className="gg-display mt-3 text-[2.2rem] font-light leading-[1.1] tracking-tight !text-white sm:text-5xl">
-              {consult ? (
-                <>
-                  The easiest next step is to get <em className="italic !text-white">personalized guidance</em> from our team.
-                </>
-              ) : (
-                <>
-                  The easiest next step is <em className="italic !text-white">a website built to win listings.</em>
-                </>
-              )}
-            </h2>
             {consult ? (
-              <p className="gg-body mt-5 !text-lg font-semibold !text-white">Book here:</p>
+              <>
+                {answers ? <p className="gg-body !text-lg font-semibold !text-white">You said you&apos;re {answers.commitment} out of 10 committed.</p> : null}
+                <p className="gg-body mt-3 !text-lg !leading-relaxed !text-white/70">
+                  A vast majority of serious agents said they are 5 or more committed to talking to our team of experts to get the best course of action
+                  possible.
+                </p>
+                <h2 className="gg-display mt-6 text-[2.2rem] font-light leading-[1.1] tracking-tight !text-white sm:text-5xl">
+                  When would be a good time to connect you with <em className="italic !text-white">one of our team experts?</em>
+                </h2>
+              </>
             ) : (
-              <div className="mt-8">
-                <Link href="/landing/website-development" className={lightBtn}>
-                  See our websites <span aria-hidden className="!text-[var(--color-off-black)]">→</span>
-                </Link>
-              </div>
+              <>
+                {answers ? <p className="gg-body !text-lg !text-white/70">You said you were {answers.commitment}/10 committed to making the change.</p> : null}
+                <h2 className="gg-display mt-3 text-[2.2rem] font-light leading-[1.1] tracking-tight !text-white sm:text-5xl">
+                  The easiest next step is <em className="italic !text-white">a website built to win listings.</em>
+                </h2>
+                <div className="mt-8">
+                  <Link href="/landing/website-development" className={lightBtn}>
+                    See our websites <span aria-hidden className="!text-[var(--color-off-black)]">→</span>
+                  </Link>
+                </div>
+              </>
             )}
           </div>
           {consult ? (
             <div className="mt-6 overflow-hidden rounded-3xl bg-white p-2 sm:p-4">
-              {answers !== undefined ? <CalInlineEmbed notes={answers ? answersSummary(answers) : undefined} /> : <div className="min-h-[720px]" />}
+              {answers !== undefined ? <CalInlineEmbed calLink="andrew-rohm/quiz-guidance" notes={answers ? answersSummary(answers) : undefined} /> : <div className="min-h-[720px]" />}
             </div>
           ) : null}
         </div>

@@ -5,16 +5,24 @@ import { readLandingLeadPrefill, toE164 } from '@/lib/landing/booking-prefill'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-const CAL_NAMESPACE = 'marketing-discussion'
-const CAL_ELEMENT_ID = 'my-cal-inline-marketing-discussion'
-
 /**
- * Cal.com inline booking for the "marketing-discussion" event, prefilled with
- * what the lead just entered on a /landing form (sessionStorage, never the URL).
+ * Cal.com inline booking, prefilled with what the lead just entered on a
+ * /landing form (sessionStorage, never the URL). `calLink` picks the event
+ * (default "marketing-discussion"; the quiz results use "quiz-guidance").
  * `notes` replaces the default "Website: …" note, e.g. with quiz results.
  */
-export default function CalInlineEmbed({ notes, className = '' }: { notes?: string; className?: string }) {
+export default function CalInlineEmbed({
+  notes,
+  className = '',
+  calLink = 'andrew-rohm/marketing-discussion',
+}: {
+  notes?: string
+  className?: string
+  calLink?: string
+}) {
   const calInitialized = useRef(false)
+  const CAL_NAMESPACE = calLink.split('/').pop() || 'marketing-discussion'
+  const CAL_ELEMENT_ID = `my-cal-inline-${CAL_NAMESPACE}`
 
   // The official snippet, guarded against double-init in dev.
   useEffect(() => {
@@ -74,11 +82,11 @@ export default function CalInlineEmbed({ notes, className = '' }: { notes?: stri
     w.Cal.ns[CAL_NAMESPACE]('inline', {
       elementOrSelector: `#${CAL_ELEMENT_ID}`,
       config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true', theme: 'light', ...prefill },
-      calLink: 'andrew-rohm/marketing-discussion',
+      calLink,
     })
 
     w.Cal.ns[CAL_NAMESPACE]('ui', { theme: 'light', hideEventTypeDetails: false, layout: 'month_view' })
-  }, [notes])
+  }, [notes, calLink, CAL_NAMESPACE, CAL_ELEMENT_ID])
 
   return <div id={CAL_ELEMENT_ID} style={{ width: '100%', height: '100%', overflow: 'auto' }} className={`min-h-[720px] ${className}`} />
 }
