@@ -44,7 +44,7 @@ export default function HomeDevelopments() {
             <li key={dev.name} className="list-none">
               <SeoReveal delay={i * 0.08} className="h-full">
                 <article className="flex h-full flex-col">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-[var(--color-off-black)]">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-[var(--color-off-black)]">
                     <Image
                       src={dev.image}
                       alt={dev.imageAlt}

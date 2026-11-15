@@ -9,4 +9,4 @@ export const SEO_CAROUSEL_IMAGE_FRAME =
 export const SEO_CAROUSEL_CARD_MIN = 'min-h-[28rem] md:min-h-[30rem]'
 
 export const SEO_CAROUSEL_CARD_LINK =
-  'group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/12 hover:shadow-md motion-reduce:transition-colors motion-reduce:hover:translate-y-0'
+  'group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/12 hover:shadow-md motion-reduce:transition-colors motion-reduce:hover:translate-y-0'

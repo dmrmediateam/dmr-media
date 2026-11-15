@@ -40,7 +40,7 @@ const sectionTitleClass =
   'font-serif text-[10px] uppercase tracking-[0.24em] text-[var(--color-off-black)]'
 
 const checkboxLabelClass =
-  'flex min-h-[48px] cursor-pointer items-center gap-3 rounded-lg border border-[var(--color-ink-200)] bg-white px-3 py-2.5 font-serif text-sm leading-snug text-[var(--color-off-black)] shadow-[0_1px_0_rgba(15,15,15,0.03)] transition-colors hover:border-[var(--color-off-black)]/22 has-[:checked]:border-[var(--color-off-black)]/30 has-[:checked]:bg-[var(--color-off-black)]/[0.04]'
+  'flex min-h-[48px] cursor-pointer items-center gap-3 rounded-xl border border-[var(--color-ink-200)] bg-white px-3 py-2.5 font-serif text-sm leading-snug text-[var(--color-off-black)] shadow-[0_1px_0_rgba(15,15,15,0.03)] transition-colors hover:border-[var(--color-off-black)]/22 has-[:checked]:border-[var(--color-off-black)]/30 has-[:checked]:bg-[var(--color-off-black)]/[0.04]'
 
 export default function CalendarPageContent() {
   const router = useRouter()
@@ -339,7 +339,7 @@ export default function CalendarPageContent() {
                   {submitMessage ? (
                     <p
                       role="status"
-                      className="rounded-lg border border-red-200/80 bg-white px-4 py-3 text-center font-serif text-sm leading-snug text-red-900 shadow-[0_1px_0_rgba(15,15,15,0.04)]"
+                      className="rounded-xl border border-red-200/80 bg-white px-4 py-3 text-center font-serif text-sm leading-snug text-red-900 shadow-[0_1px_0_rgba(15,15,15,0.04)]"
                     >
                       {submitMessage}
                     </p>

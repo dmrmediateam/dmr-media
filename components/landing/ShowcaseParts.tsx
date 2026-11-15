@@ -19,7 +19,7 @@ export function Chip({ children, className = '' }: { children: ReactNode; classN
 export function Stage({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-3xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-4 shadow-[0_30px_80px_-40px_rgba(15,15,15,0.25)] sm:rounded-[1.75rem] sm:p-8 md:p-12 ${className}`}
+      className={`relative overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-4 shadow-[0_30px_80px_-40px_rgba(15,15,15,0.25)] sm:p-8 md:p-12 ${className}`}
     >
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_80%_0%,rgba(255,255,255,0.9),transparent_65%)]"
@@ -38,7 +38,7 @@ export function Stage({ children, className = '' }: { children: ReactNode; class
 export function Frame({ children, pan }: { children: ReactNode; pan?: string }) {
   if (!pan) {
     return (
-      <div className="overflow-hidden rounded-xl border border-[var(--color-ink-200)] bg-white p-2 shadow-[0_24px_60px_-30px_rgba(15,15,15,0.35)] sm:p-3">
+      <div className="overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-white p-2 shadow-[0_24px_60px_-30px_rgba(15,15,15,0.35)] sm:p-3">
         {children}
       </div>
     )
@@ -57,7 +57,7 @@ export function Frame({ children, pan }: { children: ReactNode; pan?: string }) 
 
 export function Tile({ value, label }: { value: string; label: string }) {
   return (
-    <div className="flex items-baseline justify-between gap-4 rounded-xl border border-[var(--color-ink-200)] bg-white px-4 py-3 shadow-[0_1px_0_rgba(15,15,15,0.04)] sm:block sm:p-4">
+    <div className="flex items-baseline justify-between gap-4 rounded-2xl border border-[var(--color-ink-200)] bg-white px-4 py-3 shadow-[0_1px_0_rgba(15,15,15,0.04)] sm:block sm:p-4">
       <p className="gg-display shrink-0 text-xl font-light sm:text-2xl">{value}</p>
       <p className="text-right font-sans text-xs text-[var(--gg-text-muted)] sm:mt-1 sm:text-left">{label}</p>
     </div>

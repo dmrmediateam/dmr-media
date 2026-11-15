@@ -153,8 +153,8 @@ export function IncludedCards({
                   aria-hidden
                 />
                 {pillar.screen ? (
-                  <div className="absolute inset-x-5 top-5 -z-10 overflow-hidden rounded-lg border border-white/30 bg-white p-1 shadow-[0_24px_50px_-20px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:-translate-y-1 motion-reduce:transition-none sm:inset-x-6 sm:top-6">
-                    <div className="relative aspect-[16/10] overflow-hidden rounded-md">
+                  <div className="absolute inset-x-5 top-5 -z-10 overflow-hidden rounded-2xl border border-white/30 bg-white p-1 shadow-[0_24px_50px_-20px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:-translate-y-1 motion-reduce:transition-none sm:inset-x-6 sm:top-6">
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
                       <Image
                         src={pillar.screen}
                         alt={pillar.screenAlt ?? ''}

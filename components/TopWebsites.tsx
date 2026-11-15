@@ -160,7 +160,7 @@ export default function TopWebsites({
                     i === active ? 'opacity-100' : 'opacity-50'
                   } transition-opacity duration-700`}
                 >
-                  <div className="overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_12px_40px_-16px_rgba(15,15,15,0.14)] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md motion-reduce:group-hover:translate-y-0">
+                  <div className="overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-white shadow-[0_12px_40px_-16px_rgba(15,15,15,0.14)] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md motion-reduce:group-hover:translate-y-0">
                     {/* Browser chrome */}
                     <div className="relative flex items-center border-b border-[var(--color-ink-200)] bg-[var(--color-off-white,#fafaf9)] px-4 py-2.5">
                       <span className="flex gap-1.5" aria-hidden>

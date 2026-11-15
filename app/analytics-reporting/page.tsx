@@ -118,7 +118,7 @@ function BlackBoxVsTransparentTable() {
     { label: 'Optimization', black: 'Reactive guesses', clear: 'Hypothesis → test → measured outcome' },
   ] as const;
   return (
-    <div className="overflow-x-auto border border-[var(--color-ink-200)] bg-white">
+    <div className="rounded-2xl overflow-x-auto border border-[var(--color-ink-200)] bg-white">
       <table className="w-full min-w-[600px] text-left text-sm font-serif">
         <caption className="sr-only">Black box reporting versus transparent reporting</caption>
         <thead>
@@ -155,13 +155,13 @@ function ReportingTiersDiagram() {
     { n: '3', title: 'Monthly strategy reviews', sub: 'Roadmap bets', body: 'Optimization recommendations tied to pipeline and inventory—not vanity charts.' },
   ] as const;
   return (
-    <div className="border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-6 md:p-10" aria-label="Three-tier reporting structure">
+    <div className="rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-6 md:p-10" aria-label="Three-tier reporting structure">
       <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)] font-serif mb-8 text-center">
         Reporting structure
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
         {tiers.map((t) => (
-          <div key={t.n} className="border border-[var(--color-off-black)] bg-white p-5 flex flex-col">
+          <div key={t.n} className="rounded-2xl border border-[var(--color-off-black)] bg-white p-5 flex flex-col">
             <span className="text-xs font-serif text-[var(--color-trust)] mb-2">Tier {t.n}</span>
             <p className="text-lg font-serif font-light text-[var(--color-off-black)] mb-1">{t.title}</p>
             <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] font-serif mb-3">{t.sub}</p>
@@ -198,20 +198,20 @@ export default function AnalyticsReportingPage() {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link
                       href="/calendar"
-                      className="inline-flex justify-center px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-85 transition-opacity text-center"
+                      className="rounded-full inline-flex justify-center px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-85 transition-opacity text-center"
                     >
                       Get a Demo
                     </Link>
                     <a
                       href="#framework"
-                      className="inline-flex justify-center px-8 py-4 border border-[var(--color-off-black)] text-[var(--color-off-black)] uppercase tracking-[0.15em] text-xs font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-colors text-center"
+                      className="rounded-full inline-flex justify-center px-8 py-4 border border-[var(--color-off-black)] text-[var(--color-off-black)] uppercase tracking-[0.15em] text-xs font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-colors text-center"
                     >
                       Learn More
                     </a>
                   </div>
                 </div>
                 <div className="grid grid-cols-5 gap-3 md:gap-4 items-end max-w-xl mx-auto lg:max-w-none lg:mx-0">
-                  <div className="col-span-2 relative aspect-[9/16] max-h-[360px] rounded-sm overflow-hidden border border-[var(--color-ink-200)] shadow-md bg-white">
+                  <div className="col-span-2 relative aspect-[9/16] max-h-[360px] rounded-2xl overflow-hidden border border-[var(--color-ink-200)] shadow-md bg-white">
                     <Image
                       src="/images/landing/google-general/03-semrush-ranking.png"
                       alt="Marketing analytics on mobile — rankings and visibility"
@@ -220,11 +220,11 @@ export default function AnalyticsReportingPage() {
                       sizes="(max-width: 1024px) 40vw, 280px"
                       priority
                     />
-                    <span className="absolute bottom-2 left-2 right-2 text-center text-[9px] uppercase tracking-[0.15em] text-[var(--color-off-black)] font-serif bg-white/90 py-1 rounded-sm border border-[var(--color-ink-200)]">
+                    <span className="absolute bottom-2 left-2 right-2 text-center text-[9px] uppercase tracking-[0.15em] text-[var(--color-off-black)] font-serif bg-white/90 py-1 rounded-full border border-[var(--color-ink-200)]">
                       Mobile
                     </span>
                   </div>
-                  <div className="col-span-3 relative aspect-[4/3] rounded-sm overflow-hidden border border-[var(--color-ink-200)] shadow-md bg-white">
+                  <div className="col-span-3 relative aspect-[4/3] rounded-2xl overflow-hidden border border-[var(--color-ink-200)] shadow-md bg-white">
                     <Image
                       src="/images/MichealTraffic.png"
                       alt="Real estate analytics dashboard on desktop — traffic and growth"
@@ -233,7 +233,7 @@ export default function AnalyticsReportingPage() {
                       sizes="(max-width: 1024px) 60vw, 480px"
                       priority
                     />
-                    <span className="absolute bottom-2 left-2 right-2 text-center text-[9px] uppercase tracking-[0.15em] text-[var(--color-off-black)] font-serif bg-white/90 py-1 rounded-sm border border-[var(--color-ink-200)]">
+                    <span className="absolute bottom-2 left-2 right-2 text-center text-[9px] uppercase tracking-[0.15em] text-[var(--color-off-black)] font-serif bg-white/90 py-1 rounded-full border border-[var(--color-ink-200)]">
                       Desktop
                     </span>
                   </div>
@@ -303,7 +303,7 @@ export default function AnalyticsReportingPage() {
                       ))}
                     </ul>
                   </div>
-                  <div className="relative min-h-[260px] sm:min-h-[300px] border border-[var(--color-ink-200)] overflow-hidden bg-white">
+                  <div className="rounded-2xl relative min-h-[260px] sm:min-h-[300px] border border-[var(--color-ink-200)] overflow-hidden bg-white">
                     <Image
                       src="/images/MarquisFarwellGoogleSearchConsole.png"
                       alt="Search analytics example — Google Search Console performance for a luxury real estate team"
@@ -330,7 +330,7 @@ export default function AnalyticsReportingPage() {
                       ))}
                     </ul>
                   </div>
-                  <div className="lg:order-1 relative min-h-[240px] sm:min-h-[280px] border border-[var(--color-ink-200)] overflow-hidden bg-white">
+                  <div className="rounded-2xl lg:order-1 relative min-h-[240px] sm:min-h-[280px] border border-[var(--color-ink-200)] overflow-hidden bg-white">
                     <Image
                       src="/images/EaganCaseStudy/SearchAds.png"
                       alt="Paid analytics example — Google Ads campaign metrics"
@@ -357,7 +357,7 @@ export default function AnalyticsReportingPage() {
                       ))}
                     </ul>
                   </div>
-                  <div className="relative min-h-[260px] sm:min-h-[300px] border border-[var(--color-ink-200)] overflow-hidden bg-white">
+                  <div className="rounded-2xl relative min-h-[260px] sm:min-h-[300px] border border-[var(--color-ink-200)] overflow-hidden bg-white">
                     <Image
                       src="/images/WillowBrookLeads.png"
                       alt="Lead analytics example — inbound leads dashboard"
@@ -385,7 +385,7 @@ export default function AnalyticsReportingPage() {
                     </ul>
                   </div>
                   <div className="lg:order-1 space-y-3">
-                    <div className="relative min-h-[200px] border border-[var(--color-ink-200)] overflow-hidden bg-white">
+                    <div className="rounded-2xl relative min-h-[200px] border border-[var(--color-ink-200)] overflow-hidden bg-white">
                       <Image
                         src="/images/EaganCaseStudy/GoogleSearchConsole.png"
                         alt="Site performance example — experience and search visibility signals"
@@ -434,7 +434,7 @@ export default function AnalyticsReportingPage() {
                   </li>
                 ))}
               </ul>
-              <div className="relative w-full max-w-5xl mx-auto min-h-[280px] sm:min-h-[360px] border border-[var(--color-ink-200)] overflow-hidden bg-white rounded-sm">
+              <div className="relative w-full max-w-5xl mx-auto min-h-[280px] sm:min-h-[360px] border border-[var(--color-ink-200)] overflow-hidden bg-white rounded-2xl">
                 <Image
                   src="/images/whitelabeledcase/semrushCS.webp"
                   alt="Full analytics dashboard view — visibility, traffic, and campaign signals"
@@ -522,7 +522,7 @@ export default function AnalyticsReportingPage() {
                     </div>
                     <Link
                       href={`/case-study/${study.id}`}
-                      className={`group relative min-h-[320px] sm:min-h-[400px] lg:min-h-[480px] overflow-hidden bg-[var(--color-ink-200)] order-1 m-6 sm:m-10 lg:m-12 ${
+                      className={`group relative min-h-[320px] sm:min-h-[400px] lg:min-h-[480px] overflow-hidden rounded-2xl bg-[var(--color-ink-200)] order-1 m-6 sm:m-10 lg:m-12 ${
                         study.imageRight ? 'lg:order-2' : 'lg:order-1'
                       }`}
                     >

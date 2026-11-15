@@ -242,20 +242,20 @@ export default function SinglePropertyWebsitesPage() {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <a
                       href="#contact"
-                      className="inline-flex justify-center px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-85 transition-opacity text-center"
+                      className="rounded-full inline-flex justify-center px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-85 transition-opacity text-center"
                     >
                       Start a Campaign
                     </a>
                     <Link
                       href="/real-estate-agent-website-samples"
-                      className="inline-flex justify-center px-8 py-4 border border-[var(--color-off-black)] text-[var(--color-off-black)] uppercase tracking-[0.15em] text-xs font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-colors text-center"
+                      className="rounded-full inline-flex justify-center px-8 py-4 border border-[var(--color-off-black)] text-[var(--color-off-black)] uppercase tracking-[0.15em] text-xs font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-colors text-center"
                     >
                       View Portfolio
                     </Link>
                   </div>
                 </div>
                 <div className="grid grid-cols-5 gap-3 sm:gap-4 items-end">
-                  <div className="col-span-3 relative aspect-[5/4] rounded-sm overflow-hidden border border-[var(--color-ink-200)] shadow-sm bg-[var(--color-ink-200)]">
+                  <div className="col-span-3 relative aspect-[5/4] rounded-2xl overflow-hidden border border-[var(--color-ink-200)] shadow-sm bg-[var(--color-ink-200)]">
                     <Image
                       src="/images/ClientWebsiteImages/screencapture-ocean-breeze-one-vercel-app-2026-03-29-19_49_50.png"
                       alt="Luxury single property website shown on desktop"
@@ -265,7 +265,7 @@ export default function SinglePropertyWebsitesPage() {
                       priority
                     />
                   </div>
-                  <div className="col-span-2 relative aspect-[9/16] max-h-[420px] rounded-sm overflow-hidden border border-[var(--color-ink-200)] shadow-sm bg-[var(--color-ink-200)]">
+                  <div className="col-span-2 relative aspect-[9/16] max-h-[420px] rounded-2xl overflow-hidden border border-[var(--color-ink-200)] shadow-sm bg-[var(--color-ink-200)]">
                     <Image
                       src="/images/propertyWebsiteImages/screencapture-2100pine-vercel-app-2026-03-25-19_45_27.png"
                       alt="Luxury listing website on mobile"
@@ -337,7 +337,7 @@ export default function SinglePropertyWebsitesPage() {
                   MLS listing vs. dedicated property website
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  <figure className="relative aspect-[2/1] border border-[var(--color-ink-200)] overflow-hidden bg-[var(--color-ink-200)]">
+                  <figure className="rounded-2xl relative aspect-[2/1] border border-[var(--color-ink-200)] overflow-hidden bg-[var(--color-ink-200)]">
                     <Image
                       src="/images/ClientWebsites/screencapture-realestatebycherylnj-2026-03-04-03_35_34.png"
                       alt="Traditional brokerage MLS-heavy website layout — generic listing presentation"
@@ -349,7 +349,7 @@ export default function SinglePropertyWebsitesPage() {
                       MLS-style template
                     </figcaption>
                   </figure>
-                  <figure className="relative aspect-[2/1] border border-[var(--color-off-black)] overflow-hidden bg-[var(--color-ink-200)]">
+                  <figure className="rounded-2xl relative aspect-[2/1] border border-[var(--color-off-black)] overflow-hidden bg-[var(--color-ink-200)]">
                     <Image
                       src="/images/propertyWebsiteImages/screencapture-ocean-breeze-one-vercel-app-2026-03-25-19_45_37.png"
                       alt="Dedicated luxury single property website with immersive listing creative"
@@ -399,7 +399,7 @@ export default function SinglePropertyWebsitesPage() {
                       </ul>
                     </div>
                     <div
-                      className={`relative min-h-[260px] sm:min-h-[320px] border border-[var(--color-ink-200)] overflow-hidden bg-white ${
+                      className={`rounded-2xl relative min-h-[260px] sm:min-h-[320px] border border-[var(--color-ink-200)] overflow-hidden bg-white ${
                         i % 2 === 1 ? 'lg:order-1' : ''
                       }`}
                     >
@@ -481,7 +481,7 @@ export default function SinglePropertyWebsitesPage() {
                 program (site + 30-day Ads). Use the matrix below as a planning guide—confirm numbers on a fit call.
               </p>
 
-              <div className="overflow-x-auto border border-[var(--color-ink-200)] bg-white mb-10">
+              <div className="rounded-2xl overflow-x-auto border border-[var(--color-ink-200)] bg-white mb-10">
                 <table className="w-full min-w-[640px] text-left text-sm font-serif">
                   <thead>
                     <tr className="border-b border-[var(--color-ink-200)] bg-[var(--surface-base)]">
@@ -518,7 +518,7 @@ export default function SinglePropertyWebsitesPage() {
 
               <a
                 href="#contact"
-                className="inline-flex justify-center px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-85 transition-opacity"
+                className="rounded-full inline-flex justify-center px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-85 transition-opacity"
               >
                 Request pricing for your listing
               </a>
@@ -612,7 +612,7 @@ export default function SinglePropertyWebsitesPage() {
                       href={listing.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`group relative min-h-[300px] sm:min-h-[380px] lg:min-h-[460px] overflow-hidden bg-[var(--color-ink-200)] order-1 m-6 sm:m-10 lg:m-12 ${
+                      className={`group relative min-h-[300px] sm:min-h-[380px] lg:min-h-[460px] overflow-hidden rounded-2xl bg-[var(--color-ink-200)] order-1 m-6 sm:m-10 lg:m-12 ${
                         listing.imageRight ? 'lg:order-2' : 'lg:order-1'
                       }`}
                     >

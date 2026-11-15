@@ -38,7 +38,7 @@ export default function ServiceStats({ stats, heading, description, embedded }: 
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className={`flex flex-col gap-4 border-b border-[var(--color-ink-200)] pb-8 transition-all duration-300 ${embedded ? 'rounded-sm hover:bg-[var(--surface-base)]/60' : 'hover:opacity-60'}`}
+              className={`flex flex-col gap-4 border-b border-[var(--color-ink-200)] pb-8 transition-all duration-300 ${embedded ? 'rounded-xl hover:bg-[var(--surface-base)]/60' : 'hover:opacity-60'}`}
             >
               <span className="text-4xl md:text-5xl font-serif font-light text-[var(--color-off-black)]">
                 {stat.value}

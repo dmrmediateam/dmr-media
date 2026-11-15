@@ -99,7 +99,7 @@ export default function VideoTestimonials({
                         type="button"
                         onClick={() => setModalVideo(t.videoId)}
                         aria-label={`Watch ${t.name}'s testimonial`}
-                        className={`group relative block aspect-video w-full overflow-hidden rounded-lg bg-[var(--color-off-black)] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface-base)] md:col-span-7 ${
+                        className={`group relative block aspect-video w-full overflow-hidden rounded-2xl bg-[var(--color-off-black)] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface-base)] md:col-span-7 ${
                           flipped ? 'md:order-2' : ''
                         }`}
                       >
@@ -173,7 +173,7 @@ export default function VideoTestimonials({
                 Close
               </button>
             </div>
-            <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-black">
+            <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black">
               <iframe
                 src={`https://www.youtube.com/embed/${modalVideo}?autoplay=1`}
                 title="Client testimonial video"

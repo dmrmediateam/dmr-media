@@ -220,7 +220,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                   alt={post.author.name}
                   width={36}
                   height={36}
-                  className="h-9 w-9 border border-white/30 object-cover"
+                  className="rounded-full h-9 w-9 border border-white/30 object-cover"
                 />
               )}
               {post.author.slug || post.author.teamProfileSlug ? (
@@ -259,13 +259,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             )}
 
             {post.tags && post.tags.length > 0 && (
-              <div className="rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)] px-6 py-8">
+              <div className="rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] px-6 py-8">
                 <p className="gg-eyebrow mb-4">Topics</p>
                 <ul className="flex flex-wrap gap-2" role="list">
                   {post.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="rounded-sm border border-[var(--color-ink-200)] bg-white px-3 py-1.5 font-serif text-[10px] uppercase tracking-[0.12em] text-[var(--color-ink-400)]"
+                      className="rounded-full border border-[var(--color-ink-200)] bg-white px-3 py-1.5 font-serif text-[10px] uppercase tracking-[0.12em] text-[var(--color-ink-400)]"
                     >
                       {tag}
                     </li>

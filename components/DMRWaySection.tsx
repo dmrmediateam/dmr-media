@@ -88,7 +88,7 @@ export default function DMRWaySection() {
     <section className="border-t border-[var(--color-ink-200)] bg-white pt-12 pb-16 md:pt-16 md:pb-20" aria-labelledby="partner-tagline-heading">
       <div className="container-max">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
-          <div className="relative order-2 aspect-video w-full overflow-hidden bg-black lg:order-1">
+          <div className="relative order-2 aspect-video w-full overflow-hidden rounded-2xl bg-black lg:order-1">
             <video
               ref={videoRef}
               className="absolute inset-0 h-full w-full object-cover"

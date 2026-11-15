@@ -80,7 +80,7 @@ function BrowserChrome({ tabLabel }: { tabLabel: string }) {
         <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e] shadow-sm ring-1 ring-black/[0.04]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#28c840] shadow-sm ring-1 ring-black/[0.04]" />
       </div>
-      <div className="min-w-0 flex-1 truncate rounded-md border border-black/[0.05] bg-white px-3 py-1.5 text-center font-sans text-[10px] font-medium tracking-wide text-neutral-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] sm:text-[11px]">
+      <div className="min-w-0 flex-1 truncate rounded-full border border-black/[0.05] bg-white px-3 py-1.5 text-center font-sans text-[10px] font-medium tracking-wide text-neutral-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] sm:text-[11px]">
         <span className="text-neutral-400">dmrmedia.org</span>
         <span className="text-neutral-300"> · </span>
         <span className="text-neutral-600">{tabLabel}</span>
@@ -138,8 +138,8 @@ export default function SeoHeroCaseStudyShowcase({
           <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
         </button>
 
-        <div className="relative mx-auto max-w-[min(100%,420px)] overflow-hidden rounded-xl bg-[#d8d8d8] p-[3px] shadow-[0_32px_80px_-24px_rgba(0,0,0,0.75),0_0_0_1px_rgba(255,255,255,0.12)_inset] ring-1 ring-black/20 sm:max-w-[460px] lg:max-w-[480px]">
-          <div className="overflow-hidden rounded-[10px] bg-white">
+        <div className="relative mx-auto max-w-[min(100%,420px)] overflow-hidden rounded-2xl bg-[#d8d8d8] p-[3px] shadow-[0_32px_80px_-24px_rgba(0,0,0,0.75),0_0_0_1px_rgba(255,255,255,0.12)_inset] ring-1 ring-black/20 sm:max-w-[460px] lg:max-w-[480px]">
+          <div className="overflow-hidden rounded-[13px] bg-white">
             <BrowserChrome tabLabel={shortTitle} />
 
             <div className="relative aspect-[4/3] w-full bg-neutral-50">

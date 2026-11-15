@@ -90,7 +90,7 @@ export default function RelatedPosts({
               <Link
                 key={post._id}
                 href={`/blog/${post.slug?.current ?? ''}`}
-                className="group block border border-[var(--color-ink-200)] bg-white hover:border-[var(--color-off-black)]/30 hover:shadow-[0_8px_32px_-8px_rgba(15,15,15,0.12)] transition-all duration-300"
+                className="overflow-hidden rounded-2xl group block border border-[var(--color-ink-200)] bg-white hover:border-[var(--color-off-black)]/30 hover:shadow-[0_8px_32px_-8px_rgba(15,15,15,0.12)] transition-all duration-300"
               >
                 {/* Image */}
                 {post.mainImage?.asset?.url && (
@@ -146,7 +146,7 @@ export default function RelatedPosts({
         <div className="mt-12 text-center">
           <Link
             href="/blog"
-            className="inline-flex items-center justify-center px-8 py-3 border border-[var(--color-off-black)] text-[var(--color-off-black)] uppercase tracking-[0.12em] text-xs font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-all duration-300"
+            className="rounded-full inline-flex items-center justify-center px-8 py-3 border border-[var(--color-off-black)] text-[var(--color-off-black)] uppercase tracking-[0.12em] text-xs font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-all duration-300"
           >
             View all insights
           </Link>

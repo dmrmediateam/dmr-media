@@ -46,7 +46,7 @@ function ApplyCtaBand({
         <button
           type="button"
           onClick={openApplyModal}
-          className={`inline-flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
+          className={`inline-flex min-h-[48px] w-full max-w-xs items-center justify-center rounded-full border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 ${ring} sm:w-auto`}
         >
           {primaryLabel}
         </button>
@@ -149,7 +149,7 @@ export default function LuxuryDevelopmentPageContent() {
           <div className="mt-14 grid gap-6 md:grid-cols-3 md:gap-8">
             {stakesThree.map((s, i) => (
               <SeoReveal key={s.title} delay={i * 0.06} className="h-full">
-                <article className="group flex h-full flex-col rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/12 hover:shadow-md motion-reduce:hover:translate-y-0">
+                <article className="group flex h-full flex-col rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/12 hover:shadow-md motion-reduce:hover:translate-y-0">
                   <p className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">{s.title}</p>
                   <h3 className="mt-2 font-serif text-xl font-light text-[var(--color-off-black)]">{s.subtitle}</h3>
                   <p className="mt-4 font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">{s.body}</p>
@@ -177,7 +177,7 @@ export default function LuxuryDevelopmentPageContent() {
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {devDeliverables.map((item, i) => (
               <SeoReveal key={item.title} delay={(i % 4) * 0.05} className="h-full">
-                <article className="flex h-full flex-col rounded-lg border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/12 hover:shadow-md motion-reduce:hover:translate-y-0">
+                <article className="flex h-full flex-col rounded-2xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/12 hover:shadow-md motion-reduce:hover:translate-y-0">
                   <p className="font-serif text-xs uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
                     {String(i + 1).padStart(2, '0')}
                   </p>
@@ -241,7 +241,7 @@ export default function LuxuryDevelopmentPageContent() {
           </SeoReveal>
           <SeoReveal delay={0.08}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
-              <div className="rounded-xl border border-[var(--color-off-black)]/25 bg-white p-6 shadow-[0_12px_40px_-12px_rgba(15,15,15,0.18)] sm:p-7">
+              <div className="rounded-2xl border border-[var(--color-off-black)]/25 bg-white p-6 shadow-[0_12px_40px_-12px_rgba(15,15,15,0.18)] sm:p-7">
                 <p className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">With</p>
                 <p className="mt-1 font-serif text-xl font-light tracking-[0.06em] text-[var(--color-off-black)]">DMR</p>
                 <ul className="mt-6 space-y-5">
@@ -261,7 +261,7 @@ export default function LuxuryDevelopmentPageContent() {
                   ))}
                 </ul>
               </div>
-              <div className="rounded-xl border border-[var(--color-ink-200)] bg-[var(--surface-base)]/70 p-6 sm:p-7">
+              <div className="rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)]/70 p-6 sm:p-7">
                 <p className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">With</p>
                 <p className="mt-1 font-serif text-xl font-light text-[var(--color-ink-400)]">Typical alternatives</p>
                 <ul className="mt-6 space-y-5">
@@ -351,7 +351,7 @@ export default function LuxuryDevelopmentPageContent() {
       <section className="border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]">
         <div className="container-max max-w-3xl">
           <SeoReveal>
-            <div className="rounded-xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] md:p-10">
+            <div className="rounded-2xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] md:p-10">
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Ecosystem</p>
               <h2 className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)] md:text-3xl">
                 How development marketing fits your stack
@@ -393,10 +393,10 @@ export default function LuxuryDevelopmentPageContent() {
             </h2>
             <SectionRule />
           </SeoReveal>
-          <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-1 md:px-2">
+          <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-1 md:px-2">
             {FAQ_ITEMS.map((item) => (
               <details key={item.question} className="group border-0 px-3 py-1 transition-colors [&[open]]:bg-white/90 md:px-4">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 rounded-md py-4 pr-1 font-serif text-lg font-light text-[var(--color-off-black)] outline-none marker:content-none [&::-webkit-details-marker]:hidden hover:bg-white/60 focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-reduce:transition-none">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 rounded-xl py-4 pr-1 font-serif text-lg font-light text-[var(--color-off-black)] outline-none marker:content-none [&::-webkit-details-marker]:hidden hover:bg-white/60 focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-reduce:transition-none">
                   <span className="text-pretty">{item.question}</span>
                   <span
                     className="mt-1.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[var(--color-ink-200)] bg-white text-[10px] text-[var(--color-ink-400)] transition-transform duration-300 group-open:rotate-180"
@@ -448,7 +448,7 @@ export default function LuxuryDevelopmentPageContent() {
               type="button"
               onClick={openApplyModal}
               whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-              className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
+              className="inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-full border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
             >
               Get my development marketing plan
             </motion.button>

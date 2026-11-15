@@ -39,7 +39,7 @@ export default function EaganLuxuryCaseStudy() {
             alt="Eagan Luxury Real Estate — eaganluxury.com, St. Petersburg Florida"
             width={1920}
             height={1080}
-            className="w-full h-auto rounded-lg border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
+            className="w-full h-auto rounded-2xl border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
             loading="lazy"
           />
         </div>

@@ -146,7 +146,7 @@ export default function CaseStudiesPage() {
                   ))}
                 </div>
 
-                <div className="relative aspect-[16/9] overflow-hidden mb-6">
+                <div className="rounded-2xl relative aspect-[16/9] overflow-hidden mb-6">
                   <Image src={study.image} alt={study.title} fill className="object-cover" />
                 </div>
 

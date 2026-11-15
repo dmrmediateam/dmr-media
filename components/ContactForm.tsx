@@ -12,7 +12,7 @@ import {
 } from '@/components/applyFormPrimitives';
 
 const textareaClass =
-  'w-full min-h-[120px] rounded-lg border border-[var(--color-ink-200)] bg-white px-3 py-2.5 font-serif text-base leading-normal text-[var(--color-off-black)] placeholder:text-[var(--color-ink-400)]/80 shadow-[0_1px_0_rgba(15,15,15,0.03)] transition-colors focus:border-[var(--color-off-black)] focus:outline-none focus:ring-1 focus:ring-[var(--color-off-black)]/15 resize-none';
+  'w-full min-h-[120px] rounded-xl border border-[var(--color-ink-200)] bg-white px-3 py-2.5 font-serif text-base leading-normal text-[var(--color-off-black)] placeholder:text-[var(--color-ink-400)]/80 shadow-[0_1px_0_rgba(15,15,15,0.03)] transition-colors focus:border-[var(--color-off-black)] focus:outline-none focus:ring-1 focus:ring-[var(--color-off-black)]/15 resize-none';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -147,7 +147,7 @@ const ContactForm = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-10 w-10 items-center justify-center border border-[var(--color-ink-200)] text-[var(--color-off-black)] hover:text-[var(--color-trust)] hover:border-[var(--color-trust)] transition-colors font-serif text-xs"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-ink-200)] text-[var(--color-off-black)] hover:text-[var(--color-trust)] hover:border-[var(--color-trust)] transition-colors font-serif text-xs"
                   aria-label={link.label}
                 >
                   {link.label[0]}

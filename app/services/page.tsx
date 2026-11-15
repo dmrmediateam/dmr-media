@@ -165,7 +165,7 @@ function ServiceCard({ service, size = 'md', delay = 0 }: { service: Service; si
     <SeoReveal delay={delay} className="h-full">
       <Link
         href={service.href}
-        className="group flex h-full flex-col overflow-hidden rounded-xl border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/15 hover:shadow-[0_16px_40px_-16px_rgba(15,15,15,0.18)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
+        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/15 hover:shadow-[0_16px_40px_-16px_rgba(15,15,15,0.18)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
       >
         <div
           className={`relative overflow-hidden bg-[var(--color-ink-200)] ${size === 'lg' ? 'aspect-[16/10]' : 'aspect-[4/3]'}`}
@@ -291,7 +291,7 @@ export default function ServicesPage() {
                   {PROGRAM_INCLUDES.map((item, i) => (
                     <li
                       key={item.title}
-                      className="rounded-xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)]"
+                      className="rounded-2xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)]"
                     >
                       <p className="gg-eyebrow !text-[10px]">{String(i + 1).padStart(2, '0')}</p>
                       <h3 className="mt-2 font-serif text-lg font-light leading-snug text-[var(--color-off-black)]">
@@ -383,7 +383,7 @@ export default function ServicesPage() {
                 <SeoReveal key={item.href} delay={i * 0.06} className="h-full">
                   <Link
                     href={item.href}
-                    className="group flex h-full flex-col rounded-xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-7 transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/15 hover:bg-white hover:shadow-[0_16px_40px_-16px_rgba(15,15,15,0.18)] motion-reduce:hover:translate-y-0 md:p-8"
+                    className="group flex h-full flex-col rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-7 transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/15 hover:bg-white hover:shadow-[0_16px_40px_-16px_rgba(15,15,15,0.18)] motion-reduce:hover:translate-y-0 md:p-8"
                   >
                     <p className="gg-eyebrow !text-[10px]">{item.eyebrow}</p>
                     <h3 className="mt-2 font-serif text-xl font-light tracking-tight text-[var(--color-off-black)] md:text-2xl">

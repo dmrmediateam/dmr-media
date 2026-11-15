@@ -25,7 +25,7 @@ function formatPublishedDate(publishedAt?: string) {
 export default function BlogPostGrid({ posts }: { posts: BlogPostListItem[] }) {
   if (posts.length === 0) {
     return (
-      <div className="rounded-lg border border-[var(--color-ink-200)] bg-white px-6 py-14 text-center shadow-[0_1px_0_rgba(15,15,15,0.04)]">
+      <div className="rounded-2xl border border-[var(--color-ink-200)] bg-white px-6 py-14 text-center shadow-[0_1px_0_rgba(15,15,15,0.04)]">
         <p className="gg-body">Marketing insights and strategies coming soon.</p>
       </div>
     )
@@ -41,7 +41,7 @@ export default function BlogPostGrid({ posts }: { posts: BlogPostListItem[] }) {
           <li key={post._id} className="list-none">
             <Link
               href={href}
-              className="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md motion-reduce:hover:translate-y-0"
+              className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md motion-reduce:hover:translate-y-0"
             >
               <div className="relative h-56 overflow-hidden border-b border-[var(--color-ink-200)] bg-[var(--color-ink-200)]">
                 {post.mainImage?.asset?.url ? (

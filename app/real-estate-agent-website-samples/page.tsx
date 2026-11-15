@@ -210,7 +210,7 @@ export default function RealEstateAgentWebsiteSamplesPage() {
                   href={sample.url}
                   target="_blank"
                   rel="nofollow noopener noreferrer"
-                  className="relative block min-h-[320px] sm:min-h-[400px] lg:min-h-[480px] overflow-hidden bg-[var(--color-ink-200)]"
+                  className="relative block min-h-[320px] sm:min-h-[400px] lg:min-h-[480px] overflow-hidden rounded-2xl bg-[var(--color-ink-200)]"
                 >
                   <Image
                     src={sample.image}
@@ -272,7 +272,7 @@ export default function RealEstateAgentWebsiteSamplesPage() {
                 href={sample.url}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                className={`relative min-h-[320px] sm:min-h-[400px] lg:min-h-[480px] overflow-hidden bg-[var(--color-ink-200)] order-1 m-6 sm:m-10 lg:m-12 ${
+                className={`relative min-h-[320px] sm:min-h-[400px] lg:min-h-[480px] overflow-hidden rounded-2xl bg-[var(--color-ink-200)] order-1 m-6 sm:m-10 lg:m-12 ${
                   sample.imageRight ? 'lg:order-2' : 'lg:order-1'
                 }`}
               >

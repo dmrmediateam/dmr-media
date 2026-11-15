@@ -157,7 +157,7 @@ function CtaBand({
         <button
           type="button"
           onClick={() => openApply(formName)}
-          className="inline-flex min-h-[48px] w-full max-w-xs touch-manipulation items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 sm:w-auto"
+          className="inline-flex min-h-[48px] w-full max-w-xs touch-manipulation items-center justify-center rounded-full border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-8 font-serif text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 sm:w-auto"
         >
           {label}
         </button>
@@ -280,7 +280,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
           <div className="mt-12 grid gap-5 sm:mt-14 sm:gap-6 sm:max-lg:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-8">
             {data.stakes.items.map((s, i) => (
               <SeoReveal key={s.heading} delay={i * 0.06} className="h-full">
-                <article className="group flex h-full flex-col rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-5 shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/12 hover:shadow-md motion-reduce:hover:translate-y-0 sm:p-6">
+                <article className="group flex h-full flex-col rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-5 shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/12 hover:shadow-md motion-reduce:hover:translate-y-0 sm:p-6">
                   <p className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">
                     {s.eyebrow}
                   </p>
@@ -344,11 +344,11 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
             </div>
           </SeoReveal>
           <SeoReveal delay={0.08}>
-            <div className="rounded-xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_12px_40px_-12px_rgba(15,15,15,0.12)] sm:p-8">
+            <div className="rounded-2xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_12px_40px_-12px_rgba(15,15,15,0.12)] sm:p-8">
               <p className="text-center font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">
                 DMR vs. typical alternatives
               </p>
-              <div className="mt-6 overflow-x-auto rounded-lg">
+              <div className="mt-6 overflow-x-auto rounded-xl">
                 <table className="w-full min-w-[520px] text-left text-sm font-serif">
                   <thead>
                     <tr className="border-b border-[var(--color-ink-200)] bg-[var(--surface-base)]/80">
@@ -408,7 +408,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
           <div className="mt-12 grid gap-7 sm:mt-14 sm:gap-8 sm:max-lg:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-10">
             {data.pillars.items.map((p, i) => (
               <SeoReveal key={p.title} delay={i * 0.07}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)] shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md motion-reduce:hover:translate-y-0">
+                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md motion-reduce:hover:translate-y-0">
                   <div className="relative aspect-[4/3] w-full border-b border-[var(--color-ink-200)] bg-white">
                     <Image
                       src={p.image}
@@ -451,7 +451,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
             {data.proof.items.map((item) => (
               <article
                 key={item.label}
-                className="rounded-lg border border-[var(--color-ink-200)] bg-white p-5 sm:p-6"
+                className="rounded-2xl border border-[var(--color-ink-200)] bg-white p-5 sm:p-6"
               >
                 <p className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">
                   {item.label}
@@ -551,7 +551,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       <section className="border-b border-[var(--color-ink-200)] bg-[var(--surface-base)] py-[var(--seo-section-y)]">
         <div className="container-max max-w-3xl">
           <SeoReveal>
-            <div className="rounded-xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] md:p-10">
+            <div className="rounded-2xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] md:p-10">
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">
                 Ecosystem
               </p>
@@ -563,7 +563,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="inline-flex items-center rounded-sm border border-[var(--color-ink-200)] bg-[var(--surface-base)] px-4 py-2 font-serif text-sm font-light text-[var(--color-off-black)] transition-all hover:border-[var(--color-off-black)]/30 hover:shadow-sm"
+                    className="inline-flex items-center rounded-full border border-[var(--color-ink-200)] bg-[var(--surface-base)] px-4 py-2 font-serif text-sm font-light text-[var(--color-off-black)] transition-all hover:border-[var(--color-off-black)]/30 hover:shadow-sm"
                   >
                     {link.label}
                   </Link>
@@ -589,13 +589,13 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
             </h2>
             <SectionRule />
           </SeoReveal>
-          <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-lg border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-1 md:px-2">
+          <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-1 md:px-2">
             {data.faq.map((item) => (
               <details
                 key={item.question}
                 className="group border-0 px-3 py-1 transition-colors [&[open]]:bg-white/90 md:px-4"
               >
-                <summary className="flex min-h-[48px] cursor-pointer list-none items-start justify-between gap-3 rounded-md py-3 pr-1 font-serif text-base font-light leading-snug text-[var(--color-off-black)] outline-none marker:content-none [&::-webkit-details-marker]:hidden hover:bg-white/60 focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white touch-manipulation sm:gap-4 sm:py-4 sm:text-lg">
+                <summary className="flex min-h-[48px] cursor-pointer list-none items-start justify-between gap-3 rounded-xl py-3 pr-1 font-serif text-base font-light leading-snug text-[var(--color-off-black)] outline-none marker:content-none [&::-webkit-details-marker]:hidden hover:bg-white/60 focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white touch-manipulation sm:gap-4 sm:py-4 sm:text-lg">
                   <span className="text-pretty">{item.question}</span>
                   <span
                     className="mt-1.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[var(--color-ink-200)] bg-white text-[10px] text-[var(--color-ink-400)] transition-transform duration-300 group-open:rotate-180"
@@ -636,7 +636,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
               <button
                 type="button"
                 onClick={() => openApply(data.applyFormName)}
-                className="inline-flex min-h-[52px] w-full max-w-xs touch-manipulation items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 sm:w-auto"
+                className="inline-flex min-h-[52px] w-full max-w-xs touch-manipulation items-center justify-center rounded-full border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 sm:w-auto"
               >
                 {data.finalCta.primaryLabel}
               </button>

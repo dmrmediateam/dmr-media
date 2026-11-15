@@ -39,13 +39,13 @@ export default function WebsiteAndSeoPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/real-estate-agent-website-samples"
-                className="inline-flex justify-center px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-85 transition-opacity"
+                className="rounded-full inline-flex justify-center px-8 py-4 bg-[var(--color-off-black)] text-white uppercase tracking-[0.15em] text-xs font-serif hover:opacity-85 transition-opacity"
               >
                 View design portfolio
               </Link>
               <Link
                 href="/seo-optimization"
-                className="inline-flex justify-center px-8 py-4 border border-[var(--color-off-black)] text-[var(--color-off-black)] uppercase tracking-[0.15em] text-xs font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-colors"
+                className="rounded-full inline-flex justify-center px-8 py-4 border border-[var(--color-off-black)] text-[var(--color-off-black)] uppercase tracking-[0.15em] text-xs font-serif hover:bg-[var(--color-off-black)] hover:text-white transition-colors"
               >
                 Explore SEO programs
               </Link>

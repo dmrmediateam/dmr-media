@@ -111,7 +111,7 @@ export default function TableOfContents({ headings, layout = 'sidebar' }: TableO
   if (layout === 'mobile') {
     return (
       <nav
-        className="xl:hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)]"
+        className="xl:hidden rounded-2xl border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)]"
         aria-label="Article sections"
       >
         <details className="group">
@@ -134,7 +134,7 @@ export default function TableOfContents({ headings, layout = 'sidebar' }: TableO
 
   return (
     <nav
-      className="sticky top-28 max-h-[calc(100vh-7.5rem)] overflow-y-auto rounded-lg border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] [scrollbar-width:thin]"
+      className="sticky top-28 max-h-[calc(100vh-7.5rem)] overflow-y-auto rounded-2xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)] [scrollbar-width:thin]"
       aria-label="Article sections"
     >
       <p className="mb-5 font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Sections</p>

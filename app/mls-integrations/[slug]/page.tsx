@@ -169,7 +169,7 @@ export default async function MlsDetailPage({ params }: { params: Promise<{ slug
               ['IDX provider', 'IDX Broker'],
               ['Websites from', '$2,500 + $650 per 4 weeks'],
             ].map(([label, value]) => (
-              <div key={label} className="rounded-xl border border-[var(--color-ink-200)] bg-white p-5 shadow-[0_1px_0_rgba(15,15,15,0.04)]">
+              <div key={label} className="rounded-2xl border border-[var(--color-ink-200)] bg-white p-5 shadow-[0_1px_0_rgba(15,15,15,0.04)]">
                 <dt className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">{label}</dt>
                 <dd className="mt-1.5 font-serif text-[15px] leading-snug text-[var(--color-off-black)]">{value}</dd>
               </div>
@@ -203,7 +203,7 @@ export default async function MlsDetailPage({ params }: { params: Promise<{ slug
           <Rule />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {mlsFeatures(entry).map((f, i) => (
-              <article key={f.title} className="rounded-xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)]">
+              <article key={f.title} className="rounded-2xl border border-[var(--color-ink-200)] bg-white p-6 shadow-[0_1px_0_rgba(15,15,15,0.04)]">
                 <p className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)]">
                   {String(i + 1).padStart(2, '0')}
                 </p>
@@ -225,7 +225,7 @@ export default async function MlsDetailPage({ params }: { params: Promise<{ slug
           <Rule />
           <ol className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {mlsSteps(entry).map((s, i) => (
-              <li key={s.title} className="rounded-xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-6">
+              <li key={s.title} className="rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-6">
                 <p className="font-serif text-xs uppercase tracking-[0.2em] text-[var(--color-ink-400)]">Step {i + 1}</p>
                 <h3 className="mt-2 font-serif text-lg font-light leading-snug">{s.title}</h3>
                 <p className="mt-2 font-serif text-sm leading-relaxed text-[var(--color-ink-300)]">{s.body}</p>
@@ -259,7 +259,7 @@ export default async function MlsDetailPage({ params }: { params: Promise<{ slug
                 <li key={r.slug}>
                   <Link
                     href={`/mls-integrations/${r.slug}`}
-                    className="flex h-full items-center justify-between gap-3 rounded-lg border border-[var(--color-ink-200)] bg-white px-4 py-3.5 font-serif text-sm transition-all hover:border-[var(--color-off-black)]/20 hover:shadow-[0_8px_24px_-12px_rgba(15,15,15,0.18)]"
+                    className="flex h-full items-center justify-between gap-3 rounded-2xl border border-[var(--color-ink-200)] bg-white px-4 py-3.5 font-serif text-sm transition-all hover:border-[var(--color-off-black)]/20 hover:shadow-[0_8px_24px_-12px_rgba(15,15,15,0.18)]"
                   >
                     <span>{r.name}</span>
                     <span className="text-[var(--color-ink-400)]" aria-hidden>
@@ -279,7 +279,7 @@ export default async function MlsDetailPage({ params }: { params: Promise<{ slug
           <Eyebrow>FAQ</Eyebrow>
           <h2 className="mt-3 font-serif text-3xl font-light tracking-tight md:text-4xl">{entry.acronym} IDX questions</h2>
           <Rule />
-          <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-xl border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-2">
+          <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-2">
             {faqs.map((f) => (
               <details key={f.question} className="group px-3 py-1 [&[open]]:bg-white/90">
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-4 font-serif text-lg font-light marker:content-none [&::-webkit-details-marker]:hidden">

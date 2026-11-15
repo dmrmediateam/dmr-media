@@ -82,7 +82,7 @@ export default function ApplyModal() {
             <button
               type="button"
               onClick={close}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-transparent text-[var(--color-ink-400)] transition-colors hover:border-[var(--color-ink-200)] hover:bg-white hover:text-[var(--color-off-black)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)]"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-transparent text-[var(--color-ink-400)] transition-colors hover:border-[var(--color-ink-200)] hover:bg-white hover:text-[var(--color-off-black)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)]"
               aria-label="Close"
             >
               <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden>

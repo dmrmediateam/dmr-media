@@ -127,7 +127,7 @@ export default async function StateMlsPage({ params }: { params: Promise<{ state
               <li key={e.slug}>
                 <Link
                   href={`/mls-integrations/${e.slug}`}
-                  className="group flex h-full flex-col justify-between gap-2 rounded-xl border border-[var(--color-ink-200)] bg-white p-5 shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/20 hover:shadow-[0_12px_32px_-14px_rgba(15,15,15,0.2)] motion-reduce:hover:translate-y-0"
+                  className="group flex h-full flex-col justify-between gap-2 rounded-2xl border border-[var(--color-ink-200)] bg-white p-5 shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/20 hover:shadow-[0_12px_32px_-14px_rgba(15,15,15,0.2)] motion-reduce:hover:translate-y-0"
                 >
                   <span className="font-serif text-[15px] leading-snug">{e.name}</span>
                   <span className="font-serif text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-400)] group-hover:text-[var(--color-off-black)]">
@@ -145,7 +145,7 @@ export default async function StateMlsPage({ params }: { params: Promise<{ state
           <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">FAQ</p>
           <h2 className="mt-3 font-serif text-3xl font-light tracking-tight md:text-4xl">{state.name} IDX questions</h2>
           <Rule />
-          <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-xl border border-[var(--color-ink-200)] bg-white px-2">
+          <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-2xl border border-[var(--color-ink-200)] bg-white px-2">
             {faqs.map((f) => (
               <details key={f.question} className="group px-3 py-1">
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-4 font-serif text-lg font-light marker:content-none [&::-webkit-details-marker]:hidden">

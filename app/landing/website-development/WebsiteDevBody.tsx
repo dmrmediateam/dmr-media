@@ -163,7 +163,7 @@ export default function WebsiteDevBody({ config }: { config: ChannelLandingConfi
                         width={1400}
                         height={868}
                         sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                        className="h-auto w-full rounded-lg transition-transform duration-500 group-hover:scale-[1.01] motion-reduce:transition-none"
+                        className="h-auto w-full rounded-2xl transition-transform duration-500 group-hover:scale-[1.01] motion-reduce:transition-none"
                       />
                     </Frame>
                   </a>
@@ -245,7 +245,7 @@ export default function WebsiteDevBody({ config }: { config: ChannelLandingConfi
                       width={a.width}
                       height={a.height}
                       sizes="(min-width: 1024px) 380px, 84vw"
-                      className="h-auto w-full rounded-lg"
+                      className="h-auto w-full rounded-2xl"
                     />
                   </Frame>
                 </figure>

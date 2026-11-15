@@ -63,7 +63,7 @@ export default function CaseStudies({ hideHeading = false, linkless = false }: {
             <CardWrapper
               key={study.id}
               href={linkless ? undefined : `/case-study/${study.id}`}
-              className="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md motion-reduce:hover:translate-y-0"
+              className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md motion-reduce:hover:translate-y-0"
             >
               <div className="relative aspect-[3/2] w-full overflow-hidden border-b border-[var(--color-ink-200)]">
                 <Image

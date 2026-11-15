@@ -62,7 +62,7 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
                 alt={data.hero.imageAlt}
                 width={1920}
                 height={1080}
-                className="h-auto w-full rounded-lg border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
+                className="h-auto w-full rounded-2xl border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
                 priority
               />
             </div>
@@ -118,12 +118,12 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
                         alt={`${review.author} testimonial — DMR Media client`}
                         width={480}
                         height={320}
-                        className="w-full max-w-xl rounded-lg border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
+                        className="w-full max-w-xl rounded-2xl border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
                       />
                     </div>
                   )}
                   {review.video && (
-                    <div className="relative mb-8 aspect-video w-full overflow-hidden rounded-lg border border-[var(--color-ink-200)] pb-[56.25%] shadow-[0_1px_0_rgba(15,15,15,0.04)]">
+                    <div className="relative mb-8 aspect-video w-full overflow-hidden rounded-2xl border border-[var(--color-ink-200)] pb-[56.25%] shadow-[0_1px_0_rgba(15,15,15,0.04)]">
                       <iframe
                         className="absolute inset-0 h-full w-full"
                         src={review.video.src}
@@ -197,7 +197,7 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
                       alt={section.screenshot.alt}
                       width={1440}
                       height={900}
-                      className="h-auto w-full rounded-lg border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
+                      className="h-auto w-full rounded-2xl border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
                       loading="lazy"
                     />
                   </div>
@@ -212,7 +212,7 @@ export default function CaseStudyLayout({ data }: CaseStudyLayoutProps) {
                           alt={shot.alt}
                           width={900}
                           height={560}
-                          className="h-auto w-full rounded-lg border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
+                          className="h-auto w-full rounded-2xl border border-[var(--color-ink-200)] shadow-[0_1px_0_rgba(15,15,15,0.04)]"
                           loading="lazy"
                         />
                         {shot.caption && (

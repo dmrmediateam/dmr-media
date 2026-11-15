@@ -47,7 +47,7 @@ export default function ServiceCities({ heading, description, cities, columns = 
               <Link
                 key={`${city.name}-${city.slug}`}
                 href={city.slug}
-                className="group relative aspect-[4/3] overflow-hidden border-b border-[var(--color-ink-200)] pb-8 hover:opacity-60 transition-opacity duration-300"
+                className="group relative aspect-[4/3] overflow-hidden rounded-2xl hover:opacity-60 transition-opacity duration-300"
               >
                 <Image
                   src={city.image}

@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 
 /** Primary white CTA on video-hero service landing pages (heavier type for readability). */
 export const SEO_LANDING_HERO_PRIMARY_CTA_CLASSNAME =
-  'inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-sm bg-white px-5 sm:px-10 font-serif text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[var(--color-off-black)] shadow-[0_4px_24px_rgba(0,0,0,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/95 hover:shadow-[0_8px_32px_rgba(0,0,0,0.22)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] motion-reduce:hover:translate-y-0 sm:w-auto sm:min-w-[12rem]'
+  'inline-flex min-h-[52px] w-full max-w-xs items-center justify-center rounded-full bg-white px-5 sm:px-10 font-serif text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[var(--color-off-black)] shadow-[0_4px_24px_rgba(0,0,0,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/95 hover:shadow-[0_8px_32px_rgba(0,0,0,0.22)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] motion-reduce:hover:translate-y-0 sm:w-auto sm:min-w-[12rem]'
 
 type StickyProps = {
   onApply: () => void

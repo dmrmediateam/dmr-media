@@ -153,7 +153,7 @@ export default function NewsletterSignup() {
                       </p>
                     </div>
 
-                    <div className="mb-8 w-full max-w-xl mx-auto aspect-video overflow-hidden rounded-sm border border-[var(--color-ink-200)] bg-[var(--color-off-white)]">
+                    <div className="mb-8 w-full max-w-xl mx-auto aspect-video overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-[var(--color-off-white)]">
                       <iframe
                         src={`https://www.youtube.com/embed/${VSL_VIDEO_ID}?rel=0`}
                         title="DMR Media — free AI training for real estate"

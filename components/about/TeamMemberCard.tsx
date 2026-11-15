@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { getAuthorShortCopy, type TeamAuthor } from '@/data/authors'
 
 const CARD_LINK =
-  'group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0'
+  'group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-white shadow-[0_1px_0_rgba(15,15,15,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/10 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0'
 
 export default function TeamMemberCard({ author }: { author: TeamAuthor }) {
   const shortCopy = getAuthorShortCopy(author)
@@ -68,7 +68,7 @@ export default function TeamMemberCard({ author }: { author: TeamAuthor }) {
               {author.skills.slice(0, 3).map((skill) => (
                 <li
                   key={skill}
-                  className="rounded-sm border border-[var(--color-ink-200)] bg-[var(--surface-base)] px-2.5 py-1 font-serif text-[10px] uppercase tracking-[0.1em] text-[var(--color-ink-400)]"
+                  className="rounded-full border border-[var(--color-ink-200)] bg-[var(--surface-base)] px-2.5 py-1 font-serif text-[10px] uppercase tracking-[0.1em] text-[var(--color-ink-400)]"
                 >
                   {skill}
                 </li>

@@ -50,10 +50,10 @@ export default function GrowthPartnerPromoCard({
 }: GrowthPartnerPromoCardProps) {
   return (
     <div
-      className={`w-full max-w-[480px] overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-ink-200)] bg-white shadow-[var(--shadow-sharp)] ${className}`}
+      className={`w-full max-w-[480px] overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-white shadow-[var(--shadow-sharp)] ${className}`}
     >
       <div className="bg-white px-8 pb-6 pt-9 text-center sm:px-10 sm:pb-7 sm:pt-10">
-        <div className="mb-5 inline-block rounded-[var(--radius-xs)] bg-[var(--gray-light)] px-3 py-1 font-[family-name:var(--font-system)] text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-ink-400)]">
+        <div className="mb-5 inline-block rounded-full bg-[var(--gray-light)] px-3 py-1 font-[family-name:var(--font-system)] text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-ink-400)]">
           Not for everyone
         </div>
         <h2
@@ -111,7 +111,7 @@ export default function GrowthPartnerPromoCard({
         <Link
           href="/calendar"
           onClick={onPrimaryCtaClick}
-          className="flex min-h-[48px] w-full items-center justify-center bg-[var(--color-off-black)] px-6 py-3.5 font-serif text-[15px] font-light tracking-wide text-white no-underline transition-opacity hover:opacity-90"
+          className="rounded-full flex min-h-[48px] w-full items-center justify-center bg-[var(--color-off-black)] px-6 py-3.5 font-serif text-[15px] font-light tracking-wide text-white no-underline transition-opacity hover:opacity-90"
         >
           Apply Today
         </Link>

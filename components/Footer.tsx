@@ -18,7 +18,7 @@ const Footer = () => {
           <div>
             <Link
               href="/calendar"
-              className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)]"
+              className="inline-flex items-center justify-center rounded-full px-8 py-3 bg-[var(--color-off-black)] text-white uppercase tracking-[0.12em] text-xs font-serif hover:opacity-85 transition-opacity duration-300 border border-[var(--color-off-black)]"
             >
               Apply
             </Link>

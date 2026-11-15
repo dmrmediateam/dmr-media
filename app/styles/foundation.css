@@ -1,7 +1,10 @@
 :root {
   /* Core color palette */
+  /* Brand style sheet (Canva "Style Sheet"): #FDFCFA, #F3F2EE, #0F0F0F, #222222 */
   --color-off-black: #0f0f0f;
-  --color-off-white: #fafaf9;
+  --color-off-white: #fdfcfa;
+  --color-stone: #f3f2ee;
+  --color-charcoal: #222222;
   --color-trust: #3c88c0;
 
   /* Neutral support */
@@ -23,13 +26,27 @@
   --font-heading: 'Instrument Serif', serif;
   --font-body: var(--font-system);
   --font-body-weight: 100;
-  --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Body copy is Inter (brand style sheet); system fonts are the fallback. */
+  --font-system: var(--font-inter, 'Inter'), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   /* Sizing & rhythm */
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 20px;
+
+  /*
+   * Corner system (soft rounded), used site-wide on the public pages:
+   * cards, panels, images, video frames  -> 16px  (Tailwind rounded-2xl, --radius-card)
+   * inputs, selects, textareas           -> 12px  (Tailwind rounded-xl,  --radius-control)
+   * buttons, tags, badges, chips         -> pill  (Tailwind rounded-full, --radius-pill)
+   * avatars, dots, icon circles          -> round (rounded-full)
+   * full-width bands, header, footer     -> square
+   * Borders are 1px hairlines.
+   */
+  --radius-card: 16px;
+  --radius-control: 12px;
+  --radius-pill: 9999px;
 
   --space-xs: 0.5rem;
   --space-sm: 0.75rem;

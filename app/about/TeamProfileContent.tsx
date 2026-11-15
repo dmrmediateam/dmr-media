@@ -27,7 +27,7 @@ function SocialLink({ href, label }: { href: string; label: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex min-h-[44px] items-center justify-center rounded-sm border border-[var(--color-ink-200)] px-5 font-serif text-[11px] uppercase tracking-[0.16em] text-[var(--color-off-black)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/25 hover:bg-[var(--color-off-black)]/[0.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2"
+      className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[var(--color-ink-200)] px-5 font-serif text-[11px] uppercase tracking-[0.16em] text-[var(--color-off-black)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/25 hover:bg-[var(--color-off-black)]/[0.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/20 focus-visible:ring-offset-2"
     >
       {label}
     </a>
@@ -78,7 +78,7 @@ export default function TeamProfileContent({ author, schemaGraph }: TeamProfileC
           <div className="container-max px-4 sm:px-6">
             <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16 xl:grid-cols-[minmax(0,24rem)_1fr]">
               <SeoReveal>
-                <div className="overflow-hidden rounded-xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] shadow-[0_12px_40px_-12px_rgba(15,15,15,0.12)]">
+                <div className="overflow-hidden rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] shadow-[0_12px_40px_-12px_rgba(15,15,15,0.12)]">
                   <div className="relative aspect-[4/5] w-full">
                     {author.image ? (
                       <Image
@@ -177,7 +177,7 @@ export default function TeamProfileContent({ author, schemaGraph }: TeamProfileC
                     {author.skills.map((skill) => (
                       <li
                         key={skill}
-                        className="rounded-sm border border-[var(--color-ink-200)] bg-[var(--surface-base)] px-4 py-2.5 font-serif text-xs uppercase tracking-[0.12em] text-[var(--color-ink-300)]"
+                        className="rounded-full border border-[var(--color-ink-200)] bg-[var(--surface-base)] px-4 py-2.5 font-serif text-xs uppercase tracking-[0.12em] text-[var(--color-ink-300)]"
                       >
                         {skill}
                       </li>
@@ -206,14 +206,14 @@ export default function TeamProfileContent({ author, schemaGraph }: TeamProfileC
               <motion.div whileTap={reduceMotion ? undefined : { scale: 0.98 }}>
                 <Link
                   href="/calendar"
-                  className="inline-flex min-h-[52px] w-full min-w-[12rem] items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
+                  className="inline-flex min-h-[52px] w-full min-w-[12rem] items-center justify-center rounded-full border border-[var(--color-off-black)]/18 bg-[var(--color-off-black)] px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_6px_24px_-4px_rgba(15,15,15,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-off-black)]/90 hover:shadow-[0_10px_28px_-4px_rgba(15,15,15,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
                 >
                   Book a strategy call
                 </Link>
               </motion.div>
               <Link
                 href="/about#team"
-                className="inline-flex min-h-[52px] w-full min-w-[12rem] items-center justify-center rounded-sm border border-[var(--color-off-black)]/18 bg-transparent px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/30 hover:bg-[var(--color-off-black)]/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
+                className="inline-flex min-h-[52px] w-full min-w-[12rem] items-center justify-center rounded-full border border-[var(--color-off-black)]/18 bg-transparent px-10 font-serif text-[11px] uppercase tracking-[0.2em] text-[var(--color-off-black)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-off-black)]/30 hover:bg-[var(--color-off-black)]/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-off-black)]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-base)] motion-reduce:hover:translate-y-0 sm:w-auto"
               >
                 Meet the full team
               </Link>

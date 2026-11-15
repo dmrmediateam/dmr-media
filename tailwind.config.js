@@ -16,7 +16,10 @@ module.exports = {
         },
         // Off-Black & Off-White - Natural Tones
         'off-black': '#0f0f0f',
-        'off-white': '#fafaf9',
+        'off-white': '#fdfcfa',
+        // Brand style sheet
+        stone: '#f3f2ee',
+        charcoal: '#222222',
         black: '#0f0f0f',
         white: '#fafaf9',
         // Gray Scale - Natural Tones

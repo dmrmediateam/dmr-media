@@ -141,7 +141,7 @@ export default function BlogContent({ body }: BlogContentProps) {
             <img
               src={src}
               alt={value.alt || ''}
-              className="w-full h-auto rounded-sm"
+              className="w-full h-auto rounded-2xl"
             />
           </figure>
         )

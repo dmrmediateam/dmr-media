@@ -72,7 +72,7 @@ function StateLink({ state }: { state: (typeof COVERED)[number] }) {
   return (
     <Link
       href={`/mls-integrations/state/${state.slug}`}
-      className="group flex items-center justify-between gap-3 rounded-lg border border-[var(--color-ink-200)] bg-white px-4 py-3 font-serif text-sm transition-all hover:border-[var(--color-off-black)]/20 hover:shadow-[0_8px_24px_-12px_rgba(15,15,15,0.18)]"
+      className="group flex items-center justify-between gap-3 rounded-2xl border border-[var(--color-ink-200)] bg-white px-4 py-3 font-serif text-sm transition-all hover:border-[var(--color-off-black)]/20 hover:shadow-[0_8px_24px_-12px_rgba(15,15,15,0.18)]"
     >
       <span>{state.name}</span>
       <span className="text-[11px] tabular-nums text-[var(--color-ink-400)] group-hover:text-[var(--color-off-black)]">
@@ -119,7 +119,7 @@ export default function MlsIntegrationsPage() {
               [String(US_STATES.length), 'States + DC'],
               ['14 days', 'Lead guarantee'],
             ].map(([value, label]) => (
-              <div key={label} className="rounded-xl border border-[var(--color-ink-200)] bg-white p-4 text-center sm:p-5">
+              <div key={label} className="rounded-2xl border border-[var(--color-ink-200)] bg-white p-4 text-center sm:p-5">
                 <dt className="sr-only">{label}</dt>
                 <dd className="font-serif text-2xl font-light sm:text-3xl">{value}</dd>
                 <p className="mt-1 font-serif text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">{label}</p>
@@ -165,7 +165,7 @@ export default function MlsIntegrationsPage() {
           <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">FAQ</p>
           <h2 className="mt-3 font-serif text-3xl font-light tracking-tight md:text-4xl">MLS and IDX questions</h2>
           <Rule />
-          <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-xl border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-2">
+          <div className="mt-10 divide-y divide-[var(--color-ink-200)] rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)]/40 px-2">
             {FAQS.map((f) => (
               <details key={f.question} className="group px-3 py-1 [&[open]]:bg-white/90">
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-4 font-serif text-lg font-light marker:content-none [&::-webkit-details-marker]:hidden">
