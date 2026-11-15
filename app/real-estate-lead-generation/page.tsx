@@ -6,14 +6,16 @@ import { FAQ_ITEMS } from './lead-generation-data'
 const BASE = 'https://www.dmrmedia.org'
 
 export const metadata: Metadata = {
-  title: 'Real Estate Lead Generation — 46 Qualified Buyers & Sellers in 3 Weeks | DMR Media',
+  title: 'Real Estate Lead Generation Services | Exclusive Buyer Leads | DMR Media',
   description:
-    'Documented: 46 qualified inbound leads in 3 weeks, 3× pipeline in 90 days, exclusive to your brand. 30-day pilot guarantee: 10+ qualified leads or your setup fee is on us.',
+    'Real estate lead generation services built around your brand: 46 qualified inbound leads in 3 weeks, exclusive to you. SEO, Google Ads, and CRM follow-up from one team.',
   keywords: [
     'real estate lead generation',
     'luxury real estate lead generation',
     'real estate lead generation system',
     'real estate lead generation services',
+    'real estate lead generation company',
+    'real estate buyer leads',
     'inbound leads for real estate agents',
     'Google Ads real estate leads',
   ].join(', '),
@@ -21,18 +23,18 @@ export const metadata: Metadata = {
     canonical: `${BASE}/real-estate-lead-generation`,
   },
   openGraph: {
-    title: 'Real Estate Lead Generation — 46 Qualified Buyers & Sellers in 3 Weeks | DMR Media',
+    title: 'Real Estate Lead Generation Services | Exclusive Buyer Leads | DMR Media',
     description:
-      'Documented: 46 qualified inbound leads in 3 weeks, 3× pipeline in 90 days, exclusive to your brand. 30-day pilot guarantee: 10+ qualified leads or setup fee is on us.',
+      'Real estate lead generation services built around your brand: 46 qualified inbound leads in 3 weeks, exclusive to you. SEO, Google Ads, and CRM follow-up from one team.',
     url: `${BASE}/real-estate-lead-generation`,
     siteName: 'DMR Media',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Real Estate Lead Generation — 46 Qualified Buyers & Sellers in 3 Weeks | DMR Media',
+    title: 'Real Estate Lead Generation Services | Exclusive Buyer Leads | DMR Media',
     description:
-      'Documented: 46 qualified inbound leads in 3 weeks, 3× pipeline in 90 days, exclusive to your brand. 30-day pilot guarantee: 10+ qualified leads or setup fee is on us.',
+      'Real estate lead generation services built around your brand: 46 qualified inbound leads in 3 weeks, exclusive to you. SEO, Google Ads, and CRM follow-up from one team.',
   },
 }
 

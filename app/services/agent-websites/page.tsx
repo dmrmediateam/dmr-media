@@ -5,29 +5,30 @@ import ServicePageTemplate, { type ServicePageData } from '@/components/ServiceP
 const BASE = 'https://www.dmrmedia.org'
 
 export const metadata: Metadata = {
-  title: 'Real Estate Agent Websites — Custom Design & Built-In SEO | DMR Media',
-  description: 'Custom real estate agent websites that rank and convert. Built-in SEO architecture, sub-2s load times, and brand-aligned design for luxury agents since 2022.',
-  keywords: ['real estate agent websites', 'website for real estate agent', 'custom real estate website', 'luxury real estate website design', 'real estate website SEO'].join(', '),
+  title: 'IDX Websites for Realtors | IDX Real Estate Websites | DMR Media',
+  description: 'IDX websites for realtors: custom real estate sites with MLS home search, indexable listing and area pages, lead capture, and CRM routing. Built to rank and convert.',
+  keywords: ['idx website', 'idx websites', 'idx real estate websites', 'idx websites for realtors', 'real estate website with idx', 'idx real estate', 'real estate agent websites'].join(', '),
   alternates: { canonical: `${BASE}/services/agent-websites` },
-  openGraph: { title: 'Real Estate Agent Websites — Custom Design & Built-In SEO | DMR Media', description: 'Custom real estate agent websites that rank and convert.', url: `${BASE}/services/agent-websites`, siteName: 'DMR Media', type: 'website' },
-  twitter: { card: 'summary_large_image', title: 'Real Estate Agent Websites — Custom Design & Built-In SEO | DMR Media', description: 'Custom real estate agent websites that rank and convert.' },
+  openGraph: { title: 'IDX Websites for Realtors | DMR Media', description: 'Custom IDX real estate websites with MLS home search, indexable listing pages, and lead capture.', url: `${BASE}/services/agent-websites`, siteName: 'DMR Media', type: 'website' },
+  twitter: { card: 'summary_large_image', title: 'IDX Websites for Realtors | DMR Media', description: 'Custom IDX real estate websites with MLS home search, indexable listing pages, and lead capture.' },
 }
 
 const faqItems = [
-  { question: 'How much does a custom real estate agent website cost?', answer: 'Investment varies based on complexity, number of pages, and whether IDX or MLS integration is included. We scope after a discovery conversation so pricing reflects your actual requirements — not a package tier built for the broadest possible market.' },
-  { question: 'How long does the build take?', answer: 'Most agent websites are live within four to six weeks from brief to launch. Development microsites for luxury condos or new developments may take longer due to phased inventory and gallery requirements.' },
-  { question: 'Do you integrate with MLS or IDX?', answer: 'Yes. We integrate with the major MLS and IDX providers and have built custom search experiences, property feeds, and listing pages for luxury agents and brokerages across the U.S.' },
-  { question: 'Will my website rank on Google?', answer: 'Every DMR website launches with keyword architecture, local SEO signals, schema markup, and on-page optimization already built in. Ranking timelines depend on market competition and domain history, but search visibility is built into the site from day one — not treated as an afterthought.' },
-  { question: 'Can I make edits myself?', answer: 'Yes. Sites are built on accessible CMS platforms and we train your team to handle routine content updates. For structural or design changes, we handle those directly without a support ticket queue.' },
+  { question: 'What is an IDX website?', answer: 'IDX (Internet Data Exchange) is the set of rules that lets an agent show MLS listings on their own website. An IDX website pulls live listings from your MLS so visitors can search homes on your site instead of leaving for a portal, and every inquiry comes to you.' },
+  { question: 'What is the difference between IDX and MLS?', answer: 'The MLS is the database of listings that agents in your market share. IDX is the permission and data feed that lets you display those listings publicly on your website. You need MLS membership to get an IDX feed, and each MLS sets its own display rules.' },
+  { question: 'Does IDX help my website rank on Google?', answer: 'It can, if the listings are built as real, indexable pages on your domain. Many IDX tools load listings in an iframe or script widget that search engines cannot read, so the site gets no SEO credit. We build IDX so neighborhood and listing pages live on your domain and can rank.' },
+  { question: 'How much does an IDX website cost?', answer: 'Cost depends on the IDX provider your MLS supports, how many custom pages and areas you need, and whether lead routing into your CRM is included. We scope after a discovery call so pricing reflects your market and MLS, not a one-size package.' },
+  { question: 'Which MLSs do you work with?', answer: 'We connect to the IDX providers that serve most U.S. MLSs. You can check your market in our MLS integrations directory, and we confirm your MLS display rules (attribution, disclaimers, brokerage logo) before launch.' },
+  { question: 'Can I keep my current website and add IDX?', answer: 'Often, yes. If your site is fast and well built, we can add IDX search, listing pages, and lead capture to it. If it is slow, template-bound, or hard to index, a rebuild usually pays off faster.' },
 ]
 
 const pageData: ServicePageData = {
   applyFormName: 'real-estate-agent-websites-apply',
   hero: {
     eyebrow: '#1 U.S. real estate agency on SEMrush · 24+ luxury teams · 5★ partner',
-    headline: 'Real estate agent websites that rank, convert, and hold their value.',
-    subheadline: 'Custom-designed sites with SEO architecture, sub-2s load times, and brand alignment baked in at build — not bolted on after. Your market, your positioning, your first impression.',
-    primaryCtaLabel: 'Get my free site audit',
+    headline: 'IDX websites for realtors that turn home searches into leads.',
+    subheadline: 'Custom real estate websites with live MLS home search on your own domain, listing and neighborhood pages Google can index, and lead capture that routes every inquiry to your CRM.',
+    primaryCtaLabel: 'Get my free IDX site audit',
     guarantee: 'We review your current site and identify the changes that would most impact your search visibility and lead capture. No pitch deck.',
     slides: [
       { id: 'legendary', href: '/case-study/jade-legendary-real-estate', teamName: 'Legendary Real Estate Services', region: 'Lake Geneva, WI', highlight: '920% organic traffic growth', image: '/images/ClientWebsites/screencapture-legendaryrealestateservices-2026-03-04-03_34_49.png', imageAlt: 'Legendary Real Estate Services — custom website by DMR Media' },
@@ -37,26 +38,27 @@ const pageData: ServicePageData = {
   },
   stakes: {
     eyebrow: 'The problem',
-    heading: 'Your website is the first showing. Most lose the buyer before hello.',
-    subheading: 'Three patterns we see when high-producing agents carry a website that costs them more than it earns.',
+    heading: 'Most IDX setups send your buyers somewhere else.',
+    subheading: 'Three patterns we see when agents add home search to a website and still lose the lead.',
     items: [
-      { eyebrow: 'Templates', heading: 'You look like every other agent', body: 'Brokerage templates and DIY builders produce sites that are functionally identical to competitors. Luxury buyers read that as a signal — consciously or not — that your brand operates at the same level as everyone else.' },
-      { eyebrow: 'Search Invisibility', heading: "Your site doesn't exist on Google", body: "A website without technical SEO is a digital brochure that only people who already know you will ever see. If you're not ranking for your market's buyer searches, you're invisible at the exact moment intent is highest." },
-      { eyebrow: 'Conversion', heading: 'Visitors leave without a next step', body: 'Most real estate websites are designed to display information, not capture qualified interest. Without clear CTAs, fast mobile load times, and trust signals in the right places, traffic converts at a fraction of what it should.' },
+      { eyebrow: 'Widgets', heading: 'Listings Google cannot read', body: 'Many IDX tools load listings in an iframe or script widget. Visitors can search, but search engines see an empty box, so your listing and neighborhood pages never rank and the portals keep the traffic.' },
+      { eyebrow: 'Capture', heading: 'Searches that never become leads', body: 'Home search with no registration prompt lets buyers browse forever and leave. Gate too early and they bounce. Asking after about three property views is the balance we use, with a short form that asks only what your team needs.' },
+      { eyebrow: 'Follow-up', heading: 'Leads that stall outside your CRM', body: 'IDX leads that land in a separate inbox wait hours for a reply. Without routing, tags, and saved-search data in your CRM, the buyer who was ready this week talks to whoever answered first.' },
     ],
   },
   guide: {
     eyebrow: 'Our approach',
-    heading: "We don't build websites. We build market positions.",
-    body: "Every DMR site starts with a search strategy. Keyword architecture, local intent mapping, and technical SEO baked in before a single page goes live — not bolted on after. The design follows the positioning.",
+    heading: 'IDX built for search, capture, and compliance.',
+    body: "Every DMR IDX website starts with the searches your buyers run: towns, neighborhoods, zip codes, and property types. We turn those into indexable pages powered by your MLS feed, add lead capture at the right moment, and route every inquiry to your CRM.",
     bullets: [
-      'Positioning: your brand story aligned to how luxury buyers search in your market',
-      'Performance: sub-2s load times, mobile-first, and Core Web Vitals in the top tier',
-      'Visibility: on-page SEO, schema markup, and content architecture built for long-term ranking',
+      'Search: neighborhood, zip code, and property-type pages on your domain, filled with live listings',
+      'Capture: registration after a few property views, saved searches, and a manual home valuation offer for sellers',
+      'Compliance: MLS attribution, IDX disclaimers, and brokerage logo rules checked before launch',
     ],
     comparisonRows: [
+      { label: 'IDX listings', dmr: 'Indexable listing and area pages on your domain', other: 'Iframe or widget search that search engines cannot read' },
+      { label: 'Lead capture', dmr: 'Registration after a few views, saved searches, routed to your CRM', other: 'A generic contact form, or no capture at all' },
       { label: 'Design', dmr: 'Custom brand-aligned design built around your positioning', other: 'Template customization with generic layouts' },
-      { label: 'SEO', dmr: 'Technical SEO, schema, and keyword architecture baked in at build', other: 'SEO as an afterthought or separate engagement' },
       { label: 'Performance', dmr: 'Sub-2s load times, Core Web Vitals, and image optimization by default', other: 'Page speed treated as optional' },
       { label: 'Support', dmr: 'Direct team access — no helpdesk tickets, no outsourced support', other: 'Support queues and account managers' },
       { label: 'Ownership', dmr: 'Full site ownership and portability — your code, your domain, your data', other: 'Locked into proprietary platforms and vendor contracts' },
@@ -64,11 +66,11 @@ const pageData: ServicePageData = {
   },
   pillars: {
     eyebrow: 'Three layers',
-    heading: 'Design, performance, and search authority — built as one system.',
-    subheading: "A premium website is useless if it doesn't rank. An SEO-optimized site fails if it doesn't convert. DMR builds all three simultaneously.",
+    heading: 'IDX home search, area pages, and lead capture, built as one system.',
+    subheading: "IDX search without SEO brings no traffic. Traffic without capture brings no leads. DMR builds all three together.",
     items: [
-      { title: 'Brand design', body: "Custom design built around your positioning, your market, and the type of client you want to attract — not a template with your logo swapped in.", image: '/images/ClientWebsites/screencapture-legendaryrealestateservices-2026-03-04-03_34_49.png', imageAlt: 'Legendary Real Estate Services — brand design by DMR Media' },
-      { title: 'Technical performance', body: "Sub-2 second load times, Core Web Vitals in the top tier, and mobile-first architecture that converts visitors on the device they're actually using.", image: '/images/ClientWebsites/screencapture-realestatebycherylnj-2026-03-04-03_35_34.png', imageAlt: 'Cheryl Towey Real Estate — high-performance website' },
+      { title: 'IDX home search', body: "Live MLS listings on your own domain with fast, mobile-friendly search, map views, and saved searches, designed around your brand instead of a vendor template.", image: '/images/ClientWebsites/screencapture-legendaryrealestateservices-2026-03-04-03_34_49.png', imageAlt: 'Legendary Real Estate Services — brand design by DMR Media' },
+      { title: 'Neighborhood and zip code pages', body: "Pages for the towns, neighborhoods, zip codes, and property types your buyers search, each filled with live IDX listings and local detail portals can't match.", image: '/images/ClientWebsites/screencapture-realestatebycherylnj-2026-03-04-03_35_34.png', imageAlt: 'Cheryl Towey Real Estate — high-performance website' },
       { title: 'Search authority', body: 'Keyword architecture, schema markup, local SEO signals, and on-page structure that earns search visibility from the day the site goes live.', image: '/images/MarquisFarwellGoogleSearchConsole.png', imageAlt: 'Google Search Console showing organic ranking improvement' },
     ],
   },
@@ -84,22 +86,23 @@ const pageData: ServicePageData = {
   },
   process: {
     eyebrow: 'How it works',
-    heading: 'From brief to live in a structured build',
-    subheading: 'A clear timeline reduces uncertainty and ensures the site we launch is the site that earns.',
+    heading: 'From MLS approval to a live IDX website',
+    subheading: 'A clear timeline so you know what happens and when.',
     steps: [
-      { title: 'Discovery & positioning', description: "We map your market, your ideal client, and the keywords they're already searching. Brand positioning and search strategy happen before any design decisions." },
+      { title: 'Discovery & MLS setup', description: "We confirm your MLS and IDX provider, map the towns, neighborhoods, and property types your buyers search, and start the IDX feed approval with your MLS." },
       { title: 'Design & architecture', description: 'Custom wireframes, then design — with SEO structure, content hierarchy, and conversion paths built in from the first page layout.' },
       { title: 'Build & technical optimization', description: 'Development with performance optimization baked in: image compression, Core Web Vitals, schema markup, and technical SEO implemented at build, not retrofitted.' },
       { title: 'Launch & visibility ramp', description: 'Live launch with Search Console submission, sitemap, and indexing request. First-month tracking confirms rankings are moving in the right direction.' },
     ],
   },
   ctaHints: {
-    mid: '15 minutes. We review your current site and show you the three changes that would most impact your search visibility and lead capture.',
+    mid: '15 minutes. We review your current site and IDX setup and show you the three changes that would most impact search visibility and lead capture.',
     bottom: "Pick a slot. We arrive with website samples from your specific market segment, competitor analysis, and a positioning brief — ready to build on day one.",
   },
   faq: faqItems,
   testimonialIds: [3, 'sandy-reavill', 'jorge-elizondo'],
   relatedServices: [
+    { label: 'MLS Integrations', href: '/mls-integrations' },
     { label: 'SEO Optimization', href: '/seo-optimization' },
     { label: 'Real Estate Lead Generation', href: '/real-estate-lead-generation' },
     { label: 'Luxury Real Estate Website Design', href: '/real-estate-website-design' },
@@ -108,9 +111,9 @@ const pageData: ServicePageData = {
   ],
   finalCta: {
     eyebrow: 'Your market deserves a better digital presence',
-    heading: 'See what a DMR site looks like in your market.',
-    subheading: "We review your current website against the search queries your ideal clients are already running, then show you what premium positioning looks like for your brand.",
-    primaryLabel: 'Get my free site audit',
+    heading: 'See what an IDX website looks like in your market.',
+    subheading: "We review your current website and IDX setup against the searches your buyers already run, then show you what an indexable, lead-capturing IDX site looks like for your brand.",
+    primaryLabel: 'Get my free IDX site audit',
     guarantee: 'No pitch deck. Just an honest review of what your website is costing you and what it could earn.',
   },
 }

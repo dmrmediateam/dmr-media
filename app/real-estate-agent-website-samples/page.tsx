@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import ClientLogosSlider from '@/components/ClientLogosSlider';
+import WebsiteSamplesGuides from '@/components/website-samples/WebsiteSamplesGuides';
 import SEOWrapper from '@/components/SEOWrapper';
 import AwardBadgeRow from '@/components/AwardBadgeRow';
 import { ALEXA_DEVANEY_BADGES, DESIGNRUSH_NOMINEE_BADGE, type AwardBadge } from '@/lib/award-badges';
@@ -25,6 +26,8 @@ export const metadata: Metadata = {
   keywords: [
     'real estate agent website examples',
     'real estate website examples',
+    'real estate website templates',
+    'best realtor websites',
     'real estate website design',
     'luxury real estate websites',
     'agent websites',
@@ -151,7 +154,7 @@ export default function RealEstateAgentWebsiteSamplesPage() {
             <div className="container-max">
               <div className="max-w-4xl mx-auto text-center">
                 <span className="uppercase tracking-[0.2em] text-sm sm:text-base text-white font-serif block mb-6 [text-shadow:0_2px_8px_rgba(0,0,0,0.9),0_4px_16px_rgba(0,0,0,0.7)]">
-                  Website Design Portfolio
+                  Real Estate Agent Website Examples
                 </span>
                 <h1 className="portfolio-schema-hero-h1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light !text-white leading-[1.08] tracking-tight mb-6 [text-shadow:0_2px_8px_rgba(0,0,0,0.9),0_4px_24px_rgba(0,0,0,0.8)]">
                   Distinguished Real Estate Website Designs.
@@ -288,6 +291,8 @@ export default function RealEstateAgentWebsiteSamplesPage() {
           ))}
           </div>
         </section>
+
+        <WebsiteSamplesGuides />
       </div>
     </SEOWrapper>
   );

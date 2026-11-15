@@ -118,12 +118,13 @@ export default function SEOOptimizationPageContent() {
                 id="seo-hero-title"
                 className="mt-6 font-serif text-[clamp(2.25rem,5.5vw,3.75rem)] font-light leading-[1.08] tracking-tight text-[var(--color-off-black)]"
               >
-                Real Estate SEO that generated 19× more organic clicks in 90 days
+                Real estate SEO services that generated 19× more organic clicks in 90 days
               </h1>
               <p className="mx-auto mt-7 max-w-2xl font-serif text-base leading-relaxed text-[var(--color-ink-300)] sm:text-lg">
-                Technical SEO, on-page precision, and content systems built for luxury real estate, so Google
-                recommends you first, not a template farm. Documented client lifts include 19× daily organic clicks and
-                300%+ traffic in the first 90 days.
+                DMR Media is a real estate SEO company that only works with agents and teams. Our real estate SEO
+                experts handle technical SEO, community pages, and AI search visibility, so Google recommends you first,
+                not a template farm. Documented client lifts include 19× daily organic clicks and 300%+ traffic in the
+                first 90 days.
               </p>
               <div className="mt-9 flex flex-col items-center gap-4">
                 <button
@@ -248,7 +249,7 @@ export default function SEOOptimizationPageContent() {
             <div>
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">How we work</p>
               <h2 className="mt-3 font-serif text-3xl font-light tracking-tight text-[var(--color-off-black)] md:text-4xl">
-                We do not sell “SEO packages.” We install a growth engine.
+                A real estate SEO agency that installs a growth engine, not a package.
               </h2>
               <SectionRule />
               <p className="mt-8 font-serif text-base leading-relaxed text-[var(--color-ink-300)]">
@@ -472,14 +473,10 @@ export default function SEOOptimizationPageContent() {
                   analytics and reporting
                 </Link>
                 , flagship{' '}
-                <Link href="/website-and-seo" className="underline underline-offset-2 hover:opacity-70">
+                <Link href="/real-estate-website-design" className="underline underline-offset-2 hover:opacity-70">
                   website design
                 </Link>
-                , and{' '}
-                <Link href="/seo-consulting" className="underline underline-offset-2 hover:opacity-70">
-                  SEO consulting
-                </Link>{' '}
-                when you need strategy without full execution.
+                , and strategy-only SEO consulting when you need a roadmap without full execution.
               </p>
             </div>
           </SeoReveal>
@@ -499,6 +496,23 @@ export default function SEOOptimizationPageContent() {
           {(() => {
             const faqRenderItems: ReadonlyArray<{ question: string; answer: ReactNode }> = [
               {
+                question: 'What does a real estate SEO company do?',
+                answer: (
+                  <>
+                    A real estate SEO company makes your website show up when buyers and sellers search Google and AI tools for your market. That covers technical fixes, community and zip code pages, Google Business Profile and reviews, backlinks, and tracking. The goal is leads from search, not traffic for its own sake. New to SEO? Start with{' '}
+                    <Link href="/blog/what-is-seo-in-real-estate" className="underline underline-offset-2 hover:opacity-70">
+                      what SEO in real estate means
+                    </Link>
+                    .
+                  </>
+                ),
+              },
+              {
+                question: 'How do I choose a real estate SEO expert?',
+                answer:
+                  'Ask for real estate results with screenshots from Search Console, not just rankings. Ask how they build neighborhood pages, earn backlinks without buying spam links, and handle MLS and Fair Housing rules. Avoid anyone who guarantees a #1 position, and make sure you own your site and content.',
+              },
+              {
                 question: 'How long until we see movement in search?',
                 answer:
                   'Technical fixes and long-tail terms often move first, sometimes within weeks. Competitive head terms compound over quarters as authority stacks. We report weekly on leading indicators (coverage, impressions, crawl health) so you always know what the work is doing, not just where you hope to land someday.',
@@ -512,11 +526,7 @@ export default function SEOOptimizationPageContent() {
                 question: 'What does ongoing SEO actually look like?',
                 answer: (
                   <>
-                    Search is a moving target: algorithms shift, competitors publish, inventory changes. Retainers include monitoring, technical hygiene, content cadence, and internal linking so your site earns trust from Google and from buyers. If you need a smaller strategy-first package, start with{' '}
-                    <Link href="/seo-consulting" className="underline underline-offset-2 hover:opacity-70">
-                      SEO consulting
-                    </Link>
-                    .
+                    Search is a moving target: algorithms shift, competitors publish, inventory changes. Retainers include monitoring, technical hygiene, content cadence, and internal linking so your site earns trust from Google and from buyers. If you need a smaller strategy-first package, start with a one-time SEO consulting engagement: an audit and roadmap your team can run.
                   </>
                 ),
               },
@@ -529,11 +539,7 @@ export default function SEOOptimizationPageContent() {
                 question: 'How is pricing scoped?',
                 answer: (
                   <>
-                    After audit we align scope to market difficulty, site size, content velocity, and your growth target, then we put deliverables in writing. No opaque packages, no surprise invoices for basic edits. If you are not ready for weekly execution, begin with{' '}
-                    <Link href="/seo-consulting" className="underline underline-offset-2 hover:opacity-70">
-                      SEO consulting
-                    </Link>
-                    .
+                    After audit we align scope to market difficulty, site size, content velocity, and your growth target, then we put deliverables in writing. No opaque packages, no surprise invoices for basic edits. If you are not ready for weekly execution, begin with a one-time SEO consulting engagement.
                   </>
                 ),
               },

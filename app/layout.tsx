@@ -26,8 +26,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'DMR Media - Luxury Real Estate Marketing Agency',
-  description: 'Specialized Google marketing, SEO, and Google Ads for luxury real estate professionals. Elevate your brand and dominate the premium property market.',
+  title: 'Luxury Real Estate Marketing Agency | DMR Media',
+  description: 'DMR Media is a luxury real estate marketing agency for agents and teams: websites, SEO, AI search, and Google Ads that bring exclusive buyer and seller leads.',
   keywords: 'real estate marketing, luxury real estate, Google Ads, SEO, real estate SEO, Google marketing, premium property marketing, DMR Media',
   icons: {
     icon: '/icon.png',

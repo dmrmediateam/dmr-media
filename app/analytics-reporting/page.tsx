@@ -466,7 +466,7 @@ export default function AnalyticsReportingPage() {
                   real estate lead generation
                 </Link>
                 . Creative and IA live under{' '}
-                <Link href="/website-and-seo" className="underline hover:opacity-70">
+                <Link href="/real-estate-website-design" className="underline hover:opacity-70">
                   website design
                 </Link>
                 ; listing bursts under{' '}

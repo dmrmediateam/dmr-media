@@ -533,7 +533,7 @@ export default function SinglePropertyWebsitesPage() {
               </h2>
               <p className="text-[15px] sm:text-base text-[var(--color-ink-300)] font-serif leading-[1.8]">
                 Pair your microsite with broader{' '}
-                <Link href="/website-and-seo" className="underline hover:opacity-70">
+                <Link href="/real-estate-website-design" className="underline hover:opacity-70">
                   website design
                 </Link>{' '}
                 standards, launch faster with our flat-fee{' '}
@@ -562,7 +562,7 @@ export default function SinglePropertyWebsitesPage() {
             <div className="container-max">
               <div className="max-w-2xl mb-16 md:mb-24">
                 <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6">
-                  Properties Sold Faster
+                  Single property website examples
                 </h2>
                 <p className="text-[15px] sm:text-base text-[var(--color-ink-300)] font-serif leading-[1.7]">
                   Live dedicated sites engineered for luxury discovery—each with its own narrative, performance budget, and
@@ -627,6 +627,44 @@ export default function SinglePropertyWebsitesPage() {
                   </article>
                 ))}
               </div>
+            </div>
+          </section>
+
+          {/* Templates: the sections every single property website needs (SEO plan, Nov 2026) */}
+          <section className="py-16 md:py-24 bg-white border-b border-[var(--color-ink-200)] scroll-mt-24" id="templates">
+            <div className="container-max">
+              <div className="max-w-2xl">
+                <h2 className="text-3xl md:text-4xl font-serif font-light text-[var(--color-off-black)] tracking-tight leading-[1.1] mb-6">
+                  Single property website templates
+                </h2>
+                <p className="text-[15px] sm:text-base text-[var(--color-ink-300)] font-serif leading-[1.7]">
+                  Every listing is different, but the best single property websites share one structure. This is the
+                  template we start from, then tailor to the home, the buyer, and the market.
+                </p>
+              </div>
+              <ol className="mt-12 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+                {[
+                  { t: 'Hero with the address', d: 'Full-screen photo or video, the address, the price, and one clear way to request a showing.' },
+                  { t: 'Gallery and video', d: 'Professional photography, a walkthrough video, and drone views, loaded fast on a phone.' },
+                  { t: 'Details and floor plans', d: 'Beds, baths, square footage, upgrades, and downloadable floor plans for serious buyers.' },
+                  { t: 'Neighborhood', d: 'Schools, commute times, dining, and what makes the location worth the price.' },
+                  { t: 'Agent card', d: 'Your photo, brand, and direct contact, so the buyer knows exactly who to call.' },
+                  { t: 'Showing request form', d: 'A short form routed to your CRM, with tracking so you know which ads sent the buyer.' },
+                ].map((item, i) => (
+                  <li key={item.t} className="rounded-2xl border border-[var(--color-ink-200)] bg-[var(--surface-base)] p-6">
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] font-serif">Section {i + 1}</p>
+                    <p className="mt-2 font-serif text-xl font-light text-[var(--color-off-black)]">{item.t}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-300)] font-serif">{item.d}</p>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-10 max-w-2xl text-[15px] text-[var(--color-ink-300)] font-serif leading-[1.7]">
+                A single property website works best as part of a full launch. See how it fits our{' '}
+                <Link href="/property-marketing" className="underline underline-offset-2 hover:opacity-70">
+                  property marketing
+                </Link>{' '}
+                for luxury listings.
+              </p>
             </div>
           </section>
 

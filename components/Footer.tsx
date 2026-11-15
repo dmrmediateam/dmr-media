@@ -108,11 +108,6 @@ const Footer = () => {
                     SEO Optimization
                   </Link>
                 </li>
-                <li>
-                  <Link href="/seo-consulting" className="hover:opacity-60 transition-opacity">
-                    SEO Consulting
-                  </Link>
-                </li>
               </ul>
             </div>
 
@@ -149,6 +144,11 @@ const Footer = () => {
                 <li>
                   <Link href="/real-estate-lead-generation" className="hover:opacity-60 transition-opacity">
                     Real Estate Lead Generation
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/seller-lead-generation" className="hover:opacity-60 transition-opacity">
+                    Seller Lead Generation
                   </Link>
                 </li>
               </ul>

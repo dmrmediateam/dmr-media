@@ -39,9 +39,9 @@ const PROGRAM_INCLUDES = [
 
 const websiteServices: Service[] = [
   {
-    eyebrow: 'Agent Website Design',
-    heading: 'Distinguished websites that generate leads',
-    body: 'Custom-built sites with SEO architecture, sub-2s load times, and IDX built in at launch, not bolted on after.',
+    eyebrow: 'IDX Websites',
+    heading: 'IDX websites that turn home searches into leads',
+    body: 'Live MLS home search on your own domain, listing and neighborhood pages Google can index, and lead capture routed to your CRM.',
     note: 'Featuring Legendary Real Estate, Eagan Luxury, Cheryl Towey, Valoria Homes.',
     href: '/services/agent-websites',
     img: '/images/ClientWebsites/screencapture-legendaryrealestateservices-2026-03-04-03_34_49.png',
@@ -76,10 +76,10 @@ const leadServices: Service[] = [
     alt: 'Real estate lead pipeline inside a CRM',
   },
   {
-    eyebrow: 'Paid Media',
-    heading: 'Multi-Channel Paid Media',
-    body: 'Google, Meta, and retargeting run by one team with one strategy and attribution you can audit.',
-    href: '/services/paid-media',
+    eyebrow: 'Seller Leads',
+    heading: 'Seller Lead Generation',
+    body: 'Home valuation campaigns, manual valuations, and nurture that turns homeowners into exclusive listing leads.',
+    href: '/seller-lead-generation',
     img: '/images/StockHomes/spacious-living-room-with-staircase-in-residence-2025-10-10-15-17-44-utc (1).jpg',
     alt: 'Luxury living room representing multi-channel paid media',
   },

@@ -108,12 +108,16 @@ export default function RealEstateLeadGenerationPageContent() {
                 id="leadgen-hero-title"
                 className="mt-6 text-pretty font-serif text-[clamp(2.25rem,5.5vw,3.75rem)] font-light leading-[1.08] tracking-tight text-[var(--color-off-black)]"
               >
-                Real Estate Lead Generation that generated 46 qualified buyers &amp; sellers in 3 weeks.
+                Real estate lead generation services that fill your calendar with exclusive buyers.
               </h1>
               <p className="mx-auto mt-7 max-w-2xl text-pretty font-serif text-base leading-relaxed text-[var(--color-ink-300)] sm:text-lg">
                 Most agencies need 60–90 days to launch. Our flagship system delivered 46 qualified inbound leads in
                 three weeks, then tripled pipeline by day 90. SEO, Google Ads, landing capture, and CRM velocity from
-                one team. Your brand, your buyers, never resold.
+                one team. Your brand, your buyers, never resold. Need listings?{' '}
+                <Link href="/seller-lead-generation" className="underline underline-offset-2 hover:opacity-70">
+                  See seller lead generation
+                </Link>
+                .
               </p>
               <div className="mt-9 flex flex-col items-center gap-4">
                 <button
@@ -431,7 +435,11 @@ export default function RealEstateLeadGenerationPageContent() {
               <p className="font-serif text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-400)]">Ecosystem</p>
               <h2 className="mt-3 font-serif text-2xl font-light text-[var(--color-off-black)] md:text-3xl">How lead generation fits your stack</h2>
               <p className="mt-5 text-pretty font-serif text-[0.9375rem] leading-[1.82] text-[var(--color-ink-300)] sm:text-[15px] sm:leading-[1.85]">
-                Inbound sits on top of{' '}
+                Buyer and seller demand run as one system; for the listing side, see{' '}
+                <Link href="/seller-lead-generation" className="underline underline-offset-2 hover:opacity-70">
+                  seller lead generation
+                </Link>
+                . Inbound sits on top of{' '}
                 <Link href="/seo-optimization" className="underline underline-offset-2 hover:opacity-70">
                   SEO optimization
                 </Link>{' '}
@@ -448,7 +456,7 @@ export default function RealEstateLeadGenerationPageContent() {
                   property marketing
                 </Link>
                 , onsite experience with{' '}
-                <Link href="/website-and-seo" className="underline underline-offset-2 hover:opacity-70">
+                <Link href="/real-estate-website-design" className="underline underline-offset-2 hover:opacity-70">
                   website design
                 </Link>
                 , and presales GTM with{' '}

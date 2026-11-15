@@ -91,6 +91,10 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // One URL per service (SEO keyword-gap plan, Nov 2026): duplicates consolidate into the main service pages.
+      { source: '/website-and-seo', destination: '/real-estate-website-design', permanent: true },
+      { source: '/seo-consulting', destination: '/seo-optimization', permanent: true },
+      { source: '/services/paid-media', destination: '/google-ads-management', permanent: true },
       // Rebranded MLSs: the legacy page now lives under the MLS's current name.
       {
         source: '/mls-integrations/hudson-mls',

@@ -102,7 +102,7 @@ const pageData: ServicePageData = {
   relatedServices: [
     { label: 'Real Estate Lead Generation', href: '/real-estate-lead-generation' },
     { label: 'Google Ads Management', href: '/google-ads-management' },
-    { label: 'Paid Media', href: '/services/paid-media' },
+    { label: 'Paid Media', href: '/google-ads-management' },
     { label: 'SEO Optimization', href: '/seo-optimization' },
     { label: 'Analytics & Reporting', href: '/analytics-reporting' },
   ],

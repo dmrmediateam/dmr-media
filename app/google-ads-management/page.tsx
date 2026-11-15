@@ -6,12 +6,14 @@ import { FAQ_ITEMS } from './google-ads-data'
 const BASE = 'https://www.dmrmedia.org'
 
 export const metadata: Metadata = {
-  title: 'PPC Management for Real Estate | Pay-Per-Click Agency | DMR Media',
+  title: 'Real Estate PPC Agency & Google Ads Management | DMR Media',
   description:
     'Real estate PPC management with documented 88% CPL drops and 3× pipeline lifts. Google Ads, Maps, and P-Max run by one accountable team. Free 30-minute PPC audit: if we don\'t find $30K+ in wasted spend or missed pipeline, you owe nothing.',
   keywords: [
-    'PPC management for real estate',
+    'real estate PPC agency',
     'real estate PPC management',
+    'PPC management for real estate',
+    'Google Ads agency for real estate',
     'real estate PPC',
     'pay per click management for realtors',
     'Google Ads management for real estate',
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
     canonical: `${BASE}/google-ads-management`,
   },
   openGraph: {
-    title: 'PPC Management for Real Estate | Pay-Per-Click Agency | DMR Media',
+    title: 'Real Estate PPC Agency & Google Ads Management | DMR Media',
     description:
       'Real estate PPC management: Search, Maps, landing paths, and reporting tied to qualified conversations. Free PPC audit: wasted spend and CPL fixes for your market.',
     url: `${BASE}/google-ads-management`,
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PPC Management for Real Estate | Pay-Per-Click Agency | DMR Media',
+    title: 'Real Estate PPC Agency & Google Ads Management | DMR Media',
     description:
       'PPC management for luxury real estate teams. Free audit: wasted spend, match types, and CPL fixes for your market.',
   },

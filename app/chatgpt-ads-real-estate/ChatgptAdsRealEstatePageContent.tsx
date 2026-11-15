@@ -438,7 +438,7 @@ export default function ChatgptAdsRealEstatePageContent() {
                   analytics and reporting
                 </Link>
                 , flagship{' '}
-                <Link href="/website-and-seo" className="underline underline-offset-2 hover:opacity-70">
+                <Link href="/real-estate-website-design" className="underline underline-offset-2 hover:opacity-70">
                   website design
                 </Link>
                 , and{' '}

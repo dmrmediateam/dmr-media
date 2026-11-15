@@ -28,13 +28,18 @@ export const contentRegistry: ContentEntry[] = [
   // ─── Core Pages ────────────────────────────────────────────────────────────
   {
     slug: '/',
-    title: 'DMR Media — Luxury Real Estate Marketing Agency',
+    title: 'Luxury Real Estate Marketing Agency | DMR Media',
     description:
-      'Specialized Google marketing, SEO, and Google Ads for luxury real estate professionals. Elevate your brand and dominate the premium property market.',
+      'DMR Media is a luxury real estate marketing agency for agents and teams: websites, SEO, AI search, and Google Ads that bring exclusive buyer and seller leads.',
     publishDate: '2024-06-01',
-    modifiedDate: '2026-02-15',
+    modifiedDate: '2026-11-15',
     category: 'Agency',
-    tags: ['real estate marketing', 'luxury real estate', 'Google Ads', 'SEO'],
+    tags: [
+      'luxury real estate marketing agency',
+      'real estate marketing agency',
+      'real estate marketing companies',
+      'luxury real estate marketing',
+    ],
     priority: 1.0,
     changeFrequency: 'weekly',
   },
@@ -133,13 +138,16 @@ export const contentRegistry: ContentEntry[] = [
   // ─── Service Pages ──────────────────────────────────────────────────────────
   {
     slug: '/seo-optimization',
-    title: 'SEO Optimization for Real Estate | DMR Media',
+    title: 'Real Estate SEO Company & Services | DMR Media',
     description:
-      'Precision search frameworks for luxury real estate. Local SEO, technical optimization, and content architecture designed to rank luxury agents and brokers.',
+      'DMR Media is a real estate SEO company for agents and teams: SEO services, local and AI search, and expert strategy. Documented 19× more organic clicks in 90 days.',
     publishDate: '2024-06-15',
-    modifiedDate: '2026-04-28',
+    modifiedDate: '2026-11-15',
     category: 'SEO',
     tags: [
+      'real estate seo company',
+      'real estate seo services',
+      'real estate seo agency',
       'SEO optimization for real estate',
       'real estate SEO',
       'luxury real estate SEO',
@@ -150,29 +158,12 @@ export const contentRegistry: ContentEntry[] = [
     changeFrequency: 'weekly',
   },
   {
-    slug: '/seo-consulting',
-    title: 'SEO Consulting for Real Estate | DMR Media',
-    description:
-      'Strategic SEO consulting for real estate teams and developers. Audit, strategy, and implementation roadmaps without ongoing management.',
-    publishDate: '2026-04-28',
-    modifiedDate: '2026-04-28',
-    category: 'SEO',
-    tags: [
-      'SEO consulting for real estate',
-      'real estate SEO strategy',
-      'SEO audit for real estate',
-      'SEO consulting services',
-    ],
-    priority: 0.88,
-    changeFrequency: 'monthly',
-  },
-  {
     slug: '/google-ads-management',
-    title: 'PPC Management for Real Estate | DMR Media',
+    title: 'Real Estate PPC Agency & Google Ads Management | DMR Media',
     description:
-      'Pay-per-click management engineered for the luxury buyer journey. Precision Google Ads campaigns designed for affluent real estate buyers with transparent pacing and reporting.',
+      'A real estate PPC agency for agents and teams: Google Ads Search, Local Services Ads, Performance Max, and retargeting, managed to booked appointments.',
     publishDate: '2024-06-15',
-    modifiedDate: '2026-08-17',
+    modifiedDate: '2026-11-15',
     category: 'Google Ads',
     tags: [
       'PPC management for real estate',
@@ -206,17 +197,35 @@ export const contentRegistry: ContentEntry[] = [
   },
   {
     slug: '/real-estate-lead-generation',
-    title: 'Real Estate Lead Generation | DMR Media',
+    title: 'Real Estate Lead Generation Services | DMR Media',
     description:
-      'Qualified conversations—not vanity traffic. Inbound systems for luxury markets combining SEO, Google Ads, landing page optimization, and CRM automation.',
+      'Real estate lead generation services for agents and teams: exclusive buyer leads from SEO, Google Ads, landing pages, and CRM follow-up. Seller campaigns available.',
     publishDate: '2026-04-18',
-    modifiedDate: '2026-04-28',
+    modifiedDate: '2026-11-15',
     category: 'Lead Generation',
     tags: [
       'real estate lead generation',
       'luxury real estate lead generation',
       'real estate lead generation system',
       'real estate lead generation services',
+    ],
+    priority: 0.89,
+    changeFrequency: 'weekly',
+  },
+  {
+    slug: '/seller-lead-generation',
+    title: 'Seller Lead Generation for Realtors | DMR Media',
+    description:
+      'Exclusive seller and listing leads for realtors: home valuation campaigns on Google, manual valuations, and nurture that turns homeowners into listings.',
+    publishDate: '2026-11-15',
+    modifiedDate: '2026-11-15',
+    category: 'Lead Generation',
+    tags: [
+      'seller lead generation',
+      'real estate seller leads',
+      'seller leads for realtors',
+      'listing leads for realtors',
+      'real estate listing lead generation',
     ],
     priority: 0.89,
     changeFrequency: 'weekly',
@@ -237,18 +246,6 @@ export const contentRegistry: ContentEntry[] = [
     ],
     priority: 0.88,
     changeFrequency: 'weekly',
-  },
-  {
-    slug: '/website-and-seo',
-    title: 'Website Design & SEO for Real Estate | DMR Media',
-    description:
-      'Connect luxury real estate website design with technical SEO: portfolio direction, search strategy, and performance standards for premium agents and teams.',
-    publishDate: '2026-04-28',
-    modifiedDate: '2026-04-28',
-    category: 'Services',
-    tags: ['real estate website design', 'luxury real estate SEO', 'property website', 'brokerage website'],
-    priority: 0.82,
-    changeFrequency: 'monthly',
   },
   {
     slug: '/single-property-websites',
@@ -298,36 +295,17 @@ export const contentRegistry: ContentEntry[] = [
   },
   {
     slug: '/services/agent-websites',
-    title: 'Real Estate Agent Websites — Custom Design & Built-In SEO | DMR Media',
+    title: 'IDX Websites for Realtors | IDX Real Estate Websites | DMR Media',
     description:
-      'Custom real estate agent websites that rank and convert. Built-in SEO architecture, sub-2s load times, and brand-aligned design for luxury agents since 2022.',
+      'IDX websites for realtors: custom real estate sites with MLS home search, indexable listing and area pages, lead capture, and CRM routing. Built to rank and convert.',
     publishDate: '2026-06-12',
-    modifiedDate: '2026-06-12',
+    modifiedDate: '2026-11-15',
     category: 'Website Design',
     tags: [
-      'real estate agent websites',
-      'website for real estate agent',
-      'custom real estate website',
-      'luxury real estate website design',
-      'real estate website SEO',
-    ],
-    priority: 0.89,
-    changeFrequency: 'weekly',
-  },
-  {
-    slug: '/services/paid-media',
-    title: 'Paid Media for Real Estate — Google Ads, Meta & Multi-Channel | DMR Media',
-    description:
-      'Paid media management for luxury real estate: Google Ads, Meta, and retargeting campaigns tied to pipeline and GCI — not click volume. Free audit.',
-    publishDate: '2026-06-12',
-    modifiedDate: '2026-06-12',
-    category: 'Paid Media',
-    tags: [
-      'paid media for real estate',
-      'real estate paid advertising',
-      'real estate Facebook ads',
-      'real estate multi-channel advertising',
-      'real estate PPC agency',
+      'idx website',
+      'idx websites for realtors',
+      'idx real estate websites',
+      'real estate website with idx',
     ],
     priority: 0.89,
     changeFrequency: 'weekly',
@@ -458,7 +436,7 @@ export const contentRegistry: ContentEntry[] = [
   // ─── Portfolio / Samples ─────────────────────────────────────────────────────
   {
     slug: '/real-estate-agent-website-samples',
-    title: 'Real Estate Agent Website Examples | DMR Media Design Portfolio',
+    title: 'Real Estate Agent Website Examples & Templates | DMR Media',
     description:
       'Real estate agent website examples from award-winning designs. Legendary Real Estate, Eagan Luxury, Carole Tierney, Valoria Homes—custom sites built for top agents, teams, and brokers.',
     publishDate: '2026-03-01',

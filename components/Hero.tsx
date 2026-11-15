@@ -89,14 +89,15 @@ const Hero = () => {
           animate="visible"
           variants={containerVariants}
         >
-          <motion.p className="dmr-home-hero__eyebrow" variants={itemVariants}>
-            Luxury real estate · SEO · paid search · web
-          </motion.p>
+          {/* The H1 carries the target query ("luxury real estate marketing agency"); the large line below keeps the brand voice. */}
+          <motion.h1 className="dmr-home-hero__eyebrow" variants={itemVariants}>
+            Luxury real estate marketing agency
+          </motion.h1>
 
-          <motion.h1 className="dmr-home-hero__heading" variants={itemVariants}>
+          <motion.p className="dmr-home-hero__heading" variants={itemVariants}>
             Distinguished marketing for{' '}
             <span className="dmr-home-hero__heading-accent">real estate</span>
-          </motion.h1>
+          </motion.p>
         </motion.div>
       </div>
     </section>

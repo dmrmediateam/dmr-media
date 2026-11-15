@@ -6,10 +6,14 @@ import { FAQ_ITEMS } from './seo-data'
 const BASE = 'https://www.dmrmedia.org'
 
 export const metadata: Metadata = {
-  title: 'Real Estate SEO — 19× More Organic Clicks in 90 Days | DMR Media',
+  title: 'Real Estate SEO Company & Services | DMR Media',
   description:
-    'Luxury real estate SEO with documented 19× organic-click lifts and 300%+ traffic in 90 days. Free 30-minute audit: if we don\'t find $50K+ in missed opportunity, you owe nothing.',
+    'DMR Media is a real estate SEO company for agents and teams: SEO services, local and AI search, and expert strategy. Documented 19× more organic clicks in 90 days.',
   keywords: [
+    'real estate seo company',
+    'real estate seo services',
+    'real estate seo agency',
+    'real estate seo expert',
     'SEO optimization for real estate',
     'real estate SEO',
     'luxury real estate SEO',
@@ -21,18 +25,18 @@ export const metadata: Metadata = {
     canonical: `${BASE}/seo-optimization`,
   },
   openGraph: {
-    title: 'Real Estate SEO — 19× More Organic Clicks in 90 Days | DMR Media',
+    title: 'Real Estate SEO Company & Services | DMR Media',
     description:
-      'Luxury real estate SEO with documented 19× organic-click lifts and 300%+ traffic in 90 days. Free audit: if we don\'t find $50K+ in missed opportunity, you owe nothing.',
+      'DMR Media is a real estate SEO company for agents and teams: SEO services, local and AI search, and expert strategy. Documented 19× more organic clicks in 90 days.',
     url: `${BASE}/seo-optimization`,
     siteName: 'DMR Media',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Real Estate SEO — 19× More Organic Clicks in 90 Days | DMR Media',
+    title: 'Real Estate SEO Company & Services | DMR Media',
     description:
-      'Luxury real estate SEO with documented 19× organic-click lifts and 300%+ traffic in 90 days. Free audit: if we don\'t find $50K+ in missed opportunity, you owe nothing.',
+      'DMR Media is a real estate SEO company for agents and teams: SEO services, local and AI search, and expert strategy. Documented 19× more organic clicks in 90 days.',
   },
 }
 

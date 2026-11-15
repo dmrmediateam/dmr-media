@@ -2,6 +2,16 @@
 
 export const FAQ_ITEMS = [
   {
+    question: 'What does a real estate SEO company do?',
+    answer:
+      'A real estate SEO company makes your website show up when buyers and sellers search Google and AI tools for your market. That covers technical fixes, community and zip code pages, Google Business Profile and reviews, backlinks, and tracking. The goal is leads from search, not traffic for its own sake.',
+  },
+  {
+    question: 'How do I choose a real estate SEO expert?',
+    answer:
+      'Ask for real estate results with screenshots from Search Console, not just rankings. Ask how they build neighborhood pages, earn backlinks without buying spam links, and handle MLS and Fair Housing rules. Avoid anyone who guarantees a #1 position, and make sure you own your site and content.',
+  },
+  {
     question: 'How long until we see movement in search?',
     answer:
       'Technical fixes and long-tail terms often move first, sometimes within weeks. Competitive head terms compound over quarters as authority stacks. We report weekly on leading indicators (coverage, impressions, crawl health) so you always know what the work is doing, not just where you hope to land someday.',
@@ -14,7 +24,7 @@ export const FAQ_ITEMS = [
   {
     question: 'What does ongoing SEO actually look like?',
     answer:
-      'Search is a moving target: algorithms shift, competitors publish, inventory changes. Retainers include monitoring, technical hygiene, content cadence, and internal linking so your site earns trust from Google and from buyers. If you need a smaller strategy-first package, see https://www.dmrmedia.org/seo-consulting.',
+      'Search is a moving target: algorithms shift, competitors publish, inventory changes. Retainers include monitoring, technical hygiene, content cadence, and internal linking so your site earns trust from Google and from buyers. If you need a smaller strategy-first package, start with a one-time SEO consulting engagement: an audit and roadmap your team can run.',
   },
   {
     question: 'We already have a site. Do we have to rebuild?',
@@ -24,7 +34,7 @@ export const FAQ_ITEMS = [
   {
     question: 'How is pricing scoped?',
     answer:
-      'After audit we align scope to market difficulty, site size, content velocity, and your growth target, then we put deliverables in writing. No opaque “packages,” no surprise invoices for basic edits. If you are not ready for weekly execution, start with https://www.dmrmedia.org/seo-consulting.',
+      'After audit we align scope to market difficulty, site size, content velocity, and your growth target, then we put deliverables in writing. No opaque “packages,” no surprise invoices for basic edits. If you are not ready for weekly execution, begin with a one-time SEO consulting engagement.',
   },
 ] as const
 

@@ -103,14 +103,14 @@ export default function GoogleAdsManagementPageContent() {
                 id="google-ads-hero-title"
                 className="mt-6 font-serif text-[clamp(2.5rem,6vw,4rem)] font-light leading-[1.06] tracking-tight text-[var(--color-off-black)]"
               >
-                PPC Management
+                Real Estate PPC
                 <br />
-                for Real Estate
+                Management Agency
               </h1>
               <p className="mx-auto mt-7 max-w-2xl font-serif text-base leading-relaxed text-[var(--color-ink-300)] sm:text-lg">
-                Pay-per-click campaigns across Google Ads Search, Maps, and Performance Max for agents, teams, and
-                brokerages. Intent-led PPC, landing paths your CRM can work, and reporting tied to qualified
-                conversations.
+                A real estate PPC agency for agents, teams, and brokerages: Google Ads Search, Local Services Ads,
+                Performance Max, and retargeting run by one team. Intent-led PPC management, landing paths your CRM can
+                work, and reporting tied to qualified conversations.
               </p>
               <div className="mt-9 flex flex-col items-center gap-4">
                 <button
