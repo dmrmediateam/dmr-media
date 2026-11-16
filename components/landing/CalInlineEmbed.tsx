@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { readLandingLeadPrefill, toE164 } from '@/lib/landing/booking-prefill'
+import { trackCalBookings } from '@/lib/landing/cal-booking-tracking'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -86,7 +87,8 @@ export default function CalInlineEmbed({
     })
 
     w.Cal.ns[CAL_NAMESPACE]('ui', { theme: 'light', hideEventTypeDetails: false, layout: 'month_view' })
-  }, [notes, calLink, CAL_NAMESPACE, CAL_ELEMENT_ID])
+    trackCalBookings(CAL_NAMESPACE)
+  },[notes, calLink, CAL_NAMESPACE, CAL_ELEMENT_ID])
 
   return <div id={CAL_ELEMENT_ID} style={{ width: '100%', height: '100%', overflow: 'auto' }} className={`min-h-[720px] ${className}`} />
 }

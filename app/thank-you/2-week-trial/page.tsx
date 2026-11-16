@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ELFSIGHT_LANDING_HIDE_SELECTORS } from '@/lib/elfsight-widgets';
+import { trackCalBookings } from '@/lib/landing/cal-booking-tracking';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -90,6 +91,7 @@ export default function TwoWeekTrialPage() {
     });
 
     w.Cal.ns['2-week-trial']('ui', { theme: 'light', hideEventTypeDetails: false, layout: 'month_view' });
+    trackCalBookings('2-week-trial');
   }, []);
 
   return (
