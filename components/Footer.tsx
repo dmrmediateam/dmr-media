@@ -205,6 +205,22 @@ const Footer = () => {
                     Lister
                   </span>
                 </a>
+                {/* Official Google Partners badge: keep Google's hosted SVG and agency link as issued. */}
+                <a
+                  href="https://www.google.com/partners/agency?id=7429427141"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="DMR Media - Google Partner"
+                  className="inline-flex items-center hover:opacity-60 transition-opacity"
+                >
+                  <img
+                    src="https://www.gstatic.com/partners/badge/images/2026/PartnerBadgeClickable.svg"
+                    alt="Google Partner"
+                    width={152}
+                    height={146}
+                    className="h-14 w-auto"
+                  />
+                </a>
               </div>
               <p className="text-[10px] text-[var(--color-ink-300)]">
                 Top ranked real estate marketing agency in the United States*
