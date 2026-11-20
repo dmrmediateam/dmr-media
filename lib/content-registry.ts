@@ -295,17 +295,18 @@ export const contentRegistry: ContentEntry[] = [
   },
   {
     slug: '/services/agent-websites',
-    title: 'IDX Websites for Realtors | IDX Real Estate Websites | DMR Media',
+    title: 'IDX Websites for Realtors: Design & Development | DMR Media',
     description:
-      'IDX websites for realtors: custom real estate sites with MLS home search, indexable listing and area pages, lead capture, and CRM routing. Built to rank and convert.',
+      'IDX websites for realtors, designed to your brand: live MLS search on your own domain, listing pages Google can read, and lead capture built in.',
     publishDate: '2026-06-12',
-    modifiedDate: '2026-11-15',
+    modifiedDate: '2026-11-20',
     category: 'Website Design',
     tags: [
       'idx website',
       'idx websites for realtors',
       'idx real estate websites',
       'real estate website with idx',
+      'idx website development',
     ],
     priority: 0.89,
     changeFrequency: 'weekly',

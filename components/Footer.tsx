@@ -99,6 +99,11 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/services/agent-websites" className="hover:opacity-60 transition-opacity">
+                    IDX Website Development
+                  </Link>
+                </li>
+                <li>
                   <Link href="/real-estate-agent-website-samples" className="hover:opacity-60 transition-opacity">
                     Website Design Portfolio
                   </Link>
